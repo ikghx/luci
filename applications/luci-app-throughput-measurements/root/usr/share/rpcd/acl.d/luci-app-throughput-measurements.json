@@ -1,0 +1,16 @@
+{
+	"luci-app-throughput-measurements": {
+		"description": "Grant access to tputmeas ubus object",
+		"read": {
+			"cgi-io": [ "exec" ],
+			"uci": [ "luci_tputmeas" ],
+			"ubus": {
+				"luci.tputmeas": [ "*" ],
+				"luci.tputmeas.notify": [ "*" ]
+			}
+		},
+		"write": {
+			"uci": [ "luci_tputmeas" ]
+		}
+	}
+}

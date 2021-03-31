@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# symlink for busybox httpd
+[ -x /usr/sbin/httpd ] && [ ! -h /www/rrdimg ] && \
+	ln -s /tmp/rrdimg /www/rrdimg
+
+exit 0

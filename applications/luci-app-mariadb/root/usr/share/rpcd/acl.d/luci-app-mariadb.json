@@ -1,0 +1,19 @@
+{
+	"luci-app-mariadb": {
+		"description": "Grant UCI access for luci-app-mariadb",
+		"read": {
+			"file": {
+				"/etc/mysql/conf.d/50-mysql-clients.cnf": [ "read" ],
+				"/etc/mysql/conf.d/50-server.cnf": [ "read" ]
+			},
+			"uci": [ "mariadb" ]
+		},
+		"write": {
+			"file": {
+				"/etc/mysql/conf.d/50-mysql-clients.cnf": [ "write" ],
+				"/etc/mysql/conf.d/50-server.cnf": [ "write" ]
+			},
+			"uci": [ "mariadb" ]
+		}
+	}
+}

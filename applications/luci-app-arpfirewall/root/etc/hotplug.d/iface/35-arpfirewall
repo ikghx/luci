@@ -1,0 +1,6 @@
+#!/bin/sh
+# Copyright (C) 2016 play4fun
+
+[ "$ACTION" = ifup ] || exit 0
+/etc/init.d/arpfirewall start
+logger -t ARPFirewall "Reload ARP Firewall due to ifup of $INTERFACE ($DEVICE)"

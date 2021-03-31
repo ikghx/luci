@@ -1,0 +1,124 @@
+
+config openclash 'config'
+	option proxy_port '7890'
+	option http_port '7891'
+	option socks_port '7892'
+	option mixed_port '7893'
+	option dns_port '7874'
+	option enable '0'
+	option update '0'
+	option en_mode 'fake-ip-tun'
+	option stack_type 'system'
+	option operation_mode 'fake-ip'
+	option auto_update '0'
+	option auto_update_time '0'
+	option cn_port '9090'
+	option dashboard_password '123456'
+	option enable_custom_dns '1'
+	option other_rule_auto_update '0'
+	option core_version '0'
+	option enable_redirect_dns '1'
+	option dns_advanced_setting '0'
+	option servers_if_update '0'
+	option disable_masq_cache '0'
+	option servers_update '0'
+	option interface_name '0'
+	option log_level 'silent'
+	option proxy_mode 'rule'
+	option intranet_allowed '0'
+	option lan_ac_mode '0'
+	option enable_rule_proxy '1'
+	option redirect_dns '0'
+	option other_rule_update_week_time '*'
+	option other_rule_update_day_time '0'
+	option geo_auto_update '0'
+	option geo_update_week_time '*'
+	option geo_update_day_time '0'
+	option enable_custom_clash_rules '1'
+	option create_config '1'
+	option rule_sources 'lhie1'
+	option rule_source '0'
+	option small_flash_memory '0'
+	option ipv6_enable '0'
+	option restricted_mode '0'
+	option log_size '1024'
+	option geo_custom_url 'http://www.ideame.top/mmdb/Country.mmdb'
+
+config dns_servers
+	option enabled '1'
+	option group 'nameserver'
+	option type 'udp'
+	option ip '114.114.114.114'
+
+config dns_servers
+	option enabled '1'
+	option group 'nameserver'
+	option type 'udp'
+	option ip '119.29.29.29'
+
+config dns_servers
+	option enabled '1'
+	option group 'nameserver'
+	option type 'udp'
+	option ip '223.5.5.5'
+
+config dns_servers
+	option enabled '1'
+	option group 'nameserver'
+	option type 'udp'
+	option ip '202.141.162.123'
+	option port '5353'
+
+config dns_servers
+	option enabled '1'
+	option type 'udp'
+	option group 'fallback'
+	option ip '1.1.1.1'
+
+config dns_servers
+	option enabled '1'
+	option type 'udp'
+	option group 'fallback'
+	option ip '208.67.222.222'
+
+config dns_servers
+	option enabled '1'
+	option type 'udp'
+	option group 'fallback'
+	option ip '8.8.8.8'
+
+config dns_servers
+	option enabled '1'
+	option group 'fallback'
+	option ip 'cloudflare-dns.com/dns-query'
+	option type 'https'
+
+config dns_servers
+	option enabled '1'
+	option group 'fallback'
+	option ip 'doh.opendns.com/dns-query'
+	option type 'https'
+
+config dns_servers
+	option enabled '1'
+	option group 'fallback'
+	option ip 'dns.google/dns-query'
+	option type 'https'
+
+config servers
+	option enabled '1'
+	option manual '1'
+	option config 'all'
+	option name 'cn'
+	option type 'vmess'
+	option server 'www.baidu.com'
+	option port '443'
+	option udp 'true'
+	option tls 'true'
+	option skip_cert_verify 'true'
+	option securitys 'auto'
+	option alterId '0'
+	option uuid 'b831381d-6324-4d53-ad4f-8cda48b30811'
+	option obfs_vmess 'websocket'
+	option path 'ray'
+

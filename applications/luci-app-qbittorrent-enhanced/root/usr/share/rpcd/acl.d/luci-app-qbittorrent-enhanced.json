@@ -1,0 +1,26 @@
+{
+	"luci-app-qbittorrent-enhanced": {
+		"description": "Grant access to LuCI app qBittorrent Enhanced",
+		"read": {
+			"ubus": {
+				"network.interface.lan": [ "status" ],
+				"service": [ "list" ],
+				"uci": [ "get" ]
+			},
+			"file": {
+				"/etc/group": [ "read" ],
+				"/etc/passwd": [ "read" ],
+				"/etc/init.d/qbittorrent-enhanced": [ "exec" ],
+				"/usr/bin/qbittorrent-nox-enhanced": [ "exec" ]
+			},
+			"uci": [ "qbittorrent-enhanced" ]
+		},
+		"write": {
+			"file": {
+				"/bin/rm": [ "exec" ]
+
+			},
+			"uci": [ "qbittorrent-enhanced" ]
+		}
+	}
+}

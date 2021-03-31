@@ -1,0 +1,39 @@
+{
+	"admin/vpn/shadowsocks-libev": {
+		"title": "Shadowsocks-libev",
+		"order": 59,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-shadowsocks-libev" ]
+		}
+	},
+
+	"admin/vpn/shadowsocks-libev/instances": {
+		"title": "Local Instances",
+		"order": 10,
+		"action": {
+			"type": "view",
+			"path": "shadowsocks-libev/instances"
+		}
+	},
+
+	"admin/vpn/shadowsocks-libev/servers": {
+		"title": "Remote Servers",
+		"order": 20,
+		"action": {
+			"type": "view",
+			"path": "shadowsocks-libev/servers"
+		}
+	},
+
+	"admin/vpn/shadowsocks-libev/rules": {
+		"title": "Redir Rules",
+		"order": 30,
+		"action": {
+			"type": "view",
+			"path": "shadowsocks-libev/rules"
+		}
+	}
+}
