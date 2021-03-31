@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=luci-app-passwall
 PKG_VERSION:=4
 PKG_RELEASE:=41
-PKG_DATE:=20210325
+PKG_DATE:=20210331
 
 define Package/$(PKG_NAME)/config
 menu "Configuration"
