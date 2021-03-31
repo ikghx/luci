@@ -31,7 +31,6 @@ start_instance() {
 
 	procd_open_instance
 	procd_set_param command "$PROG"
-	procd_set_param file /etc/config/syncthing
 	procd_set_param env GOMAXPROCS="$macprocs" STNOUPGRADE=1
 	procd_append_param command -gui-address="$gui_address"
 	procd_append_param command -home="$home"
