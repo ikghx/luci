@@ -10,7 +10,7 @@ end
 mp = Map("pptpd", translate("PPTP Server") .. state_msg)
 
 s = mp:section(NamedSection, "pptpd", "service")
-s.anonymouse = true
+s.anonymous = true
 
 o = s:option(Flag, "enabled", translate("Enable"))
 o.default = 0
@@ -48,7 +48,9 @@ end
 s = mp:section(TypedSection, "login", translate("PPTP Logins"))
 s.template = "cbi/tblsection"
 s.addremove = true
-s.anonymouse = true
+s.anonymous = true
+
+o = s:option(TextValue, "notes", translate("Notes"))
 
 o = s:option(Value, "username", translate("Username"))
 o.datatype = "string"
@@ -58,6 +60,7 @@ o.password = true
 o.datatype = "string"
 
 o = s:option(Value, "remoteip", translate("IP address"))
+o.placeholder = translate("Optional")
 o.datatype = "ip4addr"
 
 function mp.on_save(self)
@@ -96,7 +99,7 @@ function mp.on_save(self)
 			['name'] = 'gre',
 			['target'] = 'ACCEPT',
 			['src'] = 'wan',
-			['proto'] = 47
+			['proto'] = 'gre'
 		})
 		cursor:save('firewall')
 		cursor:commit('firewall')
