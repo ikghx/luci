@@ -513,17 +513,15 @@ o = s:option(Flag, "tls_sessionTicket", translate("Session Ticket"))
 o:depends({type = "trojan", tls = true})
 o.default = "0"
 
--- [[ Trojan TLS ]]--
+-- [[ uTLS ]]--
 o = s:option(ListValue, "fingerprint", translate("Finger Print"))
 o:value("disable", translate("disable"))
 o:value("firefox", translate("firefox"))
 o:value("chrome", translate("chrome"))
-if is_finded("xray") then
-	o:value("safari", translate("safari"))
-	o:value("randomized", translate("random"))
-end
+o:value("safari", translate("safari"))
+o:value("randomized", translate("randomized"))
 o:depends({type = "v2ray", tls = true})
-o.default = "firefox"
+o.default = "disable"
 
 o = s:option(Value, "tls_host", translate("TLS Host"))
 o.placeholder = "www.baidu.com"
@@ -535,7 +533,6 @@ o.rmempty = true
 -- [[ allowInsecure ]]--
 o = s:option(Flag, "insecure", translate("allowInsecure"))
 o.rmempty = false
-o.default = "1"
 o:depends("tls", true)
 o:depends("xtls", true)
 o.description = translate("If true, allowss insecure connection at TLS client, e.g., TLS server uses unverifiable certificates.")
