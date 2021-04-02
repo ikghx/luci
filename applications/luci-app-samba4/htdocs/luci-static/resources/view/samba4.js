@@ -3,41 +3,28 @@
 'require fs';
 'require form';
 'require tools.widgets as widgets';
-'require rpc';
-
-var callServiceList = rpc.declare({
-	object: 'service',
-	method: 'list',
-	params: [ 'name' ],
-	expect: { 'samba4': {} }
-});
 
 return view.extend({
 	load: function() {
 		return Promise.all([
-			L.resolveDefault(callServiceList('samba4')),
 			L.resolveDefault(fs.stat('/sbin/block'), null),
 			L.resolveDefault(fs.stat('/etc/config/fstab'), null),
 			L.resolveDefault(fs.stat('/usr/sbin/nmbd'), {}),
 			L.resolveDefault(fs.stat('/usr/sbin/samba'), {}),
 			L.resolveDefault(fs.stat('/usr/sbin/winbindd'), {}),
+			L.resolveDefault(fs.exec('/usr/sbin/smbd', ['-V']), null),
 		]);
 	},
 	render: function(stats) {
-		var running = Object.keys(stats[0].instances || {}).length > 0;
-
-		var status = '';
-		if (running) {
-			status = "<span style=\"color:green;font-weight:bold\">" + _("Running") + "</span>";
-		} else {
-			status = "<span style=\"color:red;font-weight:bold\">" + _("Not running") + "</span>";
-		}
-
-		var m, s, o;
+		var m, s, o, v;
+		v = '';
 
 		m = new form.Map('samba4', _('Network Shares-samba4') + status);
 
-		s = m.section(form.TypedSection, 'samba');
+		if (stats[5] && stats[5].code === 0) {
+			v = stats[5].stdout.trim();
+		}
+		s = m.section(form.TypedSection, 'samba', 'Samba ' + v);
 		s.anonymous = true;
 
 		s.tab('general',  _('General Settings'));
