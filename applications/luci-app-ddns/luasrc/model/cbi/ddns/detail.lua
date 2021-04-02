@@ -632,7 +632,8 @@ if has_ssl then
 		translate("or") .. bold_on .. " IGNORE " .. bold_off ..
 		translate("to run HTTPS without verification of server certificates (insecure)") )
 	cert:depends("use_https", "1")
-	cert.placeholder = "/etc/ssl/certs"
+	cert:value("/etc/ssl/cert.pem")
+	cert:value("IGNORE", translate("ignore"))
 	cert.forcewrite = true
 	function cert.validate(self, value)
 		if https:formvalue(section) ~= "1" then
