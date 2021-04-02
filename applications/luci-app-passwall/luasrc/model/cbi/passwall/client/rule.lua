@@ -13,11 +13,11 @@ o.rmempty = false
 
 ---- gfwlist URL
 o = s:option(Value, "gfwlist_url", translate("GFW domains(gfwlist) Update URL"))
-o:value("https://raw.sevencdn.com/YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt", translate("v2fly/domain-list-community"))
-o:value("https://raw.sevencdn.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt", translate("Loyalsoldier/v2ray-rules-dat"))
-o:value("https://raw.sevencdn.com/Loukky/gfwlist-by-loukky/master/gfwlist.txt", translate("Loukky/gfwlist-by-loukky"))
-o:value("https://raw.sevencdn.com/gfwlist/gfwlist/master/gfwlist.txt", translate("gfwlist/gfwlist"))
-o.default = "https://raw.sevencdn.com/YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt"
+o:value("https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt", translate("v2fly/domain-list-community"))
+o:value("https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/gfw.txt", translate("Loyalsoldier/v2ray-rules-dat"))
+o:value("https://cdn.jsdelivr.net/gh/Loukky/gfwlist-by-loukky@master/gfwlist.txt", translate("Loukky/gfwlist-by-loukky"))
+o:value("https://cdn.jsdelivr.net/gh/gfwlist/gfwlist@master/gfwlist.txt", translate("gfwlist/gfwlist"))
+o.default = "https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt"
 
 ----chnroute  URL
 o = s:option(Value, "chnroute_url", translate("China IPs(chnroute) Update URL"))
