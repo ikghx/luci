@@ -1,0 +1,31 @@
+{
+	"admin/services/haproxy": {
+		"title": "HAProxy",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/haproxy/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-haproxy" ],
+			"uci": { "haproxy": true }
+		}
+	},
+
+	"admin/services/haproxy/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "haproxy/base"
+		}
+	},
+
+	"admin/services/haproxy/conf": {
+		"title": "Advanced Settings",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "haproxy/conf"
+		}
+	}
+}
