@@ -28,7 +28,7 @@ return view.extend({
 
 		var m, s, o;
 
-		m = new form.Map('nginx', _('Nginx') + status, _('nginx is an HTTP and reverse proxy server.'));
+		m = new form.Map('nginx', _('Nginx') + status, _('Nginx is an HTTP and reverse proxy server.'));
 
 		s = m.section(form.TypedSection, 'base');
 		s.anonymous = true;
