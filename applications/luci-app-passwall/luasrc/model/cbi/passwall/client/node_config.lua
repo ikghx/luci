@@ -502,7 +502,6 @@ trojan_plugin_arg:depends({ plugin_type = "shadowsocks" })
 trojan_plugin_arg:depends({ plugin_type = "other" })
 
 transport = s:option(ListValue, "transport", translate("Transport"))
-transport.default = "ws"
 transport:value("tcp", "TCP")
 transport:value("mkcp", "mKCP")
 transport:value("ws", "WebSocket")

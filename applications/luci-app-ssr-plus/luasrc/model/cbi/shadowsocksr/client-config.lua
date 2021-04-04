@@ -179,8 +179,8 @@ o:depends("type", "tun")
 o.description = translate("Redirect traffic to this network interface")
 
 o = s:option(ListValue, "v2ray_protocol", translate("V2Ray/XRay protocol"))
-o:value("vmess", translate("VMess"))
 o:value("vless", translate("VLESS"))
+o:value("vmess", translate("VMess"))
 o:value("trojan", translate("Trojan"))
 o:value("shadowsocks", translate("Shadowsocks"))
 o:value("socks", translate("Socks"))
@@ -326,9 +326,9 @@ o:depends({type = "v2ray", v2ray_protocol = "vmess"})
 
 -- 传输协议
 o = s:option(ListValue, "transport", translate("Transport"))
-o:value("ws", "WebSocket")
 o:value("tcp", "TCP")
 o:value("kcp", "mKCP")
+o:value("ws", "WebSocket")
 o:value("h2", "HTTP/2")
 o:value("quic", "QUIC")
 o.rmempty = true

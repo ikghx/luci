@@ -215,6 +215,7 @@ o.validate = function(self, value, t)
     return value
 end
 o.default = "127.0.0.1:9050"
+o.placeholder = "127.0.0.1:9050"
 o:depends({dns_mode = "dns2socks"})
 o:depends({dns_mode = "xray_doh", up_trust_doh_dns = "socks"})
 
