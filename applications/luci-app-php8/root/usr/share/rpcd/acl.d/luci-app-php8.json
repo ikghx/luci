@@ -1,0 +1,19 @@
+{
+	"luci-app-php8": {
+		"description": "Grant UCI access for luci-app-php8",
+		"read": {
+			"file": {
+				"/etc/php.ini": [ "read" ],
+				"/etc/php8-fpm.d/www.conf": [ "read" ]
+			},
+			"uci": [ "php8-fpm" ]
+		},
+		"write": {
+			"file": {
+				"/etc/php.ini": [ "write" ],
+				"/etc/php8-fpm.d/www.conf": [ "write" ]
+			},
+			"uci": [ "php8-fpm" ]
+		}
+	}
+}

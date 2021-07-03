@@ -1,0 +1,20 @@
+{
+	"luci-app-shairport-sync": {
+		"description": "Grant UCI access for luci-app-shairport-sync",
+		"read": {
+			"file": {
+				"/etc/shairport-sync.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "shairport-sync" ]
+		},
+		"write": {
+			"file": {
+				"/etc/shairport-sync.conf": [ "write" ]
+			},
+			"uci": [ "shairport-sync" ]
+		}
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"admin/services/wifidog": {
+		"title": "WifiDog",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/wifidog/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-wifidog" ],
+			"uci": { "wifidog": true }
+		}
+	},
+
+	"admin/services/wifidog/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "wifidog/base"
+		}
+	},
+
+	"admin/services/wifidog/conf": {
+		"title": "Advanced Settings",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "wifidog/conf"
+		}
+	}
+}

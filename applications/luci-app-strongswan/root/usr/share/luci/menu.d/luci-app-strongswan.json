@@ -1,0 +1,48 @@
+{
+	"admin/services/strongswan": {
+		"title": "strongSwan",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/strongswan/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-strongswan" ]
+		}
+	},
+
+	"admin/services/strongswan/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "strongswan/base"
+		}
+	},
+
+	"admin/services/strongswan/swanctl": {
+		"title": "swanctl Configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "strongswan/swanctl"
+		}
+	},
+
+	"admin/services/strongswan/ipsec": {
+		"title": "IPsec Configuration",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "strongswan/ipsec"
+		}
+	},
+
+	"admin/services/strongswan/password": {
+		"title": "Password Settings",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "strongswan/password"
+		}
+	}
+}

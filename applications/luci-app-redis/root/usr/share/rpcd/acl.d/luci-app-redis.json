@@ -1,0 +1,17 @@
+{
+	"luci-app-redis": {
+		"description": "Grant UCI access for luci-app-redis",
+		"read": {
+			"file": {
+				"/etc/redis.conf": [ "read" ]
+			},
+			"uci": [ "redis" ]
+		},
+		"write": {
+			"file": {
+				"/etc/redis.conf": [ "write" ]
+			},
+			"uci": [ "redis" ]
+		}
+	}
+}

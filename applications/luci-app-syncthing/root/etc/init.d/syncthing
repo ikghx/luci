@@ -1,0 +1,54 @@
+#!/bin/sh /etc/rc.common
+
+START=90
+STOP=10
+
+USE_PROCD=1
+
+PROG=/usr/bin/syncthing
+
+start_instance() {
+	local cfg="$1"
+	local enabled
+
+	config_get_bool enabled "$cfg" 'enabled' 0
+	[ $enabled -gt 0 ] || return 1
+
+	config_get user $1 user 'root'
+	config_get gui_address $1 gui_address "0.0.0.0:8384"
+	config_get home $1 home "/etc/syncthing"
+
+	[ -d "$home" ] || mkdir -p "$home"
+	[ -d "$home" ] && chown -R $user:$user "$home"
+
+	config_get nice $1 nice "0"
+
+	config_get macprocs $1 macprocs 0
+	if [ $macprocs -le 0 ]; then
+		# Default to the number of cores in this case
+		macprocs=$(grep -c ^processor /proc/cpuinfo)
+	fi
+
+	procd_open_instance
+	procd_set_param command "$PROG"
+	procd_set_param env GOMAXPROCS="$macprocs" STNOUPGRADE=1
+	procd_append_param command -gui-address="$gui_address"
+	procd_append_param command -home="$home"
+	procd_append_param command -no-browser
+	procd_set_param nice "$nice"
+	procd_set_param term_timeout 15
+	procd_set_param user "$user"
+	procd_set_param respawn
+	procd_set_param stdout 1
+	procd_set_param stderr 1
+	procd_close_instance
+}
+
+start_service() {
+	config_load 'syncthing'
+	config_foreach start_instance 'syncthing'
+}
+
+service_triggers() {
+	procd_add_reload_trigger "syncthing"
+}
