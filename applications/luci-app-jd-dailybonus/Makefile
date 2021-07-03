@@ -7,10 +7,10 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=Luci for JD dailybonus Script 
-LUCI_DEPENDS:=+luci-compat +node +wget-ssl +lua +curl +libuci-lua
+LUCI_DEPENDS:=+luci-compat +node +wget +lua +libuci-lua
 LUCI_PKGARCH:=all
 PKG_VERSION:=1.0.5
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/jd-dailybonus
