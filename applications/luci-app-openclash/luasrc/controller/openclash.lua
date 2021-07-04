@@ -13,8 +13,6 @@ function index()
 	entry({"admin", "vpn", "openclash", "refresh_log"},call("action_refresh_log"))
 	entry({"admin", "vpn", "openclash", "del_log"},call("action_del_log"))
 	entry({"admin", "vpn", "openclash", "close_all_connection"},call("action_close_all_connection"))
-	entry({"admin", "vpn", "openclash", "restore_history"},call("action_restore_history"))
-	entry({"admin", "vpn", "openclash", "get_history"},call("action_get_history"))
 	entry({"admin", "vpn", "openclash", "reload_firewall"},call("action_reload_firewall"))
 	entry({"admin", "vpn", "openclash", "update_subscribe"},call("action_update_subscribe"))
 	entry({"admin", "vpn", "openclash", "update_other_rules"},call("action_update_other_rules"))
@@ -240,8 +238,7 @@ end
 
 local function historychecktime()
 	local CONFIG_FILE = string.sub(luci.sys.exec("uci get openclash.config.config_path 2>/dev/null"), 1, -2)
-	local CONFIG_NAME = fs.basename(CONFIG_FILE)
-  local HISTORY_PATH = "/etc/openclash/history/" .. CONFIG_NAME
+  local HISTORY_PATH = "/etc/openclash/history/" .. string.sub(luci.sys.exec(string.format("$(basename '%s' .yml) 2>/dev/null || $(basename '%s' .yaml) 2>/dev/null",CONFIG_FILE,CONFIG_FILE)), 1, -2)
 	if not nixio.fs.access(HISTORY_PATH) then
   	return "0"
 	else
@@ -405,15 +402,7 @@ function action_core_game_update()
 end
 
 function action_close_all_connection()
-	return luci.sys.call("sh /usr/share/openclash/openclash_history_set.sh close_all_conection")
-end
-
-function action_restore_history()
-	return luci.sys.call("sh /usr/share/openclash/openclash_history_set.sh")
-end
-
-function action_get_history()
-	return luci.sys.call("sh /usr/share/openclash/openclash_history_get.sh")
+	return luci.sys.call("sh /usr/share/openclash/openclash_history_get.sh 'close_all_conection'")
 end
 
 function action_reload_firewall()

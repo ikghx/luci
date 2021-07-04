@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=Argon Theme
 LUCI_DEPENDS:=+luci-i18n-argon-config-zh-cn
 PKG_VERSION:=2.2.7
-PKG_RELEASE:=20210318
+PKG_RELEASE:=20210704
 
 include ../../luci.mk
 
