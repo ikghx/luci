@@ -86,8 +86,8 @@ function isNonEmpty(section_id, value) {
 function onclickAction(target) {
 	if ( target == "webui" ) {
 		Promise.all([
-			callUciGet('qbittorrent', 'main', 'HTTPS__Enabled'),
-			callUciGet('qbittorrent', 'main', 'Port')
+			callUciGet('qbittorrent-enhanced', 'main', 'HTTPS__Enabled'),
+			callUciGet('qbittorrent-enhanced', 'main', 'Port')
 		]).then(function(val) {
 			var protocol = val[0] === 'true' ? 'https' : 'http';
 			var host = window.location.host;
@@ -108,12 +108,12 @@ function randomPort() {
 return L.view.extend({
 	load: function() {
 		document.body.append(E([], [
-			E('script', { 'src': L.resource('view/qbittorrent/crypto-js.min.js') }),
-			E('script', { 'src': L.resource('view/qbittorrent/asmcrypto.all.es5.min.js') })
+			E('script', { 'src': L.resource('view/qbittorrent-enhanced/crypto-js.min.js') }),
+			E('script', { 'src': L.resource('view/qbittorrent-enhanced/asmcrypto.all.es5.min.js') })
 			])
 		);
-		return fs.exec('/usr/bin/qbittorrent-nox', ['-v'], {'HOME': '/var/run/qbittorrent'}).then(function(res) {
-			fs.exec('/bin/rm', ['-rf', '/var/run/qbittorrent']);
+		return fs.exec('/usr/bin/qbittorrent-nox-enhanced', ['-v'], {'HOME': '/var/run/qbittorrent-enhanced'}).then(function(res) {
+			fs.exec('/bin/rm', ['-rf', '/var/run/qbittorrent-enhanced']);
 			return res.stdout ? res.stdout.match(/(\d\.)+\d/)[0] : '';
 		});
 	},
@@ -133,7 +133,7 @@ return L.view.extend({
 
 		o = s.option(CBIQBitStatus);
 
-		s = m.section(form.NamedSection, 'main', 'qbittorrent');
+		s = m.section(form.NamedSection, 'main', 'qbittorrent-enhanced');
 
 		s.tab('basic', _('Basic Settings'));
 		s.tab('connection', _('Connection Settings'));
