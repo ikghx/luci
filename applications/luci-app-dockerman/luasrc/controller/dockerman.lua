@@ -15,25 +15,6 @@ function index()
 
 	entry({"admin", "docker", "overview"},cbi("dockerman/overview"),_("Overview"), 0).leaf=true
 
-	local uci = (require "luci.model.uci").cursor()
-	local remote = uci:get_bool("dockerd", "globals", "remote_endpoint")
-	if remote then
-		local host = uci:get("dockerd", "globals", "remote_host")
-		local port = uci:get("dockerd", "globals", "remote_port")
-		if not host or not port then
-			return
-		end
-	else
-		local socket = uci:get("dockerd", "globals", "socket_path") or "/var/run/docker.sock"
-		if socket and not nixio.fs.access(socket) then
-			return
-		end
-	end
-
-	if (require "luci.model.docker").new():_ping().code ~= 200 then
-		return
-	end
-
 	entry({"admin", "docker", "containers"}, form("dockerman/containers"), _("Containers"), 1).leaf=true
 	entry({"admin", "docker", "images"}, form("dockerman/images"), _("Images"), 2).leaf=true
 	entry({"admin", "docker", "networks"}, form("dockerman/networks"), _("Networks"), 3).leaf=true
@@ -68,11 +49,11 @@ function scandir(id, directory)
 	local i, t, popen = 0, {}, io.popen
 	local uci = (require "luci.model.uci").cursor()
 	local remote = uci:get_bool("dockerd", "globals", "remote_endpoint")
-	local socket_path = (remote == "false" or not remote) and  uci:get("dockerd", "globals", "socket_path") or "/var/run/docker.sock"
-	local host = (remote == "true") and uci:get("dockerd", "globals", "remote_host") or nil
-	local port = (remote == "true") and uci:get("dockerd", "globals", "remote_port") or nil
+	local socket_path = not remote and  uci:get("dockerd", "globals", "socket_path") or "/var/run/docker.sock"
+	local host = remote and uci:get("dockerd", "globals", "remote_host") or nil
+	local port = remote and uci:get("dockerd", "globals", "remote_port") or nil
 	if remote and host and port then
-		hosts = host .. ':'.. port
+		hosts = "tcp://" .. host .. ':'.. port
 	elseif socket_path then
 		hosts = "unix://" .. socket_path
 	else
@@ -118,11 +99,11 @@ function rename_file(id)
 	end
 	local uci = (require "luci.model.uci").cursor()
 	local remote = uci:get_bool("dockerd", "globals", "remote_endpoint")
-	local socket_path = (remote == "false" or not remote) and  uci:get("dockerd", "globals", "socket_path") or "/var/run/docker.sock"
-	local host = (remote == "true") and uci:get("dockerd", "globals", "remote_host") or nil
-	local port = (remote == "true") and uci:get("dockerd", "globals", "remote_port") or nil
+	local socket_path = not remote and  uci:get("dockerd", "globals", "socket_path") or "/var/run/docker.sock"
+	local host = remote and uci:get("dockerd", "globals", "remote_host") or nil
+	local port = remote and uci:get("dockerd", "globals", "remote_port") or nil
 	if remote and host and port then
-		hosts = host .. ':'.. port
+		hosts = "tcp://" .. host .. ':'.. port
 	elseif socket_path then
 		hosts = "unix://" .. socket_path
 	else
@@ -141,11 +122,11 @@ function remove_file(id)
 	end 
 	local uci = (require "luci.model.uci").cursor()
 	local remote = uci:get_bool("dockerd", "globals", "remote_endpoint")
-	local socket_path = (remote == "false" or not remote) and  uci:get("dockerd", "globals", "socket_path") or "/var/run/docker.sock"
-	local host = (remote == "true") and uci:get("dockerd", "globals", "remote_host") or nil
-	local port = (remote == "true") and uci:get("dockerd", "globals", "remote_port") or nil
+	local socket_path = not remote and  uci:get("dockerd", "globals", "socket_path") or "/var/run/docker.sock"
+	local host = remote and uci:get("dockerd", "globals", "remote_host") or nil
+	local port = remote and uci:get("dockerd", "globals", "remote_port") or nil
 	if remote and host and port then
-		hosts = host .. ':'.. port
+		hosts = "tcp://" .. host .. ':'.. port
 	elseif socket_path then
 		hosts = "unix://" .. socket_path
 	else

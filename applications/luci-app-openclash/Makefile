@@ -6,13 +6,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-openclash
 PKG_VERSION:=0.42.06
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
 LUCI_TITLE:=LuCI support for clash
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+dnsmasq-full +coreutils-nohup +bash \
-	+curl +jsonfilter +ca-bundle +kmod-tun +ip-full +ipset \
+	+curl +ca-bundle +kmod-tun +ip-full +ipset \
 	+iptables-mod-tproxy +iptables-mod-extra +libcap \
 	+libcap-bin +ip6tables-mod-nat +clash_tun +ruby-yaml
 

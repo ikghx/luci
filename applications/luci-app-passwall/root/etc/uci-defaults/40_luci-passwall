@@ -26,5 +26,5 @@ uci -q batch <<-EOF >/dev/null
 EOF
 
 touch /etc/config/passwall_show >/dev/null 2>&1
-
+/etc/init.d/rpcd reload
 exit 0

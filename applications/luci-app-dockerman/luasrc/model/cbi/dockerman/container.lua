@@ -730,9 +730,9 @@ elseif action == "console" then
 			end
 
 			if remote and host and port then
-				hosts = host .. ':'.. port
+				hosts = "tcp://" .. host .. ':'.. port
 			elseif socket then
-				hosts = socket
+				hosts = "unix://" .. socket
 			else
 				return
 			end
@@ -743,7 +743,7 @@ elseif action == "console" then
 				uid = ""
 			end
 
-			local start_cmd = string.format('%s -d 2 --once -p 7682 %s -H "unix://%s" exec -it %s %s %s&', cmd_ttyd, cmd_docker, hosts, uid, container_id, cmd)
+			local start_cmd = string.format('%s -d 2 --once -p 7682 %s -H "%s" exec -it %s %s %s&', cmd_ttyd, cmd_docker, hosts, uid, container_id, cmd)
 
 			os.execute(start_cmd)
 

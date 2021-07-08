@@ -28,6 +28,8 @@ config global_forwarding
 	option udp_no_redir_ports 'disable'
 	option udp_redir_ports '1:65535'
 	option tcp_redir_ports '1:65535'
+	option accept_icmp '0'
+	option tcp_proxy_way 'default'
 	option process '0'
 
 config global_other
@@ -37,10 +39,10 @@ config global_other
 
 config global_rules
 	option auto_update '0'
-	option gfwlist_version '2021-05-02'
-	option chnroute_version '2021-05-02'
-	option chnroute6_version '2021-05-02'
-	option chnlist_version '2021-05-02'
+	option gfwlist_version '2021-07-06'
+	option chnroute_version '2021-07-06'
+	option chnroute6_version '2021-07-06'
+	option chnlist_version '2021-07-06'
 	option gfwlist_update '0'
 	option chnroute_update '0'
 	option chnroute6_update '0'
