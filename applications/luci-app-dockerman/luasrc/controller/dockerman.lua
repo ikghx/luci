@@ -13,13 +13,13 @@ function index()
 		_("Docker"),
 		40).acl_depends = { "luci-app-dockerman" }
 
-	entry({"admin", "docker", "overview"},cbi("dockerman/overview"),_("Overview"), 0).leaf=true
+	entry({"admin", "docker", "overview"},cbi("dockerman/overview"),_("Overview"), 1).leaf=true
 
-	entry({"admin", "docker", "containers"}, form("dockerman/containers"), _("Containers"), 1).leaf=true
-	entry({"admin", "docker", "images"}, form("dockerman/images"), _("Images"), 2).leaf=true
-	entry({"admin", "docker", "networks"}, form("dockerman/networks"), _("Networks"), 3).leaf=true
-	entry({"admin", "docker", "volumes"}, form("dockerman/volumes"), _("Volumes"), 4).leaf=true
-	entry({"admin", "docker", "events"}, call("action_events"), _("Events"), 5)
+	entry({"admin", "docker", "containers"}, form("dockerman/containers"), _("Containers"), 2).leaf=true
+	entry({"admin", "docker", "images"}, form("dockerman/images"), _("Images"), 3).leaf=true
+	entry({"admin", "docker", "networks"}, form("dockerman/networks"), _("Networks"), 4).leaf=true
+	entry({"admin", "docker", "volumes"}, form("dockerman/volumes"), _("Volumes"), 5).leaf=true
+	entry({"admin", "docker", "events"}, call("action_events"), _("Events"), 6)
 
 	entry({"admin", "docker", "newcontainer"}, form("dockerman/newcontainer")).leaf=true
 	entry({"admin", "docker", "newnetwork"}, form("dockerman/newnetwork")).leaf=true
