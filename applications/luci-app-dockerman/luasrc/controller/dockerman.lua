@@ -292,7 +292,7 @@ function export_container(id)
 		if res.code == 200 then
 			if not first then
 				first = true
-				luci.http.header('Content-Disposition', 'inline; filename="archive.tar"')
+				luci.http.header('Content-Disposition', 'inline; filename="'.. id ..'.tar"')
 				luci.http.header('Content-Type', 'application\/x-tar')
 			end
 			luci.ltn12.pump.all(chunk, luci.http.write)
@@ -316,7 +316,7 @@ function download_archive()
 	local first
 
 	local cb = function(res, chunk)
-		if res.code == 200 then
+		if res and res.code and res.code == 200 then
 			if not first then
 				first = true
 				luci.http.header('Content-Disposition', 'inline; filename="'.. filename .. '.tar"')
@@ -326,6 +326,7 @@ function download_archive()
 		else
 			if not first then
 				first = true
+				luci.http.status(res and res.code or 500, msg or "unknow")
 				luci.http.prepare_content("text/plain")
 			end
 			luci.ltn12.pump.all(chunk, luci.http.write)
@@ -335,7 +336,7 @@ function download_archive()
 	local res = dk.containers:get_archive({
 		id = id,
 		query = {
-			path = path
+			path = luci.http.urlencode(path)
 		}
 	}, cb)
 end
@@ -356,57 +357,19 @@ function upload_archive(container_id)
 	local res = dk.containers:put_archive({
 		id = container_id,
 		query = {
-			path = path
+			path = luci.http.urlencode(path)
 		},
 		body = rec_send
 	})
 
 	local msg = res and res.body and res.body.message or nil
-	luci.http.status(res.code, msg)
+	luci.http.status(res and res.code or 500, msg or "unknow")
 	luci.http.prepare_content("application/json")
-	luci.http.write_json({message = msg})
-end
-
-function save_images(container_id)
-	local names = luci.http.formvalue("names")
-	local dk = docker.new()
-	local first
-
-	local cb = function(res, chunk)
-		if res.code == 200 then
-			if not first then
-				first = true
-				luci.http.status(res.code, res.message)
-				luci.http.header('Content-Disposition', 'inline; filename="images.tar"')
-				luci.http.header('Content-Type', 'application\/x-tar')
-			end
-			luci.ltn12.pump.all(chunk, luci.http.write)
-		else
-			if not first then
-				first = true
-				luci.http.prepare_content("text/plain")
-			end
-			luci.ltn12.pump.all(chunk, luci.http.write)
-		end
-	end
-
-	docker:write_status("Images: saving" .. " " .. container_id .. "...")
-	local res = dk.images:get({
-		id = container_id,
-		query = {
-			names = names
-		}
-	}, cb)
-	docker:clear_status()
-
-	local msg = res and res.body and res.body.message or nil
-	luci.http.status(res.code, msg)
-	luci.http.prepare_content("application/json")
-	luci.http.write_json({message = msg})
+	luci.http.write_json({message = msg or "unknow"})
 end
 
 function load_images()
-	local path = luci.http.formvalue("upload-path")
+	local archive = luci.http.formvalue("upload-archive")
 	local dk = docker.new()
 	local ltn12 = require "luci.ltn12"
 
@@ -421,16 +384,15 @@ function load_images()
 	docker:write_status("Images: loading...")
 	local res = dk.images:load({body = rec_send})
 	local msg = res and res.body and ( res.body.message or res.body.stream or res.body.error ) or nil
-	if res.code == 200 and msg and msg:match("Loaded image ID") then
+	if res and res.code == 200 and msg and msg:match("Loaded image ID") then
 		docker:clear_status()
-		luci.http.status(res.code, msg)
 	else
-		docker:append_status("code:" .. res.code.." ".. msg)
-		luci.http.status(300, msg)
+		docker:append_status("code:" .. (res and res.code or "500") .." ".. (msg or "unknow"))
 	end
 
+	luci.http.status(res and res.code or 500, msg or "unknow")
 	luci.http.prepare_content("application/json")
-	luci.http.write_json({message = msg})
+	luci.http.write_json({message = msg or "unknow"})
 end
 
 function import_images()
@@ -452,7 +414,7 @@ function import_images()
 	local tag = itag and itag:match("^[^:]-:([^:]+)")
 	local res = dk.images:create({
 		query = {
-			fromSrc = src or "-",
+			fromSrc = luci.http.urlencode(src or "-"),
 			repo = repo or nil,
 			tag = tag or nil
 		},
@@ -469,12 +431,12 @@ function import_images()
 	if res.code == 200 and msg and msg:match("sha256:") then
 		docker:clear_status()
 	else
-		docker:append_status("code:" .. res.code.." ".. msg)
+		docker:append_status("code:" .. (res and res.code or "500") .." ".. (msg or "unknow"))
 	end
 
-	luci.http.status(res.code, msg)
+	luci.http.status(res and res.code or 500, msg or "unknow")
 	luci.http.prepare_content("application/json")
-	luci.http.write_json({message = msg})
+	luci.http.write_json({message = msg or "unknow"})
 end
 
 function get_image_tags(image_id)
@@ -490,7 +452,7 @@ function get_image_tags(image_id)
 		id = image_id
 	})
 	local msg = res and res.body and res.body.message or nil
-	luci.http.status(res.code, msg)
+	luci.http.status(res and res.code or 500, msg or "unknow")
 	luci.http.prepare_content("application/json")
 
 	if res.code == 200 then
@@ -498,7 +460,7 @@ function get_image_tags(image_id)
 		luci.http.write_json({tags = tags})
 	else
 		local msg = res and res.body and res.body.message or nil
-		luci.http.write_json({message = msg})
+		luci.http.write_json({message = msg or "unknow"})
 	end
 end
 
@@ -524,7 +486,7 @@ function tag_image(image_id)
 		}
 	})
 	local msg = res and res.body and res.body.message or nil
-	luci.http.status(res.code, msg)
+	luci.http.status(res and res.code or 500, msg or "unknow")
 	luci.http.prepare_content("application/json")
 
 	if res.code == 201 then
@@ -532,7 +494,7 @@ function tag_image(image_id)
 		luci.http.write_json({tags = tags})
 	else
 		local msg = res and res.body and res.body.message or nil
-		luci.http.write_json({message = msg})
+		luci.http.write_json({message = msg or "unknow"})
 	end
 end
 
@@ -564,8 +526,8 @@ function untag_image(tag)
 		end
 	else
 		local msg = res and res.body and res.body.message or nil
-		luci.http.status(res.code, msg)
+		luci.http.status(res and res.code or 500, msg or "unknow")
 		luci.http.prepare_content("application/json")
-		luci.http.write_json({message = msg})
+		luci.http.write_json({message = msg or "unknow"})
 	end
 end

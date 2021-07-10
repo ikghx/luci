@@ -8,7 +8,12 @@ local net = require "luci.model.network".init()
 local sys = require "luci.sys"
 local ifaces = sys.net:devices()
 
-local m, s, o
+local m, s, o, lost_state
+local dk = docker.new()
+
+if dk:_ping().code ~= 200 then
+	lost_state = true
+end
 
 function byte_format(byte)
 	local suff = {"B", "KB", "MB", "GB", "TB"}
@@ -48,8 +53,7 @@ s.images_total = '-'
 s.networks_total = '-'
 s.volumes_total = '-'
 
-if docker.new():_ping().code == 200 then
-	local dk = docker.new()
+if not lost_state then
 	local containers_list = dk.containers:list({query = {all=true}}).body
 	local images_list = dk.images:list().body
 	local vol = dk.volumes:list()
@@ -88,6 +92,8 @@ if docker.new():_ping().code == 200 then
 	s.images_total = tostring(#images_list)
 	s.networks_total = tostring(#networks_list)
 	s.volumes_total = tostring(#volumes_list)
+else
+	docker_info_table['3ServerVersion']._value = translate("Can NOT connect to docker daemon, please check!!")
 end
 
 s = m:section(NamedSection, "globals", "section", translate("Setting"))
@@ -99,9 +105,9 @@ en.rmempty = false
 function en.write(self, section, value)
 	if value == "1" then
 		luci.sys.init.enable("dockerd")
-		luci.sys.exec("/etc/init.d/dockerd start")
+		luci.util.exec("/etc/init.d/dockerd start")
 	else
-		luci.sys.exec("/etc/init.d/dockerd stop")
+		luci.util.exec("/etc/init.d/dockerd stop")
 		luci.sys.init.disable("dockerd")
 	end
 
