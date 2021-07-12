@@ -10,8 +10,19 @@ e=t:option(Flag,"enabled",translate("Enable"))
 e.default=0
 e.rmempty=false
 
+e=t:option(Value,"config_path",translate('Persistent configuration folder'))
+e.rmempty=false
+
+e=t:option(Value,"local_conf",translate('path to the local.conf'))
+e.rmempty=true
+
+e=t:option(Value,"port",translate('Port'))
+e.rmempty=true
+
+e=t:option(Value,"secret",translate('Auth secret'))
+e.rmempty=true
+
 e=t:option(DynamicList,"join",translate('ZeroTier Network ID'))
-e.password=true
 e.rmempty=false
 
 e=t:option(Flag,"nat",translate("Auto NAT Clients"))
