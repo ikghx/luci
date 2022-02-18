@@ -1,0 +1,58 @@
+{
+	"admin/nas/vsftpd": {
+		"title": "FTP Server",
+		"action": {
+			"type": "alias",
+			"path": "admin/nas/vsftpd/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-vsftpd" ],
+			"uci": { "vsftpd": true }
+		}
+	},
+
+	"admin/nas/vsftpd/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "vsftpd/base"
+		}
+	},
+
+	"admin/nas/vsftpd/users": {
+		"title": "Virtual Users",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "vsftpd/users"
+		}
+	},
+
+	"admin/nas/vsftpd/anonymous": {
+		"title": "Anonymous User",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "vsftpd/anonymous"
+		}
+	},
+
+	"admin/nas/vsftpd/log": {
+		"title": "Log Settings",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "vsftpd/log"
+		}
+	},
+
+	"admin/nas/vsftpd/Logging": {
+		"title": "Log file",
+		"order": 5,
+		"action": {
+			"type": "view",
+			"path": "vsftpd/Logging"
+		}
+	}
+}

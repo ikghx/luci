@@ -1,0 +1,163 @@
+
+config smartdns
+	option server_name 'smartdns'
+	option tcp_server '0'
+	option ipv6_server '0'
+	option dualstack_ip_selection '0'
+	option prefetch_domain '0'
+	option rr_ttl '300'
+	option rr_ttl_min '60'
+	option rr_ttl_max '600'
+	option seconddns_tcp_server '0'
+	option seconddns_no_speed_check '1'
+	option seconddns_no_rule_addr '0'
+	option seconddns_no_rule_nameserver '0'
+	option seconddns_no_rule_ipset '0'
+	option seconddns_no_rule_soa '0'
+	option seconddns_no_dualstack_selection '0'
+	option seconddns_no_cache '0'
+	option force_aaaa_soa '0'
+	option coredump '0'
+	option port '5336'
+	option seconddns_port '5334'
+	option seconddns_server_group 'public'
+	option seconddns_enabled '1'
+	option seconddns_no_dualstack_selection '1'
+	option seconddns_no_cache '1'
+	option redirect 'none'
+	option cache_size '10000'
+	option serve_expired '0'
+	list old_redirect 'none'
+	list old_port '5336'
+	list old_enabled '0'
+
+config server
+	option enabled '1'
+	option type 'udp'
+	option ip '114.114.114.114'
+	option port '53'
+	option name '114 DNS'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
+	option type 'udp'
+	option ip '223.5.5.5'
+	option port '53'
+	option name 'AliDNS'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
+	option type 'udp'
+	option ip '119.29.29.29'
+	option port '53'
+	option name 'DNSPod'
+	option blacklist_ip '0'
+
+config server
+	option enabled '1'
+	option type 'udp'
+	option ip '1.1.1.1'
+	option port '53'
+	option name 'Cloudflare DNS'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '1'
+	option type 'udp'
+	option ip '208.67.222.222'
+	option port '53'
+	option name 'OpenDNS'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '1'
+	option type 'udp'
+	option ip '8.8.8.8'
+	option port '53'
+	option name 'Google DNS'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '0'
+	option type 'udp'
+	option ip '2606:4700:4700::1111'
+	option port '53'
+	option name 'Cloudflare DNS'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '0'
+	option type 'udp'
+	option ip '2620:119:35::35'
+	option port '53'
+	option name 'OpenDNS'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '0'
+	option type 'udp'
+	option ip '2001:4860:4860::8888'
+	option port '53'
+	option name 'Google DNS'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '1'
+	option name 'AliDNS'
+	option ip 'https://dns.alidns.com/dns-query'
+	option type 'https'
+	option blacklist_ip '0'
+	option no_check_certificate '0'
+
+config server
+	option enabled '1'
+	option name 'DNSPod'
+	option ip 'https://doh.pub/dns-query'
+	option type 'https'
+	option blacklist_ip '0'
+	option no_check_certificate '0'
+
+config server
+	option enabled '1'
+	option name 'Cloudflare DNS'
+	option ip 'https://dns.cloudflare.com/dns-query'
+	option type 'https'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option no_check_certificate '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '1'
+	option name 'OpenDNS'
+	option ip 'https://doh.opendns.com/dns-query'
+	option type 'https'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option no_check_certificate '0'
+	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '1'
+	option name 'Google DNS'
+	option ip 'https://dns.google/dns-query'
+	option type 'https'
+	option server_group 'public'
+	option blacklist_ip '0'
+	option no_check_certificate '0'
+	option addition_arg '-exclude-default-group'
+

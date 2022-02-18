@@ -1,0 +1,40 @@
+{
+	"admin/services/php8": {
+		"title": "PHP8",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/php8/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-php8" ],
+			"uci": { "php8-fpm": true }
+		}
+	},
+
+	"admin/services/php8/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "php8/base"
+		}
+	},
+
+	"admin/services/php8/conf1": {
+		"title": "Main configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "php8/conf1"
+		}
+	},
+
+	"admin/services/php8/conf2": {
+		"title": "FPM configuration",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "php8/conf2"
+		}
+	}
+}

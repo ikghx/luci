@@ -1,0 +1,17 @@
+{
+	"luci-app-vsftpd": {
+		"description": "Grant UCI access for luci-app-vsftpd",
+		"read": {
+			"file": {
+				"/var/log/vsftpd.log": [ "read" ]
+			},
+			"uci": [ "vsftpd" ]
+		},
+		"write": {
+			"file": {
+				"/var/log/vsftpd.log": [ "write" ]
+			},
+			"uci": [ "vsftpd" ]
+		}
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"admin/vpn/tinyproxy": {
+		"title": "Tinyproxy",
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-tinyproxy" ],
+			"uci": { "tinyproxy": true }
+		}
+	},
+
+	"admin/vpn/tinyproxy/status": {
+		"title": "Status",
+		"order": 1,
+		"action": {
+			"type": "template",
+			"path": "tinyproxy_status"
+		}
+	},
+
+	"admin/vpn/tinyproxy/config": {
+		"title": "Configuration",
+		"order": 2,
+		"action": {
+			"type": "cbi",
+			"path": "tinyproxy",
+			"post": { "cbi.submit": true }
+		}
+	}
+}

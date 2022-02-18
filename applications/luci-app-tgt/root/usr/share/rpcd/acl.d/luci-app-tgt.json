@@ -1,0 +1,15 @@
+{
+	"luci-app-tgt": {
+		"description": "Grant UCI access for luci-app-tgt",
+		"read": {
+			"ubus": {
+				"service": [ "list" ],
+				"luci": [ "setInitAction" ]
+			},
+			"uci": [ "tgt" ]
+		},
+		"write": {
+			"uci": [ "tgt" ]
+		}
+	}
+}

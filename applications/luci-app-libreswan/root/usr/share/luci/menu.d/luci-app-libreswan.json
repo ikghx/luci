@@ -1,0 +1,40 @@
+{
+	"admin/services/libreswan": {
+		"title": "Libreswan",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/libreswan/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-libreswan" ],
+			"uci": { "libreswan": true }
+		}
+	},
+
+	"admin/services/libreswan/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "libreswan/base"
+		}
+	},
+
+	"admin/services/libreswan/ipsec": {
+		"title": "IPsec configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "libreswan/ipsec"
+		}
+	},
+
+	"admin/services/libreswan/password": {
+		"title": "Password settings",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "libreswan/password"
+		}
+	}
+}

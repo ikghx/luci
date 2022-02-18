@@ -1,0 +1,21 @@
+{
+	"luci-app-wifidog": {
+		"description": "Grant UCI access for luci-app-wifidog",
+		"read": {
+			"file": {
+				"/etc/wifidog.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "wifidog" ]
+		},
+		"write": {
+			"file": {
+				"/etc/wifidog.conf": [ "write" ],
+				"/etc/init.d/wifidog restart": [ "exec" ]
+			},
+			"uci": [ "wifidog" ]
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"luci-app-gerbera": {
+		"description": "Grant UCI access for luci-app-gerbera",
+		"read": {
+			"file": {
+				"/etc/group": [ "read" ],
+				"/etc/passwd": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "gerbera" ]
+		},
+		"write": {
+			"uci": [ "gerbera" ]
+		}
+	}
+}

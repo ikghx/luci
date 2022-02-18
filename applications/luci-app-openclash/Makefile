@@ -1,0 +1,69 @@
+#
+# This is free software, licensed under the GNU General Public License v3.
+#
+
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=luci-app-openclash
+PKG_VERSION:=0.44.25
+PKG_RELEASE:=1
+PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
+
+LUCI_TITLE:=LuCI support for clash
+LUCI_PKGARCH:=all
+LUCI_DEPENDS:=+iptables +dnsmasq-full +coreutils +coreutils-nohup +bash \
+	+curl +ca-bundle +kmod-tun +ip-full +ipset \
+	+iptables-mod-tproxy +iptables-mod-extra +libcap \
+	+libcap-bin +ip6tables-mod-nat +clash_tun +ruby-yaml
+
+define Package/$(PKG_NAME)/conffiles
+/etc/config/openclash
+/etc/openclash/
+endef
+
+define Package/$(PKG_NAME)/preinst
+#!/bin/sh
+if [ -f "/etc/config/openclash" ]; then
+	cp -f "/etc/config/openclash" "/tmp/openclash.bak" >/dev/null 2>&1
+	cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
+fi
+endef
+
+define Package/$(PKG_NAME)/postinst
+endef
+
+define Package/$(PKG_NAME)/prerm
+#!/bin/sh
+	uci -q set openclash.config.enable=0
+	uci -q commit openclash
+	cp -f "/etc/config/openclash" "/tmp/openclash.bak" >/dev/null 2>&1
+	cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
+endef
+
+define Package/$(PKG_NAME)/postrm
+#!/bin/sh
+	rm -rf /etc/openclash >/dev/null 2>&1
+	rm -rf /tmp/openclash.log >/dev/null 2>&1
+	rm -rf /tmp/openclash_start.log >/dev/null 2>&1
+	rm -rf /tmp/openclash_last_version >/dev/null 2>&1
+	rm -rf /tmp/openclash_config.tmp >/dev/null 2>&1
+	rm -rf /tmp/openclash.change >/dev/null 2>&1
+	rm -rf /tmp/Proxy_Group >/dev/null 2>&1
+	rm -rf /tmp/rules_name >/dev/null 2>&1
+	rm -rf /tmp/rule_providers_name >/dev/null 2>&1
+	rm -rf /tmp/clash_last_version >/dev/null 2>&1
+	rm -rf /usr/share/openclash/backup >/dev/null 2>&1
+	rm -rf /tmp/openclash_fake_filter.list >/dev/null 2>&1
+	rm -rf /tmp/openclash_servers_fake_filter.conf >/dev/null 2>&1
+	rm -rf /tmp/dler* >/dev/null 2>&1
+	rm -rf /tmp/etc/openclash >/dev/null 2>&1
+	rm -rf /tmp/openclash_edit_file_name >/dev/null 2>&1
+	uci -q delete firewall.openclash
+	uci -q commit firewall
+	uci -q delete ucitrack.@openclash[-1]
+	uci -q commit ucitrack
+endef
+
+include ../../luci.mk
+
+# call BuildPackage - OpenWrt buildroot signature

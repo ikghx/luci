@@ -1,0 +1,23 @@
+{
+	"luci-app-libreswan": {
+		"description": "Grant UCI access for luci-app-libreswan",
+		"read": {
+			"file": {
+				"/etc/ipsec.conf": [ "read" ],
+				"/etc/ipsec.secrets": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "libreswan" ]
+		},
+		"write": {
+			"file": {
+				"/etc/ipsec.conf": [ "write" ],
+				"/etc/ipsec.secrets": [ "write" ],
+				"/etc/init.d/ipsec restart": [ "exec" ]
+			},
+			"uci": [ "libreswan" ]
+		}
+	}
+}

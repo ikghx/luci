@@ -1,0 +1,11 @@
+#!/bin/sh
+
+uci -q batch <<-EOF >/dev/null
+	delete firewall.timecontrol
+	set firewall.timecontrol=include
+	set firewall.timecontrol.type=script
+	set firewall.timecontrol.path=/etc/timecontrol.include
+	commit firewall
+EOF
+
+exit 0

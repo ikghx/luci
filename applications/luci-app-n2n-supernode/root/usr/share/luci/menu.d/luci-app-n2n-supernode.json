@@ -1,0 +1,31 @@
+{
+	"admin/services/n2n-supernode": {
+		"title": "N2N Supernode",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/n2n-supernode/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-n2n-supernode" ],
+			"uci": { "n2n-supernode": true }
+		}
+	},
+
+	"admin/services/n2n-supernode/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "n2n-supernode/base"
+		}
+	},
+
+	"admin/services/n2n-supernode/conf": {
+		"title": "Supernode configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "n2n-supernode/conf"
+		}
+	}
+}

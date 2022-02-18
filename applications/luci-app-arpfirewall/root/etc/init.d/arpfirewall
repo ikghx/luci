@@ -1,0 +1,121 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2016 play4fun
+#	写脚本不易,请保留这美好的开头,并期待你的完善!
+
+START=95
+STOP=20
+
+#arp_flush $iface
+arp_flush()
+{
+	ip link set dev $1 arp off
+	ip link set dev $1 arp on
+}
+
+#arp_static $iface $ip $mac
+arp_static()
+{
+	ip neigh change to $2 lladdr $3 dev $1
+	ip neigh add to $2 lladdr $3 dev $1
+}
+
+arptables_flush()
+{
+	arptables --flush
+}
+
+#arptables_delchain $iface
+arptables_delchain()
+{
+#	arptables -F $1_in
+#	arptables -F $1_out
+	arptables -X $1_in
+#	arptables -X $1_out
+}
+
+#arptables_newchain $iface
+arptables_newchain()
+{
+	arptables -N $1_in
+	arptables -A INPUT -i $1 -j $1_in
+#	arptables -N $1_out
+#	arptables -A OUTPUT -o $1 -j $1_out
+}
+
+#arptables_add $iface $ip $mac
+arptables_add()
+{
+	arptables -A $1_in -s $2 --source-mac $3  -j RETURN
+#	arptables -A $1_out -d $2 -j RETURN
+}
+
+#arpfirewall_rule $config $iface $strict_mode
+arpfirewall_rule()
+{
+	config_get rule_enable $1 enable
+	[ $rule_enable -gt 0 ] || return 1
+	config_get rule_iface $1 iface
+	[ $rule_iface == $2 ] || return 1
+	config_get rule_ip $1 ip
+	config_get rule_mac $1 mac
+
+	arp_static $rule_iface $rule_ip $rule_mac
+	[ $3 -gt 0 ] && arptables_add $rule_iface $rule_ip $rule_mac
+}
+
+#arpfirewall_static_leases $conf $iface $strict_mode
+arpfirewall_static_leases()
+{
+	config_get static_leases_ip $1 ip
+	config_get static_leases_mac $1 mac
+	ip neigh change to $static_leases_ip lladdr $static_leases_mac dev $2
+	ip neigh add to $static_leases_ip lladdr $static_leases_mac dev $2
+	[ $3 -gt 0 ] && 
+	{
+		arptables -I $2_in -s $static_leases_ip --source-mac $static_leases_mac  -j RETURN
+#		arptables -I $2_out -d $static_leases_ip -j RETURN
+	}
+}
+
+arpfirewall()
+{
+	config_get iface $1 iface
+	arp_flush $iface
+	echo 0 > /proc/sys/net/ipv4/conf/$iface/arp_strict_mode
+	echo 0 > /proc/sys/net/ipv4/conf/$iface/arp_request_check
+	arptables_delchain $iface
+
+	config_get enable $1 enable
+	[ $enable -gt 0 ] || return 1
+	config_get strict_mode $1 strict_mode
+	config_get include_static_leases $1 include_static_leases
+	config_get arp_request_check $1 arp_request_check
+
+	[ $strict_mode -gt 0 ] && arptables_newchain $iface
+	config_foreach arpfirewall_rule arpfirewallrule $iface $strict_mode
+	[ $strict_mode -gt 0 ] && 
+	{
+		arptables -A ${iface}_in -j DROP
+#		arptables -A ${iface}_out -j DROP
+	}
+	echo $strict_mode  > /proc/sys/net/ipv4/conf/$iface/arp_strict_mode
+	echo $arp_request_check > /proc/sys/net/ipv4/conf/$iface/arp_request_check
+	[ $include_static_leases -gt 0 ] && 
+	{
+		config_load dhcp
+		config_foreach arpfirewall_static_leases host $iface $strict_mode
+		config_load arpfirewall
+	}
+}
+
+start()
+{
+	arptables_flush
+	config_load arpfirewall
+	config_foreach arpfirewall arpfirewall
+}
+
+stop()
+{
+	arptables_flush
+}

@@ -1,0 +1,31 @@
+{
+	"admin/services/frps": {
+		"title": "frp server",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/frps/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-frps" ],
+			"uci": { "frps": true }
+		}
+	},
+
+	"admin/services/frps/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "frps/base"
+		}
+	},
+
+	"admin/services/frps/conf": {
+		"title": "Server configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "frps/conf"
+		}
+	}
+}

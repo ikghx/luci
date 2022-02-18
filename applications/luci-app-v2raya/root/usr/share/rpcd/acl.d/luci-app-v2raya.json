@@ -1,0 +1,14 @@
+{
+	"luci-app-v2raya": {
+		"description": "Grant UCI access for luci-app-v2raya",
+		"read": {
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "v2raya" ]
+		},
+		"write": {
+			"uci": [ "v2raya" ]
+		}
+	}
+}

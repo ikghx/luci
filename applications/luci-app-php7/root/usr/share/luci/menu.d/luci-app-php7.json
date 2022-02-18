@@ -1,0 +1,40 @@
+{
+	"admin/services/php7": {
+		"title": "PHP7",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/php7/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-php7" ],
+			"uci": { "php7-fpm": true }
+		}
+	},
+
+	"admin/services/php7/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "php7/base"
+		}
+	},
+
+	"admin/services/php7/conf1": {
+		"title": "Main configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "php7/conf1"
+		}
+	},
+
+	"admin/services/php7/conf2": {
+		"title": "FPM configuration",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "php7/conf2"
+		}
+	}
+}

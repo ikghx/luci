@@ -1,0 +1,14 @@
+{
+	"luci-app-gmediarender": {
+		"description": "Grant UCI access for luci-app-gmediarender",
+		"read": {
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "gmediarender" ]
+		},
+		"write": {
+			"uci": [ "gmediarender" ]
+		}
+	}
+}

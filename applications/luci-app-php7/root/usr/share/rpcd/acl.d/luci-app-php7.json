@@ -1,0 +1,23 @@
+{
+	"luci-app-php7": {
+		"description": "Grant UCI access for luci-app-php7",
+		"read": {
+			"file": {
+				"/etc/php.ini": [ "read" ],
+				"/etc/php7-fpm.d/www.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "php7-fpm" ]
+		},
+		"write": {
+			"file": {
+				"/etc/php.ini": [ "write" ],
+				"/etc/php7-fpm.d/www.conf": [ "write" ],
+				"/etc/init.d/php7-fpm restart": [ "exec" ]
+			},
+			"uci": [ "php7-fpm" ]
+		}
+	}
+}
