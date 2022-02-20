@@ -4,7 +4,7 @@
 module("luci.controller.passwall", package.seeall)
 local api = require "luci.model.cbi.passwall.api.api"
 local appname = api.appname
-local ucic = require "luci.model.uci".cursor()
+local ucic = luci.model.uci.cursor()
 local http = require "luci.http"
 local util = require "luci.util"
 local i18n = require "luci.i18n"
