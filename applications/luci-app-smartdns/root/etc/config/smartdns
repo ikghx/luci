@@ -34,9 +34,10 @@ config smartdns
 config server
 	option enabled '1'
 	option type 'udp'
-	option ip '114.114.114.114'
+	option ip '119.29.29.29'
 	option port '53'
-	option name '114 DNS'
+	option name 'DNSPod'
+	option server_group 'china'
 	option blacklist_ip '0'
 
 config server
@@ -45,14 +46,16 @@ config server
 	option ip '223.5.5.5'
 	option port '53'
 	option name 'AliDNS'
+	option server_group 'china'
 	option blacklist_ip '0'
 
 config server
 	option enabled '1'
 	option type 'udp'
-	option ip '119.29.29.29'
+	option ip '114.114.114.114'
 	option port '53'
-	option name 'DNSPod'
+	option name '114 DNS'
+	option server_group 'china'
 	option blacklist_ip '0'
 
 config server
@@ -84,6 +87,24 @@ config server
 	option server_group 'public'
 	option blacklist_ip '0'
 	option addition_arg '-exclude-default-group'
+
+config server
+	option enabled '0'
+	option type 'udp'
+	option ip '2402:4e00::'
+	option port '53'
+	option name 'DNSPod'
+	option server_group 'china'
+	option blacklist_ip '0'
+
+config server
+	option enabled '0'
+	option type 'udp'
+	option ip '2400:3200::1'
+	option port '53'
+	option name 'AliDNS'
+	option server_group 'china'
+	option blacklist_ip '0'
 
 config server
 	option enabled '0'
@@ -120,6 +141,7 @@ config server
 	option name 'AliDNS'
 	option ip 'https://dns.alidns.com/dns-query'
 	option type 'https'
+	option server_group 'china'
 	option blacklist_ip '0'
 	option no_check_certificate '0'
 
@@ -128,6 +150,7 @@ config server
 	option name 'DNSPod'
 	option ip 'https://doh.pub/dns-query'
 	option type 'https'
+	option server_group 'china'
 	option blacklist_ip '0'
 	option no_check_certificate '0'
 
