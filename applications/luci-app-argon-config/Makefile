@@ -11,7 +11,7 @@ LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+luci-compat +luci-lib-ipkg
 
 define Package/$(PKG_NAME)/conffiles
-/etc/config/argon-config
+/etc/config/argon
 endef
 
 include ../../luci.mk

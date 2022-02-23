@@ -59,18 +59,6 @@ msgstr "无主机路由"
 msgid "Do not create host route to peer (optional)."
 msgstr "不要创建到对端的主机路由（可选）。"
 
-msgid "Interface ID"
-msgstr "接口 ID"
-
-msgid "Required. XFRM interface ID to be used for SA."
-msgstr "必需。用于 SA 的 XFRM 接口 ID。"
-
-msgid "Required. Underlying interface."
-msgstr "必需。底层接口。"
-
-msgid "Optional. Maximum Transmission Unit of the XFRM interface."
-msgstr "可选。XFRM 接口的最大传输单元。"
-
 msgid "Polling interval (sec)"
 msgstr "轮询间隔（秒）"
 
@@ -135,9 +123,6 @@ msgstr ""
 "（并在 WLAN 信标中进行广播）。仅当指定的网络接口是网桥时才有效。"
 "缩短重新关联过程的时间。"
 
-msgid "Edit peer"
-msgstr "编辑对端"
-
 msgid "Use local MX record"
 msgstr "使用本地 MX 记录"
 
@@ -174,9 +159,6 @@ msgstr "非常高，-62 dBm RSSI 阈值"
 msgid "Very High, -60 dBm RSSI Gate"
 msgstr "非常高，-60 dBm RSSI 阈值"
 
-msgid "Enable / Disable peer. Restart wireguard interface to apply changes."
-msgstr "启用/禁用对端。重新启动 wireguard 接口以应用更改。"
-
 msgid "CA certificate (PEM encoded)"
 msgstr "CA 证书（PEM）"
 
@@ -197,12 +179,6 @@ msgstr "小时"
 
 msgid "days"
 msgstr "天"
-
-msgid "Base64-encoded public key of this interface for sharing."
-msgstr "此接口的 Base64 编码公钥用于共享。"
-
-msgid "Error getting PublicKey"
-msgstr "获取公钥时出错"
 
 msgid "ARP scan"
 msgstr "ARP 扫描"
@@ -1243,6 +1219,10 @@ msgstr "可用"
 msgid "Average:"
 msgstr "平均："
 
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3136
+msgid "Back"
+msgstr "返回"
+
 #: modules/luci-compat/luasrc/view/cbi/footer.htm:14
 #: modules/luci-compat/luasrc/view/cbi/simpleform.htm:48
 msgid "Back to Overview"
@@ -1273,6 +1253,10 @@ msgstr "频宽"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:377
 msgid "Base device"
 msgstr "基础设备"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:102
+msgid "Base64-encoded public key of this interface for sharing."
+msgstr "此接口用于共享的 Base64 编码的公钥。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:973
 msgid "Beacon interval"
@@ -1507,7 +1491,7 @@ msgstr "在挂载前检查文件系统"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1994
 msgid "Delete and replace existing wireless networks on the radio."
-msgstr "删除并替换无线网卡上的现有无线网络。"
+msgstr "删除并替换无线网卡上现有的无线网络。"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:110
 msgid "Checking archive…"
@@ -1962,7 +1946,7 @@ msgstr "定义在传入帧上 VLAN 标头优先级到 Linux 内部数据包优�
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:86
 msgid "Defines a specific MTU for this route"
-msgstr "为该路由定义一个特定的 MTU"
+msgstr "为此路由定义一个特定的 MTU"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:955
 msgid "Delegate IPv6 prefixes"
@@ -2375,6 +2359,10 @@ msgstr "EAP 类型"
 msgid "Edit"
 msgstr "编辑"
 
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:174
+msgid "Edit peer"
+msgstr "编辑对端"
+
 #: modules/luci-compat/luasrc/view/cbi/error.htm:13
 msgid ""
 "Edit the raw configuration data above to fix any error and hit \"Save\" to "
@@ -2411,6 +2399,10 @@ msgstr "紧急"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:936
 msgid "Enable"
 msgstr "启用"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:183
+msgid "Enable / Disable peer. Restart wireguard interface to apply changes."
+msgstr "启用/禁用对端。重启 Wireguard 端口应用更改。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:538
 msgid ""
@@ -2655,6 +2647,10 @@ msgstr "擦除中..."
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:176
 msgid "Error"
 msgstr "错误"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:112
+msgid "Error getting PublicKey"
+msgstr "获取公钥时出错"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:29
 msgid "Errored seconds (ES)"
@@ -3378,6 +3374,10 @@ msgstr "LED 应该关闭多长时间（以毫秒为单位）"
 msgid "How long (in milliseconds) the LED should be on"
 msgstr "LED 应该亮多久（以毫秒为单位）"
 
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:276
+msgid "Human-readable counters"
+msgstr "人类可读的计数器"
+
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:24
 msgid "Hybrid"
 msgstr "混合"
@@ -3623,7 +3623,7 @@ msgstr "如果设置，则仅从给定的 IPv6 前缀类别中分配下游子网
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:196
 msgid "If set, the meaning of the match options is inverted"
-msgstr "如果设置，则匹配选项的含义反转"
+msgstr "设置后，匹配选项的含义将颠倒"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:254
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:360
@@ -3823,6 +3823,10 @@ msgstr "接口设备 %q 从 %q 自动迁移到了 %q。"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:980
 msgid "Interface Configuration"
 msgstr "接口配置"
+
+#: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:39
+msgid "Interface ID"
+msgstr "接口 ID"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:111
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:151
@@ -4247,6 +4251,11 @@ msgstr "平均负载"
 msgid "Loading QR-Code..."
 msgstr "正在加载二维码..."
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1163
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1971
+msgid "Loading data…"
+msgstr "加载数据中…"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2959
 msgid "Loading directory contents…"
 msgstr "正在载入目录内容…"
@@ -4345,6 +4354,10 @@ msgstr "记录查询日志"
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:109
 msgid "Logging"
 msgstr "日志"
+
+#: themes/luci-theme-bootstrap/htdocs/luci-static/resources/view/bootstrap/sysauth.js:23
+msgid "Logging in…"
+msgstr "正在登录…"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:57
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:57
@@ -5256,6 +5269,10 @@ msgstr ""
 "可选。此对端在隧道内被允许使用的 IP 地址和前缀。通常是对端的隧道 IP 地址和对"
 "端经由隧道的网络。"
 
+#: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:46
+msgid "Optional. Maximum Transmission Unit of the XFRM interface."
+msgstr "可选。XFRM 接口的最大传输单元。"
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:92
 msgid "Optional. Maximum Transmission Unit of tunnel interface."
 msgstr "可选，隧道接口的最大传输单元。"
@@ -6047,6 +6064,14 @@ msgstr "必须，此接口的 Base64 编码私钥。"
 msgid "Required. Base64-encoded public key of peer."
 msgstr "必须，对端的 Base64 编码公钥。"
 
+#: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:42
+msgid "Required. Underlying interface."
+msgstr "必需。底层接口。"
+
+#: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:39
+msgid "Required. XFRM interface ID to be used for SA."
+msgstr "必需。用于 SA 的 XFRM 接口 ID。"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1311
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1312
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1313
@@ -6499,6 +6524,11 @@ msgstr "显示当前备份文件列表"
 msgid "Show empty chains"
 msgstr "显示空链"
 
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:276
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:338
+msgid "Show raw counters"
+msgstr "显示原始计数器"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:510
 msgid "Shutdown this interface"
 msgstr "关闭此接口"
@@ -6627,9 +6657,7 @@ msgid ""
 "Specifies an individual UID or range of UIDs to match, e.g. 1000 to match "
 "corresponding UID or 1000-1005 to inclusively match all UIDs within the "
 "corresponding range"
-msgstr ""
-"指定要匹配的单个 UID 或 UID 范围，例如 1000 匹配对应的 UID 或 "
-"1000-1005 包含匹配对应范围内的所有 UID"
+msgstr "指定要匹配的单个 UID 或 UID 范围，例如，1000 用于匹配对应的 UID，1000-1005 用于匹配对应范围内的所有 UID"
 
 #: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:343
 msgid ""
@@ -6678,9 +6706,7 @@ msgstr ""
 msgid ""
 "Specifies the fwmark and optionally its mask to match, e.g. 0xFF to match "
 "mark 255 or 0x0/0x1 to match any even mark value"
-msgstr ""
-"指定要匹配的 fwmark 和可选的掩码，例如 0xFF 匹配标记 255 或 0x0/0x1 "
-"匹配任何偶数标记值"
+msgstr "指定要匹配的 fwmark 及其 mask（可选），例如 0xFF 匹配 mark 255，0x0/0x1 匹配任意 mark 值"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:144
 msgid "Specifies the incoming logical interface name"
@@ -6733,9 +6759,7 @@ msgid ""
 "Specifies the network gateway. If omitted, the gateway from the parent "
 "interface is taken if any, otherwise creates a link scope route. If set to "
 "0.0.0.0 no gateway will be specified for the route"
-msgstr ""
-"指定网络网关。如果省略，则从父接口获取网关（如果有），否则创建链接范围路由。"
-"如果设置为 0.0.0.0，则不会为路由指定网关"
+msgstr "指定网络网关。如省略，则采用父接口的网关（如果有），否则创建一个链接范围路由。如设置为 0.0.0.0，则不为该路由指定网关"
 
 #: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:334
 msgid ""
@@ -6769,7 +6793,7 @@ msgstr "指定 IP 规则的顺序"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:155
 msgid "Specifies the outgoing logical interface name"
-msgstr "指定传出逻辑接口名称"
+msgstr "指定传出的逻辑接口名称"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:99
 msgid ""
@@ -6803,7 +6827,7 @@ msgstr "指定要创建的路由类型"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:136
 msgid "Specifies the rule target routing action"
-msgstr "指定规则目标路由操作"
+msgstr "指定规则目标路由动作"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:148
 msgid "Specifies the source subnet to match (CIDR notation)"
@@ -7134,6 +7158,10 @@ msgstr "系统日志缓冲区大小"
 msgid "System running in recovery (initramfs) mode."
 msgstr "系统在恢复 (initramfs) 模式下运行。"
 
+#: themes/luci-theme-material/luasrc/view/themes/material/header.htm:86
+msgid "Sytem running in recovery (initramfs) mode."
+msgstr "系统在恢复 (initramfs) 模式下运行。"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:371
 msgid "TFTP server root"
 msgstr "TFTP 服务器根目录"
@@ -7396,8 +7424,8 @@ msgstr "已添加给定的 SSH 公钥。"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:172
 msgid ""
-"The given SSH public key is invalid. Please supply proper public RSA, ED25519 or "
-"ECDSA keys."
+"The given SSH public key is invalid. Please supply proper public RSA, "
+"ED25519 or ECDSA keys."
 msgstr "给定的 SSH 公钥无效。请提供适当的公共 RSA, ED25519 或 ECDSA 密钥。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:513
@@ -7524,7 +7552,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:171
 msgid ""
 "The rule target is a jump to another rule specified by its priority value"
-msgstr "跳转到由其优先级值指定的另一个规则"
+msgstr "跳转到由其优先级值指定的另一条规则"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:91
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:166
@@ -7535,7 +7563,7 @@ msgid ""
 msgstr ""
 "这是一个表查找 ID：一个范围从 0 到 65535 的数字表索引"
 "或 /etc/iproute2/rt_tables 中声明的符号别名。"
-"特殊别名 local (255), main (254) 和 default (253) 也有效"
+"特殊别名 local (255)、main (254) 和 default (253) 也有效"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1369
 msgid "The selected %s mode is incompatible with %s encryption"
@@ -8267,10 +8295,6 @@ msgstr "VPNC（CISCO 3000 和其他 VPN）"
 msgid "VXLAN network identifier"
 msgstr "VXLAN 网络标识符"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:10
-msgid "VXLANv6 (RFC7348)"
-msgstr "VXLANv6 虚拟区域网扩展(RFC7348)"
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:397
 msgid ""
 "Validate DNS replies and cache DNSSEC data, requires upstream to support "
@@ -8982,8 +9006,6 @@ msgstr "是"
 msgid "« Back"
 msgstr "« 后退"
 
-msgid "Back"
-msgstr "后退"
 
 msgid "IPv4-Address"
 msgstr "IPv4 地址"
