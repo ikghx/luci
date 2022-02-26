@@ -1,0 +1,31 @@
+{
+	"admin/nas/webd": {
+		"title": "Webd",
+		"action": {
+			"type": "alias",
+			"path": "admin/nas/webd/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-webd" ],
+			"uci": { "webd": true }
+		}
+	},
+
+	"admin/nas/webd/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "webd/base"
+		}
+	},
+
+	"admin/nas/webd/conf": {
+		"title": "Webd configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "webd/conf"
+		}
+	}
+}
