@@ -10,10 +10,11 @@ config global
 	option localhost_udp_proxy_mode 'default'
 	option dns_mode 'udp'
 	option dns_forward '127.0.0.1:5334'
+	option filter_proxy_ipv6 '0'
 	option close_log_tcp '1'
 	option close_log_udp '1'
-	option loglevel 'warning'
-	option trojan_loglevel '2'
+	option loglevel 'error'
+	option trojan_loglevel '4'
 
 config global_haproxy
 	option balancing_enable '0'
@@ -24,6 +25,7 @@ config global_delay
 	option start_delay '1'
 
 config global_forwarding
+	option process '0'
 	option tcp_no_redir_ports 'disable'
 	option udp_no_redir_ports '53'
 	option tcp_proxy_drop_ports 'disable'
@@ -32,10 +34,9 @@ config global_forwarding
 	option udp_redir_ports '1:65535'
 	option accept_icmp '0'
 	option tcp_proxy_way 'tproxy'
-	option process '0'
 	option ipv6_tproxy '0'
 	option sniffing '1'
-	option route_only '1'
+	option route_only '0'
 
 config global_other
 	option status 'big_icon'
@@ -44,14 +45,12 @@ config global_other
 
 config global_rules
 	option auto_update '0'
-	option gfwlist_version '2021-09-21'
-	option chnroute_version '2021-09-21'
-	option chnroute6_version '2021-09-21'
-	option chnlist_version '2021-09-21'
-	option gfwlist_update '0'
+	option chnlist_update '0'
 	option chnroute_update '0'
 	option chnroute6_update '0'
-	option chnlist_update '0'
+	option gfwlist_update '0'
+	option geosite_update '0'
+	option geoip_update '0'
 	list gfwlist_url 'https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt'
 	list chnroute_url 'https://ispip.clang.cn/all_cn.txt'
 	list chnroute6_url 'https://ispip.clang.cn/all_cn_ipv6.txt'
@@ -59,8 +58,6 @@ config global_rules
 	list chnlist_url 'https://cdn.jsdelivr.net/gh/felixonmars/dnsmasq-china-list/apple.china.conf'
 	list chnlist_url 'https://cdn.jsdelivr.net/gh/felixonmars/dnsmasq-china-list/google.china.conf'
 	option v2ray_location_asset '/usr/share/v2ray/'
-	option geosite_update '0'
-	option geoip_update '0'
 
 config global_app
 	option v2ray_file '/usr/bin/v2ray'
