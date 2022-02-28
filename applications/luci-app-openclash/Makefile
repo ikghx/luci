@@ -11,8 +11,8 @@ PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
 LUCI_TITLE:=LuCI support for clash
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+kmod-ipt-nat +iptables +dnsmasq-full +coreutils +coreutils-nohup +bash \
-	+curl +ca-bundle +kmod-tun +ip-full +ipset \
+LUCI_DEPENDS:=+iptables +dnsmasq-full +coreutils +coreutils-nohup +bash \
+	+curl +ca-bundle +kmod-tun +kmod-ipt-nat +ip-full +ipset \
 	+iptables-mod-tproxy +iptables-mod-extra +libcap \
 	+libcap-bin +ip6tables-mod-nat +clash_tun +ruby-yaml
 
