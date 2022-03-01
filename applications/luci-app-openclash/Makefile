@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-openclash
-PKG_VERSION:=0.44.25
+PKG_VERSION:=0.44.29
 PKG_RELEASE:=1
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
@@ -23,10 +23,11 @@ endef
 
 define Package/$(PKG_NAME)/preinst
 #!/bin/sh
-if [ -f "/etc/config/openclash" ]; then
-	cp -f "/etc/config/openclash" "/tmp/openclash.bak" >/dev/null 2>&1
-	cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
-fi
+	if [ -f "/etc/config/openclash" ]; then
+		cp -f "/etc/config/openclash" "/tmp/openclash.bak" >/dev/null 2>&1
+		cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
+	fi
+	exit 0
 endef
 
 define Package/$(PKG_NAME)/postinst
@@ -38,6 +39,7 @@ define Package/$(PKG_NAME)/prerm
 	uci -q commit openclash
 	cp -f "/etc/config/openclash" "/tmp/openclash.bak" >/dev/null 2>&1
 	cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
+	exit 0
 endef
 
 define Package/$(PKG_NAME)/postrm
@@ -62,6 +64,7 @@ define Package/$(PKG_NAME)/postrm
 	uci -q commit firewall
 	uci -q delete ucitrack.@openclash[-1]
 	uci -q commit ucitrack
+	exit 0
 endef
 
 include ../../luci.mk
