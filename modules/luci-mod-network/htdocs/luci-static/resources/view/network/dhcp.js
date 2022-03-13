@@ -298,7 +298,7 @@ return view.extend({
 			_('DNS forwardings'),
 			_('List of upstream resolvers to forward queries to.'));
 		o.optional = true;
-		o.placeholder = '127.0.0.1#5335';
+		o.placeholder = '192.168.9.1#5335';
 		o.validate = validateServerSpec;
 
 		o = s.taboption('general', form.DynamicList, 'address',
@@ -827,8 +827,17 @@ return view.extend({
 							else
 								exp = '%t'.format(lease.expires);
 
+							var hint = lease.macaddr ? hosts[lease.macaddr] : null,
+							name = hint ? hint.name : null,
+							host = null;
+
+							if (name && lease.hostname && lease.hostname != name)
+								host = '%s (%s)'.format(lease.hostname, name);
+							else if (lease.hostname)
+								host = lease.hostname;
+
 							return [
-								lease.hostname || '?',
+								host || '-',
 								lease.ipaddr,
 								lease.macaddr,
 								exp

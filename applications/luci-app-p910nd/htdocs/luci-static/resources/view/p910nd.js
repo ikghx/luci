@@ -1,4 +1,5 @@
 // Copyright 2021-2022 @systemcrash
+//Note: this code follows and allows for ES6 syntax (not officially used in Openwrt 21)
 
 'use strict';
 'require fs';
@@ -17,51 +18,50 @@ var pkg = {
 	get URL() { return 'https://openwrt.org/packages/pkgdata/' + pkg.Name + '/'; }
 };
 
-
 return view.extend({
 
 	load: function () {
-		var dev_array = [], //does not work if this is global
-		    lp_map = new Map(), //Holds the lpX => [dev, vid, pid] [key => value] mapping
-		    ieee1284_device_info = new Map();
+		var dev_array = [], //Holds an array of found and filtered /dev/ devices (does not work if this variable is global)
+		    line_print_map = new Map(), //Holds the lpX => [dev, vid, pid] [key => value] mappings
+		    line_print_removed_map = new Set(), //Holds the removed lpX values
+		    ieee1284_device_info = new Map(); // Holds the contents of each "/sys/bus/usb/devices/*\/ieee1284_id"
 		/* //hotplug.d stuff
-		var script_path = "/etc/hotplug.d/usb/";
-		var script_file = '50_usb_printer_hotplug';
-		var usb_path = '/sys/bus/usb/devices/';
+		var script_path = "/etc/hotplug.d/usb/",
+		    script_file = '50_usb_printer_hotplug',
+		    usb_path = '/sys/bus/usb/devices/';
 		*/
 		/* //skdud info vector
 		var skdud = '/sys/kernel/debug/usb/devices'; //contains currently available usb devices.
 		*/
 		var folder_dev = '/dev',
 		    folder_dev_usb = folder_dev + '/usb',
-		    lp_regex = /lp[0-9]+$/,
+		    line_print_regex = /lp[0-9]+$/,
 		    parse_folder = 'Unable to parse folder \'',
 		    parse_folder_close = '\': ',
-		    usblp_regex = 'usblp\ (.*)\: usblp([0-9])\:.*dev ([0-9]+) .*vid 0x0?0?(.*) pid 0x0?0?(.*)$',
+		    usbline_print_regex = 'usblp\ (.*)\: usblp([0-9])\:.*dev ([0-9]+) .*vid 0x0?0?(.*) pid 0x0?0?(.*)$',
 		    // yields e.g.: 2-1:1.0, usblp[0-9], dev#, vid, pid
-		    usblp_removed_regex = 'usblp([0-9])\: removed$';
+		    usbline_print_removed_regex = 'usblp([0-9])\: removed$';
 
 		var sbud_ieee_path = '/sys/bus/usb/devices/'; //houses the *\/ieee1284_id files.
 		/* // grep sbudx file vector
 		var sbudx_ieee1284_file = "/sys/bus/usb/devices/*\/ieee1284_id";
 		*/
 
-		function is_usblp(el){
+		function is_usb_line_print_dev(el){
 			//this regexp filters dmesg entries matching the regex.
-			return el.match(usblp_regex);
+			return el.match(usbline_print_regex);
 		};
 
 		// find /sys/bus/usb/devices/*/ -regex ".*lp[0-9]"
 		// find /sys/bus/usb/devices/*/ -regex ".*ieee1284_id"
 
-		function five_filter(el){
+		function five_to_four_filter(el){
 			/* Note: we use a map of [key: value] to ensure uniqueness in the list.
 			[lpX] => [bus_id, vid, pid]
 			*/
-
-			if(!lp_map.has(Number(el[2]), [el[1], el[4], el[5]]))
-				lp_map.set(Number(el[2]), [el[1], el[4], el[5]]);
-			return lp_map;
+			if(!line_print_map.has(Number(el[2]), [el[1], el[4], el[5]]))
+				line_print_map.set(Number(el[2]), [el[1], el[4], el[5]]);
+			return line_print_map;
 		};
 
 		/* 
@@ -92,10 +92,14 @@ return view.extend({
 			uci.load(pkg.Name), // data[0]
 			network.getDevices(), // data[1]
 			dev_array, // data[2]
+			/* Note that this approach of parsing dmesg may fail with v.noisy 
+			 * kernel logs flooded with tracebacks and other info.
+			 * But in that case, you have bigger fish to fry.
+			 */
 			fs.exec_direct('/bin/dmesg', [ '-r' ]).catch(function(err) {
 				ui.addNotification(null, E('p', {}, _('Unable to load dmesg kernel log: ' + err.message)));
 					return ''; //handle "usblp0: removed"?
-				}).then(data => {return data.trim().split(/\n/).filter(is_usblp).map(is_usblp).reverse().map(five_filter).reduce(x => x, "");
+				}).then(data => {return data.trim().split(/\n/).filter(is_usb_line_print_dev).map(is_usb_line_print_dev).reverse().map(five_to_four_filter).reduce(x => x, "");
 			}), // data[3]
 			/*
 			fs.exec_direct('/bin/cat', [ skdud ]).catch(function(err) {
@@ -121,7 +125,7 @@ return view.extend({
 			ieee1284_device_info, //data[4]
 			/* This, sbud_ieee_path, is an attempt to be helpful: grab and parse the contents of 
 			 * /sys/bus/usb/devices/{a-b.p:x.y}/ieee1284_id files which contain useful info
-			 * which describes the printer. Could use this to auto-fill the printer info.
+			 * which describes each printer. Could use this to auto-fill the printer info.
 			 */
 			fs.list(sbud_ieee_path).catch(function(err) {
 				ui.addNotification(null, E('p', {}, _(parse_folder + sbud_ieee_path + parse_folder_close + err.message)));
@@ -141,13 +145,13 @@ return view.extend({
 			fs.list(folder_dev_usb).catch(function(err) {
 				ui.addNotification(null, E('p', {}, _(parse_folder + folder_dev_usb + parse_folder_close + err.message)));
 					return '';
-				}).then(entries => dev_array.push(...(entries.filter(e => e.type == 'char' && e.name.match(lp_regex)).map(e => folder_dev_usb + e.name))) 
+				}).then(entries => dev_array.push(...(entries.filter(e => e.type == 'char' && e.name.match(line_print_regex)).map(e => folder_dev_usb + e.name))) 
 			),
 			// //Look in /dev/ for other devices for miscellaneous lp:
 			fs.list(folder_dev).catch(function(err) {
 				ui.addNotification(null, E('p', {}, _(parse_folder + folder_dev + parse_folder_close + err.message)));
 					return '';
-				}).then(entries => dev_array.push(...(entries.filter(e => e.type == 'char' && e.name.match(lp_regex)).map(e => folder_dev + e.name))) 
+				}).then(entries => dev_array.push(...(entries.filter(e => e.type == 'char' && e.name.match(line_print_regex)).map(e => folder_dev + e.name))) 
 			)
 		]);
 	},
@@ -178,23 +182,22 @@ return view.extend({
 		var dev_map = data[3];
 		var ieee1284_device_info = data[4];
 
-		o = s.option(form.Value, 'device', _('Device Path'), _('Note: in the presence of multiple USB devices, their ordering might change upon reboot.'));
+		o = s.option(form.Value, 'device', _('Device Path'), _('Note: Using multiple USB devices, their port numbering can change upon reboot/reconnect. Connected USB/lpX devices should show in this list.'));
 		o.placeholder = '/dev/usb/lp*';
 		char_devices.forEach(char_dev => {
 			if (char_dev.match(/\/lp([0-9]+)$/)) {
-				let lp_num = char_dev.match(/\/lp([0-9]+)$/)[1];
+				let line_print_num = char_dev.match(/\/lp([0-9]+)$/)[1];
 				let device_data = '';
 				if (dev_map.size > 0)
-					device_data = dev_map.get(lp_num)[0] + ' : v' + dev_map.get(lp_num)[1] + '/p' + dev_map.get(lp_num)[2];
+					device_data = dev_map.get(line_print_num)[0] + ' : v' + dev_map.get(line_print_num)[1] + '/p' + dev_map.get(line_print_num)[2];
 				o.value(char_dev, E([], [char_dev, ' (', E('strong', {}, device_data), ')']));
 			}
 		});
 		o.rmempty = true;
-		// o.onchange = function(elem, section_id, value){
-		// 	console.log(elem, section_id, value);
-		// }
 		/* 
 		//we need an extra variable to hold the constructed usb_vid_pid - then hotplug.d has direct access to saved usb_ids
+		theoretically one can determine the vid/pid from the lp port number, but as we can see from the init code above, it's not trivial
+		nor would it be in a shell script language...
 		*/
 		// var dev_path = o;
 

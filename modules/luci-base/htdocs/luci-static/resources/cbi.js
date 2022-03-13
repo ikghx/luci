@@ -521,13 +521,8 @@ String.prototype.format = function()
 	var quot_esc = [/"/g, '&#34;', /'/g, '&#39;'];
 
 	function esc(s, r) {
-		var t = typeof(s);
-
-		if (s == null || t === 'object' || t === 'function')
+		if (typeof(s) !== 'string' && !(s instanceof String))
 			return '';
-
-		if (t !== 'string')
-			s = String(s);
 
 		for (var i = 0; i < r.length; i += 2)
 			s = s.replace(r[i], r[i+1]);

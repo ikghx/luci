@@ -13,7 +13,9 @@ LOGFILE=/var/log/usb_printer_hotplug
 # change USB_ID to match the printer USB ID
 # USB_ID is formed by: idVendor/idProduct/bcdDevice
 # Found under: /sys/bus/usb/devices/*/idVendor
-USB_ID="3f0/4117/100"
+# We can avoid anchoring to bcdDevice which is like a hw version
+# the [ -z ] below matches portions of USB IDs.
+USB_ID="3f0/4117"
 DEV_TYPE="usb_device"
 
 CHAR_DEVS=uci batch << EOI
@@ -53,13 +55,17 @@ daemon_stop() {
     /etc/init.d/p910nd stop
 }
 send_firmware() {
-    echo "$(date) : Sending firmware to printer" >> $LOGFILE
+    echo "$(date) : Sending firmware to printer $USB_ID" >> $LOGFILE
     cat $FIRMWARE > $CHAR_DEV
     echo "$(date) : done." >> $LOGFILE
 }
 
 
-if [ "$PRODUCT" = "${USB_ID}" ]; then
+#sh: =~ => unknown operand
+#this doesn't work in ash:
+#if [ "$PRODUCT" == *"${USB_ID}"* ]; then
+#this works:
+if [ -z "${PRODUCT##*$USB_ID*}" ]; then
     case "$ACTION" in
         add)
             sleep 1
@@ -73,8 +79,9 @@ if [ "$PRODUCT" = "${USB_ID}" ]; then
                 fi
             fi
             ;;
+        #if there are multiple printers, stopping the daemon might not be a good idea.
         remove)
-            daemon_stop
+            #daemon_stop
             ;;
         #Also available:
         bind)

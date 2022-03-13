@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021 OpenWrt.org
+# Copyright (C) 2022 OpenWrt.org
 #
 # This is free software, licensed under the Apache License, Version 2.0 .
 #

@@ -39,7 +39,7 @@ return network.registerProtocol('batadv', {
 
 
 		try {
-			s.tab('mesh', _('Mesh Routing'), _('Mesh and routing related options'));
+			s.tab('mesh', _('Mesh routing'), _('Mesh and routing related options'));
 		}
 		catch(e) {}
 
@@ -47,32 +47,32 @@ return network.registerProtocol('batadv', {
 
 // @FIXME - the list of routing protocols should not be hard coded but come from batctl  
 
-		o = s.taboption('mesh', form.ListValue, 'routing_algo', _('Routing Algorithm'),_('The algorithm that is used to discover mesh routes'));
+		o = s.taboption('mesh', form.ListValue, 'routing_algo', _('Routing algorithm'),_('The algorithm that is used to discover mesh routes'));
 		o.value('BATMAN_IV', 'BATMAN_IV');
 		o.value('BATMAN_V', 'BATMAN_V');
 		o.default = 'BATMAN_IV';
 
-		o = s.taboption('mesh', form.Flag, 'aggregated_ogms', _('aggregate originator messages'),_('reduces overhead by collecting and aggregating originator messages in a single packet rather than many small ones'));
+		o = s.taboption('mesh', form.Flag, 'aggregated_ogms', _('Aggregate originator messages'),_('reduces overhead by collecting and aggregating originator messages in a single packet rather than many small ones'));
 		o.ucioption = 'aggregated_ogms';
 		o.default = o.disabled;
 
-		o = s.taboption('mesh', form.Value, 'orig_interval', _('originator interval'), _('The value specifies the interval (milliseconds) in which batman-adv floods the network with its protocol information.'));
+		o = s.taboption('mesh', form.Value, 'orig_interval', _('Originator interval'), _('The value specifies the interval (milliseconds) in which batman-adv floods the network with its protocol information.'));
 		o.placeholder = '1000';
 		o.datatype    = 'min(1)';
 
-		o = s.taboption('mesh', form.Flag, 'ap_isolation', _('Access Point Isolation'),_('Prevents one wireless client to talk to another. This setting only affects packets without any VLAN tag (untagged packets).'));
+		o = s.taboption('mesh', form.Flag, 'ap_isolation', _('Access point isolation'),_('Prevents one wireless client to talk to another. This setting only affects packets without any VLAN tag (untagged packets).'));
 		o.ucioption = 'ap_isolation';
 		o.default = o.disabled;
 
-		o = s.taboption('mesh', form.Flag, 'bonding', _('bonding mode'),_('When running the mesh over multiple WiFi interfaces per node batman-adv is capable of optimizing the traffic flow to gain maximum performance.'));
+		o = s.taboption('mesh', form.Flag, 'bonding', _('Bonding mode'),_('When running the mesh over multiple WiFi interfaces per node batman-adv is capable of optimizing the traffic flow to gain maximum performance.'));
 		o.ucioption = 'bonding';
 		o.default = o.disabled;
 
-		o = s.taboption('mesh', form.Flag, 'bridge_loop_avoidance', _('avoid bridge loops'),_('In bridged LAN setups it is advisable to enable the bridge loop avoidance in order to avoid broadcast loops that can bring the entire LAN to a standstill.'));
+		o = s.taboption('mesh', form.Flag, 'bridge_loop_avoidance', _('Avoid bridge loops'),_('In bridged LAN setups it is advisable to enable the bridge loop avoidance in order to avoid broadcast loops that can bring the entire LAN to a standstill.'));
 		o.ucioption = 'bridge_loop_avoidance';
 		o.default = o.disabled;
 
-		o = s.taboption('mesh', form.Flag, 'distributed_arp_table', _('distributed ARP table'),_('When enabled the distributed ARP table forms a mesh-wide ARP cache that helps non-mesh clients to get ARP responses much more reliably and without much delay.'));
+		o = s.taboption('mesh', form.Flag, 'distributed_arp_table', _('Distributed ARP table'),_('When enabled the distributed ARP table forms a mesh-wide ARP cache that helps non-mesh clients to get ARP responses much more reliably and without much delay.'));
 		o.ucioption = 'distributed_arp_table';
 		o.default = o.enabled;
 
@@ -80,23 +80,23 @@ return network.registerProtocol('batadv', {
 		o.ucioption = 'fragmentation';
 		o.default = o.enabled;
 
-		o = s.taboption('mesh', form.ListValue, 'gw_mode', _('Gateway Mode'),_('A batman-adv node can either run in server mode (sharing its internet connection with the mesh) or in client mode (searching for the most suitable internet connection in the mesh) or having the gateway support turned off entirely (which is the default setting).'));
+		o = s.taboption('mesh', form.ListValue, 'gw_mode', _('Gateway mode'),_('A batman-adv node can either run in server mode (sharing its internet connection with the mesh) or in client mode (searching for the most suitable internet connection in the mesh) or having the gateway support turned off entirely (which is the default setting).'));
 		o.value('off', _('off'));
 		o.value('client', _('Client'));
 		o.value('server', _('Server'));
 		o.default = 'off';
 
-		o = s.taboption('mesh', form.Value, 'hop_penalty', _('hop penalty'),_('The hop penalty setting allows to modify batman-adv\'s preference for multihop routes vs. short routes. The value is applied to the TQ of each forwarded OGM, thereby propagating the cost of an extra hop (the packet has to be received and retransmitted which costs airtime)'));
+		o = s.taboption('mesh', form.Value, 'hop_penalty', _('Hop penalty'),_('The hop penalty setting allows to modify batman-adv\'s preference for multihop routes vs. short routes. The value is applied to the TQ of each forwarded OGM, thereby propagating the cost of an extra hop (the packet has to be received and retransmitted which costs airtime)'));
 		o.ucioption = 'hop_penalty';
 		o.datatype    = 'min(1)';
 		o.placeholder = '30';
 		o.default = '30';
 
-		o = s.taboption('mesh', form.Flag, 'multicast_mode', _('multicast mode'),_('Enables more efficient, group aware multicast forwarding infrastructure in batman-adv.'));
+		o = s.taboption('mesh', form.Flag, 'multicast_mode', _('Multicast mode'),_('Enables more efficient, group aware multicast forwarding infrastructure in batman-adv.'));
 		o.ucioption = 'multicast_mode';
 		o.default = o.enabled;
 
-		o = s.taboption('mesh', form.Flag, 'network_coding', _('network coding'),_('When enabled network coding increases the WiFi throughput by combining multiple frames into a single frame, thus reducing the needed air time.'));
+		o = s.taboption('mesh', form.Flag, 'network_coding', _('Network coding'),_('When enabled network coding increases the WiFi throughput by combining multiple frames into a single frame, thus reducing the needed air time.'));
 		o.ucioption = 'network_coding';
 		o.default = o.enabled;
 
