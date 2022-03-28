@@ -76,6 +76,9 @@ return view.extend({
 		o = s.option(form.Flag, 'xspf', _('Use XSPF files'));
 		o.rmempty = false;
 
+		o = s.option(form.Flag, 'noacl', _('Disable access control checks'));
+		o.rmempty = false;
+
 		return m.render();
 	}
 });
