@@ -10,7 +10,7 @@ config global
 	option localhost_udp_proxy_mode 'default'
 	option dns_mode 'udp'
 	option dns_forward '127.0.0.1:5334'
-	option filter_proxy_ipv6 '0'
+	option dns_shunt 'dnsmasq'
 	option close_log_tcp '1'
 	option close_log_udp '1'
 	option loglevel 'error'
@@ -21,7 +21,7 @@ config global_haproxy
 
 config global_delay
 	option auto_on '0'
-	option start_daemon '0'
+	option start_daemon '1'
 	option start_delay '1'
 
 config global_forwarding
@@ -80,19 +80,17 @@ config auto_switch
 	option retry_num '3'
 	option shunt_logic '1'
 
-config nodes '696cd32c1d5149ee95fd1b3accbad6df'
+config nodes 'myshunt'
 	option remarks '分流总节点'
 	option type 'Xray'
 	option protocol '_shunt'
 	option AD 'nil'
 	option BT '_direct'
-	option Telegram 'nil'
-	option YouTube 'nil'
 	option Netflix 'nil'
 	option TVB 'nil'
 	option China 'nil'
 	option default_node 'nil'
-	option domainStrategy 'IPIfNonMatch'
+	option domainStrategy 'IPOnDemand'
 
 config shunt_rules 'AD'
 	option remarks 'AD'
@@ -101,23 +99,6 @@ config shunt_rules 'AD'
 config shunt_rules 'BT'
 	option remarks 'BT'
 	option protocol 'bittorrent'
-
-config shunt_rules 'Telegram'
-	option remarks 'Telegram'
-	option ip_list '149.154.160.0/20
-91.108.4.0/22
-91.108.56.0/24
-109.239.140.0/24
-67.198.55.0/24'
-
-config shunt_rules 'YouTube'
-	option remarks 'YouTube'
-	option domain_list 'youtube
-youtube.com
-youtu.be
-googlevideo.com
-ytimg.com
-gvt2.com'
 
 config shunt_rules 'Netflix'
 	option remarks 'Netflix'

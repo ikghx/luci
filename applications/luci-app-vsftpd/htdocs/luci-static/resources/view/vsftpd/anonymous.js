@@ -12,7 +12,7 @@ return view.extend({
 
 		m = new form.Map('vsftpd', _('FTP Server - Anonymous User Settings'));
 
-		s = m.section(form.NamedSection, 'anonymous', 'anonymous', _('Anonymous User Settings'));
+		s = m.section(form.NamedSection, 'anonymous', 'anonymous');
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 

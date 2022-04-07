@@ -11,7 +11,7 @@ return view.extend({
 
 		m = new form.Map('vsftpd', _('FTP Server - Log Settings'));
 
-		s = m.section(form.NamedSection, 'log', 'log', _('Log Settings'));
+		s = m.section(form.NamedSection, 'log', 'log');
 
 		o = s.option(form.Flag, 'syslog', _('Enable syslog'), _('Send file transfer logs to the system log'));
 		o.default = false;

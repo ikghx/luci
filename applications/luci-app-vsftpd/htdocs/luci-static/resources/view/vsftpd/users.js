@@ -12,7 +12,7 @@ return view.extend({
 
 		m = new form.Map('vsftpd', _('FTP Server - Virtual User Settings'));
 
-		s = m.section(form.NamedSection, 'vuser', 'vuser', _('Virtual User Settings'));
+		s = m.section(form.NamedSection, 'vuser', 'vuser');
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 
