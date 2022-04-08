@@ -447,4 +447,9 @@ end
 
 m:append(Template(appname .. "/global/footer"))
 
+local apply = luci.http.formvalue("cbi.apply")
+	if apply then
+		luci.util.exec("/etc/init.d/" .. appname .." restart >/dev/null 2>&1")
+	end
+
 return m
