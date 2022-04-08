@@ -365,11 +365,12 @@ static struct json_object * _lua_to_json_rec(lua_State *L, int index,
 
 	case LUA_TNUMBER:
 		nd = lua_tonumber(L, index);
+		ni = lua_tointeger(L, index);
 
-		if(nd >= INT64_MIN && nd <= INT64_MAX)
+		if (nd == ni)
 			return json_object_new_int64(nd);
-		else
-			return json_object_new_double(nd);
+
+		return json_object_new_double(nd);
 
 	case LUA_TSTRING:
 		return json_object_new_string(lua_tostring(L, index));
