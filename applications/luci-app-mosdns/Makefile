@@ -1,9 +1,9 @@
-# This is free software, licensed under the Apache License, Version 2.0 .
+# This is free software, licensed under the Apache License, Version 2.0
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI support for syncthing
-LUCI_DEPENDS:=+syncthing
+LUCI_TITLE:=LuCI Support for mosdns
+LUCI_DEPENDS:=+mosdns
 
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=KGHX <openwrt.ikghx.com>

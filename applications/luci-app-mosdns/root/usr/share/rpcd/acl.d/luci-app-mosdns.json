@@ -1,0 +1,21 @@
+{
+	"luci-app-mosdns": {
+		"description": "Grant UCI access for luci-app-mosdns",
+		"read": {
+			"file": {
+				"/etc/mosdns/config.yaml": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "mosdns" ]
+		},
+		"write": {
+			"file": {
+				"/etc/mosdns/config.yaml": [ "write" ],
+				"/etc/init.d/mosdns restart": [ "exec" ]
+			},
+			"uci": [ "mosdns" ]
+		}
+	}
+}
