@@ -127,6 +127,9 @@ return view.extend({
 		s.taboption('general', form.Flag, 'secure_mode', _('Enable secure mode'),
 			_('Allow adding forwards only to requesting ip addresses')).default = '1'
 
+		s.taboption('general', form.Flag, 'igdv1', _('Enable IGDv1 mode'),
+			_('Advertise as IGDv1 device instead of IGDv2')).default = '0'
+
 		s.taboption('general', form.Flag, 'ipv6_disable', _('Disable IPv6')).default = '1'
 
 		s.taboption('general', form.Flag, 'force_forwarding', _('Forced forwarding'),
