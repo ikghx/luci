@@ -133,7 +133,7 @@ return view.extend({
 		s.taboption('general', form.Flag, 'ipv6_disable', _('Disable IPv6')).default = '1'
 
 		s.taboption('general', form.Flag, 'force_forwarding', _('Forced forwarding'),
-			_('This make the port forwarding force to work even when the router is behind NAT.')).default = '1'
+			_('This make the port forwarding force to work even when the router is behind NAT.')).default = '0'
 
 		s.taboption('general', form.Flag, 'log_output', _('Enable additional logging'),
 			_('Puts extra debugging information into the system log'))

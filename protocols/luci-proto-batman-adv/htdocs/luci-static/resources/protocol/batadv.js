@@ -78,7 +78,7 @@ return network.registerProtocol('batadv', {
 		o.default = o.enabled;
 
 		o = s.taboption('mesh', form.Flag, 'fragmentation', _('Fragmentation'), 
-				_('Batman-adv has a built-in layer 2 fragmentation for unicast data flowing through the mesh which will allow to run batman-adv over interfaces / connections that don\'t allow to increase the MTU beyond the standard Ethernet packet size of 1500 bytes. When the fragmentation is enabled batman-adv will automatically fragment over-sized packets and defragment them on the other end. Per default fragmentation is enabled and inactive if the packet fits but it is possible to deactivate the fragmentation entirely.'));
+				_('Batman-adv has a built-in layer 2 fragmentation for unicast data flowing through the mesh which will allow to run batman-adv over interfaces / connections that do not allow to increase the MTU beyond the standard Ethernet packet size of 1500 bytes. When the fragmentation is enabled batman-adv will automatically fragment over-sized packets and defragment them on the other end. Per default fragmentation is enabled and inactive if the packet fits but it is possible to deactivate the fragmentation entirely.'));
 		o.ucioption = 'fragmentation';
 		o.default = o.enabled;
 
@@ -90,7 +90,7 @@ return network.registerProtocol('batadv', {
 		o.default = 'off';
 
 		o = s.taboption('mesh', form.Value, 'hop_penalty', _('Hop Penalty'), 
-				_('The hop penalty setting allows to modify batman-adv\'s preference for multihop routes vs. short routes. The value is applied to the TQ of each forwarded OGM, thereby propagating the cost of an extra hop (the packet has to be received and retransmitted which costs airtime)'));
+				_('The hop penalty setting allows to modify batman-adv is preference for multihop routes vs. short routes. The value is applied to the TQ of each forwarded OGM, thereby propagating the cost of an extra hop (the packet has to be received and retransmitted which costs airtime)'));
 		o.ucioption = 'hop_penalty';
 		o.datatype    = 'min(1)';
 		o.placeholder = '30';
