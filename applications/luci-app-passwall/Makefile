@@ -7,7 +7,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
 PKG_VERSION:=4.53
-PKG_RELEASE:=2
+PKG_RELEASE:=6
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Brook \
@@ -34,9 +34,11 @@ PKG_CONFIG_DEPENDS:= \
 LUCI_TITLE:=LuCI support for PassWall
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
-	+dnsmasq-full +dns2socks +ip-full +ipset +ipt2socks +iptables +iptables-mod-tproxy +iptables-mod-iprange \
-	+kmod-ipt-nat +libuci-lua +lua +luci-compat +luci-lib-jsonc +microsocks +resolveip +tcping \
-	+unzip \
+	+dnsmasq-full +dns2socks +ip-full +ipset +ipt2socks \
+	+iptables +iptables-mod-tproxy +iptables-mod-iprange \
+	+kmod-ipt-nat +iptables-mod-conntrack-extra +libuci-lua \
+	+lua +luci-compat +luci-lib-jsonc +microsocks +resolveip \
+	+tcping +unzip \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Brook:brook \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_ChinaDNS_NG:chinadns-ng \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy:haproxy \
