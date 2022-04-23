@@ -58,7 +58,7 @@ return view.extend({
 		o.value('error', _('Error'));
 
 		o = s.option(form.Value, 'log_file', _('log file'));
-		o.placeholder = '/tmp/v2raya.log';
+		o.placeholder = '/var/log/v2raya/v2raya.log';
 
 		o = s.option(form.Value, 'log_max_days', _('Log max days'));
 
