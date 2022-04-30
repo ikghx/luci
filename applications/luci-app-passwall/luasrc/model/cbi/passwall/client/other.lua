@@ -22,34 +22,6 @@ o = s:option(Flag, "start_daemon", translate("Open and close Daemon"))
 o.default = "1"
 o.rmempty = false
 
---[[
----- Open and close automatically
-o = s:option(Flag, "auto_on", translate("Open and close automatically"))
-o.default = 0
-o.rmempty = false
-
----- Automatically turn off time
-o = s:option(ListValue, "time_off", translate("Automatically turn off time"))
-o.default = nil
-o:depends("auto_on", true)
-o:value(nil, translate("Disable"))
-for e = 0, 23 do o:value(e, e .. translate("oclock")) end
-
----- Automatically turn on time
-o = s:option(ListValue, "time_on", translate("Automatically turn on time"))
-o.default = nil
-o:depends("auto_on", true)
-o:value(nil, translate("Disable"))
-for e = 0, 23 do o:value(e, e .. translate("oclock")) end
-
----- Automatically restart time
-o = s:option(ListValue, "time_restart", translate("Automatically restart time"))
-o.default = nil
-o:depends("auto_on", true)
-o:value(nil, translate("Disable"))
-for e = 0, 23 do o:value(e, e .. translate("oclock")) end
---]]
-
 -- [[ Forwarding Settings ]]--
 s = m:section(TypedSection, "global_forwarding",
               translate("Forwarding Settings"))
@@ -88,8 +60,6 @@ o.default = "22,25,53,143,465,587,853,993,995,80,443"
 o:value("1:65535", translate("All"))
 o:value("22,25,53,143,465,587,853,993,995,80,443", translate("Common Use"))
 o:value("80,443", translate("Only Web"))
-o:value("80:65535", "80 " .. translate("or more"))
-o:value("1:443", "443 " .. translate("or less"))
 
 ---- UDP Redir Ports
 o = s:option(Value, "udp_redir_ports", translate("UDP Redir Ports"))

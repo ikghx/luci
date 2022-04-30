@@ -95,11 +95,6 @@ end
 if api.is_finded("brook") then
     type:value("Brook", translate("Brook"))
 end
---[[
-if api.is_finded("trojan-plus") or api.is_finded("trojan") then
-    type:value("Trojan", translate("Trojan"))
-end
-]]--
 if api.is_finded("trojan-plus") then
     type:value("Trojan-Plus", translate("Trojan-Plus"))
 end
@@ -257,32 +252,6 @@ address:depends({ type = "Xray", protocol = "http" })
 address:depends({ type = "Xray", protocol = "socks" })
 address:depends({ type = "Xray", protocol = "shadowsocks" })
 address:depends({ type = "Xray", protocol = "trojan" })
-
---[[
-use_ipv6 = s:option(Flag, "use_ipv6", translate("Use IPv6"))
-use_ipv6.default = 0
-use_ipv6:depends("type", "Socks")
-use_ipv6:depends("type", "SS")
-use_ipv6:depends("type", "SS-Rust")
-use_ipv6:depends("type", "SSR")
-use_ipv6:depends("type", "Brook")
-use_ipv6:depends("type", "Trojan")
-use_ipv6:depends("type", "Trojan-Plus")
-use_ipv6:depends("type", "Trojan-Go")
-use_ipv6:depends("type", "Hysteria")
-use_ipv6:depends({ type = "V2ray", protocol = "vmess" })
-use_ipv6:depends({ type = "V2ray", protocol = "vless" })
-use_ipv6:depends({ type = "V2ray", protocol = "http" })
-use_ipv6:depends({ type = "V2ray", protocol = "socks" })
-use_ipv6:depends({ type = "V2ray", protocol = "shadowsocks" })
-use_ipv6:depends({ type = "V2ray", protocol = "trojan" })
-use_ipv6:depends({ type = "Xray", protocol = "vmess" })
-use_ipv6:depends({ type = "Xray", protocol = "vless" })
-use_ipv6:depends({ type = "Xray", protocol = "http" })
-use_ipv6:depends({ type = "Xray", protocol = "socks" })
-use_ipv6:depends({ type = "Xray", protocol = "shadowsocks" })
-use_ipv6:depends({ type = "Xray", protocol = "trojan" })
---]]
 
 port = s:option(Value, "port", translate("Port"))
 port.datatype = "port"
@@ -645,15 +614,6 @@ transport:depends({ type = "Xray", protocol = "vless" })
 transport:depends({ type = "Xray", protocol = "socks" })
 transport:depends({ type = "Xray", protocol = "shadowsocks" })
 transport:depends({ type = "Xray", protocol = "trojan" })
-
---[[
-ss_transport = s:option(ListValue, "ss_transport", translate("Transport"))
-ss_transport:value("ws", "WebSocket")
-ss_transport:value("h2", "HTTP/2")
-ss_transport:value("h2+ws", "HTTP/2 & WebSocket")
-ss_transport:depends({ type = "V2ray", protocol = "shadowsocks" })
-ss_transport:depends({ type = "Xray", protocol = "shadowsocks" })
-]]--
 
 -- [[ TCP部分 ]]--
 

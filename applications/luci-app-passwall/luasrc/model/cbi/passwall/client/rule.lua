@@ -8,11 +8,6 @@ m = Map(appname)
 s = m:section(TypedSection, "global_rules", translate("Rule status"))
 s.anonymous = true
 
---[[
-o = s:option(Flag, "adblock", translate("Enable adblock"))
-o.rmempty = false
-]]--
-
 ---- gfwlist URL
 o = s:option(DynamicList, "gfwlist_url", translate("GFW domains(gfwlist) Update URL"))
 o:value("https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt", translate("v2fly/domain-list-community"))

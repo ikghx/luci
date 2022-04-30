@@ -80,11 +80,6 @@ end
 if api.is_finded("brook") then
     type:value("Brook", translate("Brook"))
 end
---[[
-if api.is_finded("trojan-plus") or api.is_finded("trojan") then
-    type:value("Trojan", translate("Trojan"))
-end
-]]--
 if api.is_finded("trojan-plus") then
     type:value("Trojan-Plus", translate("Trojan-Plus"))
 end
@@ -583,21 +578,6 @@ fallback:depends({ type = "V2ray", protocol = "vless", transport = "tcp" })
 fallback:depends({ type = "V2ray", protocol = "trojan", transport = "tcp" })
 fallback:depends({ type = "Xray", protocol = "vless", transport = "tcp" })
 fallback:depends({ type = "Xray", protocol = "trojan", transport = "tcp" })
-
---[[
-fallback_alpn = s:option(Value, "fallback_alpn", "Fallback alpn")
-fallback_alpn:depends("fallback", true)
-
-fallback_path = s:option(Value, "fallback_path", "Fallback path")
-fallback_path:depends("fallback", true)
-
-fallback_dest = s:option(Value, "fallback_dest", "Fallback dest")
-fallback_dest:depends("fallback", true)
-
-fallback_xver = s:option(Value, "fallback_xver", "Fallback xver")
-fallback_xver.default = 0
-fallback_xver:depends("fallback", true)
-]]--
 
 fallback_list = s:option(DynamicList, "fallback_list", "Fallback", translate("dest,path"))
 fallback_list:depends("fallback", true)
