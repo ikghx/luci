@@ -76,7 +76,8 @@
 	background: inherit;
 }
 
-.td[width="33%"] {
+.td[width="33%"], 
+.td[width="33%"]~.td {
 	padding: 1.1em;
 }
 
@@ -199,6 +200,7 @@ input,
 	background-color: transparent;
 	background-image: none;
 	box-shadow: none;
+	align-items: center;
 }
 
 select,
@@ -2358,6 +2360,12 @@ input[name="nslookup"] {
 
 .controls > * > label {
 	margin-bottom: .2rem;
+}
+
+.control-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
 }
 
 [data-page="admin-system-opkg"] div.btn {
