@@ -37,6 +37,7 @@ end)
 
 local doh_validate = function(self, value, t)
     if value ~= "" then
+        value = api.trim(value)
         local flag = 0
         local util = require "luci.util"
         local val = util.split(value, ",")
@@ -231,7 +232,6 @@ end
 o.default = "127.0.0.1:9050"
 o.placeholder = "127.0.0.1:9050"
 o:depends({dns_mode = "dns2socks"})
-o:depends({dns_by = "socks"})
 
 ---- DNS Forward
 o = s:taboption("DNS", Value, "remote_dns", translate("Remote DNS"))

@@ -3,7 +3,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI support for serverchan
 LUCI_DEPENDS:=+iputils-arping +curl +jq +luci-i18n-wrtbwmon-zh-cn
 PKG_VERSION:=2.01.4
-PKG_RELEASE:=13
+PKG_RELEASE:=14
 LUCI_PKGARCH:=all
 
 define Package/$(PKG_NAME)/conffiles
