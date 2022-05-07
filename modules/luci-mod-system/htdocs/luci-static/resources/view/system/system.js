@@ -244,10 +244,22 @@ return view.extend({
 			if (k[i].charAt(0) != '.')
 				o.value(uci.get('luci', 'themes', k[i]), k[i]);
 
-		o = s.taboption('language', form.Value, '_pollinterval', _('Polling interval (sec)'))
+		o = s.taboption('language', form.Value, '_pollinterval', _('Polling interval (sec)'), _('The automatic refresh interval for web pages.'))
 		o.uciconfig = 'luci';
 		o.ucisection = 'main';
 		o.ucioption = 'pollinterval';
+		o.datatype = 'uinteger';
+
+		o = s.taboption('language', form.Value, '_rollback', _('rollback timeout (sec)'), _('Automatically roll back recent configuration changes after a web page times out and becomes unresponsive.'))
+		o.uciconfig = 'luci';
+		o.ucisection = 'apply';
+		o.ucioption = 'rollback';
+		o.datatype = 'min(5)';
+
+		o = s.taboption('language', form.Value, '_holdoff', _('holdoff time (sec)'), _('The amount of time the web page waits for a configuration change to be applied. The default value is 4. Lowering this value will invalidate the rollback functionality.'))
+		o.uciconfig = 'luci';
+		o.ucisection = 'apply';
+		o.ucioption = 'holdoff';
 		o.datatype = 'uinteger';
 
 		/*

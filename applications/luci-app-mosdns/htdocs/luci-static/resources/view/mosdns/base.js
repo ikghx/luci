@@ -29,7 +29,7 @@ return view.extend({
 
 		var m, s, o;
 
-		m = new form.Map('mosdns', _('mosdns') + status, _('A plug-in DNS forwarder/splitter.'));
+		m = new form.Map('mosdns', _('MosDNS') + status, _('A plug-in DNS forwarder/splitter.'));
 
 		s = m.section(form.TypedSection, 'mosdns');
 		s.anonymous = true;
