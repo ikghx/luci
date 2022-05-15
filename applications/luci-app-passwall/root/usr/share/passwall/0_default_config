@@ -8,9 +8,8 @@ config global
 	option udp_proxy_mode 'chnroute'
 	option localhost_tcp_proxy_mode 'default'
 	option localhost_udp_proxy_mode 'default'
-	option dns_mode 'udp'
-	option remote_dns '127.0.0.1:5335'
-	option dns_shunt 'dnsmasq'
+	option dns_mode 'dns2tcp'
+	option remote_dns '1.1.1.1'
 	option close_log_tcp '1'
 	option close_log_udp '1'
 	option loglevel 'error'
@@ -22,7 +21,7 @@ config global_haproxy
 config global_delay
 	option auto_on '0'
 	option start_daemon '1'
-	option start_delay '1'
+	option start_delay '10'
 
 config global_forwarding
 	option tcp_no_redir_ports 'disable'
