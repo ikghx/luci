@@ -17,9 +17,9 @@ local _ = luci.i18n.translate
 local function OptionalFlag(section, key, title, description)
     local o = section:option(ListValue, key, title, description)
     o.optional = true
-    o:value("", "Default")
-    o:value("1", "Enabled")
-    o:value("0", "Disabled")
+    o:value("", _("Default")
+    o:value("1", _("Enabled")
+    o:value("0", _("Disabled")
     return o
 end
 
@@ -45,9 +45,9 @@ p = s:option(MultiValue, "log_dest", _("Log destination"),
     _("You can have multiple, but 'none' will override all others"))
 p:value("stderr", "stderr")
 p:value("stdout", "stdout")
-p:value("syslog", "syslog")
+p:value("syslog", _("System Log")
 p:value("topic", "$SYS/broker/log/[severity]")
-p:value("none", "none")
+p:value("none", _("None")
 
 OptionalFlag(s, "no_remote_access", _("Disallow remote access to this broker"),
     _([[Outbound bridges will still work, but this will make the primary listener
@@ -58,13 +58,14 @@ o = s:option(Value, "sys_interval", _("Time in seconds between updates of the $S
 o.datatype = "uinteger"
 o.optional = true
 
+OptionalFlag(s, "allow_anonymous", _("Allow anonymous connections"), _("Allow to connect without providing a username and password"))
 o = s:option(Value, "max_inflight_messages", _("Max Inflight Messages"), _("Limit for message allowed inflight"))
 o.datatype = "uinteger"
 o.optional = true
 o = s:option(Value, "max_queued_messages", _("Max Queued Messages"), _("Limit for message queue when offline"))
 o.datatype = "uinteger"
 o.optional = true
-o = s:option(Value, "max_queued_bytes", _("Max Queued bytes"), _("Limit for message queue when offline, zero to disable)"))
+o = s:option(Value, "max_queued_bytes", _("Max Queued bytes"), _("Limit for message queue when offline, zero to disable"))
 o.datatype = "uinteger"
 o.optional = true
 
@@ -94,7 +95,7 @@ s.anonymous = true
 s:option(Value, "port", _("Port")).datatype = "port"
 
 o = s:option(ListValue, "protocol", _("Protocol to use when listening"))
-o:value("", "Default")
+o:value("", _("Default")
 o:value("mqtt", _("MQTT"))
 o:value("websockets", _("WebSockets"))
 
@@ -116,7 +117,7 @@ o.datatype = "file"
 o = s:option(ListValue, "tls_version", _("TLS Version"),
     _("Depends on your openssl version, empty to support all"))
 o.optional = true
-o:value("", "Default")
+o:value("", _("Default")
 o:value("tlsv1.1")
 o:value("tlsv1.2")
 o:value("tlsv1.3")
@@ -149,7 +150,7 @@ local function validate_address(self, value)
     return nil, _("Please enter a hostname or an IP address")
 end
 
-addr = s:option(Value, "address", _("address"), _("address[:port] of remote broker"))
+addr = s:option(Value, "address", _("Address"), _("address[:port] of remote broker"))
 addr.datatype = "string"
 addr.validate = validate_address
 
@@ -170,7 +171,7 @@ o.datatype = "uinteger"
 o.optional = true
 o = s:option(ListValue, "start_type", _("How should this bridge be started"))
 o.optional = true
-o:value("", "Default")
+o:value("", _("Default")
 o:value("automatic", _("Automatic, includes restarts"))
 o:value("lazy", _("Automatic, but stopped when not used"))
 o:value("once", _("Automatic, but no restarts"))
@@ -209,7 +210,7 @@ psk_key.validate = validate_psk_key
 
 b_tls_version = s:option(ListValue, "tls_version", _("TLS Version"),
     _("The remote broker must support the same version of TLS for the connection to succeed."))
-b_tls_version:value("", "Default")
+b_tls_version:value("", _("Default")
 b_tls_version:value("tlsv1.1")
 b_tls_version:value("tlsv1.2")
 b_tls_version:value("tlsv1.3")

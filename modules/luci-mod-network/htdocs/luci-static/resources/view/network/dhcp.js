@@ -305,7 +305,7 @@ return view.extend({
 			_('Static address'),
 			_('List of domains to force to an IP address.'));
 		o.optional = true;
-		o.placeholder = '/openwrt.xyz/192.168.9.1';
+		o.placeholder = '/openwrt.org/192.168.9.1';
 
 		o = s.taboption('general', form.Flag, 'rebind_protection',
 			_('Rebind protection'),
