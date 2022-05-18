@@ -159,6 +159,8 @@ return view.extend({
 		 * Logging
 		 */
 
+		o = s.taboption('general', form.Flag, 'ttylogin', _('TTY login authentication'), _('Require authentication for local users to log in the system. such as keyboard and serial.'));
+
 		o = s.taboption('logging', form.Value, 'log_size', _('System log buffer size'), "kiB")
 		o.optional    = true
 		o.placeholder = 16
