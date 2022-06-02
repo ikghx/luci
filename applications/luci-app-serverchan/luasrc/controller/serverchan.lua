@@ -6,7 +6,7 @@ function index()
 		return
 	end
 
-	entry({"admin", "services", "serverchan"}, alias("admin", "services", "serverchan", "setting"),_("Server酱"), 30).dependent = true
+	entry({"admin", "services", "serverchan"}, firstchild(), _("Server酱"), 30).dependent = true
 	entry({"admin", "services", "serverchan", "setting"}, cbi("serverchan/setting"), _("配置"), 40).leaf = true
 	entry({"admin", "services", "serverchan", "advanced"}, cbi("serverchan/advanced"), _("高级设置"), 50).leaf = true
 	entry({"admin", "services", "serverchan", "client"}, form("serverchan/client"), _("在线设备"), 80)

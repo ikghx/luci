@@ -17,9 +17,9 @@ local _ = luci.i18n.translate
 local function OptionalFlag(section, key, title, description)
     local o = section:option(ListValue, key, title, description)
     o.optional = true
-    o:value("", _("Default")
-    o:value("1", _("Enabled")
-    o:value("0", _("Disabled")
+    o:value("", _("Default"))
+    o:value("1", _("Enabled"))
+    o:value("0", _("Disabled"))
     return o
 end
 
@@ -45,9 +45,9 @@ p = s:option(MultiValue, "log_dest", _("Log destination"),
     _("You can have multiple, but 'none' will override all others"))
 p:value("stderr", "stderr")
 p:value("stdout", "stdout")
-p:value("syslog", _("System Log")
+p:value("syslog", _("System Log"))
 p:value("topic", "$SYS/broker/log/[severity]")
-p:value("none", _("None")
+p:value("none", _("None"))
 
 OptionalFlag(s, "no_remote_access", _("Disallow remote access to this broker"),
     _([[Outbound bridges will still work, but this will make the primary listener
@@ -95,7 +95,7 @@ s.anonymous = true
 s:option(Value, "port", _("Port")).datatype = "port"
 
 o = s:option(ListValue, "protocol", _("Protocol to use when listening"))
-o:value("", _("Default")
+o:value("", _("Default"))
 o:value("mqtt", _("MQTT"))
 o:value("websockets", _("WebSockets"))
 
@@ -117,7 +117,7 @@ o.datatype = "file"
 o = s:option(ListValue, "tls_version", _("TLS Version"),
     _("Depends on your openssl version, empty to support all"))
 o.optional = true
-o:value("", _("Default")
+o:value("", _("Default"))
 o:value("tlsv1.1")
 o:value("tlsv1.2")
 o:value("tlsv1.3")
@@ -171,7 +171,7 @@ o.datatype = "uinteger"
 o.optional = true
 o = s:option(ListValue, "start_type", _("How should this bridge be started"))
 o.optional = true
-o:value("", _("Default")
+o:value("", _("Default"))
 o:value("automatic", _("Automatic, includes restarts"))
 o:value("lazy", _("Automatic, but stopped when not used"))
 o:value("once", _("Automatic, but no restarts"))
@@ -210,7 +210,7 @@ psk_key.validate = validate_psk_key
 
 b_tls_version = s:option(ListValue, "tls_version", _("TLS Version"),
     _("The remote broker must support the same version of TLS for the connection to succeed."))
-b_tls_version:value("", _("Default")
+b_tls_version:value("", _("Default"))
 b_tls_version:value("tlsv1.1")
 b_tls_version:value("tlsv1.2")
 b_tls_version:value("tlsv1.3")
