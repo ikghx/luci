@@ -17,11 +17,15 @@ msgstr ""
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:82
 msgid ""
-"<i>Applies to Ping Reboot and Restart Interface modes</i> <br /> Specify the "
-"interface to monitor and restart if a ping over it fails."
+"<i>Applies to Ping Reboot, Restart Interface, and Run Script modes</i> <br /"
+"> Specify the interface to monitor and react if a ping over it fails."
 msgstr ""
-"<i>应用于 Ping 重启 和 重启接口模式</i><br />指定监视接口并在对该接口"
-"的 ping 失败时重新启动。"
+"<i>应用于 Ping 重启、重启接口和运行脚本模式</i><br />指定监视接口并在对该接口"
+"的 ping 失败时做出反应。"
+
+#: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:60
+msgid "Address family for pinging the host"
+msgstr "ping 主机的地址簇"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:72
 msgid ""
@@ -92,8 +96,8 @@ msgid "Huge: 1492 bytes"
 msgstr "巨大：1492 字节"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:43
-msgid "IPv4 address or hostname to ping."
-msgstr "要执行 ping 操作的 IPv4 地址或主机名。"
+msgid "IP address or hostname to ping."
+msgstr "要执行 ping 操作的 IP 地址或主机名。"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:95
 msgid ""
@@ -107,18 +111,18 @@ msgstr ""
 msgid ""
 "In Periodic Reboot mode, it defines how often to reboot. <br /> In Ping "
 "Reboot mode, it defines the longest period of time without a reply from the "
-"Host To Check before a reboot is engaged. <br /> In Network Restart mode, it "
-"defines the longest period of time without a reply from the Host to Check "
-"before the interface is restarted. <br /><br />The default unit is seconds, "
-"without a suffix, but you can use the suffix <b>m</b> for minutes, <b>h</b> "
-"for hours or <b>d</b> for days. <br /><br />Examples:<ul><li>10 seconds "
-"would be: <b>10</b> or <b>10s</b></li><li>5 minutes would be: <b>5m</b></"
-"li><li> 1 hour would be: <b>1h</b></li><li>1 week would be: <b>7d</b></"
-"li><ul>"
+"Host To Check before a reboot is engaged. <br /> In Network Restart or Run "
+"Script mode, it defines the longest period of time without a reply from the "
+"Host to Check before the interface is restarted or the script is run. <br /"
+"><br />The default unit is seconds, without a suffix, but you can use the "
+"suffix <b>m</b> for minutes, <b>h</b> for hours or <b>d</b> for days. <br /"
+"><br />Examples:<ul><li>10 seconds would be: <b>10</b> or <b>10s</b></"
+"li><li>5 minutes would be: <b>5m</b></li><li> 1 hour would be: <b>1h</b></"
+"li><li>1 week would be: <b>7d</b></li><ul>"
 msgstr ""
 "在定期重启模式下，它定义重启的间隔。 <br />在 Ping 重启模式下，它定义在重启前"
-"没有收到来自要检查的主机的回复的最长时间。<br />在网络重启模式下，它定义接口"
-"重启前，没有收到要检查的主机的回复的最长时间。<br /><br />默认单位是秒，不带"
+"没有收到来自要检查的主机的回复的最长时间。<br />在网络重启或运行脚本模式下，它定义接口"
+"重启或运行脚本前，没有收到要检查的主机的回复的最长时间。<br /><br />默认单位是秒，不带"
 "后缀，但你可以使用后缀<b>m</b>代表分钟， <b>h</b> 代表小时或 <b>d</b>代表天"
 "数。<br /><br />样例：<ul><li>10秒是：<b>10</b> o或<b>10s</b></li><li>5 分钟"
 "是：: <b>5m</b></li><li>1 小时是：<b>1h</b></li><li>1 周是：<b>7d</b></"
@@ -158,11 +162,26 @@ msgid ""
 "specified duration of time. <br /> Periodic Reboot: Reboot this device after "
 "a specified interval of time. <br /> Restart Interface: Restart a network "
 "interface if a ping to a specified host fails for a specified duration of "
-"time."
+"time. <br /> Run Script: Run a script if a ping to a specified host fails "
+"for a specified duration of time. <br />"
 msgstr ""
 "Ping 重启：如果在指定的一段时间内，ping 指定主机始终失败，则重新启动该设备。"
 "<br />定期重启：在指定的时间间隔后重新启动该设备。<br />重启接口：如果在指定"
-"的时间内，ping 指定主机始终失败，则重新启动网络接口。"
+"的时间内，ping 指定主机始终失败，则重新启动网络接口。<br />运行脚本：如果在指"
+"定的时间内，ping 指定主机始终失败，则运行脚本。<br />"
+
+#: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:30
+msgid "Run Script"
+msgstr "运行脚本"
+
+#: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:33
+msgid "Script to run"
+msgstr "要运行的脚本"
+
+msgid ""
+"Script to run when the host has not responded for the specified duration of time. "
+"The script is passed the interface name as $1"
+msgstr "当主机在指定的持续时间内没有响应时运行的脚本。脚本将接口名称作为 $1 传递"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:28
 msgid "Restart Interface"
