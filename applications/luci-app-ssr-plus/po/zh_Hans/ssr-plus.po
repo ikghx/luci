@@ -1,15 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "Allow listed only"
-msgstr "仅允许列表内"
-
-msgid "Allow all except listed"
-msgstr "仅允许列表外"
-
-msgid "Apply"
-msgstr "应用"
-
 msgid "Log"
 msgstr "日志"
 
@@ -49,6 +40,12 @@ msgstr "连接超时"
 msgid "Encrypt Method"
 msgstr "加密方式"
 
+msgid "Enable the SUoT protocol, requires server support."
+msgstr "启用 SUoT 协议，需要服务端支持。"
+
+msgid "Bloom Filter"
+msgstr "布隆过滤器"
+
 msgid "VLESS Encryption"
 msgstr "VLESS 加密"
 
@@ -57,6 +54,9 @@ msgstr "流控 (Flow)"
 
 msgid "Transport"
 msgstr "传输协议"
+
+msgid "TLS Host"
+msgstr "TLS 主机名"
 
 msgid "allowInsecure"
 msgstr "允许不安全连接"
@@ -67,14 +67,29 @@ msgstr "最大并发连接数"
 msgid "If true, allowss insecure connection at TLS client, e.g., TLS server uses unverifiable certificates."
 msgstr "是否允许不安全连接。当选择时，将不会检查远端主机所提供的 TLS 证书的有效性。"
 
-msgid "Protocol param(optional)"
+msgid "Protocol param (optional)"
 msgstr "传输协议参数（可选）"
 
 msgid "Obfs"
 msgstr "混淆插件"
 
-msgid "Obfs param(optional)"
+msgid "Obfs param (optional)"
 msgstr "混淆参数（可选）"
+
+msgid "Authentication type"
+msgstr "验证类型"
+
+msgid "Authentication payload"
+msgstr "验证载荷"
+
+msgid "QUIC connection receive window"
+msgstr "QUIC 连接接收窗口"
+
+msgid "QUIC stream receive window"
+msgstr "QUIC 流接收窗口"
+
+msgid "Disable Path MTU discovery"
+msgstr "禁用 MTU 探测"
 
 msgid "Enable Tunnel(DNS)"
 msgstr "启用隧道（DNS）转发"
@@ -90,6 +105,12 @@ msgstr "访问控制"
 
 msgid "LAN Access Control"
 msgstr "内网客户端分流代理控制"
+
+msgid "Allow listed only"
+msgstr "仅允许列表内"
+
+msgid "Allow all except listed"
+msgstr "仅允许列表外"
 
 msgid "LAN Host List"
 msgstr "内网主机列表"
@@ -292,9 +313,6 @@ msgstr "DNS解析方式"
 msgid "Use SSR DNS Tunnel"
 msgstr "使用SSR-DNS隧道"
 
-msgid "Use Pdnsd"
-msgstr "使用Pdnsd"
-
 msgid "DNS Anti-pollution"
 msgstr "DNS 防污染服务"
 
@@ -352,14 +370,11 @@ msgstr "访问国外域名DNS服务器"
 msgid "Custom DNS Server format as IP:PORT (default: 8.8.4.4:53)"
 msgstr "格式为 IP:PORT (默认: 8.8.4.4:53)"
 
-msgid "Use Pdnsd tcp query and cache"
-msgstr "使用PDNSD TCP查询并缓存"
+msgid "Use DNS2TCP query"
+msgstr "使用 DNS2TCP 查询"
 
 msgid "Use DNS2SOCKS query and cache"
 msgstr "使用 DNS2SOCKS 查询并缓存"
-
-msgid "Use DNS2TCP query"
-msgstr "使用 DNS2TCP 查询"
 
 msgid "Update time (every day)"
 msgstr "更新时间 (每天)"
@@ -574,6 +589,57 @@ msgstr "V2Ray/XRay 协议"
 msgid "Camouflage Type"
 msgstr "伪装类型"
 
+msgid "HTTP Host"
+msgstr "HTTP 主机名"
+
+msgid "HTTP Path"
+msgstr "HTTP 路径"
+
+msgid "WebSocket Host"
+msgstr "WebSocket 主机名"
+
+msgid "WebSocket Path"
+msgstr "WebSocket 路径"
+
+msgid "Max Early Data"
+msgstr "最大前置数据"
+
+msgid "Early Data Header Name"
+msgstr "前置数据标头"
+
+msgid "HTTP/2 Host"
+msgstr "HTTP/2 主机名"
+
+msgid "HTTP/2 Path"
+msgstr "HTTP/2 路径"
+
+msgid "gRPC Service Name"
+msgstr "gRPC 服务名称"
+
+msgid "gRPC Mode"
+msgstr "gRPC 模式"
+
+msgid "Initial Windows Size"
+msgstr "初始窗口大小"
+
+msgid "H2/gRPC Health Check"
+msgstr "H2/gRPC 健康检查"
+
+msgid "H2 Read Idle Timeout"
+msgstr "H2 读取空闲超时"
+
+msgid "gRPC Idle Timeout"
+msgstr "gPRC 空闲超时"
+
+msgid "Health Check Timeout"
+msgstr "健康检查超时"
+
+msgid "QUIC Security"
+msgstr "QUIC 加密方式"
+
+msgid "QUIC Key"
+msgstr "QUIC 密钥"
+
 msgid "VideoCall (SRTP)"
 msgstr "视频通话 (SRTP)"
 
@@ -585,9 +651,6 @@ msgstr "微信视频通话"
 
 msgid "DTLS 1.2"
 msgstr "DTLS 1.2 数据包"
-
-msgid "WireGuard"
-msgstr "WireGuard 数据包"
 
 msgid "MTU"
 msgstr "最大传输单元"
@@ -610,6 +673,21 @@ msgstr "写入缓冲区大小"
 msgid "Congestion"
 msgstr "拥塞控制"
 
+msgid "Local addresses"
+msgstr "本地地址"
+
+msgid "Private key"
+msgstr "私钥"
+
+msgid "Peer public key"
+msgstr "节点公钥"
+
+msgid "Pre-shared key"
+msgstr "预共享密钥"
+
+msgid "Packet Encoding"
+msgstr "数据包编码"
+
 msgid "Network interface to use"
 msgstr "使用的网络接口"
 
@@ -625,14 +703,17 @@ msgstr "重置完成"
 msgid "Reset Error"
 msgstr "重置错误"
 
-msgid "Reset pdnsd cache"
-msgstr "重置PDNSD缓存"
-
 msgid "Finger Print"
 msgstr "指纹伪造"
 
 msgid "Reapply"
 msgstr "重新应用"
+
+msgid "Apply"
+msgstr "应用"
+
+msgid "Default Packet Encoding"
+msgstr "默认数据包编码"
 
 msgid "Enable Netflix Mode"
 msgstr "启用 Netflix 分流模式"

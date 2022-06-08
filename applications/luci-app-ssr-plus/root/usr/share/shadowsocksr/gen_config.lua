@@ -1,11 +1,16 @@
+#!/usr/bin/lua
+
 local ucursor = require "luci.model.uci".cursor()
 local json = require "luci.jsonc"
+
 local server_section = arg[1]
 local proto = arg[2]
 local local_port = arg[3] or "0"
 local socks_port = arg[4] or "0"
+
 local server = ucursor:get_all("shadowsocksr", server_section)
 local outbound_settings = nil
+
 function vmess_vless()
 	outbound_settings = {
 		vnext = {
@@ -22,22 +27,31 @@ function vmess_vless()
 					}
 				}
 			}
-		}
+		},
+		packetEncoding = server.packet_encoding or nil
 	}
 end
 function trojan_shadowsocks()
 	outbound_settings = {
+		plugin = (server.v2ray_protocol == "shadowsocks") and server.plugin ~= "none" and server.plugin or nil,
+		pluginOpts = (server.v2ray_protocol == "shadowsocks") and server.plugin_opts or nil,
 		servers = {
 			{
 				address = server.server,
 				port = tonumber(server.server_port),
 				password = server.password,
-				method = (server.v2ray_protocol == "shadowsocks") and server.encrypt_method_v2ray_ss or nil,
-				flow = (server.v2ray_protocol == "trojan") and (server.xtls == '1') and (server.vless_flow and server.vless_flow or "xtls-rprx-splice") or nil,
-				ivCheck = (server.v2ray_protocol == "shadowsocks") and (server.ivCheck == '1') or nil
+				method = (server.v2ray_protocol == "shadowsocks") and server.encrypt_method_ss or nil,
+				uot = (server.v2ray_protocol == "shadowsocks") and (server.uot == '1') or nil,
+				ivCheck = (server.v2ray_protocol == "shadowsocks") and (server.ivCheck == '1') or nil,
+				flow = (server.v2ray_protocol == "trojan") and (server.xtls == '1') and (server.vless_flow and server.vless_flow or "xtls-rprx-splice") or nil
 			}
 		}
 	}
+
+	if (not outbound_settings.plugin) and (not server.transport or server.transport == "tcp") and (not server.xtls) then
+		server.v2ray_protocol = server.v2ray_protocol .. "_sing"
+		outbound_settings = outbound_settings.servers[1]
+	end
 end
 function socks_http()
 	outbound_settings = {
@@ -53,6 +67,17 @@ function socks_http()
 				} or nil
 			}
 		}
+	}
+end
+function wireguard()
+	outbound_settings = {
+		address = server.server,
+		port = tonumber(server.server_port),
+		localAddresses = server.local_addresses,
+		privateKey = server.private_key,
+		peerPublicKey = server.peer_pubkey,
+		preSharedKey = server.preshared_key or nil,
+		mtu = tonumber(server.mtu) or 1500
 	}
 end
 local outbound = {}
@@ -81,6 +106,9 @@ function outbound:handleIndex(index)
 		end,
 		http = function()
 			socks_http()
+		end,
+		wireguard = function()
+			wireguard()
 		end
 	}
 	if switch[index] then
@@ -154,11 +182,13 @@ local Xray = {
 			} or nil,
 			wsSettings = (server.transport == "ws") and (server.ws_path or server.ws_host or server.tls_host) and {
 				-- ws
-				path = server.ws_path,
 				headers = (server.ws_host or server.tls_host) and {
 					-- headers
 					Host = server.ws_host or server.tls_host
-				} or nil
+				} or nil,
+				path = server.ws_path,
+				maxEarlyData = tonumber(server.ws_ed) or nil,
+				earlyDataHeaderName = server.ws_ed_header or nil
 			} or nil,
 			httpSettings = (server.transport == "h2") and {
 				-- h2
@@ -176,7 +206,7 @@ local Xray = {
 			grpcSettings = (server.transport == "grpc") and {
 				-- grpc
 				serviceName = server.serviceName or "",
-				multiMode = (server.mux == "1") and true or false,
+				mode = (server.grpc_mode ~= "gun") and server.grpc_mode or nil,
 				idle_timeout = tonumber(server.idle_timeout) or nil,
 				health_check_timeout = tonumber(server.health_check_timeout) or nil,
 				permit_without_stream = (server.permit_without_stream == "1") and true or nil,
@@ -186,7 +216,8 @@ local Xray = {
 		mux = (server.mux == "1" and server.xtls ~= "1" and server.transport ~= "grpc") and {
 			-- mux
 			enabled = true,
-			concurrency = tonumber(server.concurrency)
+			concurrency = tonumber(server.concurrency),
+			packetEncoding = (server.v2ray_protocol == "vmess" or server.v2ray_protocol == "vless") and server.packet_encoding or nil
 		} or nil
 	} or nil
 }
@@ -242,6 +273,35 @@ local ss = {
 	fast_open = (server.fast_open == "1") and true or false,
 	reuse_port = true
 }
+local hysteria = {
+	server = server.server .. ":" .. server.server_port,
+	protocol = server.hysteria_protocol,
+	up_mbps = tonumber(server.uplink_capacity),
+	down_mbps = tonumber(server.downlink_capacity),
+	socks5 = (proto:find("tcp") and tonumber(socks_port) and tonumber(socks_port) ~= "0") and {
+		listen = "0.0.0.0:" .. tonumber(socks_port),
+		timeout = 300,
+		disable_udp = false
+	} or nil,
+	redirect_tcp = (proto:find("tcp") and local_port ~= "0") and {
+		listen = "0.0.0.0:" .. tonumber(local_port),
+		timeout = 300
+	} or nil,
+	tproxy_udp = (proto:find("udp") and local_port ~= "0") and {
+		listen = "0.0.0.0:" .. tonumber(local_port),
+		timeout = 60
+	} or nil,
+	obfs = server.seed,
+	auth = (server.auth_type == "1") and server.auth_payload or nil,
+	auth_str = (server.auth_type == "2") and server.auth_payload or nil,
+	alpn = server.quic_tls_alpn,
+	server_name = server.tls_host,
+	insecure = (server.insecure == "1") and true or false,
+	ca = (server.certificate) and server.certpath or nil,
+	recv_window_conn = server.recv_window_conn,
+	recv_window = server.recv_window,
+	disable_mtu_discovery = (server.disable_mtu_discovery == "1") and true or false
+}
 local config = {}
 function config:new(o)
 	o = o or {}
@@ -275,6 +335,9 @@ function config:handleIndex(index)
 		end,
 		naiveproxy = function()
 			print(json.stringify(naiveproxy, 1))
+		end,
+		hysteria = function()
+			print(json.stringify(hysteria, 1))
 		end
 	}
 	if switch[index] then

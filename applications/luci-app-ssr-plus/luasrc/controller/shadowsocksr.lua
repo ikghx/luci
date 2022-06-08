@@ -6,7 +6,7 @@ function index()
 	if not nixio.fs.access("/etc/config/shadowsocksr") then
 		call("act_reset")
 	end
-	entry({"admin", "vpn", "shadowsocksr"}, alias("admin", "vpn", "shadowsocksr", "client"), _("ShadowSocksR Plus+"), 10).acl_depends = { "luci-app-ssr-plus" }
+	entry({"admin", "vpn", "shadowsocksr"}, firstchild(), _("ShadowSocksR Plus+"), 10).acl_depends = { "luci-app-ssr-plus" }
 	entry({"admin", "vpn", "shadowsocksr", "client"}, cbi("shadowsocksr/client"), _("SSR Client"), 10).leaf = true
 	entry({"admin", "vpn", "shadowsocksr", "servers"}, arcombine(cbi("shadowsocksr/servers", {autoapply = true}), cbi("shadowsocksr/client-config")), _("Severs Nodes"), 20).leaf = true
 	entry({"admin", "vpn", "shadowsocksr", "control"}, cbi("shadowsocksr/control"), _("Access Control"), 30).leaf = true
@@ -23,7 +23,6 @@ function index()
 	entry({"admin", "vpn", "shadowsocksr", "reset"}, call("act_reset"))
 	entry({"admin", "vpn", "shadowsocksr", "restart"}, call("act_restart"))
 	entry({"admin", "vpn", "shadowsocksr", "delete"}, call("act_delete"))
-	entry({"admin", "vpn", "shadowsocksr", "cache"}, call("act_cache"))
 end
 
 function subscribe()
@@ -130,11 +129,4 @@ end
 function act_delete()
 	luci.sys.call("/etc/init.d/shadowsocksr restart &")
 	luci.http.redirect(luci.dispatcher.build_url("admin", "vpn", "shadowsocksr", "servers"))
-end
-
-function act_cache()
-	local e = {}
-	e.ret = luci.sys.call("pdnsd-ctl -c /var/etc/ssrplus/pdnsd empty-cache >/dev/null")
-	luci.http.prepare_content("application/json")
-	luci.http.write_json(e)
 end
