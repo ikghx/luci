@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for shadowsocks-libev
-LUCI_DEPENDS:=+luci-compat +shadowsocks-libev-ss-local +shadowsocks-libev-ss-redir \
+LUCI_DEPENDS:=+luci-base +shadowsocks-libev-ss-local +shadowsocks-libev-ss-redir \
 +shadowsocks-libev-ss-tunnel +shadowsocks-libev-ss-rules +shadowsocks-libev-ss-server \
 +iptables-mod-conntrack-extra +ip6tables-mod-nat
 
