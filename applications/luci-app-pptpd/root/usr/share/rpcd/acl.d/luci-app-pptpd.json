@@ -2,19 +2,13 @@
 	"luci-app-pptpd": {
 		"description": "Grant UCI access for luci-app-pptpd",
 		"read": {
-			"ubus": {
-				"*": [ "*" ]
-			},
-			"uci": [ "pptpd", "firewall" ]
+			"uci": [ "pptpd" ]
 		},
 		"write": {
-			"ubus": {
-				"*": [ "*" ]
-			},
 			"file": {
 				"/etc/firewall.user": [ "write" ]
 			},
-			"uci": [ "pptpd", "firewall" ]
+			"uci": [ "pptpd" ]
 		}
 	}
 }

@@ -5,80 +5,6 @@
 'require rpc';
 'require tools.widgets as widgets';
 
-//	[Widget, Option, Title, Description, {Param: 'Value'}],
-var startupConf = [
-	[form.Flag, 'disabled', _('Disabled xfrpc service')],
-	[form.ListValue, 'loglevel', _('Log level'), _('LogLevel specifies the minimum log level.'), {values: ['7', '6', '5',  '4', '3', '2', '1', '0']}],
-];
-
-var commonConf = [
-	[form.Value, 'server_addr', _('Server address'), _('ServerAddr specifies the address of the server to connect to.<br />By default, this value is "0.0.0.0".'), {datatype: 'host'}],
-	[form.Value, 'server_port', _('Server port'), _('ServerPort specifies the port to connect to the server on.<br />By default, this value is 7000.'), {datatype: 'port'}],
-	[form.Value, 'token', _('Token'), _('Token specifies the authorization token used to create keys to be sent to the server. The server must have a matching token for authorization to succeed.')],
-];
-
-var baseProxyConf = [
-	[form.ListValue, 'type', _('Proxy type'), _('ProxyType specifies the type of this proxy.<br />By default, this value is "tcp".'), {values: ['tcp', 'http', 'https']}],
-	[form.Value, 'local_ip', _('Local IP'), _('LocalIp specifies the IP address or host name to proxy to.'), {datatype: 'ipaddr'}],
-	[form.Value, 'local_port', _('Local port'), _('LocalPort specifies the port to proxy to.'), {datatype: 'port'}],
-];
-
-var bindInfoConf = [
-	[form.Value, 'remote_port', _('Remote port'), _('If remote_port is 0, frps will assign a random port for you.'), {datatype: 'port'}]
-];
-
-var domainConf = [
-	[form.Value, 'custom_domains', _('Custom domains')],
-];
-
-function setParams(o, params) {
-	if (!params) return;
-	for (var key in params) {
-		var val = params[key];
-		if (key === 'values') {
-			for (var j = 0; j < val.length; j++) {
-				var args = val[j];
-				if (!Array.isArray(args))
-					args = [args];
-				o.value.apply(o, args);
-			}
-		} else if (key === 'depends') {
-			if (!Array.isArray(val))
-				val = [val];
-			for (var j = 0; j < val.length; j++) {
-				var args = val[j];
-				if (!Array.isArray(args))
-					args = [args];
-				o.depends.apply(o, args);
-			}
-		} else {
-			o[key] = params[key];
-		}
-	}
-	if (params['datatype'] === 'bool') {
-		o.enabled = 'true';
-		o.disabled = 'false';
-	}
-}
-
-function defTabOpts(s, t, opts, params) {
-	for (var i = 0; i < opts.length; i++) {
-		var opt = opts[i];
-		var o = s.taboption(t, opt[0], opt[1], opt[2], opt[3]);
-		setParams(o, opt[4]);
-		setParams(o, params);
-	}
-}
-
-function defOpts(s, opts, params) {
-	for (var i = 0; i < opts.length; i++) {
-		var opt = opts[i];
-		var o = s.option(opt[0], opt[1], opt[2], opt[3]);
-		setParams(o, opt[4]);
-		setParams(o, params);
-	}
-}
-
 var callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
@@ -114,7 +40,7 @@ return view.extend({
 		var m, s, o;
 
 		m = new form.Map('xfrpc', _('xfrpc'));
-		m.description = _("xfrpc is a c language frp client for frps. It has more advantage in OpenWrt box than frpc.");
+		m.description = _("xfrpc is a c language frp client for frps.");
 
 		s = m.section(form.NamedSection, '_status');
 		s.anonymous = true;
@@ -140,18 +66,49 @@ return view.extend({
 		s.tab('common', _('Common Settings'));
 		s.tab('init', _('Startup Settings'));
 
-		defTabOpts(s, 'common', commonConf, {optional: true});
-		
-		o = s.taboption('init', form.SectionValue, 'init', form.TypedSection, 'xfrp', _('Startup Settings'));
+		o = s.taboption('common', form.Value, 'server_addr', _('Server address'), 
+			'%s <br /> %s'.format(_('Server address specifies the address of the server to connect to.'), 
+			_('By default, this value is "0.0.0.0".')));
+		o = s.taboption('common', form.Value, 'server_port', _('Server port'), 
+			'%s <br /> %s'.format(_('Server port specifies the port to connect to the server on.'),
+			_('By default, this value is 7000.')));
+		o = s.taboption('common', form.Value, 'token', _('Token'),
+			'%s <br /> %s'.format(_('Token specifies the authorization token used to create keys to be \
+			sent to the server. The server must have a matching token for authorization to succeed.')));
+
+		o = s.taboption('init', form.SectionValue, 'init', form.TypedSection, 
+			'xfrp', _('Startup Settings'));
 		s = o.subsection;
 		s.anonymous = true;
 		s.dynamic = true;
 
-		defOpts(s, startupConf);
-	
+		o = s.option(form.Flag, 'disabled', _('Disabled xfrpc service'));
+		o.optional = true;
+
+		o = s.option(form.ListValue, 'loglevel', _('Log level'), 
+			'%s <br /> %s'.format(_('LogLevel specifies the minimum log level.'),
+			_('By default, this value is "Info".')));
+		o.value(8, _('Debug'))
+		o.value(7, _('Info'))
+		o.value(6, _('Notice'))
+		o.value(5, _('Warning'))
+		o.value(4, _('Error'))
+		o.value(3, _('Critical'))
+		o.value(2, _('Alert'))
+		o.value(1, _('Emergency'))
+
 		s = m.section(form.GridSection, 'xfrpc', _('Proxy Settings'));
 		s.addremove = true;
 		s.filter = function(s) { return s !== 'common'; };
+		s.renderSectionAdd = function(extra_class) {
+			var el = form.GridSection.prototype.renderSectionAdd.apply(this, arguments),
+				nameEl = el.querySelector('.cbi-section-create-name');
+			ui.addValidator(nameEl, 'uciname', true, function(v) {
+				if (v === 'common') return _('Name can not be "common"');
+				return true;
+			}, 'blur', 'keyup');
+			return el;
+		}
 
 		s.tab('general', _('General Settings'));
 		s.tab('http', _('HTTP Settings'));
@@ -160,13 +117,35 @@ return view.extend({
 		s.option(form.Value, 'local_ip', _('Local IP'));
 		s.option(form.Value, 'local_port', _('Local port'));
 
-		defTabOpts(s, 'general', baseProxyConf, {modalonly: true});
+		o = s.taboption('general', form.ListValue, 'type', _('Proxy type'), 
+			'%s <br /> %s'.format(_('ProxyType specifies the type of this proxy.'),
+			_('By default, this value is "tcp".')));
+		o.value('tcp');
+		o.value('http');
+		o.value('https');
+		o.modalonly = true;
+
+		o = s.taboption('general', form.Value, 'local_ip', _('Local IP'),  
+			_('LocalIp specifies the IP address or host name to proxy to.'));
+		o.modalonly = true;
+			
+		o = s.taboption('general', form.Value, 'local_port', _('Local port'), 
+			_('LocalPort specifies the port to proxy to.'));
+		o.modalonly = true;
 
 		// TCP
-		defTabOpts(s, 'general', bindInfoConf, {optional: true, modalonly: true, depends: [{type: 'tcp'}]});
+		o = s.taboption('general', form.Value, 'remote_port', _('Remote port'), 
+			_('If remote_port is 0, frps will assign a random port for you'));
+		o.depends.apply(o, [{type: 'tcp'}]);
+		o.optional = true;
+		o.modalonly = true;
 
 		// HTTP and HTTPS
-		defTabOpts(s, 'http', domainConf, {optional: true, modalonly: true, depends: [{type: 'http'}, {type: 'https'}]});
+		o = s.taboption('http', form.Value, 'custom_domains', _('Custom domains'));
+		o.depends.apply(o, [{type: 'http'}]);
+		o.depends.apply(o, [{type: 'https'}]);
+		o.optional = true;
+		o.modalonly = true;
 
 		return m.render();
 	}
