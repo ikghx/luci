@@ -179,7 +179,7 @@ end
 
 -- hostname --------------------------------------------------------------------
 local hn	= ns:taboption("doc", Value, "hostname")
-hn.title	= string.format(HELP, "HOSTNAME", "Hostname" )
+hn.title	= string.format(HELP, "HOSTNAME", translate("Hostname"))
 hn.description	= translate("The hostname shown on the CGI pages.")
 hn.placeholder	= SYS.hostname()
 hn.optional	= true
@@ -190,7 +190,7 @@ end
 
 -- user-manual -----------------------------------------------------------------
 local um	= ns:taboption("doc", Value, "user_manual")
-um.title	= string.format(HELP, "USER-MANUAL", "User Manual" )
+um.title	= string.format(HELP, "USER-MANUAL", translate("User Manual"))
 um.description	= translate("Location of the Privoxy User Manual.")
 um.placeholder	= "http://www.privoxy.org/user-manual/"
 um.optional	= true
@@ -202,7 +202,7 @@ end
 -- admin-address ---------------------------------------------------------------
 local aa	= ns:taboption("doc", Value, "admin_address")
 aa.title_base	= "Admin Email"
-aa.title	= string.format(HELP, "ADMIN-ADDRESS", aa.title_base )
+aa.title	= string.format(HELP, "ADMIN-ADDRESS", translate(aa.title_base))
 aa.description	= translate("An email address to reach the Privoxy administrator.")
 aa.placeholder	= "privoxy.admin@example.com"
 aa.optional	= true
@@ -222,7 +222,7 @@ end
 
 -- proxy-info-url --------------------------------------------------------------
 local piu	= ns:taboption("doc", Value, "proxy_info_url")
-piu.title	= string.format(HELP, "PROXY-INFO-URL", "Proxy Info URL" )
+piu.title	= string.format(HELP, "PROXY-INFO-URL", translate("Proxy Info URL"))
 piu.description	= translate("A URL to documentation about the local Privoxy setup, configuration or policies.")
 piu.optional	= true
 piu.rmempty	= true
@@ -232,7 +232,7 @@ end
 
 -- trust-info-url --------------------------------------------------------------
 local tiu	= ns:taboption("doc", Value, "trust_info_url")
-tiu.title	= string.format(HELP, "TRUST-INFO-URL", "Trust Info URLs" )
+tiu.title	= string.format(HELP, "TRUST-INFO-URL", translate("Trust Info URLs"))
 tiu.description	= translate("A URL to be displayed in the error page that users will see if access to an untrusted page is denied.")
 		.. [[<br /><strong>]]
 		.. translate("The value of this option only matters if the experimental trust mechanism has been activated.")
@@ -248,7 +248,7 @@ end
 -- logdir ----------------------------------------------------------------------
 local ld	= ns:taboption("filter", Value, "logdir")
 ld.title_base	= "Log Directory"
-ld.title	= string.format(HELP, "LOGDIR", ld.title_base )
+ld.title	= string.format(HELP, "LOGDIR", translate(ld.title_base))
 ld.description	= translate("The directory where all logging takes place (i.e. where the logfile is located).")
 		.. [[<br />]]
 		.. translate("No trailing '/', please.")
@@ -270,7 +270,7 @@ end
 -- logfile ---------------------------------------------------------------------
 local lf	= ns:taboption("filter", Value, "logfile")
 lf.title_base	= "Log File"
-lf.title	= string.format(HELP, "LOGFILE", lf.title_base )
+lf.title	= string.format(HELP, "LOGFILE", translate(lf.title_base))
 lf.description	= translate("The log file to use. File name, relative to log directory.")
 lf.default	= "privoxy.log"
 lf.rmempty	= false
@@ -285,7 +285,7 @@ end
 -- confdir ---------------------------------------------------------------------
 local cd	= ns:taboption("filter", Value, "confdir")
 cd.title_base	= "Configuration Directory"
-cd.title	= string.format(HELP, "CONFDIR", cd.title_base )
+cd.title	= string.format(HELP, "CONFDIR", translate(cd.title_base))
 cd.description	= translate("The directory where the other configuration files are located.")
 		.. [[<br />]]
 		.. translate("No trailing '/', please.")
@@ -304,7 +304,7 @@ end
 -- templdir --------------------------------------------------------------------
 local tld	= ns:taboption("filter", Value, "templdir")
 tld.title_base	= "Template Directory"
-tld.title	= string.format(HELP, "TEMPLDIR", tld.title_base )
+tld.title	= string.format(HELP, "TEMPLDIR", translate(tld.title_base))
 tld.description	= translate("An alternative directory where the templates are loaded from.")
 		.. [[<br />]]
 		.. translate("No trailing '/', please.")
@@ -321,7 +321,7 @@ end
 -- temporary-directory ---------------------------------------------------------
 local td	= ns:taboption("filter", Value, "temporary_directory")
 td.title_base	= "Temporary Directory"
-td.title	= string.format(HELP, "TEMPORARY-DIRECTORY", td.title_base )
+td.title	= string.format(HELP, "TEMPORARY-DIRECTORY", translate(td.title_base))
 td.description	= translate("A directory where Privoxy can create temporary files.")
 		.. [[<br /><strong>]]
 		.. translate("Only when using 'external filters', Privoxy has to create temporary files.")
@@ -331,7 +331,7 @@ td.rmempty	= true
 -- actionsfile -----------------------------------------------------------------
 local af	= ns:taboption("filter", DynamicList, "actionsfile")
 af.title_base	= "Action Files"
-af.title	= string.format(HELP, "ACTIONSFILE", af.title_base)
+af.title	= string.format(HELP, "ACTIONSFILE", translate(af.title_base))
 af.description	= translate("The actions file(s) to use. Multiple actionsfile lines are permitted, and are in fact recommended!")
 		.. [[<br /><strong>match-all.action := </strong>]]
 		.. translate("Actions that are applied to all sites and maybe overruled later on.")
@@ -373,7 +373,7 @@ end
 -- filterfile ------------------------------------------------------------------
 local ff	= ns:taboption("filter", DynamicList, "filterfile")
 ff.title_base	= "Filter files"
-ff.title	= string.format(HELP, "FILTERFILE", ff.title_base )
+ff.title	= string.format(HELP, "FILTERFILE", translate(ff.title_base))
 ff.description	= translate("The filter files contain content modification rules that use regular expressions.")
 ff.rmempty	= false
 function ff.validate(self, value)
@@ -409,7 +409,7 @@ end
 -- trustfile -------------------------------------------------------------------
 local tf	= ns:taboption("filter", Value, "trustfile")
 tf.title_base	= "Trust file"
-tf.title	= string.format(HELP, "TRUSTFILE", tf.title_base )
+tf.title	= string.format(HELP, "TRUSTFILE", translate(tf.title_base))
 tf.description	= translate("The trust mechanism is an experimental feature for building white-lists "
 		.."and should be used with care.")
 		.. [[<br /><strong>]]
@@ -449,7 +449,7 @@ end
 -- listen-address --------------------------------------------------------------
 local la	= ns:taboption("access", DynamicList, "listen_address")
 la.title_base	= "Listen addresses"
-la.title	= string.format(HELP, "LISTEN-ADDRESS", la.title_base )
+la.title	= string.format(HELP, "LISTEN-ADDRESS", translate(la.title_base))
 la.description	= translate("The address and TCP port on which Privoxy will listen for client requests.")
 		.. [[<br />]]
 		.. translate("Syntax: ")
@@ -512,7 +512,7 @@ end
 
 -- permit-access ---------------------------------------------------------------
 local pa	= ns:taboption("access", DynamicList, "permit_access")
-pa.title	= string.format(HELP, "ACLS", "Permit access" )
+pa.title	= string.format(HELP, "ACLS", translate("Permit access"))
 pa.description	= translate("Who can access what.")
 		.. [[<br /><strong>]]
 		.. translate("Please read Privoxy manual for details!")
@@ -521,7 +521,7 @@ pa.rmempty	= true
 
 -- deny-access -----------------------------------------------------------------
 local da	= ns:taboption("access", DynamicList, "deny_access")
-da.title	= string.format(HELP, "ACLS", "Deny Access" )
+da.title	= string.format(HELP, "ACLS", translate("Deny Access"))
 da.description	= translate("Who can access what.")
 		.. [[<br /><strong>]]
 		.. translate("Please read Privoxy manual for details!")
@@ -531,7 +531,7 @@ da.rmempty	= true
 -- buffer-limit ----------------------------------------------------------------
 local bl	= ns:taboption("access", Value, "buffer_limit")
 bl.title_base	= "Buffer Limit"
-bl.title	= string.format(HELP, "BUFFER-LIMIT", bl.title_base )
+bl.title	= string.format(HELP, "BUFFER-LIMIT", translate(bl.title_base))
 bl.description	= translate("Maximum size (in KB) of the buffer for content filtering.")
 		.. [[<br />]]
 		.. translate("Value range 1 to 4096, no entry defaults to 4096")
@@ -551,7 +551,7 @@ end
 
 -- toggle ----------------------------------------------------------------------
 local tgl	= ns:taboption("access", Flag, "toggle")
-tgl.title	= string.format(HELP, "TOGGLE", "Toggle Status" )
+tgl.title	= string.format(HELP, "TOGGLE", translate("Toggle Status"))
 tgl.description	= translate("Enable/Disable filtering when Privoxy starts.")
 		.. [[<br />]]
 		.. translate("Disabled == Transparent Proxy Mode")
@@ -561,14 +561,14 @@ tgl.rmempty	= false
 
 -- enable-remote-toggle --------------------------------------------------------
 local ert	= ns:taboption("access", Flag, "enable_remote_toggle")
-ert.title	= string.format(HELP, "ENABLE-REMOTE-TOGGLE", "Enable remote toggle" )
+ert.title	= string.format(HELP, "ENABLE-REMOTE-TOGGLE", translate("Enable remote toggle"))
 ert.description	= translate("Whether or not the web-based toggle feature may be used.")
 ert.orientation	= "horizontal"
 ert.rmempty	= true
 
 -- enable-remote-http-toggle ---------------------------------------------------
 local eht	= ns:taboption("access", Flag, "enable_remote_http_toggle")
-eht.title	= string.format(HELP, "ENABLE-REMOTE-HTTP-TOGGLE", "Enable remote toggle via HTTP" )
+eht.title	= string.format(HELP, "ENABLE-REMOTE-HTTP-TOGGLE", translate("Enable remote toggle via HTTP"))
 eht.description	= translate("Whether or not Privoxy recognizes special HTTP headers to change toggle state.")
 		.. [[<br /><strong>]]
 		.. translate("This option will be removed in future releases as it has been obsoleted by the more general header taggers.")
@@ -578,14 +578,14 @@ eht.rmempty	= true
 
 -- enable-edit-actions ---------------------------------------------------------
 local eea	= ns:taboption("access", Flag, "enable_edit_actions")
-eea.title	= string.format(HELP, "ENABLE-EDIT-ACTIONS", "Enable action file editor" )
+eea.title	= string.format(HELP, "ENABLE-EDIT-ACTIONS", translate("Enable action file editor"))
 eea.description	= translate("Whether or not the web-based actions file editor may be used.")
 eea.orientation	= "horizontal"
 eea.rmempty	= true
 
 -- enforce-blocks --------------------------------------------------------------
 local eb	= ns:taboption("access", Flag, "enforce_blocks")
-eb.title	= string.format(HELP, "ENFORCE-BLOCKS", "Enforce page blocking" )
+eb.title	= string.format(HELP, "ENFORCE-BLOCKS", translate("Enforce page blocking"))
 eb.description	= translate("If enabled, Privoxy hides the 'go there anyway' link. "
 		.. "The user obviously should not be able to bypass any blocks.")
 eb.orientation	= "horizontal"
@@ -606,7 +606,7 @@ paf.rmempty	= true
 
 -- forward ---------------------------------------------------------------------
 local fwd	= ns:taboption("forward", DynamicList, "forward")
-fwd.title	= string.format(HELP, "FORWARD", "Forward HTTP" )
+fwd.title	= string.format(HELP, "FORWARD", translate("Forward HTTP"))
 fwd.description	= translate("To which parent HTTP proxy specific requests should be routed.")
 		.. [[<br />]]
 		.. translate("Syntax: target_pattern http_parent[:port]")
@@ -614,7 +614,7 @@ fwd.rmempty	= true
 
 -- forward-socks4 --------------------------------------------------------------
 local fs4	= ns:taboption("forward", DynamicList, "forward_socks4")
-fs4.title	= string.format(HELP, "SOCKS", "Forward SOCKS 4" )
+fs4.title	= string.format(HELP, "SOCKS", translate("Forward SOCKS 4"))
 fs4.description	= translate("Through which SOCKS proxy (and optionally to which parent HTTP proxy) specific requests should be routed.")
 		.. [[<br />]]
 		.. translate("Syntax: target_pattern socks_proxy[:port] http_parent[:port]")
@@ -622,19 +622,19 @@ fs4.rmempty	= true
 
 -- forward-socks4a -------------------------------------------------------------
 local f4a	= ns:taboption("forward", DynamicList, "forward_socks4a")
-f4a.title	= string.format(HELP, "SOCKS", "Forward SOCKS 4A" )
+f4a.title	= string.format(HELP, "SOCKS", translate("Forward SOCKS 4A"))
 f4a.description = fs4.description
 f4a.rmempty	= true
 
 -- forward-socks5 --------------------------------------------------------------
 local fs5	= ns:taboption("forward", DynamicList, "forward_socks5")
-fs5.title	= string.format(HELP, "SOCKS", "Forward SOCKS 5" )
+fs5.title	= string.format(HELP, "SOCKS", translate("Forward SOCKS 5"))
 fs5.description = fs4.description
 fs5.rmempty	= true
 
 -- forward-socks5t -------------------------------------------------------------
 local f5t	= ns:taboption("forward", DynamicList, "forward_socks5t")
-f5t.title	= string.format(HELP, "SOCKS", "Forward SOCKS 5t" )
+f5t.title	= string.format(HELP, "SOCKS", translate("Forward SOCKS 5t"))
 f5t.description = fs4.description
 f5t.rmempty	= true
 
@@ -642,21 +642,21 @@ f5t.rmempty	= true
 
 -- accept-intercepted-requests -------------------------------------------------
 local air	= ns:taboption("misc", Flag, "accept_intercepted_requests")
-air.title	= string.format(HELP, "ACCEPT-INTERCEPTED-REQUESTS", "Accept intercepted requests" )
+air.title	= string.format(HELP, "ACCEPT-INTERCEPTED-REQUESTS", translate("Accept intercepted requests"))
 air.description	= translate("Whether intercepted requests should be treated as valid.")
 air.orientation	= "horizontal"
 air.rmempty	= true
 
 -- allow-cgi-request-crunching -------------------------------------------------
 local crc	= ns:taboption("misc", Flag, "allow_cgi_request_crunching")
-crc.title	= string.format(HELP, "ALLOW-CGI-REQUEST-CRUNCHING", "Allow CGI request crunching" )
+crc.title	= string.format(HELP, "ALLOW-CGI-REQUEST-CRUNCHING", translate("Allow CGI request crunching"))
 crc.description	= translate("Whether requests to Privoxy's CGI pages can be blocked or redirected.")
 crc.orientation	= "horizontal"
 crc.rmempty	= true
 
 -- split-large-forms -----------------------------------------------------------
 local slf	= ns:taboption("misc", Flag, "split_large_forms")
-slf.title	= string.format(HELP, "SPLIT-LARGE-FORMS", "Split large forms" )
+slf.title	= string.format(HELP, "SPLIT-LARGE-FORMS", translate("Split large forms"))
 slf.description	= translate("Whether the CGI interface should stay compatible with broken HTTP clients.")
 slf.orientation	= "horizontal"
 slf.rmempty	= true
@@ -664,7 +664,7 @@ slf.rmempty	= true
 -- keep-alive-timeout ----------------------------------------------------------
 local kat	= ns:taboption("misc", Value, "keep_alive_timeout")
 kat.title_base	= "Keep-alive timeout"
-kat.title	= string.format(HELP, "KEEP-ALIVE-TIMEOUT", kat.title_base)
+kat.title	= string.format(HELP, "KEEP-ALIVE-TIMEOUT", translate(kat.title_base))
 kat.description	= translate("Number of seconds after which an open connection will no longer be reused.")
 kat.rmempty	= true
 function kat.validate(self, value)
@@ -679,7 +679,7 @@ end
 
 -- tolerate-pipelining ---------------------------------------------------------
 local tp	= ns:taboption("misc", Flag, "tolerate_pipelining")
-tp.title	= string.format(HELP, "TOLERATE-PIPELINING", "Tolerate pipelining" )
+tp.title	= string.format(HELP, "TOLERATE-PIPELINING", translate("Tolerate pipelining"))
 tp.description	= translate("Whether or not pipelined requests should be served.")
 tp.orientation	= "horizontal"
 tp.rmempty	= true
@@ -687,7 +687,7 @@ tp.rmempty	= true
 -- default-server-timeout ------------------------------------------------------
 local dst	= ns:taboption("misc", Value, "default_server_timeout")
 dst.title_base	= "Default server timeout"
-dst.title	= string.format(HELP, "DEFAULT-SERVER-TIMEOUT", dst.title_base)
+dst.title	= string.format(HELP, "DEFAULT-SERVER-TIMEOUT", translate(dst.title_base))
 dst.description	= translate("Assumed server-side keep-alive timeout (in seconds) if not specified by the server.")
 dst.rmempty	= true
 function dst.validate(self, value)
@@ -702,7 +702,7 @@ end
 
 -- connection-sharing ----------------------------------------------------------
 local cs	= ns:taboption("misc", Flag, "connection_sharing")
-cs.title	= string.format(HELP, "CONNECTION-SHARING", "Connection sharing" )
+cs.title	= string.format(HELP, "CONNECTION-SHARING", translate("Connection sharing"))
 cs.description	= translate("Whether or not outgoing connections that have been kept alive should be shared between different incoming connections.")
 cs.orientation	= "horizontal"
 cs.rmempty	= true
@@ -710,7 +710,7 @@ cs.rmempty	= true
 -- socket-timeout --------------------------------------------------------------
 local st	= ns:taboption("misc", Value, "socket_timeout")
 st.title_base	= "Socket timeout"
-st.title	= string.format(HELP, "SOCKET-TIMEOUT", st.title_base )
+st.title	= string.format(HELP, "SOCKET-TIMEOUT", translate(st.title_base))
 st.description	= translate("Number of seconds after which a socket times out if no data is received.")
 st.default	= 300
 st.rmempty	= true
@@ -729,7 +729,7 @@ end
 -- max-client-connections ------------------------------------------------------
 local mcc	= ns:taboption("misc", Value, "max_client_connections")
 mcc.title_base	= "Max. client connections"
-mcc.title	= string.format(HELP, "MAX-CLIENT-CONNECTIONS", mcc.title_base )
+mcc.title	= string.format(HELP, "MAX-CLIENT-CONNECTIONS", translate(mcc.title_base))
 mcc.description	= translate("Maximum number of client connections that will be served.")
 mcc.default	= 128
 mcc.rmempty	= true
@@ -747,14 +747,14 @@ end
 
 -- handle-as-empty-doc-returns-ok ----------------------------------------------
 local her	= ns:taboption("misc", Flag, "handle_as_empty_doc_returns_ok")
-her.title	= string.format(HELP, "HANDLE-AS-EMPTY-DOC-RETURNS-OK", "Handle as empty doc returns ok" )
+her.title	= string.format(HELP, "HANDLE-AS-EMPTY-DOC-RETURNS-OK", translate("Handle as empty doc returns ok"))
 her.description	= translate("The status code Privoxy returns for pages blocked with +handle-as-empty-document.")
 her.orientation	= "horizontal"
 her.rmempty	= true
 
 -- enable-compression ----------------------------------------------------------
 local ec	= ns:taboption("misc", Flag, "enable_compression")
-ec.title	= string.format(HELP, "ENABLE-COMPRESSION", "Enable compression" )
+ec.title	= string.format(HELP, "ENABLE-COMPRESSION", translate("Enable compression"))
 ec.description	= translate("Whether or not buffered content is compressed before delivery.")
 ec.orientation	= "horizontal"
 ec.rmempty	= true
@@ -762,7 +762,7 @@ ec.rmempty	= true
 -- compression-level -----------------------------------------------------------
 local cl	= ns:taboption("misc", Value, "compression_level")
 cl.title_base	= "Compression level"
-cl.title	= string.format(HELP, "COMPRESSION-LEVEL", cl.title_base )
+cl.title	= string.format(HELP, "COMPRESSION-LEVEL", translate(cl.title_base))
 cl.description	= translate("The compression level that is passed to the zlib library when compressing buffered content.")
 cl.default	= 1
 cl.rmempty	= true
@@ -780,7 +780,7 @@ end
 
 -- client-header-order ---------------------------------------------------------
 local cho	= ns:taboption("misc", Value, "client_header_order")
-cho.title	= string.format(HELP, "CLIENT-HEADER-ORDER", "Client header order" )
+cho.title	= string.format(HELP, "CLIENT-HEADER-ORDER", translate("Client header order"))
 cho.description	= translate("The order in which client headers are sorted before forwarding them.")
 		.. [[<br />]]
 		.. translate("Syntax: Client header names delimited by spaces.")
@@ -790,7 +790,7 @@ cho.rmempty	= true
 
 -- single-threaded -------------------------------------------------------------
 local st	= ns:taboption("debug", Flag, "single_threaded")
-st.title	= string.format(HELP, "SINGLE-THREADED", "Single Threaded" )
+st.title	= string.format(HELP, "SINGLE-THREADED", translate("Single Threaded"))
 st.description	= translate("Whether to run only one server thread.")
 		.. [[<br /><strong>]]
 		.. translate("This option is only there for debugging purposes. It will drastically reduce performance.")

@@ -40,7 +40,7 @@ return view.extend({
 		o.value('0.0.0.0');
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'port', _('Port'));
+		o = s.option(form.Value, 'port', _('Listen Port'));
 		o.datatype = 'port';
 		o.rmempty = false;
 

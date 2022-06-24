@@ -152,15 +152,6 @@ return view.extend({
 		s = m.section(form.GridSection, 'xfrpc', _('Proxy Settings'));
 		s.addremove = true;
 		s.filter = function(s) { return s !== 'common'; };
-		s.renderSectionAdd = function(extra_class) {
-			var el = form.GridSection.prototype.renderSectionAdd.apply(this, arguments),
-				nameEl = el.querySelector('.cbi-section-create-name');
-			ui.addValidator(nameEl, 'uciname', true, function(v) {
-				if (v === 'common') return _('Name can not be "common"');
-				return true;
-			}, 'blur', 'keyup');
-			return el;
-		}
 
 		s.tab('general', _('General Settings'));
 		s.tab('http', _('HTTP Settings'));

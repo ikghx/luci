@@ -8,13 +8,13 @@ m = Map("tinyproxy", translate("Tinyproxy"),
 s = m:section(TypedSection, "tinyproxy", translate("Server Settings"))
 s.anonymous = true
 
-s:tab("general", translate("General settings"))
+s:tab("general", translate("General Settings"))
 s:tab("privacy", translate("Privacy settings"))
 s:tab("filter", translate("Filtering and ACLs"))
 s:tab("limits", translate("Server limits"))
 
 
-o = s:taboption("general", Flag, "enabled", translate("Enable Tinyproxy server"))
+o = s:taboption("general", Flag, "enabled", translate("Enable"))
 o.rmempty = false
 
 function o.write(self, section, value)

@@ -34,6 +34,9 @@ return view.extend({
 		s.anonymous = true;
 		s.addremove = false;
 
+		o = s.option(form.Flag, 'enabled', _('Enabled'));
+		o.rmempty = false;
+
 		o = s.option(form.Flag, 'nosyslog', _('Disable system log'));
 		o.rmempty = false;
 
@@ -76,7 +79,7 @@ return view.extend({
 		o = s.option(form.Flag, 'xspf', _('Use XSPF files'));
 		o.rmempty = false;
 
-		o = s.option(form.Flag, 'noacl', _('Disable access control checks'));
+		o = s.option(form.Flag, 'noacl', _('Disable access control checks'), _('Login without password'));
 		o.rmempty = false;
 
 		return m.render();

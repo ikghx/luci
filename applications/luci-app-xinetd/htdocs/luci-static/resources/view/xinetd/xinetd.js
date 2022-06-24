@@ -195,7 +195,7 @@ return view.extend({
 
 		o = s.taboption('access', form.Value, 'instances', _('Number of instances'), _('Number of simultaneously running servers for this service. Argument is any number or the keyword \'UNLIMITED\''));
 		o.datatype = 'or("UNLIMITED", uinteger)';
-		o.value('UNLIMITED', 'UNLIMITED');
+		o.value('UNLIMITED', _('UNLIMITED'));
 		o.modalonly = true;
 
 		o = s.taboption('access', form.Value, 'cps', _('Connection limit'), _('Takes two arguments: [Number of connections per second] [Number of seconds to reenable service]'));

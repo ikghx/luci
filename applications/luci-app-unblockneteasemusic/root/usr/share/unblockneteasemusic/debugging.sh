@@ -28,7 +28,6 @@ echo -e "luci-app-unblockneteasmusic info:"
 opkg info "luci-app-unblockneteasemusic"
 ls -lh "/etc/config/unblockneteasemusic" "/etc/init.d/unblockneteasemusic" "/usr/share/unblockneteasemusic"
 cat "/etc/config/unblockneteasemusic" | sed -e "s,joox_cookie .*,joox_cookie 'set',g" \
-	-e "s,migu_cookie .*,migu_cookie 'set',g" \
 	-e "s,qq_cookie .*,qq_cookie 'set',g" \
 	-e "s,youtube_key .*,youtube_key 'set',g" \
 	-e "s,proxy_server_ip .*,proxy_server_ip 'set',g"
@@ -59,18 +58,38 @@ echo -e "\n"
 echo -e "Running info:"
 procd_running_status="$(/etc/init.d/unblockneteasemusic status)"
 echo -e "PROCD running status: $procd_running_status"
-[ "$procd_running_status" = "running" ] && { ps | grep "unblockneteasemusic" | grep "app\.js" || echo -e "Thread is not found."; }
+[ "$procd_running_status" = "running" ] && { busybox ps -w | grep "unblockneteasemusic" | grep "app\.js" || echo -e "Thread is not found."; }
 echo -e "\n"
 
 [ "$procd_running_status" != "running" ] || {
 	echo -e "Firewall info:"
-	iptables -t "nat" -L "netease_cloud_music" 2>"/dev/null" || echo -e 'Chain "netease_cloud_music" not found.'
-	echo -e ""
-	ipset list "neteasemusic" 2>"/dev/null" || echo -e 'Table "neteasemusic" not found.'
-	echo -e ""
-	ipset list "acl_neteasemusic_http" 2>"/dev/null" || echo -e 'Table "acl_neteasemusic_http" not found.'
-	echo -e ""
-	ipset list "acl_neteasemusic_https" 2>"/dev/null" || echo -e 'Table "acl_neteasemusic_https" not found.'
+	if [ -e "$(command -v fw4)" ]; then
+		[ -e "/etc/nftables.d/90-unblockneteasemusic-rules.nft" ] || echo -e 'netease_cloud_music nft rule file not found.'
+		echo -e ""
+		nft list set inet fw4 "acl_neteasemusic_http" 2>&1
+		echo -e ""
+		nft list set inet fw4 "acl_neteasemusic_https" 2>&1
+		echo -e ""
+		nft list set inet fw4 "local_addr" 2>&1
+		echo -e ""
+		nft list set inet fw4 "neteasemusic" 2>&1
+		echo -e ""
+		nft list chain inet fw4 "input_wan" | grep "unblockneteasemusic-http-" 2>"/dev/null" || echo -e 'Http Port pub access rule not found.'
+		echo -e ""
+		nft list chain inet fw4 "input_wan" | grep "unblockneteasemusic-https-" 2>"/dev/null" || echo -e 'Https Port pub access rule not found.'
+		echo -e ""
+		nft list chain inet fw4 "netease_cloud_music" 2>&1
+		echo -e ""
+		nft list chain inet fw4 "netease_cloud_music_redir" 2>&1
+	else
+		iptables -t "nat" -L "netease_cloud_music" 2>"/dev/null" || echo -e 'Chain "netease_cloud_music" not found.'
+		echo -e ""
+		ipset list "neteasemusic" 2>"/dev/null" || echo -e 'Table "neteasemusic" not found.'
+		echo -e ""
+		ipset list "acl_neteasemusic_http" 2>"/dev/null" || echo -e 'Table "acl_neteasemusic_http" not found.'
+		echo -e ""
+		ipset list "acl_neteasemusic_https" 2>"/dev/null" || echo -e 'Table "acl_neteasemusic_https" not found.'
+	fi
 	echo -e ""
 	cat "/tmp/dnsmasq.d/dnsmasq-unblockneteasemusic.conf"
 	echo -e "\n"

@@ -31,10 +31,18 @@ return view.extend({
 
 		m = new form.Map('gerbera', _('Gerbera') + status, _('Gerbera is a UPnP media server which allows you to stream your digital media through your home network and consume it on a variety of UPnP compatible devices.'));
 
-		s = m.section(form.TypedSection, 'base');
+		s = m.section(form.TypedSection, 'gerbera');
 		s.anonymous = true;
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'ipaddr', _('Listen address'));
+		o.placeholder = '192.168.9.1';
+		o.rmempty = false;
+
+		o = s.option(form.Value, 'port', _('Listen Port'));
+		o.datatype = 'port';
 		o.rmempty = false;
 
 		o = s.option(form.Flag, 'debug', _('Debug'));
