@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for arptables
-LUCI_DEPENDS:=+arptables
+LUCI_DEPENDS:=+arptables-legacy
 LUCI_PKGARCH:=all
 PKG_LICENSE:=GPLv2
 
