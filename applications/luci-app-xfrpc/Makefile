@@ -2,7 +2,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Support for xfrpc -- c language frpc
+LUCI_TITLE:=LuCI Support for xfrpc
 LUCI_DEPENDS:=+xfrpc
 
 PKG_LICENSE:=Apache-2.0

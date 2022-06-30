@@ -69,9 +69,13 @@ return view.extend({
 		o = s.taboption('common', form.Value, 'server_addr', _('Server address'), 
 			'%s <br /> %s'.format(_('Server address specifies the address of the server to connect to.'), 
 			_('By default, this value is "0.0.0.0".')));
+		o.datatype = 'host';
+
 		o = s.taboption('common', form.Value, 'server_port', _('Server port'), 
 			'%s <br /> %s'.format(_('Server port specifies the port to connect to the server on.'),
 			_('By default, this value is 7000.')));
+		o.datatype = 'port';
+
 		o = s.taboption('common', form.Value, 'token', _('Token'),
 			'%s <br /> %s'.format(_('Token specifies the authorization token used to create keys to be \
 			sent to the server. The server must have a matching token for authorization to succeed.')));
@@ -83,6 +87,7 @@ return view.extend({
 		s.dynamic = true;
 
 		o = s.option(form.Flag, 'disabled', _('Disabled xfrpc service'));
+		o.datatype = 'bool';
 		o.optional = true;
 
 		o = s.option(form.ListValue, 'loglevel', _('Log level'), 
@@ -128,10 +133,12 @@ return view.extend({
 		o = s.taboption('general', form.Value, 'local_ip', _('Local IP'),  
 			_('LocalIp specifies the IP address or host name to proxy to.'));
 		o.modalonly = true;
-			
+		o.datatype = 'ip4addr';
+
 		o = s.taboption('general', form.Value, 'local_port', _('Local port'), 
 			_('LocalPort specifies the port to proxy to.'));
 		o.modalonly = true;
+		o.datatype = 'port';
 
 		// TCP
 		o = s.taboption('general', form.Value, 'remote_port', _('Remote port'), 
@@ -139,6 +146,7 @@ return view.extend({
 		o.depends.apply(o, [{type: 'tcp'}]);
 		o.optional = true;
 		o.modalonly = true;
+		o.datatype = 'port';
 
 		// HTTP and HTTPS
 		o = s.taboption('http', form.Value, 'custom_domains', _('Custom domains'));
