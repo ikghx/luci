@@ -65,6 +65,7 @@ function index()
 	entry({"admin", "vpn", "openclash", "settings"},cbi("openclash/settings"),_("Global Settings"), 30).leaf = true
 	entry({"admin", "vpn", "openclash", "servers"},cbi("openclash/servers"),_("Servers and Groups"), 40).leaf = true
 	entry({"admin", "vpn", "openclash", "other-rules-edit"},cbi("openclash/other-rules-edit"), nil).leaf = true
+	entry({"admin", "vpn", "openclash", "custom-dns-edit"},cbi("openclash/custom-dns-edit"), nil).leaf = true
 	entry({"admin", "vpn", "openclash", "other-file-edit"},cbi("openclash/other-file-edit"), nil).leaf = true
 	entry({"admin", "vpn", "openclash", "rule-providers-settings"},cbi("openclash/rule-providers-settings"),_("Rule Providers and Groups"), 50).leaf = true
 	entry({"admin", "vpn", "openclash", "game-rules-manage"},form("openclash/game-rules-manage"), nil).leaf = true
