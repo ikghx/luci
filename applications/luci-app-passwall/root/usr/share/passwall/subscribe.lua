@@ -27,7 +27,7 @@ local has_trojan_plus = api.is_finded("trojan-plus")
 local has_v2ray = api.is_finded("v2ray")
 local has_xray = api.is_finded("xray")
 local has_trojan_go = api.is_finded("trojan-go")
-local allowInsecure_default = true
+local allowInsecure_default = nil
 local ss_aead_type_default = uci:get(appname, "@global_subscribe[0]", "ss_aead_type") or "shadowsocks-libev"
 local trojan_type_default = uci:get(appname, "@global_subscribe[0]", "trojan_type") or "trojan-plus"
 -- 判断是否过滤节点关键字
@@ -788,7 +788,7 @@ local function processData(szType, content, add_mode, add_from)
 				params[t[1]] = t[2]
 			end
 		end
-		result.hysteria_protocol = params.protocol
+		result.protocol = params.protocol
 		result.hysteria_obfs = params.obfsParam
 		result.hysteria_auth_type = "string"
 		result.hysteria_auth_password = params.auth

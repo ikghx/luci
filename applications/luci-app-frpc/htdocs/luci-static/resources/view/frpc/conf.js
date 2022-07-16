@@ -24,7 +24,7 @@ return view.extend({
 
 	render: function(conf) {
 		return E([
-			E('h2', _('frp - ') + _('Client Configuration')),
+			E('h2', _('frp - ') + _('Client configuration')),
 			E('p', {}, _('configuration file: /etc/frp/frpc.ini, Make changes as needed, Take effect immediately after saving.')),
 			E('p', {}, E('textarea', { 'style': 'width:100%', 'rows': 20, 'disabled': isReadonlyView }, [ conf != null ? conf : '' ]))
 		]);
