@@ -12,7 +12,7 @@ local methods = {
 		args = { domains = false,  interface = "interface", packets = "packets",
 				 duration = "duration", verbose = false, file = false, filter = "filter" },
 		call = function(args)
-			local tcpdump_cmd = "/usr/sbin/tcpdump -l "
+			local tcpdump_cmd = "/usr/bin/tcpdump -l "
 
 			if not args then
 				return { error = "Lack of arguments" }
@@ -118,7 +118,7 @@ local methods = {
 			if not pid then
 				return { error = "tcpdump process in not running" }
 			end
-			if fs.readlink("/proc/%d/exe" % pid) == "/usr/sbin/tcpdump" then
+			if fs.readlink("/proc/%d/exe" % pid) == "/usr/bin/tcpdump" then
 				nixio.kill(pid, 15)
 			else
 				return { error = "tcpdump process is already stopped" }
