@@ -8,7 +8,8 @@
 var callTorHSList = rpc.declare({
 		object: 'tor-hs-rpc',
 		method: 'list-hs',
-		expect: {'':{}  }});
+		expect: { '': {} }
+});
 
 return view.extend({
 	formdata: { torhs: {} },
@@ -22,36 +23,35 @@ return view.extend({
 	render: function(data) {
 		var m, s, o;
 
-		var uci_hs_list=data[0]["hs-list"];
+		var uci_hs_list=data[0]['hs-list'];
 		var tbl_lines=[];
 
-
 		tbl_lines.push(
-				E('tr',{'class':'tr'},[
-				E('th',{'class':'th'} ,_("Name")),
-				E('th',{'class':'th'} ,_("Description")),
-				E('th',{'class':'th'} ,_("Enabled")),
-				E('th',{'class':'th'} ,_("Hidden service address")),
-				E('th',{'class':'th'} ,_("External port"))
+				E('tr', { 'class': 'tr' }, [
+				E('th', { 'class': 'th' }, _('Name')),
+				E('th', { 'class': 'th' }, _('Description')),
+				E('th', { 'class': 'th' }, _('Enabled')),
+				E('th', { 'class': 'th' }, _('Hidden service address')),
+				E('th', { 'class': 'th' }, _('External port'))
 		]));
 
 		uci_hs_list.forEach(function(entry) {
 			var extern_ports=[]
 			entry.ports.forEach(function(port) {
-				extern_ports.push(port.split(";")[0]);
+				extern_ports.push(port.split(';')[0]);
 			});
 
 			tbl_lines.push(
-				E('tr',{'class':'tr'},[
-					E('td',{'class':'td'} ,entry.name),
-					E('td',{'class':'td'} ,entry.description),
-					E('td',{'class':'td'} ,entry.enabled),
-					E('td',{'class':'td'} ,entry.hostname),
-					E('td',{'class':'td'} ,extern_ports.join(", "))
+				E('tr', { 'class': 'tr' }, [
+					E('td', {'class':'td'}, entry.name),
+					E('td', {'class':'td'}, entry.description),
+					E('td', {'class':'td'}, entry.enabled),
+					E('td', {'class':'td'}, entry.hostname),
+					E('td', {'class':'td'}, extern_ports.join(', '))
 			]));
 		});
 
-		var tbl=E('table',{'class': 'table'}, tbl_lines);
+		var tbl=E('table', { 'class': 'table' }, tbl_lines);
 
 		m = new form.JSONMap(this.formdata, _('Hidden service list'));
 
@@ -61,9 +61,5 @@ return view.extend({
 		}, o, this);
 
 		return m.render();
-	},
-
-	addFooter: function() {
-		return E('div', { 'class': 'cbi-page-actions' },'');
 	}
 });

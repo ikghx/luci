@@ -103,7 +103,7 @@ return network.registerProtocol('qmi', {
 			o.default = o.disabled;
 		}
 
-		o = s.taboption('advanced', form.Value, 'delay', _('Modem init timeout'), _('Maximum amount of seconds to wait for the modem to become ready'));
+		o = s.taboption('advanced', form.Value, 'delay', _('Modem init timeout'), _('Amount of seconds to wait for the modem to become ready'));
 		o.placeholder = '10';
 		o.datatype    = 'min(1)';
 

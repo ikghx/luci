@@ -186,9 +186,9 @@ return network.registerProtocol('wireguard', {
 		o.optional = true;
 
 		o = s.taboption('general', form.Button, '_import', _('Import configuration'), _('Imports settings from an existing WireGuard configuration file'));
-		o.inputtitle = _('Load configuration…');
+		o.inputtitle = _('Imported configuration…');
 		o.onclick = function() {
-			return ss.handleConfigImport('client');
+			return ss.handleConfigImport('full');
 		};
 
 		// -- advanced --------------------------------------------------------------------
@@ -253,20 +253,26 @@ return network.registerProtocol('wireguard', {
 		ss.parseConfig = function(data) {
 			var lines = String(data).split(/(\r?\n)+/),
 			    section = null,
-			    config = {};
+			    config = { peers: [] },
+			    s;
 
 			for (var i = 0; i < lines.length; i++) {
 				var line = lines[i].replace(/#.*$/, '').trim();
 
 				if (line.match(/^\[(\w+)\]$/)) {
 					section = RegExp.$1.toLowerCase();
+
+					if (section == 'peer')
+						config.peers.push(s = {});
+					else
+						s = config;
 				}
 				else if (section && line.match(/^(\w+)\s*=\s*(.+)$/)) {
 					var key = RegExp.$1,
 					    val = RegExp.$2.trim();
 
 					if (val.length)
-						config[section + '_' + key.toLowerCase()] = val;
+						s[section + '_' + key.toLowerCase()] = val;
 				}
 			}
 
@@ -292,37 +298,41 @@ return network.registerProtocol('wireguard', {
 			if (!stubValidator.apply('port', config.interface_listenport || '0'))
 				return _('ListenPort setting is invalid');
 
-			if (!config.peer_publickey || validateBase64(null, config.peer_publickey) !== true)
-				return _('PublicKey setting is missing or invalid');
+			for (var i = 0; i < config.peers.length; i++) {
+				var pconf = config.peers[i];
 
-			if (config.peer_presharedkey != null && validateBase64(null, config.peer_presharedkey) !== true)
-				return _('PresharedKey setting is invalid');
+				if (pconf.peer_publickey != null && validateBase64(null, pconf.peer_publickey) !== true)
+					return _('PublicKey setting is invalid');
 
-			if (config.peer_allowedips) {
-				config.peer_allowedips = config.peer_allowedips.split(/[, ]+/);
+				if (pconf.peer_presharedkey != null && validateBase64(null, pconf.peer_presharedkey) !== true)
+					return _('PresharedKey setting is invalid');
 
-				for (var i = 0; i < config.peer_allowedips.length; i++)
-					if (!stubValidator.apply('ipaddr', config.peer_allowedips[i]))
-						return _('AllowedIPs setting is invalid');
+				if (pconf.peer_allowedips) {
+					pconf.peer_allowedips = pconf.peer_allowedips.split(/[, ]+/);
+
+					for (var j = 0; j < pconf.peer_allowedips.length; j++)
+						if (!stubValidator.apply('ipaddr', pconf.peer_allowedips[j]))
+							return _('AllowedIPs setting is invalid');
+				}
+				else {
+					pconf.peer_allowedips = [ '0.0.0.0/0', '::/0' ];
+				}
+
+				if (pconf.peer_endpoint) {
+					var host_port = pconf.peer_endpoint.match(/^\[([a-fA-F0-9:]+)\]:(\d+)$/) || pconf.peer_endpoint.match(/^(.+):(\d+)$/);
+
+					if (!host_port || !stubValidator.apply('host', host_port[1]) || !stubValidator.apply('port', host_port[2]))
+						return _('Endpoint setting is invalid');
+
+					pconf.peer_endpoint = [ host_port[1], host_port[2] ];
+				}
+
+				if (pconf.peer_persistentkeepalive == 'off' || pconf.peer_persistentkeepalive == '0')
+					delete pconf.peer_persistentkeepalive;
+
+				if (!stubValidator.apply('port', pconf.peer_persistentkeepalive || '0'))
+					return _('PersistentKeepAlive setting is invalid');
 			}
-			else {
-				config.peer_allowedips = [ '0.0.0.0/0', '::/0' ];
-			}
-
-			if (config.peer_endpoint) {
-				var host_port = config.peer_endpoint.match(/^\[([a-fA-F0-9:]+)\]:(\d+)$/) || config.peer_endpoint.match(/^(.+):(\d+)$/);
-
-				if (!host_port || !stubValidator.apply('host', host_port[1]) || !stubValidator.apply('port', host_port[2]))
-					return _('Endpoint setting is invalid');
-
-				config.peer_endpoint = [ host_port[1], host_port[2] ];
-			}
-
-			if (config.peer_persistentkeepalive == 'off' || config.peer_persistentkeepalive == '0')
-				delete config.peer_persistentkeepalive;
-
-			if (!stubValidator.apply('port', config.peer_persistentkeepalive || '0'))
-				return _('PersistentKeepAlive setting is invalid');
 
 			return config;
 		};
@@ -339,7 +349,7 @@ return network.registerProtocol('wireguard', {
 				return;
 			}
 
-			if (mode == 'client') {
+			if (mode == 'full') {
 				var prv = s.formvalue(s.section, 'private_key');
 
 				if (prv && prv != config.interface_privatekey && !confirm(_('Overwrite the current settings with the imported configuration?')))
@@ -356,22 +366,25 @@ return network.registerProtocol('wireguard', {
 						s.getOption('dns').getUIElement(s.section).setValue(config.interface_dns);
 					}
 
-					var sid = uci.add('network', 'wireguard_' + s.section);
+					for (var i = 0; i < config.peers.length; i++) {
+						var pconf = config.peers[i];
+						var sid = uci.add('network', 'wireguard_' + s.section);
 
-					uci.sections('network', 'wireguard_' + s.section, function(peer) {
-						if (peer.public_key == config.peer_publickey)
-							uci.remove('network', peer['.name']);
-					});
+						uci.sections('network', 'wireguard_' + s.section, function(peer) {
+							if (peer.public_key == pconf.peer_publickey)
+								uci.remove('network', peer['.name']);
+						});
 
-					uci.set('network', sid, 'description', comment || _('Imported peer configuration'));
-					uci.set('network', sid, 'public_key', config.peer_publickey);
-					uci.set('network', sid, 'preshared_key', config.peer_presharedkey);
-					uci.set('network', sid, 'allowed_ips', config.peer_allowedips);
-					uci.set('network', sid, 'persistent_keepalive', config.peer_persistentkeepalive);
+						uci.set('network', sid, 'description', comment || _('Imported peer configuration'));
+						uci.set('network', sid, 'public_key', pconf.peer_publickey);
+						uci.set('network', sid, 'preshared_key', pconf.peer_presharedkey);
+						uci.set('network', sid, 'allowed_ips', pconf.peer_allowedips);
+						uci.set('network', sid, 'persistent_keepalive', pconf.peer_persistentkeepalive);
 
-					if (config.peer_endpoint) {
-						uci.set('network', sid, 'endpoint_host', config.peer_endpoint[0]);
-						uci.set('network', sid, 'endpoint_port', config.peer_endpoint[1]);
+						if (pconf.peer_endpoint) {
+							uci.set('network', sid, 'endpoint_host', pconf.peer_endpoint[0]);
+							uci.set('network', sid, 'endpoint_port', pconf.peer_endpoint[1]);
+						}
 					}
 
 					return s.map.save(null, true);
@@ -382,6 +395,7 @@ return network.registerProtocol('wireguard', {
 			else {
 				return getPublicAndPrivateKeyFromPrivate(config.interface_privatekey).then(function(keypair) {
 					var sid = uci.add('network', 'wireguard_' + s.section);
+					var pub = s.formvalue(s.section, 'public_key');
 
 					uci.sections('network', 'wireguard_' + s.section, function(peer) {
 						if (peer.public_key == keypair.pub)
@@ -391,9 +405,17 @@ return network.registerProtocol('wireguard', {
 					uci.set('network', sid, 'description', comment || _('Imported peer configuration'));
 					uci.set('network', sid, 'public_key', keypair.pub);
 					uci.set('network', sid, 'private_key', keypair.priv);
-					uci.set('network', sid, 'preshared_key', config.peer_presharedkey);
-					uci.set('network', sid, 'allowed_ips', config.peer_allowedips);
-					uci.set('network', sid, 'persistent_keepalive', config.peer_persistentkeepalive);
+
+					for (var i = 0; i < config.peers.length; i++) {
+						var pconf = config.peers[i];
+
+						if (pconf.peer_publickey == pub) {
+							uci.set('network', sid, 'preshared_key', pconf.peer_presharedkey);
+							uci.set('network', sid, 'allowed_ips', pconf.peer_allowedips);
+							uci.set('network', sid, 'persistent_keepalive', pconf.peer_persistentkeepalive);
+							break;
+						}
+					}
 
 					return s.map.save(null, true);
 				}).then(function() {
@@ -411,11 +433,18 @@ return network.registerProtocol('wireguard', {
 				'dragover': this.handleDragConfig,
 				'drop': this.handleDropConfig.bind(this, mode)
 			}, [
-				E('p', _('To import a WireGuard client configuration, e.g. provided by a commercial VPN provider, drag the <em>*.conf</em> file or paste its contents into the text field below. The relevant settings will be automatically extracted from the configuration.')),
+				E([], (mode == 'full') ? [
+					E('p', _('Drag or paste a valid <em>*.conf</em> file below to configure the local WireGuard interface.'))
+				] : [
+					E('p', _('Paste or drag a WireGuard configuration (commonly <em>wg0.conf</em>) from another system below to create a matching peer entry allowing that system to connect to the local WireGuard interface.')),
+					E('p', _('To fully configure the local WireGuard interface from an existing (e.g. provider supplied) configuration file, use the <strong><a class="full-import" href="#">import configuration</a></strong> instead.'))
+				]),
 				E('p', [
 					E('textarea', {
-						'placeholder': _('Paste or drag WireGuard configuration file…'),
-						'style': 'height:5em;width:100%;white-space:pre'
+						'placeholder': (mode == 'full')
+							? _('Paste or drag supplied WireGuard configuration file…')
+							: _('Paste or drag WireGuard peer configuration (wg0.conf) file…'),
+						'style': 'height:5em;width:100%; white-space:pre'
 					})
 				]),
 				E('div', {
@@ -424,10 +453,29 @@ return network.registerProtocol('wireguard', {
 				}, [''])
 			]);
 
+			var cancelFn = function() {
+				nodes.parentNode.removeChild(nodes.nextSibling);
+				nodes.parentNode.removeChild(nodes);
+				mapNode.classList.remove('hidden');
+				mapNode.nextSibling.classList.remove('hidden');
+				headNode.removeChild(headNode.lastChild);
+				window.removeEventListener('dragover', handleWindowDragDropIgnore);
+				window.removeEventListener('drop', handleWindowDragDropIgnore);
+			};
+
+			var a = nodes.querySelector('a.full-import');
+
+			if (a) {
+				a.addEventListener('click', ui.createHandlerFn(this, function(mode) {
+					cancelFn();
+					this.handleConfigImport('full');
+				}));
+			}
+
 			mapNode.classList.add('hidden');
 			mapNode.nextElementSibling.classList.add('hidden');
 
-			headNode.appendChild(E('span', [ ' » ', _('Import configuration') ]));
+			headNode.appendChild(E('span', [ ' » ', (mode == 'full') ? _('Import configuration') : _('Import as peer') ]));
 			mapNode.parentNode.appendChild(E([], [
 				nodes,
 				E('div', {
@@ -435,15 +483,7 @@ return network.registerProtocol('wireguard', {
 				}, [
 					E('button', {
 						'class': 'btn',
-						'click': function() {
-							nodes.parentNode.removeChild(nodes.nextSibling);
-							nodes.parentNode.removeChild(nodes);
-							mapNode.classList.remove('hidden');
-							mapNode.nextSibling.classList.remove('hidden');
-							headNode.removeChild(headNode.lastChild);
-							window.removeEventListener('dragover', handleWindowDragDropIgnore);
-							window.removeEventListener('drop', handleWindowDragDropIgnore);
-						}
+						'click': cancelFn
 					}, [ _('Cancel') ]),
 					' ',
 					E('button', {
@@ -463,7 +503,7 @@ return network.registerProtocol('wireguard', {
 			nodes.appendChild(E('button', {
 				'class': 'btn',
 				'click': ui.createHandlerFn(this, 'handleConfigImport', 'peer')
-			}, [ _('Import peer configuration…') ]));
+			}, [ _('Import configuration as peer…') ]));
 
 			return nodes;
 		};

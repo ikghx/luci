@@ -164,24 +164,24 @@ o.rmempty = false
 o:depends("type", "hysteria")
 
 o = s:option(Value, "hysteria_up", translate("up"))
-o.rmempty = true
+o.rmempty = false
 o.description = translate("Required")
 o:depends("type", "hysteria")
 
 o = s:option(Value, "hysteria_down", translate("down"))
-o.rmempty = true
+o.rmempty = false
 o.description = translate("Required")
 o:depends("type", "hysteria")
 
-o = s:option(Value, "up_mbps", translate("up_mbps"))
-o.rmempty = true
-o.datatype = "uinteger"
-o:depends("type", "hysteria")
+--o = s:option(Value, "up_mbps", translate("up_mbps"))
+--o.rmempty = true
+--o.datatype = "uinteger"
+--o:depends("type", "hysteria")
 
-o = s:option(Value, "down_mbps", translate("down_mbps"))
-o.rmempty = true
-o.datatype = "uinteger"
-o:depends("type", "hysteria")
+--o = s:option(Value, "down_mbps", translate("down_mbps"))
+--o.rmempty = true
+--o.datatype = "uinteger"
+--o:depends("type", "hysteria")
 
 o = s:option(Value, "psk", translate("Psk"))
 o.rmempty = true
@@ -451,7 +451,7 @@ o:depends("type", "trojan")
 
 -- [[ alpn ]]--
 o = s:option(Value, "hysteria_alpn", translate("alpn"))
-o.rmempty = true
+o.rmempty = false
 o.default = "h3"
 o:depends("type", "hysteria")
 
@@ -478,15 +478,15 @@ o:depends("obfs_trojan", "ws")
 
 -- [[ hysteria_obfs ]]--
 o = s:option(Value, "hysteria_obfs", translate("obfs"))
-o.rmempty = false
+o.rmempty = true
 o.placeholder = "yourpassword"
 o:depends("type", "hysteria")
 
 -- [[ hysteria_auth ]]--
-o = s:option(Value, "hysteria_auth", translate("auth"))
-o.rmempty = true
-o.placeholder = "[BASE64]"
-o:depends("type", "hysteria")
+--o = s:option(Value, "hysteria_auth", translate("auth"))
+--o.rmempty = true
+--o.placeholder = translate("[BASE64]")
+--o:depends("type", "hysteria")
 
 -- [[ hysteria_auth_str ]]--
 o = s:option(Value, "hysteria_auth_str", translate("auth_str"))

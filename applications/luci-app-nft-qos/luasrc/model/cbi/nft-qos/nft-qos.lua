@@ -7,9 +7,8 @@ local fs = require("nixio.fs")
 local ipc = require("luci.ip")
 
 local limit_enable = uci:get("nft-qos", "default", "limit_enable")
-local limit_mac_enable = uci:get("nft-qos", "default", "limit_mac_enable")
 local limit_type = uci:get("nft-qos", "default", "limit_type")
-local enable_priority = uci:get("nft-qos", "default", "enable_priority")
+local enable_priority = uci:get("nft-qos", "default", "priority_enable")
 
 local has_ipv6 = fs.access("/proc/net/ipv6_route")
 
@@ -23,20 +22,18 @@ s.addremove = false
 s.anonymous = true
 
 s:tab("limit", translate("Limit Rate by IP Address"))
-s:tab("limitmac", translate("Limit Rate by Mac Address"))
 s:tab("priority", translate("Traffic Priority"))
 
 --
 -- Static
 --
 o = s:taboption("limit", Flag, "limit_enable", translate("Limit Enable"), translate("Enable Limit Rate Feature"))
-o.rmempty = true
+o.rmempty = false
 
 o = s:taboption("limit", ListValue, "limit_type", translate("Limit Type"), translate("Type of Limit Rate"))
 o.default = limit_static or "static"
 o:depends("limit_enable","1")
 o:value("static", translate("Static"))
-o:value("dynamic", translate("Dynamic"))
 
 o = s:taboption("limit", Value, "static_rate_dl", translate("Default Download Rate"), translate("Default value for download rate"))
 o.datatype = "uinteger"
@@ -63,49 +60,13 @@ o:value("kbytes", "KBytes/s")
 o:value("mbytes", "MBytes/s")
 
 --
--- Dynamic
---
-o = s:taboption("limit", Value, "dynamic_bw_down", translate("Download Bandwidth (Mbps)"), translate("Default value for download bandwidth"))
-o.default = '100'
-o.datatype = "uinteger"
-o:depends("limit_type","dynamic")
-
-o = s:taboption("limit", Value, "dynamic_bw_up", translate("Upload Bandwidth (Mbps)"), translate("Default value for upload bandwidth"))
-o.default = '100'
-o.datatype = "uinteger"
-o:depends("limit_type","dynamic")
-
-o = s:taboption("limit", Value, "dynamic_cidr", translate("Target Network (IPv4/MASK)"), translate("Network to be applied, e.g. 192.168.1.0/24, 10.2.0.0/16, etc."))
-o.datatype = "cidr4"
-ipc.routes({ family = 4, type = 1 }, function(rt) o.default = rt.dest end)
-o:depends("limit_type","dynamic")
-
-if has_ipv6 then
-	o = s:taboption("limit", Value, "dynamic_cidr6", translate("Target Network6 (IPv6/MASK)"), translate("Network to be applied, e.g. AAAA::BBBB/64, CCCC::1/128, etc."))
-	o.datatype = "cidr6"
-	o:depends("limit_type","dynamic")
-end
-
-o = s:taboption("limit", DynamicList, "limit_whitelist", translate("White List for Limit Rate"))
-o.datatype = "ipaddr"
-o:depends("limit_enable","1")
-
---
--- limit speed by mac address
---
-if limit_type == "static" then
-	o = s:taboption("limitmac", Flag, "limit_mac_enable", translate("Limit Enable"), translate("Enable Limit Rate Feature"))
-	o.rmempty = true
-end
-
---
 -- Priority
 --
-o = s:taboption("priority", Flag, "enable_priority", translate("Enable Traffic Priority"), translate("Enable this feature"))
-o.rmempty = true
+o = s:taboption("priority", Flag, "priority_enable", translate("Enable Traffic Priority"), translate("Enable this feature"))
+o.rmempty = false
 
 o = s:taboption("priority", ListValue, "priority_netdev", translate("Default Network Interface"), translate("Network Interface for Traffic Shaping."))
-o:depends("enable_priority", "1")
+o:depends("priority_enable", "1")
 wa.cbi_add_networks(o)
 
 --

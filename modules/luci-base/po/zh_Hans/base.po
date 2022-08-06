@@ -14,6 +14,95 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.8-dev\n"
 
+msgid "Invert blinking"
+msgstr "反转闪烁"
+
+msgid "The LED will stay on and blink"
+msgstr "LED 将保持亮起并闪烁"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:218
+msgid "Collisions seen"
+msgstr "发生的冲突"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:259
+msgid "Part of network:"
+msgid_plural "Part of networks:"
+msgstr[0] "网络的一部分："
+msgstr[1] "网络的一部分："
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:227
+msgid "Part of zone %q"
+msgstr "区域 %q 的一部分"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:261
+msgid "Port is not part of any network"
+msgstr "端口不属于任何网络"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:267
+msgid "Port status"
+msgstr "端口状态"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:211
+msgid "Receive dropped"
+msgstr "接收丢包"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:210
+msgid "Receive errors"
+msgstr "接收错误"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:207
+msgid "Received bytes"
+msgstr "已接收字节"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:209
+msgid "Received multicast"
+msgstr "已接收多播包"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:208
+msgid "Received packets"
+msgstr "已接收数据包"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:183
+msgid "Speed: %d Mibit/s, Duplex: %s"
+msgstr "速度：%d Mibit/s，双工：%s"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:216
+msgid "Transmit dropped"
+msgstr "发送丢包"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:215
+msgid "Transmit errors"
+msgstr "发送错误"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:213
+msgid "Transmitted bytes"
+msgstr "已发送字节"
+
+#: applications/luci-app-test/htdocs/luci-static/resources/view/29_ports.js:214
+msgid "Transmitted packets"
+msgstr "已发送数据包"
+
+msgid "Failed to initialize modem"
+msgstr "初始化调制解调器失败"
+
+msgid "No control device specified"
+msgstr "未指定控制设备"
+
+msgid "The interface could not be found"
+msgstr "找不到接口"
+
+msgid "Unable to verify PIN"
+msgstr "无法验证 PIN"
+
+msgid "Failed to set operating mode"
+msgstr "设置操作模式失败"
+
+msgid "automatic (no override)"
+msgstr "自动（无覆盖）"
+
+msgid "randomly generated"
+msgstr "随机生成"
+
 msgid "Network Mode"
 msgstr "网络模式"
 
@@ -233,9 +322,6 @@ msgstr "概览"
 
 msgid "DHCP Devices"
 msgstr "DHCP 设备"
-
-msgid "Connected since"
-msgstr "连接开始时间"
 
 msgid "No host route"
 msgstr "无主机路由"
@@ -3951,8 +4037,12 @@ msgstr "镜像检查失败了："
 msgid "Import configuration"
 msgstr "导入配置文件"
 
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:430
+msgid "Import as peer"
+msgstr "作为对端导入"
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:466
-msgid "Import peer configuration…"
+msgid "Import configuration as peer…"
 msgstr "导入对端配置…"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:452
@@ -4537,8 +4627,8 @@ msgid "Load Average"
 msgstr "平均负载"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:189
-msgid "Load configuration…"
-msgstr "加载配置…"
+msgid "Imported configuration…"
+msgstr "导入配置…"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1163
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1971
@@ -4795,8 +4885,8 @@ msgstr "EDNS0 UDP 数据包的最大允许大小。"
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:114
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:106
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:95
-msgid "Maximum amount of seconds to wait for the modem to become ready"
-msgstr "调制解调器就绪的最大等待时间（秒）"
+msgid "Amount of seconds to wait for the modem to become ready"
+msgstr "等待调制解调器就绪的时间（秒）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:674
 msgid "Maximum number of leased addresses."
@@ -5860,8 +5950,12 @@ msgid "Paste or drag SSH key file…"
 msgstr "粘贴或拖动 SSH 密钥文件…"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:417
-msgid "Paste or drag WireGuard configuration file…"
-msgstr "粘贴或拖动 WireGuard 配置文件…"
+msgid "Paste or drag supplied WireGuard configuration file…"
+msgstr "粘贴或拖动提供商的 WireGuard 配置文件..."
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:417
+msgid "Paste or drag WireGuard peer configuration (wg0.conf) file…"
+msgstr "粘贴或拖动 WireGuard 对端配置 (wg0.conf) 文件..."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1582
 msgid "CA certificate path"
@@ -6163,8 +6257,8 @@ msgid "Public prefix routed to this device for distribution to clients."
 msgstr "分配到此设备的公共前缀，用以分发到客户端。"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:296
-msgid "PublicKey setting is missing or invalid"
-msgstr "公钥设置丢失或无效"
+msgid "PublicKey setting is invalid"
+msgstr "公钥设置无效"
 
 #: modules/luci-compat/luasrc/model/network/proto_qmi.lua:9
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:27
@@ -8149,14 +8243,26 @@ msgid "Timezone"
 msgstr "时区"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:414
+msgid "Drag or paste a valid <em>*.conf</em> file below to configure the local WireGuard interface."
+msgstr "拖动或粘贴有效的 <em>*.conf</em> 文件到下面的文本框中，以配置本地 WireGuard 接口。"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:417
 msgid ""
-"To import a WireGuard client configuration, e.g. provided by a commercial "
-"VPN provider, drag the <em>*.conf</em> file or paste its contents into the "
-"text field below. The relevant settings will be automatically extracted from "
-"the configuration."
+"Paste or drag a WireGuard configuration (commonly <em>wg0.conf</em>) from "
+"another system below to create a matching peer entry allowing that system to "
+"connect to the local WireGuard interface."
 msgstr ""
-"要导入 WireGuard 客户端配置，例如由商业 VPN 提供商提供的配置，请将<em>*."
-"conf</em>文件拖动或粘贴到下面的文本框中。相关设置将从配置中自动提取。"
+"从另一个系统复制或拖动 WireGuard 配置文件（通常为 <em>wg0.conf</em>）"
+"以创建匹配的对端条目，允许该系统连接到本地 WireGuard 接口。"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:418
+msgid ""
+"To fully configure the local WireGuard interface from an existing (e.g. "
+"provider supplied) configuration file, use the <strong><a class=\"full-import"
+"\" href=\"#\">import configuration</a></strong> instead."
+msgstr ""
+"要从现有（例如提供商提供的）配置文件中完全配置本地 WireGuard 接口，请改用 <strong><a class=\"full-import"
+"\" href=\"#\">导入配置</a></strong>。"
 
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2679
 msgid "To login…"

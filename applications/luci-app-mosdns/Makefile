@@ -3,7 +3,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for mosdns
-LUCI_DEPENDS:=+mosdns
+LUCI_DEPENDS:=+mosdns +v2ray-geoip +v2ray-geosite
 
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=KGHX <openwrt.ikghx.com>

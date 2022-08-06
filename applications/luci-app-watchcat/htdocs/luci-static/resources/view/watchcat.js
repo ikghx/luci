@@ -33,7 +33,7 @@ return view.extend({
 				_('Script to run'),
 				_(`Script to run when the host has not responded for the specified duration of time. The script is passed the interface name as $1`));
 		o.datatype = 'file';
-	        o.default = "/etc/watchcat.user.sh";
+		o.default = "/etc/watchcat.user.sh";
 		o.depends({ mode: "run_script" });
 
 		o = s.taboption('general', form.Value, 'period', 

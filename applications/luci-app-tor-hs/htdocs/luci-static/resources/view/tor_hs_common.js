@@ -5,9 +5,10 @@
 'require form';
 
 var callTorHSList = rpc.declare({
-			object: 'tor-hs-rpc',
-			method: 'list-hs',
-			expect: {'':{}  }});
+		object: 'tor-hs-rpc',
+		method: 'list-hs',
+		expect: { '': {} }
+});
 
 return view.extend({
 	formdata: { torhs: {} },
@@ -40,5 +41,5 @@ return view.extend({
 		o.default=0;
 
 		return m.render();
-	},
+	}
 });

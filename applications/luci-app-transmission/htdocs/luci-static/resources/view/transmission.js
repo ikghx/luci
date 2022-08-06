@@ -2,6 +2,7 @@
 'require view';
 'require fs';
 'require uci';
+'require ui';
 'require rpc';
 'require form';
 'require tools.widgets as widgets';
@@ -19,6 +20,21 @@ function setFlagBool(o) {
 }
 
 return view.extend({
+
+	handleStart: function(m, ev) {
+		return fs.exec('/etc/init.d/transmission', [ 'start' ])
+			.then(L.bind(this.load, this))
+			.then(L.bind(this.render, this))
+			.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
+	},
+
+	handleStop: function(m, ev) {
+		return fs.exec('/etc/init.d/transmission', [ 'stop' ])
+			.then(L.bind(this.load, this))
+			.then(L.bind(this.render, this))
+			.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
+	},
+
 	load: function() {
 		return Promise.all([
 			L.resolveDefault(callServiceList('transmission')),
@@ -50,6 +66,18 @@ return view.extend({
 
 		s = m.section(form.TypedSection, 'transmission', _('Global settings'));
 		s.anonymous = true;
+
+		o = s.option(form.Button, '_start');
+		o.title      = '&#160;';
+		o.inputtitle = _('Start');
+		o.inputstyle = 'save';
+		o.onclick = L.bind(this.handleStart, this, m);
+
+		o = s.option(form.Button, '_stop');
+		o.title      = '&#160;';
+		o.inputtitle = _('Stop');
+		o.inputstyle = 'reset';
+		o.onclick = L.bind(this.handleStop, this, m);
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.rmempty = false;

@@ -160,6 +160,7 @@ ln_start_bin() {
 		echolog "-----------end------------"
 		_exit 2
 	}
+	ulimit -n 1000000
 	${file_func:-echolog "  - ${ln_name}"} "$@" >/dev/null 2>&1 &
 }
 
@@ -848,7 +849,6 @@ start() {
 boot() {
 	echolog "boot！"
 	mkdir -p /var/run /var/lock /var/log /tmp/dnsmasq.d $TMP_BIN_PATH $TMP_DNSMASQ_PATH
-	ulimit -n 65535
 	start
 }
 

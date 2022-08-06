@@ -458,10 +458,10 @@ d.get_format_cmd = function()
     ext2 = { cmd = "mkfs.ext2", option = "-F -E lazy_itable_init=1" },
     ext3 = { cmd = "mkfs.ext3", option = "-F -E lazy_itable_init=1" },
     ext4 = { cmd = "mkfs.ext4", option = "-F -m 0 -T largefile4" },
-    fat32 = { cmd = "mkfs.vfat", option = "-F" },
-    exfat = { cmd = "mkexfat", option = "-f" },
-    hfsplus = { cmd = "mkhfs", option = "-f" },
-    ntfs = { cmd = "mkntfs", option = "-f" },
+    fat32 = { cmd = "mkfs.vfat", option = "-F 32" },
+    exfat = { cmd = "mkfs.exfat", option = "" },
+    hfsplus = { cmd = "mkfs.hfsplus", option = "-f" },
+    ntfs = { cmd = "mkfs.ntfs", option = "-f" },
     swap = { cmd = "mkswap", option = "" },
     btrfs = { cmd = "mkfs.btrfs", option = "-f" }
   }

@@ -5,7 +5,9 @@
 			"file": {
 				"/etc/group": [ "read" ],
 				"/etc/passwd": [ "read" ],
-				"/usr/share/transmission/web/index.html": [ "list" ]
+				"/usr/share/transmission/web/index.html": [ "list" ],
+				"/etc/init.d/transmission start" : [ "exec" ],
+				"/etc/init.d/transmission stop" : [ "exec" ]
 			},
 			"ubus": {
 				"file": [ "stat" ],
