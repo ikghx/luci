@@ -4,8 +4,12 @@ local json = require "luci.jsonc"
 local fs   = require "nixio.fs"
 
 local function readfile(path)
-	local s = fs.readfile(path)
-	return s and (s:gsub("^%s+", ""):gsub("%s+$", ""))
+	if fs.stat(path, "type") == "reg" then
+		local s = fs.readfile(path)
+		return s and (s:gsub("^%s+", ""):gsub("%s+$", ""))
+	else
+		return null
+	end
 end
 
 local function writefile(path, data)
@@ -41,9 +45,9 @@ if arg[1] == "list" then
 		},
 		setCertificates = {
 			interface = "interface",
-			user_cert = "PEM file data",
-			user_key = "PEM file data",
-			ca_file = "PEM file data"
+			user_cert = "user_cert",
+			user_key = "user_key",
+			ca_file = "ca_file"
 		}
 	}))
 elseif arg[1] == "call" then

@@ -38,9 +38,7 @@ function sanitizeCert(s) {
 }
 
 function validateCert(priv, section_id, value) {
-	var beg = priv ? /^-----BEGIN PRIVATE KEY-----$/ : /^-----BEGIN CERTIFICATE-----$/,
-	    end = priv ? /^-----END PRIVATE KEY-----$/ : /^-----END CERTIFICATE-----$/,
-	    lines = value.trim().split(/[\r\n]/),
+	var lines = value.trim().split(/[\r\n]/),
 	    start = false,
 	    i;
 
@@ -48,13 +46,13 @@ function validateCert(priv, section_id, value) {
 		return true;
 
 	for (i = 0; i < lines.length; i++) {
-		if (lines[i].match(beg))
+		if (lines[i].match(/^-{5}BEGIN ((|RSA |DSA )PRIVATE KEY|(|TRUSTED |X509 )CERTIFICATE)-{5}$/))
 			start = true;
 		else if (start && !lines[i].match(/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/))
 			break;
 	}
 
-	if (!start || i < lines.length - 1 || !lines[i].match(end))
+	if (!start || i < lines.length - 1 || !lines[i].match(/^-{5}END ((|RSA |DSA )PRIVATE KEY|(|TRUSTED |X509 )CERTIFICATE)-{5}$/))
 		return _('This does not look like a valid PEM file');
 
 	return true;
@@ -90,8 +88,7 @@ return network.registerProtocol('openfortivpn', {
 	},
 
 	renderFormOptions: function(s) {
-		var certLoadPromise = null,
-		    o;
+		var o;
 
 		o = s.taboption('general', form.Value, 'peeraddr', _('VPN Server'));
 		o.datatype = 'host(0)';
@@ -111,7 +108,7 @@ return network.registerProtocol('openfortivpn', {
 		o.monospace = true;
 		o.validate = L.bind(validateCert, o, false);
 		o.load = function(section_id) {
-			certLoadPromise = certLoadPromise || callGetCertificateFiles(section_id);
+			var certLoadPromise = certLoadPromise || callGetCertificateFiles(section_id);
 			return certLoadPromise.then(function(certs) { return certs.user_cert });
 		};
 		o.write = function(section_id, value) {
@@ -123,7 +120,7 @@ return network.registerProtocol('openfortivpn', {
 		o.monospace = true;
 		o.validate = L.bind(validateCert, o, true);
 		o.load = function(section_id) {
-			certLoadPromise = certLoadPromise || callGetCertificateFiles(section_id);
+			var certLoadPromise = certLoadPromise || callGetCertificateFiles(section_id);
 			return certLoadPromise.then(function(certs) { return certs.user_key });
 		};
 		o.write = function(section_id, value) {
@@ -135,7 +132,7 @@ return network.registerProtocol('openfortivpn', {
 		o.monospace = true;
 		o.validate = L.bind(validateCert, o, false);
 		o.load = function(section_id) {
-			certLoadPromise = certLoadPromise || callGetCertificateFiles(section_id);
+			var certLoadPromise = certLoadPromise || callGetCertificateFiles(section_id);
 			return certLoadPromise.then(function(certs) { return certs.ca_file });
 		};
 		o.write = function(section_id, value) {
@@ -147,7 +144,7 @@ return network.registerProtocol('openfortivpn', {
 		o.nocreate = true;
 		o.optional = true;
 
-		o = s.taboption('advanced', form.Value, 'persist_int', _('Persistent reconnect interval'),_("Optional, in seconds. If set to '0', no reconnect is attempted."));
+		o = s.taboption('advanced', form.Value, 'persist_int', _('Persistent reconnect interval'), _("Optional, in seconds. If set to '0', no reconnect is attempted."));
 		o.placeholder = '0';
 		o.datatype = 'uinteger';
 		o.optional = true;
