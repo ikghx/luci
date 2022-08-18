@@ -2,8 +2,8 @@ bind_host: 0.0.0.0
 bind_port: 3000
 beta_bind_port: 0
 users:
-- name: admin
-  password: $2a$10$RxHPGVuq7Zrkfua6kDdK9uAYK7zuFfXlGQmQep9ea67EqMUYD1sa6
+  - name: admin
+    password: $2a$10$RxHPGVuq7Zrkfua6kDdK9uAYK7zuFfXlGQmQep9ea67EqMUYD1sa6
 auth_attempts: 5
 block_auth_min: 15
 http_proxy: ""
@@ -12,7 +12,7 @@ debug_pprof: false
 web_session_ttl: 720
 dns:
   bind_hosts:
-  - 0.0.0.0
+    - 0.0.0.0
   port: 5334
   statistics_interval: 1
   querylog_enabled: true
@@ -31,25 +31,25 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-  - https://cloudflare-dns.com/dns-query
-  - https://doh.opendns.com/dns-query
-  - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://doh.opendns.com/dns-query
+    - https://dns.google/dns-query
   upstream_dns_file: ""
   bootstrap_dns:
-  - 119.29.29.29
-  - 223.5.5.5
+    - 119.29.29.29
+    - 223.5.5.5
   all_servers: false
   fastest_addr: false
   fastest_timeout: 1s
   allowed_clients: []
   disallowed_clients: []
   blocked_hosts:
-  - version.bind
-  - id.server
-  - hostname.bind
+    - version.bind
+    - id.server
+    - hostname.bind
   trusted_proxies:
-  - 127.0.0.0/8
-  - ::1/128
+    - 127.0.0.0/8
+    - ::1/128
   cache_size: 4194304
   cache_ttl_min: 0
   cache_ttl_max: 0
@@ -59,6 +59,7 @@ dns:
   enable_dnssec: false
   edns_client_subnet: false
   max_goroutines: 300
+  handle_ddr: true
   ipset: []
   filtering_enabled: true
   filters_update_interval: 24
@@ -91,14 +92,14 @@ tls:
   certificate_path: ""
   private_key_path: ""
 filters:
-- enabled: true
-  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-  name: AdGuard DNS filter
-  id: 1
-- enabled: false
-  url: https://adaway.org/hosts.txt
-  name: AdAway Default Blocklist
-  id: 2
+  - enabled: true
+    url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+    name: AdGuard DNS filter
+    id: 1
+  - enabled: false
+    url: https://adaway.org/hosts.txt
+    name: AdAway Default Blocklist
+    id: 2
 whitelist_filters: []
 user_rules: []
 dhcp:
@@ -126,12 +127,12 @@ clients:
     dhcp: true
     hosts: true
   persistent: []
-log_compress: false
-log_localtime: false
+log_file: ""
 log_max_backups: 0
 log_max_size: 100
 log_max_age: 3
-log_file: ""
+log_compress: false
+log_localtime: false
 verbose: false
 os:
   group: ""

@@ -1,31 +1,30 @@
-module("luci.controller.AdGuardHome",package.seeall)
-local fs=require"nixio.fs"
-local http=require"luci.http"
-local uci=require"luci.model.uci".cursor()
+module("luci.controller.AdGuardHome", package.seeall)
+local fs = require "nixio.fs"
+local http = require "luci.http"
+local uci = require"luci.model.uci".cursor()
 function index()
-entry({"admin", "services", "AdGuardHome"},alias("admin", "services", "AdGuardHome", "base"),_("AdGuard Home"), 10).dependent = true
-entry({"admin","services","AdGuardHome","base"},cbi("AdGuardHome/base"),_("Base Setting"),1).leaf = true
-entry({"admin","services","AdGuardHome","log"},form("AdGuardHome/log"),_("Log"),2).leaf = true
-entry({"admin","services","AdGuardHome","manual"},cbi("AdGuardHome/manual"),_("Manual Config"),3).leaf = true
-entry({"admin","services","AdGuardHome","status"},call("act_status")).leaf=true
-entry({"admin", "services", "AdGuardHome", "check"}, call("check_update"))
-entry({"admin", "services", "AdGuardHome", "doupdate"}, call("do_update"))
-entry({"admin", "services", "AdGuardHome", "getlog"}, call("get_log"))
-entry({"admin", "services", "AdGuardHome", "dodellog"}, call("do_dellog"))
-entry({"admin", "services", "AdGuardHome", "reloadconfig"}, call("reload_config"))
-entry({"admin", "services", "AdGuardHome", "gettemplateconfig"}, call("get_template_config"))
+	entry({"admin", "services", "AdGuardHome"}, firstchild(), _("AdGuard Home"), 11).acl_depends = { "luci-app-adguardhome" }
+	entry({"admin", "services", "AdGuardHome", "base"}, cbi("AdGuardHome/base"), _("Base Setting"),1).leaf = true
+	entry({"admin", "services", "AdGuardHome", "log"}, form("AdGuardHome/log"), _("Log"),2).leaf = true
+	entry({"admin", "services", "AdGuardHome", "manual"}, cbi("AdGuardHome/manual"),_("Manual Config"),3).leaf = true
+	entry({"admin", "services", "AdGuardHome", "status"}, call("act_status")).leaf=true
+	entry({"admin", "services", "AdGuardHome", "check"}, call("check_update"))
+	entry({"admin", "services", "AdGuardHome", "doupdate"}, call("do_update"))
+	entry({"admin", "services", "AdGuardHome", "getlog"}, call("get_log"))
+	entry({"admin", "services", "AdGuardHome", "dodellog"}, call("do_dellog"))
+	entry({"admin", "services", "AdGuardHome", "reloadconfig"}, call("reload_config"))
+	entry({"admin", "services", "AdGuardHome", "gettemplateconfig"}, call("get_template_config"))
 end 
 function get_template_config()
 	local b
 	local d=""
-	local rcauto="/tmp/resolv.conf.auto"
-	if not fs.access(rcauto) then
-		rcauto="/tmp/resolv.conf.d/resolv.conf.auto"
-	end
-	for cnt in io.lines(rcauto) do
-		b=string.match (cnt,"^[^#]*nameserver%s+([^%s]+)$")
-		if (b~=nil) then
-			d=d.."  - "..b.."\n"
+	local reconf=uci:get_first("dhcp","dnsmasq","resolvfile")
+	if fs.access(reconf) then
+		for cnt in io.lines(reconf) do
+			b=string.match (cnt,"^[^#]*nameserver%s+([^%s]+)$")
+			if (b~=nil) then
+				d=d.."  - "..b.."\n"
+			end
 		end
 	end
 	local f=io.open("/usr/share/AdGuardHome/AdGuardHome_template.yaml", "r+")

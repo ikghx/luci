@@ -122,7 +122,7 @@ end
 o = s:option(Flag, "verbose", translate("Verbose log"))
 o.default = 0
 o.optional = true
----- gfwlist 
+---- gfwlist
 local a
 if fs.access(configpath) then
 a=luci.sys.call("grep -m 1 -q programadd "..configpath)

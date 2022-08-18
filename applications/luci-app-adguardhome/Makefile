@@ -9,7 +9,7 @@ LUCI_TITLE:=LuCI support for adguardhome
 LUCI_DEPENDS:=+luci-compat +wget +adguardhome
 LUCI_PKGARCH:=all
 PKG_VERSION:=1.8
-PKG_RELEASE:=15
+PKG_RELEASE:=16
 
 PKG_LICENSE:=MIT
 PKG_MAINTAINER:=<https://github.com/rufengsuixing/luci-app-adguardhome>
