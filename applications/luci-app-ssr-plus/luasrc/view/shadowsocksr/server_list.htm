@@ -19,7 +19,7 @@
 				const tls = tlss[index];
 				if (!dom) res()
 				port.innerHTML = '<font color="#0072c3">connect</font>';
-				XHR.get('<%=luci.dispatcher.build_url("admin/services/shadowsocksr/ping")%>', {
+				XHR.get('<%=luci.dispatcher.build_url("admin/vpn/shadowsocksr/ping")%>', {
 					index,
 					domain: dom.getAttribute("hint"),
 					port: port.getAttribute("hint"),

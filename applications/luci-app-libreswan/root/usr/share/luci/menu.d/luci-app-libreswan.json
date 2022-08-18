@@ -1,40 +1,46 @@
 {
-	"admin/services/libreswan": {
-		"title": "Libreswan",
+	"admin/vpn/libreswan": {
+		"title": "Libreswan IPSec",
+		"order": 90,
 		"action": {
 			"type": "alias",
-			"path": "admin/services/libreswan/base"
-		},
-		"depends": {
-			"acl": [ "luci-app-libreswan" ],
-			"uci": { "libreswan": true }
+			"path": "admin/vpn/libreswan/overview"
 		}
 	},
 
-	"admin/services/libreswan/base": {
-		"title": "General Settings",
-		"order": 1,
+	"admin/vpn/libreswan/overview": {
+		"title": "Overview",
+		"order": 10,
 		"action": {
 			"type": "view",
-			"path": "libreswan/base"
+			"path": "libreswan/overview"
 		}
 	},
 
-	"admin/services/libreswan/ipsec": {
-		"title": "IPsec configuration",
-		"order": 2,
+	"admin/vpn/libreswan/globals": {
+		"title": "IPSec Globals",
+		"order": 20,
 		"action": {
 			"type": "view",
-			"path": "libreswan/ipsec"
+			"path": "libreswan/globals"
 		}
 	},
 
-	"admin/services/libreswan/password": {
-		"title": "Password settings",
-		"order": 3,
+	"admin/vpn/libreswan/proposals": {
+		"title": "IPSec Proposals",
+		"order": 30,
 		"action": {
 			"type": "view",
-			"path": "libreswan/password"
+			"path": "libreswan/proposals"
+		}
+	},
+
+	"admin/vpn/libreswan/tunnels": {
+		"title": "IPSec Tunnels",
+		"order": 40,
+		"action": {
+			"type": "view",
+			"path": "libreswan/tunnels"
 		}
 	}
 }
