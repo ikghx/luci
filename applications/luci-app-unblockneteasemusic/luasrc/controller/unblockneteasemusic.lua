@@ -1,5 +1,5 @@
 -- SPDX-License-Identifer: GPL-3.0-only
--- Copyright (C) 2019-2021 Tianling Shen <cnsztl@immortalwrt.org>
+-- Copyright (C) 2019-2022 Tianling Shen <cnsztl@immortalwrt.org>
 
 module("luci.controller.unblockneteasemusic", package.seeall)
 
@@ -13,9 +13,9 @@ function index()
 	page.dependent = false
 	page.acl_depends = { "luci-app-unblockneteasemusic" }
 
-	entry({"admin", "services", "unblockneteasemusic", "general"}, cbi("unblockneteasemusic/unblockneteasemusic"), _("基本设定"), 1)
-	entry({"admin", "services", "unblockneteasemusic", "upgrade"}, form("unblockneteasemusic/unblockneteasemusic_upgrade"), _("更新组件"), 2).leaf = true
-	entry({"admin", "services", "unblockneteasemusic", "log"}, form("unblockneteasemusic/unblockneteasemusic_log"), _("日志"), 3)
+	entry({"admin", "services", "unblockneteasemusic", "general"}, cbi("unblockneteasemusic/main"), _("基本设定"), 1)
+	entry({"admin", "services", "unblockneteasemusic", "upgrade"}, form("unblockneteasemusic/upgrade"), _("更新组件"), 2).leaf = true
+	entry({"admin", "services", "unblockneteasemusic", "log"}, form("unblockneteasemusic/log"), _("日志"), 3)
 
 	entry({"admin", "services", "unblockneteasemusic", "status"}, call("act_status")).leaf = true
 	entry({"admin", "services", "unblockneteasemusic", "update_core"}, call("act_update_core"))
@@ -23,8 +23,10 @@ function index()
 end
 
 function act_status()
-	local e = {}
-	e.running = luci.sys.call("busybox ps -w |grep unblockneteasemusic |grep app.js |grep -v grep >/dev/null") == 0
+	local stat = luci.util.ubus("service", "list", { name = "unblockneteasemusic" })
+	local running = next(stat) and stat.unblockneteasemusic.instances.unblockneteasemusic.running or false
+
+	local e = { running = running }
 	luci.http.prepare_content("application/json")
 	luci.http.write_json(e)
 end

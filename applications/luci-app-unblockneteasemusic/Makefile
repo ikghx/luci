@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 #
-# Copyright (C) 2019-2021 Tianling Shen <cnsztl@immortalwrt.org>
+# Copyright (C) 2019-2022 Tianling Shen <cnsztl@immortalwrt.org>
 
 include $(TOPDIR)/rules.mk
 
@@ -10,10 +10,14 @@ LUCI_DEPENDS:=+busybox +dnsmasq-full +ipset +jsonfilter +node +uclient-fetch +un
 LUCI_PKGARCH:=all
 
 PKG_NAME:=luci-app-unblockneteasemusic
-PKG_VERSION:=2.12
-PKG_RELEASE:=5
+PKG_VERSION:=2.13
+PKG_RELEASE:=2
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
+
+define Package/luci-app-unblockneteasemusic/conffiles
+/etc/config/unblockneteasemusic
+endef
 
 include ../../luci.mk
 
