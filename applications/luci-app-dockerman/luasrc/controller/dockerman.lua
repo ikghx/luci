@@ -195,7 +195,7 @@ local calculate_cpu_percent = function(d)
 	local cpu_count = tonumber(d["cpu_stats"]["online_cpus"])
 	local cpu_percent = 0.0
 	local cpu_delta = tonumber(d["cpu_stats"]["cpu_usage"]["total_usage"]) - tonumber(d["precpu_stats"]["cpu_usage"]["total_usage"])
-	local system_delta = tonumber(d["cpu_stats"]["system_cpu_usage"]) - tonumber(d["precpu_stats"]["system_cpu_usage"])
+	local system_delta = tonumber(d["cpu_stats"]["system_cpu_usage"]) -- tonumber(d["precpu_stats"]["system_cpu_usage"])
 	if system_delta > 0.0 then
 		cpu_percent = string.format("%.2f", cpu_delta / system_delta * 100.0 * cpu_count)
 	end

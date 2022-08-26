@@ -203,12 +203,12 @@ if nixio.fs.access("/usr/bin/dockerd") then
 
 s = m:section(NamedSection, "firewall", "section", translate("Firewall Settings"))
 
-	o = s:option(ListValue, "device",
+	o = s:option(Value, "device",
 		translate("Docker bridge name"))
 	o:value("docker0")
 	o.rmempty = true
 
-	o = s:option(ListValue, "blocked_interfaces",
+	o = s:option(DynamicList, "blocked_interfaces",
 		translate("Blocked interfaces"),
 		translate("Prevent the external network from directly connecting to Docker host.<br />" ..
 		"After docker starts, you need to restart the firewall to take effect."))
