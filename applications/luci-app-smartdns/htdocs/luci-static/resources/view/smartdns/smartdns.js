@@ -32,7 +32,7 @@ var callServiceList = rpc.declare({
 	expect: { '': {} }
 });
 
-function getPidOfSmartdns() {
+function getServiceStatus() {
 	return L.resolveDefault(callServiceList(conf), {})
 		.then(function (res) {
 			var isrunning = false;
@@ -50,6 +50,8 @@ function getIPTablesRedirect() {
 		} else {
 			return "";
 		}
+	}).catch(function (err) {
+		return "";
 	});
 }
 
@@ -60,12 +62,14 @@ function getIP6TablesRedirect() {
 		} else {
 			return "";
 		}
-	});
+	}).catch(function (err) {
+		return "";
+	});;
 }
 
 function smartdnsServiceStatus() {
 	return Promise.all([
-		getPidOfSmartdns(),
+		getServiceStatus(),
 		getIPTablesRedirect(),
 		getIP6TablesRedirect()
 	]);
@@ -137,6 +141,10 @@ return view.extend({
 			L.Poll.add(function () {
 				return L.resolveDefault(smartdnsServiceStatus()).then(function (res) {
 					var view = document.getElementById("service_status");
+					if (view == null) {
+						return;
+					}
+
 					view.innerHTML = smartdnsRenderStatus(res);
 				});
 			});
@@ -189,7 +197,7 @@ return view.extend({
 		o = s.taboption("settings", form.Flag, "dualstack_ip_selection", _("Dual-stack IP Selection"),
 			_("Enable IP selection between IPV4 and IPV6"));
 		o.rmempty = false;
-		o.default = o.disabled;
+		o.default = o.enabled;
 
 		// Domain prefetch load ;
 		o = s.taboption("settings", form.Flag, "prefetch_domain", _("Domain prefetch"),
@@ -201,7 +209,7 @@ return view.extend({
 		o = s.taboption("settings", form.Flag, "serve_expired", _("Serve expired"),
 			_("Attempts to serve old responses from cache with a TTL of 0 in the response without waiting for the actual resolution to finish."));
 		o.rmempty = false;
-		o.default = o.disabled;
+		o.default = o.enabled;
 
 		// Redirect;
 		o = s.taboption("settings", form.ListValue, "redirect", _("Redirect"), _("SmartDNS redirect mode"));
@@ -214,8 +222,12 @@ return view.extend({
 
 		// cache-size;
 		o = s.taboption("settings", form.Value, "cache_size", _("Cache Size"), _("DNS domain result cache size"));
-		o.datatype = 'range(0,10000)';
 		o.rempty = true;
+
+		// cache-size;
+		o = s.taboption("settings", form.Flag, "resolve_local_hostnames", _("Resolve Local Hostnames"), _("Resolve local hostnames by reading Dnsmasq lease file"));
+		o.rmempty = false;
+		o.default = o.enabled;
 
 		// rr-ttl;
 		o = s.taboption("settings", form.Value, "rr_ttl", _("Domain TTL"), _("TTL for all domain result."));
@@ -225,16 +237,21 @@ return view.extend({
 		o = s.taboption("settings", form.Value, "rr_ttl_min", _("Domain TTL Min"),
 			_("Minimum TTL for all domain result."));
 		o.rempty = true;
-		o.placeholder = "300";
-		o.default = 300;
+		o.placeholder = "600";
+		o.default = 600;
 		o.optional = true;
 
-		// second dns server;
 		// rr-ttl-max;
 		o = s.taboption("settings", form.Value, "rr_ttl_max", _("Domain TTL Max"),
 			_("Maximum TTL for all domain result."));
 		o.rempty = true;
 
+		// rr-ttl-reply-max;
+		o = s.taboption("settings", form.Value, "rr_ttl_reply_max", _("Domain Reply TTL Max"),
+			_("Maximum Reply TTL for all domain result."));
+		o.rempty = true;
+		
+		// second dns server;
 		// Eanble;
 		o = s.taboption("seconddns", form.Flag, "seconddns_enabled", _("Enable"),
 			_("Enable or disable second DNS server."));
