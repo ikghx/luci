@@ -165,10 +165,9 @@ return view.extend({
 		s.tab("seconddns", _("Second Server Settings"));
 		s.tab("custom", _("Custom Settings"));
 
-		// Eanble;
 		o = s.taboption("settings", form.Flag, "enabled", _("Enable"), _("Enable or disable smartdns server"));
+		o.rmempty = false;
 		o.default = o.disabled;
-		o.rempty = false;
 
 		// server name;
 		o = s.taboption("settings", form.Value, "server_name", _("Server Name"), _("Smartdns server name"));
@@ -178,8 +177,8 @@ return view.extend({
 
 		// Port;
 		o = s.taboption("settings", form.Value, "port", _("Local Port"), _("Smartdns local server port"));
-		o.placeholder = 6053;
-		o.default = 6053;
+		o.placeholder = 53;
+		o.default = 53;
 		o.datatype = "port";
 		o.rempty = false;
 

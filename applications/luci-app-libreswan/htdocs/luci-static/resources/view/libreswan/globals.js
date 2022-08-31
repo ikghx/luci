@@ -49,6 +49,12 @@ return view.extend({
 		o.optional = true;
 		o.depends({ listen_interface : '' });
 
+		o = s.option(form.Value, 'nflog_all', _('Enable nflog on nfgroup'));
+		o.datatype = 'uinteger';
+		o.default = 0;
+		o.rmempty = true;
+		o.optional = true;
+
 		o = s.option(form.DynamicList, 'virtual_private', _('Allowed Virtual Private'));
 		o.datatype = 'neg(ip4addr)';
 		o.multiple = true;

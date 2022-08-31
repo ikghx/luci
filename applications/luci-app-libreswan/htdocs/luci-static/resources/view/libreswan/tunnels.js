@@ -186,6 +186,13 @@ return view.extend({
 		}
 		o.modalonly = true;
 
+		o = s.taboption('advanced', form.Value, 'nflog', _('Enable nflog on nfgroup'));
+		o.default = 0;
+		o.datatype = 'uinteger';
+		o.rmempty = true;
+		o.optional = true;
+		o.modalonly = true;
+
 		o = s.taboption('interface', form.Value, 'vti_interface', _('VTI Interface'));
 		o.datatype = 'string';
 		o.modalonly = true;
