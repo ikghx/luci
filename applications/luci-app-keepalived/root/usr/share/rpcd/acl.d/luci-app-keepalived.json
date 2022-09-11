@@ -1,0 +1,15 @@
+{
+	"luci-app-keepalived" : {
+		"description" : "Grant access to LuCI app keepalived",
+		"read" : {
+			"ubus" : {
+				"keepalived" : [ "*" ]
+			},
+			"uci": [ "keepalived" ]
+		},
+		"write" : {
+			"uci": [ "keepalived" ]
+		}
+
+	}
+}

@@ -1,12 +1,12 @@
-# This is free software, licensed under the Apache License, Version 2.0
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Copyright (C) 2022 ImmortalWrt.org
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Support for v2rayA
-LUCI_DEPENDS:=+v2raya
-
-PKG_MAINTAINER:=KGHX
-PKG_LICENSE:=Apache-2.0
+LUCI_TITLE:=LuCI support for v2rayA
+LUCI_DEPENDS:=+v2raya +v2ray-geoip +v2ray-geosite
+LUCI_PKGARCH:=all
 
 include ../../luci.mk
 

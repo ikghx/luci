@@ -4,6 +4,7 @@
 'require ui';
 'require uci';
 'require rpc';
+'require tools.widgets as widgets';
 
 return view.extend({
 	callLocalSubnets: rpc.declare({
@@ -38,6 +39,7 @@ return view.extend({
 		var local_leftips = data[2]['leftip'];
 		var local_interfaces = data[3]['interfaces'];
 		var proposals = uci.sections('libreswan', 'crypto_proposal');
+		var left, left_interface;
 
 		var m, s, o, phase2;
 
@@ -64,7 +66,12 @@ return view.extend({
 		o.value('add', _('Listen'));
 		o.value('start', _('Initiate'));
 
-		o = s.taboption('general', form.Value, 'left', _('Local IP/Interface'));
+		left_interface = s.taboption('general', widgets.NetworkSelect, 'left_interface', _('Left Interface'));
+		left_interface.datatype = 'string';    
+		left_interface.multiple = false;
+		left_interface.optional = true;
+
+		o = s.taboption('general', form.Value, 'left', _('Left IP/Device'));
 		o.datatype = 'or(string, ipaddr)';
 		for (var i = 0; i < local_leftips.length; i++) {
 			o.value(local_leftips[i]);
@@ -74,6 +81,7 @@ return view.extend({
 		}
 		o.value('%defaultroute');
 		o.optional = false;
+		o.depends({ left_interface : '' });
 
 		o = s.taboption('general', form.Value, 'leftid', _('Left ID'));
 		o.datatype = 'string';

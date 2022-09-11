@@ -21,8 +21,9 @@
 'require fs';
 'require uci';
 'require form';
-'require rpc';
 'require view';
+'require poll';
+'require rpc';
 
 var conf = 'smartdns';
 var callServiceList = rpc.declare({
@@ -42,79 +43,22 @@ function getServiceStatus() {
 			return isrunning;
 		});
 }
-
-function getIPTablesRedirect() {
-	return fs.exec('/usr/sbin/iptables', ['-t', 'nat', '-nL', 'PREROUTING']).then(function (res) {
-		if (res.code === 0) {
-			return res.stdout.trim();
-		} else {
-			return "";
-		}
-	}).catch(function (err) {
-		return "";
-	});
-}
-
-function getIP6TablesRedirect() {
-	return fs.exec('/usr/sbin/ip6tables', ['-t', 'nat', '-nL', 'PREROUTING']).then(function (res) {
-		if (res.code === 0) {
-			return res.stdout.trim();
-		} else {
-			return "";
-		}
-	}).catch(function (err) {
-		return "";
-	});;
-}
-
+ 
 function smartdnsServiceStatus() {
 	return Promise.all([
-		getServiceStatus(),
-		getIPTablesRedirect(),
-		getIP6TablesRedirect()
+		getServiceStatus()
 	]);
 }
 
 function smartdnsRenderStatus(res) {
 	var renderHTML = "";
 	var isRunning = res[0];
-	var ipt = res[1];
-	var ip6t = res[2];
-
-	var serverPort = uci.get_first('smartdns', 'smartdns', 'port');
-	var redirectMode = uci.get_first('smartdns', 'smartdns', 'redirect');
-	var ipv6Enabled = uci.get_first('smartdns', 'smartdns', 'ipv6_server');
 
 	if (isRunning) {
 		renderHTML += "<span style=\"color:green;font-weight:bold\">SmartDNS - " + _("Running") + "</span>";
 	} else {
 		renderHTML += "<span style=\"color:red;font-weight:bold\">SmartDNS - " + _("Not running") + "</span>";
 		return renderHTML;
-	}
-
-	if (redirectMode === "dnsmasq-upstream") {
-		var matchLine = "127.0.0.1#" + serverPort;
-		var dnsmasqServer = uci.get_first('dhcp', 'dnsmasq', 'server') || "";
-
-		if (dnsmasqServer.indexOf(matchLine) < 0) {
-			renderHTML += "<br /><span style=\"color:red;font-weight:bold\">" + _("Dnsmasq Forwared To Smartdns Failure") + "</span>";
-		}
-	} else if (redirectMode === "redirect") {
-		var redirectRules = (ipt || '').split(/\n/).filter(function (rule) {
-			return rule.match(/REDIRECT/) && rule.match(/dpt:53/) && rule.match("ports " + serverPort);
-		});
-
-		if (redirectRules.length <= 0) {
-			renderHTML += "<br /><span style=\"color:red;font-weight:bold\">" + _("IPV4 53 Port Redirect Failure") + "</span>";
-			if (ipv6Enabled) {
-				var redirectRules = (ip6t || '').split(/\n/).filter(function (rule) {
-					return rule.match(/REDIRECT/) && rule.match(/dpt:53/) && rule.match("ports " + serverPort);
-				});
-				if (redirectRules.length <= 0) {
-					renderHTML += "<br /><span style=\"color:red;font-weight:bold\">" + _("IPV6 53 Port Redirect Failure") + "</span>";
-				}
-			}
-		}
 	}
 
 	return renderHTML;
@@ -138,7 +82,7 @@ return view.extend({
 		s = m.section(form.NamedSection, '_status');
 		s.anonymous = true;
 		s.render = function (section_id) {
-			L.Poll.add(function () {
+			var renderStatus = function () {
 				return L.resolveDefault(smartdnsServiceStatus()).then(function (res) {
 					var view = document.getElementById("service_status");
 					if (view == null) {
@@ -147,7 +91,9 @@ return view.extend({
 
 					view.innerHTML = smartdnsRenderStatus(res);
 				});
-			});
+			}
+			 poll.add(renderStatus);
+			 setTimeout(renderStatus, 1000);
 
 			return E('div', { class: 'cbi-map' },
 				E('div', { class: 'cbi-section' }, [
@@ -176,7 +122,8 @@ return view.extend({
 		o.rempty = false;
 
 		// Port;
-		o = s.taboption("settings", form.Value, "port", _("Local Port"), _("Smartdns local server port"));
+		o = s.taboption("settings", form.Value, "port", _("Local Port"), 
+			_("Smartdns local server port, smartdns will be automatically set as main dns when the port is 53."));
 		o.placeholder = 53;
 		o.default = 53;
 		o.datatype = "port";
@@ -210,23 +157,29 @@ return view.extend({
 		o.rmempty = false;
 		o.default = o.enabled;
 
-		// Redirect;
-		o = s.taboption("settings", form.ListValue, "redirect", _("Redirect"), _("SmartDNS redirect mode"));
-		o.placeholder = "none";
-		o.value("none", _("none"));
-		o.value("dnsmasq-upstream", _("Run as dnsmasq upstream server"));
-		o.value("redirect", _("Redirect 53 port to SmartDNS"));
-		o.default = "none";
-		o.rempty = false;
-
 		// cache-size;
 		o = s.taboption("settings", form.Value, "cache_size", _("Cache Size"), _("DNS domain result cache size"));
 		o.rempty = true;
 
 		// cache-size;
-		o = s.taboption("settings", form.Flag, "resolve_local_hostnames", _("Resolve Local Hostnames"), _("Resolve local hostnames by reading Dnsmasq lease file"));
+		o = s.taboption("settings", form.Flag, "resolve_local_hostnames", _("Resolve Local Hostnames"), _("Resolve local hostnames by reading Dnsmasq lease file."));
 		o.rmempty = false;
 		o.default = o.enabled;
+
+		// auto-conf-dnsmasq;
+		o = s.taboption("settings", form.Flag, "auto_set_dnsmasq", _("Automatically Set Dnsmasq"), _("Automatically set as upstream of dnsmasq when port changes."));
+		o.rmempty = false;
+		o.default = o.enabled;
+
+		// Force AAAA SOA
+		o = s.taboption("settings", form.Flag, "force_aaaa_soa", _("Force AAAA SOA"));
+		o.rmempty = false;
+		o.default = o.disabled;
+ 
+		// Force HTTPS SOA
+		o = s.taboption("settings", form.Flag, "force_https_soa", _("Force HTTPS SOA"));
+		o.rmempty = false;
+		o.default = o.disabled;
 
 		// rr-ttl;
 		o = s.taboption("settings", form.Value, "rr_ttl", _("Domain TTL"), _("TTL for all domain result."));
@@ -246,8 +199,8 @@ return view.extend({
 		o.rempty = true;
 
 		// rr-ttl-reply-max;
-		o = s.taboption("settings", form.Value, "rr_ttl_reply_max", _("Domain Reply TTL Max"),
-			_("Maximum Reply TTL for all domain result."));
+		o = s.taboption("settings", form.Value, "rr_ttl_reply_max", _("Reply Domain TTL Max"),
+			_("Reply maximum TTL for all domain result."));
 		o.rempty = true;
 		
 		// second dns server;
@@ -311,7 +264,7 @@ return view.extend({
 		o.default = o.disabled;
 
 		// Force AAAA SOA
-		o = s.taboption("seconddns", form.Flag, "force_aaaa_soa", _("Force AAAA SOA"));
+		o = s.taboption("seconddns", form.Flag, "seconddns_force_aaaa_soa", _("Force AAAA SOA"));
 		o.rmempty = false;
 		o.default = o.disabled;
 
