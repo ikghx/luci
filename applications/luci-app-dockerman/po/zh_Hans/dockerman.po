@@ -13,12 +13,6 @@ msgstr ""
 msgid "Log driver"
 msgstr "日志驱动程序"
 
-msgid "Restart firewall"
-msgstr "重启防火墙"
-
-msgid "Restart immediately"
-msgstr "立即重启"
-
 msgid "Logging driver"
 msgstr "日志驱动"
 
@@ -77,7 +71,7 @@ msgid "Enable iptables"
 msgstr "启用 iptables"
 
 msgid "Allow Docker to create iptables rules"
-msgstr "允许 Docker 创建 iptables 规则"
+msgstr "允许 Docker 创建 iptables 规则，容器的暴露端口将绕过防火墙公开至所有接口。"
 
 msgid "Docker bridge name"
 msgstr "Docker 网桥名称"
@@ -92,11 +86,8 @@ msgid "Blocked interfaces"
 msgstr "封锁接口"
 
 msgid ""
-"Prevent the external network from directly connecting to Docker host.<br />"
-"After docker starts, you need to restart the firewall to take effect."
-msgstr ""
-"阻止外部网络直接连接到 Docker 主机。<br />"
-"docker 启动后，需要重启防火墙才能生效。"
+"Prevent the external network from directly connecting to Docker host."
+msgstr "阻止外部网络直接连接到 Docker 主机。"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:604
 msgid "A list of kernel capabilities to add to the container"

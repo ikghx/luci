@@ -210,19 +210,9 @@ s = m:section(NamedSection, "firewall", "section", translate("Firewall Settings"
 
 	o = s:option(DynamicList, "blocked_interfaces",
 		translate("Blocked interfaces"),
-		translate("Prevent the external network from directly connecting to Docker host.<br />" ..
-		"After docker starts, you need to restart the firewall to take effect."))
+		translate("Prevent the external network from directly connecting to Docker host."))
 	o:value("wan")
 	o.rmempty = true
-
-	o = s:option(Button, "_restart_firewall",
-		translate("Restart firewall"))
-	o.inputstyle = "reload"
-	o.inputtitle = translate("Restart immediately")
-
-function o.write(self, section)
-	luci.sys.call("/etc/init.d/firewall restart >/dev/null 2>&1 &")
-end
 
 	o = s:option(Value, "extra_iptables_args",
 		translate("Additional iptables parameters"))

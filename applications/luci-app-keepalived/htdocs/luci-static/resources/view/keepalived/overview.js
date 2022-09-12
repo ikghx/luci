@@ -19,7 +19,7 @@ return view.extend({
 				E('tr', { 'class': 'tr table-titles' }, [
 					E('th', { 'class': 'th' }, _('Name')),
 					E('th', { 'class': 'th' }, _('Interface')),
-					E('th', { 'class': 'th' }, _('State')),
+					E('th', { 'class': 'th' }, _('state')),
 					E('th', { 'class': 'th' }, _('Probes Sent')),
 					E('th', { 'class': 'th' }, _('Probes Received')),
 					E('th', { 'class': 'th' }, _('Last Transition')),

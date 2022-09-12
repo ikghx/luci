@@ -20,7 +20,7 @@ return view.extend({
 		o.optional = false;
 		o.placeholder = 'name';
 
-		o = s.taboption('general', form.Value, 'state', _('State'),
+		o = s.taboption('general', form.Value, 'state', _('state'),
 			_('Initial State. As soon as the other machine(s) come up,') +
 			_('an election will be held and the machine with the highest "priority" will become MASTER.'));
 		o.value('MASTER', _('Master'));
