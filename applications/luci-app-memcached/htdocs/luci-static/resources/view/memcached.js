@@ -1,35 +1,68 @@
 'use strict';
 'require view';
 'require form';
+'require poll';
 'require rpc';
+'require uci';
 'require tools.widgets as widgets';
 
 var callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
-	expect: { 'memcached': {} }
+	expect: { '': {} }
 });
+
+function getServiceStatus() {
+	return L.resolveDefault(callServiceList('memcached'), {})
+		.then(function (res) {
+			var isRunning = false;
+			try {
+				isRunning = res['memcached']['instances']['instance1']['running'];
+			} catch (e) { }
+			return isRunning;
+		});
+}
+
+function renderStatus(isRunning) {
+	var spanTemp = '<em><span style="color:%s"><strong>%s</strong></span></em>';
+	var renderHTML;
+	if (isRunning) {
+		renderHTML = String.format(spanTemp, 'green', _('Running'));
+	} else {
+		renderHTML = String.format(spanTemp, 'red', _('Not running'));
+	}
+
+	return renderHTML;
+}
 
 return view.extend({
 	load: function() {
 		return Promise.all([
-			L.resolveDefault(callServiceList('memcached'))
+			uci.load('memcached')
 		]);
 	},
-	render: function(res) {
-		var running = Object.keys(res[0].instances || {}).length > 0;
 
-		var status = '';
-		if (running) {
-			status = "<span style=\"color:green;font-weight:bold\">" + _("Running") + "</span>";
-		} else {
-			status = "<span style=\"color:red;font-weight:bold\">" + _("Not running") + "</span>";
-		}
+	render: function(res) {
 
 		var m, s, o;
 
-		m = new form.Map('memcached', _('Memcached') + status, _('Distributed memory object caching system.'));
+		m = new form.Map('memcached', _('Memcached'), _('Distributed memory object caching system.'));
+
+		s = m.section(form.TypedSection);
+		s.anonymous = true;
+		s.render = function () {
+			poll.add(function () {
+				return L.resolveDefault(getServiceStatus()).then(function (res) {
+					var view = document.getElementById("service_status");
+					view.innerHTML = renderStatus(res);
+				});
+			});
+
+			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
+					E('p', { id: 'service_status' }, _('Collecting data...'))
+			]);
+		}
 
 		s = m.section(form.TypedSection, 'memcached');
 		s.anonymous = true;

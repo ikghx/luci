@@ -2,8 +2,9 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Support for zerotier.
-LUCI_DEPENDS:=+luci-compat +zerotier
+LUCI_TITLE:=LuCI for Zerotier
+LUCI_DEPENDS:=+zerotier
+LUCI_PKGARCH:=all
 
 PKG_LICENSE:=Apache-2.0
 

@@ -1,34 +1,67 @@
 'use strict';
 'require view';
 'require form';
+'require poll';
 'require rpc';
+'require uci';
 
 var callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
-	expect: { 'udpxy': {} }
+	expect: { '': {} }
 });
+
+function getServiceStatus() {
+	return L.resolveDefault(callServiceList('udpxy'), {})
+		.then(function (res) {
+			var isRunning = false;
+			try {
+				isRunning = res['udpxy']['instances']['instance1']['running'];
+			} catch (e) { }
+			return isRunning;
+		});
+}
+
+function renderStatus(isRunning) {
+	var spanTemp = '<em><span style="color:%s"><strong>%s</strong></span></em>';
+	var renderHTML;
+	if (isRunning) {
+		renderHTML = String.format(spanTemp, 'green', _('Running'));
+	} else {
+		renderHTML = String.format(spanTemp, 'red', _('Not running'));
+	}
+
+	return renderHTML;
+}
 
 return view.extend({
 	load: function() {
 		return Promise.all([
-			L.resolveDefault(callServiceList('udpxy'))
+			uci.load('udpxy')
 		]);
 	},
-	render: function(res) {
-		var running = Object.keys(res[0].instances || {}).length > 0;
 
-		var status = '';
-		if (running) {
-			status = "<span style=\"color:green;font-weight:bold\">" + _("Running") + "</span>";
-		} else {
-			status = "<span style=\"color:red;font-weight:bold\">" + _("Not running") + "</span>";
-		}
+	render: function(res) {
 
 		var m, s, o;
 
-		m = new form.Map('udpxy', _('udpxy') + status, _('udpxy is a UDP-to-HTTP multicast traffic relay daemon, here you can configure the settings.'));
+		m = new form.Map('udpxy', _('udpxy'), _('udpxy is a UDP-to-HTTP multicast traffic relay daemon, here you can configure the settings.'));
+
+		s = m.section(form.TypedSection);
+		s.anonymous = true;
+		s.render = function () {
+			poll.add(function () {
+				return L.resolveDefault(getServiceStatus()).then(function (res) {
+					var view = document.getElementById("service_status");
+					view.innerHTML = renderStatus(res);
+				});
+			});
+
+			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
+					E('p', { id: 'service_status' }, _('Collecting data...'))
+			]);
+		}
 
 		s = m.section(form.TypedSection, 'udpxy');
 		s.anonymous = false;

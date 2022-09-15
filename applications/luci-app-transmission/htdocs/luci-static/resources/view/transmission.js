@@ -5,14 +5,38 @@
 'require ui';
 'require rpc';
 'require form';
+'require poll';
 'require tools.widgets as widgets';
 
 var callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
-	expect: { 'transmission': {} }
+	expect: { '': {} }
 });
+
+function getServiceStatus() {
+	return L.resolveDefault(callServiceList('transmission'), {})
+		.then(function (res) {
+			var isRunning = false;
+			try {
+				isRunning = res['transmission']['instances']['instance1']['running'];
+			} catch (e) { }
+			return isRunning;
+		});
+}
+
+function renderStatus(isRunning) {
+	var spanTemp = '<em><span style="color:%s"><strong>%s</strong></span></em>';
+	var renderHTML;
+	if (isRunning) {
+		renderHTML = String.format(spanTemp, 'green', _('Running'));
+	} else {
+		renderHTML = String.format(spanTemp, 'red', _('Not running'));
+	}
+
+	return renderHTML;
+}
 
 function setFlagBool(o) {
 	o.enabled = 'true';
@@ -42,27 +66,34 @@ return view.extend({
 			uci.load('transmission')
 		]);
 	},
+
 	render: function(res) {
 		var port = uci.get_first('transmission', 'transmission', 'rpc_port') || '9091';
-
-		var running = Object.keys(res[0].instances || {}).length > 0;
 
 		var webinstalled = res[1] || !!uci.get_first('transmission', 'transmission', 'web_home');
 
 		var button = '';
-		if (running && webinstalled)
+		if (webinstalled)
 			button = '&#160;<a class="btn" href="http://' + window.location.hostname + ':' + port + '" target="_blank" rel="noreferrer noopener">' + _('Open Web Interface') + '</a>';
-
-		var status = '';
-		if (running) {
-			status = "<span style=\"color:green;font-weight:bold\">" + _("Running") + "</span>";
-		} else {
-			status = "<span style=\"color:red;font-weight:bold\">" + _("Not running") + "</span>";
-		}
 
 		var m, s, o;
 
-		m = new form.Map('transmission', _('Transmission') + status, _('Transmission daemon is a simple bittorrent client, here you can configure the settings.') + button);
+		m = new form.Map('transmission', _('Transmission'), _('Transmission daemon is a simple bittorrent client, here you can configure the settings.') + button);
+
+		s = m.section(form.TypedSection);
+		s.anonymous = true;
+		s.render = function () {
+			poll.add(function () {
+				return L.resolveDefault(getServiceStatus()).then(function (res) {
+					var view = document.getElementById("service_status");
+					view.innerHTML = renderStatus(res);
+				});
+			});
+
+			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
+					E('p', { id: 'service_status' }, _('Collecting data...'))
+			]);
+		}
 
 		s = m.section(form.TypedSection, 'transmission', _('Global settings'));
 		s.anonymous = true;

@@ -43,7 +43,7 @@ function getServiceStatus() {
 			return isrunning;
 		});
 }
- 
+
 function smartdnsServiceStatus() {
 	return Promise.all([
 		getServiceStatus()
@@ -54,11 +54,25 @@ function smartdnsRenderStatus(res) {
 	var renderHTML = "";
 	var isRunning = res[0];
 
+	var autoSetDnsmasq = uci.get_first('smartdns', 'smartdns', 'auto_set_dnsmasq');
+	var smartdnsPort = uci.get_first('smartdns', 'smartdns', 'port');
+	var dnsmasqServer = uci.get_first('dhcp', 'dnsmasq', 'server');
+	uci.unload('dhcp');
+
 	if (isRunning) {
 		renderHTML += "<span style=\"color:green;font-weight:bold\">SmartDNS - " + _("Running") + "</span>";
 	} else {
 		renderHTML += "<span style=\"color:red;font-weight:bold\">SmartDNS - " + _("Not running") + "</span>";
 		return renderHTML;
+	}
+
+	if (autoSetDnsmasq === '1' && smartdnsPort != '53') {
+		var matchLine = "127.0.0.1#" + smartdnsPort;
+		var dnsmasqServer = uci.get_first('dhcp', 'dnsmasq', 'server') || "";
+
+		if (dnsmasqServer.indexOf(matchLine) < 0) {
+			renderHTML += "<br /><span style=\"color:red;font-weight:bold\">" + _("Dnsmasq Forwared To Smartdns Failure") + "</span>";
+		}
 	}
 
 	return renderHTML;
@@ -67,8 +81,8 @@ function smartdnsRenderStatus(res) {
 return view.extend({
 	load: function () {
 		return Promise.all([
+			uci.load('dhcp'),
 			uci.load('smartdns'),
-			uci.load('dhcp')
 		]);
 	},
 	render: function (stats) {
@@ -92,8 +106,8 @@ return view.extend({
 					view.innerHTML = smartdnsRenderStatus(res);
 				});
 			}
-			 poll.add(renderStatus);
-			 setTimeout(renderStatus, 1000);
+			poll.add(renderStatus);
+			setTimeout(renderStatus, 1000);
 
 			return E('div', { class: 'cbi-map' },
 				E('div', { class: 'cbi-section' }, [
@@ -122,7 +136,7 @@ return view.extend({
 		o.rempty = false;
 
 		// Port;
-		o = s.taboption("settings", form.Value, "port", _("Local Port"), 
+		o = s.taboption("settings", form.Value, "port", _("Local Port"),
 			_("Smartdns local server port, smartdns will be automatically set as main dns when the port is 53."));
 		o.placeholder = 53;
 		o.default = 53;
@@ -175,7 +189,7 @@ return view.extend({
 		o = s.taboption("settings", form.Flag, "force_aaaa_soa", _("Force AAAA SOA"));
 		o.rmempty = false;
 		o.default = o.disabled;
- 
+
 		// Force HTTPS SOA
 		o = s.taboption("settings", form.Flag, "force_https_soa", _("Force HTTPS SOA"));
 		o.rmempty = false;
@@ -202,7 +216,7 @@ return view.extend({
 		o = s.taboption("settings", form.Value, "rr_ttl_reply_max", _("Reply Domain TTL Max"),
 			_("Reply maximum TTL for all domain result."));
 		o.rempty = true;
-		
+
 		// second dns server;
 		// Eanble;
 		o = s.taboption("seconddns", form.Flag, "seconddns_enabled", _("Enable"),
