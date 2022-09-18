@@ -1,6 +1,5 @@
 'use strict';
 'require view';
-'require ui';
 'require form';
 
 return view.extend({
@@ -9,8 +8,8 @@ return view.extend({
 
 		m = new form.Map('keepalived', _('Keepalived Global Settings'));
 
-		s = m.section(form.NamedSection, 'globals', 'libreswan');
-		s.anonymous = false;
+		s = m.section(form.TypedSection, 'globals');
+		s.anonymous = true;
 		s.addremove = false;
 
 		o = s.option(form.Value, 'router_id', _('Router ID'),

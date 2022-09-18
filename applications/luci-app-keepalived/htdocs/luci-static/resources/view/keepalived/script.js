@@ -63,17 +63,18 @@ return view.extend({
 		o.optional = true;
 		o.placeholder = 'name';
 
-		o = s.option(form.Value, 'script', _('Script'),
+		o = s.option(form.FileUpload, 'script', _('Script'),
 			_('Path of the script to execute'));
+		o.root_directory = '/etc/keepalived/scripts';
+		o.enable_upload = true;
 		o.optional = true;
 		o.datatype = 'file';
-		o.placeholder = '/etc/vrrp_script';
 
 		o = s.option(form.Value, 'interval', _('Interval'),
 			_('Seconds between script invocations'));
 		o.optional = true;
 		o.datatype = 'uinteger';
-		o.default = 1;
+		o.default = 60;
 
 		o = s.option(form.Value, 'weight', _('Weight'),
 			_('Adjust script execution priority'));

@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for the Keepalived
-LUCI_DEPENDS:=+luci-base +keepalived
+LUCI_DEPENDS:=+luci-base +keepalived +keepalived-sync
 LUCI_PKGARCH:=all
 PKG_LICENSE:=GPL-2.0
 

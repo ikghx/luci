@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE=Luci Application for IPSec VPN (Libreswan)
-LUCI_DEPENDS:=+libreswan
+LUCI_DEPENDS:=+luci-base +libreswan
 LUCI_PKGARCH:=all
 PKG_LICENSE:=GPL-2.0
 

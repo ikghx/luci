@@ -1,6 +1,5 @@
 'use strict';
 'require view';
-'require ui';
 'require form';
 'require uci';
 'require rpc';
@@ -8,18 +7,24 @@
 
 var callKeepalivedStatus = rpc.declare({
 	object: 'keepalived',
-	method: 'status',
+	method: 'dump',
 	expect: {  },
 });
 
 return view.extend({
+	load: function() {
+		return Promise.all([
+			uci.load('keepalived'),
+		]);
+	},
+
 	render: function() {
 		var table =
 			E('table', { 'class': 'table lases' }, [
 				E('tr', { 'class': 'tr table-titles' }, [
 					E('th', { 'class': 'th' }, _('Name')),
 					E('th', { 'class': 'th' }, _('Interface')),
-					E('th', { 'class': 'th' }, _('state')),
+					E('th', { 'class': 'th' }, _('Active State')),
 					E('th', { 'class': 'th' }, _('Probes Sent')),
 					E('th', { 'class': 'th' }, _('Probes Received')),
 					E('th', { 'class': 'th' }, _('Last Transition')),
@@ -30,13 +35,23 @@ return view.extend({
 		poll.add(function() {
 			return callKeepalivedStatus().then(function(instancesInfo) {
 				var targets = Array.isArray(instancesInfo.status) ? instancesInfo.status : [];
+				var instances = uci.sections('keepalived', 'vrrp_instance');
 
 				cbi_update_table(table,
 					targets.map(function(target) {
+						var state = (target.stats.become_master - target.stats.release_master) ? 'MASTER' : 'BACKUP';
+						if (instances != '') {
+							for (var i = 0; i < instances.length; i++) {
+								if (instances[i]['name'] == target.data.iname) {
+									state = state + '/' + instances[i]['state'];
+									break;
+								}
+							}
+						}
 						return  [ 
 							target.data.iname,
 							target.data.ifp_ifname,
-							(target.stats.become_master - target.stats.release_master) ? 'MASTER' : 'BACKUP',
+							state,
 							target.stats.advert_sent,
 							target.stats.advert_rcvd,
 							new Date(target.data.last_transition * 1000)

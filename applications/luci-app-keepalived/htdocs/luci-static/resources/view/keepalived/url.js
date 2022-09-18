@@ -1,6 +1,5 @@
 'use strict';
 'require view';
-'require ui';
 'require form';
 
 return view.extend({

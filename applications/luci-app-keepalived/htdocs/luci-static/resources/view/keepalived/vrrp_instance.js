@@ -1,13 +1,14 @@
 'use strict';
 'require view';
-'require ui';
 'require form';
 'require uci';
+'require network';
 'require tools.widgets as widgets';
 
 return view.extend({
 	load: function() {
 		return Promise.all([
+			network.getDevices(),
 			uci.load('keepalived'),
 		]);
 	},
@@ -43,7 +44,7 @@ return view.extend({
 
 		o = s.taboption('general', form.Value, 'priority', _('Priority'),
 			_('A server with a higher priority becomes a MASTER'));
-		o.datatype = 'unteger';
+		o.datatype = 'uinteger';
 		o.optional = false;
 		o.rmempty = false;
 
@@ -75,7 +76,7 @@ return view.extend({
 		o.optional = false;
 	},
 
-	renderPeerTab: function(s) {
+	renderPeerTab: function(s, netDevs) {
 		var o;
 
 		o = s.taboption('peer', form.Value, 'unicast_src_ip', _('Unicast Source IP'),
@@ -83,11 +84,22 @@ return view.extend({
 		o.datatype = 'ipaddr';
 		o.optional = true;
 		o.modalonly = true;
+		for (var i = 0; i < netDevs.length; i++) {
+			var addrs = netDevs[i].getIPAddrs();
+			for (var j = 0; j < addrs.length; j++) {
+				o.value(addrs[j].split('/')[0]);
+			}
+		}
 
+		var peers = uci.sections('keepalived', 'peer');
 		o = s.taboption('peer', form.DynamicList, 'unicast_peer', _('Peer'),
 			_('Do not send VRRP adverts over VRRP multicast group.') + ' ' +
 			_('Instead it sends adverts to the following list of ip addresses using unicast design fashion'));
-		o.datatype = 'ipaddr';
+		if (peers != '') {
+			for (var i = 0; i < peers.length; i++) {
+				o.value(peers[i]['name']);
+			}
+		}
 
 		o = s.taboption('peer', form.Value, 'mcast_src_ip', _('Multicast Source IP'),
 			_('If you want to hide location of vrrpd, use this IP for multicast vrrp packets'));
@@ -102,6 +114,7 @@ return view.extend({
 
 		o = s.taboption('peer', form.Value, 'auth_pass', _('Password'),
 			_('Password for accessing vrrpd, should be the same on all machines'));
+		o.datatype = 'maxlength(8)';
 		o.password = true;
 		o.modalonly = true;
 		o.depends({ 'auth_type' : 'PASS' });
@@ -245,6 +258,7 @@ return view.extend({
 	},
 
 	render: function(data) {
+		var netDevs = data[0];
 		var m, s, o;
 
 		m = new form.Map('keepalived', _('VRRP Instance'),
@@ -262,7 +276,7 @@ return view.extend({
 		o = s.tab('advanced', _('Advanced'));
 
 		this.renderGeneralTab(s);
-		this.renderPeerTab(s);
+		this.renderPeerTab(s, netDevs);
 		this.renderTrackingTab(s);
 		this.renderGARPTab(s);
 		this.renderAdvancedTab(s);

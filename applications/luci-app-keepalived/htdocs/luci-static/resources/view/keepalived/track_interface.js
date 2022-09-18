@@ -1,6 +1,5 @@
 'use strict';
 'require view';
-'require ui';
 'require form';
 'require tools.widgets as widgets';
 'require uci';

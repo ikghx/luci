@@ -8,8 +8,10 @@
 			"uci": [ "keepalived" ]
 		},
 		"write" : {
-			"uci": [ "keepalived" ]
+			"uci": [ "keepalived" ],
+			"file" : {
+				"/etc/keepalived/keys/*" : [ "write" ]
+			}
 		}
-
 	}
 }
