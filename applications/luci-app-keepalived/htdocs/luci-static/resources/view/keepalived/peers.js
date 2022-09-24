@@ -56,20 +56,20 @@ return view.extend({
 		o.depends({ 'sync' : '1' });
 
 		o = s.option(form.Value, 'ssh_user', _('SSH User'),
-			_('SSH username of peer to send files over rsync'));
-		o.placeholder = 'root';
-		o.depends({ 'sync' : '1', 'sync_mode' : 'send' });
+			_('SSH username of peer to send files over rsync. Must be same on Master/Backup'));
+		o.default = 'keepalived-sync';
+		o.depends({ 'sync' : '1' });
 		o.modalonly = true;
 
 		o = s.option(form.Value, 'ssh_port', _('SSH Port'),
 			_('If peer runs on non standard ssh port, change to correct ssh port number'));
 		o.datatype = 'port';
-		o.placeholder = '22';
+		o.default = '22';
 		o.modalonly = true;
 		o.depends({ 'sync' : '1', 'sync_mode' : 'send' });
 
 		o = s.option(form.Value, 'sync_dir', _('Sync Directory'),
-			_('Sender will send files to this location of receiver'));
+			_('Sender will send files to this location of receiver. Must be same on Master/Backup'));
 		o.default = '/usr/share/keepalived/rsync';
 		o.optional = false;
 		o.rmempty = false;
@@ -84,7 +84,7 @@ return view.extend({
 		o.modalonly = true;
 		o.datatype = 'file';
 		o.depends({ 'sync' : '1', 'sync_mode' : 'send' });
-	
+
 		o = s.option(form.TextValue, 'ssh_pubkey', _('SSH Public Key'),
 			_('Authorize ssh public key of peer'));
 		o.datatype = 'string';

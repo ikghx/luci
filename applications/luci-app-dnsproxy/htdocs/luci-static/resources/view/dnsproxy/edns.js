@@ -1,7 +1,6 @@
 'use strict';
 'require view';
 'require form';
-'require rpc';
 
 return view.extend({
 
