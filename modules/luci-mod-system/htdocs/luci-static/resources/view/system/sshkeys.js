@@ -22,7 +22,7 @@ var SSHPubkeyDecoder = baseclass.singleton({
 
 	decode: function(s)
 	{
-		var parts = s.trim().match(/^((?:(?:^|,)[^ =,]+(?:=(?:[^ ",]+|"(?:[^"\\]|\\.)*"))?)+ +)?(ssh-dss|ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp[0-9]+|sk-ecdsa-sha2-nistp256@openssh.com|sk-ssh-ed25519@openssh.com) +([^ ]+)( +.*)?$/);
+		var parts = s.trim().match(/^((?:(?:^|,)[^ =,]+(?:=(?:[^ ",]+|"(?:[^"\\]|\\.)*"))?)+ +)?(ssh-dss|ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp[0-9]+|sk-ecdsa-sha2-nistp256@openssh\.com|sk-ssh-ed25519@openssh\.com) +([^ ]+)( +.*)?$/);
 
 		if (!parts)
 			return null;

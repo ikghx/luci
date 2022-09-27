@@ -289,9 +289,11 @@ return view.extend({
 		o.optional = true;
 		o.depends('logqueries', '1');
 
-		o = s.taboption('general', form.Flag, 'log_async',
+		o = s.taboption('general', form.Value, 'log_async',
 			_('Enable asynchronous logging'),
 			_('If the queue of log-lines becomes full, dnsmasq will log the overflow, and the number of messages lost. The default queue length is 5.'));
+		o.datatype = 'range(5,100)';
+		o.depends('logqueries', '1');
 		o.optional = true;
 
 		o = s.taboption('general', form.DynamicList, 'server',
@@ -331,12 +333,18 @@ return view.extend({
 		o.optional = false;
 		o.rmempty = false;
 
-		o = s.taboption('general', form.Flag, 'nonwildcard',
-			_('Non-wildcard'),
-			_('Bind dynamically to interfaces rather than wildcard address.'));
-		o.default = o.enabled;
-		o.optional = false;
-		o.rmempty = true;
+		o = s.taboption('general', form.ListValue, 'bind',
+			_('Bind mode'),
+			_('Dynamically bind to an interface or only to the interface in use.'));
+		o.value('dynamic', _('Bind dynamic'));
+		o.value('interfaces', _('Bind interface'));
+
+		o = s.taboption('general', form.ListValue, 'dnsfilter',
+			_('DNS filter'),
+			_('Filter these addresses from dnsmasq replies.'));
+		o.value('A', _('IPv4 address'));
+		o.value('AAAA', _('IPv6 address'));
+		o.optional = true;
 
 		o = s.taboption('general', form.DynamicList, 'interface',
 			_('Listen interfaces'),
@@ -350,12 +358,13 @@ return view.extend({
 		o.value('pppoe-wan');
 		o.optional = true;
 
-		o = s.taboption('general', form.DynamicList, 'connmark_allowlist_enable',
-			_('connection track mark'));
+		o = s.taboption('general', form.Flag, 'connmark_allowlist_enable',
+			_('Enable connmark allow list'));
 		o.optional = true;
 
 		o = s.taboption('general', form.DynamicList, 'connmark_allowlist',
 			_('connmark allow list'));
+		o.depends('connmark_allowlist_enable', '1');
 		o.optional = true;
 		o.placeholder = '*.example.com';
 
@@ -453,12 +462,13 @@ return view.extend({
 
 		o = s.taboption('advanced', form.Flag, 'localmx',
 			_('Use local MX record'),
-			_('Return an MX record pointing to the host given by mx target for each local machine.'));
+			_('Return an MX record pointing to the mx-target for all local machines.'));
 		o.optional = true;
 
 		o = s.taboption('advanced', form.Value, 'mxtarget',
 			_('MX target'),
 			_('Specify the default target for the MX record returned by dnsmasq.'));
+		o.depends('localmx', '1');
 		o.optional = true;
 		o.placeholder = 'hostname';
 
@@ -466,7 +476,7 @@ return view.extend({
 			_('PTR record'),
 			_('Return a PTR DNS record.'));
 		o.optional = true;
-		o.placeholder = '1.9.168.192.in-addr.arpa';
+		o.placeholder = '1.9.168.192.in-addr.arpa.,"name"';
 
 		o = s.taboption('advanced', form.DynamicList, 'bogusnxdomain',
 			_('IPs to override with NXDOMAIN'),
