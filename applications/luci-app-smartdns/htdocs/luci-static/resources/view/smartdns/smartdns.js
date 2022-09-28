@@ -32,6 +32,7 @@ var callServiceList = rpc.declare({
 	params: ['name'],
 	expect: { '': {} }
 });
+var pollAdded = false;
 
 function getServiceStatus() {
 	return L.resolveDefault(callServiceList(conf), {})
@@ -106,7 +107,11 @@ return view.extend({
 					view.innerHTML = smartdnsRenderStatus(res);
 				});
 			}
-			poll.add(renderStatus, 1);
+
+			if (pollAdded == false) {
+				poll.add(renderStatus, 1);
+				pollAdded = true;
+			}
 
 			return E('div', { class: 'cbi-map' },
 				E('div', { class: 'cbi-section' }, [
@@ -196,25 +201,28 @@ return view.extend({
 
 		// rr-ttl;
 		o = s.taboption("settings", form.Value, "rr_ttl", _("Domain TTL"), _("TTL for all domain result."));
+		o.datatype = 'uinteger';
 		o.rempty = true;
 
 		// rr-ttl-min;
 		o = s.taboption("settings", form.Value, "rr_ttl_min", _("Domain TTL Min"),
 			_("Minimum TTL for all domain result."));
 		o.rempty = true;
+		o.datatype = 'uinteger';
 		o.placeholder = "600";
 		o.default = 600;
-		o.optional = true;
 
 		// rr-ttl-max;
 		o = s.taboption("settings", form.Value, "rr_ttl_max", _("Domain TTL Max"),
 			_("Maximum TTL for all domain result."));
 		o.rempty = true;
+		o.datatype = 'uinteger';
 
 		// rr-ttl-reply-max;
 		o = s.taboption("settings", form.Value, "rr_ttl_reply_max", _("Reply Domain TTL Max"),
 			_("Reply maximum TTL for all domain result."));
 		o.rempty = true;
+		o.datatype = 'uinteger';
 
 		// second dns server;
 		// Eanble;
@@ -290,7 +298,12 @@ return view.extend({
 			return fs.trimmed('/etc/smartdns/custom.conf');
 		};
 		o.write = function (section_id, formvalue) {
-			return fs.write('/etc/smartdns/custom.conf', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
+			return this.cfgvalue(section_id).then(function (value) {
+				if (value == formvalue) {
+					return
+				}
+				return fs.write('/etc/smartdns/custom.conf', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
+			});
 		};
 
 		o = s.taboption("custom", form.Flag, "coredump", _("Generate Coredump"),
@@ -429,7 +442,12 @@ return view.extend({
 			return fs.trimmed('/etc/smartdns/address.conf');
 		};
 		o.write = function (section_id, formvalue) {
-			return fs.write('/etc/smartdns/address.conf', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
+			return this.cfgvalue(section_id).then(function (value) {
+				if (value == formvalue) {
+					return
+				}
+				return fs.write('/etc/smartdns/address.conf', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
+			});
 		};
 
 		// IP Blacklist;
@@ -441,7 +459,12 @@ return view.extend({
 			return fs.trimmed('/etc/smartdns/blacklist-ip.conf');
 		};
 		o.write = function (section_id, formvalue) {
-			return fs.write('/etc/smartdns/blacklist-ip.conf', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
+			return this.cfgvalue(section_id).then(function (value) {
+				if (value == formvalue) {
+					return
+				}
+				return fs.write('/etc/smartdns/blacklist-ip.conf', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
+			});
 		};
 
 		// Doman addresss;

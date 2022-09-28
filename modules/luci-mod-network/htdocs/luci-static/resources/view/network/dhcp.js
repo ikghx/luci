@@ -358,16 +358,6 @@ return view.extend({
 		o.value('pppoe-wan');
 		o.optional = true;
 
-		o = s.taboption('general', form.Flag, 'connmark_allowlist_enable',
-			_('Enable connmark allow list'));
-		o.optional = true;
-
-		o = s.taboption('general', form.DynamicList, 'connmark_allowlist',
-			_('connmark allow list'));
-		o.depends('connmark_allowlist_enable', '1');
-		o.optional = true;
-		o.placeholder = '*.example.com';
-
 		s.taboption('files', form.Flag, 'readethers',
 			_('Use <code>/etc/ethers</code>'),
 			_('Read <code>/etc/ethers</code> to configure the DHCP server.'));
@@ -472,6 +462,16 @@ return view.extend({
 		o.optional = true;
 		o.placeholder = 'hostname';
 
+		o = s.taboption('advanced', form.Flag, 'connmark_allowlist_enable',
+			_('Enable connmark allow list'));
+		o.optional = true;
+
+		o = s.taboption('advanced', form.DynamicList, 'connmark_allowlist',
+			_('connmark allow list'));
+		o.depends('connmark_allowlist_enable', '1');
+		o.optional = true;
+		o.placeholder = '*.example.com';
+
 		o = s.taboption('advanced', form.DynamicList, 'ptr_record',
 			_('PTR record'),
 			_('Return a PTR DNS record.'));
@@ -516,7 +516,7 @@ return view.extend({
 			_('Max. concurrent queries'),
 			_('Maximum allowed number of concurrent DNS queries.'));
 		o.optional = true;
-		o.datatype = 'uinteger';
+		o.datatype = 'range(0,65535)';
 		o.placeholder = 150;
 
 		o = s.taboption('advanced', form.Value, 'cachesize',
@@ -525,6 +525,27 @@ return view.extend({
 		o.optional = true;
 		o.datatype = 'range(0,10000)';
 		o.placeholder = 150;
+
+		o = s.taboption('advanced', form.Value, 'min_cache_ttl',
+			_('Minimum cache TTL'),
+			_('Specify the minimum TTL for cached DNS entries.'));
+		o.optional = true;
+		o.datatype = 'range(0,3600)';
+		o.placeholder = 60;
+
+		o = s.taboption('advanced', form.Value, 'max_cache_ttl',
+			_('Maximum cache TTL'),
+			_('Specify the maximum TTL for cached DNS entries.'));
+		o.optional = true;
+		o.datatype = 'range(0,3600)';
+		o.placeholder = 3600;
+
+		o = s.taboption('advanced', form.Value, 'max_ttl',
+			_('Maximum TTL'),
+			_('Specify time-to-live in seconds for maximum TTL to send to clients.'));
+		o.optional = true;
+		o.datatype = 'range(0,3600)';
+		o.placeholder = 600;
 
 		o = s.taboption('template', form.TextValue, '_tmpl',
 			_(''),
