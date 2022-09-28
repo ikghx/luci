@@ -55,12 +55,6 @@ return view.extend({
 		o.default = 'send';
 		o.depends({ 'sync' : '1' });
 
-		o = s.option(form.Value, 'ssh_user', _('SSH User'),
-			_('SSH username of peer to send files over rsync. Must be same on Master/Backup'));
-		o.default = 'keepalived-sync';
-		o.depends({ 'sync' : '1' });
-		o.modalonly = true;
-
 		o = s.option(form.Value, 'ssh_port', _('SSH Port'),
 			_('If peer runs on non standard ssh port, change to correct ssh port number'));
 		o.datatype = 'port';
