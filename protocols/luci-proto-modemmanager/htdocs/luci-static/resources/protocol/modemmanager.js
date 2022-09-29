@@ -133,6 +133,11 @@ return network.registerProtocol('modemmanager', {
 		o.placeholder = '46001';
 		o.datatype = 'uinteger';
 
+		o = s.taboption('general', form.ListValue, 'rat', _('Radio access technology for the device'));
+		o.value('5G');
+		o.value('4G');
+		o.value('3G');
+
 		o = s.taboption('general', form.Value, 'signalrate', _('Signal refresh rate'));
 		o.datatype = 'uinteger';
 
