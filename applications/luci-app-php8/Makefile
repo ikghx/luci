@@ -13,8 +13,8 @@ LUCI_DEPENDS:=+php8-mod-mysqli +php8-mod-mbstring +php8-mod-ldap \
 +php8-mod-openssl +php8-mod-opcache +php8-mod-sockets +php8-mod-soap \
 +php8-mod-simplexml +php8-mod-shmop +php8-mod-session +php8-mod-zip +php8-mod-xmlwriter \
 +php8-mod-xmlreader +php8-mod-xml +php8-mod-tokenizer +php8-mod-sysvshm +php8-mod-sysvsem \
-+php8-mod-sysvmsg +php8-pecl-http +php8-pecl-dio \
-+php8-pecl-mcrypt +php8-pecl-redis php8-pecl-imagick +php8-pecl-sodium
++php8-mod-sodium +php8-mod-sysvmsg +php8-pecl-http +php8-pecl-dio \
++php8-pecl-mcrypt +php8-pecl-redis +php8-pecl-imagick
 
 include ../../luci.mk
 

@@ -14,7 +14,7 @@ LUCI_DEPENDS:=+php7-mod-mysqli +php7-mod-mbstring +php7-mod-ldap +php7-mod-json 
 +php7-mod-simplexml +php7-mod-shmop +php7-mod-session +php7-mod-zip +php7-mod-xmlwriter \
 +php7-mod-xmlreader +php7-mod-xml +php7-mod-tokenizer +php7-mod-sysvshm +php7-mod-sysvsem \
 +php7-mod-sysvmsg +php7-pecl-http +php7-pecl-libevent +php7-pecl-dio \
-+php7-pecl-mcrypt +php7-pecl-redis php7-pecl-imagick +php7-pecl-sodium
++php7-pecl-mcrypt +php7-pecl-redis +php7-pecl-imagick +php7-pecl-sodium
 
 include ../../luci.mk
 
