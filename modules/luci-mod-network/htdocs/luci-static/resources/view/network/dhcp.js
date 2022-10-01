@@ -408,7 +408,8 @@ return view.extend({
 
 		s.taboption('advanced', form.Flag, 'filterwin2k',
 			_('Filter useless'),
-			_('Avoid uselessly triggering dial-on-demand links by filtering SRV and SOA records, as well as names containing underscores. May prevent VoIP or other services from working.'));
+			_('Avoid uselessly triggering dial-on-demand links (filters SRV/SOA records and names with underscores).') + '<br />' +
+			_('May prevent VoIP or other services from working.'));
 
 		s.taboption('advanced', form.Flag, 'localise_queries',
 			_('Localise queries'),
