@@ -88,7 +88,7 @@ return view.extend({
 		o.datatype = 'port';
 		o.rmempty = true;
 
-		o = s.option(form.Value, 'secret', _('Auth secret'), _('Optional'));
+		o = s.option(form.Value, 'secret', _('Auth secret'), _('Optional, Equivalent to Device ID.'));
 		o.rmempty = true;
 
 		o = s.option(form.DynamicList, 'join', _('Network ID'));
