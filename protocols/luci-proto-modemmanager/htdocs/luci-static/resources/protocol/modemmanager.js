@@ -138,6 +138,8 @@ return network.registerProtocol('modemmanager', {
 		o.value('4G');
 		o.value('3G');
 
+		s.taboption('advanced', form.Flag, 'allow_roaming', _('allow roaming'));
+
 		o = s.taboption('general', form.Value, 'signalrate', _('Signal refresh rate'));
 		o.datatype = 'uinteger';
 

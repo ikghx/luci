@@ -177,6 +177,7 @@ return view.extend({
 
 		// cache-size;
 		o = s.taboption("settings", form.Value, "cache_size", _("Cache Size"), _("DNS domain result cache size"));
+		o.datatype = 'uinteger';
 		o.rempty = true;
 
 		// cache-size;
