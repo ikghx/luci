@@ -17,7 +17,9 @@
 			"file": {
 				"/etc/mysql/conf.d/50-mysql-clients.cnf": [ "write" ],
 				"/etc/mysql/conf.d/50-server.cnf": [ "write" ],
-				"/etc/init.d/mysqld restart": [ "exec" ]
+				"/etc/init.d/mysqld restart": [ "exec" ],
+				"/etc/init.d/mysqld start" : [ "exec" ],
+				"/etc/init.d/mysqld stop" : [ "exec" ]
 			},
 			"uci": [ "mariadb" ]
 		}

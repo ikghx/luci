@@ -17,7 +17,7 @@ function getServiceStatus() {
 		.then(function (res) {
 			var isRunning = false;
 			try {
-				isRunning = res['dnsproxy']['instances']['instance1']['running'];
+				isRunning = res['dnsproxy']['instances']['dnsproxy']['running'];
 			} catch (e) { }
 			return isRunning;
 		});

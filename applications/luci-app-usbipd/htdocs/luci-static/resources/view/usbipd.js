@@ -17,7 +17,7 @@ function getServiceStatus() {
 		.then(function (res) {
 			var isRunning = false;
 			try {
-				isRunning = res['usbipd']['instances']['instance1']['running'];
+				isRunning = res['usbipd']['instances']['usbipd']['running'];
 			} catch (e) { }
 			return isRunning;
 		});

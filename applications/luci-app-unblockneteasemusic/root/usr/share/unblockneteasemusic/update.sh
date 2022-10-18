@@ -21,17 +21,17 @@ clean_log(){
 check_core_latest_version() {
 	core_latest_ver="$(uclient-fetch -qO- 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jsonfilter -e '@[0].sha')"
 	[ -n "${core_latest_ver}" ] || { echo -e "\nFailed to check latest core version, please try again later." >> "/tmp/$NAME.log"; rm -f "$LOCK"; exit 1; }
-	if [ ! -e "/usr/share/$NAME/core_local_ver" ]; then
+	if [ ! -e "/usr/share/$NAME/core/local_ver" ]; then
 		clean_log
 		echo -e "Local version: NOT FOUND, latest version: ${core_latest_ver}." >> "/tmp/$NAME.log"
 		update_core
 	else
-		if [ "$(cat /usr/share/$NAME/core_local_ver)" != "${core_latest_ver}" ]; then
+		if [ "$(cat /usr/share/$NAME/core/local_ver)" != "${core_latest_ver}" ]; then
 			clean_log
-			echo -e "Local version: $(cat /usr/share/$NAME/core_local_ver 2>"/dev/null"), latest version: ${core_latest_ver}." >> "/tmp/$NAME.log"
+			echo -e "Local version: $(cat /usr/share/$NAME/core/local_ver 2>"/dev/null"), latest version: ${core_latest_ver}." >> "/tmp/$NAME.log"
 			update_core
 		else
-			echo -e "\nLocal version: $(cat /usr/share/$NAME/core_local_ver 2>"/dev/null"), latest version: ${core_latest_ver}." >> "/tmp/$NAME.log"
+			echo -e "\nLocal version: $(cat /usr/share/$NAME/core/local_ver 2>"/dev/null"), latest version: ${core_latest_ver}." >> "/tmp/$NAME.log"
 			echo -e "You're already using the latest version." >> "/tmp/$NAME.log"
 			rm -f "$LOCK"
 			exit 3
@@ -65,7 +65,7 @@ update_core() {
 		}
 	done
 
-	echo -e "${core_latest_ver}" > "/usr/share/$NAME/core_local_ver"
+	echo -e "${core_latest_ver}" > "/usr/share/$NAME/core/local_ver"
 	[ -n "${non_restart}" ] || /etc/init.d/"$NAME" restart
 
 	echo -e "Succeeded in updating core." > "/tmp/$NAME.log"
@@ -75,12 +75,12 @@ update_core() {
 
 case "$1" in
 	"check_version")
-		if [ ! -e "/usr/share/$NAME/core_local_ver" ] || [ ! -e "/usr/share/$NAME/core/app.js" ]; then
+		if [ ! -e "/usr/share/$NAME/core/local_ver" ] || [ ! -e "/usr/share/$NAME/core/app.js" ]; then
 			echo -e "Not installed."
 			exit 2
 		else
 			version="$(node "/usr/share/$NAME/core/app.js" -v)"
-			commit="$(cat "/usr/share/$NAME/core_local_ver" | head -c7)"
+			commit="$(cat "/usr/share/$NAME/core/local_ver" | head -c7)"
 			echo "$version ($commit)"
 			exit 0
 		fi
@@ -96,7 +96,7 @@ case "$1" in
 		;;
 	"remove_core")
 		/etc/init.d/"$NAME" stop
-		rm -rf "/usr/share/$NAME/core" "/usr/share/$NAME/core_local_ver"
+		rm -rf "/usr/share/$NAME/core" "/usr/share/$NAME/core/local_ver"
 		;;
 	*)
 		echo -e "Usage: $0/update.sh check_version | update_core | remove_core"

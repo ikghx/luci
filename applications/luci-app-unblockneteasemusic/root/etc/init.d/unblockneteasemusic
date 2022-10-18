@@ -68,7 +68,7 @@ append_filter_client() {
 
 start_service() {
 	config_load "$NAME"
-	is_enabled "config" "enable" || exit 1
+	is_enabled "config" "enable" || return 1
 
 	local update_time
 	config_get update_time "config" "update_time" "3"
@@ -77,7 +77,7 @@ start_service() {
 	echo "*/5 * * * * /usr/share/$NAME/log_check.sh" >> "/etc/crontabs/root"
 	/etc/init.d/cron restart
 
-	[ ! -s "/usr/share/$NAME/core/app.js" ] && { rm -f "/usr/share/$NAME/local_ver"; sh "/usr/share/$NAME/update.sh" "update_core_non_restart"; }
+	[ ! -s "/usr/share/$NAME/core/app.js" ] && { rm -f "/usr/share/$NAME/core/local_ver"; sh "/usr/share/$NAME/update.sh" "update_core_non_restart"; }
 	[ ! -s "/usr/share/$NAME/core/app.js" ] && { echo "Core Not Found, please download it before starting." >> "/tmp/$NAME.log"; exit 1; }
 
 	procd_open_instance "$NAME"
@@ -208,7 +208,6 @@ stop_service() {
 	rm -f "${UPGRADE_CONF}"
 	is_enabled "config" "keep_core_when_upgrade" && {
 		echo "/usr/share/$NAME/core/" >> "${UPGRADE_CONF}"
-		echo "/usr/share/$NAME/local_ver" >> "${UPGRADE_CONF}"
 	}
 
 	local self_issue_cert_crt self_issue_cert_key

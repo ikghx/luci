@@ -43,7 +43,7 @@ return view.extend({
 		o = s.option(CBIMiniDLNAStatus);
 
 
-		s = m.section(form.TypedSection, 'minidlna', 'miniDLNA Settings');
+		s = m.section(form.TypedSection, 'minidlna');
 		s.anonymous = true;
 		s.addremove = false;
 

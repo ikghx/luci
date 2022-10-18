@@ -1,6 +1,7 @@
 'use strict';
 'require view';
 'require form';
+'require poll';
 'require rpc';
 'require uci';
 
