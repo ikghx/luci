@@ -1021,7 +1021,7 @@ return view.extend({
 
 					o = s.taboption("timer", form.ListValue, "force_unit",
 						_('Force Unit'),
-						_("Interval unit to force updates send to DDNS Provider"));
+						_("Interval unit to force updates sent to DDNS Provider."));
 					o.modalonly = true;
 					o.optional = true;
 					o.default  = "minutes"
@@ -1031,16 +1031,16 @@ return view.extend({
 
 					o = s.taboption("timer", form.Flag, "run_once",
 						_("run only once"),
-						_("If no IP address change is detected, the script is only allowed to run once."));
+						_("If no IP address change is detected, the script will stop running."));
 					o.rmempty  = false;
 					o.optional = true;
 					o.modalonly = true;
 
 					o = s.taboption("timer", form.Value, "retry_count",
 						_("Error Retry Counter"),
-						_("On Error the script will stop execution after given number of retrys")
+						_("On Error the script will stop execution after given number of retrys.")
 						+ "<br />" +
-						_("The default setting of '0' will retry infinite."));
+						_("The default setting of '0' will retry infinitely."));
 					o.placeholder = "0";
 					o.optional = true;
 					o.modalonly = true;
@@ -1048,9 +1048,7 @@ return view.extend({
 
 					o = s.taboption("timer", form.Value, "retry_interval",
 						_("Error Retry Interval"),
-						_("On Error the script will stop execution after given number of retrys")
-						+ "<br />" +
-						_("The default setting of '0' will retry infinite."));
+						_("The interval between which each succesive retry will commence."));
 					o.placeholder = "60";
 					o.optional = true;
 					o.modalonly = true;
@@ -1058,7 +1056,7 @@ return view.extend({
 
 					o = s.taboption("timer", form.ListValue, "retry_unit",
 						_('Retry Unit'),
-						_("On Error the script will retry the failed action after given time"));
+						_("Which time units to use for retry counters."));
 					o.modalonly = true;
 					o.optional = true;
 					o.default  = "seconds"

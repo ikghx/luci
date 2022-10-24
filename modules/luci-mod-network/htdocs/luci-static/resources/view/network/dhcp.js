@@ -232,7 +232,8 @@ return view.extend({
 		return Promise.all([
 			callHostHints(),
 			callDUIDHints(),
-			getDHCPPools()
+			getDHCPPools(),
+			network.getDevices()
 		]);
 	},
 
@@ -241,6 +242,7 @@ return view.extend({
 		    hosts = hosts_duids_pools[0],
 		    duids = hosts_duids_pools[1],
 		    pools = hosts_duids_pools[2],
+		    ndevs = hosts_duids_pools[3],
 		    m, s, o, ss, so;
 
 		m = new form.Map('dhcp', _('DHCP and DNS'),
@@ -251,11 +253,14 @@ return view.extend({
 		s.addremove = false;
 
 		s.tab('general', _('General Settings'));
+		s.tab('relay', _('Relay'));
 		s.tab('files', _('Resolv and Hosts Files'));
 		s.tab('pxe_tftp', _('PXE/TFTP Settings'));
 		s.tab('advanced', _('Advanced Settings'));
 		s.tab('leases', _('Static Leases'));
 		s.tab('hosts', _('Hostnames'));
+		s.tab('srvhosts', _('SRV'));
+		s.tab('mxhosts', _('MX'));
 		s.tab('ipsets', _('IP sets'));
 		s.tab('template', _('Edit configuration'));
 
@@ -305,7 +310,10 @@ return view.extend({
 
 		o = s.taboption('general', form.DynamicList, 'address',
 			_('Static address'),
-			_('List of domains to force to an IP address.'));
+			_('Resolve specified FQDNs to an IP.') + '<br />' +
+			_('Syntax: <code>/fqdn[/fqdn…]/[ipaddr]</code>.') + '<br />' +
+			_('<code>/#/</code> matches any domain. <code>/example.com/</code> returns NXDOMAIN.') + '<br />' +
+			_('<code>/example.com/#</code> returns NULL addresses (<code>0.0.0.0</code> and <code>::</code>) for example.com and its subdomains.'));
 		o.optional = true;
 		o.placeholder = '/openwrt.org/192.168.9.1';
 
@@ -357,6 +365,64 @@ return view.extend({
 			_('Do not listen on the specified interfaces.'));
 		o.value('pppoe-wan');
 		o.optional = true;
+
+		o = s.taboption('relay', form.SectionValue, '__relays__', form.TableSection, 'relay', null,
+			_('Relay DHCP requests elsewhere. OK: v4<->v4, v6<->v6. Not OK: v4<->v6, v6<->v4.')
+			+ '<br />' + _('Note: you may also need a DHCP Proxy (currently unavailable) when specifying a non-standard Relay addr port(<code>addr#port</code>).')
+			+ '<br />' + _('You may add multiple unique Relay addr on the same Listen addr.'));
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.anonymous = true;
+		ss.sortable  = true;
+		ss.rowcolors = true;
+
+		so = ss.option(form.Value, 'id', _('ID'));
+		so.rmempty = false;
+		so.optional = true;
+
+		so = ss.option(widgets.NetworkSelect, 'interface', _('Interface'));
+		so.optional = true;
+		so.rmempty = false;
+		so.placeholder = 'lan';
+
+		so = ss.option(form.Value, 'local_addr', _('Listen addr'));
+		so.rmempty = false;
+		so.datatype = 'ipaddr';
+
+		for (var family = 4; family <= 6; family += 2) {
+			for (var i = 0; i < ndevs.length; i++) {
+				var addrs = (family == 6) ? ndevs[i].getIP6Addrs() : ndevs[i].getIPAddrs();
+				for (var j = 0; j < addrs.length; j++)
+					so.value(addrs[j].split('/')[0]);
+			}
+		}
+
+		so = ss.option(form.Value, 'server_addr', _('Relay addr'));
+		so.rmempty = false;
+		so.optional = false;
+		so.placeholder = '192.168.10.1#5335';
+
+		so.validate = function(section, value) {
+			var m = this.section.formvalue(section, 'local_addr'),
+			    n = this.section.formvalue(section, 'server_addr'),
+			    p;
+			if (n != null && n != '')
+			    p = n.split('#');
+				if (p.length > 1 && !/^[0-9]+$/.test(p[1]))
+					return _('Expected port number.');
+				else
+					n = p[0];
+
+			if ((m == null || m == '') && (n == null || n == ''))
+				return _('Both Listen addr and Relay addr must be specified.');
+
+			if ((validation.parseIPv6(m) && validation.parseIPv6(n)) ||
+				validation.parseIPv4(m) && validation.parseIPv4(n))
+				return true;
+			else
+				return _('Listen and Relay IP family must be homogeneous.')
+		};
 
 		s.taboption('files', form.Flag, 'readethers',
 			_('Use <code>/etc/ethers</code>'),
@@ -450,18 +516,6 @@ return view.extend({
 			_('All servers'),
 			_('Query all available upstream resolvers.'));
 		o.optional = true;
-
-		o = s.taboption('advanced', form.Flag, 'localmx',
-			_('Use local MX record'),
-			_('Return an MX record pointing to the mx-target for all local machines.'));
-		o.optional = true;
-
-		o = s.taboption('advanced', form.Value, 'mxtarget',
-			_('MX target'),
-			_('Specify the default target for the MX record returned by dnsmasq.'));
-		o.depends('localmx', '1');
-		o.optional = true;
-		o.placeholder = 'hostname';
 
 		o = s.taboption('advanced', form.Flag, 'connmark_allowlist_enable',
 			_('Enable connmark allow list'));
@@ -585,6 +639,7 @@ return view.extend({
 		/* PXE - https://openwrt.org/docs/guide-user/base-system/dhcp#booting_options */
 		o = s.taboption('pxe_tftp', form.SectionValue, '__pxe__', form.GridSection, 'boot', null,
 			_('Special PXE boot options for Dnsmasq.'));
+
 		ss = o.subsection;
 		ss.addremove = true;
 		ss.anonymous = true;
@@ -632,16 +687,76 @@ return view.extend({
 			so.value(index, _('%s (Domain: %s, Local: %s)').format(index, val.domain || '?', val.local || '?'));
 		});
 
+		o = s.taboption('srvhosts', form.SectionValue, '__srvhosts__', form.TableSection, 'srvhost', null,
+			_('Bind service records to a domain name: specify the location of services.') + (' <a href="%s">RFC2782</a>.').format('https://datatracker.ietf.org/doc/html/rfc2782')
+			+ '<br />' + ('_service: _sip, _ldap, _imap, _stun, _xmpp-client, … ') + _('(Note: while _http is possible, no browsers support SRV records.)')
+			+ '<br />' + ('_proto: _tcp, _udp, _sctp, _quic, …')
+			+ '<br />' + _('You may add multiple records for the same Target.')
+			+ '<br />' + _('Larger weights (of the same prio) are given a proportionately higher probability of being selected.'));
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.anonymous = true;
+		ss.sortable  = true;
+		ss.rowcolors = true;
+
+		so = ss.option(form.Value, 'srv', _('SRV'), _('Syntax: <code>_service._proto.example.com</code>.'));
+		so.rmempty = false;
+		so.datatype = 'hostname';
+		so.placeholder = '_sip._tcp.example.com';
+
+		so = ss.option(form.Value, 'target', _('Target'), _('CNAME or FQDN'));
+		so.rmempty = false;
+		so.datatype = 'hostname';
+		so.placeholder = 'sip.example.com';
+
+		so = ss.option(form.Value, 'port', _('Port'));
+		so.rmempty = false;
+		so.datatype = 'port';
+		so.placeholder = '5060';
+
+		so = ss.option(form.Value, 'class', _('Priority'), _('Ordinal: lower comes first.'));
+		so.rmempty = true;
+		so.datatype = 'range(0,65535)';
+		so.placeholder = '10';
+
+		so = ss.option(form.Value, 'weight', _('Weight'), _('Ordinal: Higher comes first.'));
+		so.rmempty = true;
+		so.datatype = 'range(0,65535)';
+		so.placeholder = '50';
+
+		o = s.taboption('mxhosts', form.SectionValue, '__mxhosts__', form.TableSection, 'mxhost', null,
+			_('Bind service records to a domain name: specify the location of services.')
+			 + '<br />' + _('You may add multiple records for the same domain.'));
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.anonymous = true;
+		ss.sortable  = true;
+		ss.rowcolors = true;
+
+		so = ss.option(form.Value, 'domain', _('Domain'), _('CNAME or FQDN'));
+		so.rmempty = false;
+		so.datatype = 'hostname';
+		so.placeholder = 'example.com';
+
+		so = ss.option(form.Value, 'relay', _('Relay'), _('Mail Server'));
+		so.rmempty = false;
+		so.datatype = 'hostname';
+		so.placeholder = 'relay.example.com';
+
+		so = ss.option(form.Value, 'pref', _('Priority'), _('Ordinal: lower comes first.'));
+		so.rmempty = true;
+		so.datatype = 'range(0,65535)';
+		so.placeholder = '0';
+
 		o = s.taboption('hosts', form.SectionValue, '__hosts__', form.GridSection, 'domain', null,
 			_('Hostnames are used to bind a domain name to an IP address. This setting is redundant for hostnames already configured with static leases, but it can be useful to rebind an FQDN.'));
 
 		ss = o.subsection;
-
 		ss.addremove = true;
 		ss.anonymous = true;
 		ss.sortable  = true;
-		ss.nodescriptions = true;
-		ss.max_cols = 8;
 
 		so = ss.option(form.Value, 'name', _('Hostname'));
 		so.rmempty = false;
@@ -668,7 +783,6 @@ return view.extend({
 			_('List of IP sets to populate with the specified domain IPs.'));
 
 		ss = o.subsection;
-
 		ss.addremove = true;
 		ss.anonymous = true;
 		ss.sortable  = true;
@@ -681,7 +795,7 @@ return view.extend({
 		so = ss.option(form.DynamicList, 'domain', _('Domain'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-    so.placeholder = 'example.org';
+    so.placeholder = 'example.com';
 
 		o = s.taboption('leases', form.SectionValue, '__leases__', form.GridSection, 'host', null,
 			_('Static leases are used to assign fixed IP addresses and symbolic hostnames to DHCP clients. They are also required for non-dynamic interface configurations where only hosts with a corresponding lease are served.') + '<br />' +

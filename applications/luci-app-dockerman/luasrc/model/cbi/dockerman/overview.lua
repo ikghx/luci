@@ -172,7 +172,10 @@ if nixio.fs.access("/usr/bin/dockerd") then
 	o = s:option(DynamicList, "registry_mirrors",
 		translate("Registry Mirrors"))
 	o:value("https://hub-mirror.c.163.com", translate("NetEase"))
-	o:value("https://ustc-edu-cn.mirror.aliyuncs.com", translate("USTC"))
+	o:value("https://mirror.baidubce.com", translate("Baidu"))
+	o:value("https://mirror.gcr.io", translate("Google"))
+	o:value("https://registry.hub.docker.com", translate("Docker Hub"))
+	o:value("https://registry-1.docker.io", translate("Docker io"))
 	o:depends("remote_endpoint", 0)
 
 	o = s:option(ListValue, "log_driver",

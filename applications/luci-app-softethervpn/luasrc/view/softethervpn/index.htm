@@ -5,7 +5,7 @@
 
 <% include("cbi/map") %>
 <script type="text/javascript">//<![CDATA[
-	XHR.poll(2, '<%=luci.dispatcher.build_url("admin", "vpn", "softethervpn", "status")%>', null,
+	XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "vpn", "softethervpn", "status")%>', null,
 		function(x, result)
 		{
 			var status = document.getElementsByClassName('softethervpn_status')[0];

@@ -19,9 +19,8 @@ return view.extend({
 		o = s.taboption('general',form.Value, 'name', _('Name'));
 		o.rmempty = false;
 		o.optional = false;
-		o.placeholder = 'name';
 
-		o = s.taboption('general', form.Value, 'state', _('state'),
+		o = s.taboption('general', form.ListValue, 'state', _('state'),
 			_('Initial State. As soon as the other machine(s) come up,') +
 			_('an election will be held and the machine with the highest "priority" will become MASTER.'));
 		o.value('MASTER', _('Master'));
@@ -54,7 +53,6 @@ return view.extend({
 		o.default = '1';
 		o.rmempty = false;
 		o.optional = false;
-		o.placeholder = '1';
 
 		o = s.taboption('general', form.Flag, 'nopreempt', _('Disable Preempt'),
 			_('Allows the lower priority machine to maintain the master role,') +

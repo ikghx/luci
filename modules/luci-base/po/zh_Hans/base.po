@@ -14,6 +14,89 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.8-dev\n"
 
+msgid ""
+"Relay DHCP requests elsewhere. OK: v4<->v4, v6<->v6. "
+"Not OK: v4<->v6, v6<->v4."
+msgstr "在别处中继 DHCP 请求。正确：v4<->v4，v6<->v6。错误：v4<->v6，v6<->v4。"
+
+msgid ""
+"Note: you may also need a DHCP Proxy (currently unavailable) "
+"when specifying a non-standard Relay addr port(<code>addr#port</code>)."
+msgstr ""
+"注意：在指定非标准中继地址端口（<code>addr#port</code>）时，"
+"您可能还需要 DHCP 代理（当前不可用）。"
+
+msgid "You may add multiple unique Relay addr on the same Listen addr."
+msgstr "您可以在同一个“监听地址”上添加多个唯一的“中继地址”。"
+
+msgid "Listen addr"
+msgstr "监听地址"
+
+msgid "Relay addr"
+msgstr "中继地址"
+
+msgid "Expected port number."
+msgstr "预期的端口号。"
+
+msgid "Both Listen addr and Relay addr must be specified."
+msgstr "监听地址 和 中继地址 都必须指定。"
+
+msgid "Listen and Relay IP family must be homogeneous."
+msgstr "监听 和 中继 IP 必须是同类型的。"
+
+msgid "Bind service records to a domain name: specify the location of services."
+msgstr "绑定服务记录到域名：指定服务的位置。"
+
+msgid "You may add multiple records for the same domain."
+msgstr "您可以为同一个域名添加多条记录。"
+
+msgid "(Note: while _http is possible, no browsers support SRV records.)"
+msgstr "（注意：虽然 _http 是可能的，但没有浏览器支持 SRV 记录。）"
+
+msgid "You may add multiple records for the same Target."
+msgstr "您可以为同一目标添加多条记录。"
+
+msgid ""
+"Larger weights (of the same prio) are given a proportionately higher "
+"probability of being selected."
+msgstr "较大的权重（相同的优先级）被赋予相应较高的被选中概率。"
+
+msgid "Syntax: <code>_service._proto.example.com</code>."
+msgstr "语法：<code>_service._proto.example.com</code>."
+
+msgid "CNAME or FQDN"
+msgstr "CNAME 或 FQDN"
+
+msgid "Ordinal: lower comes first."
+msgstr "序数：数值小的优先。"
+
+msgid "Ordinal: Higher comes first."
+msgstr "序数：数值大的优先。"
+
+msgid "Weight"
+msgstr "权重"
+
+msgid "Syntax: <code>/fqdn[/fqdn…]/[ipaddr]</code>."
+msgstr "语法：<code>/fqdn[/fqdn…]/[ipaddr]</code>."
+
+msgid ""
+"<code>/#/</code> matches any domain. <code>/example.com/</code> returns "
+"NXDOMAIN."
+msgstr "<code>/#/</code> 匹配任何域。<code>/example.com/</code> 返回 NXDOMAIN。"
+
+msgid ""
+"<code>/example.com/#</code> returns NULL addresses (<code>0.0.0.0</code> and "
+"<code>::</code>) for example.com and its subdomains."
+msgstr ""
+"<code>/example.com/#</code> 为 example.com 及其子域返回空地址。"
+"(<code>0.0.0.0</code> 和 <code>::</code>)"
+
+msgid "Mail Server"
+msgstr "邮件服务器"
+
+msgid "Nebula Network"
+msgstr "Nebula 网络"
+
 msgid "Config File"
 msgstr "配置文件"
 
@@ -4628,8 +4711,8 @@ msgid "List of domains to allow RFC1918 responses for."
 msgstr "允许 RFC1918 响应的域名列表。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:286
-msgid "List of domains to force to an IP address."
-msgstr "此列表将域名强制指向某个 IP 地址。"
+msgid "Resolve specified FQDNs to an IP."
+msgstr "将指定的 FQDN 解析为 IP。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:283
 msgid "List of upstream resolvers to forward queries to."

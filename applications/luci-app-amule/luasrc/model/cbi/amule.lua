@@ -61,7 +61,7 @@ o.rmempty = true
 o.placeholder = "50"
 o.datatype = "range(1, 99)"
 
-o = s:taboption("general", Value, "nice", translate("Scheduling priority"), translate("Set the scheduling priority of the spawned process."))
+o = s:taboption("general", Value, "nice", translate("Scheduling priority"), translate("Sets the scheduling priority of the process."))
 o.rmempty = false
 o.placeholder = "0"
 o.datatype = "range(-20,19)"
@@ -106,7 +106,8 @@ o.rmempty = false
 
 o = s:taboption("connection", Value, "udp_port", translate("UDP port"))
 o.datatype = "port"
-o.rmempty = false
+o:depends("udp_enable", "1")
+o.rmempty = true
 o.placeholder = "4672"
 
 o = s:taboption("connection", Flag, "upnp_enabled", translate("Enable UPnP"))
@@ -114,7 +115,8 @@ o.rmempty = false
 
 o = s:taboption("connection", Value, "upnp_tcp_port", translate("UPnP TCP port"))
 o.datatype = "port"
-o.rmempty = false
+o:depends("upnp_enabled", "1")
+o.rmempty = true
 o.placeholder = "50000"
 
 o = s:taboption("connection", Value, "address", translate("Bind Address"), translate("Leave blank to bind all"))
@@ -130,7 +132,7 @@ o.rmempty = false
 o = s:taboption("connection", Flag, "connect_to_kad", translate("Connect to Kad network"))
 o.rmempty = false
 
-o = s:taboption("connection", Flag, "connect_to_ed2k", translate("Connect to ED2K network"))
+o = s:taboption("connection", Flag, "connect_to_ed2k", translate("Connect to eD2k network"))
 o.rmempty = false
 
 s:taboption("connection", DummyValue,"titlesplit1" ,titlesplit(translate("Proxy Configuration")))
@@ -142,16 +144,20 @@ o = s:taboption("connection", ListValue, "proxy_type", translate("Proxy type"))
 for i,v in ipairs(ptype) do
 	o:value(v)
 end
-o.rmempty = false
+o:depends("proxy_enable_proxy", "1")
+o.rmempty = true
 
 o = s:taboption("connection", Value, "proxy_name", translate("Proxy name"))
+o:depends("proxy_enable_proxy", "1")
 o.rmempty = true
 
 o = s:taboption("connection", Value, "proxy_port", translate("Proxy port"))
 o.datatype = "port"
+o:depends("proxy_enable_proxy", "1")
 o.rmempty = true
 
 o = s:taboption("connection", Flag, "proxy_enable_password", translate("Proxy requires authentication"))
+o:depends("proxy_enable_proxy", "1")
 o.rmempty = true
 
 o = s:taboption("connection", Value, "proxy_user", translate("Proxy user"))
@@ -173,7 +179,7 @@ o = s:taboption("server", Value, "kad_nodes_url", translate("Kad Nodes Url"), "<
 o.rmempty = false
 o.placeholder = "http://upd.emule-security.org/nodes.dat"
 
-o = s:taboption("server", Value, "ed2k_servers_url", translate("Ed2k Servers List Url"), "<input type=\"button\" size=\"0\" title=\"" 
+o = s:taboption("server", Value, "ed2k_servers_url", translate("eD2k Servers List Url"), "<input type=\"button\" size=\"0\" title=\"" 
     .. translate("Download now") .. "\" onclick=\"onclick_down_ed2k(this.id)\" "
     .. "value=\"&#10597;&#10597;&#10597;\" "
     .. "style=\"font-weight:bold;text-decoration:overline;\""
@@ -366,11 +372,11 @@ o.datatype = "port"
 o.placeholder = "4712"
 o.rmempty = false
 
-o = s:taboption("remote", Flag, "upnp_ec_enabled", translate("Enable upnp port forwarding on the EC port"))
+o = s:taboption("remote", Flag, "upnp_ec_enabled", translate("Enable UPnP port forwarding on the EC port"))
 o.rmempty = false
 
 o = s:taboption("remote", Value, "ec_password", translate("EC password"))
-o.password  =  true
+o.password = true
 o.rmempty = false
 
 s:taboption("remote", DummyValue,"titlesplit3", titlesplit(translate("aMule Web Configuration")))
@@ -379,7 +385,8 @@ o = s:taboption("remote", Flag, "web_enabled", translate("Enable web server on s
 o.rmempty = false
 
 o = s:taboption("remote", Value, "template", translate("Web template"))
-o.rmempty = false
+o:depends("web_enabled", "1")
+o.rmempty = true
 local tpth_suggestions = luci.sys.exec("ls /usr/share/amule/webserver/|sed ':a;N;$!ba;s/\\n/:/g'")
 if tpth_suggestions then
 	for entry in string.gmatch(tpth_suggestions, "[^:]+") do
@@ -388,36 +395,44 @@ if tpth_suggestions then
 end
 
 o = s:taboption("remote", Value, "web_password", translate("Web full rights password"))
-o.password  =  true
+o.password = true
+o:depends("web_enabled", "1")
 o.rmempty = true
 
 o = s:taboption("remote", Flag, "use_low_rights_user", translate("Use low rights user"))
-o.rmempty = false
+o:depends("web_enabled", "1")
+o.rmempty = true
 
 o = s:taboption("remote", Value, "password_low", translate("Web low rights password"))
-o.password  =  true
+o.password = true
+o:depends("use_low_rights_user", "1")
 o.rmempty = true
 
 o = s:taboption("remote", Value, "web_port", translate("Web TCP port"))
 o.datatype = "port"
 o.placeholder = "4711"
-o.rmempty = false
+o:depends("web_enabled", "1")
+o.rmempty = true
 
 o = s:taboption("remote", Flag, "upnp_web_server_enabled", translate("Enable UPnP port forwarding of the web server port"))
-o.rmempty = false
+o:depends("web_enabled", "1")
+o.rmempty = true
 
 o = s:taboption("remote", Value, "web_upnp_tcp_port", translate("Web UPnP TCP port"))
 o.datatype = "port"
 o.placeholder = "50001"
-o.rmempty = false
+o:depends("upnp_web_server_enabled", "1")
+o.rmempty = true
 
 o = s:taboption("remote", Value, "page_refresh_time", translate("Page refresh time(in secs)"))
 o.datatype = "range(1,600)"
-o.rmempty = false
+o:depends("web_enabled", "1")
+o.rmempty = true
 o.placeholder = "121"
 
 o = s:taboption("remote", Flag, "use_gzip", translate("Enable Gzip compression"))
-o.rmempty = false
+o:depends("web_enabled", "1")
+o.rmempty = true
 
 -- TEMPLATE --
 

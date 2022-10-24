@@ -69,7 +69,7 @@ return view.extend({
 			_('Enables Apple\'s AAPL extension globally and adds macOS compatibility options to all shares.'));
 
 		o = s.taboption('general', form.Value, 'nice', _('Scheduling priority'),
-			_('Set the scheduling priority of the spawned process.'));
+			_('Sets the scheduling priority of the process.'));
 		o.datatype = 'range(-20,19)';
 		o.default = '0';
 		o.rmempty = false;

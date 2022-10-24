@@ -43,7 +43,7 @@ return view.extend({
 		o.datatype = 'maxlength(4)';
 		o.optional = true;
 
-		o = s.option(form.Value, 'scope', _('Scope'),
+		o = s.option(form.ListValue, 'scope', _('Scope'),
 			_('Scope of the Address'));
 		o.value('site', _('Site'));
 		o.value('link', _('Link'));

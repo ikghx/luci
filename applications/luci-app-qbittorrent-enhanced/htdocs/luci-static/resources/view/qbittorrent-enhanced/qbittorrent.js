@@ -152,7 +152,7 @@ return view.extend({
 
 		o = s.taboption('basic', widgets.UserSelect, 'user', _('Run daemon as user'));
 
-		o = s.taboption('basic', form.Value, 'nice', _('Scheduling priority'), _('Set the scheduling priority of the spawned process.'));
+		o = s.taboption('basic', form.Value, 'nice', _('Scheduling priority'), _('Sets the scheduling priority of the process.'));
 		o.datatype = 'range(-20,19)';
 		o.default = '0';
 		o.rmempty = false;
