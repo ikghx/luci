@@ -976,7 +976,7 @@ return view.extend({
 					o.datatype = 'uinteger';
 					o.placeholder = _('off');
 
-					o = ss.taboption('advanced', form.Flag, 'noscan', _('Disable coexistence scanning'), _('Disable channel coexistence scanning to always permit use of a channel wider than 20 MHz even where a channel for another <abbr title="Basic Service Set">BSS</abbr> overlaps. Not standards compliant and enabling may cause harmful interference.'));
+					o = ss.taboption('advanced', form.Flag, 'noscan', _('Disable coexistence scanning (2.4Ghz Only)'), _('Disable channel coexistence scanning to always permit use of a channel wider than 20 MHz even where a channel for another <abbr title="Basic Service Set">BSS</abbr> overlaps. Not standards compliant and enabling may cause harmful interference.'));
 					o.rmempty = true;
 
 					o = ss.taboption('advanced', form.Value, 'beacon_int', _('Beacon interval'), _('Time interval between the transmission of beacon frames in milliseconds.'));

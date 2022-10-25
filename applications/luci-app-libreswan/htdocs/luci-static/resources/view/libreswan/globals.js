@@ -1,26 +1,19 @@
 'use strict';
 'require view';
-'require ui';
 'require form';
-'require rpc';
+'require network';
 'require tools.widgets as widgets';
 
 return view.extend({
-	callLocalLeftIPs: rpc.declare({
-		object: 'libreswan',
-		method: 'get_local_leftips',
-		expect: { '': {} }
-	}),
-
 	load: function() {
 		return Promise.all([
-			this.callLocalLeftIPs(),
+			network.getDevices(),
 		]);
 	},
 
 	render: function(data) {
-		var local_addresses = data[0]['leftip'];
-		var m, s, o, listen_interface;
+		var netDevs = data[0];
+		var m, s, o;
 
 		m = new form.Map('libreswan', _('IPSec Global Settings'));
 
@@ -28,34 +21,45 @@ return view.extend({
 		s.anonymous = false;
 		s.addremove = false;
 
-		o = s.option(form.Flag, 'debug', _('Debug Logs'));
+		o = s.option(form.ListValue, 'debug', _('Debug Logs'));
+		o.rmempty = false;
+		o.value('none', _('No Logging'));
+		o.value('base', _('Moderate Logging'));
+		o.value('cpu-usage', _('Timing/Load Logging'));
+		o.value('crypto', _('All crypto related Logging'));
+		o.value('tmi', _('Too Much/Excessive Logging'));
+		o.value('private', _('Sensitive private-key/password Logging'));
+		o.default = 'none'
+
+		o = s.option(form.Flag, 'uniqueids', _('Uniquely Identify Remotes'),
+			_('Whether IDs should be considered identifying remote parties uniquely'));
 		o.default = false;
 		o.rmempty = false;
 
-		o = s.option(form.Flag, 'uniqueids', _('Uniquely Identify Remotes'));
-		o.default = false;
-		o.rmempty = false;
-
-		listen_interface = s.option(widgets.NetworkSelect, 'listen_interface', _('Listen Interface'));
-		listen_interface.datatype = 'string';
-		listen_interface.multiple = false;
-		listen_interface.optional = true;
+		o = s.option(widgets.NetworkSelect, 'listen_interface', _('Listen Interface'));
+		o.datatype = 'string';
+		o.multiple = false;
+		o.optional = true;
 
 		o = s.option(form.Value, 'listen', _('Listen Address'));
 		o.datatype = 'ip4addr';
-		for (var i = 0; i < local_addresses.length; i++) {
-			o.value(local_addresses[i]);
+		for (var i = 0; i < netDevs.length; i++) {
+			var addrs = netDevs[i].getIPAddrs();
+			for (var j = 0; j < addrs.length; j++) {
+				o.value(addrs[j].split('/')[0]);
+			}
 		}
-		o.optional = true;
-		o.depends({ listen_interface : '' });
+		o.depends({ 'listen_interface' : '' });
 
-		o = s.option(form.Value, 'nflog_all', _('Enable nflog on nfgroup'));
+		o = s.option(form.Value, 'nflog_all', _('Enable nflog on nfgroup'),
+			_('NFLOG group number to log all pre-crypt and post-decrypt traffic to'));
 		o.datatype = 'uinteger';
 		o.default = 0;
 		o.rmempty = true;
 		o.optional = true;
 
-		o = s.option(form.DynamicList, 'virtual_private', _('Allowed Virtual Private'));
+		o = s.option(form.DynamicList, 'virtual_private', _('Allowed Virtual Private'),
+			_('The address ranges that may live behind a NAT router through which a client connects'));
 		o.datatype = 'neg(ip4addr)';
 		o.multiple = true;
 		o.optional = true;

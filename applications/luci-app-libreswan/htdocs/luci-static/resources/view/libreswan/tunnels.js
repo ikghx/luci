@@ -3,46 +3,44 @@
 'require form';
 'require ui';
 'require uci';
-'require rpc';
+'require network'
+'require validation'
 'require tools.widgets as widgets';
 
+function calculateNetwork(addr, mask) {
+	addr = validation.parseIPv4(String(addr));
+
+	if (!isNaN(mask))
+		mask = validation.parseIPv4(network.prefixToMask(+mask));
+	else
+		mask = validation.parseIPv4(String(mask));
+
+	if (addr == null || mask == null)
+		return null;
+
+	return  [
+			addr[0] & (mask[0] >>> 0 & 255),
+			addr[1] & (mask[1] >>> 0 & 255),
+			addr[2] & (mask[2] >>> 0 & 255),
+			addr[3] & (mask[3] >>> 0 & 255)
+		].join('.') + '/' +
+		network.maskToPrefix(mask.join('.'));
+}
+
 return view.extend({
-	callLocalSubnets: rpc.declare({
-		object: 'libreswan',
-		method: 'get_local_subnets',
-		expect: { '': {} }
-	}),
-
-	callLocalLeftIPs: rpc.declare({
-		object: 'libreswan',
-		method: 'get_local_leftips',
-		expect: { '': {} }
-	}),
-
-	callLocalInterfaces: rpc.declare({
-		object: 'libreswan',
-		method: 'get_local_interfaces',
-		expect: { '': {} }
-	}),
-
 	load: function() {
 		return Promise.all([
+			network.getDevices(),
 			uci.load('libreswan'),
-			this.callLocalSubnets(),
-			this.callLocalLeftIPs(),
-			this.callLocalInterfaces(),
 		]);
 	},
 
 	render: function(data) {
-		var local_subnets = data[1]['subnet'];
-		var local_leftips = data[2]['leftip'];
-		var local_interfaces = data[3]['interfaces'];
-		var proposals = uci.sections('libreswan', 'crypto_proposal');
-		var left, left_interface;
+		var netDevs = data[0];
+		var m, s, o;
+		var proposals;
 
-		var m, s, o, phase2;
-
+		proposals = uci.sections('libreswan', 'crypto_proposal');
 		if (proposals == '') {
 			ui.addNotification(null, E('p', _('Proposals must be configured for Tunnels')));
 			return;
@@ -66,22 +64,25 @@ return view.extend({
 		o.value('add', _('Listen'));
 		o.value('start', _('Initiate'));
 
-		left_interface = s.taboption('general', widgets.NetworkSelect, 'left_interface', _('Left Interface'));
-		left_interface.datatype = 'string';    
-		left_interface.multiple = false;
-		left_interface.optional = true;
+		o = s.taboption('general', widgets.NetworkSelect, 'left_interface', _('Left Interface'));
+		o.datatype = 'string';
+		o.multiple = false;
+		o.optional = true;
 
 		o = s.taboption('general', form.Value, 'left', _('Left IP/Device'));
 		o.datatype = 'or(string, ipaddr)';
-		for (var i = 0; i < local_leftips.length; i++) {
-			o.value(local_leftips[i]);
+		for (var i = 0; i < netDevs.length; i++) {
+			var addrs = netDevs[i].getIPAddrs();
+			for (var j = 0; j < addrs.length; j++) {
+				o.value(addrs[j].split('/')[0]);
+			}
 		}
-		for (var i = 0; i < local_interfaces.length; i++) {
-			o.value(local_interfaces[i]);
+		for (var i = 0; i < netDevs.length; i++) {
+			o.value('%' + netDevs[i].device);
 		}
 		o.value('%defaultroute');
 		o.optional = false;
-		o.depends({ left_interface : '' });
+		o.depends({ 'left_interface' : '' });
 
 		o = s.taboption('general', form.Value, 'leftid', _('Left ID'));
 		o.datatype = 'string';
@@ -101,8 +102,11 @@ return view.extend({
 
 		o = s.taboption('general', form.Value, 'leftsourceip', _('Local Source IP'));
 		o.datatype = 'ipaddr';
-		for (var i = 0; i < local_leftips.length; i++) {
-			o.value(local_leftips[i]);
+		for (var i = 0; i < netDevs.length; i++) {
+			var addrs = netDevs[i].getIPAddrs();
+			for (var j = 0; j < addrs.length; j++) {
+				o.value(addrs[j].split('/')[0]);
+			}
 		}
 		o.optional = false;
 		o.modalonly = true;
@@ -114,8 +118,14 @@ return view.extend({
 
 		o = s.taboption('general', form.DynamicList, 'leftsubnets', _('Local Subnets'));
 		o.datatype = 'ipaddr';
-		for (var i = 0; i < local_subnets.length; i++) {
-			o.value(local_subnets[i]);
+		for (var i = 0; i < netDevs.length; i++) {
+			var addrs = netDevs[i].getIPAddrs();
+			for (var j = 0; j < addrs.length; j++) {
+				var subnet = calculateNetwork(addrs[j].split('/')[0], addrs[j].split('/')[1]);
+				if (subnet) {
+					o.value(subnet);
+				}
+			}
 		}
 		o.value('0.0.0.0/0');
 
@@ -201,16 +211,54 @@ return view.extend({
 		o.optional = true;
 		o.modalonly = true;
 
-		o = s.taboption('interface', form.Value, 'vti_interface', _('VTI Interface'));
-		o.datatype = 'string';
-		o.modalonly = true;
+		o = s.taboption('interface', form.ListValue, 'interface_type', _('Interface Type'));
+		o.default = '';
+		o.value('vti', _('VTI'));
+		o.value('xfrm', _('XFRM'));
 
-		o = s.taboption('interface', form.Value, 'leftvti', _('Address'));
-		o.datatype = 'ipaddr';
+		o = s.taboption('interface', form.Flag, 'auto_interface', _('Auto Create/Update Interface'));
+		o.default = '';
+		o.rmempty = true;
+		o.value('vti', _('VTI'));
+		o.value('xfrm', _('XFRM'));
+		o.depends({ 'interface_type' : null, '!reverse' : true });
+
+		var interfaces = uci.sections('network', 'interface');
+		o = s.taboption('interface', form.Value, 'interface', _('VTI Interface'));
+		o.datatype = 'string';
+		o.rmempty = true;
 		o.modalonly = true;
+		for (var i = 0; i < interfaces.length; i++) {
+			if (interfaces[i]['proto'] == "vti") {
+				o.value(interfaces[i]['.name']);
+			}
+		}
+		o.depends({ 'interface_type' : 'vti' });
+
+		o = s.taboption('interface', form.Value, 'ifid', _('XFRM ifid'));
+		o.datatype = 'uinteger';
+		o.rmempty = true;
+		o.modalonly = true;
+		o.depends({ 'interface_type' : 'xfrm' });
+
+		o = s.taboption('interface', form.Value, 'ipaddr', _('Address'));
+		o.datatype = 'ipaddr';
+		o.rmempty = true;
+		o.modalonly = true;
+		o.depends({ 'interface_type' : 'vti' });
+		o.depends({ 'interface_type' : 'xfrm' });
 
 		o = s.taboption('interface', form.Value, 'mark', _('Traffic Mark'));
+		o.datatype = 'uinteger';
+		o.rmempty = true;
 		o.modalonly = true;
+		o.depends({ 'interface' : null, '!reverse' : true });
+
+		o = s.taboption('interface', widgets.ZoneSelect, 'zone', _('Zone'));
+		o.rmempty = true;
+		o.modalonly = true;
+		o.depends({ 'interface_type' : 'vti' });
+		o.depends({ 'interface_type' : 'xfrm' });
 
 		return m.render();
 	}
