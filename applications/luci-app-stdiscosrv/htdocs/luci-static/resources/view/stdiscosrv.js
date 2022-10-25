@@ -14,11 +14,11 @@ var callServiceList = rpc.declare({
 });
 
 function getServiceStatus() {
-	return L.resolveDefault(callServiceList('syncthing'), {})
+	return L.resolveDefault(callServiceList('stdiscosrv'), {})
 		.then(function (res) {
 			var isRunning = false;
 			try {
-				isRunning = res['syncthing']['instances']['instance1']['running'];
+				isRunning = res['stdiscosrv']['instances']['instance1']['running'];
 			} catch (e) { }
 			return isRunning;
 		});
@@ -39,7 +39,7 @@ function renderStatus(isRunning) {
 return view.extend({
 	load: function() {
 		return Promise.all([
-			uci.load('syncthing')
+			uci.load('stdiscosrv')
 		]);
 	},
 
@@ -47,7 +47,10 @@ return view.extend({
 
 		var m, s, o;
 
-		m = new form.Map('syncthing', _('Syncthing'), _('Syncthing is an open source distributed data synchronization tool.'));
+		m = new form.Map('stdiscosrv', _('Syncthing Discovery Server'),
+		_('Syncthing relies on a discovery server to find peers on the internet.')
+		+ (' <a href="%s">Help</a>.').format('https://docs.syncthing.net/users/stdiscosrv.html')
+		+ '<br />' + _('Anyone can run a discovery server and point Syncthing installations to it.'));
 
 		s = m.section(form.TypedSection);
 		s.anonymous = true;
@@ -64,7 +67,7 @@ return view.extend({
 			]);
 		}
 
-		s = m.section(form.TypedSection, 'syncthing');
+		s = m.section(form.TypedSection, 'stdiscosrv');
 		s.anonymous = true;
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
@@ -72,12 +75,12 @@ return view.extend({
 
 		o = s.option(widgets.UserSelect, 'user', _('Run daemon as user'));
 
-		o = s.option(form.Value, 'gui_address', _('Listening address'));
-		o.placeholder = 'http://0.0.0.0:8384';
+		o = s.option(form.Value, 'listen', _('Listening address'));
+		o.placeholder = ':8443';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'home', _('Configuration directory'));
-		o.placeholder = '/etc/syncthing/';
+		o = s.option(form.Value, 'db_dir', _('Database directory'));
+		o.placeholder = '/etc/stdiscosrv/discovery.db';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'nice', _('Scheduling priority'),
@@ -86,31 +89,29 @@ return view.extend({
 		o.default = '0';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'macprocs', _('Concurrent threads'), _('0 to match the number of CPUs (default)'));
-		o.default = '0';
+		o = s.option(form.Value, 'cert', _('Certificate file'), _('If the file does not exist, it is automatically generated.'));
+		o.placeholder = '/etc/stdiscosrv/cert.pem';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'logfile', _('log file path'));
-		o.placeholder = '/etc/syncthing/syncthing.log';
+		o = s.option(form.Value, 'key', _('Key file'), _('If the file does not exist, it is automatically generated.'));
+		o.placeholder = '/etc/stdiscosrv/key.pem';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'log_max_size', _('log file size, in bytes.'));
-		o.placeholder = '1048576';
-		o.rmempty = false;
+		o = s.option(form.Value, 'metrics_listen', _('Prometheus compatible metrics endpoint listen address'));
 
-		o = s.option(form.Value, 'log_max_old_files', _('Maximum number of log files to keep'));
-		o.placeholder = '7';
-		o.rmempty = false;
+		o = s.option(form.Value, 'replicate', _('Replication peers'));
+		o.placeholder = 'id@address';
 
-		o = s.option(form.Flag, '_no_browser', _('Do not start a browser'));
+		o = s.option(form.Value, 'replication_listen', _('Listen address for incoming replication connections'));
+		o.placeholder = ':19200';
+
+		o = s.option(form.Flag, '_debug', _('Enable debug output'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 
-		o = s.option(form.Flag, '_no_default_folder', _('Don’t create a default folder when generating an initial configuration / starting for the first time'));
+		o = s.option(form.Flag, '_http', _('Listen on HTTP'), _('behind an HTTPS proxy'));
 		o.enabled = 'true';
 		o.disabled = 'false';
-
-		o = s.option(form.DynamicList, '_', _('Extra settings'));
 
 		return m.render();
 	}
