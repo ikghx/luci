@@ -20,9 +20,10 @@ return view.extend({
 		var hosts = data[0];
 		var m, s, o;
 
-		m = new form.Map('keepalived', _('Peers'));
+		m = new form.Map('keepalived');
 
-		s = m.section(form.GridSection, 'peer');
+		s = m.section(form.GridSection, 'peer', _('Peers'),
+			_('Peers can be referenced into Instances cluster and data/config synchronization'));
 		s.anonymous = true;
 		s.addremove = true;
 		s.nodescriptions = true;
@@ -47,7 +48,7 @@ return view.extend({
 		o = s.option(form.Flag, 'sync', _('Enable Sync'),
 			_('Auto Synchonize Config/Data files with peer'));
 
-		o = s.option(form.Value, 'sync_mode', _('Sync Mode'),
+		o = s.option(form.ListValue, 'sync_mode', _('Sync Mode'),
 			_('Current System should act as Sender/Receiver.') + '<br/>' +
 			_('If peer is backup node, Current system should be sender, If peer is master current system should be receiver'));
 		o.value('send', _('Sender'));

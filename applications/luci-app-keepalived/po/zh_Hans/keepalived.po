@@ -1,6 +1,27 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+msgid "Probes Sent"
+msgstr "已发送探针"
+
+msgid "Probes Received"
+msgstr "已收到探针"
+
+msgid "Last Transition"
+msgstr "上次转换"
+
+msgid "There are no active instances"
+msgstr "没有活动实例"
+
+msgid "URLs can be referenced into Real Servers to test"
+msgstr "可以将 URL 引用到“真实服务器”中进行测试"
+
+msgid "When a weight is specified, instead of setting the vrrp_instance to the FAULT state in case of failure, "
+msgstr "当指定权重时，而不是将“VRRP 实例”设置为 FAULT 状态以防失败，"
+
+msgid "its priority will be increased or decreased by the weight when the interface is up or down"
+msgstr "当接口“上线”或“离线”时，它的优先级将按权重增加或减少"
+
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:19
 msgid ""
 "A VIP address migrates from one LVS router to the other during a failover,"
@@ -140,6 +161,10 @@ msgstr "区分多个 vrrpd 实例，运行在同一个网卡上"
 msgid "Digest"
 msgstr "摘要"
 
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:23
+msgid "Digest computed with genhash"
+msgstr "用 genhash 计算的摘要"
+
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:46
 msgid "Direction"
 msgstr "方向"
@@ -255,20 +280,20 @@ msgid "Granularity mask for persistent connections"
 msgstr "持久连接的粒度掩码"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:127
-msgid "Gratuitous Master Delay"
-msgstr "无偿 Master 延迟"
+msgid "Gratuitous Master Delay in seconds"
+msgstr "无偿 Master 延迟（秒）"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:139
-msgid "Gratuitous Master Refresh"
-msgstr "无偿 Master 刷新"
+msgid "Gratuitous Master Refresh in seconds"
+msgstr "无偿 Master 刷新（秒）"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:145
-msgid "Gratuitous Master Refresh Repeat"
-msgstr "无偿 Master 刷新重复"
+msgid "Gratuitous Master Refresh Repeat in seconds"
+msgstr "无偿 Master 刷新重复（秒）"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:133
-msgid "Gratuitous Master Repeat"
-msgstr "无偿 Master 重复"
+msgid "Gratuitous Master Repeat in seconds"
+msgstr "无偿 Master 重复（秒）"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:111
 msgid "HA Authentication Type"
@@ -368,8 +393,8 @@ msgid "Keepalived Global Settings"
 msgstr "Keepalived 全局设置"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:66
-msgid "Keepalived Instances"
-msgstr "Keepalived 实例"
+msgid "Keepalived Instances Status"
+msgstr "Keepalived 实例状态"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:30
 msgid "Last Transition"
@@ -456,6 +481,10 @@ msgstr "对端地址"
 #: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:75
 msgid "Peers"
 msgstr "对端"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:23
+msgid "Peers can be referenced into Instances cluster and data/config synchronization"
+msgstr "对端可以被引用到实例集群和数据/配置同步"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:91
 msgid "Persist Granularity"
@@ -773,6 +802,10 @@ msgstr "跟踪脚本将从 VRRP 实例中引用"
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:20
 msgid "URL Path"
 msgstr "URL 路径"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:20
+msgid "URL path, i.e path /, or path /mrtg2/"
+msgstr "URL 路径，即路径 /，或路径 /mrtg2/"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:82
 msgid "Unicast Source IP"

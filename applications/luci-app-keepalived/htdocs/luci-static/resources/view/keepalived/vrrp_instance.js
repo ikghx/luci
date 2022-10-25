@@ -47,12 +47,18 @@ return view.extend({
 		o.optional = false;
 		o.rmempty = false;
 
-		o = s.taboption('general', form.Value, 'advert_int', _('Interval'),
+		o = s.taboption('general', form.ListValue, 'advert_int', _('Interval'),
 			_('VRRP Advert interval in seconds'));
 		o.datatype = 'float';
 		o.default = '1';
 		o.rmempty = false;
 		o.optional = false;
+		o.value('1');
+		o.value('3');
+		o.value('5');
+		o.value('10');
+		o.value('30');
+		o.value('60');
 
 		o = s.taboption('general', form.Flag, 'nopreempt', _('Disable Preempt'),
 			_('Allows the lower priority machine to maintain the master role,') +
@@ -77,7 +83,7 @@ return view.extend({
 	renderPeerTab: function(s, netDevs) {
 		var o;
 
-		o = s.taboption('peer', form.Value, 'unicast_src_ip', _('Unicast Source IP'),
+		o = s.taboption('peer', form.ListValue, 'unicast_src_ip', _('Unicast Source IP'),
 			_('Default IP for binding vrrpd is the primary IP on interface'));
 		o.datatype = 'ipaddr';
 		o.optional = true;
@@ -121,29 +127,45 @@ return view.extend({
 	renderGARPTab: function(s) {
 		var o;
 
-		o = s.taboption('garp', form.Value, 'garp_master_delay', _('GARP Delay'),
-			_('Gratuitous Master Delay'));
-		o.datatype = 'uinteger';
-		o.placeholder = '10';
+		o = s.taboption('garp', form.ListValue, 'garp_master_delay', _('GARP Delay'),
+			_('Gratuitous Master Delay in seconds'));
 		o.modalonly = true;
+		o.value('1');
+		o.value('3');
+		o.value('5');
+		o.value('10');
+		o.value('30');
+		o.value('60');
 
-		o = s.taboption('garp', form.Value, 'garp_master_repeat', _('GARP Repeat'),
-			_('Gratuitous Master Repeat'));
-		o.datatype = 'uinteger';
-		o.placeholder = '1';
+		o = s.taboption('garp', form.ListValue, 'garp_master_repeat', _('GARP Repeat'),
+			_('Gratuitous Master Repeat in seconds'));
 		o.modalonly = true;
+		o.value('1');
+		o.value('3');
+		o.value('5');
+		o.value('10');
+		o.value('30');
+		o.value('60');
 
-		o = s.taboption('garp', form.Value, 'garp_master_refresh', _('GARP Refresh'),
-			_('Gratuitous Master Refresh'));
-		o.datatype = 'uinteger';
-		o.placeholder = '60';
+		o = s.taboption('garp', form.ListValue, 'garp_master_refresh', _('GARP Refresh'),
+			_('Gratuitous Master Refresh in seconds'));
 		o.modalonly = true;
+		o.value('1');
+		o.value('3');
+		o.value('5');
+		o.value('10');
+		o.value('30');
+		o.value('60');
 
-		o = s.taboption('garp', form.Value, 'garp_master_refresh_repeat', _('GARP Refresh Repeat'),
-			_('Gratuitous Master Refresh Repeat'));
-		o.datatype = 'uinteger';
-		o.placeholder = '2';
+		o = s.taboption('garp', form.ListValue, 'garp_master_refresh_repeat', _('GARP Refresh Repeat'),
+			_('Gratuitous Master Refresh Repeat in seconds'));
 		o.modalonly = true;
+		o.value('1');
+		o.value('3');
+		o.value('5');
+		o.value('10');
+		o.value('30');
+		o.value('60');
 	},
 
 	renderAdvancedTab: function(s) {
@@ -259,10 +281,10 @@ return view.extend({
 		var netDevs = data[0];
 		var m, s, o;
 
-		m = new form.Map('keepalived', _('VRRP Instance'),
-			_('Define an individual instance of the VRRP protocol running on an interface'));
+		m = new form.Map('keepalived');
 
-		s = m.section(form.GridSection, 'vrrp_instance');
+		s = m.section(form.GridSection, 'vrrp_instance', _('VRRP Instance'),
+			_('Define an individual instance of the VRRP protocol running on an interface'));
 		s.anonymous = true;
 		s.addremove = true;
 		s.nodescriptions = true;

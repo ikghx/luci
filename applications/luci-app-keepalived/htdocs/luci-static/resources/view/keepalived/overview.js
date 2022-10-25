@@ -63,7 +63,7 @@ return view.extend({
 		});
 
 		return E([
-			E('h3', _('Keepalived Instances')),
+			E('h3', _('Keepalived Instances Status')),
 			E('br'),
 			table
 		]);

@@ -6,9 +6,9 @@ return view.extend({
 	render: function() {
 		var m, s, o;
 
-		m = new form.Map('keepalived', _('Keepalived Global Settings'));
+		m = new form.Map('keepalived');
 
-		s = m.section(form.TypedSection, 'globals');
+		s = m.section(form.TypedSection, 'globals', _('Keepalived Global Settings'));
 		s.anonymous = true;
 		s.addremove = false;
 
