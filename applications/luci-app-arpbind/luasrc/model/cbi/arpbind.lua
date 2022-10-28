@@ -24,7 +24,7 @@ luci.ip.neighbors({ family = 4 }, function(entry)
        end
 end)
 
-a = s:option(Value, "macaddr", translate("MAC-Address"))
+a = s:option(Value, "macaddr", translate("MAC Address"))
 a.datatype = "macaddr"
 a.optional = false
 luci.ip.neighbors({family = 4}, function(neighbor)

@@ -1,33 +1,20 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "Probes Sent"
-msgstr "已发送探针"
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:201
+msgid "2"
+msgstr ""
 
-msgid "Probes Received"
-msgstr "已收到探针"
-
-msgid "Last Transition"
-msgstr "上次转换"
-
-msgid "There are no active instances"
-msgstr "没有活动实例"
-
-msgid "URLs can be referenced into Real Servers to test"
-msgstr "可以将 URL 引用到“真实服务器”中进行测试"
-
-msgid "When a weight is specified, instead of setting the vrrp_instance to the FAULT state in case of failure, "
-msgstr "当指定权重时，而不是将“VRRP 实例”设置为 FAULT 状态以防失败，"
-
-msgid "its priority will be increased or decreased by the weight when the interface is up or down"
-msgstr "当接口“上线”或“离线”时，它的优先级将按权重增加或减少"
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:202
+msgid "3"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:19
 msgid ""
 "A VIP address migrates from one LVS router to the other during a failover,"
 msgstr "VIP 地址在故障转移期间从一个 LVS 路由器迁移到另一个，"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:46
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:45
 msgid "A server with a higher priority becomes a MASTER"
 msgstr "具有更高优先级的服务器成为“主设备”"
 
@@ -36,30 +23,37 @@ msgid ""
 "A virtual server is a service configured to listen on a specific virtual IP."
 msgstr "虚拟服务器是配置为侦听特定虚拟 IP 的服务。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:186
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:206
 msgid "Accept"
 msgstr "接受"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:187
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:207
 msgid "Accept packets to non address-owner"
 msgstr "接受到非地址所有者的数据包"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:27
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:31
 msgid "Active State"
 msgstr "活动状态"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:95
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:90
 msgid ""
 "Additional files to synchronize, By default it synchronizes sysupgrade "
 "backup files"
 msgstr "要同步的其他文件，默认情况下它会同步 sysupgrade 备份文件"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:29
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:32
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:138
+msgid "Address"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:33
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:139
 msgid "Address of the Server"
 msgstr "服务器地址"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:68
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:72
 msgid "Addresses add|del on change to MASTER, to BACKUP."
 msgstr "当更改为“主设备”或“备份”时，路由会增加或删除。"
 
@@ -73,28 +67,33 @@ msgstr "地址将被引用到 VRRP 实例的静态和虚拟 IP 地址中"
 msgid ""
 "Adds a script to be executed periodically. Its exit code will be recorded "
 "for all VRRP instances and sync groups which are monitoring it"
-msgstr "添加要定期执行的脚本。它的退出代码将为所有正在监视它的 VRRP 实例和同步组记录"
+msgstr ""
+"添加要定期执行的脚本。它的退出代码将为所有正在监视它的 VRRP 实例和同步组记录"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:80
 msgid "Adjust script execution priority"
 msgstr "调整脚本执行优先级"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:26
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:276
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:296
 msgid "Advanced"
 msgstr "高级"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:60
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:64
 msgid "Allows the lower priority machine to maintain the master role,"
 msgstr "允许较低优先级的机器保持“主设备”角色，"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:89
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:84
 msgid "Authorize ssh public key of peer"
 msgstr "授权对端的 ssh 公钥"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:48
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:49
 msgid "Auto Synchonize Config/Data files with peer"
 msgstr "与对端自动同步配置/数据文件"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:27
+msgid "Backup"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:57
 msgid "Blackhole"
@@ -112,19 +111,23 @@ msgstr "连接超时"
 msgid "Creates virtual device with Label"
 msgstr "使用标签创建虚拟设备"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:51
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:52
 msgid "Current System should act as Sender/Receiver."
 msgstr "当前系统应充当发送者/接收者。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:198
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:217
+msgid "Debug"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:218
 msgid "Debug Level"
 msgstr "调试级别"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:83
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:87
 msgid "Default IP for binding vrrpd is the primary IP on interface"
 msgstr "绑定 vrrpd 的默认 IP 是接口上的主 IP"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:265
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:287
 msgid ""
 "Define an individual instance of the VRRP protocol running on an interface"
 msgstr "定义在接口上运行的 VRRP 协议的单个实例"
@@ -141,7 +144,13 @@ msgstr "延迟循环"
 msgid "Delay in seconds before VRRP instances start up after"
 msgstr "VRRP 实例启动前的延迟（秒）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:24
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:36
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:28
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:22
+msgid "Device"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:23
 msgid "Device to track"
 msgstr "要跟踪的设备"
 
@@ -153,15 +162,15 @@ msgstr "用于路由的设备"
 msgid "Device to use to assign the Address"
 msgstr "用于分配地址的设备"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:40
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:39
 msgid "Differentiate multiple instances of vrrpd, running on the same NIC"
 msgstr "区分多个 vrrpd 实例，运行在同一个网卡上"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:23
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:24
 msgid "Digest"
 msgstr "摘要"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:23
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:25
 msgid "Digest computed with genhash"
 msgstr "用 genhash 计算的摘要"
 
@@ -169,15 +178,15 @@ msgstr "用 genhash 计算的摘要"
 msgid "Direction"
 msgstr "方向"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:59
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:63
 msgid "Disable Preempt"
 msgstr "禁用抢占"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:172
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:192
 msgid "Disable Primary Tracking"
 msgstr "禁用主要跟踪"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:96
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:100
 msgid "Do not send VRRP adverts over VRRP multicast group."
 msgstr "不要通过 VRRP 组播组发送 VRRP 通告。"
 
@@ -185,7 +194,7 @@ msgstr "不要通过 VRRP 组播组发送 VRRP 通告。"
 msgid "EMail accounts that will receive the notification mail"
 msgstr "将接收通知邮件的电子邮件帐户"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:207
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:227
 msgid "Email Alert"
 msgstr "电子邮件提醒"
 
@@ -197,11 +206,19 @@ msgstr "电子邮件通知"
 msgid "Email to use when processing “MAIL FROM:” SMTP command"
 msgstr "处理 “MAIL FROM:” SMTP 命令时使用的电子邮件"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:47
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:28
+msgid "Enable"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:48
 msgid "Enable Sync"
 msgstr "启用同步"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:222
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:135
+msgid "Enabled"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:242
 msgid "Exclude Virtual IP Address"
 msgstr "排除虚拟 IP 地址"
 
@@ -214,11 +231,11 @@ msgstr "失败"
 msgid "Firewall fwmark. Use Virtual server from FWMARK"
 msgstr "防火墙 fwmark。使用 FWMARK 的虚拟服务器"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:62
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:66
 msgid "For this to work, the initial state of this entry must be BACKUP."
 msgstr "为此，此条目的初始状态必须为“备份”。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:167
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:187
 msgid "Force instance to use IPv6"
 msgstr "强制实例使用 IPv6"
 
@@ -226,28 +243,36 @@ msgstr "强制实例使用 IPv6"
 msgid "Forwarding Method"
 msgstr "转发方式"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:126
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:295
+msgid "GARP"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:130
 msgid "GARP Delay"
 msgstr "GARP 延迟"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:138
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:150
 msgid "GARP Refresh"
 msgstr "GARP 刷新"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:144
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:160
 msgid "GARP Refresh Repeat"
 msgstr "GARP 刷新重复"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:132
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:140
 msgid "GARP Repeat"
 msgstr "GARP 重复"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:45
+msgid "Gateway"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:46
 msgid "Gateway to use for the Route"
 msgstr "用于路由的网关"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:25
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:272
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:292
 msgid "General"
 msgstr "常规"
 
@@ -263,11 +288,11 @@ msgstr "全局追踪"
 msgid "Globals"
 msgstr "全局"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:242
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:262
 msgid "Go to FAULT state if any of these go down"
 msgstr "如果其中任何一个发生故障，请转到 FAULT 状态"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:251
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:271
 msgid "Go to FAULT state if any of these go down, if unweighted"
 msgstr "如果其中任何一个关闭（如果未加权），则进入 FAULT 状态"
 
@@ -279,23 +304,23 @@ msgstr "授予对 LuCI 应用程序 keepalived 的访问权限"
 msgid "Granularity mask for persistent connections"
 msgstr "持久连接的粒度掩码"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:127
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:131
 msgid "Gratuitous Master Delay in seconds"
 msgstr "无偿 Master 延迟（秒）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:139
-msgid "Gratuitous Master Refresh in seconds"
-msgstr "无偿 Master 刷新（秒）"
-
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:145
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:161
 msgid "Gratuitous Master Refresh Repeat in seconds"
 msgstr "无偿 Master 刷新重复（秒）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:133
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:151
+msgid "Gratuitous Master Refresh in seconds"
+msgstr "无偿 Master 刷新（秒）"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:141
 msgid "Gratuitous Master Repeat in seconds"
 msgstr "无偿 Master 重复（秒）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:111
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:115
 msgid "HA Authentication Type"
 msgstr "HA 认证类型"
 
@@ -306,6 +331,10 @@ msgstr "用于 HTTP_GET | SSL_GET 的 HTTP 虚拟主机"
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:158
 msgid "Healthcheckers. Can be multiple of each type"
 msgstr "健康检查。每种类型可以有多个"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:50
+msgid "Host"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:72
 #: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:30
@@ -324,14 +353,19 @@ msgstr "IP 地址"
 msgid "IP Addresses must be configured for Static IP List"
 msgstr "必须为静态 IP 列表配置 IP 地址"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:52
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:117
+msgid "IPSec"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:53
 msgid ""
 "If peer is backup node, Current system should be sender, If peer is master "
 "current system should be receiver"
 msgstr ""
-"如果对端节点是备份节点，当前系统应该是发送者，如果对端节点是主节点，当前系统应该是接收者"
+"如果对端节点是备份节点，当前系统应该是发送者，如果对端节点是主节点，当前系统"
+"应该是接收者"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:65
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:60
 msgid ""
 "If peer runs on non standard ssh port, change to correct ssh port number"
 msgstr "如果对端在非标准 ssh 端口上运行，请更改为正确的 ssh 端口号"
@@ -348,18 +382,22 @@ msgid ""
 "other, you don't need this section"
 msgstr "如果您的机器上已经有路由，并且您的机器可以互相 ping 通，则不需要此部分"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:105
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:109
 msgid ""
 "If you want to hide location of vrrpd, use this IP for multicast vrrp packets"
 msgstr "如果要隐藏 vrrpd 的位置，请将此 IP 用于组播 vrrp 数据包"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:173
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:193
 msgid "Ignore VRRP interface faults"
 msgstr "忽略 VRRP 接口故障"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:25
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:24
 msgid "Initial State. As soon as the other machine(s) come up,"
 msgstr "初始状态。其他机器一上线，"
+
+#: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:84
+msgid "Instance"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:38
 msgid "Instance Group"
@@ -369,18 +407,28 @@ msgstr "实例组"
 msgid "Instances must be configured for VRRP Groups"
 msgstr "必须为 VRRP 组配置实例"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:97
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:101
 msgid ""
 "Instead it sends adverts to the following list of ip addresses using unicast "
 "design fashion"
 msgstr "相反，它使用单播设计方式将通告发送到以下 IP 地址列表"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:33
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:26
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:31
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:30
+msgid "Interface"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:32
 msgid "Interface for inside_network, bound by VRRP"
 msgstr "inside_network 的接口，由 VRRP 绑定"
 
+#: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:66
+msgid "Interfaces"
+msgstr ""
+
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:73
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:51
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:50
 msgid "Interval"
 msgstr "间隔"
 
@@ -388,15 +436,24 @@ msgstr "间隔"
 msgid "Interval between checks in seconds"
 msgstr "检查之间的间隔（秒）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:9
+#: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:3
+msgid "Keepalived"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:11
 msgid "Keepalived Global Settings"
 msgstr "Keepalived 全局设置"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:13
+msgid "Keepalived Instances"
+msgstr "Keepalived 实例"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:66
 msgid "Keepalived Instances Status"
 msgstr "Keepalived 实例状态"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:30
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:34
 msgid "Last Transition"
 msgstr "上次转换"
 
@@ -428,6 +485,10 @@ msgstr "主要"
 msgid "Mark"
 msgstr "标记"
 
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:26
+msgid "Master"
+msgstr ""
+
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:47
 msgid "Multicast Group to use for IPv4 VRRP adverts"
 msgstr "用于 IPv4 VRRP 通告的组播组"
@@ -436,9 +497,24 @@ msgstr "用于 IPv4 VRRP 通告的组播组"
 msgid "Multicast Group to use for IPv6 VRRP adverts"
 msgstr "用于 IPv6 VRRP 通告的组播组"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:104
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:108
 msgid "Multicast Source IP"
 msgstr "组播源 IP"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:24
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:25
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:31
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:24
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:29
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:62
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:130
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:18
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:17
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:19
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:33
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:29
+msgid "Name"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:50
 msgid "No Reverse"
@@ -448,6 +524,10 @@ msgstr "无反转"
 msgid "No Where"
 msgstr "不存在"
 
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:200
+msgid "None"
+msgstr ""
+
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:25
 msgid "Notification E-Mail"
 msgstr "通知电子邮件"
@@ -456,7 +536,15 @@ msgstr "通知电子邮件"
 msgid "Notification E-Mail From"
 msgstr "通知电子邮件发件人"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:116
+#: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:12
+msgid "Overview"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:119
+msgid "Password"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:120
 msgid "Password for accessing vrrpd, should be the same on all machines"
 msgstr "访问 vrrpd 的密码，在所有机器上都应该相同"
 
@@ -464,26 +552,28 @@ msgstr "访问 vrrpd 的密码，在所有机器上都应该相同"
 msgid "Path of the script to execute"
 msgstr "要执行的脚本路径"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:80
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:75
 msgid "Path to SSH Private Key"
 msgstr "SSH 私钥的路径"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:95
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:273
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:99
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:293
 msgid "Peer"
 msgstr "对端"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:34
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:35
 msgid "Peer Address"
 msgstr "对端地址"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:23
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:25
 #: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:75
 msgid "Peers"
 msgstr "对端"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:23
-msgid "Peers can be referenced into Instances cluster and data/config synchronization"
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:26
+msgid ""
+"Peers can be referenced into Instances cluster and data/config "
+"synchronization"
 msgstr "对端可以被引用到实例集群和数据/配置同步"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:91
@@ -498,23 +588,40 @@ msgstr "持续超时"
 msgid ""
 "Poll to detect media link failure using ETHTOOL, MII or ioctl interface "
 "otherwise uses netlink interface"
-msgstr "轮询使用 ETHTOOL、MII 或 ioctl 接口检测媒体链接故障，否则使用 netlink 接口"
+msgstr ""
+"轮询使用 ETHTOOL、MII 或 ioctl 接口检测媒体链接故障，否则使用 netlink 接口"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:42
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:144
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:168
+msgid "Port"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:169
 msgid "Port to connect to"
 msgstr "要连接的端口"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:191
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:211
 msgid "Preempt Delay"
 msgstr "抢占延迟"
 
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:44
+msgid "Priority"
+msgstr ""
+
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:29
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:33
 msgid "Probes Received"
 msgstr "已接收探针"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:28
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:32
 msgid "Probes Sent"
 msgstr "已发送探针"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:36
+msgid "Protocol"
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:53
 msgid "Real Server"
@@ -528,7 +635,7 @@ msgstr "真实服务器重定向所有请求"
 msgid "Real Servers"
 msgstr "真实服务器"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:54
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:55
 msgid "Receiver"
 msgstr "接收者"
 
@@ -580,7 +687,7 @@ msgstr "路由器 ID"
 msgid "Routes"
 msgstr "路由"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:233
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:253
 msgid "Routes add|del when changing to MASTER, to BACKUP"
 msgstr "当更改为“主设备”或“备份”时，路由会增加或删除"
 
@@ -601,11 +708,11 @@ msgstr "SMTP 连接超时"
 msgid "SMTP Server"
 msgstr "SMTP 服务器"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:64
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:59
 msgid "SSH Port"
 msgstr "SSH 端口"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:88
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:83
 msgid "SSH Public Key"
 msgstr "SSH 公钥"
 
@@ -633,7 +740,7 @@ msgstr "脚本"
 msgid "Seconds between script invocations"
 msgstr "脚本调用之间的秒数"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:208
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:228
 msgid "Send SMTP alerts"
 msgstr "发送 SMTP 警报"
 
@@ -641,16 +748,18 @@ msgstr "发送 SMTP 警报"
 msgid "Send email notification during state transition"
 msgstr "在状态转换期间发送电子邮件通知"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:161
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:181
 msgid "Send/Recv VRRP messages from base interface instead of VMAC interfac"
 msgstr "从基本接口而不是 VMAC 接口发送/接收 VRRP 消息"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:53
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:54
 msgid "Sender"
 msgstr "发送者"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:72
-msgid "Sender will send files to this location of receiver. Must be same on Master/Backup"
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:67
+msgid ""
+"Sender will send files to this location of receiver. Must be same on Master/"
+"Backup"
 msgstr "发送者将文件发送到接收者的这个位置。主/备份必须相同"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:43
@@ -670,7 +779,7 @@ msgstr "用于发送邮件通知的服务器"
 msgid "Servers"
 msgstr "服务器"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:112
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:116
 msgid "Simple Password"
 msgstr "简单密码"
 
@@ -694,10 +803,6 @@ msgstr "源地址"
 msgid "Source Address of the Route"
 msgstr "路由的源地址"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:24
-msgid "state"
-msgstr "状态"
-
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:66
 msgid "Static Addresses are not moved by vrrpd, they stay on the machine."
 msgstr "静态地址不会被 vrrpd 移动，它们保留在机器上。"
@@ -718,11 +823,11 @@ msgstr "静态路由不会被 vrrpd 移动，它们会留在机器上。"
 msgid "String identifying the machine (doesn't have to be hostname)"
 msgstr "标识机器的字符串（不必是主机名）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:71
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:66
 msgid "Sync Directory"
 msgstr "同步目录"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:94
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:89
 msgid "Sync Files"
 msgstr "同步文件"
 
@@ -730,7 +835,7 @@ msgstr "同步文件"
 msgid "Sync Group"
 msgstr "同步组"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:50
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:51
 msgid "Sync Mode"
 msgstr "同步模式"
 
@@ -746,17 +851,18 @@ msgstr "路由的目标 IP 地址"
 msgid "Target/Destination"
 msgstr "目标/目的地"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:25
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:27
 msgid ""
 "The main goal is to define a bundle of VRRP instance to get synchronized "
 "together"
 msgstr "主要目标是定义一组 VRRP 实例来同步"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:60
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:58
 msgid "There are no active instances"
 msgstr "没有活动实例"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:192
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:212
 msgid "Time in seconds to delay preempting compared"
 msgstr "比较延迟抢占的时间（秒）"
 
@@ -768,22 +874,22 @@ msgstr "SMTP 流处理超时（秒）"
 msgid "Timeout value for persistent connections"
 msgstr "持久连接的超时值（秒）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:224
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:244
 msgid ""
 "To decrease the number of packets sent in adverts, you can exclude most IPs "
 "from adverts."
 msgstr "要减少通告中发送的数据包数量，您可以从通告中排除大多数 IP。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:11
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:13
 msgid "Track Interface"
 msgstr "跟踪接口"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:241
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:261
 msgid "Track Interfaces"
 msgstr "跟踪接口"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:23
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:250
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:270
 msgid "Track Script"
 msgstr "跟踪脚本"
 
@@ -791,7 +897,7 @@ msgstr "跟踪脚本"
 msgid "Track interfaces, scripts and files"
 msgstr "跟踪接口、脚本和文件"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:274
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:294
 msgid "Tracking"
 msgstr "跟踪"
 
@@ -803,33 +909,43 @@ msgstr "跟踪脚本将从 VRRP 实例中引用"
 msgid "URL Path"
 msgstr "URL 路径"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:20
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:21
 msgid "URL path, i.e path /, or path /mrtg2/"
 msgstr "URL 路径，即路径 /，或路径 /mrtg2/"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:82
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:178
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:11
+#: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:48
+msgid "URLs"
+msgstr ""
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:12
+msgid "URLs can be referenced into Real Servers to test"
+msgstr "可以将 URL 引用到“真实服务器”中进行测试"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:86
 msgid "Unicast Source IP"
 msgstr "单播源 IP"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:166
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:186
 msgid "Use IPV6"
 msgstr "使用 IPV6"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:81
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:76
 msgid ""
 "Use SSH key for password less authentication, SSH Key would be used on "
 "current system"
 msgstr "使用 SSH 密钥进行无密码身份验证，SSH 密钥将在当前系统上使用"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:154
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:174
 msgid "Use VMAC"
 msgstr "使用 VMAC"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:160
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:180
 msgid "Use VMAC Base"
 msgstr "使用 VMAC Base"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:155
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:175
 msgid "Use VRRP Virtual MAC"
 msgstr "使用 VRRP 虚拟 MAC"
 
@@ -837,17 +953,17 @@ msgstr "使用 VRRP 虚拟 MAC"
 msgid "User Check Script"
 msgstr "使用检查脚本"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:52
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:51
 msgid "VRRP Advert interval in seconds"
 msgstr "VRRP 通告间隔（秒）"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:223
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:243
 msgid ""
 "VRRP IP excluded from VRRP. For cases with large numbers (eg 200) of IPs on "
 "the same interface."
 msgstr "VRRP IP 从 VRRP 中排除。对于同一接口上有大量（例如 200）IP 的情况。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:264
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:286
 msgid "VRRP Instance"
 msgstr "VRRP 实例"
 
@@ -872,19 +988,19 @@ msgstr "必须为跟踪脚本配置 VRRP 脚本"
 msgid "VRRP Startup Delay"
 msgstr "VRRP 启动延迟"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:24
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:26
 msgid "VRRP Sync Group is an extension to VRRP protocol."
 msgstr "VRRP 同步组是 VRRP 协议的扩展。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:23
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:25
 msgid "VRRP synchronization group"
 msgstr "VRRP 同步组"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:179
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:199
 msgid "VRRP version to run on interface"
 msgstr "在接口上运行的 VRRP 版本"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:178
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:198
 msgid "Version"
 msgstr "版本"
 
@@ -896,15 +1012,15 @@ msgstr "虚拟设备标签"
 msgid "Virtual Host"
 msgstr "虚拟主机"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:67
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:71
 msgid "Virtual IP Address"
 msgstr "虚拟 IP 地址"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:39
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:38
 msgid "Virtual Router Id"
 msgstr "虚拟路由器 ID"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:232
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:252
 msgid "Virtual Routes"
 msgstr "虚拟路由"
 
@@ -915,7 +1031,7 @@ msgstr "虚拟服务器"
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:42
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:79
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:150
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:30
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:28
 msgid "Weight"
 msgstr "权重"
 
@@ -927,13 +1043,19 @@ msgstr "加权最小连接"
 msgid "Weighted Round-Robin"
 msgstr "加权轮循"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:69
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:29
+msgid ""
+"When a weight is specified, instead of setting the vrrp_instance to the "
+"FAULT state in case of failure,"
+msgstr "当指定权重时，而不是将“VRRP 实例”设置为 FAULT 状态以防失败，"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:73
 msgid ""
 "With the same entries on other machines, the opposite transition will be "
 "occurring."
 msgstr "对于其他机器上的相同条目，将发生相反的转换。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:26
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:25
 msgid ""
 "an election will be held and the machine with the highest \"priority\" will "
 "become MASTER."
@@ -943,14 +1065,24 @@ msgstr "将进行选举，“优先级”最高的机器将成为“主设备”
 msgid "default"
 msgstr "默认"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:61
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:65
 msgid "even when a higher priority machine comes back online."
 msgstr "即使更高优先级的机器重新联机。"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:26
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:30
+msgid ""
+"its priority will be increased or decreased by the weight when the interface "
+"is up or down"
+msgstr "当接口“上线”或“离线”时，它的优先级将按权重增加或减少"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:28
 msgid ""
 "so that transition of one instance will be reflected to others group members"
 msgstr "这样一个实例的转换将反映给其他组成员"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:23
+msgid "state"
+msgstr "状态"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:20
 msgid "thus maintaining a presence at that IP address"

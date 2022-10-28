@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/overview.js:26
 msgid "Active Alarms"
@@ -25,6 +25,11 @@ msgstr "添加丢包警报"
 msgid "Add Target"
 msgstr "添加目标"
 
+#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/overview.js:21
+#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:41
+msgid "Address"
+msgstr ""
+
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:24
 msgid "Address: Target address to be tracked"
 msgstr "地址：要跟踪的目标地址"
@@ -40,6 +45,10 @@ msgstr "离线警报"
 #: applications/luci-app-apinger/root/usr/share/luci/menu.d/luci-app-apinger.json:57
 msgid "Alarm loss"
 msgstr "丢包警报"
+
+#: applications/luci-app-apinger/root/usr/share/luci/menu.d/luci-app-apinger.json:3
+msgid "Apinger"
+msgstr ""
 
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/alarm_delay.js:9
 msgid "Apinger - Delay Alarms"
@@ -77,7 +86,9 @@ msgstr "平均延迟"
 msgid ""
 "Average Delay and Loss: The delay (in samples) after which loss is computed, "
 "without this delays larger than interval would be treated as loss"
-msgstr "平均延迟和丢包：计算丢包之后的延迟（以样本为单位），如果没有大于间隔的延迟将被视为丢包"
+msgstr ""
+"平均延迟和丢包：计算丢包之后的延迟（以样本为单位），如果没有大于间隔的延迟将"
+"被视为丢包"
 
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:26
 msgid "Average Delay: How many replies should be used to compute average delay"
@@ -94,6 +105,10 @@ msgstr "平均丢包/延迟"
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:27
 msgid "Average Loss: How many probes should be used to compute average loss"
 msgstr "平均丢包：应该使用多少探针来计算平均丢包"
+
+#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/interfaces.js:17
+msgid "Debug"
+msgstr ""
 
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:66
 msgid "Delay Alarm"
@@ -123,9 +138,18 @@ msgstr "授予对 LuCI 应用 Apinger 的访问权限"
 msgid "Graphs"
 msgstr "图表"
 
+#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/overview.js:18
+#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:36
+msgid "Interface"
+msgstr ""
+
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:23
 msgid "Interface: Interface to use to track target"
 msgstr "接口：用于跟踪目标的接口"
+
+#: applications/luci-app-apinger/root/usr/share/luci/menu.d/luci-app-apinger.json:30
+msgid "Interfaces"
+msgstr ""
 
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/overview.js:24
 msgid "Latency"
@@ -159,6 +183,10 @@ msgstr "无法访问服务器文件"
 msgid "No data available"
 msgstr "没有可用数据"
 
+#: applications/luci-app-apinger/root/usr/share/luci/menu.d/luci-app-apinger.json:12
+msgid "Overview"
+msgstr ""
+
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/targets.js:44
 msgid "Ping Interval"
 msgstr "Ping 间隔"
@@ -191,6 +219,10 @@ msgstr "源 IP"
 msgid "Status Update Interval"
 msgstr "状态更新间隔（秒）"
 
+#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/overview.js:19
+msgid "Target"
+msgstr ""
+
 #: applications/luci-app-apinger/root/usr/share/luci/menu.d/luci-app-apinger.json:66
 msgid "Targets"
 msgstr "目标"
@@ -198,10 +230,6 @@ msgstr "目标"
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/overview.js:51
 msgid "There are no active targets"
 msgstr "没有活动目标"
-
-#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/alarm_delay.js:11
-msgid "This alarm will be fired when target responses are delayed more than \"Delay High\""
-msgstr "当延迟高于“延迟上限”时，将触发此警报"
 
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/alarm_delay.js:11
 msgid "This alarm will be canceled, when the delay drops below \"Delay Low\""
@@ -218,6 +246,12 @@ msgstr "当数据包丢失超过“丢包上限”时，将触发此警报"
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/alarm_down.js:10
 msgid "This alarm will be fired when target does not respond for \"Time\""
 msgstr "当目标在“时间”内没有响应时，将触发此警报"
+
+#: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/alarm_delay.js:10
+msgid ""
+"This alarm will be fired when target responses are delayed more than \"Delay "
+"High\""
+msgstr "当延迟高于“延迟上限”时，将触发此警报"
 
 #: applications/luci-app-apinger/htdocs/luci-static/resources/view/apinger/overview.js:27
 msgid "Time"

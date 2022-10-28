@@ -1,74 +1,124 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "Scheduling priority"
-msgstr "调度优先级"
-
-msgid "Set the scheduling priority of the spawned process."
-msgstr "设置生成进程的调度优先级。"
-
-msgid "Disable ipv6 query"
-msgstr "禁用 IPv6 查询"
-
-msgid "Listen Address"
-msgstr "监听地址"
-
-msgid "Listen Port"
-msgstr "监听端口"
-
-msgid "China DNS"
-msgstr "中国DNS"
-
-msgid "Trust DNS"
-msgstr "可信DNS"
-
-msgid "Fair model"
-msgstr "公平模式"
-
-msgid "If a trusted DNS response is returned first, this option should be enabled."
-msgstr "如果可信DNS的响应最先返回，则应启用此选项。"
-
-msgid "Enable multi-process"
-msgstr "启用多进程"
-
-msgid "Simultaneously start multiple chinadns-ng processes for load balancing."
-msgstr "同时启动多个chinadns-ng进程以实现负载均衡。"
-
-msgid "Priority match chnlist"
-msgstr "优先匹配chnlist"
-
-msgid "Priority matching China website list, default priority matching gfwlist"
-msgstr "优先匹配中国网站列表，默认优先匹配gfwlist"
-
-msgid "Accept response without IP"
-msgstr "接受不含IP的响应"
-
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:54
 msgid "Accept reply with qtype of A/AAAA but no IP"
 msgstr "接受qtype为A/AAAA但无IP的响应"
 
-msgid "The name of the China IPv4 ipset collection"
-msgstr "中国IPv4 ipset集合的名称"
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:53
+msgid "Accept response without IP"
+msgstr "接受不含IP的响应"
 
-msgid "The name of the China IPv6 ipset collection"
-msgstr "中国IPv6 ipset集合的名称"
-
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:71
 msgid "Blacklist domain name file"
 msgstr "黑名单域名文件"
 
-msgid "The domain names in this file only use trusted DNS queries."
-msgstr "此文件中的域名仅使用可信DNS查询。"
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:31
+msgid "China DNS"
+msgstr "中国DNS"
 
-msgid "Whitelist domain name files"
-msgstr "白名单域名文件"
+#: applications/luci-app-chinadns-ng/luasrc/controller/chinadns-ng.lua:11
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:11
+msgid "ChinaDNS-NG"
+msgstr ""
 
-msgid "The domain names in this file only use china DNS queries."
-msgstr "此文件中的域名仅使用中国DNS查询。"
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:57
+msgid "Disable ipv6 query"
+msgstr "禁用 IPv6 查询"
 
-msgid "Upstream DNS timeout (seconds)"
-msgstr "上游DNS超时（秒）"
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:16
+msgid "Enable"
+msgstr ""
 
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:41
+msgid "Enable multi-process"
+msgstr "启用多进程"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:49
+msgid "Fair model"
+msgstr "公平模式"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:13
+msgid "General Settings"
+msgstr ""
+
+#: applications/luci-app-chinadns-ng/root/usr/share/rpcd/acl.d/luci-app-chinadns-ng.json:3
+msgid "Grant UCI access for luci-app-chinadns-ng"
+msgstr "为 luci-app-chinadns-ng 授予 UCI 访问权限"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:50
+msgid ""
+"If a trusted DNS response is returned first, this option should be enabled."
+msgstr "如果可信 DNS 的响应最先返回，则应启用此选项。"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:19
+msgid "Listen Address"
+msgstr "监听地址"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:25
+msgid "Listen Port"
+msgstr "监听端口"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:8
+msgid "Not running"
+msgstr ""
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:91
 msgid "Number of DNS queries"
 msgstr "DNS查询数量"
 
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:45
+msgid "Priority match chnlist"
+msgstr "优先匹配chnlist"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:46
+msgid "Priority matching China website list, default priority matching gfwlist"
+msgstr "优先匹配中国网站列表，默认优先匹配gfwlist"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:6
+msgid "Running"
+msgstr ""
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:60
+msgid "Scheduling priority"
+msgstr "调度优先级"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:92
 msgid "Send several query packets to the trusted DNS each time, default is 1."
 msgstr "每次向可信DNS发送几个查询包，默认为1"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:60
+msgid "Set the scheduling priority of the spawned process."
+msgstr "设置生成进程的调度优先级。"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:42
+msgid "Simultaneously start multiple chinadns-ng processes for load balancing."
+msgstr "同时启动多个chinadns-ng进程以实现负载均衡。"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:79
+msgid "The domain names in this file only use china DNS queries."
+msgstr "此文件中的域名仅使用中国DNS查询。"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:72
+msgid "The domain names in this file only use trusted DNS queries."
+msgstr "此文件中的域名仅使用可信DNS查询。"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:63
+msgid "The name of the China IPv4 ipset collection"
+msgstr "中国IPv4 ipset集合的名称"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:67
+msgid "The name of the China IPv6 ipset collection"
+msgstr "中国IPv6 ipset集合的名称"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:36
+msgid "Trust DNS"
+msgstr "可信DNS"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:85
+msgid "Upstream DNS timeout (seconds)"
+msgstr "上游DNS超时（秒）"
+
+#: applications/luci-app-chinadns-ng/luasrc/model/cbi/chinadns-ng.lua:78
+msgid "Whitelist domain name files"
+msgstr "白名单域名文件"

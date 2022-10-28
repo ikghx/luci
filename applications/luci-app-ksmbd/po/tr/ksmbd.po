@@ -10,31 +10,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.7-dev\n"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:87
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:45
+msgid "Allow connection using smb(v1) protocol."
+msgstr ""
+
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:88
 msgid "Allow guests"
 msgstr "Misafirlere izin ver"
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:44
-msgid "Allow legacy (insecure) protocols/authentication."
-msgstr "Eski (güvenli olmayan) protokollere / kimlik doğrulamaya izin verin."
-
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:45
-msgid ""
-"Allow legacy smb(v1)/Lanman connections, needed for older devices without "
-"smb(v2.1/3) support."
+msgid "Allow legacy protocols"
 msgstr ""
-"Smb (v2.1 / 3) desteği olmayan eski cihazlar için gerekli olan eski smb "
-"(v1) / Lanman bağlantılarına izin verin."
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:84
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:85
 msgid "Allowed users"
 msgstr "İzin verilen kullanıcılar"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:71
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:72
 msgid "Browse-able"
 msgstr "Göz atılabilir"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:103
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:104
 msgid "Create mask"
 msgstr "Maske oluştur"
 
@@ -42,7 +38,7 @@ msgstr "Maske oluştur"
 msgid "Description"
 msgstr "Açıklama"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:109
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:110
 msgid "Directory mask"
 msgstr "Dizin maskesi"
 
@@ -50,11 +46,7 @@ msgstr "Dizin maskesi"
 msgid "Edit Template"
 msgstr "Şablonu Düzenle"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:33
-msgid "Edit the template that is used for generating the ksmbd configuration."
-msgstr "Ksmbd yapılandırmasını oluşturmak için kullanılan şablonu düzenleyin."
-
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:82
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:83
 msgid "Force Root"
 msgstr "Kökü Zorla"
 
@@ -66,11 +58,11 @@ msgstr "Genel Ayarlar"
 msgid "Grant access to LuCI app ksmbd"
 msgstr "LuCI uygulaması ksmbd'ye erişim izni verin"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:98
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:99
 msgid "Hide dot files"
 msgstr "Nokta dosyalarını gizle"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:93
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:94
 msgid "Inherit owner"
 msgstr "Sahibi Devral"
 
@@ -88,8 +80,8 @@ msgstr "Ad"
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:21
 #: applications/luci-app-ksmbd/root/usr/share/luci/menu.d/luci-app-ksmbd.json:3
-msgid "Network Shares"
-msgstr "Ağ Paylaşımları"
+msgid "Network Shares-ksmbd"
+msgstr ""
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:66
 msgid "Path"
@@ -103,7 +95,7 @@ msgstr ""
 "Lütfen paylaşılacak dizinleri ekleyin. Her dizin, bağlı bir cihazdaki bir "
 "klasörü ifade eder."
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:76
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:77
 msgid "Read-only"
 msgstr "Salt okunur"
 
@@ -113,15 +105,41 @@ msgstr "Paylaşılan Dizinler"
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:49
 msgid ""
-"This is the content of the file '/etc/ksmbd/smb.conf.template' from which "
+"This is the content of the file '/etc/ksmbd/ksmbd.conf.template' from which "
 "your ksmbd configuration will be generated. Values enclosed by pipe symbols "
 "('|') should not be changed. They get their values from the 'General "
 "Settings' tab."
 msgstr ""
-"Bu, ksmbd yapılandırmanızın oluşturulacağı '/etc/ksmbd/smb.conf.template' "
-"dosyasının içeriğidir. Boru sembolleriyle ('|') çevrelenen değerler "
-"değiştirilmemelidir. Değerlerini 'Genel Ayarlar' sekmesinden alırlar."
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:38
 msgid "Workgroup"
 msgstr "Çalışma grubu"
+
+#~ msgid "Allow legacy (insecure) protocols/authentication."
+#~ msgstr ""
+#~ "Eski (güvenli olmayan) protokollere / kimlik doğrulamaya izin verin."
+
+#~ msgid ""
+#~ "Allow legacy smb(v1)/Lanman connections, needed for older devices without "
+#~ "smb(v2.1/3) support."
+#~ msgstr ""
+#~ "Smb (v2.1 / 3) desteği olmayan eski cihazlar için gerekli olan eski smb "
+#~ "(v1) / Lanman bağlantılarına izin verin."
+
+#~ msgid ""
+#~ "Edit the template that is used for generating the ksmbd configuration."
+#~ msgstr ""
+#~ "Ksmbd yapılandırmasını oluşturmak için kullanılan şablonu düzenleyin."
+
+#~ msgid "Network Shares"
+#~ msgstr "Ağ Paylaşımları"
+
+#~ msgid ""
+#~ "This is the content of the file '/etc/ksmbd/smb.conf.template' from which "
+#~ "your ksmbd configuration will be generated. Values enclosed by pipe "
+#~ "symbols ('|') should not be changed. They get their values from the "
+#~ "'General Settings' tab."
+#~ msgstr ""
+#~ "Bu, ksmbd yapılandırmanızın oluşturulacağı '/etc/ksmbd/smb.conf.template' "
+#~ "dosyasının içeriğidir. Boru sembolleriyle ('|') çevrelenen değerler "
+#~ "değiştirilmemelidir. Değerlerini 'Genel Ayarlar' sekmesinden alırlar."

@@ -1,5 +1,9 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:17
+msgid "Advanced Settings"
+msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:73
 msgid "Boot Delay"
@@ -20,10 +24,9 @@ msgid ""
 "href='https://github.com/openwisp/openwisp-config'>https://github.com/"
 "openwisp/openwisp-config</a>"
 msgstr ""
-"在此设备上配置、启动和停止 OpenWISP 代理。"
-"阅读有关配置值的更多信息：<a target='_blank' rel='noopener noreferrer' "
-"href='https://github.com/openwisp/openwisp-config'>https://github.com/"
-"openwisp/openwisp-config</a>"
+"在此设备上配置、启动和停止 OpenWISP 代理。阅读有关配置值的更多信息：<a "
+"target='_blank' rel='noopener noreferrer' href='https://github.com/openwisp/"
+"openwisp-config'>https://github.com/openwisp/openwisp-config</a>"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:77
 msgid "Connect Timeout"
@@ -33,9 +36,25 @@ msgstr "连接超时"
 msgid "Consistent Key"
 msgstr "一致的密钥"
 
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:29
+msgid "Disabled"
+msgstr ""
+
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:27
+msgid "Enable"
+msgstr ""
+
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:28
 msgid "Enable or disable the OpenWISP service."
 msgstr "启用或禁用 OpenWISP 服务。"
+
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:30
+msgid "Enabled"
+msgstr ""
+
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:16
+msgid "General Settings"
+msgstr ""
 
 #: applications/luci-app-openwisp/root/usr/share/rpcd/acl.d/luci-app-openwisp.json:3
 msgid "Grant access to luci-app-openwisp"
@@ -62,6 +81,10 @@ msgid ""
 "config it will be reverted."
 msgstr "如果代理在应用下载的配置后无法访问控制器，它将被还原。"
 
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:23
+msgid "Key"
+msgstr ""
+
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:49
 msgid "MAC Interface"
 msgstr "MAC接口"
@@ -78,14 +101,19 @@ msgstr "最长时间"
 msgid "Merge Config"
 msgstr "合并配置"
 
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:11
+#: applications/luci-app-openwisp/root/usr/share/luci/menu.d/luci-app-openwisp.json:3
+msgid "OpenWISP"
+msgstr ""
+
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:95
 msgid ""
 "Path to post reload hook script. The hook is not called if the path does not "
 "point to an executable script file. This hook is called each time openwisp-"
 "config applies a configuration, but after services are reloaded."
 msgstr ""
-"发布重新加载挂钩脚本的路径。如果路径不指向可执行脚本文件，则不会调用挂钩。"
-"每次 openwisp-config 应用配置时都会调用此钩子，在重新加载服务之后。"
+"发布重新加载挂钩脚本的路径。如果路径不指向可执行脚本文件，则不会调用挂钩。每"
+"次 openwisp-config 应用配置时都会调用此钩子，在重新加载服务之后。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:91
 msgid ""
@@ -93,8 +121,8 @@ msgid ""
 "to an executable script file. This hook is called each time openwisp-config "
 "applies a configuration, but before services are reloaded."
 msgstr ""
-"预重载挂钩的路径。如果路径不指向可执行脚本文件，则不会调用挂钩。"
-"每次 openwisp-config 应用配置时都会调用此钩子，在重新加载服务之前。"
+"预重载挂钩的路径。如果路径不指向可执行脚本文件，则不会调用挂钩。每次 "
+"openwisp-config 应用配置时都会调用此钩子，在重新加载服务之前。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:95
 msgid "Post-reload Hook"
@@ -153,6 +181,10 @@ msgstr "用于管理和控制的接口。"
 msgid "The organization shared secret for auto enrollment."
 msgstr "组织共享用于自动注册的密钥。"
 
+#: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:20
+msgid "UUID"
+msgstr ""
+
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:38
 msgid "Update Interval"
 msgstr "更新间隔"
@@ -169,14 +201,15 @@ msgid ""
 "must be in PEM format, and the directory must have been processed using the "
 "c_rehash utility supplied with openssl."
 msgstr ""
-"使用指定的证书目录验证对端。证书必须是 PEM 格式，"
-"并且必须使用 openssl 提供的 c_rehash 实用程序处理目录。"
+"使用指定的证书目录验证对端。证书必须是 PEM 格式，并且必须使用 openssl 提供的 "
+"c_rehash 实用程序处理目录。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:85
 msgid ""
 "Use the specified certificate file to verify the peer. The file may contain "
 "multiple CA certificates. The certificate(s) must be in PEM format."
-msgstr "使用指定的证书文件验证对端。该文件可能包含多个 CA 证书。证书必须是 PEM 格式。"
+msgstr ""
+"使用指定的证书文件验证对端。该文件可能包含多个 CA 证书。证书必须是 PEM 格式。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:81
 msgid ""
@@ -199,5 +232,5 @@ msgid ""
 "default, but must be enabled also in the controller application in order to "
 "work."
 msgstr ""
-"使用自动注册时，此功能允许设备在重置或重新刷新时保持相同的配置。"
-"此功能默认启用，但也必须在控制器应用程序中启用才能工作。"
+"使用自动注册时，此功能允许设备在重置或重新刷新时保持相同的配置。此功能默认启"
+"用，但也必须在控制器应用程序中启用才能工作。"

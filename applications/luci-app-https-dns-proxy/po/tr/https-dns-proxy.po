@@ -103,6 +103,18 @@ msgstr "BlahDNS - JP"
 msgid "BlahDNS - SG"
 msgstr "BlahDNS - SG"
 
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:141
+msgid ""
+"Blocks access to Mozilla resolvers, forcing local devices to use router for "
+"DNS resolution (%smore information%s)."
+msgstr ""
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:136
+msgid ""
+"Blocks access to iCloud Private Relay resolvers, forcing local devices to "
+"use router for DNS resolution (%smore information%s)."
+msgstr ""
+
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/net.cfiec.dns.lua:3
 msgid "CFIEC Public DNS (IPv6 Only)"
 msgstr "CFIEC Genel DNS (Yalnızca IPv6)"
@@ -118,6 +130,14 @@ msgstr "CIRA Canadian Shield (Özel)"
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/ca.cira.canadianshield.protected.lua:3
 msgid "CIRA Canadian Shield (Protected)"
 msgstr "CIRA Canadian Shield (Korumalı)"
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:141
+msgid "Canary Domains Mozilla"
+msgstr ""
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:136
+msgid "Canary Domains iCloud"
+msgstr ""
 
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/org.cleanbrowsing.doh-adult.lua:3
 msgid "CleanBrowsing (Adult Filter)"
@@ -215,7 +235,7 @@ msgstr "DNSPod Genel DNS - CN"
 msgid "DNSlify DNS"
 msgstr "DNSlify DNS"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:195
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:205
 msgid "DSCP Codepoint"
 msgstr "DSCP Kod Noktası"
 
@@ -252,6 +272,8 @@ msgid "Force Router DNS"
 msgstr "Yönlendirici DNS'sini Zorla"
 
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:134
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:138
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:143
 msgid "Force Router DNS server to all local devices"
 msgstr "Yönlendirici DNS sunucusunu tüm yerel cihazlara zorla"
 
@@ -283,21 +305,29 @@ msgstr "IIJ Genel DNS - JP"
 
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:123
 msgid ""
-"If update option is selected, the 'DNS forwardings' section of %sDHCP and "
-"DNS%s will be automatically updated to use selected DoH providers (%smore "
+"If update option is selected, the 'DNS forwardings' section of %sDHCP and DNS"
+"%s will be automatically updated to use selected DoH providers (%smore "
 "information%s)."
 msgstr ""
 "Güncelleme seçeneği seçilirse,%sDHCP ve DNS%s 'nin 'DNS iletimleri' bölümü, "
 "seçilen DoH sağlayıcılarını (%smore information%s) kullanmak için otomatik "
 "olarak güncellenecektir."
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:138
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:148
 msgid "Instances"
 msgstr "Örnekler"
 
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/fi.lelux.resolver-eu.lua:3
 msgid "Lelux DNS - FI"
 msgstr "Lelux DNS - FI"
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:142
+msgid "Let local devices use Mozilla resolvers"
+msgstr ""
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:137
+msgid "Let local devices use iCloud Private Relay"
+msgstr ""
 
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:133
 msgid "Let local devices use their own DNS servers if set"
@@ -312,11 +342,11 @@ msgstr "LibreDNS - GR"
 msgid "LibreDNS - GR (No Ads)"
 msgstr "LibreDNS - GR (Reklamsız)"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:178
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:188
 msgid "Listen Address"
 msgstr "Dinleme Adresi"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:191
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:201
 msgid "Listen Port"
 msgstr "Dinleme Bağlantı Noktası"
 
@@ -356,7 +386,7 @@ msgstr "OpenDNS"
 msgid "OpenDNS (Family Shield)"
 msgstr "OpenDNS (Aile Koruması)"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:199
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:209
 msgid "Proxy Server"
 msgstr "Vekil Sunucu"
 
@@ -384,7 +414,7 @@ msgstr "Quad 9 (Güvenlikli değil)"
 msgid "Reload"
 msgstr "Yeniden yükle"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:145
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:155
 msgid "Resolver"
 msgstr "Çözümleyici"
 
@@ -456,6 +486,10 @@ msgstr "Başlatmada/Durdurmada DNSMASQ Yapılandırmasını Güncelle"
 msgid "Update all configs"
 msgstr "Tüm yapılandırmaları güncelle"
 
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:212
+msgid "Use Http1"
+msgstr ""
+
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:50
 msgid "and"
 msgstr "ve"
@@ -467,56 +501,3 @@ msgstr "devre dışı"
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/cn.rubyfish.dns.lua:3
 msgid "rubyfish.cn"
 msgstr "rubyfish.cn"
-
-#~ msgid "AliDNS"
-#~ msgstr "AliDNS"
-
-#~ msgid "DNSPod.cn Public DNS"
-#~ msgstr "DNSPod.cn Public DNS"
-
-#~ msgid "Digitale Gesellschaft"
-#~ msgstr "Digitale Gesellschaft"
-
-#~ msgid "IDNet.net (UK)"
-#~ msgstr "IDNet.net (İngiltere)"
-
-#~ msgid "LibreDNS"
-#~ msgstr "LibreDNS"
-
-#~ msgid "LibreDNS (No Ads)"
-#~ msgstr "LibreDNS (Reklamsız)"
-
-#~ msgid "NextDNS.io"
-#~ msgstr "NextDNS.io"
-
-#~ msgid "Quad 101 (Taiwan)"
-#~ msgstr "Quad 101 (Tayvan)"
-
-#~ msgid "Running: %s DoH at %s:%s"
-#~ msgstr "Çalışıyor: %s DoH at %s:%s"
-
-#~ msgid ""
-#~ "If update DNSMASQ config is selected, when you add/remove any instances "
-#~ "below, they will be used to override the 'DNS forwardings' section of "
-#~ "%sDHCP and DNS%s (%smore information%s)."
-#~ msgstr ""
-#~ "DNSMASQ yapılandırmasını güncelle seçilirse, aşağıdan herhangi bir örnek "
-#~ "eklediğinizde/kaldırdığınızda, bunlar %sDHCP ve DNS%s için 'DNS "
-#~ "yönlendirme' bölümünü geçersiz kılmak için kullanılacaktır (%sdaha fazla "
-#~ "bilgi%s)."
-
-#~ msgid "Listen address"
-#~ msgstr "Dinleme adresi"
-
-#~ msgid "Listen port"
-#~ msgstr "Dinleme portu"
-
-#~ msgid "Proxy server"
-#~ msgstr "Vekil sunucu"
-
-#~ msgid ""
-#~ "When you add/remove any instances below, they will be used to override "
-#~ "the 'DNS forwardings' section of %sDHCP and DNS%s."
-#~ msgstr ""
-#~ "Aşağıdakilerden herhangi birini eklediğiniz/kaldırdığınızda, bunlar "
-#~ "%sDHCP ve DNS%s'in 'DNS İletimleri' bölümünü geçersiz kılacaktır."

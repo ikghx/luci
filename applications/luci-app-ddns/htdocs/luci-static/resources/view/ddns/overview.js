@@ -509,9 +509,9 @@ return view.extend({
 				_("IP address version"),
 				_("Defines which IP address 'IPv4/IPv6' is send to the DDNS provider"));
 			ipv6.default = '0';
-			ipv6.value("0", _("IPv4-Address"))
+			ipv6.value("0", _("IPv4 address"))
 			if (env["has_ipv6"]) {
-				ipv6.value("1", _("IPv6-Address"))
+				ipv6.value("1", _("IPv6 address"))
 			}
 
 			service_name = s2.option(form.ListValue, 'service_name',
@@ -631,9 +631,9 @@ return view.extend({
 				use_ipv6.default = '0';
 				use_ipv6.modalonly = true;
 				use_ipv6.rmempty  = false;
-				use_ipv6.value("0", _("IPv4-Address"))
+				use_ipv6.value("0", _("IPv4 address"))
 				if (env["has_ipv6"]) {
-					use_ipv6.value("1", _("IPv6-Address"))
+					use_ipv6.value("1", _("IPv6 address"))
 				}
 
 				service_name = s.taboption('basic', form.ListValue, 'service_name',
@@ -1032,7 +1032,7 @@ return view.extend({
 					o = s.taboption("timer", form.Flag, "run_once",
 						_("run only once"),
 						_("If no IP address change is detected, the script will stop running."));
-					o.rmempty  = false;
+					o.default = '1';
 					o.optional = true;
 					o.modalonly = true;
 

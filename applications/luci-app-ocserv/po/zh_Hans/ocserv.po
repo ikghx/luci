@@ -10,12 +10,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.5.1\n"
 
-msgid "Cipher"
-msgstr "算法"
-
-msgid "Server Settings"
-msgstr "服务器设置"
-
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:124
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:80
 msgid ""
@@ -41,22 +35,36 @@ msgstr "AnyConnect 客户端兼容性"
 msgid "Available users"
 msgstr "用户列表"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:13
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:14
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:13
 msgid "CA certificate"
 msgstr "CA 证书"
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:72
+#: applications/luci-app-ocserv/luasrc/view/ocserv_status.htm:57
+msgid "Cipher"
+msgstr "算法"
+
+#: applications/luci-app-ocserv/luasrc/view/ocserv_status.htm:62
+msgid "Collecting data..."
+msgstr ""
 
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:132
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:111
 msgid "DNS servers"
 msgstr "DNS 服务器"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:60
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:61
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:54
 msgid "Dead peer detection time (secs)"
 msgstr "对端失效检测时间（秒）"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:14
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:70
+#: applications/luci-app-ocserv/luasrc/view/ocserv_status.htm:55
+msgid "Device"
+msgstr ""
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:15
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:14
 msgid "Edit Template"
 msgstr "编辑模板"
@@ -78,7 +86,6 @@ msgid ""
 "are doing"
 msgstr "启用 UDP 通道支持；除非您知道自己在做什么，否则必须启用它"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:66
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:67
 msgid "Enable compression"
 msgstr "启用压缩"
@@ -87,7 +94,7 @@ msgstr "启用压缩"
 msgid "Enable proxy arp"
 msgstr "启用代理 ARP"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:16
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:17
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:16
 msgid "Enable server"
 msgstr "启用"
@@ -101,6 +108,11 @@ msgstr "启用对 CISCO AnyConnect 客户端的支持"
 msgid "Firewall Zone"
 msgstr "防火墙区域"
 
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:13
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:12
+msgid "General Settings"
+msgstr ""
+
 #: applications/luci-app-ocserv/root/usr/share/rpcd/acl.d/luci-app-ocserv.json:3
 msgid "Grant UCI access for luci-app-ocserv"
 msgstr "授予 UCI 访问 luci-app-ocserv 的权限"
@@ -111,6 +123,14 @@ msgstr "授予 UCI 访问 luci-app-ocserv 的权限"
 msgid "Group"
 msgstr "工作组"
 
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:65
+msgid "ID"
+msgstr ""
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:68
+msgid "IP"
+msgstr ""
+
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:138
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:149
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:117
@@ -119,22 +139,42 @@ msgstr "工作组"
 msgid "IP Address"
 msgstr "IP 地址"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:58
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:59
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:52
 msgid "Max clients"
 msgstr "最大客户端数量"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:59
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:60
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:53
 msgid "Max same clients"
 msgstr "同一客户端最大同时登录数"
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:22
+msgid "Name"
+msgstr ""
 
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:151
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:131
 msgid "Netmask (or IPv6-prefix)"
 msgstr "网络掩码（或 IPv6 前缀）"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:62
+#: applications/luci-app-ocserv/luasrc/controller/ocserv.lua:14
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:8
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:7
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:7
+msgid "OpenConnect VPN"
+msgstr ""
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:24
+msgid "Password"
+msgstr ""
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:57
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:50
+msgid "Port"
+msgstr ""
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:63
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:56
 msgid "Predictable IPs"
 msgstr "可预测的 IP"
@@ -156,9 +196,18 @@ msgstr ""
 msgid "Routing table"
 msgstr "路由表"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:20
+#: applications/luci-app-ocserv/luasrc/controller/ocserv.lua:20
+msgid "Server Settings"
+msgstr "服务器设置"
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:21
 msgid "Server's Public Key ID"
 msgstr "服务器公钥 ID"
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:73
+#: applications/luci-app-ocserv/luasrc/view/ocserv_status.htm:58
+msgid "Status"
+msgstr ""
 
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:112
 msgid "The DNS servers to be provided to clients; can be either IPv6 or IPv4"
@@ -187,12 +236,12 @@ msgid ""
 "configuration."
 msgstr "要提供给客户端的 IPv6 子网地址；留空以尝试自动配置。"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:63
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:64
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:57
 msgid "The assigned IPs will be selected deterministically"
 msgstr "所分配的 IP 地址将能够确定性地选择"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:50
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:51
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:38
 msgid ""
 "The authentication method for the users. The simplest is plain with a single "
@@ -220,12 +269,12 @@ msgstr ""
 "提供给客户端的路由表；您可以混合使用 IPv4 和 IPv6 路由，服务器将只发送适当的"
 "路由。留空以设置默认路由"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:57
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:58
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:51
 msgid "The same UDP and TCP ports will be used"
 msgstr "将使用相同的 UDP 和 TCP 端口"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:21
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:22
 msgid ""
 "The value to be communicated to the client to verify the server's "
 "certificate; this value only depends on the public key"
@@ -244,7 +293,7 @@ msgstr "时间"
 msgid "User"
 msgstr "用户"
 
-#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:49
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:50
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:37
 msgid "User Authentication"
 msgstr "用户身份验证"
@@ -252,6 +301,10 @@ msgstr "用户身份验证"
 #: applications/luci-app-ocserv/luasrc/controller/ocserv.lua:25
 msgid "User Settings"
 msgstr "用户设置"
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:66
+msgid "Username"
+msgstr ""
 
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/main.lua:115
 #: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/user-config.lua:72
@@ -269,6 +322,10 @@ msgstr "VPN <abbr title=\"Internet Protocol Version 4\">IPv4</abbr>–网络地�
 msgid ""
 "VPN <abbr title=\"Internet Protocol Version 6\">IPv6</abbr>-Network-Address"
 msgstr "VPN <abbr title=\"Internet Protocol Version 6\">IPv6</abbr>–网络地址"
+
+#: applications/luci-app-ocserv/luasrc/model/cbi/ocserv/users.lua:69
+msgid "VPN IP"
+msgstr ""
 
 #: applications/luci-app-ocserv/luasrc/view/ocserv_status.htm:54
 msgid "VPN IP Address"

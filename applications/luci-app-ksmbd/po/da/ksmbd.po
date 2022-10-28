@@ -10,31 +10,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.9.1-dev\n"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:87
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:45
+msgid "Allow connection using smb(v1) protocol."
+msgstr ""
+
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:88
 msgid "Allow guests"
 msgstr "Tillad gæster"
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:44
-msgid "Allow legacy (insecure) protocols/authentication."
-msgstr "Tillad ældre (usikre) protokoller/autentificering."
-
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:45
-msgid ""
-"Allow legacy smb(v1)/Lanman connections, needed for older devices without "
-"smb(v2.1/3) support."
+msgid "Allow legacy protocols"
 msgstr ""
-"Tillader gamle smb(v1)/Lanman-forbindelser, hvilket er nødvendigt for ældre "
-"enheder uden smb(v2.1/3)-understøttelse."
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:84
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:85
 msgid "Allowed users"
 msgstr "Tilladte brugere"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:71
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:72
 msgid "Browse-able"
 msgstr "Browse-able"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:103
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:104
 msgid "Create mask"
 msgstr "Opret maske"
 
@@ -42,7 +38,7 @@ msgstr "Opret maske"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:109
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:110
 msgid "Directory mask"
 msgstr "Mappemaske"
 
@@ -50,12 +46,7 @@ msgstr "Mappemaske"
 msgid "Edit Template"
 msgstr "Rediger skabelon"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:33
-msgid "Edit the template that is used for generating the ksmbd configuration."
-msgstr ""
-"Rediger den skabelon, der bruges til at generere ksmbd-konfigurationen."
-
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:82
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:83
 msgid "Force Root"
 msgstr "Tving rod"
 
@@ -67,11 +58,11 @@ msgstr "Generelle indstillinger"
 msgid "Grant access to LuCI app ksmbd"
 msgstr "Giv adgang til LuCI-appen ksmbd"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:98
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:99
 msgid "Hide dot files"
 msgstr "Skjul dot-filer"
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:93
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:94
 msgid "Inherit owner"
 msgstr "nedarv ejer"
 
@@ -89,8 +80,8 @@ msgstr "Navn"
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:21
 #: applications/luci-app-ksmbd/root/usr/share/luci/menu.d/luci-app-ksmbd.json:3
-msgid "Network Shares"
-msgstr "Netværksshares"
+msgid "Network Shares-ksmbd"
+msgstr ""
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:66
 msgid "Path"
@@ -104,7 +95,7 @@ msgstr ""
 "Tilføj venligst mapper, som du kan dele. Hver mappe henviser til en mappe på "
 "en monteret enhed."
 
-#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:76
+#: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:77
 msgid "Read-only"
 msgstr "skrivebeskyttet"
 
@@ -114,16 +105,41 @@ msgstr "Delte mapper"
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:49
 msgid ""
-"This is the content of the file '/etc/ksmbd/smb.conf.template' from which "
+"This is the content of the file '/etc/ksmbd/ksmbd.conf.template' from which "
 "your ksmbd configuration will be generated. Values enclosed by pipe symbols "
 "('|') should not be changed. They get their values from the 'General "
 "Settings' tab."
 msgstr ""
-"Dette er indholdet af filen \"/etc/ksmbd/smb.conf.template\", hvorfra din "
-"ksmbd-konfiguration vil blive genereret. Værdier, der er omgivet af pipe-"
-"symboler ('|'), bør ikke ændres. De får deres værdier fra fanen 'General "
-"Settings' (Generelle indstillinger)."
 
 #: applications/luci-app-ksmbd/htdocs/luci-static/resources/view/ksmbd.js:38
 msgid "Workgroup"
 msgstr "Arbejdsgruppe"
+
+#~ msgid "Allow legacy (insecure) protocols/authentication."
+#~ msgstr "Tillad ældre (usikre) protokoller/autentificering."
+
+#~ msgid ""
+#~ "Allow legacy smb(v1)/Lanman connections, needed for older devices without "
+#~ "smb(v2.1/3) support."
+#~ msgstr ""
+#~ "Tillader gamle smb(v1)/Lanman-forbindelser, hvilket er nødvendigt for "
+#~ "ældre enheder uden smb(v2.1/3)-understøttelse."
+
+#~ msgid ""
+#~ "Edit the template that is used for generating the ksmbd configuration."
+#~ msgstr ""
+#~ "Rediger den skabelon, der bruges til at generere ksmbd-konfigurationen."
+
+#~ msgid "Network Shares"
+#~ msgstr "Netværksshares"
+
+#~ msgid ""
+#~ "This is the content of the file '/etc/ksmbd/smb.conf.template' from which "
+#~ "your ksmbd configuration will be generated. Values enclosed by pipe "
+#~ "symbols ('|') should not be changed. They get their values from the "
+#~ "'General Settings' tab."
+#~ msgstr ""
+#~ "Dette er indholdet af filen \"/etc/ksmbd/smb.conf.template\", hvorfra din "
+#~ "ksmbd-konfiguration vil blive genereret. Værdier, der er omgivet af pipe-"
+#~ "symboler ('|'), bør ikke ændres. De får deres værdier fra fanen 'General "
+#~ "Settings' (Generelle indstillinger)."

@@ -195,7 +195,7 @@ if limit_mac_enable == "1" and limit_type == "static" then
 	o.datatype = "hostname"
 	o.default = ''
 
-	o = x:option(Value, "macaddr", translate("MAC-Address"))
+	o = x:option(Value, "macaddr", translate("MAC Address"))
 	o.placeholder = "AA:AA:AA:AA:AA:AA"
 	o.datatype = "macaddr"
 

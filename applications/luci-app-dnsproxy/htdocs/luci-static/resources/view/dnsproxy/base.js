@@ -70,7 +70,7 @@ return view.extend({
 		o = s.option(form.Value, 'listen_addr', _('Listen address'));
 		o.datatype = 'ipaddr';
 		o.value('127.0.0.1');
-		o.default = '127.0.0.1';
+		o.rmempty = false;
 
 		o = s.option(form.Value, 'listen_port', _('Listen Port'));
 		o.datatype = 'port';

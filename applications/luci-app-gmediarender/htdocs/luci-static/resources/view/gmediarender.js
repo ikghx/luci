@@ -78,7 +78,7 @@ return view.extend({
 		o.datatype = 'range(49152,65535)';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'name', _('Name'), _('UPnP media server name.'));
+		o = s.option(form.Value, 'name', _('Name'), _('UPnP media server name'));
 		o.value('DLNA Renderer GMediaRender');
 		o.rmempty = false;
 

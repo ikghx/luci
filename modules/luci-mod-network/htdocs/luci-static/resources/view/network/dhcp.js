@@ -368,8 +368,8 @@ return view.extend({
 
 		o = s.taboption('relay', form.SectionValue, '__relays__', form.TableSection, 'relay', null,
 			_('Relay DHCP requests elsewhere. OK: v4<->v4, v6<->v6. Not OK: v4<->v6, v6<->v4.')
-			+ '<br />' + _('Note: you may also need a DHCP Proxy (currently unavailable) when specifying a non-standard Relay addr port(<code>addr#port</code>).')
-			+ '<br />' + _('You may add multiple unique Relay addr on the same Listen addr.'));
+			+ '<br />' + _('Note: you may also need a DHCP Proxy (currently unavailable) when specifying a non-standard Relay address port(<code>address#port</code>).')
+			+ '<br />' + _('You may add multiple unique Relay address on the same Listen address.'));
 
 		ss = o.subsection;
 		ss.addremove = true;
@@ -386,7 +386,7 @@ return view.extend({
 		so.rmempty = false;
 		so.placeholder = 'lan';
 
-		so = ss.option(form.Value, 'local_addr', _('Listen addr'));
+		so = ss.option(form.Value, 'local_addr', _('Listen address'));
 		so.rmempty = false;
 		so.datatype = 'ipaddr';
 
@@ -398,7 +398,7 @@ return view.extend({
 			}
 		}
 
-		so = ss.option(form.Value, 'server_addr', _('Relay addr'));
+		so = ss.option(form.Value, 'server_addr', _('Relay address'));
 		so.rmempty = false;
 		so.optional = false;
 		so.placeholder = '192.168.10.1#5335';
@@ -415,7 +415,7 @@ return view.extend({
 					n = p[0];
 
 			if ((m == null || m == '') && (n == null || n == ''))
-				return _('Both Listen addr and Relay addr must be specified.');
+				return _('Both Listen address and Relay address must be specified.');
 
 			if ((validation.parseIPv6(m) && validation.parseIPv6(n)) ||
 				validation.parseIPv4(m) && validation.parseIPv4(n))

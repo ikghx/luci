@@ -16,21 +16,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.12-dev\n"
 
-msgid ""
-"Blocks access to Mozilla resolvers, forcing local devices to use router for "
-"DNS resolution (%smore information%s)."
-msgstr ""
-"阻止访问 Mozilla 解析器，强制本地设备使用路由器进行 DNS 解析（%s更多信息%s）。"
-
-msgid ""
-"Blocks access to iCloud Private Relay resolvers, forcing local devices to "
-"use router for DNS resolution (%smore information%s)."
-msgstr ""
-"阻止访问 iCloud Private Relay 解析器，强制本地设备使用路由器进行 DNS 解析（%s更多信息%s）。"
-
-msgid "Use Http1"
-msgstr "使用 Http1"
-
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:92
 msgid "%s DoH at %s:%s"
 msgstr "%s DoH ， 地址是 %s:%s"
@@ -123,6 +108,22 @@ msgstr "BlahDNS - 日本"
 msgid "BlahDNS - SG"
 msgstr "BlahDNS - 新加坡"
 
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:141
+msgid ""
+"Blocks access to Mozilla resolvers, forcing local devices to use router for "
+"DNS resolution (%smore information%s)."
+msgstr ""
+"阻止访问 Mozilla 解析器，强制本地设备使用路由器进行 DNS 解析（%s更多信"
+"息%s）。"
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:136
+msgid ""
+"Blocks access to iCloud Private Relay resolvers, forcing local devices to "
+"use router for DNS resolution (%smore information%s)."
+msgstr ""
+"阻止访问 iCloud Private Relay 解析器，强制本地设备使用路由器进行 DNS 解析（%s"
+"更多信息%s）。"
+
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/net.cfiec.dns.lua:3
 msgid "CFIEC Public DNS (IPv6 Only)"
 msgstr "CFIEC Public DNS (仅 IPv6 )"
@@ -138,6 +139,14 @@ msgstr "CIRA加拿大盾（私人）"
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/ca.cira.canadianshield.protected.lua:3
 msgid "CIRA Canadian Shield (Protected)"
 msgstr "CIRA加拿大盾（受保护）"
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:141
+msgid "Canary Domains Mozilla"
+msgstr ""
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:136
+msgid "Canary Domains iCloud"
+msgstr ""
 
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/org.cleanbrowsing.doh-adult.lua:3
 msgid "CleanBrowsing (Adult Filter)"
@@ -235,7 +244,7 @@ msgstr "DNSPod 公共 DNS - CN"
 msgid "DNSlify DNS"
 msgstr "DNSlify DNS服务器"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:195
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:205
 msgid "DSCP Codepoint"
 msgstr "DSCP 代码点"
 
@@ -272,6 +281,8 @@ msgid "Force Router DNS"
 msgstr "强制使用路由器 DNS"
 
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:134
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:138
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:143
 msgid "Force Router DNS server to all local devices"
 msgstr "强制所有本地设备使用路由器 DNS"
 
@@ -301,20 +312,28 @@ msgstr "IIJ Public DNS - 日本"
 
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:123
 msgid ""
-"If update option is selected, the 'DNS forwardings' section of %sDHCP and "
-"DNS%s will be automatically updated to use selected DoH providers (%smore "
+"If update option is selected, the 'DNS forwardings' section of %sDHCP and DNS"
+"%s will be automatically updated to use selected DoH providers (%smore "
 "information%s)."
 msgstr ""
 "如果选择了“更新”选项，则 %sDHCP and DNS%s 的 'DNS转发'部分会自动更新到使用选"
 "定的 DoH 供应商 (%s更多信息%s)。"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:138
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:148
 msgid "Instances"
 msgstr "实例"
 
 #: applications/luci-app-https-dns-proxy/luasrc/https-dns-proxy/providers/fi.lelux.resolver-eu.lua:3
 msgid "Lelux DNS - FI"
 msgstr "Lelux DNS - 芬兰"
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:142
+msgid "Let local devices use Mozilla resolvers"
+msgstr "让本地设备使用 Mozilla 解析器"
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:137
+msgid "Let local devices use iCloud Private Relay"
+msgstr "让本地设备使用 iCloud Private Relay"
 
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:133
 msgid "Let local devices use their own DNS servers if set"
@@ -328,11 +347,11 @@ msgstr "LibreDNS - 希腊"
 msgid "LibreDNS - GR (No Ads)"
 msgstr "LibreDNS - GR (无广告)"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:178
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:188
 msgid "Listen Address"
 msgstr "监听地址"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:191
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:201
 msgid "Listen Port"
 msgstr "监听端口"
 
@@ -372,7 +391,7 @@ msgstr "OpenDNS"
 msgid "OpenDNS (Family Shield)"
 msgstr "OpenDNS (家庭护盾)"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:199
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:209
 msgid "Proxy Server"
 msgstr "代理服务器"
 
@@ -400,7 +419,7 @@ msgstr "Quad 9（不安全）"
 msgid "Reload"
 msgstr "重新加载"
 
-#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:145
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:155
 msgid "Resolver"
 msgstr "解析器"
 
@@ -471,6 +490,10 @@ msgstr "在开始/停止时更新DNSMASQ配置"
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:124
 msgid "Update all configs"
 msgstr "更新所有配置"
+
+#: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:212
+msgid "Use Http1"
+msgstr "使用 Http1"
 
 #: applications/luci-app-https-dns-proxy/luasrc/model/cbi/https-dns-proxy.lua:50
 msgid "and"

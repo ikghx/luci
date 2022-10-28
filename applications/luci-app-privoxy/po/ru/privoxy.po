@@ -10,8 +10,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.8-dev\n"
 "Project-Info: Это технический перевод, не дословный. Главное-удобный русский "
 "интерфейс, все проверялось в графическом режиме, совместим с другими apps\n"
@@ -36,6 +36,10 @@ msgstr ""
 msgid "A directory where Privoxy can create temporary files."
 msgstr "Папка в которой Privoxy может создавать временные файлы."
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:645
+msgid "Accept intercepted requests"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:84
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:87
 msgid "Access Control"
@@ -45,6 +49,10 @@ msgstr "Контроль доступа"
 msgid "Actions that are applied to all sites and maybe overruled later on."
 msgstr ""
 "Действия, которые применяются ко всем сайтам и могут быть отменены позже."
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:652
+msgid "Allow CGI request crunching"
+msgstr ""
 
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:308
 msgid "An alternative directory where the templates are loaded from."
@@ -70,6 +78,10 @@ msgstr "Задержка загрузки"
 msgid "CGI user interface"
 msgstr "Пользовательский интерфейс CGI"
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:783
+msgid "Client header order"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:857
 msgid "Common Log Format"
 msgstr "Типичный формат системного журнала"
@@ -84,6 +96,10 @@ msgstr ""
 "прокси-серверов. Обратите внимание, что родительские прокси могут "
 "значительно снизить уровень конфиденциальности. Здесь же настройка SOCKS "
 "прокси."
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:705
+msgid "Connection sharing"
+msgstr ""
 
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:851
 msgid "Debug GIF de-animation"
@@ -105,6 +121,10 @@ msgstr "Отладка фильтров регулярных выражений"
 msgid "Delay (in seconds) during system boot before Privoxy start"
 msgstr "Задержка (в секундах) во время загрузки системы до запуска Privoxy"
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:524
+msgid "Deny Access"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:261
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:298
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:315
@@ -124,9 +144,25 @@ msgstr "Документация"
 msgid "During delay ifup-events are not monitored !"
 msgstr "Во время задержки ifup-события не отслеживаются!"
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:581
+msgid "Enable action file editor"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:757
+msgid "Enable compression"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:599
 msgid "Enable proxy authentication forwarding"
 msgstr "Включить проверку подлинности прокси-сервера переадресации"
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:564
+msgid "Enable remote toggle"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:571
+msgid "Enable remote toggle via HTTP"
+msgstr ""
 
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:135
 msgid ""
@@ -151,6 +187,10 @@ msgstr ""
 "Включение этой опции не рекомендуется, если отсутствует родительский прокси, "
 "который требует аутентификации!"
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:588
+msgid "Enforce page blocking"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:368
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:404
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:442
@@ -171,6 +211,26 @@ msgstr "Файлы и папки"
 msgid "For help use link at the relevant option"
 msgstr "Для получения справки используйте ссылку по соответствующей опции"
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:609
+msgid "Forward HTTP"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:617
+msgid "Forward SOCKS 4"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:625
+msgid "Forward SOCKS 4A"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:631
+msgid "Forward SOCKS 5"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:637
+msgid "Forward SOCKS 5t"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:91
 msgid "Forwarding"
 msgstr "Маршрутизация"
@@ -178,6 +238,14 @@ msgstr "Маршрутизация"
 #: applications/luci-app-privoxy/root/usr/share/rpcd/acl.d/luci-app-privoxy.json:3
 msgid "Grant UCI access for luci-app-privoxy"
 msgstr "Предоставить UCI доступ для luci-app-privoxy"
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:750
+msgid "Handle as empty doc returns ok"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:182
+msgid "Hostname"
+msgstr ""
 
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:589
 msgid ""
@@ -332,6 +400,10 @@ msgstr ""
 "Только когда используются 'сторонние фильтры', Privoxy должен создавать "
 "временные файлы."
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:515
+msgid "Permit access"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/controller/privoxy.lua:81
 msgid "Please install current version !"
 msgstr "Установите текущую версию !"
@@ -376,6 +448,10 @@ msgstr ""
 "всплывающих окон, а также любого другого нежелательного контента («интернет-"
 "мусора»)."
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:225
+msgid "Proxy Info URL"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:908
 msgid "Read / Reread log file"
 msgstr "Читать / Перечитывать системный журнал"
@@ -392,6 +468,10 @@ msgstr "Показать состояние каждого соединения"
 msgid "Show header parsing"
 msgstr "Показать анализ заголовка"
 
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:793
+msgid "Single Threaded"
+msgstr ""
+
 #: applications/luci-app-privoxy/luasrc/controller/privoxy.lua:76
 msgid "Software package '%s' is not installed."
 msgstr "Программный пакет '%s' не установлен."
@@ -399,6 +479,10 @@ msgstr "Программный пакет '%s' не установлен."
 #: applications/luci-app-privoxy/luasrc/controller/privoxy.lua:85
 msgid "Software package '%s' is outdated."
 msgstr "Программный пакет '%s' устарел."
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:659
+msgid "Split large forms"
+msgstr ""
 
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:125
 #: applications/luci-app-privoxy/luasrc/view/privoxy/detail_startstop.htm:10
@@ -549,6 +633,22 @@ msgid "To which parent HTTP proxy specific requests should be routed."
 msgstr ""
 "На какой родительский прокси HTTP должны быть направлены определенные "
 "запросы."
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:554
+msgid "Toggle Status"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:682
+msgid "Tolerate pipelining"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:235
+msgid "Trust Info URLs"
+msgstr ""
+
+#: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:193
+msgid "User Manual"
+msgstr ""
 
 #: applications/luci-app-privoxy/luasrc/model/cbi/privoxy.lua:341
 msgid "User customizations"
