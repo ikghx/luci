@@ -55,7 +55,7 @@ return view.extend({
 							location.reload();
 						});
 					})
-				}, _('Enable'))
+				}, _('Enable SQM'))
 			]));
 		}
 

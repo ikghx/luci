@@ -401,7 +401,7 @@ return view.extend({
 		so = ss.option(form.Value, 'server_addr', _('Relay address'));
 		so.rmempty = false;
 		so.optional = false;
-		so.placeholder = '192.168.10.1#5335';
+		so.placeholder = '192.168.10.1#535';
 
 		so.validate = function(section, value) {
 			var m = this.section.formvalue(section, 'local_addr'),

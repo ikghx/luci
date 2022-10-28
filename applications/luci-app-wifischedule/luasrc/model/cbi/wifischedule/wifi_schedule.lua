@@ -236,6 +236,10 @@ force_wifi = d:option(Flag, "forcewifidown", translate("Force disabling wifi eve
 force_wifi.default = false
 force_wifi.rmempty = false
 
+ignore = d:option(Value, "ignore_stations", translate("Ignore associated stations"))
+ignore.placeholder = "A:A:A:A:A:A B:B:B:B:B:B"
+ignore.rmempty = true
+
 function force_wifi.validate(self, value, d)
     if value == "0" then
         if fs.access("/usr/bin/iwinfo") then
