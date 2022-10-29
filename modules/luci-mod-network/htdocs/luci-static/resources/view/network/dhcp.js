@@ -140,8 +140,7 @@ function validateAddressList(sid, s) {
 	if (s == null || s == '')
 		return true;
 
-	var m = s.match(/^\/(.+)\/$/),
-	    names = m ? m[1].split(/\//) : [ s ];
+	var names = s.split(/\//);
 
 	for (var i = 0; i < names.length; i++) {
 		var res = validateHostname(sid, names[i]);
