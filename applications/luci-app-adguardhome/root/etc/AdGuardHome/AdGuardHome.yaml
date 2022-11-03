@@ -61,6 +61,7 @@ dns:
   max_goroutines: 300
   handle_ddr: true
   ipset: []
+  ipset_file: ""
   filtering_enabled: true
   filters_update_interval: 24
   parental_enabled: false
@@ -76,6 +77,8 @@ dns:
   private_networks: []
   use_private_ptr_resolvers: true
   local_ptr_upstreams: []
+  serve_http3: false
+  use_http3_upstreams: false
 tls:
   enabled: false
   server_name: ""
@@ -86,11 +89,11 @@ tls:
   port_dnscrypt: 0
   dnscrypt_config_file: ""
   allow_unencrypted_doh: false
-  strict_sni_check: false
   certificate_chain: ""
   private_key: ""
   certificate_path: ""
   private_key_path: ""
+  strict_sni_check: false
 filters:
   - enabled: true
     url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
