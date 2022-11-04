@@ -161,7 +161,7 @@ local knownParams = {
 			translate("Policy level over usage of external programs and scripts") },
 		{ ListValue,
 			"compress",
-			{ "stub-v2", "lzo", "lz4"},
+			{ "frames_only", "stub-v2", "lzo", "lz4"},
 			translate("Security recommendation: It is recommended to not enable compression and set this parameter to `stub-v2`") },
 	} },
 
