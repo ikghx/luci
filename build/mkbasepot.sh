@@ -10,7 +10,7 @@ echo -n "Updating modules/luci-base/po/templates/base.pot ... "
 ./build/i18n-scan.pl \
 	modules/luci-base/ modules/luci-compat/ modules/luci-mod-admin-full/ \
 	modules/luci-mod-network modules/luci-mod-status modules/luci-mod-system/ \
-	modules/luci-mod-battstatus/ modules/luci-mod-dashboard/ modules/luci-mod-dsl/ modules/luci-mod-failsafe/ \
+	modules/luci-mod-battstatus/ modules/luci-mod-dashboard/ modules/luci-mod-dsl/ \
 	protocols/ themes/ modules/luci-mod-rpc \
 > modules/luci-base/po/templates/base.pot
 
