@@ -103,12 +103,8 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Flag, '_no_browser', _('Do not start a browser'));
-		o.enabled = 'true';
-		o.disabled = 'false';
 
 		o = s.option(form.Flag, '_no_default_folder', _('Don’t create a default folder when generating an initial configuration / starting for the first time'));
-		o.enabled = 'true';
-		o.disabled = 'false';
 
 		o = s.option(form.DynamicList, '_', _('Extra settings'));
 

@@ -106,12 +106,8 @@ return view.extend({
 		o.placeholder = ':19200';
 
 		o = s.option(form.Flag, '_debug', _('Enable debug output'));
-		o.enabled = 'true';
-		o.disabled = 'false';
 
 		o = s.option(form.Flag, '_http', _('Listen on HTTP'), _('behind an HTTPS proxy'));
-		o.enabled = 'true';
-		o.disabled = 'false';
 
 		return m.render();
 	}

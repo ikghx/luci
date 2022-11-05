@@ -128,12 +128,8 @@ return view.extend({
 		o.placeholder = ':22070';
 
 		o = s.option(form.Flag, '_debug', _('Enable debug output'));
-		o.enabled = 'true';
-		o.disabled = 'false';
 
 		o = s.option(form.Flag, '_nat', _('Use UPnP/NAT-PMP'));
-		o.enabled = 'true';
-		o.disabled = 'false';
 
 		return m.render();
 	}
