@@ -78,12 +78,12 @@ return view.extend({
 		o = s.option(form.Value, 'password', _('Password'), _('Optional'));
 		o.password = true;
 
-		o = s.option(form.Value, 'interpolation', _('Interpolation'));
+		o = s.option(form.ListValue, 'interpolation', _('Interpolation'));
 		o.value('auto');
 		o.value('basic');
 		o.value('soxr');
 
-		o = s.option(form.Value, 'output_backend', _('Output backend'));
+		o = s.option(form.ListValue, 'output_backend', _('Output backend'));
 		o.value('alsa');
 		o.value('pipe');
 		o.value('stdout');
@@ -92,7 +92,7 @@ return view.extend({
 		o.value('pulse');
 		o.value('sndio');
 
-		o = s.option(form.Value, 'mdns_backend', _('Mdns backend'));
+		o = s.option(form.ListValue, 'mdns_backend', _('Mdns backend'));
 		o.value('avahi');
 		o.value('external-avahi');
 		o.value('dns-sd');
