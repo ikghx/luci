@@ -23,7 +23,7 @@ function vmess_vless()
 						alterId = (server.v2ray_protocol == "vmess" or not server.v2ray_protocol) and tonumber(server.alter_id) or nil,
 						security = (server.v2ray_protocol == "vmess" or not server.v2ray_protocol) and server.security or nil,
 						encryption = (server.v2ray_protocol == "vless") and server.vless_encryption or nil,
-						flow = (server.xtls == '1') and (server.vless_flow and server.vless_flow or "xtls-rprx-splice") or nil
+						flow = (server.xtls == '1') and (server.vless_flow or "xtls-rprx-splice") or (server.tls == '1') and server.tls_flow or nil
 					}
 				}
 			}
@@ -49,7 +49,7 @@ function trojan_shadowsocks()
 				method = ((server.v2ray_protocol == "shadowsocks") and server.encrypt_method_ss) or ((server.v2ray_protocol == "shadowsocksr") and server.encrypt_method) or nil,
 				uot = (server.v2ray_protocol == "shadowsocks") and (server.uot == '1') or nil,
 				ivCheck = (server.v2ray_protocol == "shadowsocks") and (server.ivCheck == '1') or nil,
-				flow = (server.v2ray_protocol == "trojan") and (server.xtls == '1') and (server.vless_flow and server.vless_flow or "xtls-rprx-splice") or nil
+				flow = (server.v2ray_protocol == "trojan") and (server.xtls == '1') and (server.vless_flow or "xtls-rprx-splice") or nil
 			}
 		}
 	}
@@ -162,8 +162,9 @@ local Xray = {
 				allowInsecure = (server.insecure == "1") and true or nil,
 				serverName = server.tls_host
 			} or nil,
-			xtlsSettings = (server.xtls == '1' and (server.insecure == "1" or server.tls_host)) and {
+			xtlsSettings = (server.xtls == '1' and (server.insecure == "1" or server.tls_host or server.fingerprint)) and {
 				-- xtls
+				fingerprint = server.fingerprint,
 				allowInsecure = (server.insecure == "1") and true or nil,
 				serverName = server.tls_host,
 				minVersion = "1.3"
