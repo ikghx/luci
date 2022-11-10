@@ -754,6 +754,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr "Tillad brugeren <em>root</em> at logge ind med adgangskode"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:626
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
 msgid "Allowed IPs"
 msgstr "Tilladte IP'er"
 
@@ -1133,7 +1134,7 @@ msgstr "Tilbage til Oversigt"
 msgid "Back to configuration"
 msgstr "Tilbage til konfiguration"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:826
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:836
 msgid "Back to peer configuration"
 msgstr ""
 
@@ -1707,7 +1708,7 @@ msgstr "Forbindelsesforsøg mislykkedes"
 msgid "Connection attempt failed."
 msgstr "Forbindelsesforsøg mislykkedes."
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid "Connection endpoint"
 msgstr ""
 
@@ -3383,11 +3384,11 @@ msgstr "Generer PMK lokalt"
 msgid "Generate archive"
 msgstr "Generer arkiv"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:811
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:821
 msgid "Generate configuration"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:851
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Generate configuration…"
 msgstr ""
 
@@ -3403,7 +3404,7 @@ msgstr ""
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:785
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:795
 msgid "Generating QR code…"
 msgstr ""
 
@@ -3736,6 +3737,13 @@ msgstr "IP-adressen er ugyldig"
 #: modules/luci-compat/luasrc/model/network.lua:31
 msgid "IP address is missing"
 msgstr "IP-adresse mangler"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
+msgid ""
+"IP addresses that are allowed inside the tunnel. The peer will accept "
+"tunnelled packets with source IP addresses matching this list and route back "
+"packets with matching destination IP."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:263
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:789
@@ -5663,7 +5671,7 @@ msgstr "Ingen poster i denne mappe"
 msgid "No files found"
 msgstr "Ingen filer fundet"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:833
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:843
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8833,7 +8841,7 @@ msgstr ""
 "der som standard en Uplink-port til en forbindelse til det næste større "
 "netværk, f.eks. internettet, og andre porte til et lokalt netværk."
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "

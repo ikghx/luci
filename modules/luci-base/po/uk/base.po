@@ -769,6 +769,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr "Дозволити користувачеві <em>root</em> вхід до системи з паролем"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:626
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
 msgid "Allowed IPs"
 msgstr "Дозволено IP-адреси"
 
@@ -1150,7 +1151,7 @@ msgstr "Повернутися до переліку"
 msgid "Back to configuration"
 msgstr "Повернутися до конфігурування"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:826
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:836
 msgid "Back to peer configuration"
 msgstr ""
 
@@ -1722,7 +1723,7 @@ msgstr "Невдала спроба підключення"
 msgid "Connection attempt failed."
 msgstr "Спроба підключення зазнала невдачі."
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid "Connection endpoint"
 msgstr ""
 
@@ -3397,11 +3398,11 @@ msgstr "Згенерувати PMK локально"
 msgid "Generate archive"
 msgstr "Cтворити архів"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:811
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:821
 msgid "Generate configuration"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:851
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Generate configuration…"
 msgstr ""
 
@@ -3417,7 +3418,7 @@ msgstr ""
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:785
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:795
 msgid "Generating QR code…"
 msgstr ""
 
@@ -3752,6 +3753,13 @@ msgstr "Неприпустима IP-адреса"
 #: modules/luci-compat/luasrc/model/network.lua:31
 msgid "IP address is missing"
 msgstr "Відсутня IP-адреса"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
+msgid ""
+"IP addresses that are allowed inside the tunnel. The peer will accept "
+"tunnelled packets with source IP addresses matching this list and route back "
+"packets with matching destination IP."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:263
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:789
@@ -5702,7 +5710,7 @@ msgstr "У цьому каталозі немає записів"
 msgid "No files found"
 msgstr "Файли не знайдено"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:833
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:843
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8884,7 +8892,7 @@ msgstr ""
 "більшою мережею, такою наприклад, як Інтернет, а інші порти — для локальної "
 "мережі."
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "

@@ -754,6 +754,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr "암호를 이용한 <em>root</em> 사용자 접근을 허용합니다"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:626
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
 msgid "Allowed IPs"
 msgstr "허용된 IP"
 
@@ -1120,7 +1121,7 @@ msgstr "개요로 이동"
 msgid "Back to configuration"
 msgstr "설정으로 돌아가기"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:826
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:836
 msgid "Back to peer configuration"
 msgstr ""
 
@@ -1685,7 +1686,7 @@ msgstr ""
 msgid "Connection attempt failed."
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid "Connection endpoint"
 msgstr ""
 
@@ -3325,11 +3326,11 @@ msgstr ""
 msgid "Generate archive"
 msgstr "아카이브 생성"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:811
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:821
 msgid "Generate configuration"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:851
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Generate configuration…"
 msgstr ""
 
@@ -3345,7 +3346,7 @@ msgstr ""
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:785
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:795
 msgid "Generating QR code…"
 msgstr ""
 
@@ -3675,6 +3676,13 @@ msgstr ""
 #: modules/luci-base/htdocs/luci-static/resources/network.js:13
 #: modules/luci-compat/luasrc/model/network.lua:31
 msgid "IP address is missing"
+msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
+msgid ""
+"IP addresses that are allowed inside the tunnel. The peer will accept "
+"tunnelled packets with source IP addresses matching this list and route back "
+"packets with matching destination IP."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:263
@@ -5566,7 +5574,7 @@ msgstr ""
 msgid "No files found"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:833
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:843
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8577,7 +8585,7 @@ msgstr ""
 "segment 들을 분리하는데 사용되기도 합니다. 한 개의 uplink 포트가 인터넷에 연"
 "결되어 있고 나머지 포트들은 local 네트워크로 연결되는 구성에 자주 사용됩니다."
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "

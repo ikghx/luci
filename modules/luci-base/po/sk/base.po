@@ -750,6 +750,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:626
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
 msgid "Allowed IPs"
 msgstr "Povolené IP adresy"
 
@@ -1117,7 +1118,7 @@ msgstr "Späť na prehľad"
 msgid "Back to configuration"
 msgstr "Späť na konfiguráciu"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:826
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:836
 msgid "Back to peer configuration"
 msgstr ""
 
@@ -1678,7 +1679,7 @@ msgstr "Pokus o pripojenie zlyhal"
 msgid "Connection attempt failed."
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid "Connection endpoint"
 msgstr ""
 
@@ -3312,11 +3313,11 @@ msgstr ""
 msgid "Generate archive"
 msgstr "Generovať archív"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:811
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:821
 msgid "Generate configuration"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:851
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Generate configuration…"
 msgstr ""
 
@@ -3332,7 +3333,7 @@ msgstr ""
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:785
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:795
 msgid "Generating QR code…"
 msgstr ""
 
@@ -3664,6 +3665,13 @@ msgstr "Adresa IP je neplatná"
 #: modules/luci-compat/luasrc/model/network.lua:31
 msgid "IP address is missing"
 msgstr "Chýba adresa IP"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
+msgid ""
+"IP addresses that are allowed inside the tunnel. The peer will accept "
+"tunnelled packets with source IP addresses matching this list and route back "
+"packets with matching destination IP."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:263
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:789
@@ -5555,7 +5563,7 @@ msgstr "V tomto adresári nie sú žiadne položky"
 msgid "No files found"
 msgstr "Nenašli sa žiadne súbory"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:833
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:843
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8540,7 +8548,7 @@ msgid ""
 "next greater network like the internet and other ports for a local network."
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "

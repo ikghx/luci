@@ -772,6 +772,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr "允许 <em>root</em> 用户凭密码登录"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:626
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
 msgid "Allowed IPs"
 msgstr "允许的 IP"
 
@@ -1145,7 +1146,7 @@ msgstr "返回至概览"
 msgid "Back to configuration"
 msgstr "返回至配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:826
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:836
 msgid "Back to peer configuration"
 msgstr "返回对端配置"
 
@@ -1719,7 +1720,7 @@ msgstr "尝试连接失败"
 msgid "Connection attempt failed."
 msgstr "尝试连接失败。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid "Connection endpoint"
 msgstr "连接端点"
 
@@ -3384,11 +3385,11 @@ msgstr "本地生成 PMK"
 msgid "Generate archive"
 msgstr "生成备份"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:811
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:821
 msgid "Generate configuration"
 msgstr "生成配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:851
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Generate configuration…"
 msgstr "生成配置…"
 
@@ -3404,7 +3405,7 @@ msgstr "生成预共享密钥"
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr "生成适合在 WireGuard 对端上导入的配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:785
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:795
 msgid "Generating QR code…"
 msgstr "正在生成二维码…"
 
@@ -3737,6 +3738,15 @@ msgstr "IP 地址无效"
 #: modules/luci-compat/luasrc/model/network.lua:31
 msgid "IP address is missing"
 msgstr "IP 地址缺失"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:778
+msgid ""
+"IP addresses that are allowed inside the tunnel. The peer will accept "
+"tunnelled packets with source IP addresses matching this list and route back "
+"packets with matching destination IP."
+msgstr ""
+"隧道内允许的 IP 地址。对端将接受源 IP 地址与此列表匹配的隧道数据包，并路由回"
+"具有匹配目标 IP 的数据包。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:263
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:789
@@ -5659,7 +5669,7 @@ msgstr "此目录中没有内容"
 msgid "No files found"
 msgstr "未找到文件"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:833
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:843
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8737,7 +8747,7 @@ msgstr ""
 "的计算机可以直接相互通信。<abbr title=\"虚拟局域网\">VLAN</abbr> 也常用于分割"
 "不同网段。通常是默认一条上行端口连接运营商，其余端口用于本地网络。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:759
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:773
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "
