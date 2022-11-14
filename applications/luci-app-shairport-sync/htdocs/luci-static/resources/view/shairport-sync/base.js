@@ -78,6 +78,10 @@ return view.extend({
 		o = s.option(form.Value, 'password', _('Password'), _('Optional'));
 		o.password = true;
 
+		o = s.option(form.Value, 'regtype', _('Registration Type'), _('Service type and transport to be advertised by Zeroconf/Bonjour.'));
+		o.value('_raop._tcp', _('AirPlay 1'));
+		o.value('_airplay._tcp', _('AirPlay 2'));
+
 		o = s.option(form.ListValue, 'interpolation', _('Interpolation'));
 		o.value('auto');
 		o.value('basic');
@@ -99,29 +103,30 @@ return view.extend({
 		o.value('external-dns-sd');
 		o.value('tinysvcmdns');
 
-		o = s.option(form.Value, 'port', _('Service port'));
-		o.placeholder = '5000';
+		o = s.option(form.Value, 'port', _('Service port'), _('5000 for AirPlay 1, 7000 for AirPlay 2.'));
+		o.value('7000');
+		o.value('5000');
 		o.datatype = 'port';
 
-		o = s.option(form.Value, 'udp_port_base', _('Start udp port'));
+		o = s.option(form.Value, 'udp_port_base', _('Start udp port'), _('AirPlay 1 only'));
 		o.placeholder = '6001';
 		o.datatype = 'port';
+		o.depends('regtype', '_raop._tcp');
 
-		o = s.option(form.Value, 'udp_port_range', _('udp port range'));
+		o = s.option(form.Value, 'udp_port_range', _('udp port range'), _('AirPlay 1 only'));
 		o.placeholder = '100';
 		o.datatype = 'uinteger';
+		o.depends('regtype', '_raop._tcp');
 
 		o = s.option(form.Flag, 'statistics', _('Output statistics'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 
-		o = s.option(form.Value, 'drift', _('Drift'));
-		o.placeholder = '88';
-		o.datatype = 'uinteger';
+		o = s.option(form.Value, 'drift', _('Drift tolerance'), _('seconds'));
+		o.placeholder = '0.002';
 
 		o = s.option(form.Value, 'resync_threshold', _('Resync threshold'), _('seconds'));
-		o.placeholder = '2205';
-		o.datatype = 'uinteger';
+		o.placeholder = '0.050';
 
 		o = s.option(form.ListValue, 'log_verbosity', _('Log output level'));
 		o.value('0', _('None'));
@@ -136,9 +141,6 @@ return view.extend({
 		o = s.option(form.Value, 'volume_range_db', _('Volume range db'));
 		o.placeholder = '30';
 		o.datatype = 'range(30,150)';
-
-		o = s.option(form.Value, 'regtype', _('Registration Type'), _('Service type and transport to be advertised by Zeroconf/Bonjour.'));
-		o.value('_raop._tcp');
 
 		o = s.option(form.ListValue, 'playback_mode', _('Playback mode'));
 		o.value('stereo', _('stereo'));
@@ -164,13 +166,12 @@ return view.extend({
 
 		o = s.option(form.Value, 'metadata_socket_address', _('Metadata socket address'));
 		o.placeholder = '226.0.0.1';
-		o.datatype = 'ipaddr';
 
 		o = s.option(form.Value, 'metadata_socket_port', _('Metadata socket port'));
 		o.placeholder = '5555';
 		o.datatype = 'port';
 
-		o = s.option(form.Value, 'metadata_socket_msglength', _('Socket message length'));
+		o = s.option(form.Value, 'metadata_socket_msglength', _('Socket maximum packet size'), _('bytes'));
 		o.placeholder = '65000';
 		o.datatype = 'range(500,65000)';
 
@@ -184,7 +185,7 @@ return view.extend({
 		o.enabled = 'yes';
 		o.disabled = 'no';
 
-		o = s.option(form.Flag, 'sesctl_session_interruption', _('Session interruption'));
+		o = s.option(form.Flag, 'sesctl_session_interruption', _('Allow session interruption'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 
@@ -194,55 +195,67 @@ return view.extend({
 
 		o = s.option(form.Value, 'alsa_output_device', _('alsa output device'));
 		o.value('default');
+		o.value('hw:0');
+		o.value('hw:1');
+		o.value('hw:2');
+		o.depends('output_backend', 'alsa');
 
 		o = s.option(form.Value, 'alsa_mixer_control_name', _('alsa mixer control name'));
 		o.value('PCM');
+		o.depends('output_backend', 'alsa');
 
 		o = s.option(form.Value, 'alsa_mixer_device', _('alsa mixer device'));
 		o.value('default');
+		o.depends('output_backend', 'alsa');
 
 		o = s.option(form.Value, 'alsa_latency_offset', _('alsa latency offset'), _('seconds'));
-		o.placeholder = '0';
-		o.datatype = 'uinteger';
+		o.placeholder = '0.0';
+		o.depends('output_backend', 'alsa');
 
-		o = s.option(form.Value, 'alsa_buffer_length', _('alsa buffer length'));
-		o.placeholder = '6615';
-		o.datatype = 'uinteger';
+		o = s.option(form.Value, 'alsa_buffer_length', _('alsa buffer length'), _('seconds'));
+		o.placeholder = '0.2';
+		o.depends('output_backend', 'alsa');
 
 		o = s.option(form.Flag, 'alsa_disable_synchronization', _('alsa disable synchronization'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
+		o.depends('output_backend', 'alsa');
 
-		o = s.option(form.Value, 'alsa_period_size', _('alsa period size'));
+		o = s.option(form.Value, 'alsa_period_size', _('alsa period size'), _('bytes'));
+		o.datatype = 'uinteger';
+		o.depends('output_backend', 'alsa');
 
-		o = s.option(form.Value, 'alsa_buffer_size', _('alsa buffer size'));
+		o = s.option(form.Value, 'alsa_buffer_size', _('alsa buffer size'), _('bytes'));
+		o.datatype = 'uinteger';
+		o.depends('output_backend', 'alsa');
 
 		o = s.option(form.Value, 'pipe_name', _('pipe name'));
 		o.placeholder = '/tmp/shairport-sync-audio';
+		o.depends('output_backend', 'pipe');
 
 		o = s.option(form.Value, 'pipe_latency_offset', _('pipe latency offset'), _('seconds'));
-		o.placeholder = '0';
-		o.datatype = 'uinteger';
+		o.placeholder = '0.0';
+		o.depends('output_backend', 'pipe');
 
-		o = s.option(form.Value, 'pipe_buffer_length', _('pipe buffer length'));
-		o.placeholder = '44100';
-		o.datatype = 'uinteger';
+		o = s.option(form.Value, 'pipe_buffer_length', _('pipe buffer length'), _('seconds'));
+		o.placeholder = '0.2';
+		o.depends('output_backend', 'pipe');
 
 		o = s.option(form.Value, 'stdout_latency_offset', _('stdout latency offset'), _('seconds'));
-		o.placeholder = '0';
-		o.datatype = 'uinteger';
+		o.placeholder = '0.0';
+		o.depends('output_backend', 'stdout');
 
-		o = s.option(form.Value, 'stdout_buffer_length', _('stdout buffer length'));
-		o.placeholder = '44100';
-		o.datatype = 'uinteger';
+		o = s.option(form.Value, 'stdout_buffer_length', _('stdout buffer length'), _('seconds'));
+		o.placeholder = '0.2';
+		o.depends('output_backend', 'stdout');
 
 		o = s.option(form.Value, 'ao_latency_offset', _('ao latency offset'), _('seconds'));
-		o.placeholder = '0';
-		o.datatype = 'uinteger';
+		o.placeholder = '0.0';
+		o.depends('output_backend', 'ao');
 
-		o = s.option(form.Value, 'ao_buffer_length', _('ao buffer length'));
-		o.placeholder = '44100';
-		o.datatype = 'uinteger';
+		o = s.option(form.Value, 'ao_buffer_length', _('ao buffer length'), _('seconds'));
+		o.placeholder = '1.0';
+		o.depends('output_backend', 'ao');
 
 		return m.render();
 	}
