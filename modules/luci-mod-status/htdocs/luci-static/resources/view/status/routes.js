@@ -266,23 +266,23 @@ return view.extend({
 			E('p', {}, [ _('The following rules are currently active on this system.') ]),
 			E('div', {}, [
 				E('div', { 'data-tab': 'ipv4routing', 'data-tab-title': _('IPv4 Routing') }, [
-					E('h3', {}, _('IPv4 Neighbours')),
+					E('h3', {}, [ _('IPv4 Neighbours') ]),
 					neigh4tbl,
 
-					E('h3', {}, _('Active IPv4 Routes')),
+					E('h3', {}, [ _('Active IPv4 Routes') ]),
 					route4tbl,
 
-					E('h3', {}, _('Active IPv4 Rules')),
+					E('h3', {}, [ _('Active IPv4 Rules') ]),
 					rule4tbl
 				]),
 				E('div', { 'data-tab': 'ipv6routing', 'data-tab-title': _('IPv6 Routing') }, [
-					E('h3', {}, _('IPv6 Neighbours')),
+					E('h3', {}, [ _('IPv6 Neighbours') ]),
 					neigh6tbl,
 
-					E('h3', {}, _('Active IPv6 Routes')),
+					E('h3', {}, [ _('Active IPv6 Routes') ]),
 					route6tbl,
 
-					E('h3', {}, _('Active IPv6 Rules')),
+					E('h3', {}, [ _('Active IPv6 Rules') ]),
 					rule6tbl
 				])
 			])
