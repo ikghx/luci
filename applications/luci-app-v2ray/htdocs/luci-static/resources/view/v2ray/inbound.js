@@ -1,468 +1,361 @@
-/**
- * @license
- * Copyright 2020 Xingwang Liao <kuoruan@gmail.com>
- *
- * Licensed to the public under the MIT License.
- */
 "use strict";
 "require form";
 "require network";
 "require uci";
 "require v2ray";
-
 return L.view.extend({
     load: function () {
-        return v2ray.getLocalIPs();
+        return v2ray.getLocalIPs()
     },
-    render: function (localIPs) {
-        if (localIPs === void 0) { localIPs = []; }
-        var m = new form.Map("v2ray", "%s - %s".format(_("V2Ray"), _("Inbound Rule")));
-        var s = m.section(form.GridSection, "inbound");
-        s.anonymous = true;
-        s.addremove = true;
-        s.sortable = true;
-        s.modaltitle = function (section_id) {
-            var alias = uci.get("v2ray", section_id, "alias");
-            return _("Inbound") + " \u00BB " + (alias !== null && alias !== void 0 ? alias : _("Add"));
-        };
-        s.nodescriptions = true;
-        s.tab("general", _("General Settings"));
-        s.tab("stream", _("Stream Settings"));
-        s.tab("other", _("Other Settings"));
-        var o;
-        /** General settings */
-        o = s.taboption("general", form.Value, "alias", _("Alias"));
-        o.rmempty = false;
-        o = s.taboption("general", form.Value, "listen", _("Listen"));
-        o.datatype = "ipaddr";
-        for (var _i = 0, localIPs_1 = localIPs; _i < localIPs_1.length; _i++) {
-            var IP = localIPs_1[_i];
-            o.value(IP);
+    render: function (o) {
+        void 0 === o && (o = []);
+        var e,
+        s = new form.Map("v2ray", "%s - %s".format(_("V2Ray"), _("Inbound"))),
+        t = s.section(form.GridSection, "inbound");
+        t.anonymous = !0,
+        t.addremove = !0,
+        t.sortable = !0,
+        t.modaltitle = function (o) {
+            var e = uci.get("v2ray", o, "alias");
+            return _("Inbound") + " » " + (null != e ? e : _("Add"))
+        },
+        t.nodescriptions = !0,
+        t.tab("general", _("General Settings")),
+        t.tab("stream", _("Stream Settings")),
+        t.tab("other", _("Other Settings")),
+        (e = t.taboption("general", form.Value, "alias", _("Alias"))).rmempty = !1,
+        (e = t.taboption("general", form.Value, "listen", _("Listen"))).datatype = "ipaddr";
+        for (var a = 0, r = o; a < r.length; a++) {
+            var l = r[a];
+            e.value(l)
         }
-        o = s.taboption("general", form.Value, "port", _("Port"));
-        o.rmempty = false;
-        o.datatype = "or(port, portrange)";
-        o = s.taboption("general", form.ListValue, "protocol", _("Protocol"));
-        o.value("dokodemo-door", "Dokodemo-door");
-        o.value("http", "HTTP");
-        o.value("mtproto", "MTProto");
-        o.value("shadowsocks", "Shadowsocks");
-        o.value("socks", "Socks");
-        o.value("vmess", "VMess");
-        o.value("vless", "VLESS");
-        // Settings - Dokodemo-door
-        o = s.taboption("general", form.Value, "s_dokodemo_door_address", "%s - %s".format("Dokodemo-door", _("Address")), _("Address of the destination server."));
-        o.modalonly = true;
-        o.depends("protocol", "dokodemo-door");
-        o.datatype = "host";
-        o = s.taboption("general", form.Value, "s_dokodemo_door_port", "%s - %s".format("Dokodemo-door", _("Port")), _("Port of the destination server."));
-        o.modalonly = true;
-        o.depends("protocol", "dokodemo-door");
-        o.datatype = "port";
-        o = s.taboption("general", form.MultiValue, "s_dokodemo_door_network", "%s - %s".format("Dokodemo-door", _("Network")), _("If transparent proxy enabled on current inbound, this option will be ignored."));
-        o.modalonly = true;
-        o.depends("protocol", "dokodemo-door");
-        o.value("tcp");
-        o.value("udp");
-        o["default"] = "tcp";
-        o = s.taboption("general", form.Value, "s_dokodemo_door_timeout", "%s - %s".format("Dokodemo-door", _("Timeout")), _("Time limit for inbound data(seconds)"));
-        o.modalonly = true;
-        o.depends("protocol", "dokodemo-door");
-        o.datatype = "uinteger";
-        o.placeholder = "300";
-        o = s.taboption("general", form.Flag, "s_dokodemo_door_follow_redirect", "%s - %s".format("Dokodemo-door", _("Follow redirect")), _("If transparent proxy enabled on current inbound, this option will be ignored."));
-        o.modalonly = true;
-        o.depends("protocol", "dokodemo-door");
-        o = s.taboption("general", form.Value, "s_dokodemo_door_user_level", "%s - %s".format("Dokodemo-door", _("User level")), _("All connections share this level"));
-        o.modalonly = true;
-        o.depends("protocol", "dokodemo-door");
-        o.datatype = "uinteger";
-        // Settings - HTTP
-        o = s.taboption("general", form.Value, "s_http_account_user", "%s - %s".format("HTTP", _("Account user")));
-        o.modalonly = true;
-        o.depends("protocol", "http");
-        o = s.taboption("general", form.Value, "s_http_account_pass", "%s - %s".format("HTTP", _("Account password")));
-        o.modalonly = true;
-        o.depends("protocol", "http");
-        o.password = true;
-        o = s.taboption("general", form.Flag, "s_http_allow_transparent", "%s - %s".format("HTTP", _("Allow transparent")));
-        o.modalonly = true;
-        o.depends("protocol", "http");
-        o = s.taboption("general", form.Value, "s_http_timeout", "%s - %s".format("HTTP", _("Timeout")), _("Time limit for inbound data(seconds)"));
-        o.modalonly = true;
-        o.depends("protocol", "http");
-        o.datatype = "uinteger";
-        o.placeholder = "300";
-        o = s.taboption("general", form.Value, "s_http_user_level", "%s - %s".format("HTTP", _("User level")), _("All connections share this level"));
-        o.modalonly = true;
-        o.depends("protocol", "http");
-        o.datatype = "uinteger";
-        // Settings - MTProto
-        o = s.taboption("general", form.Value, "s_mtproto_user_email", "%s - %s".format("MTProto", _("User email")));
-        o.modalonly = true;
-        o.depends("protocol", "mtproto");
-        o = s.taboption("general", form.Value, "s_mtproto_user_secret", "%s - %s".format("MTProto", _("User secret")));
-        o.modalonly = true;
-        o.depends("protocol", "mtproto");
-        o.password = true;
-        o = s.taboption("general", form.Value, "s_mtproto_user_level", "%s - %s".format("MTProto", _("User level")), _("All connections share this level"));
-        o.modalonly = true;
-        o.depends("protocol", "mtproto");
-        o.datatype = "uinteger";
-        // Settings - Shadowsocks
-        o = s.taboption("general", form.Value, "s_shadowsocks_email", "%s - %s".format("Shadowsocks", _("Email")));
-        o.modalonly = true;
-        o.depends("protocol", "shadowsocks");
-        o = s.taboption("general", form.ListValue, "s_shadowsocks_method", "%s - %s".format("Shadowsocks", _("Method")));
-        o.modalonly = true;
-        o.depends("protocol", "shadowsocks");
-        o.value("");
-        o.value("aes-256-cfb");
-        o.value("aes-128-cfb");
-        o.value("chacha20");
-        o.value("chacha20-ietf");
-        o.value("aes-256-gcm");
-        o.value("aes-128-gcm");
-        o.value("chacha20-poly1305");
-        o.value("chacha20-ietf-poly1305");
-        o = s.taboption("general", form.Value, "s_shadowsocks_password", "%s - %s".format("Shadowsocks", _("Password")));
-        o.modalonly = true;
-        o.depends("protocol", "shadowsocks");
-        o.password = true;
-        o = s.taboption("general", form.Value, "s_shadowsocks_level", "%s - %s".format("Shadowsocks", _("User level")));
-        o.modalonly = true;
-        o.depends("protocol", "shadowsocks");
-        o.datatype = "uinteger";
-        o = s.taboption("general", form.Flag, "s_shadowsocks_ota", "%s - %s".format("Shadowsocks", _("One Time Auth (OTA)")));
-        o.modalonly = true;
-        o.depends("protocol", "shadowsocks");
-        o = s.taboption("general", form.MultiValue, "s_shadowsocks_network", "%s - %s".format("Shadowsocks", _("Network")));
-        o.modalonly = true;
-        o.depends("protocol", "shadowsocks");
-        o.value("tcp");
-        o.value("udp");
-        o["default"] = "tcp";
-        // Settings - Socks;
-        o = s.taboption("general", form.ListValue, "s_socks_auth", "%s - %s".format("Socks", _("Auth")));
-        o.modalonly = true;
-        o.depends("protocol", "socks");
-        o.value("");
-        o.value("noauth", _("No Auth"));
-        o.value("password", _("Password"));
-        o["default"] = "noauth";
-        o = s.taboption("general", form.Value, "s_socks_account_user", "%s - %s".format("Socks", _("Account user")));
-        o.modalonly = true;
-        o.depends("s_socks_auth", "password");
-        o = s.taboption("general", form.Value, "s_socks_account_pass", "%s - %s".format("Socks", _("Account password")));
-        o.modalonly = true;
-        o.depends("s_socks_auth", "password");
-        o.password = true;
-        o = s.taboption("general", form.Flag, "s_socks_udp", "%s - %s".format("Socks", _("UDP")));
-        o.modalonly = true;
-        o.depends("protocol", "socks");
-        o = s.taboption("general", form.Value, "s_socks_ip", "%s - %s".format("Socks", _("IP")), _("When UDP is enabled, V2Ray needs to know the IP address of current host."));
-        o.modalonly = true;
-        o.depends("s_socks_udp", "1");
-        for (var _a = 0, localIPs_2 = localIPs; _a < localIPs_2.length; _a++) {
-            var IP = localIPs_2[_a];
-            o.value(IP);
+        (e = t.taboption("general", form.Value, "port", _("Port"))).rmempty = !1,
+        e.datatype = "or(port, portrange)",
+        (e = t.taboption("general", form.ListValue, "protocol", _("Protocol"))).value("dokodemo-door", "Dokodemo-door"),
+        e.value("http", "HTTP"),
+        e.value("mtproto", "MTProto"),
+        e.value("shadowsocks", "Shadowsocks"),
+        e.value("socks", "Socks"),
+        e.value("vmess", "VMess"),
+        e.value("vless", "VLESS"),
+        e.value("trojan", "Trojan"),
+        (e = t.taboption("general", form.Value, "s_dokodemo_door_address", "%s - %s".format("Dokodemo-door", _("Address")), _("Address of the destination server."))).modalonly = !0,
+        e.depends("protocol", "dokodemo-door"),
+        e.datatype = "host",
+        (e = t.taboption("general", form.Value, "s_dokodemo_door_port", "%s - %s".format("Dokodemo-door", _("Port")), _("Port of the destination server."))).modalonly = !0,
+        e.depends("protocol", "dokodemo-door"),
+        e.datatype = "port",
+        (e = t.taboption("general", form.MultiValue, "s_dokodemo_door_network", "%s - %s".format("Dokodemo-door", _("Network")), _("If transparent proxy enabled on current inbound, this option will be ignored."))).modalonly = !0,
+        e.depends("protocol", "dokodemo-door"),
+        e.value("tcp"),
+        e.value("udp"),
+        e.default = "tcp",
+        (e = t.taboption("general", form.Value, "s_dokodemo_door_timeout", "%s - %s".format("Dokodemo-door", _("Timeout")), _("Time limit for inbound data(seconds)"))).modalonly = !0,
+        e.depends("protocol", "dokodemo-door"),
+        e.datatype = "uinteger",
+        e.placeholder = "300",
+        (e = t.taboption("general", form.Flag, "s_dokodemo_door_follow_redirect", "%s - %s".format("Dokodemo-door", _("Follow redirect")), _("If transparent proxy enabled on current inbound, this option will be ignored."))).modalonly = !0,
+        e.depends("protocol", "dokodemo-door"),
+        (e = t.taboption("general", form.Value, "s_dokodemo_door_user_level", "%s - %s".format("Dokodemo-door", _("User level")), _("All connections share this level"))).modalonly = !0,
+        e.depends("protocol", "dokodemo-door"),
+        e.datatype = "uinteger",
+        (e = t.taboption("general", form.Value, "s_http_account_user", "%s - %s".format("HTTP", _("Account user")))).modalonly = !0,
+        e.depends("protocol", "http"),
+        (e = t.taboption("general", form.Value, "s_http_account_pass", "%s - %s".format("HTTP", _("Account password")))).modalonly = !0,
+        e.depends("protocol", "http"),
+        e.password = !0,
+        (e = t.taboption("general", form.Flag, "s_http_allow_transparent", "%s - %s".format("HTTP", _("Allow transparent")))).modalonly = !0,
+        e.depends("protocol", "http"),
+        (e = t.taboption("general", form.Value, "s_http_timeout", "%s - %s".format("HTTP", _("Timeout")), _("Time limit for inbound data(seconds)"))).modalonly = !0,
+        e.depends("protocol", "http"),
+        e.datatype = "uinteger",
+        e.placeholder = "300",
+        (e = t.taboption("general", form.Value, "s_http_user_level", "%s - %s".format("HTTP", _("User level")), _("All connections share this level"))).modalonly = !0,
+        e.depends("protocol", "http"),
+        e.datatype = "uinteger",
+        (e = t.taboption("general", form.Value, "s_mtproto_user_email", "%s - %s".format("MTProto", _("User email")))).modalonly = !0,
+        e.depends("protocol", "mtproto"),
+        (e = t.taboption("general", form.Value, "s_mtproto_user_secret", "%s - %s".format("MTProto", _("User secret")))).modalonly = !0,
+        e.depends("protocol", "mtproto"),
+        e.password = !0,
+        (e = t.taboption("general", form.Value, "s_mtproto_user_level", "%s - %s".format("MTProto", _("User level")), _("All connections share this level"))).modalonly = !0,
+        e.depends("protocol", "mtproto"),
+        e.datatype = "uinteger",
+        (e = t.taboption("general", form.Value, "s_shadowsocks_email", "%s - %s".format("Shadowsocks", _("Email")))).modalonly = !0,
+        e.depends("protocol", "shadowsocks"),
+        (e = t.taboption("general", form.ListValue, "s_shadowsocks_method", "%s - %s".format("Shadowsocks", _("Method")))).modalonly = !0,
+        e.depends("protocol", "shadowsocks"),
+        e.value(""),
+        e.value("aes-256-cfb"),
+        e.value("aes-128-cfb"),
+        e.value("chacha20"),
+        e.value("chacha20-ietf"),
+        e.value("aes-256-gcm"),
+        e.value("aes-128-gcm"),
+        e.value("chacha20-poly1305"),
+        e.value("chacha20-ietf-poly1305"),
+        (e = t.taboption("general", form.Value, "s_shadowsocks_password", "%s - %s".format("Shadowsocks", _("Password")))).modalonly = !0,
+        e.depends("protocol", "shadowsocks"),
+        e.password = !0,
+        (e = t.taboption("general", form.Value, "s_shadowsocks_level", "%s - %s".format("Shadowsocks", _("User level")))).modalonly = !0,
+        e.depends("protocol", "shadowsocks"),
+        e.datatype = "uinteger",
+        (e = t.taboption("general", form.Flag, "s_shadowsocks_ota", "%s - %s".format("Shadowsocks", _("One Time Auth (OTA)")))).modalonly = !0,
+        e.depends("protocol", "shadowsocks"),
+        (e = t.taboption("general", form.MultiValue, "s_shadowsocks_network", "%s - %s".format("Shadowsocks", _("Network")))).modalonly = !0,
+        e.depends("protocol", "shadowsocks"),
+        e.value("tcp"),
+        e.value("udp"),
+        e.default = "tcp",
+        (e = t.taboption("general", form.ListValue, "s_socks_auth", "%s - %s".format("Socks", _("Auth")))).modalonly = !0,
+        e.depends("protocol", "socks"),
+        e.value(""),
+        e.value("noauth", _("No Auth")),
+        e.value("password", _("Password")),
+        e.default = "noauth",
+        (e = t.taboption("general", form.Value, "s_socks_account_user", "%s - %s".format("Socks", _("Account user")))).modalonly = !0,
+        e.depends("s_socks_auth", "password"),
+        (e = t.taboption("general", form.Value, "s_socks_account_pass", "%s - %s".format("Socks", _("Account password")))).modalonly = !0,
+        e.depends("s_socks_auth", "password"),
+        e.password = !0,
+        (e = t.taboption("general", form.ListValue, "s_socks_version", "%s - %s".format("Socks", _("Version")))).value(""),
+        e.value("4", "v4"),
+        e.value("4a", "v4a"),
+        e.value("5", "v5"),
+        e.modalonly = !0,
+        e.depends("protocol", "socks"),
+        (e = t.taboption("general", form.Flag, "s_socks_udp", "%s - %s".format("Socks", _("UDP")))).modalonly = !0,
+        e.depends("protocol", "socks"),
+        (e = t.taboption("general", form.Value, "s_socks_ip", "%s - %s".format("Socks", _("IP")), _("When UDP is enabled, V2Ray needs to know the IP address of current host."))).modalonly = !0,
+        e.depends("s_socks_udp", "1");
+        for (var n = 0, d = o; n < d.length; n++) {
+            l = d[n];
+            e.value(l)
         }
-        o.datatype = "host";
-        o.placeholder = "127.0.0.1";
-        o = s.taboption("general", form.Value, "s_socks_user_level", "%s - %s".format("Socks", _("User level")), _("All connections share this level"));
-        o.modalonly = true;
-        o.depends("protocol", "socks");
-        o.datatype = "uinteger";
-        // Settings - VMess
-        o = s.taboption("general", form.Value, "s_vmess_client_id", "%s - %s".format("VMess", _("Client ID")));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        o = s.taboption("general", form.Value, "s_vmess_client_alter_id", "%s - %s".format("VMess", _("Client alter ID")));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        o.datatype = "and(min(0), max(65535))";
-        o = s.taboption("general", form.Value, "s_vmess_client_email", "%s - %s".format("VMess", _("Client email")));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        o = s.taboption("general", form.Value, "s_vmess_client_user_level", "%s - %s".format("VMess", _("Client User level")));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        o.datatype = "uinteger";
-        o = s.taboption("general", form.Value, "s_vmess_default_alter_id", "%s - %s".format("VMess", _("Default alter ID")));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        o.datatype = "and(min(0), max(65535))";
-        o = s.taboption("general", form.Value, "s_vmess_default_user_level", "%s - %s".format("VMess", _("Default user level")));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        o.datatype = "uinteger";
-        o = s.taboption("general", form.Value, "s_vmess_detour_to", "%s - %s".format("VMess", _("Detour to")), _("Optional feature to suggest client to take a detour. If specified, this inbound will instruct the outbound to use another inbound."));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        o = s.taboption("general", form.Flag, "s_vmess_disable_insecure_encryption", "%s - %s".format("VMess", _("Disable insecure encryption")));
-        o.modalonly = true;
-        o.depends("protocol", "vmess");
-        // Settings - VLESS
-        o = s.taboption("general", form.Value, "s_vless_client_id", "%s - %s".format("VLESS", _("Client ID")));
-        o.modalonly = true;
-        o.depends("protocol", "vless");
-        o = s.taboption("general", form.ListValue, "s_vless_client_flow", "%s - %s".format("VLESS", _("flow")));
-        o.modalonly = true;
-        o.value("");
-        o.value("xtls-rprx-origin");
-        o.value("xtls-rprx-origin-udp443");
-        o.value("xtls-rprx-direct");
-        o.value("xtls-rprx-direct-udp443");
-        o.value("xtls-rprx-splice");
-        o.value("xtls-rprx-splice-udp443");
-        o.depends("protocol", "vless");
-        o = s.taboption("general", form.Value, "s_vless_client_email", "%s - %s".format("VLESS", _("Client email")));
-        o.modalonly = true;
-        o.depends("protocol", "vless");
-        o = s.taboption("general", form.Value, "s_vless_client_user_level", "%s - %s".format("VLESS", _("Client User level")));
-        o.modalonly = true;
-        o.depends("protocol", "vless");
-        o.datatype = "uinteger";
-        o = s.taboption("general", form.Value, "s_vless_default_user_level", "%s - %s".format("VLESS", _("Default user level")));
-        o.modalonly = true;
-        o.depends("protocol", "vless");
-        o.datatype = "uinteger";
-        o = s.taboption("general", form.ListValue, "s_vless_client_decryption", "%s - %s".format("VLESS", _("Security")));
-        o.modalonly = true;
-        o.depends("protocol", "vless");
-        o.value("none", _("None"));
-        o = s.taboption("general", form.Value, "s_vless_detour_to", "%s - %s".format("VLESS", _("Detour to")), _("Optional feature to suggest client to take a detour. If specified, this inbound will instruct the outbound to use another inbound."));
-        o.modalonly = true;
-        o.depends("protocol", "vless");
-        /** Stream Settings  **/
-        o = s.taboption("stream", form.ListValue, "ss_network", _("Network"));
-        o.value("");
-        o.value("tcp", "TCP");
-        o.value("kcp", "mKCP");
-        o.value("ws", "WebSocket");
-        o.value("http", "HTTP/2");
-        o.value("domainsocket", "Domain Socket");
-        o.value("quic", "QUIC");
-        o = s.taboption("stream", form.ListValue, "ss_security", _("Security"));
-        o.modalonly = true;
-        o.value("");
-        o.value("none", _("None"));
-        o.value("tls", "TLS");
-        o.value("xtls", "XTLS");
-        // Stream Settings - TLS
-        o = s.taboption("stream", form.Value, "ss_tls_server_name", "%s - %s".format("TLS", _("Server name")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o.datatype = "host";
-        o = s.taboption("stream", form.Value, "ss_tls_min_version", "%s - %s".format("TLS", _("Mini version")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o = s.taboption("stream", form.Value, "ss_tls_max_version", "%s - %s".format("TLS", _("Max version")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o = s.taboption("stream", form.Value, "ss_tls_cipher_suites", "%s - %s".format("TLS", _("Cipher suite")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o = s.taboption("stream", form.Flag, "ss_tls_prefer_server_cipher_suites", "%s - %s".format("TLS", _("Preferred server cipher suite")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o = s.taboption("stream", form.Value, "ss_tls_alpn", "%s - %s".format("TLS", "ALPN"));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o.placeholder = "http/1.1";
-        o = s.taboption("stream", form.Flag, "ss_tls_allow_insecure", "%s - %s".format("TLS", _("Allow insecure")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o = s.taboption("stream", form.Flag, "ss_tls_disable_system_root", "%s - %s".format("TLS", _("Disable system root")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o = s.taboption("stream", form.ListValue, "ss_tls_cert_usage", "%s - %s".format("TLS", _("Certificate usage")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o.value("");
-        o.value("encipherment", _("encipherment"));
-        o.value("verify", _("verify"));
-        o.value("issue", _("issue"));
-        o = s.taboption("stream", form.Value, "ss_tls_cert_fiile", "%s - %s".format("TLS", _("Certificate file")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        o = s.taboption("stream", form.Value, "ss_tls_key_file", "%s - %s".format("TLS", _("Key file")));
-        o.modalonly = true;
-        o.depends("ss_security", "tls");
-        o.depends("ss_security", "xtls");
-        // Stream Settings - TCP
-        o = s.taboption("stream", form.ListValue, "ss_tcp_header_type", "%s - %s".format("TCP", _("Header type")));
-        o.modalonly = true;
-        o.depends("ss_network", "tcp");
-        o.value("");
-        o.value("none", _("None"));
-        o.value("http", "HTTP");
-        o = s.taboption("stream", form.Value, "ss_tcp_header_request_version", "%s - %s".format("TCP", _("HTTP request version")));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        o.placeholder = "1.1";
-        o = s.taboption("stream", form.ListValue, "ss_tcp_header_request_method", "%s - %s".format("TCP", _("HTTP request method")));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        o.value("");
-        o.value("GET");
-        o.value("HEAD");
-        o.value("POST");
-        o.value("DELETE");
-        o.value("PUT");
-        o.value("PATCH");
-        o.value("OPTIONS");
-        o["default"] = "GET";
-        o = s.taboption("stream", form.Value, "ss_tcp_header_request_path", "%s - %s".format("TCP", _("Request path")));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        o = s.taboption("stream", form.DynamicList, "ss_tcp_header_request_headers", "%s - %s".format("TCP", _("Request headers")), _("A list of HTTP headers, format: <code>header=value</code>. eg: %s").format("Host=www.bing.com"));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        o = s.taboption("stream", form.Value, "ss_tcp_header_response_version", "%s - %s".format("TCP", _("HTTP response version")));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        o.placeholder = "1.1";
-        o = s.taboption("stream", form.Value, "ss_tcp_header_response_status", "%s - %s".format("TCP", _("HTTP response status")));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        o.placeholder = "200";
-        o = s.taboption("stream", form.Value, "ss_tcp_header_response_reason", "%s - %s".format("TCP", _("HTTP response reason")));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        o.placeholder = "OK";
-        o = s.taboption("stream", form.DynamicList, "ss_tcp_header_response_headers", "%s - %s".format("TCP", _("Response headers")), _("A list of HTTP headers, format: <code>header=value</code>. eg: %s").format("Host=www.bing.com"));
-        o.modalonly = true;
-        o.depends("ss_tcp_header_type", "http");
-        // Stream Settings - KCP
-        o = s.taboption("stream", form.Value, "ss_kcp_mtu", "%s - %s".format("mKCP", _("Maximum transmission unit (MTU)")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o.datatype = "and(min(576), max(1460))";
-        o.placeholder = "1350";
-        o = s.taboption("stream", form.Value, "ss_kcp_tti", "%s - %s".format("mKCP", _("Transmission time interval (TTI)")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o.datatype = "and(min(10), max(100))";
-        o.placeholder = "50";
-        o = s.taboption("stream", form.Value, "ss_kcp_uplink_capacity", "%s - %s".format("mKCP", _("Uplink capacity")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o.datatype = "uinteger";
-        o.placeholder = "5";
-        o = s.taboption("stream", form.Value, "ss_kcp_downlink_capacity", "%s - %s".format("mKCP", _("Downlink capacity")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o.datatype = "uinteger";
-        o.placeholder = "20";
-        o = s.taboption("stream", form.Flag, "ss_kcp_congestion", "%s - %s".format("mKCP", _("Congestion enabled")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o = s.taboption("stream", form.Value, "ss_kcp_read_buffer_size", "%s - %s".format("mKCP", _("Read buffer size")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o.datatype = "uinteger";
-        o.placeholder = "2";
-        o = s.taboption("stream", form.Value, "ss_kcp_write_buffer_size", "%s - %s".format("mKCP", _("Write buffer size")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o.datatype = "uinteger";
-        o.placeholder = "2";
-        o = s.taboption("stream", form.ListValue, "ss_kcp_header_type", "%s - %s".format("mKCP", _("Header type")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        o.value("");
-        o.value("none", _("None"));
-        o.value("srtp", "SRTP");
-        o.value("utp", "uTP");
-        o.value("wechat-video", _("Wechat Video"));
-        o.value("dtls", "DTLS 1.2");
-        o.value("wireguard", "WireGuard");
-        o = s.taboption("stream", form.Value, "ss_kcp_seed", "%s - %s".format("mKCP", _("Seed")));
-        o.modalonly = true;
-        o.depends("ss_network", "kcp");
-        // Stream Settings - WebSocket
-        o = s.taboption("stream", form.Value, "ss_websocket_path", "%s - %s".format("WebSocket", _("Path")));
-        o.modalonly = true;
-        o.depends("ss_network", "ws");
-        o = s.taboption("stream", form.DynamicList, "ss_websocket_headers", "%s - %s".format("WebSocket", _("Headers")), _("A list of HTTP headers, format: <code>header=value</code>. eg: %s").format("Host=www.bing.com"));
-        o.modalonly = true;
-        o.depends("ss_network", "ws");
-        // Stream Settings - HTTP/2
-        o = s.taboption("stream", form.DynamicList, "ss_http_host", "%s - %s".format("HTTP/2", _("Domain")));
-        o.modalonly = true;
-        o.depends("ss_network", "http");
-        o = s.taboption("stream", form.Value, "ss_http_path", "%s - %s".format("HTTP/2", _("Path")));
-        o.modalonly = true;
-        o.depends("ss_network", "http");
-        o.placeholder = "/";
-        // Stream Settings - Domain Socket
-        o = s.taboption("stream", form.Value, "ss_domainsocket_path", "%s - %s".format("Domain Socket", _("Path")));
-        o.modalonly = true;
-        o.depends("ss_network", "domainsocket");
-        // Stream Settings - QUIC
-        o = s.taboption("stream", form.ListValue, "ss_quic_security", "%s - %s".format("QUIC", _("Security")));
-        o.modalonly = true;
-        o.depends("ss_network", "quic");
-        o.value("");
-        o.value("none", _("None"));
-        o.value("aes-128-gcm");
-        o.value("chacha20-poly1305");
-        o = s.taboption("stream", form.Value, "ss_quic_key", "%s - %s".format("QUIC", _("secret key")));
-        o.modalonly = true;
-        o.depends("ss_quic_security", "aes-128-gcm");
-        o.depends("ss_quic_security", "chacha20-poly1305");
-        o = s.taboption("stream", form.ListValue, "ss_quic_header_type", "%s - %s".format("QUIC", _("Header type")));
-        o.modalonly = true;
-        o.depends("ss_network", "quic");
-        o.value("");
-        o.value("none", _("None"));
-        o.value("srtp", "SRTP");
-        o.value("utp", "uTP");
-        o.value("wechat-video", _("Wechat Video"));
-        o.value("dtls", "DTLS 1.2");
-        o.value("wireguard", "WireGuard");
-        // Stream Settings - Socket Options
-        o = s.taboption("stream", form.ListValue, "ss_sockopt_tcp_fast_open", "%s - %s".format(_("Sockopt"), _("TCP fast open")));
-        o.modalonly = true;
-        o.value("");
-        o.value("0", _("False"));
-        o.value("1", _("True"));
-        o = s.taboption("stream", form.ListValue, "ss_sockopt_tproxy", "%s - %s".format(_("Sockopt"), _("TProxy")), _("If transparent proxy enabled on current inbound, this option will be ignored."));
-        o.modalonly = true;
-        o.value("");
-        o.value("redirect", "Redirect");
-        o.value("tproxy", "TProxy");
-        o.value("off", _("Off"));
-        /** Other Settings **/
-        o = s.taboption("other", form.Value, "tag", _("Tag"));
-        o = s.taboption("other", form.Flag, "sniffing_enabled", "%s - %s".format(_("Sniffing"), _("Enabled")));
-        o.modalonly = true;
-        o = s.taboption("other", form.MultiValue, "sniffing_dest_override", "%s - %s".format(_("Sniffing"), _("Dest override")));
-        o.modalonly = true;
-        o.value("http");
-        o.value("tls");
-        o = s.taboption("other", form.ListValue, "allocate_strategy", "%s - %s".format(_("Allocate"), _("Strategy")));
-        o.modalonly = true;
-        o.value("");
-        o.value("always");
-        o.value("random");
-        o = s.taboption("other", form.Value, "allocate_refresh", "%s - %s".format(_("Allocate"), _("Refresh")));
-        o.modalonly = true;
-        o.datatype = "uinteger";
-        o = s.taboption("other", form.Value, "allocate_concurrency", "%s - %s".format(_("Allocate"), _("Concurrency")));
-        o.modalonly = true;
-        o.datatype = "uinteger";
-        return m.render();
+        return e.datatype = "host",
+        e.placeholder = "127.0.0.1",
+        (e = t.taboption("general", form.Value, "s_socks_user_level", "%s - %s".format("Socks", _("User level")), _("All connections share this level"))).modalonly = !0,
+        e.depends("protocol", "socks"),
+        e.datatype = "uinteger",
+        (e = t.taboption("general", form.Value, "s_trojan_address", "%s - %s".format("Trojan", _("Address")))).modalonly = !0,
+        e.depends("protocol", "trojan"),
+        e.datatype = "host",
+        (e = t.taboption("general", form.Value, "s_trojan_port", "%s - %s".format("Trojan", _("Port")))).modalonly = !0,
+        e.depends("protocol", "trojan"),
+        e.datatype = "port",
+        (e = t.taboption("general", form.Value, "s_trojan_password", "%s - %s".format("Trojan", _("Password")))).modalonly = !0,
+        e.depends("protocol", "trojan"),
+        (e = t.taboption("general", form.Value, "s_vmess_client_id", "%s - %s".format("VMess", _("Client ID")))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        (e = t.taboption("general", form.Value, "s_vmess_client_alter_id", "%s - %s".format("VMess", _("Client alter ID")))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        e.datatype = "and(min(0), max(65535))",
+        (e = t.taboption("general", form.Value, "s_vmess_client_email", "%s - %s".format("VMess", _("Client email")))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        (e = t.taboption("general", form.Value, "s_vmess_client_user_level", "%s - %s".format("VMess", _("Client User level")))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        e.datatype = "uinteger",
+        (e = t.taboption("general", form.Value, "s_vmess_default_alter_id", "%s - %s".format("VMess", _("Default alter ID")))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        e.datatype = "and(min(0), max(65535))",
+        (e = t.taboption("general", form.Value, "s_vmess_default_user_level", "%s - %s".format("VMess", _("Default user level")))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        e.datatype = "uinteger",
+        (e = t.taboption("general", form.Value, "s_vmess_detour_to", "%s - %s".format("VMess", _("Detour to")), _("Optional feature to suggest client to take a detour. If specified, this inbound will instruct the outbound to use another inbound."))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        (e = t.taboption("general", form.Flag, "s_vmess_disable_insecure_encryption", "%s - %s".format("VMess", _("Disable insecure encryption")))).modalonly = !0,
+        e.depends("protocol", "vmess"),
+        (e = t.taboption("general", form.Value, "s_vless_address", "%s - %s".format("VLESS", _("Address")))).modalonly = !0,
+        e.depends("protocol", "vless"),
+        e.datatype = "host",
+        (e = t.taboption("general", form.Value, "s_vless_port", "%s - %s".format("VLESS", _("Port")))).modalonly = !0,
+        e.depends("protocol", "vless"),
+        e.datatype = "port",
+        (e = t.taboption("general", form.Value, "s_vless_user_id", "%s - %s".format("VLESS", _("User ID")))).modalonly = !0,
+        e.depends("protocol", "vless"),
+        (e = t.taboption("general", form.Value, "s_vless_user_level", "%s - %s".format("VLESS", _("User level")))).modalonly = !0,
+        e.depends("protocol", "vless"),
+        e.datatype = "and(uinteger, max(10))",
+        (e = t.taboption("general", form.ListValue, "s_vless_user_encryption", "%s - %s".format("VLESS", _("Encryption")))).modalonly = !0,
+        e.depends("protocol", "vless"),
+        e.value("none", _("None")),
+        (e = t.taboption("stream", form.ListValue, "ss_network", _("Network"))).value(""),
+        e.value("tcp", "TCP"),
+        e.value("kcp", "mKCP"),
+        e.value("ws", "WebSocket"),
+        e.value("http", "HTTP/2"),
+        e.value("domainsocket", "Domain Socket"),
+        e.value("quic", "QUIC"),
+        (e = t.taboption("stream", form.ListValue, "ss_security", _("Security"))).modalonly = !0,
+        e.value(""),
+        e.value("none", _("None")),
+        e.value("tls", "TLS"),
+        (e = t.taboption("stream", form.ListValue, "s_xtls_flow", _("xTLS Flow"), _("Use xTLS flow"))).modalonly = !0,
+        e.value("none", _("None")),
+        e.value("xtls-rprx-direct"),
+        e.value("xtls-rprx-direct-udp443"),
+        e.value("xtls-rprx-origin"),
+        e.value("xtls-rprx-origin-udp443"),
+        e.value("xtls-rprx-splice"),
+        e.value("xtls-rprx-splice-udp443"),
+        e.value("xtls-rprx-vision"),
+        e.value("xtls-rprx-vision-udp443"),
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.Value, "ss_tls_server_name", "%s - %s".format("TLS", _("Server name")))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        e.datatype = "host",
+        (e = t.taboption("stream", form.Value, "ss_tls_alpn", "%s - %s".format("TLS", "ALPN"))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        e.placeholder = "http/1.1",
+        (e = t.taboption("stream", form.ListValue, "u_tls", "uTLS")).modalonly = !0,
+        e.value("", _("None")),
+        e.value("chrome"),
+        e.value("firefox"),
+        e.value("safari"),
+        e.value("randomized"),
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.Flag, "ss_tls_allow_insecure", "%s - %s".format("TLS", _("Allow insecure")))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.Flag, "ss_tls_allow_insecure_ciphers", "%s - %s".format("TLS", _("Allow insecure ciphers")))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.Flag, "ss_tls_disable_system_root", "%s - %s".format("TLS", _("Disable system root")))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.ListValue, "ss_tls_cert_usage", "%s - %s".format("TLS", _("Certificate usage")))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        e.value(""),
+        e.value("encipherment", _("encipherment")),
+        e.value("verify", _("verify")),
+        e.value("issue", _("issue")),
+        (e = t.taboption("stream", form.Value, "ss_tls_cert_fiile", "%s - %s".format("TLS", _("Certificate file")))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.Value, "ss_tls_key_file", "%s - %s".format("TLS", _("Key file")))).modalonly = !0,
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.ListValue, "ss_tcp_header_type", "%s - %s".format("TCP", _("Header type")))).modalonly = !0,
+        e.depends("ss_network", "tcp"),
+        e.value(""),
+        e.value("none", _("None")),
+        e.value("http", "HTTP"),
+        (e = t.taboption("stream", form.Value, "ss_tcp_header_request_version", "%s - %s".format("TCP", _("HTTP request version")))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        e.placeholder = "1.1",
+        (e = t.taboption("stream", form.ListValue, "ss_tcp_header_request_method", "%s - %s".format("TCP", _("HTTP request method")))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        e.value(""),
+        e.value("GET"),
+        e.value("HEAD"),
+        e.value("POST"),
+        e.value("DELETE"),
+        e.value("PUT"),
+        e.value("PATCH"),
+        e.value("OPTIONS"),
+        e.default = "GET",
+        (e = t.taboption("stream", form.Value, "ss_tcp_header_request_path", "%s - %s".format("TCP", _("Request path")))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        (e = t.taboption("stream", form.DynamicList, "ss_tcp_header_request_headers", "%s - %s".format("TCP", _("Request headers")), _("A list of HTTP headers, format: <code>header=value</code>. eg: %s").format("Host=www.bing.com"))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        (e = t.taboption("stream", form.Value, "ss_tcp_header_response_version", "%s - %s".format("TCP", _("HTTP response version")))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        e.placeholder = "1.1",
+        (e = t.taboption("stream", form.Value, "ss_tcp_header_response_status", "%s - %s".format("TCP", _("HTTP response status")))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        e.placeholder = "200",
+        (e = t.taboption("stream", form.Value, "ss_tcp_header_response_reason", "%s - %s".format("TCP", _("HTTP response reason")))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        e.placeholder = "OK",
+        (e = t.taboption("stream", form.DynamicList, "ss_tcp_header_response_headers", "%s - %s".format("TCP", _("Response headers")), _("A list of HTTP headers, format: <code>header=value</code>. eg: %s").format("Host=www.bing.com"))).modalonly = !0,
+        e.depends("ss_tcp_header_type", "http"),
+        (e = t.taboption("stream", form.Value, "ss_kcp_mtu", "%s - %s".format("mKCP", _("Maximum transmission unit (MTU)")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        e.datatype = "and(min(576), max(1460))",
+        e.placeholder = "1350",
+        (e = t.taboption("stream", form.Value, "ss_kcp_tti", "%s - %s".format("mKCP", _("Transmission time interval (TTI)")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        e.datatype = "and(min(10), max(100))",
+        e.placeholder = "50",
+        (e = t.taboption("stream", form.Value, "ss_kcp_uplink_capacity", "%s - %s".format("mKCP", _("Uplink capacity")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        e.datatype = "uinteger",
+        e.placeholder = "5",
+        (e = t.taboption("stream", form.Value, "ss_kcp_downlink_capacity", "%s - %s".format("mKCP", _("Downlink capacity")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        e.datatype = "uinteger",
+        e.placeholder = "20",
+        (e = t.taboption("stream", form.Flag, "ss_kcp_congestion", "%s - %s".format("mKCP", _("Congestion enabled")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        (e = t.taboption("stream", form.Value, "ss_kcp_read_buffer_size", "%s - %s".format("mKCP", _("Read buffer size")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        e.datatype = "uinteger",
+        e.placeholder = "2",
+        (e = t.taboption("stream", form.Value, "ss_kcp_write_buffer_size", "%s - %s".format("mKCP", _("Write buffer size")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        e.datatype = "uinteger",
+        e.placeholder = "2",
+        (e = t.taboption("stream", form.ListValue, "ss_kcp_header_type", "%s - %s".format("mKCP", _("Header type")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        e.value(""),
+        e.value("none", _("None")),
+        e.value("srtp", "SRTP"),
+        e.value("utp", "uTP"),
+        e.value("wechat-video", _("Wechat Video")),
+        e.value("dtls", "DTLS 1.2"),
+        e.value("wireguard", "WireGuard"),
+        (e = t.taboption("stream", form.Value, "ss_kcp_seed", "%s - %s".format("mKCP", _("Seed")))).modalonly = !0,
+        e.depends("ss_network", "kcp"),
+        (e = t.taboption("stream", form.Value, "ss_websocket_path", "%s - %s".format("WebSocket", _("Path")))).modalonly = !0,
+        e.depends("ss_network", "ws"),
+        (e = t.taboption("stream", form.DynamicList, "ss_websocket_headers", "%s - %s".format("WebSocket", _("Headers")), _("A list of HTTP headers, format: <code>header=value</code>. eg: %s").format("Host=www.bing.com"))).modalonly = !0,
+        e.depends("ss_network", "ws"),
+        (e = t.taboption("stream", form.DynamicList, "ss_http_host", "%s - %s".format("HTTP/2", _("Host")))).modalonly = !0,
+        e.depends("ss_network", "http"),
+        (e = t.taboption("stream", form.Value, "ss_http_path", "%s - %s".format("HTTP/2", _("Path")))).modalonly = !0,
+        e.depends("ss_network", "http"),
+        e.placeholder = "/",
+        (e = t.taboption("stream", form.Value, "ss_domainsocket_path", "%s - %s".format("Domain Socket", _("Path")))).modalonly = !0,
+        e.depends("ss_network", "domainsocket"),
+        (e = t.taboption("stream", form.ListValue, "ss_quic_security", "%s - %s".format("QUIC", _("Security")))).modalonly = !0,
+        e.depends("ss_network", "quic"),
+        e.value(""),
+        e.value("none", _("None")),
+        e.value("aes-128-gcm"),
+        e.value("chacha20-poly1305"),
+        (e = t.taboption("stream", form.Value, "ss_quic_key", "%s - %s".format("QUIC", _("Key")))).modalonly = !0,
+        e.depends("ss_quic_security", "aes-128-gcm"),
+        e.depends("ss_quic_security", "chacha20-poly1305"),
+        (e = t.taboption("stream", form.ListValue, "ss_quic_header_type", "%s - %s".format("QUIC", _("Header type")))).modalonly = !0,
+        e.depends("ss_network", "quic"),
+        e.value(""),
+        e.value("none", _("None")),
+        e.value("srtp", "SRTP"),
+        e.value("utp", "uTP"),
+        e.value("wechat-video", _("Wechat Video")),
+        e.value("dtls", "DTLS 1.2"),
+        e.value("wireguard", "WireGuard"),
+        (e = t.taboption("stream", form.ListValue, "ss_sockopt_tcp_fast_open", "%s - %s".format(_("Sockopt"), _("TCP fast open")))).modalonly = !0,
+        e.value(""),
+        e.value("0", _("False")),
+        e.value("1", _("True")),
+        (e = t.taboption("stream", form.ListValue, "ss_sockopt_tproxy", "%s - %s".format(_("Sockopt"), _("TProxy")), _("If transparent proxy enabled on current inbound, this option will be ignored."))).modalonly = !0,
+        e.value(""),
+        e.value("redirect", "Redirect"),
+        e.value("tproxy", "TProxy"),
+        e.value("off", _("Off")),
+        e = t.taboption("other", form.Value, "tag", _("Tag")),
+        (e = t.taboption("other", form.Flag, "sniffing_enabled", "%s - %s".format(_("Sniffing"), _("Enabled")))).modalonly = !0,
+        (e = t.taboption("other", form.Flag, "routeOnly_enabled", "%s - %s".format(_("routeOnly"), _("Enabled")))).modalonly = !0,
+        (e = t.taboption("other", form.MultiValue, "sniffing_dest_override", "%s - %s".format(_("Sniffing"), _("Dest override")))).modalonly = !0,
+        e.value("http"),
+        e.value("tls"),
+        e.value("fakedns"),
+        e.value("fakedns+others"),
+        (e = t.taboption("other", form.Flag, "metadata_only", "%s - %s".format(_("metadata only"), _("Enabled")))).modalonly = !0,
+        (e = t.taboption("other", form.ListValue, "allocate_strategy", "%s - %s".format(_("Allocate"), _("Strategy")))).modalonly = !0,
+        e.value(""),
+        e.value("always"),
+        e.value("random"),
+        (e = t.taboption("other", form.Value, "allocate_refresh", "%s - %s".format(_("Allocate"), _("Refresh")))).modalonly = !0,
+        e.datatype = "uinteger",
+        (e = t.taboption("other", form.Value, "allocate_concurrency", "%s - %s".format(_("Allocate"), _("Concurrency")))).modalonly = !0,
+        e.datatype = "uinteger",
+        s.render()
     }
 });
