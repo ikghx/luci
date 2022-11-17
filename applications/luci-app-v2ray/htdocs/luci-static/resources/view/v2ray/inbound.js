@@ -10,7 +10,7 @@ return L.view.extend({
     render: function (o) {
         void 0 === o && (o = []);
         var e,
-        s = new form.Map("v2ray", "%s - %s".format(_("V2Ray"), _("Inbound"))),
+        s = new form.Map("v2ray", "%s - %s".format(_("V2Ray"), _("Inbound Rule"))),
         t = s.section(form.GridSection, "inbound");
         t.anonymous = !0,
         t.addremove = !0,
@@ -213,6 +213,8 @@ return L.view.extend({
         e.value("firefox"),
         e.value("safari"),
         e.value("randomized"),
+        e.depends("ss_security", "tls"),
+        (e = t.taboption("stream", form.Flag, "ss_tls_rejectUnknownSni", "%s - %s".format("TLS", _("Reject Unknown SNI")))).modalonly = !0,
         e.depends("ss_security", "tls"),
         (e = t.taboption("stream", form.Flag, "ss_tls_allow_insecure", "%s - %s".format("TLS", _("Allow insecure")))).modalonly = !0,
         e.depends("ss_security", "tls"),

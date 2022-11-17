@@ -14,7 +14,7 @@ function gen_config(user)
             for i = 1, #user.uuid do
                 clients[i] = {
                     id = user.uuid[i],
-                    flow = ("1" == user.xtls) and user.flow or nil,
+                    flow = ("1" == user.xtls) and user.flow or ("1" == user.tls and "1" ~= user.xtls and user.tlsflow) and user.tlsflow or nil,
                     alterId = user.alter_id and tonumber(user.alter_id) or nil
                 }
             end
@@ -58,7 +58,7 @@ function gen_config(user)
             local clients = {}
             for i = 1, #user.uuid do
                 clients[i] = {
-                    flow = ("1" == user.xtls) and user.flow or nil,
+                    flow = ("1" == user.xtls) and user.flow or ("1" == user.tls and "1" ~= user.xtls and user.tlsflow) and user.tlsflow or nil,
                     password = user.uuid[i],
                 }
             end

@@ -112,7 +112,7 @@ return L.view.extend({
         var s,
         o = e[0],
         t = void 0 === o ? [] : o,
-        a = new form.Map("v2ray", "%s - %s".format(_("V2Ray"), _("Outbound"))),
+        a = new form.Map("v2ray", "%s - %s".format(_("V2Ray"), _("Outbound Rule"))),
         r = a.section(form.GridSection, "outbound");
         r.anonymous = !0,
         r.addremove = !0,
@@ -299,6 +299,8 @@ return L.view.extend({
         s.value("firefox"),
         s.value("safari"),
         s.value("randomized"),
+        s.depends("ss_security", "tls"),
+        (s = r.taboption("stream", form.Flag, "ss_tls_rejectUnknownSni", "%s - %s".format("TLS", _("Reject Unknown SNI")))).modalonly = !0,
         s.depends("ss_security", "tls"),
         (s = r.taboption("stream", form.Flag, "ss_tls_allow_insecure", "%s - %s".format("TLS", _("Allow insecure")))).modalonly = !0,
         s.depends("ss_security", "tls"),
