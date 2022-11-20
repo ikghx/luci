@@ -211,54 +211,30 @@ return view.extend({
 		o.optional = true;
 		o.modalonly = true;
 
-		o = s.taboption('interface', form.ListValue, 'interface_type', _('Interface Type'));
-		o.default = '';
-		o.value('vti', _('VTI'));
-		o.value('xfrm', _('XFRM'));
-
-		o = s.taboption('interface', form.Flag, 'auto_interface', _('Auto Create/Update Interface'));
-		o.default = '';
-		o.rmempty = true;
-		o.value('vti', _('VTI'));
-		o.value('xfrm', _('XFRM'));
-		o.depends({ 'interface_type' : null, '!reverse' : true });
-
 		var interfaces = uci.sections('network', 'interface');
-		o = s.taboption('interface', form.Value, 'interface', _('VTI Interface'));
+		o = s.taboption('advanced', form.ListValue, 'interface', _('Tunnel Interface'),
+			_('Lists XFRM interfaces in format "ipsecN", N denotes ifid of xfrm interface') + '<br>' +
+			_('Lists VTI interfaces configured with ikey and okey'));
 		o.datatype = 'string';
 		o.rmempty = true;
 		o.modalonly = true;
+		o.value('');
 		for (var i = 0; i < interfaces.length; i++) {
-			if (interfaces[i]['proto'] == "vti") {
-				o.value(interfaces[i]['.name']);
+			if ((interfaces[i]['proto'] == "vti") && interfaces[i]['ikey'] && interfaces[i]['okey']) {
+				o.value(interfaces[i]['.name'], 'VTI - ' + interfaces[i]['.name']);
+			}
+
+			if ((interfaces[i]['proto'] == "xfrm")
+				&& interfaces[i]['ifid']
+				&& interfaces[i]['.name'].match('ipsec' + interfaces[i]['ifid'])) {
+				o.value(interfaces[i]['.name'], 'XFRM - ' + interfaces[i]['.name']);
 			}
 		}
-		o.depends({ 'interface_type' : 'vti' });
 
-		o = s.taboption('interface', form.Value, 'ifid', _('XFRM ifid'));
-		o.datatype = 'uinteger';
+		o = s.taboption('advanced', form.Flag, 'update_peeraddr', _('Update Peer Address'),
+			_('Auto Update Peer Address of VTI interface'));
 		o.rmempty = true;
 		o.modalonly = true;
-		o.depends({ 'interface_type' : 'xfrm' });
-
-		o = s.taboption('interface', form.Value, 'ipaddr', _('Address'));
-		o.datatype = 'ipaddr';
-		o.rmempty = true;
-		o.modalonly = true;
-		o.depends({ 'interface_type' : 'vti' });
-		o.depends({ 'interface_type' : 'xfrm' });
-
-		o = s.taboption('interface', form.Value, 'mark', _('Traffic Mark'));
-		o.datatype = 'uinteger';
-		o.rmempty = true;
-		o.modalonly = true;
-		o.depends({ 'interface' : null, '!reverse' : true });
-
-		o = s.taboption('interface', widgets.ZoneSelect, 'zone', _('Zone'));
-		o.rmempty = true;
-		o.modalonly = true;
-		o.depends({ 'interface_type' : 'vti' });
-		o.depends({ 'interface_type' : 'xfrm' });
 
 		return m.render();
 	}

@@ -720,7 +720,7 @@ return view.extend({
 							return form.Value.prototype.validate.apply(this, [ section_id, value ]);
 						};
 
-						ss.taboption('advanced', form.DynamicList, 'dhcp_option', _('DHCP-Options'), _('Define additional DHCP options,  for example "<code>6,192.168.2.1,192.168.2.2</code>" which advertises different DNS servers to clients.'));
+						ss.taboption('advanced', form.DynamicList, 'dhcp_option', _('DHCP Options'), _('Define additional DHCP options,  for example "<code>6,192.168.2.1,192.168.2.2</code>" which advertises different DNS servers to clients.'));
 					}
 
 

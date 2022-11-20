@@ -127,7 +127,7 @@ function validateHostname(sid, s) {
 	if (s.length > 256)
 		return _('Expecting: %s').format(_('valid hostname'));
 
-	var labels = s.replace(/^\.+|\.$/g, '').split(/\./);
+	var labels = s.replace(/^\*?\.?|\.$/g, '').split(/\./);
 
 	for (var i = 0; i < labels.length; i++)
 		if (!labels[i].match(/^[a-z0-9_](?:[a-z0-9-]{0,61}[a-z0-9])?$/i))
@@ -140,7 +140,8 @@ function validateAddressList(sid, s) {
 	if (s == null || s == '')
 		return true;
 
-	var names = s.split(/\//);
+	var m = s.match(/^\/(.+)\/$/),
+	    names = m ? m[1].split(/\//) : [ s ];
 
 	for (var i = 0; i < names.length; i++) {
 		var res = validateHostname(sid, names[i]);
@@ -156,13 +157,15 @@ function validateServerSpec(sid, s) {
 	if (s == null || s == '')
 		return true;
 
-	var m = s.match(/^(?:\/(.+)\/)?(.*)$/);
+	var m = s.match(/^(\/.*\/)?(.*)$/);
 	if (!m)
 		return _('Expecting: %s').format(_('valid hostname'));
 
-	var res = validateAddressList(sid, m[1]);
-	if (res !== true)
-		return res;
+	if (m[1] != '//' && m[1] != '/#/') {
+		var res = validateAddressList(sid, m[1]);
+		if (res !== true)
+			return res;
+	}
 
 	if (m[2] == '' || m[2] == '#')
 		return true;
@@ -472,8 +475,8 @@ return view.extend({
 		o.default = o.enabled;
 
 		s.taboption('advanced', form.Flag, 'filterwin2k',
-			_('Filter useless'),
-			_('Avoid uselessly triggering dial-on-demand links (filters SRV/SOA records and names with underscores).') + '<br />' +
+			_('Filter SRV/SOA service discovery'),
+			_('Filters SRV/SOA service discovery, to avoid triggering dial-on-demand links.') + '<br />' +
 			_('May prevent VoIP or other services from working.'));
 
 		s.taboption('advanced', form.Flag, 'localise_queries',
@@ -663,7 +666,7 @@ return view.extend({
 		so.placeholder = '192.168.9.1';
 
 		so = ss.option(form.DynamicList, 'dhcp_option',
-			_('DHCP-Options'));
+			_('DHCP Options'));
 		so.optional = true;
 		so.placeholder = '66,192.168.9.1';
 

@@ -23,12 +23,12 @@ return view.extend({
 
 		o = s.option(form.ListValue, 'debug', _('Debug Logs'));
 		o.rmempty = false;
-		o.value('none', _('No Logging'));
-		o.value('base', _('Moderate Logging'));
-		o.value('cpu-usage', _('Timing/Load Logging'));
-		o.value('crypto', _('All crypto related Logging'));
-		o.value('tmi', _('Too Much/Excessive Logging'));
-		o.value('private', _('Sensitive private-key/password Logging'));
+		o.value('none', _('none - No Logging'));
+		o.value('base', _('base - Moderate Logging'));
+		o.value('cpu-usage', _('cpu-usage - Timing/Load Logging'));
+		o.value('crypto', _('crypto - All crypto related Logging'));
+		o.value('tmi', _('tmi - Too Much/Excessive Logging'));
+		o.value('private', _('private - Sensitive private-key/password Logging'));
 		o.default = 'none'
 
 		o = s.option(form.Flag, 'uniqueids', _('Uniquely Identify Remotes'),
