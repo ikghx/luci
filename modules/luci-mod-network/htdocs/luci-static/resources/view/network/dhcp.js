@@ -779,7 +779,7 @@ return view.extend({
 		});
 
 		o = s.taboption('ipsets', form.SectionValue, '__ipsets__', form.GridSection, 'ipset', null,
-			_('List of IP sets to populate with the specified domain IPs.'));
+			_('List of IP sets to populate with the specified domain IPs, only supports ipv4 addresses.'));
 
 		ss = o.subsection;
 		ss.addremove = true;
@@ -789,12 +789,12 @@ return view.extend({
 		so = ss.option(form.DynamicList, 'name', _('IP sets'));
 		so.rmempty = false;
 		so.datatype = 'string';
-    so.placeholder = 'ipset';
+		so.placeholder = 'ipset';
 
 		so = ss.option(form.DynamicList, 'domain', _('Domain'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-    so.placeholder = 'example.com';
+		so.placeholder = 'example.com';
 
 		o = s.taboption('leases', form.SectionValue, '__leases__', form.GridSection, 'host', null,
 			_('Static leases are used to assign fixed IP addresses and symbolic hostnames to DHCP clients. They are also required for non-dynamic interface configurations where only hosts with a corresponding lease are served.') + '<br />' +

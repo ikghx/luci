@@ -29,36 +29,36 @@ function o.write(self, section)
 end
 
 o = s:option(DummyValue, "all_cn", translate("All IP addresses in China"))
-o.description = translate("All China IP address routing table data, IPSET name is allcn and allcn6")
+o.description = translate("All China IP address routing table data, IPSET name is allcn")
 
 o = s:option(DummyValue, "chinatelecom", translate("China Telecom"))
-o.description = translate("China Telecom IP address routing table data, IPSET name is ct and ct6")
+o.description = translate("China Telecom IP address routing table data, IPSET name is ct")
 
 o = s:option(DummyValue, "unicom_cnc", translate("China Unicom"))
-o.description = translate("China Unicom IP address routing table data, IPSET name is cu and cu6")
+o.description = translate("China Unicom IP address routing table data, IPSET name is cu")
 
 o = s:option(DummyValue, "cmcc", translate("China Mobile"))
-o.description = translate("China Mobile IP address routing table data, IPSET name is cmcc and cmcc6")
+o.description = translate("China Mobile IP address routing table data, IPSET name is cmcc")
 
 o = s:option(DummyValue, "crtc", translate("China Railcom"))
-o.description = translate("China Railcom IP address routing table data, IPSET name is crtc and crtc6")
+o.description = translate("China Railcom IP address routing table data, IPSET name is crtc")
 
 o = s:option(DummyValue, "cernet", translate("China Education Net"))
-o.description = translate("China Education Net IP address routing table data, IPSET name is cernet and cernet6")
+o.description = translate("China Education Net IP address routing table data, IPSET name is cernet")
 
 o = s:option(DummyValue, "gwbn", translate("Great Wall Broadband/Dr. Peng"))
-o.description = translate("Great Wall Broadband/Dr. Peng IP address routing table data, IPSET name is gwbn and gwbn6")
+o.description = translate("Great Wall Broadband/Dr. Peng IP address routing table data, IPSET name is gwbn")
 
 o = s:option(DummyValue, "othernet", translate("Other ISPs in China"))
-o.description = translate("Other ISPs in China IP address routing table data, IPSET name is othernet and othernet6")
+o.description = translate("Other ISPs in China IP address routing table data, IPSET name is othernet")
 
 o = s:option(DummyValue, "hk", translate("China Hong Kong"))
-o.description = translate("China Hong Kong IP address routing table data, IPSET name is hk and hk6")
+o.description = translate("China Hong Kong IP address routing table data, IPSET name is hk")
 
 o = s:option(DummyValue, "mo", translate("China Macao"))
-o.description = translate("China Macao IP address routing table data, IPSET name is mo and mo6")
+o.description = translate("China Macao IP address routing table data, IPSET name is mo")
 
 o = s:option(DummyValue, "tw", translate("China Taiwan"))
-o.description = translate("China Taiwan IP address routing table data, IPSET name is tw and tw6")
+o.description = translate("China Taiwan IP address routing table data, IPSET name is tw")
 
 return m

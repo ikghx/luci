@@ -80,10 +80,17 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('sticky', '1');
 
-		o = s.option(form.Value, 'ipset', _('IPset'),
-			_('Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/youtube.com/youtube\")'));
-		o.value('', _('-- Please choose --'));
+		o = s.option(form.ListValue, 'ipset_dst', _('IPset destination'),
+			_('IP sets'));
 		var ipsets = data[0].split(/\n/);
+		for (var i = 0; i < ipsets.length; i++) {
+			if (ipsets[i].length > 0)
+				o.value(ipsets[i]);
+		}
+		o.modalonly = true;
+
+		o = s.option(form.ListValue, 'ipset_src', _('IPset source'),
+			_('IP sets'));
 		for (var i = 0; i < ipsets.length; i++) {
 			if (ipsets[i].length > 0)
 				o.value(ipsets[i]);

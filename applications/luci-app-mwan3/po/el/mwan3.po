@@ -96,10 +96,6 @@ msgstr ""
 msgid "-- Interface Selection --"
 msgstr ""
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:85
-msgid "-- Please choose --"
-msgstr "-- Παρακαλώ επιλέξτε --"
-
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:75
 msgid ""
 "Acceptable values: 1-100. This many Tracking IP addresses must respond for "
@@ -189,7 +185,7 @@ msgstr ""
 msgid "Enabled"
 msgstr "Ενεργοποιήθηκε"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:94
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:101
 msgid ""
 "Enables firewall rule logging (global mwan3 logging must also be enabled)"
 msgstr ""
@@ -262,8 +258,17 @@ msgstr ""
 msgid "Hotplug ifup"
 msgstr ""
 
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+msgid "IP sets"
+msgstr ""
+
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:83
-msgid "IPset"
+msgid "IPset destination"
+msgstr ""
+
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:92
+msgid "IPset source"
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:43
@@ -349,7 +354,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/globals.js:19
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:100
 msgid "Logging"
 msgstr ""
 
@@ -450,12 +455,6 @@ msgstr ""
 msgid ""
 "Mwan3 requires that all interfaces have a unique metric configured in /etc/"
 "config/network."
-msgstr ""
-
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
-msgid ""
-"Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
-"youtube.com/youtube\")"
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:23
@@ -566,7 +565,7 @@ msgstr ""
 msgid "Policy"
 msgstr ""
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:97
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
 msgid "Policy assigned"
 msgstr ""
 
@@ -766,7 +765,7 @@ msgid "Yes"
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:41
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:111
 msgid "blackhole (drop)"
 msgstr ""
 
@@ -775,7 +774,7 @@ msgid "connected (mwan3)"
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:42
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:105
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:112
 msgid "default (use main routing table)"
 msgstr ""
 
@@ -792,9 +791,12 @@ msgid "ifup (netifd)"
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:40
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:103
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:110
 msgid "unreachable (reject)"
 msgstr ""
+
+#~ msgid "-- Please choose --"
+#~ msgstr "-- Παρακαλώ επιλέξτε --"
 
 #~ msgid "Collecting data..."
 #~ msgstr "Συλλογή δεδομένων..."

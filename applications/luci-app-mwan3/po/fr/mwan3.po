@@ -96,10 +96,6 @@ msgstr ""
 msgid "-- Interface Selection --"
 msgstr ""
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:85
-msgid "-- Please choose --"
-msgstr "-- Choisir --"
-
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:75
 msgid ""
 "Acceptable values: 1-100. This many Tracking IP addresses must respond for "
@@ -193,7 +189,7 @@ msgstr "Activer le suivi ssl"
 msgid "Enabled"
 msgstr "Activé"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:94
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:101
 msgid ""
 "Enables firewall rule logging (global mwan3 logging must also be enabled)"
 msgstr ""
@@ -268,9 +264,18 @@ msgstr "Hotplug ifdown"
 msgid "Hotplug ifup"
 msgstr "Hotplug ifup"
 
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+msgid "IP sets"
+msgstr ""
+
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:83
-msgid "IPset"
-msgstr "IPset"
+msgid "IPset destination"
+msgstr ""
+
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:92
+msgid "IPset source"
+msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:43
 msgid "IPv4"
@@ -357,7 +362,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/globals.js:19
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:100
 msgid "Logging"
 msgstr "Journalisation"
 
@@ -461,14 +466,6 @@ msgid ""
 "Mwan3 requires that all interfaces have a unique metric configured in /etc/"
 "config/network."
 msgstr ""
-
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
-msgid ""
-"Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
-"youtube.com/youtube\")"
-msgstr ""
-"Nom de la règle IPset. Nécessite la règle IPset dans /etc/dnsmasq.conf (par "
-"exemple « ipset=/youteub.com/youtube »)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:23
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/member.js:18
@@ -578,7 +575,7 @@ msgstr ""
 msgid "Policy"
 msgstr "Politique"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:97
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
 msgid "Policy assigned"
 msgstr "Politique assignée"
 
@@ -793,7 +790,7 @@ msgid "Yes"
 msgstr "Oui"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:41
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:111
 #, fuzzy
 msgid "blackhole (drop)"
 msgstr "blackhole (drop)"
@@ -803,7 +800,7 @@ msgid "connected (mwan3)"
 msgstr "connecté (mwan3)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:42
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:105
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:112
 msgid "default (use main routing table)"
 msgstr "par défaut (utiliser la table de routage principale)"
 
@@ -820,9 +817,22 @@ msgid "ifup (netifd)"
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:40
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:103
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:110
 msgid "unreachable (reject)"
 msgstr "inaccessible (rejeter)"
+
+#~ msgid "-- Please choose --"
+#~ msgstr "-- Choisir --"
+
+#~ msgid "IPset"
+#~ msgstr "IPset"
+
+#~ msgid ""
+#~ "Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
+#~ "youtube.com/youtube\")"
+#~ msgstr ""
+#~ "Nom de la règle IPset. Nécessite la règle IPset dans /etc/dnsmasq.conf "
+#~ "(par exemple « ipset=/youteub.com/youtube »)"
 
 #~ msgid "All required IP rules for interface %s found"
 #~ msgstr "Toutes les règles IP requises pour l’interface %s trouvées"

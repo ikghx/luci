@@ -96,10 +96,6 @@ msgstr ""
 msgid "-- Interface Selection --"
 msgstr ""
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:85
-msgid "-- Please choose --"
-msgstr "-- Kérem válasszon --"
-
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:75
 msgid ""
 "Acceptable values: 1-100. This many Tracking IP addresses must respond for "
@@ -194,7 +190,7 @@ msgstr "SSL követés engedélyezése"
 msgid "Enabled"
 msgstr "Engedélyezve"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:94
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:101
 msgid ""
 "Enables firewall rule logging (global mwan3 logging must also be enabled)"
 msgstr ""
@@ -270,9 +266,18 @@ msgstr "Gyorsleválasztási csatolólekapcsolás"
 msgid "Hotplug ifup"
 msgstr "Gyorsleválasztási csatolófelkapcsolás"
 
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+msgid "IP sets"
+msgstr ""
+
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:83
-msgid "IPset"
-msgstr "IPset"
+msgid "IPset destination"
+msgstr ""
+
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:92
+msgid "IPset source"
+msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:43
 msgid "IPv4"
@@ -359,7 +364,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/globals.js:19
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:100
 msgid "Logging"
 msgstr "Naplózás"
 
@@ -463,14 +468,6 @@ msgid ""
 "Mwan3 requires that all interfaces have a unique metric configured in /etc/"
 "config/network."
 msgstr ""
-
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
-msgid ""
-"Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
-"youtube.com/youtube\")"
-msgstr ""
-"Az IPset szabály neve. Egy IPset szabályt igényel az /etc/dnsmasq.conf "
-"fájlban (például „ipset=/youtube.com/youtube”)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:23
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/member.js:18
@@ -580,7 +577,7 @@ msgstr ""
 msgid "Policy"
 msgstr "Házirend"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:97
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
 msgid "Policy assigned"
 msgstr "Hozzárendelt házirend"
 
@@ -793,7 +790,7 @@ msgid "Yes"
 msgstr "Igen"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:41
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:111
 msgid "blackhole (drop)"
 msgstr "fekete lyuk (eldobás)"
 
@@ -802,7 +799,7 @@ msgid "connected (mwan3)"
 msgstr "kapcsolódva (mwan3)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:42
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:105
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:112
 msgid "default (use main routing table)"
 msgstr "alapértelmezett (fő útválasztási táblázat használata)"
 
@@ -819,9 +816,22 @@ msgid "ifup (netifd)"
 msgstr "csatolófelkapcsolás (netifd)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:40
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:103
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:110
 msgid "unreachable (reject)"
 msgstr "elérhetetlen (visszautasítás)"
+
+#~ msgid "-- Please choose --"
+#~ msgstr "-- Kérem válasszon --"
+
+#~ msgid "IPset"
+#~ msgstr "IPset"
+
+#~ msgid ""
+#~ "Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
+#~ "youtube.com/youtube\")"
+#~ msgstr ""
+#~ "Az IPset szabály neve. Egy IPset szabályt igényel az /etc/dnsmasq.conf "
+#~ "fájlban (például „ipset=/youtube.com/youtube”)"
 
 #~ msgid "All required IP rules for interface %s found"
 #~ msgstr "A(z) %s csatoló összes szükséges IP-szabálya megtalálva"

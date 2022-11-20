@@ -100,10 +100,6 @@ msgstr ""
 msgid "-- Interface Selection --"
 msgstr "-- Seleção da interface --"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:85
-msgid "-- Please choose --"
-msgstr "-- Por favor, escolha --"
-
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:75
 msgid ""
 "Acceptable values: 1-100. This many Tracking IP addresses must respond for "
@@ -197,7 +193,7 @@ msgstr "Ativar rastreamento ssl"
 msgid "Enabled"
 msgstr "Ativado"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:94
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:101
 msgid ""
 "Enables firewall rule logging (global mwan3 logging must also be enabled)"
 msgstr ""
@@ -272,9 +268,18 @@ msgstr "Hotplug ifdown"
 msgid "Hotplug ifup"
 msgstr "Hotplug ifup"
 
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+msgid "IP sets"
+msgstr ""
+
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:83
-msgid "IPset"
-msgstr "IPset"
+msgid "IPset destination"
+msgstr ""
+
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:92
+msgid "IPset source"
+msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:43
 msgid "IPv4"
@@ -364,7 +369,7 @@ msgstr ""
 "aqueles com pesos maiores."
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/globals.js:19
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:100
 msgid "Logging"
 msgstr "Registrando os eventos"
 
@@ -478,14 +483,6 @@ msgstr ""
 "O Mwan3 requer que todas as interfaces tenham uma métrica exclusiva "
 "configurada em /etc/config/network."
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
-msgid ""
-"Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
-"youtube.com/youtube\")"
-msgstr ""
-"Nome da regra do IPset. Requer que as regras de IPset estejam em /etc/"
-"dnsmasq.conf (por exemplo, \"ipset=/youtube.com/youtube\")"
-
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:23
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/member.js:18
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:21
@@ -598,7 +595,7 @@ msgstr ""
 msgid "Policy"
 msgstr "Política"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:97
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
 msgid "Policy assigned"
 msgstr "Política atribuída"
 
@@ -822,7 +819,7 @@ msgid "Yes"
 msgstr "Sim"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:41
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:111
 msgid "blackhole (drop)"
 msgstr "buraco negro (derruba)"
 
@@ -831,7 +828,7 @@ msgid "connected (mwan3)"
 msgstr "conectado (mwan3)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:42
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:105
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:112
 msgid "default (use main routing table)"
 msgstr "padrão (usar tabela de roteamento principal)"
 
@@ -848,9 +845,22 @@ msgid "ifup (netifd)"
 msgstr "ifup (netifd)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:40
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:103
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:110
 msgid "unreachable (reject)"
 msgstr "inacessível (rejeitar)"
+
+#~ msgid "-- Please choose --"
+#~ msgstr "-- Por favor, escolha --"
+
+#~ msgid "IPset"
+#~ msgstr "IPset"
+
+#~ msgid ""
+#~ "Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
+#~ "youtube.com/youtube\")"
+#~ msgstr ""
+#~ "Nome da regra do IPset. Requer que as regras de IPset estejam em /etc/"
+#~ "dnsmasq.conf (por exemplo, \"ipset=/youtube.com/youtube\")"
 
 #~ msgid "Names may contain characters A-Z, a-z, 0-9, _ and no spaces-"
 #~ msgstr "Os nomes podem conter caracteres A-Z, a-z, 0-9, _ e sem espaços-"

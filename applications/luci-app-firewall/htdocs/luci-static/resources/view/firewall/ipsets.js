@@ -9,8 +9,8 @@ return view.extend({
 	render: function() {
 		var m, s, o;
 
-		m = new form.Map('firewall', _('Firewall - IPsets'),
-			_('IPsets is great for collecting a large set of IP addresses/networks under one label and then using the label in subsequent rules as a single match criteria.'));
+		m = new form.Map('firewall', _('Firewall - IP sets'),
+			_('IP sets is great for collecting a large set of IP addresses/networks under one label and then using the label in subsequent rules as a single match criteria.'));
 
 		s = m.section(form.GridSection, 'ipset');
 		s.addremove = true;
@@ -132,8 +132,8 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('general', form.DynamicList, 'entry',
-			_('Entry'),
-			_('List of entries in the Ipset.'));
+			_('Entry (IP sets)'),
+			_('List of entries in the ipset.'));
 		o.modalonly = true;
 //		o.validate add validation depending on match and storage
 

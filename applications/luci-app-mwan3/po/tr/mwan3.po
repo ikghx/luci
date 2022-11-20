@@ -99,10 +99,6 @@ msgstr ""
 msgid "-- Interface Selection --"
 msgstr "-- Arayüz Seçimi --"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:85
-msgid "-- Please choose --"
-msgstr "-- Lütfen seçin --"
-
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:75
 msgid ""
 "Acceptable values: 1-100. This many Tracking IP addresses must respond for "
@@ -195,7 +191,7 @@ msgstr "SSL izlemeyi etkinleştir"
 msgid "Enabled"
 msgstr "Etkin"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:94
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:101
 msgid ""
 "Enables firewall rule logging (global mwan3 logging must also be enabled)"
 msgstr ""
@@ -270,9 +266,18 @@ msgstr "Çalışır durumda takılabilir ifdown"
 msgid "Hotplug ifup"
 msgstr "Çalışır durumda takılabilir ifup"
 
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+msgid "IP sets"
+msgstr ""
+
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:83
-msgid "IPset"
-msgstr "IPset"
+msgid "IPset destination"
+msgstr ""
+
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:92
+msgid "IPset source"
+msgstr ""
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:43
 msgid "IPv4"
@@ -362,7 +367,7 @@ msgstr ""
 "trafik dağıtır."
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/globals.js:19
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:93
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:100
 msgid "Logging"
 msgstr "Günlükleme"
 
@@ -470,14 +475,6 @@ msgid ""
 msgstr ""
 "Mwan3, tüm arayüzlerin /etc/config/network içinde yapılandırılmış eşi "
 "olmayan bir metriğe sahip olmasını gerektirir."
-
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:84
-msgid ""
-"Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
-"youtube.com/youtube\")"
-msgstr ""
-"IPset kuralının adı. /Etc/dnsmasq.conf içinde IPset kuralı gerektirir (ör. "
-"\"ipset=/youtube.com/youtube\")"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:23
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/member.js:18
@@ -589,7 +586,7 @@ msgstr ""
 msgid "Policy"
 msgstr "Politika"
 
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:97
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
 msgid "Policy assigned"
 msgstr "Politika atandı"
 
@@ -813,7 +810,7 @@ msgid "Yes"
 msgstr "Evet"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:41
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:104
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:111
 msgid "blackhole (drop)"
 msgstr "kara delik (düşür)"
 
@@ -822,7 +819,7 @@ msgid "connected (mwan3)"
 msgstr "bağlı (mwan3)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:42
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:105
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:112
 msgid "default (use main routing table)"
 msgstr "varsayılan (ana yönlendirme tablosunu kullanın)"
 
@@ -839,9 +836,22 @@ msgid "ifup (netifd)"
 msgstr "ifup (netifd)"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/policy.js:40
-#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:103
+#: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:110
 msgid "unreachable (reject)"
 msgstr "ulaşılamaz (reddet)"
+
+#~ msgid "-- Please choose --"
+#~ msgstr "-- Lütfen seçin --"
+
+#~ msgid "IPset"
+#~ msgstr "IPset"
+
+#~ msgid ""
+#~ "Name of IPset rule. Requires IPset rule in /etc/dnsmasq.conf (eg \"ipset=/"
+#~ "youtube.com/youtube\")"
+#~ msgstr ""
+#~ "IPset kuralının adı. /Etc/dnsmasq.conf içinde IPset kuralı gerektirir "
+#~ "(ör. \"ipset=/youtube.com/youtube\")"
 
 #~ msgid "Names may contain characters A-Z, a-z, 0-9, _ and no spaces-"
 #~ msgstr ""
