@@ -369,7 +369,7 @@ return view.extend({
 		o.optional = true;
 
 		o = s.taboption('relay', form.SectionValue, '__relays__', form.TableSection, 'relay', null,
-			_('Relay DHCP requests elsewhere. OK: v4<->v4, v6<->v6. Not OK: v4<->v6, v6<->v4.')
+			_('Relay DHCP requests elsewhere. OK: v4↔v4, v6↔v6. Not OK: v4↔v6, v6↔v4.')
 			+ '<br />' + _('Note: you may also need a DHCP Proxy (currently unavailable) when specifying a non-standard Relay address port(<code>address#port</code>).')
 			+ '<br />' + _('You may add multiple unique Relay address on the same Listen address.'));
 

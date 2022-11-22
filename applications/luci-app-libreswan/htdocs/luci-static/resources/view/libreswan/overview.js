@@ -53,9 +53,9 @@ return view.extend({
 							tunnel.rightsubnet,
 							tunnel.tx,
 							tunnel.rx,
-							tunnel.phase1 ? _('Up') : _('Down'),
-							tunnel.phase2 ? _('Up') : _('Down'),
-							tunnel.connected ? _('Up') : _('Down'),
+							tunnel.phase1 ? _('online') : _('offline'),
+							tunnel.phase2 ? _('online') : _('offline'),
+							tunnel.connected ? _('online') : _('offline'),
 							secondsToString(tunnel.uptime),
 						];
 					}),

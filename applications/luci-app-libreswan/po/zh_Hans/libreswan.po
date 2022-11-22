@@ -37,17 +37,9 @@ msgstr "添加提案"
 msgid "Add Tunnel"
 msgstr "添加隧道"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:244
-msgid "Address"
-msgstr ""
-
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:60
 msgid "Advanced"
 msgstr "高级"
-
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:29
-msgid "crypto - All crypto related Logging"
-msgstr "crypto - 所有与加密相关的日志记录"
 
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:61
 msgid "Allowed Virtual Private"
@@ -61,9 +53,9 @@ msgstr "认证方法"
 msgid "Authentication"
 msgstr "验证"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:219
-msgid "Auto Create/Update Interface"
-msgstr "自动创建/更新接口"
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:235
+msgid "Auto Update Peer Address of VTI interface"
+msgstr "VTI 接口的自动更新对端地址"
 
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/proposals.js:37
 msgid "CAMELLIA_CBC"
@@ -136,6 +128,12 @@ msgstr "DPD 超时"
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:24
 msgid "Debug Logs"
 msgstr "调试日志"
+
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:56
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:57
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:58
+msgid "offline"
+msgstr "离线"
 
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:197
 msgid "ESP"
@@ -213,10 +211,6 @@ msgstr "发起"
 msgid "Interface"
 msgstr ""
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:214
-msgid "Interface Type"
-msgstr "接口类型"
-
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:87
 msgid "Left ID"
 msgstr "左 ID"
@@ -245,6 +239,15 @@ msgstr "监听地址"
 msgid "Listen Interface"
 msgstr "监听接口"
 
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:217
+msgid "Lists VTI interfaces configured with ikey and okey"
+msgstr "列出配置了 ikey 和 okey 的 VTI 接口"
+
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:216
+msgid ""
+"Lists XFRM interfaces in format \"ipsecN\", N denotes ifid of xfrm interface"
+msgstr "以 \"ipsecN\" 格式列出 XFRM 接口，N 表示 xfrm 接口的 ifid"
+
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:103
 msgid "Local Source IP"
 msgstr "本地源 IP"
@@ -265,10 +268,6 @@ msgstr ""
 msgid "Mode"
 msgstr ""
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:27
-msgid "base - Moderate Logging"
-msgstr "base - 中等日志记录"
-
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:55
 msgid "NFLOG group number to log all pre-crypt and post-decrypt traffic to"
 msgstr "NFLOG 组号，用于记录所有加密前和解密后的流量"
@@ -276,10 +275,6 @@ msgstr "NFLOG 组号，用于记录所有加密前和解密后的流量"
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:29
 msgid "Name"
 msgstr ""
-
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:26
-msgid "none - No Logging"
-msgstr "none - 无记录"
 
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:179
 msgid "None"
@@ -374,10 +369,6 @@ msgstr ""
 msgid "SHA512"
 msgstr ""
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:31
-msgid "private - Sensitive private-key/password Logging"
-msgstr "private - 敏感的私钥/密码记录"
-
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:37
 msgid "Status"
 msgstr ""
@@ -392,17 +383,9 @@ msgstr "可能位于客户端连接的 NAT 路由器后面的地址范围"
 msgid "There are no active Tunnels"
 msgstr "没有活动的隧道"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:28
-msgid "cpu-usage - Timing/Load Logging"
-msgstr "cpu-usage - 时序/负载记录"
-
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:30
-msgid "tmi - Too Much/Excessive Logging"
-msgstr "tmi - 太多/过多的日志记录"
-
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:251
-msgid "Traffic Mark"
-msgstr "流量标志"
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:215
+msgid "Tunnel Interface"
+msgstr "隧道接口"
 
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:33
 msgid "Tx"
@@ -412,44 +395,44 @@ msgstr "发送"
 msgid "Uniquely Identify Remotes"
 msgstr "唯一标识远端网关"
 
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:56
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:57
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:58
+msgid "online"
+msgstr "上线"
+
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:234
+msgid "Update Peer Address"
+msgstr "更新对端地址"
+
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:38
 msgid "Uptime"
 msgstr ""
-
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:216
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:222
-msgid "VTI"
-msgstr ""
-
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:227
-msgid "VTI Interface"
-msgstr "VTI 接口"
 
 #: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:35
 msgid "Whether IDs should be considered identifying remote parties uniquely"
 msgstr "是否应考虑使用 ID 唯一标识远程方"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:217
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:223
-msgid "XFRM"
-msgstr ""
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:27
+msgid "base - Moderate Logging"
+msgstr "base - 中等日志记录"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:238
-msgid "XFRM ifid"
-msgstr ""
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:28
+msgid "cpu-usage - Timing/Load Logging"
+msgstr "cpu-usage - 时序/负载记录"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/tunnels.js:257
-msgid "Zone"
-msgstr "区域"
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:29
+msgid "crypto - All crypto related Logging"
+msgstr "crypto - 所有与加密相关的日志记录"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:56
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:57
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:58
-msgid "Down"
-msgstr "离线"
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:26
+msgid "none - No Logging"
+msgstr "none - 无记录"
 
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:56
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:57
-#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/overview.js:58
-msgid "Up"
-msgstr "上线"
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:31
+msgid "private - Sensitive private-key/password Logging"
+msgstr "private - 敏感的私钥/密码记录"
+
+#: applications/luci-app-libreswan/htdocs/luci-static/resources/view/libreswan/globals.js:30
+msgid "tmi - Too Much/Excessive Logging"
+msgstr "tmi - 太多/过多的日志记录"

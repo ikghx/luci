@@ -162,7 +162,7 @@ o:depends("type", "trojan")
 -- [[ Wireguard ]]--
 o = s:option(Value, "wg_ip", translate("IP"))
 o.rmempty = true
-o.placeholder = translate("127.0.0.1")
+o.placeholder = "127.0.0.1"
 o.datatype = "ip4addr"
 o:depends("type", "wireguard")
 
@@ -174,12 +174,12 @@ o:depends("type", "wireguard")
 
 o = s:option(Value, "private_key", translate("Private Key"))
 o.rmempty = true
-o.placeholder = translate("eCtXsJZ27+4PbhDkHnB923tkUn2Gj59wZw5wFA75MnU=")
+o.placeholder = "eCtXsJZ27+4PbhDkHnB923tkUn2Gj59wZw5wFA75MnU="
 o:depends("type", "wireguard")
 
 o = s:option(Value, "public_key", translate("Public Key"))
 o.rmempty = true
-o.placeholder = translate("Cr8hWlKvtDt7nrvf+f0brNQQzabAqrjfBvas9pmowjo=")
+o.placeholder = "Cr8hWlKvtDt7nrvf+f0brNQQzabAqrjfBvas9pmowjo="
 o:depends("type", "wireguard")
 
 o = s:option(Value, "preshared_key", translate("Preshared Key"))
@@ -196,7 +196,7 @@ o:depends("type", "wireguard")
 o = s:option(Value, "wg_mtu", translate("MTU"))
 o.rmempty = true
 o.default = "1420"
-o.placeholder = translate("1420")
+o.placeholder = "1420"
 o:depends("type", "wireguard")
 
 o = s:option(ListValue, "hysteria_protocol", translate("Protocol"))
