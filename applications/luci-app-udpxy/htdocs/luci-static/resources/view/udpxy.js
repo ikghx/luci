@@ -80,7 +80,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'bind', _('Bind IP/Interface'));
-    o.datatype = 'or(ipaddr, network)';
+		o.datatype = 'or(ipaddr, network)';
 		o.placeholder = 'br-lan';
 
 		o = s.option(form.Value, 'port', _('Port'));
@@ -88,7 +88,7 @@ return view.extend({
 		o.placeholder = '4022';
 
 		o = s.option(form.Value, 'source', _('Source IP/Interface'));
-    o.datatype = 'or(ipaddr, network)';
+		o.datatype = 'or(ipaddr, network)';
 		o.placeholder = 'eth1';
 
 		o = s.option(form.Value, 'max_clients', _('Max clients'));
