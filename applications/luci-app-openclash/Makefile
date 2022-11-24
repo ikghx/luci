@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-openclash
 PKG_VERSION:=0.45.72
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
 LUCI_TITLE:=LuCI support for clash
