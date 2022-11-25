@@ -73,8 +73,8 @@ function renderPeerTable(instanceName, peers) {
 		[
 			_('Peer'),
 			_('Endpoint'),
-			_('Data Received'),
-			_('Data Transmitted'),
+			_('Received Data'),
+			_('Transmitted Data'),
 			_('Latest Handshake')
 		],
 		{

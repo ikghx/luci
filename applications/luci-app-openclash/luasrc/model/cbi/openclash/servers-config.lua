@@ -159,6 +159,67 @@ o:depends("type", "ss")
 o:depends("type", "ssr")
 o:depends("type", "trojan")
 
+-- [[ Tuic ]]--
+o = s:option(Value, "tc_ip", translate("Server IP"))
+o.rmempty = true
+o.placeholder = "127.0.0.1"
+o.datatype = "ip4addr"
+o:depends("type", "tuic")
+
+o = s:option(Value, "tc_token", translate("Token"))
+o.rmempty = true
+o:depends("type", "tuic")
+
+o = s:option(ListValue, "udp_relay_mode", translate("UDP Relay Mode"))
+o.rmempty = true
+o.default = "native"
+o:value("native")
+o:value("quic")
+o:depends("type", "tuic")
+
+o = s:option(ListValue, "congestion_controller", translate("Congestion Controller"))
+o.rmempty = true
+o.default = "cubic"
+o:value("cubic")
+o:value("bbr")
+o:value("new_reno")
+o:depends("type", "tuic")
+
+o = s:option(DynamicList, "tc_alpn", translate("Alpn"))
+o.rmempty = true
+o:value("h3")
+o.default = "h3"
+o:depends("type", "tuic")
+
+o = s:option(ListValue, "disable_sni", translate("Disable SNI"))
+o.rmempty = true
+o.default = "true"
+o:value("true")
+o:value("false")
+o:depends("type", "tuic")
+
+o = s:option(ListValue, "reduce_rtt", translate("Reduce RTT"))
+o.rmempty = true
+o.default = "true"
+o:value("true")
+o:value("false")
+o:depends("type", "tuic")
+
+o = s:option(Value, "heartbeat_interval", translate("Heartbeat Interval"))
+o.rmempty = true
+o:depends("type", "tuic")
+o.default = "8000"
+
+o = s:option(Value, "request_timeout", translate("Request Timeout"))
+o.rmempty = true
+o.default = "8000"
+o:depends("type", "tuic")
+
+o = s:option(Value, "max_udp_relay_packet_size", translate("Max UDP Relay Packet Size"))
+o.rmempty = true
+o.default = "1500"
+o:depends("type", "tuic")
+
 -- [[ Wireguard ]]--
 o = s:option(Value, "wg_ip", translate("IP"))
 o.rmempty = true
