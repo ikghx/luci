@@ -509,6 +509,11 @@ return view.extend({
 			_('File listing upstream resolvers, optionally domain-specific, e.g. <code>server=1.2.3.4</code>, <code>server=/domain/1.2.3.4</code>.'));
 		o.placeholder = '/etc/dnsmasq.servers';
 
+		o = s.taboption('advanced', form.DynamicList, 'addnmount',
+			_('Expose additional filesystem paths'),
+			_('read-only mount path to expose it to dnsmasq.'));
+		o.placeholder = '/etc/dnsmasq.d';
+
 		o = s.taboption('advanced', form.Flag, 'strictorder',
 			_('Strict order'),
 			_('Upstream resolvers will be queried in the order of the resolv file.'));
