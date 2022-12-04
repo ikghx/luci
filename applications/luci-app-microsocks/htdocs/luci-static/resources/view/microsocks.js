@@ -13,11 +13,11 @@ var callServiceList = rpc.declare({
 });
 
 function getServiceStatus() {
-	return L.resolveDefault(callServiceList('filebrowser'), {})
+	return L.resolveDefault(callServiceList('microsocks'), {})
 		.then(function (res) {
 			var isRunning = false;
 			try {
-				isRunning = res['filebrowser']['instances']['instance1']['running'];
+				isRunning = res['microsocks']['instances']['microsocks']['running'];
 			} catch (e) { }
 			return isRunning;
 		});
@@ -38,7 +38,7 @@ function renderStatus(isRunning) {
 return view.extend({
 	load: function() {
 		return Promise.all([
-			uci.load('filebrowser')
+			uci.load('microsocks')
 		]);
 	},
 
@@ -46,7 +46,7 @@ return view.extend({
 
 		var m, s, o;
 
-		m = new form.Map('filebrowser', _('File Browser'), _('A lightweight web file manager.'));
+		m = new form.Map('microsocks', _('Micro Socks'), _('Supports only SOCKS5 protocol and forwarding only TCP/IP connections.'));
 
 		s = m.section(form.TypedSection);
 		s.anonymous = true;
@@ -63,14 +63,18 @@ return view.extend({
 			]);
 		}
 
-		s = m.section(form.TypedSection, 'filebrowser');
+		s = m.section(form.TypedSection, 'microsocks');
 		s.anonymous = true;
 
-		o = s.option(form.Flag, 'enable', _('Enable'));
+		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'ipaddr', _('Listen address'));
-		o.value('0.0.0.0');
+		o = s.option(form.Value, 'bindaddr', _('Bind address'), _('Specifies the ip to bind to for outgoing connections.'));
+		o.placeholder = '1.1.1.1';
+		o.datatype = 'ipaddr';
+
+		o = s.option(form.Value, 'listenip', _('Listen address'));
+		o.value('127.0.0.1');
 		o.datatype = 'ipaddr';
 		o.rmempty = false;
 
@@ -78,23 +82,15 @@ return view.extend({
 		o.datatype = 'port';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'database', _('Database'), _('Database file for file browser.'));
-		o.datatype = 'directory';
+		o = s.option(form.Value, 'user', _('Username'));
+
+		o = s.option(form.Value, 'password', _('Password'));
+
+		o = s.option(form.Flag, 'auth_once', _('Verify only once'), _('The client IP will be added to the whitelist after verifying the password once.'));
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'dir', _('Root directory'), _('The root directory used by the File Browser.'));
-		o.datatype = 'directory';
+		o = s.option(form.Flag, 'disable_log', _('Disable log'));
 		o.rmempty = false;
-
-		o = s.option(form.Value, 'cert', _('Certificate'));
-		o.placeholder = '/etc/cert.pem';
-		o.datatype = 'directory';
-		o.rmempty = true;
-
-		o = s.option(form.Value, 'key', _('Certificate key'));
-		o.placeholder = '/etc/cert.key';
-		o.datatype = 'directory';
-		o.rmempty = true;
 
 		return m.render();
 	}
