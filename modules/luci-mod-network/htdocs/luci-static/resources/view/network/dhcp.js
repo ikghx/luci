@@ -277,6 +277,10 @@ return view.extend({
 			_('Authoritative'),
 			_('This is the only DHCP server in the local network.'));
 
+		s.taboption('general', form.Flag, 'rapidcommit',
+			_('Enable DHCPv4 Rapid Commit Option'),
+			_('dnsmasq will respond to a DHCPDISCOVER message.'));
+
 		s.taboption('general', form.Value, 'local',
 			_('Local server'),
 			_('Never forward matching domains and subdomains, resolve from DHCP or hosts files only.'));
@@ -285,15 +289,17 @@ return view.extend({
 			_('Local domain'),
 			_('Local domain suffix appended to DHCP names and hosts file entries.'));
 
+		o = s.taboption('general', form.Flag, 'fqdn',
+			_('DHCP FQDN'),
+			_('the unqualified name is no longer put in the DNS, only qualified names are kept.'));
+
 		o = s.taboption('general', form.Flag, 'logqueries',
 			_('Log queries'),
 			_('Write received DNS queries to syslog by default, or log facility if defined.'));
-		o.optional = true;
 
 		o = s.taboption('general', form.Value, 'logfacility',
 			_('Log facility'),
 			_('File to log received DNS queries to. Leave empty to log to syslog.'));
-		o.optional = true;
 		o.depends('logqueries', '1');
 
 		o = s.taboption('general', form.Value, 'log_async',
@@ -301,7 +307,10 @@ return view.extend({
 			_('If the queue of log-lines becomes full, dnsmasq will log the overflow, and the number of messages lost. The default queue length is 5.'));
 		o.datatype = 'range(5,100)';
 		o.depends('logqueries', '1');
-		o.optional = true;
+
+		o = s.taboption('general', form.Flag, 'logdhcp',
+			_('Extra logging for DHCP'),
+			_('log all the options sent to DHCP clients and the tags used to determine them.'));
 
 		o = s.taboption('general', form.DynamicList, 'server',
 			_('DNS forwardings'),
@@ -342,6 +351,10 @@ return view.extend({
 			_('Accept DNS queries only from hosts whose address is on a local subnet.'));
 		o.optional = false;
 		o.rmempty = false;
+
+		o = s.taboption('general', form.Flag, 'noroundrobin',
+			_('No round robin'),
+			_('records are always returned in the order that they are received from upstream.'));
 
 		o = s.taboption('general', form.ListValue, 'bind',
 			_('Bind mode'),
@@ -437,7 +450,6 @@ return view.extend({
 
 		o = s.taboption('files', form.Flag, 'noresolv',
 			_('Ignore resolv file'));
-		o.optional = true;
 
 		o = s.taboption('files', form.Value, 'resolvfile',
 			_('Resolv file'),
@@ -448,7 +460,6 @@ return view.extend({
 
 		o = s.taboption('files', form.Flag, 'nohosts',
 			_('Ignore <code>/etc/hosts</code>'));
-		o.optional = true;
 
 		o = s.taboption('files', form.DynamicList, 'addnhosts',
 			_('Additional hosts files'));
@@ -457,17 +468,14 @@ return view.extend({
 
 		o = s.taboption('files', form.Flag, 'ignore_hosts_dir',
 			_('Ignore hosts directory'));
-		o.optional = true;
 
 		o = s.taboption('advanced', form.Flag, 'quietdhcp',
 			_('Suppress logging'),
 			_('Suppress logging of the routine operation for the DHCP protocol.'));
-		o.optional = true;
 
 		o = s.taboption('advanced', form.Flag, 'sequential_ip',
 			_('Allocate IPs sequentially'),
 			_('Allocate IP addresses sequentially, starting from the lowest available address.'));
-		o.optional = true;
 
 		o = s.taboption('advanced', form.Flag, 'boguspriv',
 			_('Filter private'),
@@ -487,13 +495,11 @@ return view.extend({
 			o = s.taboption('advanced', form.Flag, 'dnssec',
 				_('DNSSEC'),
 				_('Validate DNS replies and cache DNSSEC data, requires upstream to support DNSSEC.'));
-			o.optional = true;
 
 			o = s.taboption('advanced', form.Flag, 'dnsseccheckunsigned',
 				_('DNSSEC check unsigned'),
 				_('Verify unsigned domain responses really come from unsigned domains.'));
 			o.default = o.enabled;
-			o.optional = true;
 		}
 
 		s.taboption('advanced', form.Flag, 'expandhosts',
@@ -517,16 +523,13 @@ return view.extend({
 		o = s.taboption('advanced', form.Flag, 'strictorder',
 			_('Strict order'),
 			_('Upstream resolvers will be queried in the order of the resolv file.'));
-		o.optional = true;
 
 		o = s.taboption('advanced', form.Flag, 'allservers',
 			_('All servers'),
 			_('Query all available upstream resolvers.'));
-		o.optional = true;
 
 		o = s.taboption('advanced', form.Flag, 'connmark_allowlist_enable',
 			_('Enable connmark allow list'));
-		o.optional = true;
 
 		o = s.taboption('advanced', form.DynamicList, 'connmark_allowlist',
 			_('connmark allow list'));
@@ -609,6 +612,13 @@ return view.extend({
 		o.datatype = 'range(0,3600)';
 		o.placeholder = 600;
 
+		o = s.taboption('advanced', form.Value, 'use_stale_cache',
+			_('use stale cache (TTL)'),
+			_('if a DNS name exists in the cache, but its time-to-live has expired, dnsmasq will return the data anyway.'));
+		o.optional = true;
+		o.datatype = 'range(0,3600)';
+		o.placeholder = 600;
+
 		o = s.taboption('template', form.TextValue, '_tmpl',
 			_(''),
 			_("configuration file: /etc/dnsmasq.conf, Make changes as needed, Take effect immediately after Save & Apply."));
@@ -627,7 +637,6 @@ return view.extend({
 
 		o = s.taboption('pxe_tftp', form.Flag, 'enable_tftp',
 			_('Enable TFTP server'));
-		o.optional = true;
 
 		o = s.taboption('pxe_tftp', form.Value, 'tftp_root',
 			_('TFTP server root'),
@@ -683,7 +692,6 @@ return view.extend({
 		so = ss.option(form.Flag, 'force',
 			_('Force'),
 			_('Always send DHCP Options. Sometimes needed, with e.g. PXELinux.'));
-		so.optional = true;
 
 		so = ss.option(form.Value, 'instance',
 			_('Instance'),
