@@ -57,7 +57,7 @@ return view.extend({
 		};
 
 
-		s = m.section(form.TableSection, 'share', _('Shared Directories'),
+		s = m.section(form.GridSection, 'share', _('Shared Directories'),
 			_('Please add directories to share. Each directory refers to a folder on a mounted device.'));
 		s.anonymous = true;
 		s.addremove = true;

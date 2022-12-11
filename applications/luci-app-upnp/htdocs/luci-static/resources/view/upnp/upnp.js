@@ -178,10 +178,12 @@ return view.extend({
 		o.depends('use_stun', '1');
 		o.datatype    = 'host'
 		o.value('stun.qq.com')
-		o.value('stun.ekiga.net')
+		o.value('stun.miwifi.com')
 		o.value('stun.syncthing.net')
+		o.value('stun.ekiga.net')
 		o.value('stun.zoiper.com')
 		o.value('stun.gmx.net')
+		o.value('stun.counterpath.com')
 		o.default  = 'stun.qq.com'
 
 		o = s.taboption('advanced', form.Value, 'stun_port', _('STUN Port'))
