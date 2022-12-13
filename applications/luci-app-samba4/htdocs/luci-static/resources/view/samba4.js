@@ -113,14 +113,17 @@ return view.extend({
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'yes';
+		o.editable = true;
 
 		o = s.option(form.Flag, 'read_only', _('Read-only'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'no'; // smb.conf default is 'yes'
 		o.rmempty = false;
+		o.editable = true;
 
-		s.option(form.Flag, 'force_root', _('Force Root'));
+		o = s.option(form.Flag, 'force_root', _('Force Root'));
+		o.editable = true;
 
 		o = s.option(form.Value, 'users', _('Allowed users'));
 		o.rmempty = true;
@@ -130,16 +133,19 @@ return view.extend({
 		o.disabled = 'no';
 		o.default = 'yes'; // smb.conf default is 'no'
 		o.rmempty = false;
+		o.editable = true;
 
 		o = s.option(form.Flag, 'guest_only', _('Guests only'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'no';
+		o.editable = true;
 
 		o = s.option(form.Flag, 'inherit_owner', _('Inherit owner'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'no';
+		o.editable = true;
 
 		o = s.option(form.Value, 'create_mask', _('Create mask'));
 		o.maxlength = 4;
@@ -156,11 +162,13 @@ return view.extend({
 		o = s.option(form.Value, 'vfs_objects', _('Vfs objects'));
 		o.rmempty = true;
 
-		s.option(form.Flag, 'timemachine', _('Apple Time-machine share'));
+		o = s.option(form.Flag, 'timemachine', _('Apple Time-machine share'));
+		o.editable = true;
 
 		o = s.option(form.Value, 'timemachine_maxsize', _('Time-machine size in GB'));
 		o.rmempty = true;
 		o.maxlength = 5;
+		o.editable = true;
 
 		return m.render();
 	}

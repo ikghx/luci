@@ -980,6 +980,9 @@ return view.extend({
 					o = ss.taboption('advanced', form.Flag, 'noscan', _('Disable coexistence scanning (2.4Ghz Only)'), _('Disable channel coexistence scanning to always permit use of a channel wider than 20 MHz even where a channel for another <abbr title="Basic Service Set">BSS</abbr> overlaps. Not standards compliant and enabling may cause harmful interference.'));
 					o.rmempty = true;
 
+					o = ss.taboption('advanced', form.Flag, 'vendor_vht', _('Enable 256-QAM'), _('802.11n 2.4Ghz Only'));
+					o.default = o.disabled;
+
 					o = ss.taboption('advanced', form.Value, 'beacon_int', _('Beacon interval'), _('Time interval between the transmission of beacon frames in milliseconds.'));
 					o.datatype = 'range(15,65535)';
 					o.placeholder = 100;
@@ -1108,6 +1111,9 @@ return view.extend({
 						o = ss.taboption('advanced', form.Flag, 'bss_transition', _('BSS Transition'), _('802.11v: Basic Service Set (BSS) transition management.'));
 						o.rmempty = true;
 
+						o = ss.taboption('advanced', form.Flag, 'proxy_arp', _('ProxyARP'), _('802.11v: Proxy ARP enables non-AP STA to remain in power-save for longer.'));
+						o.rmempty = true;
+
 						/* TODO: na_mcast_to_ucast is missing: needs adding to hostapd.sh - nice to have */
 					}
 					/* 802.11v settings end */
@@ -1185,11 +1191,6 @@ return view.extend({
 					o.depends('mode', 'ap-wds');
 					o.default = o.enabled;
 
-					/* https://w1.fi/cgit/hostap/commit/?id=34f7c699a6bcb5c45f82ceb6743354ad79296078  */
-					/* multicast_to_unicast https://github.com/openwrt/openwrt/commit/7babb978ad9d7fc29acb1ff86afb1eb343af303a */
-					o = ss.taboption('advanced', form.Flag, 'multicast_to_unicast', _('Multi To Unicast'), _('ARP, IPv4 and IPv6 (even 802.1Q) with multicast destination MACs are unicast to the STA MAC address. Note: This is not Directed Multicast Service (DMS) in 802.11v. Note: might break receiver STA multicast expectations.'));
-					o.rmempty = true;
-
 					/* 802.11k settings start */
 					// Probe 802.11k support via EAP support (full hostapd has EAP)
 					if (L.hasSystemFeature('hostapd', 'eap')) {
@@ -1207,6 +1208,11 @@ return view.extend({
 						o.default = o.enabled;
 					}
 					/* 802.11k settings end */
+
+					/* https://w1.fi/cgit/hostap/commit/?id=34f7c699a6bcb5c45f82ceb6743354ad79296078  */
+					/* multicast_to_unicast https://github.com/openwrt/openwrt/commit/7babb978ad9d7fc29acb1ff86afb1eb343af303a */
+					o = ss.taboption('advanced', form.Flag, 'multicast_to_unicast', _('Multi To Unicast'), _('ARP, IPv4 and IPv6 (even 802.1Q) with multicast destination MACs are unicast to the STA MAC address. Note: This is not Directed Multicast Service (DMS) in 802.11v. Note: might break receiver STA multicast expectations.'));
+					o.rmempty = true;
 
 					o = ss.taboption('advanced', form.Flag, 'isolate', _('Isolate clients'), _('Prevent client-to-client communication.'));
 					o.depends('mode', 'ap');

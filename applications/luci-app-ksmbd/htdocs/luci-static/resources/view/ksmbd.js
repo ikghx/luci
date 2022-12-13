@@ -73,14 +73,17 @@ return view.extend({
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'yes';
+		o.editable = true;
 
 		o = s.option(form.Flag, 'read_only', _('Read-only'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'no'; // ksmbd.conf default is 'yes'
 		o.rmempty = false;
+		o.editable = true;
 
-		s.option(form.Flag, 'force_root', _('Force Root'));
+		o = s.option(form.Flag, 'force_root', _('Force Root'));
+		o.editable = true;
 
 		o = s.option(form.Value, 'users', _('Allowed users'));
 		o.rmempty = true;
@@ -90,16 +93,19 @@ return view.extend({
 		o.disabled = 'no';
 		o.default = 'yes'; // ksmbd.conf default is 'no'
 		o.rmempty = false;
+		o.editable = true;
 
 		o = s.option(form.Flag, 'inherit_owner', _('Inherit owner'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'no';
+		o.editable = true;
 
 		o = s.option(form.Flag, 'hide_dot_files', _('Hide dot files'));
 		o.enabled = 'yes';
 		o.disabled = 'no';
 		o.default = 'yes';
+		o.editable = true;
 
 		o = s.option(form.Value, 'create_mask', _('Create mask'));
 		o.maxlength = 4;
