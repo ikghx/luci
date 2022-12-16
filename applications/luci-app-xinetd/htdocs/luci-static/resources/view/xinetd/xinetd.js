@@ -38,6 +38,9 @@ return view.extend({
 		o = s.option(form.DummyValue, 'port', _('Port'));
 		o.modalonly = false;
 
+		o = s.option(form.DummyValue, 'redirect', _('Redirect'));
+		o.modalonly = false;
+
 		o = s.option(form.DummyValue, 'type', _('Type'));
 		o.modalonly = false;
 
@@ -112,6 +115,11 @@ return view.extend({
 		o.datatype = 'port';
 		o.depends('type', 'UNLISTED');
 		o.rmempty = false;
+		o.modalonly = true;
+
+		o = s.taboption('basic', form.Value, 'redirect', _('Redirect'), _('Redirect the service port to other internal addresses.'));
+		o.placeholder = '127.0.0.1 80';
+		o.depends('type', 'UNLISTED');
 		o.modalonly = true;
 
 		o = s.taboption('basic', form.ListValue, 'protocol', _('Protocol'), _('The protocol to be used for this service'));
@@ -209,6 +217,7 @@ return view.extend({
 		};
 
 		o = s.taboption('access', form.DynamicList, 'access_times', _('Access times'), _('Time intervals within service is available (Format hh:mm-hh:mm)'));
+		o.placeholder = '09:00-17:00';
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.validate = function(section_id, value) {
