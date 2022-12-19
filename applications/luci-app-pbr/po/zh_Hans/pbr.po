@@ -11,11 +11,12 @@ msgstr ""
 "X-Generator: Weblate 4.6-dev\n"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:179
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:219
 msgid "%s"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:200
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:201
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:206
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:207
 msgid "%s binary cannot be found!"
 msgstr ""
 
@@ -81,7 +82,7 @@ msgstr "链"
 msgid "Condensed output"
 msgstr "浓缩输出"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:199
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:205
 msgid "Config (%s) validation failure!"
 msgstr "配置（%s）验证失败！"
 
@@ -93,7 +94,7 @@ msgstr "控制系统日志和控制台输出的详细程度。"
 msgid "Custom User File Includes"
 msgstr "自定义用户文件包括"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:216
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:222
 msgid "Custom user file '%s' not found or empty!"
 msgstr "自定义用户文件 '%s' 未找到或为空！"
 
@@ -109,7 +110,7 @@ msgstr "DSCP 标记"
 msgid "Default ICMP Interface"
 msgstr "默认 ICMP 接口"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:293
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:308
 msgid "Disable"
 msgstr "禁用"
 
@@ -119,7 +120,7 @@ msgstr "禁用"
 msgid "Disabled"
 msgstr "已禁用"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:289
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:304
 msgid "Disabling %s service"
 msgstr "正在禁用 %s 服务"
 
@@ -141,7 +142,7 @@ msgstr "Dnsmasq nft 集"
 msgid "Do not enforce policies when their gateway is down"
 msgstr "当网关关闭时不要执行策略"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:282
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:297
 msgid "Enable"
 msgstr "启用"
 
@@ -152,11 +153,11 @@ msgstr "启用"
 msgid "Enabled"
 msgstr "已启用"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:278
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:293
 msgid "Enabling %s service"
 msgstr "正在启用 %s 服务"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:218
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:224
 msgid "Error running custom user file '%s'!"
 msgstr "运行自定义用户文件 '%s' 时出错！"
 
@@ -166,15 +167,15 @@ msgid ""
 "QoS. Change with caution together with"
 msgstr "服务使用的 FW 掩码。高掩码用于避免与 SQM/QoS 冲突。请谨慎更改"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:215
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:221
 msgid "Failed to reload '%s'!"
 msgstr "无法重新加载 '%s'!"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:214
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:220
 msgid "Failed to set up '%s'!"
 msgstr "无法设置 '%s'!"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:220
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:226
 msgid "Failed to set up any gateway!"
 msgstr "设置网关失败！"
 
@@ -198,6 +199,14 @@ msgstr "忽略的接口"
 msgid "Insert"
 msgstr "插入"
 
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:233
+msgid "Insertion failed for IPv4 for policy %s"
+msgstr "策略 %s 的 IPv4 插入失败"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:232
+msgid "Insertion failed for both IPv4 and IPv6 for policy %s"
+msgstr "策略 %s 的 IPv4 和 IPv6 插入均失败"
+
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:178
 msgid "Installed AdGuardHome (%s) doesn't support 'ipset_file' option."
 msgstr "安装的 AdGuardHome (%s) 不支持 'ipset_file' 选项。"
@@ -213,6 +222,10 @@ msgstr "本地地址/设备"
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:200
 msgid "Local ports"
 msgstr "本地端口"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:230
+msgid "Mismatched IP family between in policy %s"
+msgstr "策略 %s 之间的 IP 系列不匹配"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:193
 msgid "Name"
@@ -248,19 +261,35 @@ msgstr "路径"
 msgid "Please check the %sREADME%s before changing this option."
 msgstr "更改此选项之前，请检查 %sREADME%s 。"
 
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:182
+msgid "Please unset 'chain' or set 'chain' to 'PREROUTING' for policy '%s'"
+msgstr "请取消设置 'chain' 或将 'chain' 设置为策略 '%s' 的 'PREROUTING'"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:183
+msgid "Please unset 'chain' or set 'chain' to 'prerouting' for policy '%s'"
+msgstr "请取消设置 'chain' 或将 'chain' 设置为策略 '%s' 的 'prerouting'"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:181
+msgid "Please unset 'proto' or set 'proto' to 'all' for policy '%s'"
+msgstr "请为策略 '%s' 取消设置 'proto' 或将 'proto' 设置为 'all'"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:180
+msgid "Please unset 'src_addr', 'src_port' and 'dest_port' for policy '%s'"
+msgstr "请为策略 '%s' 取消设置 'src_addr'、'src_port' 和 'dest_port'"
+
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:180
 msgid "Policies"
 msgstr "策略"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:212
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:218
 msgid "Policy '%s' has an unknown interface!"
 msgstr "策略 '%s' 具有未知接口！"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:211
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:217
 msgid "Policy '%s' has no assigned interface!"
 msgstr "策略 '%s' 没有指定接口！"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:210
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:216
 msgid "Policy '%s' has no source/destination parameters!"
 msgstr "策略 '%s' 没有源/目标参数！"
 
@@ -276,10 +305,6 @@ msgstr "基于策略的路由 - 状态"
 msgid "Policy Routing"
 msgstr "策略路由"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:213
-msgid "Policy processing error (%s)!"
-msgstr ""
-
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:217
 msgid "Protocol"
 msgstr "协议"
@@ -292,7 +317,11 @@ msgstr "远程地址/域名"
 msgid "Remote ports"
 msgstr "远程端口"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:204
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:227
+msgid "Resolver %s"
+msgstr "解析器 %s"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:210
 msgid "Resolver set (%s) is not supported on this system!"
 msgstr "此系统不支持解析器集 (%s)！"
 
@@ -300,21 +329,21 @@ msgstr "此系统不支持解析器集 (%s)！"
 msgid "Resolver set (%s) is not supported on this system."
 msgstr "此系统不支持解析器集 (%s)。"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:202
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:208
 msgid ""
 "Resolver set support (%s) requires ipset, but ipset binary cannot be found!"
 msgstr "解析器集支持（%s）需要 ipset，但找不到 ipset 二进制文件！"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:203
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:209
 msgid ""
 "Resolver set support (%s) requires nftables, but nft binary cannot be found!"
 msgstr "解析器集支持（%s）需要 nftables，但找不到 nft 二进制文件！"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:260
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:275
 msgid "Restart"
 msgstr "重启"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:256
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:271
 msgid "Restarting %s service"
 msgstr "正在重新启动 %s 服务"
 
@@ -350,11 +379,11 @@ msgstr "有关详细信息，请参见 %sREADME%s。"
 msgid "Select Add for -A/add and Insert for -I/Insert."
 msgstr "选择 -A/add 表示添加，I/Insert 表示插入。"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:317
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:332
 msgid "Service Control"
 msgstr "服务控制"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:222
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:235
 msgid "Service Errors"
 msgstr "服务错误"
 
@@ -371,7 +400,7 @@ msgstr "服务网关"
 msgid "Service Status"
 msgstr "服务状态"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:181
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:185
 msgid "Service Warnings"
 msgstr "服务警告"
 
@@ -383,11 +412,15 @@ msgstr ""
 "设置特定接口的 DSCP 标签（范围在1到63之间）。有关详细信息，请参见 %sREADME"
 "%s 。"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:249
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:228
+msgid "Skipping IPv6 policy '%s' as IPv6 support is disabled"
+msgstr "跳过 IPv6 策略 '%s'，因为 IPv6 支持已禁用"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:264
 msgid "Start"
 msgstr "启动"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:245
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:260
 msgid "Starting %s service"
 msgstr "正在启动 %s 服务"
 
@@ -403,7 +436,7 @@ msgstr ""
 msgid "Starting (WAN) Table ID number for tables created by the service."
 msgstr "服务创建的表的起始（WAN）表 ID 号。"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:271
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:286
 msgid "Stop"
 msgstr "停止"
 
@@ -415,7 +448,7 @@ msgstr "已停止（禁用）"
 msgid "Stopped (version: %s)"
 msgstr "已停止（版本：%s）"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:267
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:282
 msgid "Stopping %s service"
 msgstr "正在停止 %s 服务"
 
@@ -439,7 +472,7 @@ msgstr "支持的协议"
 msgid "Suppress/No output"
 msgstr "抑制/无输出"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:217
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:223
 msgid "Syntax error in custom user file '%s'!"
 msgstr "自定义用户文件 '%s' 中有语法错误！"
 
@@ -453,11 +486,11 @@ msgstr "%s 表示默认网关。详情见 %sREADME%s。"
 msgid "The %s is not supported on this system."
 msgstr "此系统不支持 %s。"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:206
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:212
 msgid "The %s service failed to discover WAN gateway!"
 msgstr "%s 服务未能发现 WAN 网关！"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:205
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:211
 msgid "The %s service is currently disabled!"
 msgstr "%s 服务当前被禁用！"
 
@@ -467,27 +500,35 @@ msgstr "%s 服务当前被禁用！"
 msgid "The %s support is unknown."
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:207
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:213
 msgid "The ipset name '%s' is longer than allowed 31 characters!"
 msgstr "ipset 名称 '%s' 超过允许的 31 个字符长度！"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:208
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:214
 msgid "The nft set name '%s' is longer than allowed 31 characters!"
 msgstr "nft 集名称 '%s' 超过允许的 31 个字符长度！"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:209
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:215
 msgid "Unexpected exit or service termination: '%s'!"
 msgstr "意外退出或服务终止： '%s'!"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:229
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:244
 msgid "Unknown Error!"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:188
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:194
 msgid "Unknown Warning!"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:219
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:229
+msgid "Unknown packet mark for interface '%s'"
+msgstr "接口 '%s' 的未知数据包标记"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:231
+msgid "Unknown protocol in policy %s"
+msgstr "策略 %s 中的未知协议"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:225
 msgid ""
 "Use of 'curl' is detected in custom user file '%s', but 'curl' isn't "
 "installed!"
@@ -518,6 +559,3 @@ msgstr "Web UI 配置"
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:225
 msgid "all"
 msgstr "所有"
-
-#~ msgid "ip-full binary cannot be found!"
-#~ msgstr "找不到 ip-full 二进制文件！"
