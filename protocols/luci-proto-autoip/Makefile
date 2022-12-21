@@ -1,15 +1,13 @@
 #
-# Copyright (C) 2008-2019 Jerrykuku
+# Copyright (C) 2008-2014 The LuCI Team <luci@lists.subsignal.org>
 #
 # This is free software, licensed under the Apache License, Version 2.0 .
 #
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=Argon Theme
-LUCI_DEPENDS:=+curl +jsonfilter +luci-i18n-argon-config-zh-cn
-PKG_VERSION:=2.2.9.4
-PKG_RELEASE:=20221220
+LUCI_TITLE:=Support for Avahi IPv4LL configuration
+LUCI_DEPENDS:=+avahi-autoipd
 
 include ../../luci.mk
 
