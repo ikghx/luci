@@ -98,21 +98,21 @@ return view.extend({
 		o = s.option(form.Value, 'log_file', _('Log file'));
 		o.placeholder = '/var/log/udpxy';
 
-		o = s.option(form.Value, 'buffer_size', _('Buffer size'));
+		o = s.option(form.Value, 'buffer_size', _('Buffer size (byte)'));
 		o.datatype = 'range(4096, 2097152)';
 
 		o = s.option(form.Value, 'buffer_messages', _('Buffer messages'));
 		o.datatype = 'or(-1, and(min(1),uinteger))';
 		o.placeholder = '-1';
 
-		o = s.option(form.Value, 'buffer_time', _('Buffer time'));
+		o = s.option(form.Value, 'buffer_time', _('Buffer time (sec)'));
 		o.datatype = 'or(-1, and(min(1),uinteger))';
 		o.placeholder = '-1';
 
 		o = s.option(form.Value, 'nice_increment', _('Nice increment'));
 		o.datatype = 'or(and(max(-1),uinteger), and(min(1),uinteger))';
 
-		o = s.option(form.Value, 'mcsub_renew', _('Multicast subscription renew'));
+		o = s.option(form.Value, 'mcsub_renew', _('Multicast subscription renew (sec)'));
 		o.datatype = 'or(0, range(30, 64000))';
 		o.placeholder = '300';
 

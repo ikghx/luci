@@ -91,7 +91,7 @@ return L.view.extend({
                 return e ? !!/^(vmess:\/\/[a-zA-Z0-9/+=]+\s*)+$/i.test(e) || _("Invalid links.") : _("Empty field.")
             }
         });
-        ui.showModal(_("Import Vmess Links"), [E("div", {}, [E("p", {}, _("Allowed link format: <code>%s</code>").format("vmess://xxxxx")), e.render()]), E("div", {
+        ui.showModal(_("Import Server Links"), [E("div", {}, [E("p", {}, _("Allowed link format: <code>%s</code>").format("vmess://xxxxx")), e.render()]), E("div", {
                     class: "right"
                 }, [E("button", {
                             class: "btn",

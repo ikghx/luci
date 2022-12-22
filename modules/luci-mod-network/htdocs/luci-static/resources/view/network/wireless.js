@@ -998,6 +998,7 @@ return view.extend({
 				ss.tab('encryption', _('Wireless Security'));
 				ss.tab('macfilter', _('MAC Address Filter'));
 				ss.tab('advanced', _('Advanced Settings'));
+				ss.tab('roaming', _('WLAN roaming'));
 
 				o = ss.taboption('general', form.ListValue, 'mode', _('Mode'));
 				o.value('ap', _('Access Point'));
@@ -1085,39 +1086,6 @@ return view.extend({
 					    bssid = ss.children[5],
 					    encr;
 
-					/* 802.11v settings start */
-					// Probe 802.11v support (needs full hostapd/wpad) via EAP support (full hostapd has EAP)
-					if (L.hasSystemFeature('hostapd', 'eap')) {
-						o = ss.taboption('advanced', form.ListValue, 'time_advertisement', _('Time advertisement'), _('802.11v: Time Advertisement in management frames.'));
-						o.value('0', _('Disabled'));
-						o.value('2', _('Enabled'));
-						o.write = function (section_id, value) {
-							return this.super('write', [section_id, (value == 2) ? value: null]);
-						}
-
-						//Pull current System TZ setting
-						var tz = uci.get('system', '@system[0]', 'timezone');
-						o = ss.taboption('advanced', form.Value, 'time_zone', _('Time zone'), _('802.11v: Local Time Zone Advertisement in management frames.'));
-						o.value(tz);
-						o.rmempty = true;
-
-						o = ss.taboption('advanced', form.Flag, 'wnm_sleep_mode', _('WNM Sleep Mode'), _('802.11v: Wireless Network Management (WNM) Sleep Mode (extended sleep mode for stations).'));
-						o.rmempty = true;
-
-						/* wnm_sleep_mode_no_keys: https://git.openwrt.org/?p=openwrt/openwrt.git;a=commitdiff;h=bf98faaac8ed24cf7d3d93dd4fcd7304d109363b */
-						o = ss.taboption('advanced', form.Flag, 'wnm_sleep_mode_no_keys', _('WNM Sleep Mode Fixes'), _('802.11v: Wireless Network Management (WNM) Sleep Mode Fixes: Prevents reinstallation attacks.'));
-						o.rmempty = true;
-
-						o = ss.taboption('advanced', form.Flag, 'bss_transition', _('BSS Transition'), _('802.11v: Basic Service Set (BSS) transition management.'));
-						o.rmempty = true;
-
-						o = ss.taboption('advanced', form.Flag, 'proxy_arp', _('ProxyARP'), _('802.11v: Proxy ARP enables non-AP STA to remain in power-save for longer.'));
-						o.rmempty = true;
-
-						/* TODO: na_mcast_to_ucast is missing: needs adding to hostapd.sh - nice to have */
-					}
-					/* 802.11v settings end */
-
 					mode.value('mesh', '802.11s');
 					mode.value('ahdemo', _('Pseudo ad-hoc (ahdemo)'));
 					mode.value('monitor', _('Monitor'));
@@ -1190,24 +1158,6 @@ return view.extend({
 					o.depends('mode', 'ap');
 					o.depends('mode', 'ap-wds');
 					o.default = o.enabled;
-
-					/* 802.11k settings start */
-					// Probe 802.11k support via EAP support (full hostapd has EAP)
-					if (L.hasSystemFeature('hostapd', 'eap')) {
-						o = ss.taboption('advanced', form.Flag, 'ieee80211k', _('802.11k'), _('Radio Resource Measurement - Sends beacons to assist roaming. Not all clients support this.'));
-						// add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk-mixed', 'sae', 'sae-mixed'] });
-						o.depends('mode', 'ap');
-						o.depends('mode', 'ap-wds');
-
-						o = ss.taboption('advanced', form.Flag, 'rrm_neighbor_report', _('Neighbour Report'), _('802.11k: Enable neighbor report via radio measurements.'));
-						o.depends({ ieee80211k: '1' });
-						o.default = o.enabled;
-
-						o = ss.taboption('advanced', form.Flag, 'rrm_beacon_report', _('Beacon Report'), _('802.11k: Enable beacon report via radio measurements.'));
-						o.depends({ ieee80211k: '1' });
-						o.default = o.enabled;
-					}
-					/* 802.11k settings end */
 
 					/* https://w1.fi/cgit/hostap/commit/?id=34f7c699a6bcb5c45f82ceb6743354ad79296078  */
 					/* multicast_to_unicast https://github.com/openwrt/openwrt/commit/7babb978ad9d7fc29acb1ff86afb1eb343af303a */
@@ -1618,66 +1568,116 @@ return view.extend({
 					// Probe 802.11r support (and EAP support as a proxy for Openwrt)
 					var has_80211r = L.hasSystemFeature('hostapd', '11r') || L.hasSystemFeature('hostapd', 'eap');
 
-					o = ss.taboption('encryption', form.Flag, 'ieee80211r', _('802.11r'), _('Enable 802.11r <abbr title="Fast Transition">FT</abbr> roaming between APs that are part of the same mobility domain.'));
+					o = ss.taboption('roaming', form.Flag, 'ieee80211r', _('802.11r'), _('Enable 802.11r <abbr title="Fast Transition">FT</abbr> roaming between APs that are part of the same mobility domain.'));
 					add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
 					if (has_80211r)
 						add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk-mixed', 'sae', 'sae-mixed'] });
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.Value, 'nasid', _('NAS identifier'), _('NAS identifier is used for two different purposes, RADIUS and 802.11r R0 key holder ID.<br />Not needed with WPA-PSK/WPA2-PSK/WPA3-SAE.'));
+					o = ss.taboption('roaming', form.Value, 'nasid', _('NAS identifier'), _('NAS identifier is used for two different purposes, RADIUS and 802.11r R0 key holder ID.<br />Not needed with WPA-PSK/WPA2-PSK/WPA3-SAE.'));
 					add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
 					o.depends({ ieee80211r: '1' });
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.Value, 'mobility_domain', _('Mobility domain identifier'), _('4-character hexadecimal identifier for the group of APs that offer <abbr title="Fast Transition">FT</abbr> in an <abbr title="Extended Service Set">ESS</abbr>.'));
+					o = ss.taboption('roaming', form.Value, 'mobility_domain', _('Mobility domain identifier'), _('4-character hexadecimal identifier for the group of APs that offer <abbr title="Fast Transition">FT</abbr> in an <abbr title="Extended Service Set">ESS</abbr>.'));
 					o.depends({ ieee80211r: '1' });
 					o.placeholder = '4f57';
 					o.datatype = 'and(hexstring,length(4))';
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.Value, 'reassociation_deadline', _('Reassociation deadline'), _('Reassociation deadline in time units (TUs / 1.024 ms) [1000-65535].'));
+					o = ss.taboption('roaming', form.Value, 'reassociation_deadline', _('Reassociation deadline'), _('Reassociation deadline in time units (TUs / 1.024 ms) [1000-65535].'));
 					o.depends({ ieee80211r: '1' });
 					o.placeholder = '1000';
 					o.datatype = 'range(1000,65535)';
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.ListValue, 'ft_over_ds', _('Fast transition method'));
+					o = ss.taboption('roaming', form.ListValue, 'ft_over_ds', _('Fast transition method'));
 					o.depends({ ieee80211r: '1' });
 					o.value('0', _('FT over the air'));
 					o.value('1', _('FT over the DS'));
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.Flag, 'ft_psk_generate_local', _('Generate PMK locally'), _('When using a <abbr title="Pre-Shared Key">PSK</abbr>, the <abbr title="Pairwise Master Key">PMK</abbr> can be generated automatically. When enabled, the R0/R1 key options below are not applied. Disable to use the R0 and R1 key options.'));
+					o = ss.taboption('roaming', form.Flag, 'ft_psk_generate_local', _('Generate PMK locally'), _('When using a <abbr title="Pre-Shared Key">PSK</abbr>, the <abbr title="Pairwise Master Key">PMK</abbr> can be generated automatically. When enabled, the R0/R1 key options below are not applied. Disable to use the R0 and R1 key options.'));
 					o.depends({ ieee80211r: '1' });
 					o.default = o.enabled;
 					o.rmempty = false;
 
-					o = ss.taboption('encryption', form.Value, 'r0_key_lifetime', _('R0 key lifetime'), _('minutes'));
+					o = ss.taboption('roaming', form.Value, 'r0_key_lifetime', _('R0 key lifetime'), _('minutes'));
 					o.depends({ ieee80211r: '1' });
 					o.placeholder = '10000';
 					o.datatype = 'uinteger';
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.Value, 'r1_key_holder', _('R1 key holder'), _('12-character hexadecimal identifier for the R1 key holder. Must not contain colons.'));
+					o = ss.taboption('roaming', form.Value, 'r1_key_holder', _('R1 key holder'), _('12-character hexadecimal identifier for the R1 key holder. Must not contain colons.'));
 					o.depends({ ieee80211r: '1' });
 					o.placeholder = '00004f577274';
 					o.datatype = 'and(hexstring,length(12))';
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.Flag, 'pmk_r1_push', _('PMK R1 push'), _('Enable PMK-R1 push to all R1 key holders from the R0 key holder.'));
+					o = ss.taboption('roaming', form.Flag, 'pmk_r1_push', _('PMK R1 push'), _('Enable PMK-R1 push to all R1 key holders from the R0 key holder.'));
 					o.depends({ ieee80211r: '1' });
 					o.placeholder = '0';
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.DynamicList, 'r0kh', _('External R0 key holder list'), _('List of R0 key holders in the mobility domain.<br />Format: MAC-Address,NAS-Identifier,128-bit key in hexadecimal<br />Used to map the R0 key holder ID (NAS-Identifier) to a destination MAC address when requesting a PMK-R1 key from the R0 key holder that the client used during its initial mobility domain association.'));
+					o = ss.taboption('roaming', form.DynamicList, 'r0kh', _('External R0 key holder list'), _('List of R0 key holders in the mobility domain.<br />Format: MAC-Address,NAS-Identifier,128-bit key in hexadecimal<br />Used to map the R0 key holder ID (NAS-Identifier) to a destination MAC address when requesting a PMK-R1 key from the R0 key holder that the client used during its initial mobility domain association.'));
 					o.depends({ ieee80211r: '1' });
 					o.rmempty = true;
 
-					o = ss.taboption('encryption', form.DynamicList, 'r1kh', _('External R1 key holder list'), _ ('List of R1 key holders in the mobility domain.<br />Format: MAC-Address,R1KH-ID as 6 octets with colons,128-bit key in hexadecimal<br />Used to map the R1 key holder ID to a destination MAC address when sending a PMK-R1 key from the R0 key holder and also to permit R1 keyholders in the mobility domain to request PMK-R1 keys.'));
+					o = ss.taboption('roaming', form.DynamicList, 'r1kh', _('External R1 key holder list'), _ ('List of R1 key holders in the mobility domain.<br />Format: MAC-Address,R1KH-ID as 6 octets with colons,128-bit key in hexadecimal<br />Used to map the R1 key holder ID to a destination MAC address when sending a PMK-R1 key from the R0 key holder and also to permit R1 keyholders in the mobility domain to request PMK-R1 keys.'));
 					o.depends({ ieee80211r: '1' });
 					o.rmempty = true;
 					// End of 802.11r options
 
+					// Probe 802.11k and 802.11v support via EAP support (full hostapd has EAP)
+					/* 802.11k settings start */
+					if (L.hasSystemFeature('hostapd', 'eap')) {
+						o = ss.taboption('roaming', form.Flag, 'ieee80211k', _('802.11k'), _('Radio Resource Measurement - Sends beacons to assist roaming. Not all clients support this.'));
+						// add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk-mixed', 'sae', 'sae-mixed'] });
+						o.depends('mode', 'ap');
+						o.depends('mode', 'ap-wds');
+
+						o = ss.taboption('roaming', form.Flag, 'rrm_neighbor_report', _('Neighbour Report'), _('802.11k: Enable neighbor report via radio measurements.'));
+						o.depends({ ieee80211k: '1' });
+						o.default = o.enabled;
+
+						o = ss.taboption('roaming', form.Flag, 'rrm_beacon_report', _('Beacon Report'), _('802.11k: Enable beacon report via radio measurements.'));
+						o.depends({ ieee80211k: '1' });
+						o.default = o.enabled;
+						/* 802.11k settings end */
+
+						/* 802.11v settings start */
+						o = ss.taboption('roaming', form.ListValue, 'time_advertisement', _('Time advertisement'), _('802.11v: Time Advertisement in management frames.'));
+						o.value('0', _('Disabled'));
+						o.value('2', _('Enabled'));
+						o.write = function (section_id, value) {
+							return this.super('write', [section_id, (value == 2) ? value: null]);
+						}
+
+						//Pull current System TZ setting
+						var tz = uci.get('system', '@system[0]', 'timezone');
+						o = ss.taboption('roaming', form.Value, 'time_zone', _('Time zone'), _('802.11v: Local Time Zone Advertisement in management frames.'));
+						o.value(tz);
+						o.rmempty = true;
+
+						o = ss.taboption('roaming', form.Flag, 'wnm_sleep_mode', _('WNM Sleep Mode'), _('802.11v: Wireless Network Management (WNM) Sleep Mode (extended sleep mode for stations).'));
+						o.rmempty = true;
+
+						/* wnm_sleep_mode_no_keys: https://git.openwrt.org/?p=openwrt/openwrt.git;a=commitdiff;h=bf98faaac8ed24cf7d3d93dd4fcd7304d109363b */
+						o = ss.taboption('roaming', form.Flag, 'wnm_sleep_mode_no_keys', _('WNM Sleep Mode Fixes'), _('802.11v: Wireless Network Management (WNM) Sleep Mode Fixes: Prevents reinstallation attacks.'));
+						o.rmempty = true;
+
+						o = ss.taboption('roaming', form.Flag, 'bss_transition', _('BSS Transition'), _('802.11v: Basic Service Set (BSS) transition management.'));
+						o.rmempty = true;
+
+						o = ss.taboption('roaming', form.Flag, 'proxy_arp', _('ProxyARP'), _('802.11v: Proxy ARP enables non-AP STA to remain in power-save for longer.'));
+						o.rmempty = true;
+
+						/* TODO: na_mcast_to_ucast is missing: needs adding to hostapd.sh - nice to have */
+					}
+					/* 802.11v settings end */
+				}
+
+				if (hwtype == 'mac80211') {
 					o = ss.taboption('encryption', form.ListValue, 'eap_type', _('EAP method'));
 					o.value('tls',  'EAP-TLS');
 					o.value('ttls', 'EAP-TTLS');
