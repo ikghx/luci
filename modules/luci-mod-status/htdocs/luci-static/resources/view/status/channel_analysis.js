@@ -200,7 +200,7 @@ return view.extend({
 
 			if (chan_analysis.offset_tbl[local_wifi.channel] != null && local_wifi.center_chan1) {
 				var center_channels = [local_wifi.center_chan1],
-				    chan_width_text = local_wifi.htmode.replace(/(V)*HT/,''),
+				    chan_width_text = local_wifi.htmode.replace(/(V)*H[TE]/,''), /* Handle HT VHT HE */
 				    chan_width = parseInt(chan_width_text)/10;
 
 				if (local_wifi.center_chan2) {
@@ -230,10 +230,8 @@ return view.extend({
 					results.push(scanCache[k].data);
 
 			results.sort(function(a, b) {
-				var diff = (a.channel - b.channel);
-
-				if (diff)
-					return diff;
+				if (a.channel - b.channel)
+					return 1;
 
 				if (a.ssid < b.ssid)
 					return -1;
