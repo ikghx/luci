@@ -91,7 +91,7 @@ return L.view.extend({
                 return e ? !!/^(vmess:\/\/[a-zA-Z0-9/+=]+\s*)+$/i.test(e) || _("Invalid links.") : _("Empty field.")
             }
         });
-        ui.showModal(_("Import Server Links"), [E("div", {}, [E("p", {}, _("Allowed link format: <code>%s</code>").format("vmess://xxxxx")), e.render()]), E("div", {
+        ui.showModal(_("Import Server Links"), [E("div", {}, [E("p", {}, _("Examples of allowed link formats: <code>%s</code>").format("vmess://xxxxx")), e.render()]), E("div", {
                     class: "right"
                 }, [E("button", {
                             class: "btn",
@@ -287,6 +287,20 @@ return L.view.extend({
         s.value("xtls-rprx-splice-udp443"),
         s.value("xtls-rprx-vision"),
         s.value("xtls-rprx-vision-udp443"),
+        s.depends("ss_security", "tls"),
+        (s = r.taboption("stream", form.ListValue, "min_tls_version", _("min TLS version"))).modalonly = !0,
+        s.value("", _("Default")),
+        s.value("1.0"),
+        s.value("1.1"),
+        s.value("1.2"),
+        s.value("1.3"),
+        s.depends("ss_security", "tls"),
+        (s = r.taboption("stream", form.ListValue, "max_tls_version", _("max TLS version"))).modalonly = !0,
+        s.value("", _("Default")),
+        s.value("1.0"),
+        s.value("1.1"),
+        s.value("1.2"),
+        s.value("1.3"),
         s.depends("ss_security", "tls"),
         (s = r.taboption("stream", form.Value, "ss_tls_server_name", "%s - %s".format("TLS", _("Server name")))).modalonly = !0,
         s.depends("ss_security", "tls"),

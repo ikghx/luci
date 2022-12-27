@@ -10,6 +10,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.7.1-dev\n"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:133
+msgid "Advanced Configuration"
+msgstr "高级配置"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:199
+msgid "Advanced Linklayer Options"
+msgstr "高级链接层选项"
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:183
 msgid ""
 "Advanced option string to pass to the egress queueing disciplines; no error "
@@ -21,6 +29,16 @@ msgid ""
 "Advanced option string to pass to the ingress queueing disciplines; no error "
 "checking, use very carefully."
 msgstr "传递到入站队列规则的高级选项字符串；不会进行错误检查，请谨慎使用。"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:199
+msgid ""
+"Advanced options will only be used as long as this box is checked (only "
+"needed if MTU > 1500)."
+msgstr "只有选中此框时才会使用高级选项（仅当 MTU > 1500 时才需要）。"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:133
+msgid "Advanced options will only be used as long as this box is checked."
+msgstr "高级选项只有在选中此框时才会使用。"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:72
 msgid "Basic Settings"
@@ -34,29 +52,59 @@ msgstr ""
 "为此 SQM 实例创建日志文件 /var/run/sqm/${Interface_name}.[start|stop]-sqm."
 "log。"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:160
+msgid "Dangerous Configuration"
+msgstr "危险配置"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:160
+msgid "Dangerous options will only be used as long as this box is checked."
+msgstr "只有选中此框，才会使用危险选项。"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:108
+msgid "Debug"
+msgstr ""
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:92
+msgid "Download speed (ingress)"
+msgstr "下载速度（入站）"
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:92
 msgid ""
 "Download speed (kbit/s) (ingress) set to 0 to selectively disable ingress "
-"shaping:"
-msgstr "下载速度（kbit/s），0 代表无限制："
+"shaping"
+msgstr "下载速度（kbit/s）（入站）设置为 0 代表无限制"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:154
+msgid "ECN (egress)"
+msgstr "ECN（出站）"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:148
+msgid "ECN (ingress)"
+msgstr "ECN（入站）"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:58
 msgid "Enable SQM"
 msgstr "启用 SQM"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:100
+msgid "Enable debug logging"
+msgstr "启用调试日志记录"
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:78
 msgid "Enable this SQM instance."
 msgstr "启用 SQM"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:105
+msgid "Error"
+msgstr ""
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:148
-msgid ""
-"Explicit congestion notification (ECN) status on inbound packets (ingress):"
-msgstr "入站数据包的显式拥塞通知（ECN）状态"
+msgid "Explicit congestion notification (ECN) status on inbound packets"
+msgstr "入站数据包的显式拥塞通知 (ECN) 状态"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:154
-msgid ""
-"Explicit congestion notification (ECN) status on outbound packets (egress)."
-msgstr "出站数据包的显式拥塞通知（ECN）状态"
+msgid "Explicit congestion notification (ECN) status on outbound packets"
+msgstr "出站数据包的显式拥塞通知 (ECN) 状态"
 
 #: applications/luci-app-sqm/root/usr/share/rpcd/acl.d/luci-app-sqm.json:3
 msgid "Grant UCI access for luci-app-sqm"
@@ -70,13 +118,37 @@ msgstr "出站队列的硬限制（默认留空）"
 msgid "Hard limit on ingress queues; leave empty for default."
 msgstr "入站队列的硬限制（默认留空）"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:168
+msgid "Hard queue limit (egress)"
+msgstr "硬队列限制（出站）"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:164
+msgid "Hard queue limit (ingress)"
+msgstr "硬队列限制（入站）"
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:142
-msgid "Ignore DSCP on ingress:"
-msgstr "忽略入站 DSCP"
+msgid "Ignore DSCP (ingress)"
+msgstr "忽略 DSCP（入站）"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:142
+msgid "Ignore DSCP markings on inbound packets"
+msgstr "忽略入站数据包上的 DSCP 标记"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:107
+msgid "Info"
+msgstr ""
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:89
 msgid "Interface name"
 msgstr ""
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:176
+msgid "Latency target (egress)"
+msgstr "延迟目标（出站）"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:172
+msgid "Latency target (ingress)"
+msgstr "延迟目标（入站）"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:176
 msgid ""
@@ -98,26 +170,62 @@ msgstr ""
 msgid "Link Layer Adaptation"
 msgstr "链路层适应"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:187
+msgid "Link layer"
+msgstr "链路层"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:218
+msgid "Linklayer adaptation mechanism"
+msgstr "链路层适配机制"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:112
+msgid ""
+"Lists queuing disciplines useable on this system. After installing a new "
+"qdisc, you need to restart the router to see updates!"
+msgstr ""
+"列出在此系统上可用的排队规则。安装新的 qdisc 后，您需要重新启动路由器才能看"
+"到！"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:103
+msgid "Log verbosity"
+msgstr "日志详细程度"
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:203
 msgid ""
 "Maximal Size for size and rate calculations, tcMTU (byte); needs to be >= "
-"interface MTU + overhead:"
-msgstr "大小和速率计算的最大尺寸，tcMTU（byte）; 需要 >= 接口MTU + 开销"
+"interface MTU + overhead"
+msgstr "大小和速率计算的最大尺寸，tcMTU（字节）； 需要 >= 接口 MTU + 开销"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:203
+msgid "Maximum packet size"
+msgstr "最大数据包大小"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:213
 msgid ""
-"Minimal packet size, MPU (byte); needs to be > 0 for ethernet size tables:"
-msgstr "最小数据包大小，MPU(byte)； 在以太网中需要 >0 :"
+"Minimal packet size, MPU (byte); needs to be > 0 for ethernet size tables"
+msgstr "最小数据包大小，MPU（字节）；在以太网中需要 > 0"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:213
+msgid "Minimum packet size"
+msgstr "最小数据包大小"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:208
 msgid ""
 "Number of entries in size/rate tables, TSIZE; for ATM choose TSIZE = (tcMTU "
-"+ 1) / 16:"
-msgstr "大小/速率表中的条目数，TSIZE; 对于ATM选择TSIZE =(tcMTU + 1 ) / 16"
+"+ 1) / 16"
+msgstr "大小/速率表中的条目数，TSIZE; 对于 ATM 选择 TSIZE =(tcMTU + 1 ) / 16"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:193
-msgid "Per Packet Overhead (byte):"
-msgstr "数据包开销(byte)"
+msgid "Per Packet Overhead (bytes)"
+msgstr "每数据包开销（字节）"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:183
+msgid "Qdisc options (egress)"
+msgstr "Qdisc 选项（出站）"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:180
+msgid "Qdisc options (ingress)"
+msgstr "Qdisc 选项（入站）"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:73
 msgid "Queue Discipline"
@@ -127,47 +235,37 @@ msgstr "列队规则"
 msgid "Queue setup script"
 msgstr "队列设置脚本"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:112
+msgid "Queueing discipline"
+msgstr "列队规则"
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:71
 msgid "Queues"
 msgstr "队列"
 
-#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:112
-msgid ""
-"Queuing disciplines useable on this system. After installing a new qdisc, "
-"you need to restart the router to see updates!"
-msgstr "队列规则(需要重启路由器)"
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:208
+msgid "Rate table size"
+msgstr "速率表大小"
 
 #: applications/luci-app-sqm/root/usr/share/luci/menu.d/luci-app-sqm.json:3
 msgid "SQM QoS"
 msgstr ""
 
-#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:199
-msgid ""
-"Show Advanced Linklayer Options, (only needed if MTU > 1500). Advanced "
-"options will only be used as long as this box is checked."
-msgstr ""
-"显示高级链路选项，(仅在MTU> 1500时才需要)。 只有选中此框时，才会使用高级选"
-"项。"
-
-#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:133
-msgid ""
-"Show and Use Advanced Configuration. Advanced options will only be used as "
-"long as this box is checked."
-msgstr "高级选项"
-
-#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:160
-msgid ""
-"Show and Use Dangerous Configuration. Dangerous options will only be used as "
-"long as this box is checked."
-msgstr "危险配置"
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:104
+msgid "Silent"
+msgstr "静默"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:64
 msgid "Smart Queue Management"
 msgstr "智能队列管理"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:136
-msgid "Squash DSCP on inbound packets (ingress):"
-msgstr "入站数据包压缩DSCP"
+msgid "Squash DSCP (ingress)"
+msgstr "压缩 DSCP（入站）"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:136
+msgid "Squash DSCP markings on inbound packets"
+msgstr "压缩入站数据包上的 DSCP 标记"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:83
 msgid ""
@@ -175,28 +273,39 @@ msgid ""
 "disable the sqm initscript manually under System Startup menu in case this "
 "change was not wished for."
 msgstr ""
-"你刚刚开启了SQM开机自启功能，如果你不希望SQM开机自启，可以在系统启动菜单下手"
-"动禁用。"
+"你刚刚开启了 SQM 开机自启功能，如果你不希望 SQM 开机自启，可以在系统启动菜单"
+"下手动禁用。"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:48
 msgid ""
 "The SQM service seems to be disabled. Please use the button below to "
 "activate this service."
-msgstr "SQM服务似乎已被禁用。请使用下面的按钮来激活这项服务。"
+msgstr "SQM 服务似乎已被禁用。请使用下面的按钮来激活这项服务。"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:109
+msgid "Trace"
+msgstr "追踪"
+
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:96
+msgid "Upload speed (egress)"
+msgstr "上传速度（出站）"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:96
 msgid ""
-"Upload speed (kbit/s) (egress) set to 0 to selectively disable egress "
-"shaping:"
-msgstr "上传速度(kbit/s)(0-无限制)"
+"Upload speed (kbit/s) (egress) set to 0 to selectively disable egress shaping"
+msgstr "上传速度（kbit/s）（出站）设置为 0 代表无限制"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:103
 msgid "Verbosity of SQM's output into the system log."
 msgstr "日志等级"
 
+#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:106
+msgid "Warning"
+msgstr ""
+
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:187
-msgid "Which link layer to account for:"
-msgstr "链路层:"
+msgid "Which link layer technology to account for"
+msgstr "用于哪些链路层技术"
 
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:218
 msgid "Which linklayer adaptation mechanism to use; for testing only"
@@ -211,7 +320,6 @@ msgstr ""
 "使用 <abbr title=\"智能列队管理\">SQM</abbr> 你可以启用流量整形，更好的混合"
 "(公平列队)主动列队管理(AQM) 并设置网络接口优先级。"
 
-#: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:107
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:149
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:155
 #: applications/luci-app-sqm/htdocs/luci-static/resources/view/network/sqm.js:188
