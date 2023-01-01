@@ -49,7 +49,6 @@ return L.view.extend({
         e.depends("protocol", "dokodemo-door"),
         e.value("tcp"),
         e.value("udp"),
-        e.default = "tcp",
         (e = t.taboption("general", form.Value, "s_dokodemo_door_timeout", "%s - %s".format("Dokodemo-door", _("Timeout")), _("Time limit for inbound data(seconds)"))).modalonly = !0,
         e.depends("protocol", "dokodemo-door"),
         e.datatype = "uinteger",
