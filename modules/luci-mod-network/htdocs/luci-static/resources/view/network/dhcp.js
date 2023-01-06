@@ -795,7 +795,7 @@ return view.extend({
 		});
 
 		o = s.taboption('ipsets', form.SectionValue, '__ipsets__', form.GridSection, 'ipset', null,
-			_('List of IP sets to populate with the specified domain IPs, only supports ipv4 addresses.'));
+			_('List of IP sets to populate with the IPs of DNS lookup results of the FQDNs also specified here.'));
 
 		ss = o.subsection;
 		ss.addremove = true;

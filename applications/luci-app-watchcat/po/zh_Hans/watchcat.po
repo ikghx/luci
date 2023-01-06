@@ -19,13 +19,12 @@ msgstr ""
 msgid ""
 "<i>Applies to Ping Reboot, Restart Interface, and Run Script modes</i> <br /"
 "> Specify the interface to monitor and react if a ping over it fails."
-msgstr ""
-"<i>应用于 Ping 重启、重启接口和运行脚本模式</i><br />指定监视接口并在对该接口"
-"的 ping 失败时做出反应。"
+msgstr "<i>应用于 Ping重启、重启接口 和 运行脚本 模式</i> <br />指定要监视的接口并在 "
+"ping 失败时做出反应。"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:60
 msgid "Address family for pinging the host"
-msgstr "ping 主机的地址簇"
+msgstr "Ping 主机的地址簇"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:94
 msgid ""
@@ -35,7 +34,7 @@ msgid ""
 "fail. Enter the number of seconds to wait for the soft reboot to fail or use "
 "0 to disable the forced reboot delay."
 msgstr ""
-"应用于 Ping 重启 和 定期重启模式</i> <br />当重新启动路由器时，该服务将触发软"
+"应用于 Ping 重启 和 定时重启模式</i> <br />当重新启动路由器时，该服务将触发软"
 "重启。如果软重启失败，在这里输入非零值将触发延迟的硬重启。输入等待软重启失败"
 "的秒数或使用 0 来禁用强制重启延迟。"
 
@@ -73,9 +72,8 @@ msgid ""
 "Here you can set up several checks and actions to take in the event that a "
 "host becomes unreachable. Click the <b>Add</b> button at the bottom to set "
 "up more than one action."
-msgstr ""
-"你可以在此处设置数个在特定主机变得不可访问时要采取的检查和操作。点击底部的<b>"
-"添加</b>按钮可以设置多条规则。"
+msgstr "你可以在此处设置数个检查以及在特定主机变得不可访问时要采取的操作。点击底部的<"
+"b>添加</b>按钮可以设置多条规则。"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:52
 msgid "Host To Check"
@@ -91,13 +89,17 @@ msgid ""
 "li><ul>"
 msgstr ""
 "多长时间 ping 一次上面指定的主机。<br /><br />默认单位是秒，不带后缀，但你可"
-"以使用后缀<b>m</b>代表分钟， <b>h</b> 代表小时或 <b>d</b>代表天数。<br /"
-"><br />样例：<ul><li>10秒是：<b>10</b> o或<b>10s</b></li><li>5 分钟是：: "
-"<b>5m</b></li><li>1 小时是：<b>1h</b></li><li>1 周是：<b>7d</b></li><ul>"
+"以使用后缀<b>m</b>代表分钟， <b>h</b>代表小时或<b>d</b>代表天数。<br /><br />"
+"示例：<ul><li>10秒是：<b>10</b> 或 <b>10s</b></li><li>5 分钟是：<b>5m</b></"
+"li><li>1 小时是：<b>1h</b></li><li>1 周是：<b>7d</b></li><ul>"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:85
 msgid "Huge: 1492 bytes"
 msgstr "巨大：1492 字节"
+
+#: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:52
+msgid "IP address or hostname to ping."
+msgstr "要 ping 的 IP 地址或主机名。"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:118
 msgid ""
@@ -120,13 +122,14 @@ msgid ""
 "li><li>5 minutes would be: <b>5m</b></li><li> 1 hour would be: <b>1h</b></"
 "li><li>1 week would be: <b>7d</b></li><ul>"
 msgstr ""
-"在定期重启模式下，它定义重启的间隔。 <br />在 Ping 重启模式下，它定义在重启前"
-"没有收到来自要检查的主机的回复的最长时间。<br />在网络重启或运行脚本模式下，"
-"它定义接口重启或运行脚本前，没有收到要检查的主机的回复的最长时间。<br /><br /"
-">默认单位是秒，不带后缀，但你可以使用后缀<b>m</b>代表分钟， <b>h</b> 代表小时"
-"或 <b>d</b>代表天数。<br /><br />样例：<ul><li>10秒是：<b>10</b> 或 <b>10s</"
-"b></li><li>5 分钟是：: <b>5m</b></li><li>1 小时是：<b>1h</b></li><li>1 周是："
-"<b>7d</b></li><ul>"
+"对于 定时重启 模式，它定义了重启的频率。<br />对于 Ping 重启 "
+"模式，它定义了在重启前未收到来自要检查的主机的回复的最长时间。<br />对于 "
+"重启接口 或 执行脚本 "
+"模式，它定义了在重启接口或执行脚本前未收到要检查的主机的回复的最长时间。<br /"
+"><br />默认单位是秒，不带后缀，但你可以使用后缀 <b>m</b> 代表分钟， <b>h</b> "
+"代表小时或 <b>d</b> 代表天。<br /><br />示例：<ul><li>10秒是：<b>10</b> 或 "
+"<b>10s</b></li><li>5 分钟是：<b>5m</b></li><li>1 小时是：<b>1h</b></li><li>1 "
+"周是：<b>7d</b></li><ul>"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:102
 msgid "Interface"
@@ -154,7 +157,7 @@ msgstr "周期"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:28
 msgid "Periodic Reboot"
-msgstr "定期重启"
+msgstr "定时重启"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:80
 msgid "Ping Packet Size"
@@ -173,10 +176,11 @@ msgid ""
 "time. <br /> Run Script: Run a script if a ping to a specified host fails "
 "for a specified duration of time. <br />"
 msgstr ""
-"Ping 重启：如果在指定的一段时间内，ping 指定主机始终失败，则重新启动该设备。"
-"<br />定期重启：在指定的时间间隔后重新启动该设备。<br />重启接口：如果在指定"
-"的时间内，ping 指定主机始终失败，则重新启动网络接口。<br />运行脚本：如果在指"
-"定的时间内，ping 指定主机始终失败，则运行脚本。<br />"
+"Ping 重启：如果在指定的时间内，ping 指定主机始终失败，则重新启动本设备。<br "
+"/>定时重启：在指定的时间间隔后重新启动本设备。<br "
+"/>重启接口：如果在指定的时间内，ping "
+"指定主机始终失败，则重新启动特定网络接口。<br "
+"/>运行脚本：如果在指定的时间内，ping 指定主机始终失败，则运行特定脚本。<br />"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:29
 msgid "Restart Interface"
@@ -189,6 +193,12 @@ msgstr "运行脚本"
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:33
 msgid "Script to run"
 msgstr "要运行的脚本"
+
+#: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:34
+msgid ""
+"Script to run when the host has not responded for the specified duration of "
+"time. The script is passed the interface name as $1"
+msgstr "当特定主机在指定的时间内未回复时要执行的脚本。脚本将接口名称作为 $1 传递"
 
 #: applications/luci-app-watchcat/htdocs/luci-static/resources/view/watchcat.js:81
 msgid "Small: 1 byte"

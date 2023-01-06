@@ -301,13 +301,6 @@ return view.extend({
 		o.modalonly = true;
 		o.default = 'tcp udp';
 
-		o = s.taboption('general', form.Value, 'ipset', _('IPset'));
-		o.modalonly = true;
-		uci.sections('firewall', 'ipset', function(data){
-			o.value(data['name'], data['name']);
-		});
-		o.placeholder = _('-- select IPset --');
-
 		o = s.taboption('advanced', form.MultiValue, 'icmp_type', _('Match ICMP type'));
 		o.modalonly = true;
 		o.multiple = true;
@@ -367,6 +360,13 @@ return view.extend({
 		o.nocreate = true;
 		o.allowany = true;
 		o.allowlocal = 'src';
+
+		o = s.taboption('general', form.Value, 'ipset', _('Use ipset'));
+		o.modalonly = true;
+		uci.sections('firewall', 'ipset', function(data){
+			o.value(data['name'], data['name']);
+		});
+		o.placeholder = _('-- select IPset --');
 
 		fwtool.addMACOption(s, 'advanced', 'src_mac', _('Source MAC address'), null, hosts);
 		fwtool.addIPOption(s, 'general', 'src_ip', _('Source address'), null, '', hosts, true);

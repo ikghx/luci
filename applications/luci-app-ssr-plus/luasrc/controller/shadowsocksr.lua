@@ -8,7 +8,7 @@ function index()
 	end
 	entry({"admin", "vpn", "shadowsocksr"}, firstchild(), _("ShadowSocksR Plus+"), 10).acl_depends = { "luci-app-ssr-plus" }
 	entry({"admin", "vpn", "shadowsocksr", "client"}, cbi("shadowsocksr/client"), _("SSR Client"), 10).leaf = true
-	entry({"admin", "vpn", "shadowsocksr", "servers"}, arcombine(cbi("shadowsocksr/servers", {autoapply = true}), cbi("shadowsocksr/client-config")), _("Severs Nodes"), 20).leaf = true
+	entry({"admin", "vpn", "shadowsocksr", "servers"}, arcombine(cbi("shadowsocksr/servers", {autoapply = true}), cbi("shadowsocksr/client-config")), _("Servers Nodes"), 20).leaf = true
 	entry({"admin", "vpn", "shadowsocksr", "control"}, cbi("shadowsocksr/control"), _("Access Control"), 30).leaf = true
 	entry({"admin", "vpn", "shadowsocksr", "advanced"}, cbi("shadowsocksr/advanced"), _("Advanced Settings"), 50).leaf = true
 	entry({"admin", "vpn", "shadowsocksr", "server"}, arcombine(cbi("shadowsocksr/server"), cbi("shadowsocksr/server-config")), _("SSR Server"), 60).leaf = true

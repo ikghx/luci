@@ -25,6 +25,7 @@
 'require poll';
 'require rpc';
 'require ui';
+'require tools.widgets as widgets';
 
 var conf = 'smartdns';
 var callServiceList = rpc.declare({
@@ -206,6 +207,15 @@ return view.extend({
 		o = s.taboption("advanced", form.Flag, "ipv6_server", _("IPV6 Server"), _("Enable IPV6 DNS Server"));
 		o.rmempty = false;
 		o.default = o.enabled;
+
+		// bind to device;
+		o = s.taboption("advanced", form.Flag, "bind_device", _("Bind Device"), _("Listen only on the specified interfaces."));
+		o.rmempty = false;
+		o.default = o.enabled;
+
+		// bind device name;
+		o = s.taboption("advanced", widgets.DeviceSelect, "bind_device_name", _("Bind Device Name"), _("Name of device name listen on."));
+		o.rempty = true;
 
 		// Support DualStack ip selection;
 		o = s.taboption("advanced", form.Flag, "dualstack_ip_selection", _("Dual-stack IP Selection"),
@@ -498,7 +508,7 @@ return view.extend({
 		o.rempty = false;
 
 		// server group
-		o = s.taboption("general", form.Value, "server_group", _("Server Group"), _("DNS Server group"))
+		o = s.taboption("general", form.Value, "server_group", _("Server Group"));
 		o.rmempty = true;
 		o.datatype = "hostname";
 		o.rempty = true;

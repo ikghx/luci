@@ -192,7 +192,7 @@ return view.extend({
 
 		o = s.taboption("tab_linklayer", form.Value, "overhead", _("Per Packet Overhead (bytes)"));
 		o.datatype = "and(integer,min(-1500))";
-		o.default = 0
+		o.default = "0";
 		o.depends("linklayer", "ethernet");
 		o.depends("linklayer", "atm");
 
@@ -202,17 +202,17 @@ return view.extend({
 
 		o = s.taboption("tab_linklayer", form.Value, "tcMTU", _("Maximum packet size"), _("Maximal Size for size and rate calculations, tcMTU (byte); needs to be >= interface MTU + overhead"));
 		o.datatype = "and(uinteger,min(0))";
-		o.default = 2047
+		o.default = "2047";
 		o.depends("linklayer_advanced", "1");
 
 		o = s.taboption("tab_linklayer", form.Value, "tcTSIZE", _("Rate table size"), _("Number of entries in size/rate tables, TSIZE; for ATM choose TSIZE = (tcMTU + 1) / 16"));
 		o.datatype = "and(uinteger,min(0))";
-		o.default = 128
+		o.default = "128";
 		o.depends("linklayer_advanced", "1");
 
 		o = s.taboption("tab_linklayer", form.Value, "tcMPU", _("Minimum packet size"), _("Minimal packet size, MPU (byte); needs to be > 0 for ethernet size tables"));
 		o.datatype = "and(uinteger,min(0))";
-		o.default = 0
+		o.default = "0";
 		o.depends("linklayer_advanced", "1");
 
 		o = s.taboption("tab_linklayer", form.ListValue, "linklayer_adaptation_mechanism", _("Linklayer adaptation mechanism"), _("Which linklayer adaptation mechanism to use; for testing only"));
@@ -225,4 +225,4 @@ return view.extend({
 
 		return m.render();
 	}
-})
+});

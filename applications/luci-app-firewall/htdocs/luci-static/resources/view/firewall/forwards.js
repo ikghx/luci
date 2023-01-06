@@ -194,6 +194,13 @@ return view.extend({
 		o.nocreate = true;
 		o.default = 'wan';
 
+		o = s.taboption('advanced', form.Value, 'ipset', _('Use ipset'));
+		o.modalonly = true;
+		uci.sections('firewall', 'ipset', function(data){
+			o.value(data['name'], data['name']);
+		});
+		o.placeholder = _('-- select IPset --');
+
 		o = fwtool.addMACOption(s, 'advanced', 'src_mac', _('Source MAC address'),
 			_('Only match incoming traffic from these MACs.'), hosts);
 		o.rmempty = true;
