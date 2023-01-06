@@ -2471,10 +2471,6 @@ start_instance() {
 		procd_set_param env V2RAY_LOCATION_ASSET="$asset_location"
 	fi
 
-	# cat /proc/PID/limits to see if limits works
-	procd_set_param limits nofile="102400 102400"
-	procd_append_param limits core="0 0"
-
 	if [ "$mem_percentage" -gt "0" ]; then
 		local mem_total="$(awk '/MemTotal/ {print $2}' /proc/meminfo)"
 		if [ -n "$mem_total" ]; then
