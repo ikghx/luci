@@ -262,6 +262,10 @@ msgstr "Вміст збережено."
 msgid "Continue"
 msgstr "Продовжити"
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:141
+msgid "Counters"
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:213
 msgid "Covered devices"
 msgstr "Охоплені пристрої"
@@ -301,30 +305,30 @@ msgstr "Позначка DSCP"
 msgid "DSCP mark required"
 msgstr "Потрібна позначка DSCP"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:74
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:76
 msgid "Destination IP"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:76
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:78
 msgid "Destination MAC"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:77
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:79
 msgid "Destination Net"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:75
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:77
 msgid "Destination Port"
-msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:78
-msgid "Destination Set"
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:387
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:194
 msgid "Destination address"
 msgstr "Адреса призначення"
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:80
+msgid "Destination ipset"
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:389
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:199
@@ -374,7 +378,11 @@ msgstr "Увімкнути реєстрування у цій зоні"
 msgid "Enabled"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:132
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:142
+msgid "Enables packet and byte count tracking for the set."
+msgstr ""
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:84
 msgid "Entry in ipset."
 msgstr ""
 
@@ -396,7 +404,7 @@ msgstr ""
 msgid "External IP address"
 msgstr "Зовнішня IP-адреса"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:97
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:104
 msgid "External ipset"
 msgstr ""
 
@@ -553,11 +561,15 @@ msgstr "Надати доступ до конфігурування брандм
 msgid "Hardware flow offloading"
 msgstr "Апаратні засоби розвантаження потоку"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:117
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:123
 msgid "Hashsize"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:82
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:66
+msgid "IP address"
+msgstr ""
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:89
 msgid "IP range"
 msgstr ""
 
@@ -572,7 +584,7 @@ msgid ""
 "criteria."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:131
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:83
 msgid "IPs/Networks"
 msgstr ""
 
@@ -599,7 +611,7 @@ msgstr ""
 msgid "IPv6 only"
 msgstr "Лише IPv6"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:98
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:105
 msgid ""
 "If the external option is set to a name, the firewall will simply reference "
 "an already existing ipset pointed to by the name."
@@ -609,7 +621,7 @@ msgstr ""
 msgid "Inbound device"
 msgstr "Вхідний пристрій"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:137
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:136
 msgid "Include File"
 msgstr ""
 
@@ -687,7 +699,7 @@ msgstr ""
 msgid "Limited masquerading enabled"
 msgstr "Увімкнено обмежене маскування"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:110
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:116
 msgid ""
 "Limits the number of items that can be added to the set (default 65536)."
 msgstr ""
@@ -699,6 +711,10 @@ msgstr "Обмеження зіставляння трафіку із вказа
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:260
 msgid "Loopback source IP"
 msgstr "IP-адреса джерела зворотної петлі"
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:68
+msgid "MAC address"
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:212
 msgid "MASQUERADE - Automatically rewrite to outbound interface IP"
@@ -714,7 +730,6 @@ msgid "Masquerading"
 msgstr "Підміна"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:163
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:65
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:225
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:147
 msgid "Match"
@@ -793,7 +808,7 @@ msgstr ""
 msgid "Matches traffic carrying the specified DSCP marking."
 msgstr "Зіставляти трафік із вказаною позначкою DSCP."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:109
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:115
 msgid "Max entries"
 msgstr ""
 
@@ -837,13 +852,17 @@ msgstr ""
 msgid "Name"
 msgstr "Назва"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:102
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:108
 msgid "Netmask"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:103
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:109
 msgid ""
 "Network addresses will be stored in the set instead of IP host addresses."
+msgstr ""
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:69
+msgid "Networks"
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:224
@@ -880,6 +899,10 @@ msgstr "Вихідна зона"
 msgid "Output"
 msgstr "Вихідний трафік"
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:64
+msgid "Packet Field Match"
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:292
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:455
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:249
@@ -905,6 +928,10 @@ msgstr ""
 msgid "Please enter a meaningful name"
 msgstr ""
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:67
+msgid "Port"
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:132
 #: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:26
 msgid "Port Forwards"
@@ -918,7 +945,7 @@ msgstr ""
 "Переспрямовування портів дозволяє віддаленим комп'ютерам з Інтернету "
 "підключатися до певного комп'ютера або служби у приватній мережі."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:89
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:96
 msgid "Port range"
 msgstr ""
 
@@ -1028,7 +1055,7 @@ msgstr "Програмне розвантаження для маршрутиз�
 msgid "Software flow offloading"
 msgstr "Програмне розвантаження потоку"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:69
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:71
 msgid "Source IP"
 msgstr ""
 
@@ -1036,7 +1063,7 @@ msgstr ""
 msgid "Source IP address"
 msgstr "IP-адреса джерела"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:71
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:73
 msgid "Source MAC"
 msgstr ""
 
@@ -1045,22 +1072,22 @@ msgstr ""
 msgid "Source MAC address"
 msgstr "MAC-адреса джерела"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:72
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:74
 msgid "Source Net"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:70
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:72
 msgid "Source Port"
-msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:73
-msgid "Source Set"
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:372
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:180
 msgid "Source address"
 msgstr "Адреса джерела"
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:75
+msgid "Source ipset"
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:214
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:374
@@ -1073,7 +1100,7 @@ msgstr "Порт джерела"
 msgid "Source zone"
 msgstr "Зона джерела"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:125
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:131
 msgid ""
 "Specifies the default timeout in seconds for entries added to this ipset "
 "(default no timeout)."
@@ -1085,15 +1112,15 @@ msgid ""
 "the set."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:118
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:124
 msgid "Specifies the initial hash size of the set (default 1024)."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:66
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:65
 msgid "Specifies the matching data types and their direction."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:90
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:97
 msgid "Specifies the range of ports to include."
 msgstr ""
 
@@ -1141,7 +1168,7 @@ msgstr "Час зупинки (гг:хх:сс)"
 msgid "Storage method"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:138
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:137
 msgid ""
 "Such an external file contain entries that where populated by other programs."
 msgstr ""
@@ -1218,7 +1245,7 @@ msgstr "Час в UTC"
 msgid "Time restrictions are enabled for this rule"
 msgstr "Для цього правила ввімкнено обмеження часу"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:124
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:130
 msgid "Timeout"
 msgstr ""
 
@@ -1457,8 +1484,12 @@ msgstr "опускати"
 msgid "hour"
 msgstr "година"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:83
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:90
 msgid "ip[/cidr]"
+msgstr ""
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:70
+msgid "ipset"
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:68

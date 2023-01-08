@@ -60,23 +60,30 @@ return view.extend({
 		o.value('ipv6', _('IPv6'));
 		o.default = 'ipv4'
 
-		// @todo value must be set in dependency of storage
 		o = s.taboption('general', form.DynamicList, 'match',
-			_('Match'),
+			_('Packet Field Match'),
 			_('Specifies the matching data types and their direction.'));
-		o.depends('storage', 'hash');
-		o.depends('storage', 'bitmap');
+		o.value('ip', _('IP address'));
+		o.value('port', _('Port'));
+		o.value('mac', _('MAC address'));
+		o.value('net', _('Networks'));
+		o.value('set', _('ipset'));
 		o.value('src_ip', _('Source IP'));
 		o.value('src_port', _('Source Port'));
 		o.value('src_mac', _('Source MAC'));
 		o.value('src_net', _('Source Net'));
-		o.value('src_set', _('Source Set'));
+		o.value('src_set', _('Source ipset'));
 		o.value('dest_ip', _('Destination IP'));
 		o.value('dest_port', _('Destination Port'));
 		o.value('dest_mac',_('Destination MAC'));
 		o.value('dest_net', _('Destination Net'));
-		o.value('dest_set', _('Destination Set'));
-//		if storage is list then change dropdown with list and not with src_* / dest_*
+		o.value('dest_set', _('Destination ipset'));
+
+		o = s.taboption('general', form.DynamicList, 'entry',
+			_('IPs/Networks'),
+			_('Entry in ipset.'));
+		o.datatype = 'or(ipaddr,macaddr)';
+		o.depends({storage: 'hash', match: /_ip|_net|_mac/ });
 
 		o = s.taboption('general', form.Value, 'iprange',
 			_('IP range'),
@@ -96,7 +103,6 @@ return view.extend({
 		o = s.taboption('advanced', form.Value, 'external',
 			_('External ipset'),
 			_('If the external option is set to a name, the firewall will simply reference an already existing ipset pointed to by the name.'));
-		o.rmempty = true;
 
 		o = s.taboption('advanced', form.Value, 'netmask',
 			_('Netmask'),
@@ -124,19 +130,16 @@ return view.extend({
 			_('Timeout'),
 			_('Specifies the default timeout in seconds for entries added to this ipset (default no timeout).'));
 		o.datatype = 'max(2147483)';
-		o.rmempty = true;
 		o.modalonly = true;
-
-		o = s.taboption('general', form.DynamicList, 'entry',
-			_('IPs/Networks'),
-			_('Entry in ipset.'));
-		o.datatype = 'or(ipaddr,macaddr)';
-		o.depends({storage: 'hash', match: /_ip|_net|_mac/ });
 
 		o = s.taboption('advanced', form.Value, 'loadfile',
 			_('Include File'),
 			_('Such an external file contain entries that where populated by other programs.'));
 		o.datatype = 'file';
+		o.modalonly = true;
+
+		o = s.taboption('advanced', form.Flag, 'counters', _('Counters'),
+			_('Enables packet and byte count tracking for the set.'));
 		o.modalonly = true;
 
 		return m.render();
