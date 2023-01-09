@@ -11,6 +11,14 @@ LUCI_DEPENDS:=+curl +jsonfilter +luci-i18n-argon-config-zh-cn
 PKG_VERSION:=2.2.9.4
 PKG_RELEASE:=20221220
 
+define Package/luci-theme-argon/postrm
+#!/bin/sh
+[ -n "$${IPKG_INSTROOT}" ] || {
+	uci -q delete luci.themes.Argon
+	uci commit luci
+}
+endef
+
 include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
