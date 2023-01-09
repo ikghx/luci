@@ -33,17 +33,17 @@ var callSetInitAction = rpc.declare({
 var CBIQBitStatus = form.DummyValue.extend({
 	renderWidget: function() {
 		var extAgrs = ['instances', 'qbittorrent-enhanced.main'];
-		var label = E('div', {}, E('em', {}, _('Collecting data...')));
+		var label = E('em', {}, _('Collecting data...'));
 		var btn = E('button', { 'class': 'cbi-button cbi-button-apply' }, _('Start qBittorrent'));
 		var node = E('div', {}, [label, btn]);
 		poll.add(function() {
-			callServiceList('qbittorrent-enhanced', extAgrs).then(function(res) {
+			return callServiceList('qbittorrent-enhanced', extAgrs).then(function(res) {
 				if (res.running) {
-					dom.content(label, E('em', {}, _('The qBittorrent daemon is running. Click the button below to startup the WebUI.')));
+					label.textContent = _('The qBittorrent daemon is running. Click the button below to startup the WebUI.');
 					btn.textContent = 'PID: %s'.format(res.pid);
 					btn.onclick = onclickAction.bind(this, 'webui');
 				} else {
-					dom.content(label, E('em', {}, _('The qBittorrent daemon is not running. Click the button below to startup the daemon.')));
+					label.textContent = _('The qBittorrent daemon is not running. Click the button below to startup the daemon.');
 					btn.textContent = _('Start qBittorrent');
 					btn.onclick = onclickAction.bind(this, 'qbt');
 				}
@@ -55,16 +55,17 @@ var CBIQBitStatus = form.DummyValue.extend({
 
 var CBIRandomPort = form.Value.extend({
 	renderWidget: function(section_id, option_index, cfgvalue) {
-		var node = this.super('renderWidget', [section_id, option_index, cfgvalue]);
-		node.appendChild(E('div', { 'class': 'control-group' }, [
-			node.firstElementChild,
-			E('button', {
+		var node = this.super('renderWidget', arguments),
+		groupChildren = Array.from(node.childNodes);
+		groupChildren.push(E('button', {
 				'class': 'cbi-button cbi-button-neutral',
-				'click': function() {
-					this.previousElementSibling.value = randomPort();
-				}
-			}, _('Generate Randomly'))
-		]));
+				'click': L.bind(function (section_id) {
+					this.getUIElement(section_id).setValue(randomPort());
+				}, this, section_id),
+			}, _('Generate Randomly')));
+		dom.content(node, E('div', {
+				'class': 'control-group'
+			}, groupChildren));
 		return node;
 	}
 });
@@ -137,7 +138,7 @@ return view.extend({
 
 		o = s.option(CBIQBitStatus);
 
-		s = m.section(form.NamedSection, 'main', 'qbittorrent');
+		s = m.section(form.NamedSection, 'main', 'qbittorrent-enhanced');
 
 		s.tab('basic', _('Basic Settings'));
 		s.tab('connection', _('Connection Settings'));
@@ -431,13 +432,18 @@ return view.extend({
 		o = s.taboption('webui', form.Value, 'Password', _('Password'), _('The login password for WebUI.'));
 		o.password = true;
 		o.formvalue = function(section_id) {
-			var elem = this.getUIElement(section_id);
 			var node = this.map.findElement('id', this.cbid(section_id));
-			var flag = ver[1].split('.').map(function(res) {return parseInt(res)}) >= [4, 2, 0];
-			if (node && node.getAttribute('data-changed') == 'true')
-				return elem ? encryptPassword(elem.getValue(), flag ) : null;
-			else
-				return elem ? elem.getValue() : null;
+			if (node && node.getAttribute('data-changed') == 'true') {
+			var value = dom.callClassMethod(node, 'getValue');
+			if (value) {
+				var flag = ver[1].split('.').map(function (res) {
+						return parseInt(res)
+					}) >= [4, 2, 0];
+					return encryptPassword(value, flag);
+				}
+				return null;
+			}
+			return this.super('formvalue', arguments);
 		}
 
 		o = s.taboption('webui', form.Value, 'Address', _('Listening Address'), _('The listening IP address for WebUI.'));
@@ -515,6 +521,14 @@ return view.extend({
 		o = s.taboption('webui', form.TextValue, 'CustomHTTPHeaders', _('Custom HTTP Headers'));
 		o.depends('CustomHTTPHeadersEnabled', 'true');
 		o.placeholder = _('Header: value pairs, one per line');
+		o.cfgvalue = function (section_id) {
+			var cv = this.super('cfgvalue', arguments);
+			return cv ? cv.replace(/\\n/g, '\n') : cv;
+		}
+		o.formvalue = function (section_id) {
+			var fv = this.super('formvalue', arguments);
+			return fv ? fv.replace(/\\n/g, '\n') : fv;
+		}
 
 		o = s.taboption('advanced', form.Flag, 'AnonymousMode', _('Anonymous Mode'), '%s %s %s.'.format(
 			_('When enabled, qBittorrent will take certain measures to try to mask its identity.'),

@@ -24,8 +24,8 @@ return view.extend({
 		o = s.taboption('general', form.Flag, 'enabled',
 			_('Enabled'),
 			_('Allows to disable the declaration of the ipset without the need to delete the section.'));
-		o.rmempty = false;
 		o.default = true;
+		o.editable = true;
 
 		o = s.taboption('general', form.Flag, 'reload_set',
 			_('Recreating'),

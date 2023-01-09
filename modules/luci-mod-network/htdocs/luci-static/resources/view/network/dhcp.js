@@ -619,6 +619,12 @@ return view.extend({
 		o.datatype = 'range(0,3600)';
 		o.placeholder = 600;
 
+		o = s.taboption('advanced', form.Value, 'fast_dns_retry',
+			_('Fast DNS retry'),
+			_('Have dnsmasq actively issue round-robin DNS queries to the upstream DNS.(Unit: ms)'));
+		o.optional = true;
+		o.placeholder = 1000;
+
 		o = s.taboption('template', form.TextValue, '_tmpl',
 			_(''),
 			_("configuration file: /etc/dnsmasq.conf, Make changes as needed, Take effect immediately after Save & Apply."));
