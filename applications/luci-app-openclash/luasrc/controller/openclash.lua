@@ -26,7 +26,6 @@ function index()
 	entry({"admin", "vpn", "openclash", "update_ma"},call("action_update_ma"))
 	entry({"admin", "vpn", "openclash", "opupdate"},call("action_opupdate"))
 	entry({"admin", "vpn", "openclash", "coreupdate"},call("action_coreupdate"))
-	entry({"admin", "vpn", "openclash", "ping"}, call("act_ping"))
 	entry({"admin", "vpn", "openclash", "flush_fakeip_cache"}, call("action_flush_fakeip_cache"))
 	entry({"admin", "vpn", "openclash", "download_rule"}, call("action_download_rule"))
 	entry({"admin", "vpn", "openclash", "download_netflix_domains"}, call("action_download_netflix_domains"))
@@ -1082,14 +1081,6 @@ end
 
 function action_update_geosite()
 	return luci.sys.call("/usr/share/openclash/openclash_geosite.sh >/dev/null 2>&1")
-end
-
-function act_ping()
-	local e={}
-	e.index=luci.http.formvalue("index")
-	e.ping=luci.sys.exec("ping -c 1 -W 1 %q 2>&1 | grep -o 'time=[0-9]*.[0-9]' | awk -F '=' '{print$2}'"%luci.http.formvalue("domain"))
-	luci.http.prepare_content("application/json")
-	luci.http.write_json(e)
 end
 
 function action_download_rule()

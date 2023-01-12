@@ -97,8 +97,6 @@ return view.extend({
 		o = s.option(form.Flag, 'disable_log', _('Disable log'));
 		o.rmempty = false;
 
-		o = s.option(form.Flag, 'internet_access', _('Allow access from Internet'));
-
 		return m.render();
 	}
 });
