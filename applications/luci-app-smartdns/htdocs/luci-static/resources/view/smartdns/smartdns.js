@@ -241,6 +241,11 @@ return view.extend({
 		o.datatype = 'uinteger';
 		o.rempty = true;
 
+		// cache-persist;
+		o = s.taboption("advanced", form.Flag, "cache_persist", _("Cache Persist"), _("Write cache to disk on exit and load on startup."));
+		o.rmempty = false;
+		o.default = o.enabled;
+
 		// cache-size;
 		o = s.taboption("advanced", form.Flag, "resolve_local_hostnames", _("Resolve Local Hostnames"), _("Resolve local hostnames by reading Dnsmasq lease file."));
 		o.rmempty = false;

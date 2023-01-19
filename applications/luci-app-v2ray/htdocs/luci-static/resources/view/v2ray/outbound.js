@@ -240,6 +240,7 @@ return L.view.extend({
         (s = r.taboption("general", form.Value, "s_vmess_user_alter_id", "%s - %s".format("VMess", _("Alter ID")))).modalonly = !0,
         s.depends("protocol", "vmess"),
         s.datatype = "and(uinteger, max(65535))",
+        s.default = "0",
         (s = r.taboption("general", form.ListValue, "s_vmess_user_security", "%s - %s".format("VMess", _("Security")))).modalonly = !0,
         s.depends("protocol", "vmess"),
         s.value(""),

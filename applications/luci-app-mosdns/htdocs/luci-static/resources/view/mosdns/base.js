@@ -1,9 +1,11 @@
 'use strict';
 'require view';
 'require form';
+'require fs';
 'require poll';
 'require rpc';
 'require uci';
+'require ui';
 'require tools.widgets as widgets';
 
 var callServiceList = rpc.declare({
@@ -37,6 +39,15 @@ function renderStatus(isRunning) {
 }
 
 return view.extend({
+
+	handleupdata: function(m, section_id, ev) {
+		return fs.exec('/etc/mosdns/up_data.sh',
+					[ '-S', section_id, '--', 'start' ])
+		.then(L.bind(m.load, m))
+		.then(L.bind(m.render, m))
+		.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
+	},
+
 	load: function() {
 		return Promise.all([
 			uci.load('mosdns')
@@ -81,6 +92,12 @@ return view.extend({
 		o.placeholder = './config.yaml';
 		o.default = './config.yaml';
 		o.rmempty = false;
+
+		o = s.option(form.Button, '_start');
+		o.title      = '&#160;';
+		o.inputtitle = _('Update rule data');
+		o.inputstyle = 'apply';
+		o.onclick = L.bind(this.handleupdata, this, m);
 
 		return m.render();
 	}

@@ -313,7 +313,7 @@ msgstr "Activer les statistiques"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/ping.js:12
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/processes.js:12
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/rrdtool.js:12
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:21
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:22
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/snmp6.js:13
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/syslog.js:12
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/tcpconns.js:12
@@ -574,6 +574,10 @@ msgid ""
 "average RRAs'"
 msgstr ""
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/ping.js:36
+msgid "Maximum Missed Packets"
+msgstr ""
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/email.js:38
 msgid "Maximum allowed connections"
 msgstr "Nb de Connexions autorisées au maximum"
@@ -601,7 +605,7 @@ msgstr "Surveillance de la mémoire activée"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/irq.js:45
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/iwinfo.js:25
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/netlink.js:41
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:47
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:48
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/snmp6.js:21
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/thermal.js:34
 msgid "Monitor all except specified"
@@ -713,7 +717,7 @@ msgid_plural "Monitoring all but %d interrupts"
 msgstr[0] "Surveillance de toutes les interruptions sauf une"
 msgstr[1] "Surveillance de toutes les interruptions sauf %d"
 
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:56
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:57
 msgid "Monitoring all but one sensor"
 msgid_plural "Monitoring all but %d sensors"
 msgstr[0] "Surveillance de tous les capteurs sauf un"
@@ -742,7 +746,7 @@ msgstr "Surveillance de toutes les interruptions"
 msgid "Monitoring all partitions"
 msgstr "Surveillance de toutes les partitions"
 
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:60
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:61
 msgid "Monitoring all sensors"
 msgstr "Surveillance de tous les capteurs"
 
@@ -776,7 +780,7 @@ msgid_plural "Monitoring %d disks"
 msgstr[0] "Surveillance d’un disque"
 msgstr[1] "Surveillance de %d disques"
 
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/ping.js:41
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/ping.js:48
 msgid "Monitoring one host"
 msgid_plural "Monitoring %d hosts"
 msgstr[0] "Surveillance d’un hôte"
@@ -803,7 +807,7 @@ msgid_plural "Monitoring %d processes"
 msgstr[0] "Surveillance d’un processus"
 msgstr[1] "Surveillance de %d processus"
 
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:58
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:59
 msgid "Monitoring one sensor"
 msgid_plural "Monitoring %d sensors"
 msgstr[0] "Surveillance d’un capteur"
@@ -1028,7 +1032,7 @@ msgstr "Script"
 msgid "Seconds"
 msgstr "Secondes"
 
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:23
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:24
 msgid "Sensor list"
 msgstr ""
 
@@ -1037,7 +1041,7 @@ msgstr ""
 msgid "Sensors"
 msgstr "Capteurs"
 
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:15
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:16
 msgid "Sensors Plugin Configuration"
 msgstr ""
 
@@ -1408,7 +1412,7 @@ msgstr ""
 "grande consommation mémoire dans le répertoire temporaire, qui peut rendre "
 "le matériel inutilisable !</strong>"
 
-#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:16
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:17
 msgid ""
 "The sensors plugin uses the Linux Sensors framework to gather environmental "
 "statistics."
@@ -1551,6 +1555,12 @@ msgstr "Utilisateur"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/netlink.js:21
 msgid "Verbose monitoring"
 msgstr "Surveillance verbeuse"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/ping.js:37
+msgid ""
+"When a host has not replied to this number of packets in a row, re-resolve "
+"the hostname in DNS. Useful for dynamic DNS hosts. Default is -1 = disabled."
+msgstr ""
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/disk.js:16
 msgid "When none selected, all disks will be monitored."

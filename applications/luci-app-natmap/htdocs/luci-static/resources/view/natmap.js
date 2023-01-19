@@ -81,9 +81,10 @@ return view.extend({
 
 		o = s.option(form.Value, 'stun_server', _('STUN server'));
 		o.datatype = 'host';
+		o.value('stun.stunprotocol.org')
+		o.value('stun.syncthing.net')
 		o.value('stun.qq.com')
 		o.value('stun.miwifi.com')
-		o.value('stun.syncthing.net')
 		o.value('stun.ekiga.net')
 		o.value('stun.zoiper.com')
 		o.value('stun.gmx.net')
