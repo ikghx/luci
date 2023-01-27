@@ -349,7 +349,6 @@ return view.extend({
 		o = s.taboption('general', form.Flag, 'localservice',
 			_('Local service only'),
 			_('Accept DNS queries only from hosts whose address is on a local subnet.'));
-		o.optional = false;
 		o.rmempty = false;
 
 		o = s.taboption('general', form.Flag, 'noroundrobin',
@@ -608,6 +607,13 @@ return view.extend({
 		o = s.taboption('advanced', form.Value, 'max_ttl',
 			_('Maximum TTL'),
 			_('Specify time-to-live in seconds for maximum TTL to send to clients.'));
+		o.optional = true;
+		o.datatype = 'range(0,3600)';
+		o.placeholder = 600;
+
+		o = s.taboption('advanced', form.Value, 'neg_ttl',
+			_('Negative TTL'),
+			_('If the query result returned by upstream has no TTL, add a default TTL time.'));
 		o.optional = true;
 		o.datatype = 'range(0,3600)';
 		o.placeholder = 600;

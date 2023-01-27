@@ -450,14 +450,14 @@ sniffing_port_filter.rows = 20
 sniffing_port_filter.wrap = "off"
 
 function sniffing_port_filter.cfgvalue(self, section)
-	return NXFS.readfile("/etc/openclash/custom/openclash_sniffing_port_filter.yaml") or ""
+	return NXFS.readfile("/etc/openclash/custom/openclash_sniffing_ports_filter.yaml") or ""
 end
 function sniffing_port_filter.write(self, section, value)
 	if value then
 		value = value:gsub("\r\n?", "\n")
-		local old_value = NXFS.readfile("/etc/openclash/custom/openclash_sniffing_port_filter.yaml")
+		local old_value = NXFS.readfile("/etc/openclash/custom/openclash_sniffing_ports_filter.yaml")
 	  if value ~= old_value then
-			NXFS.writefile("/etc/openclash/custom/openclash_sniffing_port_filter.yaml", value)
+			NXFS.writefile("/etc/openclash/custom/openclash_sniffing_ports_filter.yaml", value)
 		end
 	end
 end
@@ -643,6 +643,7 @@ o.description = translate("In The Fake-IP Mode, Only Pure IP Requests Are Suppor
 
 o = s:taboption("lan_ac", DynamicList, "lan_ac_black_ports", translate("Lan Bypassed Port List"))
 o.datatype = "port"
+o.placeholder = translate("5000 or 1234-2345")
 o:value("5000", translate("5000(NAS)"))
 o.description = "1."..translate("The Traffic From The Local Specified Port Will Not Pass The Core, Try To Set When The Bypass Gateway Forwarding Fails").."<br>".."2."..translate("In The Fake-IP Mode, Only Pure IP Requests Are Supported")
 
