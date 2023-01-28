@@ -31,13 +31,11 @@ return view.extend({
 			_('Recreating'),
 			_('Reloading, or recreating, ipsets on firewall reload. If not enabled ipset will create once and never changed on update except on boot.'));
 		o.modalonly = true;
-		o.rmempty = true;
 
 		o = s.taboption('general', form.Value, 'name',
 			_('Name'),
 			_('Specifies the firewall internal name of the ipset which is used to reference the set.'));
 		o.depends({ external: '' });
-		o.rmempty = false;
 
 		o = s.taboption('general',form.ListValue, 'storage',
 			_('Storage method'),
