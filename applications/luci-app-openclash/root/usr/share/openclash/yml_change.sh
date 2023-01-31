@@ -110,7 +110,7 @@ yml_dns_custom()
 sys_dns_append()
 {
    if [ "$1" = 1 ]; then
-   	wan_dns=$(/usr/share/openclash/openclash_get_network.lua "dns")
+      wan_dns=$(/usr/share/openclash/openclash_get_network.lua "dns")
       wan6_dns=$(/usr/share/openclash/openclash_get_network.lua "dns6")
       wan_gate=$(/usr/share/openclash/openclash_get_network.lua "gateway")
       wan6_gate=$(/usr/share/openclash/openclash_get_network.lua "gateway6")
@@ -314,6 +314,7 @@ config_load "openclash"
 config_foreach yml_auth_get "authentication"
 yml_dns_custom "$enable_custom_dns" "$5" "$append_wan_dns" "${16}"
 
+#配置文件覆写部分
 ruby -ryaml -rYAML -I "/usr/share/openclash" -E UTF-8 -e "
 begin
    Value = YAML.load_file('$5');
@@ -348,6 +349,8 @@ Thread.new{
    end;
 }.join;
 end;
+
+#General
 begin
 Thread.new{
    Value['redir-port']=$4;
@@ -408,7 +411,7 @@ Thread.new{
       Value['dns']['enhanced-mode']='fake-ip';
    end;
    if '$1' == 'fake-ip' or ${19} == 1 then
-      Value['dns']['fake-ip-range']='198.18.0.1/16';
+      Value['dns']['fake-ip-range']='${31}';
    else
       Value['dns'].delete('fake-ip-range');
    end;
@@ -540,7 +543,7 @@ rescue Exception => e
    puts '${LOGTIME} Error: Set General Failed,【' + e.message + '】';
 end;
 
-#custom dns
+#Custom dns
 begin
 Thread.new{
    if '$enable_custom_dns' == '1' or '$append_wan_dns' == '1' then
@@ -762,6 +765,7 @@ rescue Exception => e
    puts '${LOGTIME} Error: Set Hosts Rules Failed,【' + e.message + '】';
 end;
 
+#tolerance
 begin
 Thread.new{
    if '$tolerance' != '0' then

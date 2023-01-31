@@ -199,6 +199,15 @@ return view.extend({
 			return true;
 		}
 
+		// response mode;
+		o = s.taboption("advanced", form.ListValue, "response_mode", _("Response Mode"),
+			_("Smartdns response mode, First Ping: return the first ping IP, Fastest IP: return the fastest IP, Fastest Response: return the fastest DNS response."));
+		o.rmempty = true;
+		o.value("", _("default"));
+		o.value("first-ping", _("First Ping"));
+		o.value("fastest-ip", _("Fastest IP"));
+		o.value("fastest-response", _("Fastest Response"));
+
 		// Enable TCP server;
 		o = s.taboption("advanced", form.Flag, "tcp_server", _("TCP Server"), _("Enable TCP DNS Server"));
 		o.rmempty = false;
@@ -626,7 +635,7 @@ return view.extend({
 		o.modalonly = true;
 		o.optional = true;
 		o.rempty = true;
-		o.validate = function(section_id, value) {
+		o.validate = function (section_id, value) {
 			var flag = this.formvalue(section_id);
 			if (flag == "0") {
 				return true;
@@ -644,7 +653,7 @@ return view.extend({
 
 			return true;
 		}
-		
+
 		// other args
 		o = s.taboption("advanced", form.Value, "addition_arg", _("Additional Server Args"),
 			_("Additional Args for upstream dns servers"))
