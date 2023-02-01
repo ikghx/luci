@@ -85,26 +85,26 @@ if os.execute("lsmod | grep -i REDIRECT >/dev/null") == 0 and os.execute("lsmod 
     if os.execute("lsmod | grep -i ip6table_mangle >/dev/null") == 0 then
         ---- IPv6 TProxy
         o = s:option(Flag, "ipv6_tproxy", translate("IPv6 TProxy"))
-        o.default = 0
+        o.default = "0"
         o.rmempty = false
     end
 end
 
 o = s:option(Flag, "accept_icmp", translate("Hijacking ICMP (PING)"))
-o.default = 0
+o.default = "0"
 
 o = s:option(Flag, "accept_icmpv6", translate("Hijacking ICMPv6 (IPv6 PING)"))
 o:depends("ipv6_tproxy", true)
-o.default = 0
+o.default = "0"
 
 if has_v2ray or has_xray then
     o = s:option(Flag, "sniffing", translate("Sniffing (V2Ray/Xray)"), translate("When using the V2ray/Xray shunt, must be enabled, otherwise the shunt will invalid."))
-    o.default = 1
+    o.default = "1"
     o.rmempty = false
 
     if has_xray then
         route_only = s:option(Flag, "route_only", translate("Sniffing Route Only (Xray)"), translate("When enabled, the server not will resolve the domain name again."))
-        route_only.default = 0
+        route_only.default = "0"
         route_only:depends("sniffing", true)
 
         local domains_excluded = string.format("/usr/share/%s/rules/domains_excluded", appname)

@@ -395,7 +395,7 @@ end
 
 ---- Enable
 o = s:option(Flag, "enabled", translate("Enable"))
-o.default = 1
+o.default = "1"
 o.rmempty = false
 
 socks_node = s:option(ListValue, "node", translate("Socks Node"))
@@ -410,13 +410,13 @@ uci:foreach(appname, "socks", function(s)
 end)
 
 o = s:option(Value, "port", "Socks " .. translate("Listen Port"))
-o.default = n + 1080
+o.default = "n + 1080"
 o.datatype = "port"
 o.rmempty = false
 
 if has_v2ray or has_xray then
     o = s:option(Value, "http_port", "HTTP " .. translate("Listen Port") .. " " .. translate("0 is not use"))
-    o.default = 0
+    o.default = "0"
     o.datatype = "port"
 end
 

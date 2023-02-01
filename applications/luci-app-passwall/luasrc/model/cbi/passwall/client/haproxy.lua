@@ -26,7 +26,6 @@ s:append(Template(appname .. "/haproxy/status"))
 ---- Balancing Enable
 o = s:option(Flag, "balancing_enable", translate("Enable Load Balancing"))
 o.rmempty = false
-o.default = false
 
 ---- Console Username
 o = s:option(Value, "console_user", translate("Console Username"))
@@ -70,7 +69,7 @@ end
 
 ---- Enable
 o = s:option(Flag, "enabled", translate("Enable"))
-o.default = 1
+o.default = "1"
 o.rmempty = false
 
 ---- Node Address
@@ -95,13 +94,13 @@ end
 ---- Haproxy Port
 o = s:option(Value, "haproxy_port", translate("Haproxy Port"))
 o.datatype = "port"
-o.default = 1181
+o.default = "1181"
 o.rmempty = false
 
 ---- Node Weight
 o = s:option(Value, "lbweight", translate("Node Weight"))
 o.datatype = "uinteger"
-o.default = 5
+o.default = "5"
 o.rmempty = false
 
 ---- Export
@@ -109,7 +108,7 @@ o = s:option(ListValue, "export", translate("Export Of Multi WAN"))
 o:value(0, translate("Auto"))
 local wa = require "luci.tools.webadmin"
 wa.cbi_add_networks(o)
-o.default = 0
+o.default = "0"
 o.rmempty = false
 
 ---- Mode

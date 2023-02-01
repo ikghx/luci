@@ -348,6 +348,7 @@ uuid:depends("type", "Trojan-Go")
 uuid:depends("type", "Trojan-Plus")
 
 alter_id = s:option(Value, "alter_id", translate("Alter ID"))
+alter_id.default = 0
 alter_id:depends({ type = "V2ray", protocol = "vmess" })
 alter_id:depends({ type = "Xray", protocol = "vmess" })
 

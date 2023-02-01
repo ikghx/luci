@@ -10,7 +10,7 @@ s.addremove = false
 s.dynamic = false
 
 remarks = s:option(Value, "remarks", translate("Remarks"))
-remarks.default = arg[1]
+remarks.default = "arg[1]"
 remarks.rmempty = false
 
 protocol = s:option(MultiValue, "protocol", translate("Protocol"))

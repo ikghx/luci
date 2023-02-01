@@ -25,7 +25,7 @@ end
 
 ---- Enable
 o = s:option(Flag, "enabled", translate("Enable"))
-o.default = 1
+o.default = "1"
 o.rmempty = false
 
 ---- Remarks

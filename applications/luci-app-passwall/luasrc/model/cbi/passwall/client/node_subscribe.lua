@@ -37,7 +37,7 @@ s.anonymous = true
 
 ---- Subscribe via proxy
 o = s:option(Flag, "subscribe_proxy", translate("Subscribe via proxy"))
-o.default = 0
+o.default = "0"
 o.rmempty = false
 
 o = s:option(ListValue, "filter_keyword_mode", translate("Filter keyword Mode"))

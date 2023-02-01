@@ -41,12 +41,12 @@ s.dynamic = false
 
 ---- Enable
 o = s:option(Flag, "enabled", translate("Enable"))
-o.default = 1
+o.default = "1"
 o.rmempty = false
 
 ---- Remarks
 o = s:option(Value, "remarks", translate("Remarks"))
-o.default = arg[1]
+o.default = "arg[1]"
 o.rmempty = true
 
 local mac_t = {}

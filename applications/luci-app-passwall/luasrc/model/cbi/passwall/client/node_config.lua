@@ -435,7 +435,7 @@ obfs_param:depends("type", "SSR")
 
 timeout = s:option(Value, "timeout", translate("Connection Timeout"))
 timeout.datatype = "uinteger"
-timeout.default = 300
+timeout.default = "300"
 timeout:depends("type", "SS")
 timeout:depends("type", "SS-Rust")
 timeout:depends("type", "SSR")
@@ -483,10 +483,11 @@ uuid:depends({ type = "Xray", protocol = "vmess" })
 uuid:depends({ type = "Xray", protocol = "vless" })
 
 alter_id = s:option(Value, "alter_id", translate("Alter ID"))
+alter_id.default = "0"
 alter_id:depends("protocol", "vmess")
 
 tls = s:option(Flag, "tls", translate("TLS"))
-tls.default = 0
+tls.default = "0"
 tls.validate = function(self, value, t)
     if value then
         local type = type:formvalue(t) or ""
@@ -511,7 +512,7 @@ tls:depends("type", "Trojan-Plus")
 tls:depends("type", "Trojan-Go")
 
 xtls = s:option(Flag, "xtls", translate("XTLS"))
-xtls.default = 0
+xtls.default = "0"
 xtls:depends({ type = "Xray", protocol = "vless", tls = true })
 xtls:depends({ type = "Xray", protocol = "trojan", tls = true })
 
@@ -831,12 +832,12 @@ mux:depends({ type = "Xray", protocol = "shadowsocks" })
 mux:depends({ type = "Xray", protocol = "trojan" })
 
 mux_concurrency = s:option(Value, "mux_concurrency", translate("Mux concurrency"))
-mux_concurrency.default = 8
+mux_concurrency.default = "8"
 mux_concurrency:depends("mux", true)
 mux_concurrency:depends("smux", true)
 
 smux_idle_timeout = s:option(Value, "smux_idle_timeout", translate("Mux idle timeout"))
-smux_idle_timeout.default = 60
+smux_idle_timeout.default = "60"
 smux_idle_timeout:depends("smux", true)
 
 hysteria_up_mbps = s:option(Value, "hysteria_up_mbps", translate("Max upload Mbps"))
