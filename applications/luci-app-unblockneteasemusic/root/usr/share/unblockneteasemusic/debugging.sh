@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (C) 2021-2022 Tianling Shen <cnsztl@immortalwrt.org>
+# Copyright (C) 2021-2023 Tianling Shen <cnsztl@immortalwrt.org>
 
 . /lib/functions.sh
 
@@ -37,7 +37,7 @@ cat "/etc/config/$NAME" | sed -e "s,joox_cookie .*,joox_cookie 'set',g" \
 echo -e "\n"
 
 echo -e "UnblockNeteaseMusic Node.js info:"
-echo -e "Git HEAD version: $(cat "/usr/share/$NAME/core_local_ver" 2>"/dev/null" || echo "Not Found")"
+echo -e "Git HEAD version: $(cat "/usr/share/$NAME/core/local_ver" 2>"/dev/null" || echo "Not Found")"
 echo -e "Core version: $(node "/usr/share/$NAME/core/app.js" -v 2>"/dev/null" || echo "Not Found")"
 ls -lh "/usr/share/$NAME/core" 2>"/dev/null"
 echo -e "\n"
@@ -91,4 +91,4 @@ echo -e "\n"
 	echo -e ""
 }
 
-cat "/tmp/$NAME.log" 2>"/dev/null" || echo -e "Log is not avaiable."
+cat "/var/run/$NAME/run.log" 2>"/dev/null" || echo -e "Log is not avaiable."
