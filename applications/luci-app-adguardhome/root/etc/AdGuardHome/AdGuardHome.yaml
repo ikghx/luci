@@ -1,6 +1,5 @@
 bind_host: 0.0.0.0
 bind_port: 3000
-beta_bind_port: 0
 users:
   - name: admin
     password: $2a$10$RxHPGVuq7Zrkfua6kDdK9uAYK7zuFfXlGQmQep9ea67EqMUYD1sa6
@@ -8,6 +7,7 @@ auth_attempts: 5
 block_auth_min: 15
 http_proxy: ""
 language: ""
+theme: auto
 debug_pprof: false
 web_session_ttl: 720
 dns:
@@ -77,6 +77,8 @@ dns:
   private_networks: []
   use_private_ptr_resolvers: true
   local_ptr_upstreams: []
+  use_dns64: false
+  dns64_prefixes: []
   serve_http3: false
   use_http3_upstreams: false
 tls:

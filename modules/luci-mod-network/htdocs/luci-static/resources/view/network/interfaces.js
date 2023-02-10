@@ -1347,6 +1347,9 @@ return view.extend({
 				for (var i = 0; i < map.addedVLANs.length; i++)
 					uci.remove('network', map.addedVLANs[i]);
 
+			if (this.addedSection)
+				uci.remove('network', this.addedSection);
+
 			return form.GridSection.prototype.handleModalCancel.apply(this, arguments);
 		};
 
@@ -1399,7 +1402,7 @@ return view.extend({
 			case 'veth':
 				return 'veth';
 
-			case 'bonding':
+			case 'bond':
 				return 'bonding';
 
 			case 'wifi':
@@ -1434,7 +1437,7 @@ return view.extend({
 			case 'veth':
 				return _('Virtual Ethernet');
 
-			case 'bonding':
+			case 'bond':
 				return _('LAG device');
 
 			default:

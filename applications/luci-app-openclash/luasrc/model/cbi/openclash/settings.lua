@@ -253,13 +253,6 @@ o = s:taboption("dns", Flag, "enable_custom_dns", font_red..bold_on..translate("
 o.description = font_red..bold_on..translate("Set OpenClash Upstream DNS Resolve Server")..bold_off..font_off
 o.default = 0
 
-if op_mode == "redir-host" then
-o = s:taboption("dns", Flag, "dns_remote", font_red..bold_on..translate("DNS Remote")..bold_off..font_off)
-o.description = font_red..bold_on..translate("Add DNS Remote Support For Redir-Host")..bold_off..font_off
-o.default = 1
-o:depends("enable_meta_core", 0)
-end
-
 o = s:taboption("dns", Flag, "append_wan_dns", translate("Append Upstream DNS"))
 o.description = translate("Append The Upstream Assigned DNS And Gateway IP To The Nameserver")
 o.default = 1
@@ -400,6 +393,17 @@ o:value("always")
 o:value("strict")
 o:value("off", translate("off　"))
 o.default = "off"
+o:depends("enable_meta_core", "1")
+
+o = s:taboption("meta", ListValue, "global_client_fingerprint", translate("Client Fingerprint"))
+o.description = translate("Change The Client Fingerprint, Only Support TLS Transport in TCP/GRPC/WS/HTTP For Vless/Vmess and Trojan")
+o:value("none", translate("None"))
+o:value("random")
+o:value("chrome")
+o:value("firefox")
+o:value("safari")
+o:value("ios")
+o.default = "none"
 o:depends("enable_meta_core", "1")
 
 o = s:taboption("meta", Flag, "enable_meta_sniffer", font_red..bold_on..translate("Enable Sniffer")..bold_off..font_off)
@@ -584,16 +588,16 @@ o:value("0", translate("Black List Mode"))
 o:value("1", translate("White List Mode"))
 o.default = "0"
 o:depends("enable_redirect_dns", "2")
-o:depends({en_mode = "redir-host", enable_redirect_dns = "1"})
-o:depends({en_mode = "redir-host-tun", enable_redirect_dns = "1"})
-o:depends({en_mode = "redir-host-mix", enable_redirect_dns = "1"})
+o:depends("en_mode", "redir-host")
+o:depends("en_mode", "redir-host-tun")
+o:depends("en_mode", "redir-host-mix")
 
 ip_b = s:taboption("lan_ac", DynamicList, "lan_ac_black_ips", translate("LAN Bypassed Host List"))
 ip_b.datatype = "ipaddr"
 ip_b:depends({lan_ac_mode = "0", enable_redirect_dns = "2"})
-ip_b:depends({lan_ac_mode = "0", en_mode = "redir-host", enable_redirect_dns = "1"})
-ip_b:depends({lan_ac_mode = "0", en_mode = "redir-host-tun", enable_redirect_dns = "1"})
-ip_b:depends({lan_ac_mode = "0", en_mode = "redir-host-mix", enable_redirect_dns = "1"})
+ip_b:depends({lan_ac_mode = "0", en_mode = "redir-host"})
+ip_b:depends({lan_ac_mode = "0", en_mode = "redir-host-tun"})
+ip_b:depends({lan_ac_mode = "0", en_mode = "redir-host-mix"})
 
 mac_b = s:taboption("lan_ac", DynamicList, "lan_ac_black_macs", translate("LAN Bypassed Mac List"))
 mac_b.datatype = "list(macaddr)"
@@ -603,9 +607,9 @@ mac_b:depends("lan_ac_mode", "0")
 ip_w = s:taboption("lan_ac", DynamicList, "lan_ac_white_ips", translate("LAN Proxied Host List"))
 ip_w.datatype = "ipaddr"
 ip_w:depends({lan_ac_mode = "1", enable_redirect_dns = "2"})
-ip_w:depends({lan_ac_mode = "1", en_mode = "redir-host", enable_redirect_dns = "1"})
-ip_w:depends({lan_ac_mode = "1", en_mode = "redir-host-tun", enable_redirect_dns = "1"})
-ip_w:depends({lan_ac_mode = "1", en_mode = "redir-host-mix", enable_redirect_dns = "1"})
+ip_w:depends({lan_ac_mode = "1", en_mode = "redir-host"})
+ip_w:depends({lan_ac_mode = "1", en_mode = "redir-host-tun"})
+ip_w:depends({lan_ac_mode = "1", en_mode = "redir-host-mix"})
 
 mac_w = s:taboption("lan_ac", DynamicList, "lan_ac_white_macs", translate("LAN Proxied Mac List"))
 mac_w.datatype = "list(macaddr)"
@@ -1496,7 +1500,7 @@ core_update.template = "openclash/update"
 ---- developer
 o = s:taboption("developer", Value, "firewall_custom")
 o.template = "cbi/tvalue"
-o.description = translate("Custom Firewall Rules, Support IPv4 and IPv6, All Rules Will Be Added After The Openclash Rules Completely")
+o.description = translate("Custom Firewall Rules, Support IPv4 and IPv6, All Rules Will Be Added After The OpenClash Rules Completely")
 o.rows = 30
 o.wrap = "off"
 

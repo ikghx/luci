@@ -24,6 +24,7 @@ DNS_PORT=15353
 TUN_DNS="127.0.0.1#${DNS_PORT}"
 LOCAL_DNS=119.29.29.29
 DEFAULT_DNS=
+IFACES=
 NO_PROXY=0
 PROXY_IPV6=0
 PROXY_IPV6_UDP=0
@@ -360,6 +361,10 @@ run_v2ray() {
 	_extra_param="${_extra_param} -loglevel $loglevel"
 	lua $API_GEN_V2RAY ${_extra_param} > $config_file
 	ln_run "$(first_type $(config_t_get global_app ${type}_file) ${type})" ${type} $log_file run -c "$config_file"
+	local protocol=$(config_n_get $node protocol)
+	[ "$protocol" == "_iface" ] && {
+		IFACES="$IFACES $(config_n_get $node iface)"
+	}
 }
 
 run_dns2socks() {
@@ -412,8 +417,11 @@ run_socks() {
 		error_msg="某种原因，此 Socks 服务的相关配置已失联，启动中止！"
 	fi
 
-	if ([ "$type" == "v2ray" ] || [ "$type" == "xray" ]) && ([ -n "$(config_n_get $node balancing_node)" ] || [ "$(config_n_get $node default_node)" != "_direct" -a "$(config_n_get $node default_node)" != "_blackhole" ]); then
-		unset error_msg
+	if [ "$type" == "v2ray" ] || [ "$type" == "xray" ]; then
+		local protocol=$(config_n_get $node protocol)
+		if [ "$protocol" == "_balancing" ] || [ "$protocol" == "_shunt" ] || [ "$protocol" == "_iface" ]; then
+			unset error_msg
+		fi
 	fi
 
 	[ -n "${error_msg}" ] && {
@@ -650,12 +658,12 @@ run_redir() {
 			[ "$tcp_node_socks" = "1" ] && {
 				tcp_node_socks_flag=1
 				_v2ray_args="${_v2ray_args} socks_port=${tcp_node_socks_port}"
-				config_file=$(echo $config_file | sed "s/TCP/TCP_SOCKS_$tcp_node_socks_id/g")
+				config_file=$(echo $config_file | sed "s/TCP/TCP_SOCKS/g")
 			}
 			[ "$tcp_node_http" = "1" ] && {
 				tcp_node_http_flag=1
 				_v2ray_args="${_v2ray_args} http_port=${tcp_node_http_port}"
-				config_file=$(echo $config_file | sed "s/TCP/TCP_HTTP_$tcp_node_http_id/g")
+				config_file=$(echo $config_file | sed "s/TCP/TCP_HTTP/g")
 			}
 			[ "$TCP_UDP" = "1" ] && {
 				UDP_REDIR_PORT=$local_port
@@ -759,12 +767,12 @@ run_redir() {
 			[ "$tcp_proxy_way" = "tproxy" ] && _extra_param="${_extra_param} -tcp_tproxy true"
 			[ "$tcp_node_socks" = "1" ] && {
 				tcp_node_socks_flag=1
-				config_file=$(echo $config_file | sed "s/TCP/TCP_SOCKS_$tcp_node_socks_id/g")
+				config_file=$(echo $config_file | sed "s/TCP/TCP_SOCKS/g")
 				_extra_param="${_extra_param} -local_socks_port ${tcp_node_socks_port}"
 			}
 			[ "$tcp_node_http" = "1" ] && {
 				tcp_node_http_flag=1
-				config_file=$(echo $config_file | sed "s/TCP/TCP_HTTP_$tcp_node_http_id/g")
+				config_file=$(echo $config_file | sed "s/TCP/TCP_HTTP/g")
 				_extra_param="${_extra_param} -local_http_port ${tcp_node_http_port}"
 			}
 			[ "$TCP_UDP" = "1" ] && {
@@ -780,12 +788,12 @@ run_redir() {
 			local _extra_param="-local_tcp_redir_port $local_port"
 			[ "$tcp_node_socks" = "1" ] && {
 				tcp_node_socks_flag=1
-				config_file=$(echo $config_file | sed "s/TCP/TCP_SOCKS_$tcp_node_socks_id/g")
+				config_file=$(echo $config_file | sed "s/TCP/TCP_SOCKS/g")
 				_extra_param="${_extra_param} -local_socks_port ${tcp_node_socks_port}"
 			}
 			[ "$tcp_node_http" = "1" ] && {
 				tcp_node_http_flag=1
-				config_file=$(echo $config_file | sed "s/TCP/TCP_HTTP_$tcp_node_http_id/g")
+				config_file=$(echo $config_file | sed "s/TCP/TCP_HTTP/g")
 				_extra_param="${_extra_param} -local_http_port ${tcp_node_http_port}"
 			}
 			[ "$TCP_UDP" = "1" ] && {
@@ -818,15 +826,19 @@ run_redir() {
 		[ -z "$tcp_node_socks_flag" ] && {
 			[ "$tcp_node_socks" = "1" ] && {
 				local port=$tcp_node_socks_port
-				local config_file="SOCKS_$tcp_node_socks_id.json"
-				local log_file="SOCKS_$tcp_node_socks_id.log"
+				local config_file="SOCKS_TCP.json"
+				local log_file="SOCKS_TCP.log"
 				local http_port=0
-				local http_config_file="HTTP2SOCKS_$tcp_node_http_id.json"
+				local http_config_file="HTTP2SOCKS_TCP.json"
 				[ "$tcp_node_http" = "1" ] && [ -z "$tcp_node_http_flag" ] && {
 					http_port=$tcp_node_http_port
 				}
-				run_socks flag=$tcp_node_socks_id node=$node bind=0.0.0.0 socks_port=$port config_file=$config_file http_port=$http_port http_config_file=$http_config_file
+				run_socks flag=TCP node=$node bind=0.0.0.0 socks_port=$port config_file=$config_file http_port=$http_port http_config_file=$http_config_file
 			}
+		}
+		
+		[ "$tcp_node_socks" = "1" ] && {
+			echo "127.0.0.1:$tcp_node_socks_port" > $TMP_PATH/TCP_SOCKS_server
 		}
 	;;
 	esac
@@ -847,26 +859,6 @@ node_switch() {
 		local config_file="${FLAG}.json"
 		local log_file="${FLAG}.log"
 		local port=$(cat $TMP_PORT_PATH/${FLAG})
-		
-		[ "$SOCKS_ENABLED" = "1" ] && {
-			local ids=$(uci show $CONFIG | grep "=socks" | awk -F '.' '{print $2}' | awk -F '=' '{print $1}')
-			for id in $ids; do
-				[ "$(config_n_get $id enabled 0)" = "0" ] && continue
-				[ "$(config_n_get $id node nil)" != "tcp" ] && continue
-				local socks_port=$(config_n_get $id port)
-				local http_port=$(config_n_get $id http_port 0)
-				pgrep -af "${TMP_PATH}.*${id}" | awk 'BEGIN{IGNORECASE=1}/SOCKS/{print $1}' | xargs kill -9 >/dev/null 2>&1
-				tcp_node_socks=1
-				tcp_node_socks_port=$socks_port
-				tcp_node_socks_id=$id
-				[ "$http_port" != "0" ] && {
-					tcp_node_http=1
-					tcp_node_http_port=$http_port
-					tcp_node_http_id=$id
-				}
-				break
-			done
-		}
 		
 		[ "$shunt_logic" != "0" ] && {
 			local node=$(config_t_get global ${flag}_node nil)
@@ -931,6 +923,10 @@ start_redir() {
 }
 
 start_socks() {
+	tcp_node_socks=1
+	tcp_node_socks_port=$(get_new_port $(config_t_get global tcp_node_socks_port 1070))
+	tcp_node_http_port=$(config_t_get global tcp_node_http_port 0)
+	[ "$tcp_node_http_port" != "0" ] && tcp_node_http=1
 	[ "$SOCKS_ENABLED" = "1" ] && {
 		local ids=$(uci show $CONFIG | grep "=socks" | awk -F '.' '{print $2}' | awk -F '=' '{print $1}')
 		[ -n "$ids" ] && {
@@ -945,17 +941,6 @@ start_socks() {
 				local log_file="SOCKS_${id}.log"
 				local http_port=$(config_n_get $id http_port 0)
 				local http_config_file="HTTP2SOCKS_${id}.json"
-				[ "$node" == "tcp" ] && {
-					tcp_node_socks=1
-					tcp_node_socks_port=$port
-					tcp_node_socks_id=$id
-					[ "$http_port" != "0" ] && {
-						tcp_node_http=1
-						tcp_node_http_port=$http_port
-						tcp_node_http_id=$id
-					}
-					continue
-				}
 				run_socks flag=$id node=$node bind=0.0.0.0 socks_port=$port config_file=$config_file http_port=$http_port http_config_file=$http_config_file
 				echo $node > $TMP_ID_PATH/SOCKS_${id}
 			done
@@ -1094,7 +1079,7 @@ start_dns() {
 			local config_file=$TMP_PATH/DNS.json
 			local log_file=$TMP_PATH/DNS.log
 			local log_file=/dev/null
-			local _v2ray_args="config_file=$config_file log_file=$log_file"
+			local _v2ray_args="type=$DNS_MODE config_file=$config_file log_file=$log_file"
 			[ "${DNS_CACHE}" == "0" ] && _v2ray_args="${_v2ray_args} dns_cache=0"
 			_v2ray_args="${_v2ray_args} dns_query_strategy=${DNS_QUERY_STRATEGY}"
 			local _dns_client_ip=$(config_t_get global dns_client_ip)

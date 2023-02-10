@@ -220,13 +220,13 @@ function formatStats(portdev) {
 	var stats = portdev._devstate('stats');
 
 	return ui.itemlist(E('span'), [
-		_('Received bytes'), '%1024mB'.format(stats.rx_bytes),
+		_('Received data'), '%1024mB'.format(stats.rx_bytes),
 		_('Received packets'), '%1000mPkts.'.format(stats.rx_packets),
 		_('Received multicast'), '%1000mPkts.'.format(stats.multicast),
 		_('Receive errors'), '%1000mPkts.'.format(stats.rx_errors),
 		_('Receive dropped'), '%1000mPkts.'.format(stats.rx_dropped),
 
-		_('Transmitted bytes'), '%1024mB'.format(stats.tx_bytes),
+		_('Transmitted data'), '%1024mB'.format(stats.tx_bytes),
 		_('Transmitted packets'), '%1000mPkts.'.format(stats.tx_packets),
 		_('Transmit errors'), '%1000mPkts.'.format(stats.tx_errors),
 		_('Transmit dropped'), '%1000mPkts.'.format(stats.tx_dropped),

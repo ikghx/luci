@@ -54,8 +54,8 @@ function handlePeerDetails(peer) {
 			_('Public Key'), E('code', [ peer.public_key ]),
 			_('Endpoint'), peer.endpoint,
 			_('Allowed IPs'), (Array.isArray(peer.allowed_ips) && peer.allowed_ips.length) ? peer.allowed_ips.join(', ') : E('em', _('none')),
-			_('Received Data'), '%1024mB'.format(peer.transfer_rx),
-			_('Transmitted Data'), '%1024mB'.format(peer.transfer_tx),
+			_('Received data'), '%1024mB'.format(peer.transfer_rx),
+			_('Transmitted data'), '%1024mB'.format(peer.transfer_tx),
 			_('Latest Handshake'), timestampToStr(+peer.latest_handshake),
 			_('Keep-Alive'), (peer.persistent_keepalive != 'off') ? _('every %ds', 'WireGuard keep alive interval').format(+peer.persistent_keepalive) : E('em', _('none')),
 		]),
@@ -73,8 +73,8 @@ function renderPeerTable(instanceName, peers) {
 		[
 			_('Peer'),
 			_('Endpoint'),
-			_('Received Data'),
-			_('Transmitted Data'),
+			_('Received data'),
+			_('Transmitted data'),
 			_('Latest Handshake')
 		],
 		{
