@@ -143,7 +143,7 @@ end
 o.rmempty = false
 o:depends("type", "ssr")
 
-o = s:option(Value, "obfs_param", translate("Obfs param(optional)"))
+o = s:option(Value, "obfs_param", translate("Obfs param (optional)"))
 o:depends("type", "ssr")
 
 o = s:option(Flag, "fast_open", translate("TCP Fast Open"))
