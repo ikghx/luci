@@ -111,9 +111,9 @@ validate_config_section() {
 validate_server_section() {
 	uci_validate_section "$KCPTUN" servers "$1" \
 		'server_addr:host' \
-		'server_port:port:29900' \
+		'server_port:string:29900-30000' \
 		'listen_addr:host:0.0.0.0' \
-		'listen_port:port:12948' \
+		'listen_port:string:29900-30000' \
 		'key:string' \
 		'crypt:string:aes' \
 		'mode:or("normal","fast","fast2","fast3","manual"):fast' \
