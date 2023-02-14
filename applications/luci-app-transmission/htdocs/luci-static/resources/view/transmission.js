@@ -166,10 +166,9 @@ return view.extend({
 		s.option(form.Value, 'download_dir', _('Download directory'));
 
 		o = s.option(form.Flag, 'incomplete_dir_enabled', _('Incomplete directory enabled'));
-		setFlagBool(o);
 
 		o = s.option(form.Value, 'incomplete_dir', _('Incomplete directory'));
-		o.depends('incomplete_dir_enabled', 'true');
+		o.depends('incomplete_dir_enabled', '1');
 
 		o = s.option(form.ListValue, 'preallocation', _('Preallocation'));
 		o.value('0', _('Off'));
@@ -188,10 +187,9 @@ return view.extend({
 		o = s.option(form.Value, 'umask', 'umask');
 
 		o = s.option(form.Flag, 'watch_dir_enabled', _('Enable watch directory'));
-		setFlagBool(o);
 
 		o = s.option(form.Value, 'watch_dir', _('Watch directory'));
-		o.depends('watch_dir_enabled', 'true');
+		o.depends('watch_dir_enabled', '1');
 
 
 		s = m.section(form.TypedSection, 'transmission', _('Miscellaneous'));
