@@ -1,4 +1,4 @@
-module("luci.model.cbi.passwall.api.api", package.seeall)
+module("luci.passwall.api", package.seeall)
 fs = require "nixio.fs"
 sys = require "luci.sys"
 uci = require"luci.model.uci".cursor()
@@ -81,7 +81,7 @@ function curl_logic(url, file, args)
 end
 
 function url(...)
-    local url = string.format("admin/vpn/%s", appname)
+    local url = string.format("admin/services/%s", appname)
     local args = { ... }
     for i, v in pairs(args) do
         if v ~= "" then
@@ -143,6 +143,18 @@ function get_args(arg)
                 end
             end
         end
+    end
+    return var
+end
+
+function get_function_args(arg)
+    local var = nil
+    if arg and #arg > 1 then
+        local param = {}
+        for i = 2, #arg do
+            param[#param + 1] = arg[i]
+        end
+        var = get_args(param)
     end
     return var
 end

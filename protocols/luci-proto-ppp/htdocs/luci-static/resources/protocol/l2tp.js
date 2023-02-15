@@ -1,4 +1,5 @@
 'use strict';
+'require fs';
 'require uci';
 'require form';
 'require network';
@@ -44,6 +45,20 @@ return network.registerProtocol('l2tp', {
 
 		o = s.taboption('general', form.Value, 'password', _('PAP/CHAP password'));
 		o.password = true;
+
+		o = s.taboption('general', form.TextValue, '_psk', _('PSK'), _('/etc/xl2tpd/xl2tp-secrets'));
+		o.rows = 10;
+		o.cfgvalue = function (section_id) {
+			return fs.trimmed('/etc/xl2tpd/xl2tp-secrets');
+		};
+		o.write = function (section_id, formvalue) {
+			return this.cfgvalue(section_id).then(function (value) {
+				if (value == formvalue) {
+					return
+				}
+				return fs.write('/etc/xl2tpd/xl2tp-secrets', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
+			});
+		};
 
 		if (L.hasSystemFeature('ipv6')) {
 			o = s.taboption('advanced', form.ListValue, 'ppp_ipv6', _('Obtain IPv6 address'), _('Enable IPv6 negotiation on the PPP link'));

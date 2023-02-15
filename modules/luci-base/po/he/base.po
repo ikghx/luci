@@ -120,6 +120,10 @@ msgstr ""
 msgid "-- please select --"
 msgstr "-- נא לבחור --"
 
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+msgid "/etc/xl2tpd/xl2tp-secrets"
+msgstr ""
+
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:55
 msgctxt "sstp log level value"
 msgid "0"
@@ -396,8 +400,8 @@ msgstr ""
 msgid "ATM Bridges"
 msgstr "גשרי ATM"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:75
-msgid "ATM Header Error Code Errors (HEC)"
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:157
+msgid "ATM Header Error Code Errors (HEC-P)"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1589
@@ -492,6 +496,10 @@ msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:285
 msgid "Active IPv6 Rules"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:111
+msgid "Actual Data Rate"
 msgstr ""
 
 # צריך אימות של מישהו שמבין יותר במושגים האלו אם צריך בכלל לתרגם את זה או להשאיר כמו שזה
@@ -643,7 +651,7 @@ msgstr ""
 msgid "Aggregate Originator Messages"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:60
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:134
 msgid "Aggregate Transmit Power (ACTATP)"
 msgstr ""
 
@@ -765,8 +773,8 @@ msgstr ""
 msgid "An optional, short description for this device"
 msgstr ""
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:95
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1509
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:40
 msgid "Annex"
 msgstr ""
 
@@ -944,6 +952,10 @@ msgid ""
 "field to define a new network."
 msgstr ""
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:112
+msgid "Attainable Data Rate (ATTNDR)"
+msgstr ""
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:154
 msgid "Attempt to enable configured mount points for attached devices"
 msgstr ""
@@ -980,7 +992,7 @@ msgstr "דרוש אימות"
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:18
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:24
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:113
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:51
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:66
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:96
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:82
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:56
@@ -1207,7 +1219,7 @@ msgstr ""
 msgid "Bitrate"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:48
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:118
 msgid "Bitswap"
 msgstr ""
 
@@ -1311,6 +1323,10 @@ msgstr ""
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/processes.js:85
 msgid "CPU usage (%)"
 msgstr "שימוש מעבד (%)"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:151
+msgid "CRC Errors (CV-C)"
+msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js:43
 msgid "Cached"
@@ -1427,12 +1443,8 @@ msgstr "ערוץ"
 msgid "Channel Analysis"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:71
-msgid "Channel CRC Errors (CV-C)"
-msgstr ""
-
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:72
-msgid "Channel Errors Corrected by FEC (FEC-C)"
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:149
+msgid "Channel Counters"
 msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:391
@@ -1644,6 +1656,10 @@ msgstr "אישור"
 msgid "Connected"
 msgstr "מחובר"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:89
+msgid "Connection State"
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:9
 #: modules/luci-compat/luasrc/model/network.lua:27
 msgid "Connection attempt failed"
@@ -1679,8 +1695,12 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:81
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:165
 msgid "Corrected DTUs (rtx-c)"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:152
+msgid "Corrected by FEC (FEC-C)"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4570
@@ -1868,11 +1888,12 @@ msgid "DS-Lite AFTR address"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1506
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:97
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:37
 msgid "DSL"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:34
+#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:3
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:21
 msgid "DSL Status"
 msgstr ""
 
@@ -1881,8 +1902,11 @@ msgid "DSL line mode"
 msgstr ""
 
 #: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/spectrum.js:24
-#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:3
 msgid "DSL line spectrum"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:174
+msgid "DSL stats"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1178
@@ -1899,8 +1923,16 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:43
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:155
+msgid "Data Path Counters"
+msgstr ""
+
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:29
 msgid "Data Rate"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:109
+msgid "Data Rates"
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:188
@@ -2140,7 +2172,7 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:66
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:121
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:114
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:52
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:67
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:97
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:83
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:57
@@ -2578,7 +2610,7 @@ msgstr ""
 msgid "Enable IPv6 negotiation"
 msgstr ""
 
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:64
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:94
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:80
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:54
@@ -2811,11 +2843,19 @@ msgstr "מוחק..."
 msgid "Error"
 msgstr "שגיאה"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:137
+msgid "Error Counters"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:139
+msgid "Error Seconds"
+msgstr ""
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:170
 msgid "Error getting PublicKey"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:64
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:142
 msgid "Errored Seconds (ES)"
 msgstr ""
 
@@ -3189,7 +3229,7 @@ msgid ""
 "downstream interfaces."
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:63
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:141
 msgid "Forward Error Correction Seconds (FECS)"
 msgstr ""
 
@@ -3378,7 +3418,7 @@ msgstr ""
 msgid "Go to relevant configuration page"
 msgstr ""
 
-#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:39
+#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:41
 msgid "Grant access to DHCP configuration"
 msgstr ""
 
@@ -3432,7 +3472,7 @@ msgid "Grant access to kernel crash logs"
 msgstr ""
 
 #: modules/luci-mod-dsl/root/usr/share/rpcd/acl.d/luci-mod-dsl.json:3
-msgid "Grant access to luci-mod-dsl spectrum"
+msgid "Grant access to luci-mod-dsl"
 msgstr ""
 
 #: modules/luci-mod-dashboard/root/usr/share/rpcd/acl.d/luci-mod-dashboard.json:12
@@ -3452,7 +3492,7 @@ msgstr ""
 msgid "Grant access to network configuration"
 msgstr ""
 
-#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:63
+#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:65
 msgid "Grant access to network diagnostic tools"
 msgstr ""
 
@@ -4066,7 +4106,7 @@ msgstr ""
 msgid "Imports settings from an existing WireGuard configuration file"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:53
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:125
 msgid "Impulse Noise Protection (INP)"
 msgstr ""
 
@@ -4385,6 +4425,10 @@ msgstr ""
 msgid "Invalid username and/or password! Please try again."
 msgstr "שם משתמש ו/או סיסמה שגויים! אנא נסה שנית."
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:99
+msgid "Inventory"
+msgstr ""
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/heartbeat.js:13
 msgid "Invert blinking"
 msgstr ""
@@ -4483,11 +4527,11 @@ msgid "Kill"
 msgstr ""
 
 #: modules/luci-compat/luasrc/model/network/proto_ppp.lua:21
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:10
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:11
 msgid "L2TP"
 msgstr ""
 
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:40
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:41
 msgid "L2TP Server"
 msgstr ""
 
@@ -4553,7 +4597,7 @@ msgstr ""
 msgid "Last member interval"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:52
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:124
 msgid "Latency"
 msgstr ""
 
@@ -4618,19 +4662,30 @@ msgstr ""
 msgid "Limit"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:57
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:131
 msgid "Line Attenuation (LATN)"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:38
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:107
+msgid "Line Details"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:93
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:25
 msgid "Line Mode"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:37
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:129
+msgid "Line Parameters"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:92
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:24
 msgid "Line State"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:39
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:94
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:26
 msgid "Line Uptime"
 msgstr ""
 
@@ -4869,7 +4924,7 @@ msgstr ""
 msgid "Loose filtering"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:66
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:144
 msgid "Loss of Signal Seconds (LOSS)"
 msgstr ""
 
@@ -4983,7 +5038,7 @@ msgstr ""
 
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:122
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:115
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:53
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:68
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:98
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:84
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:58
@@ -5001,10 +5056,6 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:834
 msgid "Max <abbr title=\"Router Advertisement\">RA</abbr> interval"
-msgstr ""
-
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:44
-msgid "Max. Attainable Data Rate (ATTNDR)"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:566
@@ -5158,12 +5209,12 @@ msgstr ""
 msgid "Min <abbr title=\"Router Advertisement\">RA</abbr> interval"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:45
-msgid "Min. Error-Free Throughput (MINEFTR)"
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:771
 msgid "Minimum ARP validity time"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:113
+msgid "Minimum Error-Free Throughput (MINEFTR)"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:594
@@ -5215,11 +5266,11 @@ msgstr ""
 msgid "Model"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:85
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:102
 msgid "Modem Chipset"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:86
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:103
 msgid "Modem Firmware"
 msgstr ""
 
@@ -5690,8 +5741,16 @@ msgstr ""
 msgid "Noise"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:59
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:30
+msgid "Noise Margin"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:133
 msgid "Noise Margin (SNRM)"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:122
+msgid "Noise Protection"
 msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/wireless.js:272
@@ -5789,7 +5848,7 @@ msgstr ""
 
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:118
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:111
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:64
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:94
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:80
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:54
@@ -5813,6 +5872,10 @@ msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/timer.js:12
 msgid "On-State Delay"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:116
+msgid "On-line Reconfiguration"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:109
@@ -6091,7 +6154,7 @@ msgstr ""
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:53
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:146
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:197
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:57
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:72
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:132
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:118
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:96
@@ -6168,7 +6231,7 @@ msgstr ""
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:87
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:120
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:107
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:45
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:46
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:90
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:76
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:44
@@ -6182,7 +6245,7 @@ msgstr ""
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:82
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:115
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:105
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:43
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:44
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:88
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:74
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:42
@@ -6255,16 +6318,20 @@ msgstr ""
 msgid "PSID-bits length"
 msgstr ""
 
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+msgid "PSK"
+msgstr ""
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:571
 msgctxt "Label indicating that WireGuard peer uses a PSK"
 msgid "PSK"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:76
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:158
 msgid "PTM Non Pre-emptive CRC Errors (CRC-P)"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:77
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:159
 msgid "PTM Pre-emptive CRC Errors (CRCP-P)"
 msgstr ""
 
@@ -6538,7 +6605,7 @@ msgstr ""
 msgid "Potential negation of: %s"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:90
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:96
 msgid "Power Management Mode"
 msgstr ""
 
@@ -6805,7 +6872,7 @@ msgstr ""
 msgid "Radio access technology for the device"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:49
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:119
 msgid "Rate Adaptation Mode"
 msgstr ""
 
@@ -7170,11 +7237,15 @@ msgstr "שחזור"
 msgid "Restore backup"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:54
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:126
 msgid "Retransmission (G.INP)"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:80
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:162
+msgid "Retransmission Counters"
+msgstr ""
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:164
 msgid "Retransmitted DTUs (rtx-tx)"
 msgstr ""
 
@@ -7403,7 +7474,7 @@ msgstr ""
 msgid "Scheduled Tasks"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:68
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:146
 msgid "Seconds with Low Error-Free Throughput (LEFTRS)"
 msgstr ""
 
@@ -7532,7 +7603,7 @@ msgstr ""
 msgid "Setup routes for proxied IPv6 neighbours."
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:65
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:143
 msgid "Severely Errored Seconds (SES)"
 msgstr ""
 
@@ -7577,7 +7648,7 @@ msgstr ""
 msgid "Signal / Noise"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:58
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:132
 msgid "Signal Attenuation (SATN)"
 msgstr ""
 
@@ -7858,6 +7929,10 @@ msgstr ""
 msgid "Specify time-to-live in seconds for maximum TTL to send to clients."
 msgstr ""
 
+#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:23
+msgid "Spectrum"
+msgstr ""
+
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js:199
 msgid "Speed: %d Mibit/s, Duplex: %s"
 msgstr ""
@@ -7930,6 +8005,10 @@ msgstr ""
 "הקצאות סטטיות נועדו להקצות כתובות IP קבועות ואת שם הרשת שלהן ללקוחות DHCP. "
 "הן נחוצות גם עבור הגדרות ממשק שאינן דינאמיות, בהן מטופלות רק ישויות בעלות "
 "הקצאה מתאימה."
+
+#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:14
+msgid "Stats"
+msgstr ""
 
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:16
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:557
@@ -8923,7 +9002,7 @@ msgstr ""
 msgid "Unable to verify PIN"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:67
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:145
 msgid "Unavailable Seconds (UAS)"
 msgstr ""
 
@@ -8931,7 +9010,7 @@ msgstr ""
 msgid "Unconfigure"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:82
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:166
 msgid "Uncorrected DTUs (rtx-uc)"
 msgstr ""
 
@@ -9961,13 +10040,13 @@ msgstr "ללא"
 msgid "not present"
 msgstr ""
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:14
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:966
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:970
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:13
 msgid "off"
 msgstr "כבוי"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:13
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:14
 msgid "on"
 msgstr ""
 
@@ -10266,7 +10345,7 @@ msgstr ""
 msgid "vlan<XXX>"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:87
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:104
 msgid "xTU-C Vendor ID"
 msgstr ""
 

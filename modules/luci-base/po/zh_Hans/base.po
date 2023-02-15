@@ -122,6 +122,10 @@ msgstr "-- 根据 UUID 匹配 --"
 msgid "-- please select --"
 msgstr "-- 请选择 --"
 
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+msgid "/etc/xl2tpd/xl2tp-secrets"
+msgstr ""
+
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:55
 msgctxt "sstp log level value"
 msgid "0"
@@ -412,9 +416,9 @@ msgstr "ATM（异步传输模式）"
 msgid "ATM Bridges"
 msgstr "ATM 网桥"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:75
-msgid "ATM Header Error Code Errors (HEC)"
-msgstr "请求头错误代码错误 (HEC)"
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:157
+msgid "ATM Header Error Code Errors (HEC-P)"
+msgstr "ATM 报头错误代码错误 (HEC-P)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1589
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:66
@@ -509,6 +513,10 @@ msgstr "活动的 IPv6 路由"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:285
 msgid "Active IPv6 Rules"
 msgstr "活动的 IPv6 规则"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:111
+msgid "Actual Data Rate"
+msgstr "实际数据速率"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3872
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:998
@@ -656,7 +664,7 @@ msgstr "老化时间"
 msgid "Aggregate Originator Messages"
 msgstr "聚合发起者消息"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:60
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:134
 msgid "Aggregate Transmit Power (ACTATP)"
 msgstr "总发射功率（ACTATP）"
 
@@ -776,8 +784,8 @@ msgstr "保存表单时出错："
 msgid "An optional, short description for this device"
 msgstr "此设备的简短描述（可选）"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:95
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1509
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:40
 msgid "Annex"
 msgstr ""
 
@@ -960,6 +968,10 @@ msgid ""
 "field to define a new network."
 msgstr "将网络连接到无线接口，或者填写 <em>创建</em> 栏来新建网络。"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:112
+msgid "Attainable Data Rate (ATTNDR)"
+msgstr "可达到的数据速率 (ATTNDR)"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:154
 msgid "Attempt to enable configured mount points for attached devices"
 msgstr "尝试为连接的设备启用已配置的挂载点"
@@ -996,7 +1008,7 @@ msgstr "需要授权"
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:18
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:24
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:113
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:51
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:66
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:96
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:82
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:56
@@ -1226,7 +1238,7 @@ msgstr "将隧道绑定到此接口（可选）。"
 msgid "Bitrate"
 msgstr "速率"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:48
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:118
 msgid "Bitswap"
 msgstr "比特交换"
 
@@ -1329,6 +1341,10 @@ msgstr "CNAME 或 FQDN"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/processes.js:85
 msgid "CPU usage (%)"
 msgstr "CPU 使用率"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:151
+msgid "CRC Errors (CV-C)"
+msgstr "CRC 错误 (CV-C)"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js:43
 msgid "Cached"
@@ -1449,13 +1465,9 @@ msgstr "信道"
 msgid "Channel Analysis"
 msgstr "信道分析"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:71
-msgid "Channel CRC Errors (CV-C)"
-msgstr "通道 CRC 错误 (CV-C)"
-
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:72
-msgid "Channel Errors Corrected by FEC (FEC-C)"
-msgstr "FEC 校正的信道错误 (FEC-C)"
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:149
+msgid "Channel Counters"
+msgstr "通道计数器"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:391
 msgid "Channel Width"
@@ -1676,6 +1688,10 @@ msgstr "确认密码"
 msgid "Connected"
 msgstr "已连接"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:89
+msgid "Connection State"
+msgstr "连接状态"
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:9
 #: modules/luci-compat/luasrc/model/network.lua:27
 msgid "Connection attempt failed"
@@ -1711,9 +1727,13 @@ msgstr "内容已保存。"
 msgid "Continue"
 msgstr "继续"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:81
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:165
 msgid "Corrected DTUs (rtx-c)"
 msgstr "更正后的 DTUs (rtx-c)"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:152
+msgid "Corrected by FEC (FEC-C)"
+msgstr "由 FEC (FEC-C) 校正"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4570
 msgid ""
@@ -1901,11 +1921,12 @@ msgid "DS-Lite AFTR address"
 msgstr "DS-Lite AFTR 地址"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1506
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:97
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:37
 msgid "DSL"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:34
+#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:3
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:21
 msgid "DSL Status"
 msgstr "DSL 状态"
 
@@ -1914,9 +1935,12 @@ msgid "DSL line mode"
 msgstr "DSL 线路模式"
 
 #: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/spectrum.js:24
-#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:3
 msgid "DSL line spectrum"
 msgstr "DSL 线路频谱"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:174
+msgid "DSL stats"
+msgstr "DSL 统计数据"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1178
 msgid "DTIM period"
@@ -1932,8 +1956,16 @@ msgstr ""
 msgid "Dashboard"
 msgstr "概览"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:43
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:155
+msgid "Data Path Counters"
+msgstr "数据路径计数器"
+
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:29
 msgid "Data Rate"
+msgstr "数据速率"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:109
+msgid "Data Rates"
 msgstr "数据速率"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:188
@@ -2176,7 +2208,7 @@ msgstr "禁用网络"
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:66
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:121
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:114
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:52
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:67
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:97
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:83
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:57
@@ -2634,7 +2666,7 @@ msgstr "启用 IPv6"
 msgid "Enable IPv6 negotiation"
 msgstr "启用 IPv6 协商"
 
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:64
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:94
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:80
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:54
@@ -2869,11 +2901,19 @@ msgstr "擦除中..."
 msgid "Error"
 msgstr "错误"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:137
+msgid "Error Counters"
+msgstr "错误计数器"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:139
+msgid "Error Seconds"
+msgstr "错误秒数"
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:170
 msgid "Error getting PublicKey"
 msgstr "获取公钥时出错"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:64
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:142
 msgid "Errored Seconds (ES)"
 msgstr "错误秒数 (ES)"
 
@@ -3257,7 +3297,7 @@ msgid ""
 "downstream interfaces."
 msgstr "在指定的主接口和下游接口之间转发 DHCPv6 消息。"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:63
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:141
 msgid "Forward Error Correction Seconds (FECS)"
 msgstr "前向纠错秒数（FECS）"
 
@@ -3448,7 +3488,7 @@ msgstr "跳转到密码配置页…"
 msgid "Go to relevant configuration page"
 msgstr "进入相关配置页面"
 
-#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:39
+#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:41
 msgid "Grant access to DHCP configuration"
 msgstr "授予访问 DHCP 配置的权限"
 
@@ -3502,7 +3542,7 @@ msgid "Grant access to kernel crash logs"
 msgstr "授予对内核崩溃日志的访问权限"
 
 #: modules/luci-mod-dsl/root/usr/share/rpcd/acl.d/luci-mod-dsl.json:3
-msgid "Grant access to luci-mod-dsl spectrum"
+msgid "Grant access to luci-mod-dsl"
 msgstr ""
 
 #: modules/luci-mod-dashboard/root/usr/share/rpcd/acl.d/luci-mod-dashboard.json:12
@@ -3522,7 +3562,7 @@ msgstr "授予访问挂载配置的权限"
 msgid "Grant access to network configuration"
 msgstr "授予访问网络配置的权限"
 
-#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:63
+#: modules/luci-mod-network/root/usr/share/rpcd/acl.d/luci-mod-network.json:65
 msgid "Grant access to network diagnostic tools"
 msgstr "授予使用网络诊断工具的权限"
 
@@ -4144,7 +4184,7 @@ msgstr "导入对端配置"
 msgid "Imports settings from an existing WireGuard configuration file"
 msgstr "从现有的 WireGuard 配置文件导入设置"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:53
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:125
 msgid "Impulse Noise Protection (INP)"
 msgstr "脉冲噪声保护 (INP)"
 
@@ -4468,6 +4508,10 @@ msgstr "无效的服务器 URL"
 msgid "Invalid username and/or password! Please try again."
 msgstr "无效的用户名和/或密码！请重试。"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:99
+msgid "Inventory"
+msgstr "清单"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/heartbeat.js:13
 msgid "Invert blinking"
 msgstr "反转闪烁"
@@ -4566,11 +4610,11 @@ msgid "Kill"
 msgstr "强制关闭"
 
 #: modules/luci-compat/luasrc/model/network/proto_ppp.lua:21
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:10
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:11
 msgid "L2TP"
 msgstr ""
 
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:40
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:41
 msgid "L2TP Server"
 msgstr "L2TP 服务器"
 
@@ -4636,7 +4680,7 @@ msgstr "较大的权重（相同的优先级）被赋予相应较高的被选中
 msgid "Last member interval"
 msgstr "最后成员间隔"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:52
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:124
 msgid "Latency"
 msgstr "延迟"
 
@@ -4703,19 +4747,30 @@ msgstr "图例："
 msgid "Limit"
 msgstr "客户数"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:57
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:131
 msgid "Line Attenuation (LATN)"
 msgstr "线路衰减（LATN）"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:38
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:107
+msgid "Line Details"
+msgstr "线路详情"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:93
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:25
 msgid "Line Mode"
 msgstr "线路模式"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:37
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:129
+msgid "Line Parameters"
+msgstr "线路参数"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:92
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:24
 msgid "Line State"
 msgstr "线路状态"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:39
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:94
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:26
 msgid "Line Uptime"
 msgstr "线路运行时间"
 
@@ -4963,7 +5018,7 @@ msgstr "退出"
 msgid "Loose filtering"
 msgstr "宽松过滤"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:66
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:144
 msgid "Loss of Signal Seconds (LOSS)"
 msgstr "信号丢失秒数（LOSS）"
 
@@ -5079,7 +5134,7 @@ msgstr "管理帧保护"
 
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:122
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:115
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:53
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:68
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:98
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:84
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:58
@@ -5098,10 +5153,6 @@ msgstr "匹配标签"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:834
 msgid "Max <abbr title=\"Router Advertisement\">RA</abbr> interval"
 msgstr "最长 <abbr title=\"路由器通告\">RA</abbr> 间隔"
-
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:44
-msgid "Max. Attainable Data Rate (ATTNDR)"
-msgstr "最大可达数据速率（ATTNDR）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:566
 msgid "Max. DHCP leases"
@@ -5258,13 +5309,13 @@ msgstr "跃点数"
 msgid "Min <abbr title=\"Router Advertisement\">RA</abbr> interval"
 msgstr "最短 <abbr title=\"路由器通告\">RA</abbr> 间隔"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:45
-msgid "Min. Error-Free Throughput (MINEFTR)"
-msgstr "分钟 无错误吞吐量 (MINEFTR)"
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:771
 msgid "Minimum ARP validity time"
 msgstr "最小 ARP 有效时间"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:113
+msgid "Minimum Error-Free Throughput (MINEFTR)"
+msgstr "最小无错误吞吐量 (MINEFTR)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:594
 msgid "Minimum cache TTL"
@@ -5317,11 +5368,11 @@ msgstr "模式"
 msgid "Model"
 msgstr "型号"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:85
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:102
 msgid "Modem Chipset"
 msgstr "调制解调器芯片组"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:86
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:103
 msgid "Modem Firmware"
 msgstr "调制解调器固件"
 
@@ -5801,9 +5852,17 @@ msgstr "未指定区域"
 msgid "Noise"
 msgstr "噪声"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:59
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:30
+msgid "Noise Margin"
+msgstr "噪声容限"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:133
 msgid "Noise Margin (SNRM)"
 msgstr "噪声容限（SNRM）"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:122
+msgid "Noise Protection"
+msgstr "噪音防护"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/wireless.js:272
 msgid "Noise:"
@@ -5904,7 +5963,7 @@ msgstr "混淆密码"
 
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:118
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:111
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:64
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:94
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:80
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:54
@@ -5929,6 +5988,10 @@ msgstr "开"
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/timer.js:12
 msgid "On-State Delay"
 msgstr "通电时间"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:116
+msgid "On-line Reconfiguration"
+msgstr "在线重新配置"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:109
 msgid "On-link"
@@ -6222,7 +6285,7 @@ msgstr "覆盖 IPv6 路由表"
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:53
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:146
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:197
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:57
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:72
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:132
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:118
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:96
@@ -6299,7 +6362,7 @@ msgstr "PAP/CHAP（均使用）"
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:87
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:120
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:107
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:45
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:46
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:90
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:76
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:44
@@ -6313,7 +6376,7 @@ msgstr "PAP/CHAP 密码"
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:82
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:115
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:105
-#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:43
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:44
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:88
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:74
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:42
@@ -6386,16 +6449,20 @@ msgstr "PSID 偏移"
 msgid "PSID-bits length"
 msgstr "PSID-bits 长度"
 
+#: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:49
+msgid "PSK"
+msgstr "PSK 预共享密钥"
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:571
 msgctxt "Label indicating that WireGuard peer uses a PSK"
 msgid "PSK"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:76
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:158
 msgid "PTM Non Pre-emptive CRC Errors (CRC-P)"
 msgstr "非抢占 CRC 错误 (CRC-P)"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:77
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:159
 msgid "PTM Pre-emptive CRC Errors (CRCP-P)"
 msgstr "抢占式 CRC 错误 (CRCP-P)"
 
@@ -6674,7 +6741,7 @@ msgstr "端口状态："
 msgid "Potential negation of: %s"
 msgstr "可能存在的冲突：%s"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:90
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:96
 msgid "Power Management Mode"
 msgstr "电源管理模式"
 
@@ -6946,7 +7013,7 @@ msgstr "无线电资源测量 - 发送信标以协助漫游。并非所有客户
 msgid "Radio access technology for the device"
 msgstr "设备的无线接入技术"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:49
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:119
 msgid "Rate Adaptation Mode"
 msgstr "速率适配模式"
 
@@ -7311,11 +7378,15 @@ msgstr "恢复"
 msgid "Restore backup"
 msgstr "恢复配置"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:54
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:126
 msgid "Retransmission (G.INP)"
 msgstr "重传 (G.INP)"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:80
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:162
+msgid "Retransmission Counters"
+msgstr "重传计数器"
+
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:164
 msgid "Retransmitted DTUs (rtx-tx)"
 msgstr "重传的 DTUs (rtx-tx)"
 
@@ -7549,7 +7620,7 @@ msgstr "扫描"
 msgid "Scheduled Tasks"
 msgstr "计划任务"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:68
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:146
 msgid "Seconds with Low Error-Free Throughput (LEFTRS)"
 msgstr "秒级低无错误吞吐量 (LEFTRS)"
 
@@ -7686,7 +7757,7 @@ msgstr "设置操作模式失败"
 msgid "Setup routes for proxied IPv6 neighbours."
 msgstr "设置已代理 IPv6 邻居的路由。"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:65
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:143
 msgid "Severely Errored Seconds (SES)"
 msgstr "严重误码秒（SES）"
 
@@ -7731,7 +7802,7 @@ msgstr "信号"
 msgid "Signal / Noise"
 msgstr "信号/噪声"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:58
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:132
 msgid "Signal Attenuation (SATN)"
 msgstr "信号衰减（SATN）"
 
@@ -8033,6 +8104,10 @@ msgstr "指定缓存的 DNS 条目的最小 TTL 值。"
 msgid "Specify time-to-live in seconds for maximum TTL to send to clients."
 msgstr "指定要发送给客户端的最大 TTL 值。"
 
+#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:23
+msgid "Spectrum"
+msgstr "光谱"
+
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js:199
 msgid "Speed: %d Mibit/s, Duplex: %s"
 msgstr "速度：%d Mibit/s，双工：%s"
@@ -8104,6 +8179,10 @@ msgid ""
 msgstr ""
 "静态租约用于给 DHCP 客户端分配固定的 IP 地址和主机标识。只有指定的主机才能连"
 "接，并且接口须为非动态配置。"
+
+#: modules/luci-mod-dsl/root/usr/share/luci/menu.d/luci-mod-dsl.json:14
+msgid "Stats"
+msgstr "统计数据"
 
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:16
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:557
@@ -9148,7 +9227,7 @@ msgstr "无法保存内容：%s"
 msgid "Unable to verify PIN"
 msgstr "无法验证 PIN"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:67
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:145
 msgid "Unavailable Seconds (UAS)"
 msgstr "不可用秒数（UAS）"
 
@@ -9156,7 +9235,7 @@ msgstr "不可用秒数（UAS）"
 msgid "Unconfigure"
 msgstr "取消配置"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:82
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:166
 msgid "Uncorrected DTUs (rtx-uc)"
 msgstr "未校正的 DTUs (rtx-uc)"
 
@@ -10216,13 +10295,13 @@ msgstr "无"
 msgid "not present"
 msgstr "不存在"
 
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:14
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:966
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:970
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:13
 msgid "off"
 msgstr "关"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:13
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:14
 msgid "on"
 msgstr "开"
 
@@ -10241,7 +10320,7 @@ msgstr "输出"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:28
 msgid "over a day ago"
-msgstr "一天多以前"
+msgstr "一天以前"
 
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:260
 msgid "positive decimal value"
@@ -10521,7 +10600,7 @@ msgstr "值至多为 %d 个字符"
 msgid "vlan<XXX>"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:87
+#: modules/luci-mod-dsl/htdocs/luci-static/resources/view/status/dsl/stats.js:104
 msgid "xTU-C Vendor ID"
 msgstr "xTU-C 供应商 ID"
 

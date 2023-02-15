@@ -10,7 +10,8 @@
 				"/usr/libexec/luci-peeraddr": [ "exec" ],
 				"/usr/lib/opkg/info/netifd.control": [ "read" ],
 				"/proc/sys/net/ipv[46]/conf/*": [ "read" ],
-				"/sys/class/net/*/brport/*": [ "read" ]
+				"/sys/class/net/*/brport/*": [ "read" ],
+				"/etc/xl2tpd/xl2tp-secrets": [ "read" ]
 			},
 			"ubus": {
 				"file": [ "exec" ],
@@ -24,7 +25,8 @@
 			"file": {
 				"/sbin/ifup": [ "exec" ],
 				"/sbin/ifdown": [ "exec" ],
-				"/sbin/wifi": [ "exec" ]
+				"/sbin/wifi": [ "exec" ],
+				"/etc/xl2tpd/xl2tp-secrets": [ "write" ]
 			},
 			"ubus": {
 				"file": [ "exec" ],
