@@ -263,6 +263,7 @@ return view.extend({
 		s.tab('hosts', _('Hostnames'));
 		s.tab('srvhosts', _('SRV'));
 		s.tab('mxhosts', _('MX'));
+		s.tab('txtrecords', _('TXT'));
 		s.tab('ipsets', _('IP sets'));
 		s.tab('template', _('Edit configuration'));
 
@@ -776,6 +777,24 @@ return view.extend({
 		so.rmempty = true;
 		so.datatype = 'range(0,65535)';
 		so.placeholder = '0';
+
+		o = s.taboption('txtrecords', form.SectionValue, '__txtrecords__', form.TableSection, 'txtrecord', null,
+			_('Bind TXT records to a domain name: specify the location of services.')
+			 + '<br />' + _('You may add multiple records for the same domain.'));
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.anonymous = true;
+		ss.sortable  = true;
+		ss.rowcolors = true;
+
+		so = ss.option(form.Value, 'name', _('Name'), _('domain name'));
+		so.rmempty = false;
+		so.placeholder = 'dk._domainkey.<DOMAINNAME>';
+
+		so = ss.option(form.DynamicList, 'text', _('TXT'), _('TXT DNS record'));
+		so.rmempty = false;
+		so.placeholder = 'k=rsa; p=<KEY>';
 
 		o = s.taboption('hosts', form.SectionValue, '__hosts__', form.GridSection, 'domain', null,
 			_('Hostnames are used to bind a domain name to an IP address. This setting is redundant for hostnames already configured with static leases, but it can be useful to rebind an FQDN.'));
