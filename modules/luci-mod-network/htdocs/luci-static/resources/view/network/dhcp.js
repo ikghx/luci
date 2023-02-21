@@ -754,7 +754,7 @@ return view.extend({
 		so.placeholder = '50';
 
 		o = s.taboption('mxhosts', form.SectionValue, '__mxhosts__', form.TableSection, 'mxhost', null,
-			_('Bind service records to a domain name: specify the location of services.')
+			_('Bind MX records to a domain name.')
 			 + '<br />' + _('You may add multiple records for the same domain.'));
 
 		ss = o.subsection;
@@ -779,7 +779,7 @@ return view.extend({
 		so.placeholder = '0';
 
 		o = s.taboption('txtrecords', form.SectionValue, '__txtrecords__', form.TableSection, 'txtrecord', null,
-			_('Bind TXT records to a domain name: specify the location of services.')
+			_('Bind TXT records to a domain name.')
 			 + '<br />' + _('You may add multiple records for the same domain.'));
 
 		ss = o.subsection;
