@@ -9,6 +9,8 @@ LUCI_DEPENDS:=@(aarch64||arm||x86_64) \
 	+dockerd \
 	+ttyd \
 	+cgroupfs-mount \
+	+iptables-mod-ipvs \
+	+iptables-mod-state \
 	+kmod-crypto-ctr \
 	+kmod-crypto-gcm \
 	+kmod-dummy \

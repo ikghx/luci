@@ -361,15 +361,15 @@
 			if ( x && x.status == 200 ) {
 				if ( status.corever != "0" ) {
 					if (type == "Dev") {
-						url1='https://raw.githubusercontent.com/vernesong/OpenClash/'+r+'/core-lateset/dev/clash-'+status.corever+'.tar.gz';
+						url1='https://raw.githubusercontent.com/vernesong/OpenClash/core/'+r+'/dev/clash-'+status.corever+'.tar.gz';
 						window.location.href=url1;
 					}
 					if (type == "TUN") {
 						var corelv = status.corelv;
-					var arr_core = corelv.split(",");
-					var coretunlvis = arr_core[1];
+						var arr_core = corelv.split(",");
+						var coretunlvis = arr_core[1];
 					if ( coretunlvis != "" ) {
-						url3='https://raw.githubusercontent.com/vernesong/OpenClash/'+r+'/core-lateset/premium/clash-'+status.corever+'-'+coretunlvis+'.gz';
+						url3='https://raw.githubusercontent.com/vernesong/OpenClash/core/'+r+'/premium/clash-'+status.corever+'-'+coretunlvis+'.gz';
 					window.location.href=url3;
 					}
 					else {
@@ -377,7 +377,7 @@
 					}
 					}
 					if (type == "Meta") {
-						url4='https://raw.githubusercontent.com/vernesong/OpenClash/'+r+'/core-lateset/meta/clash-'+status.corever+'.tar.gz';
+						url4='https://raw.githubusercontent.com/vernesong/OpenClash/core/'+r+'/meta/clash-'+status.corever+'.tar.gz';
 				window.location.href=url4;
 					}
 				}
