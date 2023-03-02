@@ -364,10 +364,6 @@ function uciname(val)
 	return (val:match("^[a-zA-Z0-9_]+$") ~= nil)
 end
 
-function netdevname(val)
-	return maxlength(val, 15) && val:match("^[^:/%\s]+") && val != '.' && val != '..'
-end
-
 function range(val, min, max)
 	val = tonumber(val)
 	min = tonumber(min)

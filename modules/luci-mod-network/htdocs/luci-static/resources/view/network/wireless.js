@@ -1162,7 +1162,7 @@ return view.extend({
 
 					o = ss.taboption('advanced', form.Value, 'ifname', _('Interface name'), _('Override the default wireless interface name.'));
 					o.optional = true;
-					o.datatype = 'netdevname';
+					o.datatype = 'maxlength(15)';
 					o.placeholder = radioNet.getIfname();
 					if (/^radio\d+\.network/.test(o.placeholder))
 						o.placeholder = '';
