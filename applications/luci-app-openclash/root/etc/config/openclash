@@ -29,8 +29,6 @@ config openclash 'config'
 	option china_ip_route '0'
 	option enable_rule_proxy '0'
 	option redirect_dns '0'
-	option other_rule_update_week_time '*'
-	option other_rule_update_day_time '0'
 	option geo_auto_update '0'
 	option geo_update_week_time '*'
 	option geo_update_day_time '0'
@@ -75,6 +73,15 @@ config openclash 'config'
 	option chnr_custom_url 'https://ispip.clang.cn/all_cn.txt'
 	option chnr6_custom_url 'https://ispip.clang.cn/all_cn_ipv6.txt'
 	option mix_proxies '0'
+	option enable_custom_domain_dns_server '0'
+	option fakeip_range '0'
+	option find_process_mode '0'
+	option global_client_fingerprint '0'
+	option enable_meta_sniffer '1'
+	option enable_meta_sniffer_pure_ip '1'
+	option enable_meta_sniffer_custom '0'
+	option geodata_loader '0'
+	option enable_geoip_dat '0'
 
 config dns_servers
 	option group 'nameserver'
@@ -126,6 +133,12 @@ config dns_servers
 
 config dns_servers
 	option group 'fallback'
+	option ip '208.67.222.222/dns-query'
+	option type 'https'
+	option enabled '1'
+
+config dns_servers
+	option group 'fallback'
 	option ip '8.8.8.8/dns-query'
 	option type 'https'
 	option enabled '1'
@@ -134,19 +147,19 @@ config dns_servers
 	option group 'fallback'
 	option ip 'cloudflare-dns.com/dns-query'
 	option type 'https'
-	option enabled '1'
+	option enabled '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip 'doh.opendns.com/dns-query'
 	option type 'https'
-	option enabled '1'
+	option enabled '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip 'dns.google/dns-query'
 	option type 'https'
-	option enabled '1'
+	option enabled '0'
 
 config dns_servers
 	option type 'udp'
