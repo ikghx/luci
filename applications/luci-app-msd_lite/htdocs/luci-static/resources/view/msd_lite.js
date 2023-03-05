@@ -60,6 +60,11 @@ return view.extend({
 		o.datatype = 'uinteger';
 		o.default = '2';
 
+		o = s.option(form.Value, 'rejoin_time', _('IGMP/MLD rejoin time (sec)'),
+			_('Do IGMP/MLD leave+join every X seconds. Leave <em>0</em> to disable.'));
+		o.datatype = 'uinteger';
+		o.default = '0';
+
 		return m.render();
 	}
 });
