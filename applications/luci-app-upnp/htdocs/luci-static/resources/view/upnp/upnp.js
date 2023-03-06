@@ -177,7 +177,7 @@ return view.extend({
 		o = s.taboption('advanced', form.Value, 'stun_host', _('STUN Host'))
 		o.depends('use_stun', '1');
 		o.datatype    = 'host'
-		o.value('stun.stunprotocol.org')
+		o.value('stunserver.stunprotocol.org')
 		o.value('stun.syncthing.net')
 		o.value('stun.qq.com')
 		o.value('stun.miwifi.com')
