@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for ChinaDNS-NG.
-LUCI_DEPENDS:=+luci-compat +chinadns-ng
+LUCI_DEPENDS:=+chinadns-ng
 LUCI_PKGARCH:=all
 PKG_VERSION:=1.0
 PKG_RELEASE:=1
