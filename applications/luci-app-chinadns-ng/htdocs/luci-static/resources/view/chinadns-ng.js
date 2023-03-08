@@ -1,9 +1,11 @@
 'use strict';
 'require view';
 'require form';
+'require fs';
 'require poll';
 'require rpc';
 'require uci';
+'require ui';
 
 var callServiceList = rpc.declare({
 	object: 'service',
@@ -36,6 +38,15 @@ function renderStatus(isRunning) {
 }
 
 return view.extend({
+
+	handleupdata: function(m, section_id, ev) {
+		return fs.exec('/etc/chinadns-ng/up_data.sh',
+					[ '-S', section_id, '--', 'start' ])
+		.then(L.bind(m.load, m))
+		.then(L.bind(m.render, m))
+		.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
+	},
+
 	load: function() {
 		return Promise.all([
 			uci.load('chinadns-ng')
@@ -121,15 +132,21 @@ return view.extend({
 
 		o = s.option(form.Value, 'gfwlist_file', _('Blacklist domain name file'),
 		_('The domain names in this file only use trusted DNS queries.'));
-		o.placeholder = '/etc/chinadns-ng/gfwlist';
+		o.placeholder = '/etc/chinadns-ng/proxy-list.txt';
 		o.datatype = 'file';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'chnlist_file', _('Whitelist domain name files'),
 		_('The domain names in this file only use china DNS queries.'));
-		o.placeholder = '/etc/chinadns-ng/chnlist';
+		o.placeholder = '/etc/chinadns-ng/direct-list.txt';
 		o.datatype = 'file';
 		o.rmempty = false;
+
+		o = s.option(form.Button, '_start');
+		o.title      = '&#160;';
+		o.inputtitle = _('Update domain name files');
+		o.inputstyle = 'apply';
+		o.onclick = L.bind(this.handleupdata, this, m);
 
 		o = s.option(form.Value, 'timeout_sec', _('Upstream DNS timeout (seconds)'));
 		o.placeholder = '3';
