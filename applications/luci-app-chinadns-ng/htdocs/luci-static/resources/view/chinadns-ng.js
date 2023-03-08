@@ -106,10 +106,6 @@ return view.extend({
 		_('Priority matching China website list, default priority matching gfwlist.'));
 		o.rmempty = false;
 
-		o = s.option(form.Flag, 'fair_mode', _('Fair model'),
-		_('If a trusted DNS response is returned first, this option should be enabled.'));
-		o.rmempty = false;
-
 		o = s.option(form.Flag, 'noip_as_chnip', _('Accept response without IP'),
 		_('Accept reply with qtype of A/AAAA but no IP.'));
 		o.rmempty = false;

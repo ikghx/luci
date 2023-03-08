@@ -1155,7 +1155,7 @@ start_dns() {
 			noipv6="-N=gt"
 			DNSMASQ_FILTER_IPV6=0
 		}
-		ln_run "$(first_type chinadns-ng)" chinadns-ng "$log_path" -v -b 0.0.0.0 -l "${china_ng_listen_port}" ${china_ng_chn:+-c "${china_ng_chn}"} ${chnlist_param} ${china_ng_gfw:+-t "${china_ng_gfw}"} ${gfwlist_param:+-g "${gfwlist_param}"} -f ${noipv6}
+		ln_run "$(first_type chinadns-ng)" chinadns-ng "$log_path" -v -b 0.0.0.0 -l "${china_ng_listen_port}" ${china_ng_chn:+-c "${china_ng_chn}"} ${chnlist_param} ${china_ng_gfw:+-t "${china_ng_gfw}"} ${gfwlist_param:+-g "${gfwlist_param}"} ${noipv6}
 		echolog "  + 过滤服务：ChinaDNS-NG(:${china_ng_listen_port})：国内DNS：${china_ng_chn}，可信DNS：${china_ng_gfw}"
 	}
 	
@@ -1413,7 +1413,7 @@ acl_app() {
 									local _china_ng_noipv6="-N=gt"
 									_dnsmasq_filter_ipv6=0
 								}
-								ln_run "$(first_type chinadns-ng)" chinadns-ng "$_china_ng_log_file" -v -b 0.0.0.0 -l "${chinadns_port}" ${_china_ng_chn:+-c "${_china_ng_chn}"} ${_chnlist_param} ${_china_ng_gfw:+-t "${_china_ng_gfw}"} ${_gfwlist_param:+-g "${_gfwlist_param}"} -f ${_china_ng_noipv6}
+								ln_run "$(first_type chinadns-ng)" chinadns-ng "$_china_ng_log_file" -v -b 0.0.0.0 -l "${chinadns_port}" ${_china_ng_chn:+-c "${_china_ng_chn}"} ${_chnlist_param} ${_china_ng_gfw:+-t "${_china_ng_gfw}"} ${_gfwlist_param:+-g "${_gfwlist_param}"} ${_china_ng_noipv6}
 							}
 
 							dnsmasq_port=$(get_new_port $(expr $dnsmasq_port + 1))
