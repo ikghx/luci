@@ -14,11 +14,6 @@ dns:
   bind_hosts:
     - 0.0.0.0
   port: 5334
-  statistics_interval: 1
-  querylog_enabled: true
-  querylog_file_enabled: true
-  querylog_interval: 168h
-  querylog_size_memory: 1000
   anonymize_client_ip: false
   protection_enabled: true
   blocking_mode: default
@@ -57,7 +52,10 @@ dns:
   bogus_nxdomain: []
   aaaa_disabled: false
   enable_dnssec: false
-  edns_client_subnet: false
+  edns_client_subnet:
+    custom_ip: ""
+    enabled: false
+    use_custom: false
   max_goroutines: 300
   handle_ddr: true
   ipset: []
@@ -96,6 +94,16 @@ tls:
   certificate_path: ""
   private_key_path: ""
   strict_sni_check: false
+querylog:
+  enabled: true
+  file_enabled: true
+  interval: 168h
+  size_memory: 1000
+  ignored: []
+statistics:
+  enabled: true
+  interval: 1
+  ignored: []
 filters:
   - enabled: false
     url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
@@ -143,4 +151,4 @@ os:
   group: ""
   user: ""
   rlimit_nofile: 0
-schema_version: 14
+schema_version: 17
