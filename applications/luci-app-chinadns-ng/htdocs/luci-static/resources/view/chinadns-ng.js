@@ -91,7 +91,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'china_dns', _('China DNS'));
-		o.placeholder = '119.29.29.29,223.5.5.5';
+		o.placeholder = '127.0.0.1#5336';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'trust_dns', _('Trust DNS'));
@@ -120,29 +120,32 @@ return view.extend({
 
 		o = s.option(form.Value, 'ipset_name4', _('The name of the China IPv4 ipset collection'));
 		o.placeholder = 'chnroute';
-		o.rmempty = false;
 
 		o = s.option(form.Value, 'ipset_name6', _('The name of the China IPv6 ipset collection'));
 		o.placeholder = 'chnroute6';
-		o.rmempty = false;
 
 		o = s.option(form.Value, 'gfwlist_file', _('Blacklist domain name file'),
 		_('The domain names in this file only use trusted DNS queries.'));
 		o.placeholder = '/etc/chinadns-ng/proxy-list.txt';
 		o.datatype = 'file';
-		o.rmempty = false;
 
 		o = s.option(form.Value, 'chnlist_file', _('Whitelist domain name files'),
 		_('The domain names in this file only use china DNS queries.'));
 		o.placeholder = '/etc/chinadns-ng/direct-list.txt';
 		o.datatype = 'file';
-		o.rmempty = false;
 
 		o = s.option(form.Button, '_start');
 		o.title      = '&#160;';
 		o.inputtitle = _('Update domain name files');
 		o.inputstyle = 'apply';
 		o.onclick = L.bind(this.handleupdata, this, m);
+
+		o = s.option(form.Value, 'default_tag', _('domain default tag'),
+		_('Default tag for domains not included in the domains file.'));
+		o.value('none', _('none'));
+		o.value('chn');
+		o.value('gfw');
+		o.rmempty = false;
 
 		o = s.option(form.Value, 'timeout_sec', _('Upstream DNS timeout (seconds)'));
 		o.placeholder = '3';
