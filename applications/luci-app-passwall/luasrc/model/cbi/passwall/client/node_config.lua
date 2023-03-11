@@ -195,7 +195,7 @@ domainStrategy = s:option(ListValue, "domainStrategy", translate("Domain Strateg
 domainStrategy:value("AsIs")
 domainStrategy:value("IPIfNonMatch")
 domainStrategy:value("IPOnDemand")
-domainStrategy.default = "IPOnDemand"
+domainStrategy.default = "IPIfNonMatch"
 domainStrategy.description = "<br /><ul><li>" .. translate("'AsIs': Only use domain for routing. Default value.")
 .. "</li><li>" .. translate("'IPIfNonMatch': When no rule matches current domain, resolves it into IP addresses (A or AAAA records) and try all rules again.")
 .. "</li><li>" .. translate("'IPOnDemand': As long as there is a IP-based rule, resolves the domain into IP immediately.")
