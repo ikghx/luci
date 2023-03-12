@@ -5,8 +5,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-openclash
-PKG_VERSION:=0.45.101
-PKG_RELEASE:=2
+PKG_VERSION:=0.45.102
+PKG_RELEASE:=1
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
 LUCI_TITLE:=LuCI support for clash
@@ -77,7 +77,6 @@ define Package/$(PKG_NAME)/postrm
 	uci -q commit firewall
 	uci -q delete ucitrack.@openclash[-1]
 	uci -q commit ucitrack
-	rm -rf /tmp/luci-*
 	exit 0
 endef
 
