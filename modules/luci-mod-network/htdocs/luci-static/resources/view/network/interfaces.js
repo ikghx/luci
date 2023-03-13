@@ -696,7 +696,10 @@ return view.extend({
 						so.optional = true;
 						so.default = '12h';
 
-						so = ss.taboption('advanced', form.Flag, 'dynamicdhcp', _('Dynamic <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>'), _('Dynamically allocate DHCP addresses for clients. If disabled, only clients having static leases will be served.'));
+						so = ss.taboption('advanced', form.Flag, 'dynamicdhcpv4', _('Dynamic <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>v4'), _('Dynamically allocate DHCPv4 addresses for clients. If disabled, only clients having static leases will be served.'));
+						so.default = so.enabled;
+
+						so = ss.taboption('advanced', form.Flag, 'dynamicdhcpv6', _('Dynamic <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>v6'), _('Dynamically allocate DHCPv6 addresses for clients. If disabled, only clients having static leases will be served.'));
 						so.default = so.enabled;
 
 						ss.taboption('advanced', form.Flag, 'force', _('Force'), _('Force DHCP on this network even if another server is detected.'));
