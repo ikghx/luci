@@ -112,11 +112,11 @@ update_rss_rules() {
 	
 update_rules() {
 		 echo $(date "+%F %T"): ------------------- 内置规则更新 ------------------- >>$LOGFILE
-		 $WGET --no-check-certificate 'https://cdn.jsdelivr.net/gh/project-lede/koolproxy@main/rules/kp.dat' -q -O $KP_DIR/data/rules/kp.dat
-            	 $WGET --no-check-certificate 'https://cdn.jsdelivr.net/gh/project-lede/koolproxy@main/rules/daily.txt' -q -O $KP_DIR/data/rules/daily.txt
-		 $WGET --no-check-certificate 'https://cdn.jsdelivr.net/gh/project-lede/koolproxy@main/rules/koolproxy.txt' -q -O $KP_DIR/data/rules/koolproxy.txt
-		 $WGET --no-check-certificate 'https://secure.fanboy.co.nz/fanboy-annoyance.txt' -q -O $KP_DIR/data/rules/fanboy.txt
-		 $WGET --no-check-certificate 'https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt' -q -O- | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > $KP_DIR/dnsmasq.adblock
+		 $WGET 'https://cdn.jsdelivr.net/gh/project-lede/koolproxy@main/rules/kp.dat' -q -O $KP_DIR/data/rules/kp.dat
+            	 $WGET 'https://cdn.jsdelivr.net/gh/project-lede/koolproxy@main/rules/daily.txt' -q -O $KP_DIR/data/rules/daily.txt
+		 $WGET 'https://cdn.jsdelivr.net/gh/project-lede/koolproxy@main/rules/koolproxy.txt' -q -O $KP_DIR/data/rules/koolproxy.txt
+		 $WGET 'https://secure.fanboy.co.nz/fanboy-annoyance.txt' -q -O $KP_DIR/data/rules/fanboy.txt
+		 $WGET 'https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt' -q -O- | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > $KP_DIR/dnsmasq.adblock
 		 fanboy_rules_local=`cat /usr/share/koolproxy/data/rules/fanboy.txt  | sed -n '3p'|awk '{print $3,$4}'`
 		 koolproxy_rules_local=`cat /usr/share/koolproxy/data/rules/koolproxy.txt  | sed -n '3p'|awk '{print $3,$4}'`
 		 echo $(date "+%F %T"): -------------------Fanboy规则 version $fanboy_rules_local >>$LOGFILE
