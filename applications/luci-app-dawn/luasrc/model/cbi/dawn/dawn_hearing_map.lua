@@ -38,11 +38,12 @@ function s.render(self, sid)
 							local mac2, data2
 							local count_loop = 0
 							for mac2, data2 in pairs(data) do
+								if data2.freq ~= 0 then --prevent empty entry crashes
 					%>
 						<tr class="tr">
 							<td class="td"><%= (count_loop == 0) and mac or "" %></td>
 							<td class="td"><%= mac2 %></td>
-							<td class="td"><%= "%.3f" %( data2.freq / 1000 ) %> GHz Channel: <%= "%s" %( status.frequency_to_channel(data2.freq) ) %></td>
+							<td class="td"><%= "%.3f" %( data2.freq / 1000 ) %> GHz Channel: <%= "%d" %( status.frequency_to_channel(data2.freq) ) %></td>
 							<td class="td"><%= (data2.ht_capabilities == true and data2.ht_support == true) and "True" or "False" %></td>
 							<td class="td"><%= (data2.vht_capabilities == true and data2.vht_support == true) and "True" or "False" %></td>
 							<td class="td"><%= "%d" % data2.signal %></td>
@@ -53,7 +54,8 @@ function s.render(self, sid)
 							<td class="td"><%= "%d" % data2.score %></td>
 						</tr>
 					<%
-								count_loop = count_loop + 1
+									count_loop = count_loop + 1
+								end
 							end
 						end
 					%>
