@@ -8,11 +8,6 @@ local ucic = luci.model.uci.cursor()
 local http = require "luci.http"
 local util = require "luci.util"
 local i18n = require "luci.i18n"
-local brook = require("luci.passwall.brook")
-local v2ray = require("luci.passwall.v2ray")
-local xray = require("luci.passwall.xray")
-local trojan_go = require("luci.passwall.trojan_go")
-local hysteria = require("luci.passwall.hysteria")
 
 function index()
 	appname = require "luci.passwall.api".appname
@@ -70,16 +65,14 @@ function index()
 	entry({"admin", "vpn", appname, "clear_all_nodes"}, call("clear_all_nodes")).leaf = true
 	entry({"admin", "vpn", appname, "delete_select_nodes"}, call("delete_select_nodes")).leaf = true
 	entry({"admin", "vpn", appname, "update_rules"}, call("update_rules")).leaf = true
-	entry({"admin", "vpn", appname, "brook_check"}, call("brook_check")).leaf = true
-	entry({"admin", "vpn", appname, "brook_update"}, call("brook_update")).leaf = true
-	entry({"admin", "vpn", appname, "v2ray_check"}, call("v2ray_check")).leaf = true
-	entry({"admin", "vpn", appname, "v2ray_update"}, call("v2ray_update")).leaf = true
-	entry({"admin", "vpn", appname, "xray_check"}, call("xray_check")).leaf = true
-	entry({"admin", "vpn", appname, "xray_update"}, call("xray_update")).leaf = true
-	entry({"admin", "vpn", appname, "trojan_go_check"}, call("trojan_go_check")).leaf = true
-	entry({"admin", "vpn", appname, "trojan_go_update"}, call("trojan_go_update")).leaf = true
-	entry({"admin", "vpn", appname, "hysteria_check"}, call("hysteria_check")).leaf = true
-	entry({"admin", "vpn", appname, "hysteria_update"}, call("hysteria_update")).leaf = true
+
+	--[[Components update]]
+	local coms = require "luci.passwall.com"
+	local com
+	for com, _ in pairs(coms) do
+		entry({"admin", "vpn", appname, "check_" .. com}, call("com_check", com)).leaf = true
+		entry({"admin", "vpn", appname, "update_" .. com}, call("com_update", com)).leaf = true
+	end
 end
 
 local function http_write_json(content)
@@ -408,94 +401,21 @@ function server_clear_log()
 	luci.sys.call("echo '' > /tmp/log/passwall_server.log")
 end
 
-function brook_check()
-	local json = brook.to_check("")
+function com_check(comname)
+	local json = api.to_check("",comname)
 	http_write_json(json)
 end
 
-function brook_update()
-	local json = nil
-	local task = http.formvalue("task")
-	if task == "move" then
-		json = brook.to_move(http.formvalue("file"))
-	else
-		json = brook.to_download(http.formvalue("url"), http.formvalue("size"))
-	end
-
-	http_write_json(json)
-end
-
-function v2ray_check()
-	local json = v2ray.to_check("")
-	http_write_json(json)
-end
-
-function v2ray_update()
+function com_update(comname)
 	local json = nil
 	local task = http.formvalue("task")
 	if task == "extract" then
-		json = v2ray.to_extract(http.formvalue("file"), http.formvalue("subfix"))
+		json = api.to_extract(comname, http.formvalue("file"), http.formvalue("subfix"))
 	elseif task == "move" then
-		json = v2ray.to_move(http.formvalue("file"))
+		json = api.to_move(comname, http.formvalue("file"))
 	else
-		json = v2ray.to_download(http.formvalue("url"), http.formvalue("size"))
+		json = api.to_download(comname, http.formvalue("url"), http.formvalue("size"))
 	end
 
 	http_write_json(json)
 end
-
-function xray_check()
-	local json = xray.to_check("")
-	http_write_json(json)
-end
-
-function xray_update()
-	local json = nil
-	local task = http.formvalue("task")
-	if task == "extract" then
-		json = xray.to_extract(http.formvalue("file"), http.formvalue("subfix"))
-	elseif task == "move" then
-		json = xray.to_move(http.formvalue("file"))
-	else
-		json = xray.to_download(http.formvalue("url"), http.formvalue("size"))
-	end
-
-	http_write_json(json)
-end
-
-function trojan_go_check()
-	local json = trojan_go.to_check("")
-	http_write_json(json)
-end
-
-function trojan_go_update()
-	local json = nil
-	local task = http.formvalue("task")
-	if task == "extract" then
-		json = trojan_go.to_extract(http.formvalue("file"), http.formvalue("subfix"))
-	elseif task == "move" then
-		json = trojan_go.to_move(http.formvalue("file"))
-	else
-		json = trojan_go.to_download(http.formvalue("url"), http.formvalue("size"))
-	end
-
-	http_write_json(json)
-end
-
-function hysteria_check()
-	local json = hysteria.to_check("")
-	http_write_json(json)
-end
-
-function hysteria_update()
-	local json = nil
-	local task = http.formvalue("task")
-	if task == "move" then
-		json = hysteria.to_move(http.formvalue("file"))
-	else
-		json = hysteria.to_download(http.formvalue("url"), http.formvalue("size"))
-	end
-
-	http_write_json(json)
-end
-
