@@ -154,7 +154,7 @@ start_service() {
 			ipset=/clientlog.music.163.com/neteasemusic
 			ipset=/clientlog3.music.163.com/neteasemusic
 		EOF
-		/etc/init.d/dnsmasq reload 2>"/dev/null"
+		/etc/init.d/dnsmasq restart 2>"/dev/null"
 
 		ipset create "acl_neteasemusic_http" hash:ip
 		ipset create "acl_neteasemusic_https" hash:ip
@@ -189,7 +189,7 @@ start_service() {
 			address=/clientlog3.music.163.com/${lan_addr}
 			address=/music.httpdns.c.163.com/0.0.0.0
 		EOF
-		/etc/init.d/dnsmasq reload 2>"/dev/null"
+		/etc/init.d/dnsmasq restart 2>"/dev/null"
 
 		ip route add "223.252.199.10" dev lo
 	fi
@@ -224,18 +224,18 @@ stop_service() {
 	echo > "$RUN_DIR/fw3.include"
 
 	rm -f "/tmp/dnsmasq.d/dnsmasq-$NAME.conf"
-	/etc/init.d/dnsmasq reload 2>"/dev/null"
+	/etc/init.d/dnsmasq restart 2>"/dev/null"
 
 	ip route del "223.252.199.10" 2>"/dev/null"
 
 	rm -f "$RUN_DIR/run.log"
 }
 
-reload_service() {
+restart_service() {
 	stop
 	start
 }
 
 service_triggers() {
-	procd_add_reload_trigger "$NAME"
+	procd_add_restart_trigger "$NAME"
 }
