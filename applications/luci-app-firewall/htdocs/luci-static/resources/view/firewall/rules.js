@@ -37,7 +37,7 @@ function rule_proto_txt(s, ctHelpers) {
 		mask: m[3] ? '0x%02X'.format(+m[3]) : null
 	} : null;
 
-	m = String(uci.get('firewall', s, 'dscp')).match(/^(!\s*)?(?:(CS[0-7]|BE|AF[1234][123]|EF)|(0x[0-9a-f]{1,2}|[0-9]{1,2}))$/);
+	m = String(uci.get('firewall', s, 'dscp')).match(/^(!\s*)?(?:(CS[0-7]|BE|LE|AF[1234][123]|EF)|(0x[0-9a-f]{1,2}|[0-9]{1,2}))$/);
 	var d = m ? {
 		val:  m[0],
 		inv:  m[1],
