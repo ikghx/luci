@@ -383,12 +383,13 @@ return view.extend({
 		o.allowany = true;
 		o.allowlocal = 'src';
 
-		o = s.taboption('general', form.Value, 'ipset', _('Use ipset'));
-		o.modalonly = true;
-		uci.sections('firewall', 'ipset', function(data){
-			o.value(data['name'], data['name']);
+		o = s.taboption('advanced', form.Value, 'ipset', _('Use ipset'));
+		uci.sections('firewall', 'ipset', function(s) {
+			if (typeof(s.name) == 'string')
+				o.value(s.name, s.comment ? '%s (%s)'.format(s.name, s.comment) : s.name);
 		});
-		o.placeholder = _('-- select IPset --');
+		o.modalonly = true;
+		o.rmempty = true;
 
 		fwtool.addMACOption(s, 'advanced', 'src_mac', _('Source MAC address'), null, hosts);
 		fwtool.addIPOption(s, 'general', 'src_ip', _('Source address'), null, '', hosts, true);

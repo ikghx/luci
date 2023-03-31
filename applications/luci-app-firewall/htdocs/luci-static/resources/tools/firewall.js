@@ -298,7 +298,7 @@ return baseclass.extend({
 			if (!is_target)
 				value = String(value).replace(/^!\s*/, '');
 
-			var m = value.match(/^(?:CS[0-7]|BE|AF[1234][123]|EF|(0x[0-9a-f]{1,2}|[0-9]{1,2}))$/);
+			var m = value.match(/^(?:CS[0-7]|BE|LE|AF[1234][123]|EF|(0x[0-9a-f]{1,2}|[0-9]{1,2}))$/);
 
 			if (!m || (m[1] != null && +m[1] > 0x3f))
 				return _('Invalid DSCP mark');

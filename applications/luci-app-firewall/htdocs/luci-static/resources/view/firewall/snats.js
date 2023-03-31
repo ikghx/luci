@@ -235,6 +235,14 @@ return view.extend({
 		o.depends({ proto: 'tcp', '!contains': true });
 		o.depends({ proto: 'udp', '!contains': true });
 
+		o = s.taboption('advanced', form.Value, 'ipset', _('Use ipset'));
+		uci.sections('firewall', 'ipset', function(s) {
+			if (typeof(s.name) == 'string')
+				o.value(s.name, s.comment ? '%s (%s)'.format(s.name, s.comment) : s.name);
+		});
+		o.modalonly = true;
+		o.rmempty = true;
+
 		o = s.taboption('advanced', widgets.DeviceSelect, 'device', _('Outbound device'),
 			_('Matches forwarded traffic using the specified outbound network device.'));
 		o.noaliases = true;
