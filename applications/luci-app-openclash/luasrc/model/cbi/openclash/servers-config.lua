@@ -448,7 +448,7 @@ o:depends("obfs", "restls")
 o = s:option(Value, "obfs_restls_script", translate("restls-script"))
 o.rmempty = true
 o:depends("obfs", "restls")
-o.placeholder = translate("1000?100<1,500~100,350~100,600~100,400~200")
+o.placeholder = "1000?100<1,500~100,350~100,600~100,400~200"
 
 -- vmess路径
 o = s:option(Value, "path", translate("path"))
