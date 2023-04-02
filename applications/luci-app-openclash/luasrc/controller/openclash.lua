@@ -229,7 +229,7 @@ local function corecv()
 	if not nixio.fs.access(dev_core_path) then
 		return "0"
 	else
-		return luci.sys.exec(string.format("%s -v 2>/dev/null |awk -F ' ' '{print $2}'",dev_core_path))
+		return luci.sys.exec(string.format("%s -v 2>/dev/null |awk -F ' ' '{print $2}'", dev_core_path))
 	end
 end
 
@@ -237,7 +237,7 @@ local function coretuncv()
 	if not nixio.fs.access(tun_core_path) then
 		return "0"
 	else
-		return luci.sys.exec(string.format("%s -v 2>/dev/null |awk -F ' ' '{print $2}'",tun_core_path))
+		return luci.sys.exec(string.format("%s -v 2>/dev/null |awk -F ' ' '{print $2}'", tun_core_path))
 	end
 end
 
@@ -245,7 +245,7 @@ local function coremetacv()
 	if not nixio.fs.access(meta_core_path) then
 		return "0"
 	else
-		return luci.sys.exec(string.format("%s -v 2>/dev/null |awk -F ' ' '{print $3}'",meta_core_path))
+		return luci.sys.exec(string.format("%s -v 2>/dev/null |awk -F ' ' '{print $3}' |head -1", meta_core_path))
 	end
 end
 
