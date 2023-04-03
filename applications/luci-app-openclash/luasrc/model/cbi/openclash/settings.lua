@@ -238,6 +238,7 @@ o.description = translate("Only Common Ports, Prevent BT/P2P Passing")
 o:value("0", translate("Disable"))
 o:value("21 22 23 53 80 123 143 194 443 465 587 853 993 995 998 2052 2053 2082 2083 2086 2095 2096 5222 5228 5229 5230 8080 8443 8880 8888 8889", translate("Default Common Ports"))
 o.default = 0
+o.placeholder = translate("443 or 21-443, Use Space to Separate")
 o:depends("en_mode", "redir-host")
 o:depends("en_mode", "redir-host-tun")
 o:depends("en_mode", "redir-host-mix")
@@ -1080,6 +1081,27 @@ o.rawhtml = true
 o = s:taboption("ipv6", Flag, "ipv6_enable", translate("Proxy IPv6 Traffic"))
 o.description = font_red..bold_on..translate("The Gateway and DNS of The Connected Device Must be The Router IP, Disable IPv6 DHCP To Avoid Abnormal Connection If You Do Not Use")..bold_off..font_off
 o.default = 0
+
+o = s:taboption("ipv6", ListValue, "ipv6_mode", translate("IPv6 Proxy Mode"))
+o:value("0", translate("TProxy Mode"))
+o:value("1", translate("Redirect Mode"))
+o:value("2", translate("TUN Mode")..translate("(Only Meta Core)"))
+o.default = "0"
+o:depends("ipv6_enable", "1")
+
+o = s:taboption("ipv6", ListValue, "stack_type_v6", translate("Select Stack Type"))
+o.description = translate("Select Stack Type For TUN Mode, According To The Running Speed on Your Machine")
+o:depends({ipv6_mode= "2", en_mode = "redir-host"})
+o:depends({ipv6_mode= "2", en_mode = "fake-ip"})
+o:value("system", translate("System　"))
+o:value("gvisor", translate("Gvisor"))
+o.default = "system"
+
+o = s:taboption("ipv6", Flag, "enable_v6_udp_proxy", translate("Proxy UDP Traffics"))
+o.description = translate("The Servers Must Support UDP forwarding").."<br>"..font_red..bold_on..translate("If Docker is Installed, UDP May Not Forward Normally")..bold_off..font_off
+o:depends("ipv6_mode", "0")
+o:depends("ipv6_mode", "1")
+o.default = 1
 
 o = s:taboption("ipv6", Flag, "ipv6_dns", translate("IPv6 DNS Resolve"))
 o.description = translate("Enable to Resolve IPv6 DNS Requests")
