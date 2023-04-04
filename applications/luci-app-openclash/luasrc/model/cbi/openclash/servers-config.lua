@@ -336,7 +336,6 @@ o:depends("type", "ssr")
 
 -- AlterId
 o = s:option(Value, "alterId", translate("AlterId"))
-o.datatype = "port"
 o.default = "0"
 o.rmempty = true
 o:depends("type", "vmess")
