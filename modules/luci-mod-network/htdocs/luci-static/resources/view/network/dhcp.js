@@ -263,6 +263,7 @@ return view.extend({
 		s.tab('hosts', _('Hostnames'));
 		s.tab('srvhosts', _('SRV'));
 		s.tab('mxhosts', _('MX'));
+		s.tab('cnamehosts', _('CNAME'));
 		s.tab('txtrecords', _('TXT'));
 		s.tab('ipsets', _('IP sets'));
 		s.tab('template', _('Edit configuration'));
@@ -777,6 +778,25 @@ return view.extend({
 		so.rmempty = true;
 		so.datatype = 'range(0,65535)';
 		so.placeholder = '0';
+
+		o = s.taboption('cnamehosts', form.SectionValue, '__cname__', form.TableSection, 'cname', null,
+			_('Set an alias for a hostname.'));
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.anonymous = true;
+		ss.sortable  = true;
+		ss.rowcolors = true;
+
+		so = ss.option(form.Value, 'cname', _('Domain'), _('CNAME'));
+		so.rmempty = false;
+		so.datatype = 'hostname';
+		so.placeholder = 'www.example.com';
+
+		so = ss.option(form.Value, 'target', _('Target'), _('Domain'));
+		so.rmempty = false;
+		so.datatype = 'hostname';
+		so.placeholder = 'example.com';
 
 		o = s.taboption('txtrecords', form.SectionValue, '__txtrecords__', form.TableSection, 'txtrecord', null,
 			_('Bind TXT records to a domain name.')
