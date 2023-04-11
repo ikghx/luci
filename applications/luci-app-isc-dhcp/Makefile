@@ -10,7 +10,7 @@ PKG_LICENSE:=GPL-2.0-or-later
 PKG_MAINTAINER:=Jaymin Patel <jem.patel@gmail.com>
 
 LUCI_TITLE:=LuCI support for the ISC DHCP
-LUCI_DEPENDS:=+luci-base +isc-dhcp-server-ipv4 +isc-dhcp-dyndns-ipv4
+LUCI_DEPENDS:=+luci-base +isc-dhcp-dyndns
 LUCI_PKGARCH:=all
 
 include ../../luci.mk
