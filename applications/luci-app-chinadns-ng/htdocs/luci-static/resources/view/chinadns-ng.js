@@ -106,6 +106,10 @@ return view.extend({
 		_('Priority matching China website list, default priority matching gfwlist.'));
 		o.rmempty = false;
 
+		o = s.option(form.Flag, 'add_tagchn_ip', _('Add chn ip'),
+		_('Add the resolution result of chn domain name to ipset/nftset.'));
+		o.rmempty = false;
+
 		o = s.option(form.Flag, 'noip_as_chnip', _('Accept response without IP'),
 		_('Accept reply with qtype of A/AAAA but no IP.'));
 		o.rmempty = false;
@@ -125,12 +129,12 @@ return view.extend({
 		o.placeholder = 'chnroute6';
 
 		o = s.option(form.Value, 'gfwlist_file', _('Blacklist domain name file'),
-		_('The domain names in this file only use trusted DNS queries.'));
+		_('The domain names in this file only use trusted DNS queries, Multiple files are separated by commas.'));
 		o.placeholder = '/etc/chinadns-ng/proxy-list.txt';
 		o.datatype = 'file';
 
 		o = s.option(form.Value, 'chnlist_file', _('Whitelist domain name files'),
-		_('The domain names in this file only use china DNS queries.'));
+		_('The domain names in this file only use china DNS queries, Multiple files are separated by commas.'));
 		o.placeholder = '/etc/chinadns-ng/direct-list.txt';
 		o.datatype = 'file';
 
