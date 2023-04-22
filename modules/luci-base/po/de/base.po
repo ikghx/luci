@@ -631,6 +631,10 @@ msgstr ""
 msgid "Address to access local relay bridge"
 msgstr "Adresse der lokalen Relay-Brücke"
 
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid "Addresses"
+msgstr "Adressen"
+
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:3
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:15
 msgid "Administration"
@@ -740,7 +744,7 @@ msgstr ""
 "Zertifikat einzuloggen"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:624
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:56
 msgid "Allowed IPs"
 msgstr "Erlaubte IP-Adressen"
@@ -1133,7 +1137,7 @@ msgstr "Zurück zur Übersicht"
 msgid "Back to configuration"
 msgstr "Zurück zur Konfiguration"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:834
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Back to peer configuration"
 msgstr ""
 
@@ -1745,7 +1749,7 @@ msgstr "Verbindungsversuch fehlgeschlagen"
 msgid "Connection attempt failed."
 msgstr "Verbindungsversuch gescheitert"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid "Connection endpoint"
 msgstr ""
 
@@ -1913,6 +1917,14 @@ msgstr "DHCPv6-Dienst"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:49
 msgid "DNS"
 msgstr "DNS"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers"
+msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers for the tunnel. Some clients will require this to be set."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:367
 msgid "DNS filter"
@@ -3500,11 +3512,11 @@ msgstr "PMK lokal generieren"
 msgid "Generate archive"
 msgstr "Sicherung erstellen"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:819
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:846
 msgid "Generate configuration"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:859
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:886
 msgid "Generate configuration…"
 msgstr ""
 
@@ -3521,7 +3533,7 @@ msgstr ""
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:793
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:820
 msgid "Generating QR code…"
 msgstr ""
 
@@ -3866,7 +3878,13 @@ msgstr "IP-Adresse ist ungültig"
 msgid "IP address is missing"
 msgstr "IP-Adresse fehlt"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid ""
+"IP addresses for the peer to use inside the tunnel. Some clients require "
+"this setting."
+msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 msgid ""
 "IP addresses that are allowed inside the tunnel. The peer will accept "
 "tunnelled packets with source IP addresses matching this list and route back "
@@ -4606,7 +4624,7 @@ msgid "Invalid server URL"
 msgstr ""
 
 #: modules/luci-base/luasrc/view/sysauth.htm:12
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:139
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:140
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:37
 msgid "Invalid username and/or password! Please try again."
 msgstr ""
@@ -5135,7 +5153,7 @@ msgstr ""
 "(optional)."
 
 #: modules/luci-base/luasrc/view/sysauth.htm:38
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:153
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:154
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:41
 msgid "Login"
 msgstr "Anmelden"
@@ -5912,7 +5930,7 @@ msgstr "Keine Einträge in diesem Verzeichnis"
 msgid "No files found"
 msgstr "Keine Dateien gefunden"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:841
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:868
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8889,7 +8907,7 @@ msgstr ""
 msgid "The gateway address must not be a local IP address"
 msgstr "Das Gateway darf keine lokale IP-Addresse des Routers sein"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:752
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:766
 msgid ""
 "The generated configuration can be imported into a WireGuard client "
 "application to setup a connection towards this device."
@@ -9021,7 +9039,7 @@ msgstr ""
 msgid "The private key for your Yggdrasil node"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "
@@ -11518,9 +11536,6 @@ msgstr "« Zurück"
 
 #~ msgid "Additional Hosts files"
 #~ msgstr "Zusätzliche Hosts-Dateien"
-
-#~ msgid "Addresses"
-#~ msgstr "Adressen"
 
 #~ msgid "All Servers"
 #~ msgstr "Alle Server"

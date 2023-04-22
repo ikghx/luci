@@ -634,6 +634,10 @@ msgstr ""
 msgid "Address to access local relay bridge"
 msgstr "Dirección para acceder al puente de relé local"
 
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid "Addresses"
+msgstr "Direcciones"
+
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:3
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:15
 msgid "Administration"
@@ -744,7 +748,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr "Permitir al usuario <em>root</em> conectar con contraseña"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:624
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:56
 msgid "Allowed IPs"
 msgstr "IPs permitidas"
@@ -1135,7 +1139,7 @@ msgstr "Volver al resumen"
 msgid "Back to configuration"
 msgstr "Volver a la configuración"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:834
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Back to peer configuration"
 msgstr ""
 
@@ -1742,7 +1746,7 @@ msgstr "Intento de conexión fallido"
 msgid "Connection attempt failed."
 msgstr "Intento de conexión fallido."
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid "Connection endpoint"
 msgstr ""
 
@@ -1910,6 +1914,14 @@ msgstr "Servicio DHCPv6"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:49
 msgid "DNS"
 msgstr "DNS"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers"
+msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers for the tunnel. Some clients will require this to be set."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:367
 msgid "DNS filter"
@@ -3499,11 +3511,11 @@ msgstr "Generar PMK localmente"
 msgid "Generate archive"
 msgstr "Generar archivo"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:819
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:846
 msgid "Generate configuration"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:859
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:886
 msgid "Generate configuration…"
 msgstr ""
 
@@ -3520,7 +3532,7 @@ msgstr ""
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:793
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:820
 msgid "Generating QR code…"
 msgstr ""
 
@@ -3866,7 +3878,13 @@ msgstr "La dirección IP no es válida"
 msgid "IP address is missing"
 msgstr "Falta la dirección IP"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid ""
+"IP addresses for the peer to use inside the tunnel. Some clients require "
+"this setting."
+msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 msgid ""
 "IP addresses that are allowed inside the tunnel. The peer will accept "
 "tunnelled packets with source IP addresses matching this list and route back "
@@ -4602,7 +4620,7 @@ msgid "Invalid server URL"
 msgstr ""
 
 #: modules/luci-base/luasrc/view/sysauth.htm:12
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:139
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:140
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:37
 msgid "Invalid username and/or password! Please try again."
 msgstr "¡Nombre de usuario y/o contraseña no válidos! Por favor reintente."
@@ -5126,7 +5144,7 @@ msgid "Logical network to which the tunnel will be added (bridged) (optional)."
 msgstr "Red lógica a la que se agregará al túnel (puenteado) (opcional)."
 
 #: modules/luci-base/luasrc/view/sysauth.htm:38
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:153
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:154
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:41
 msgid "Login"
 msgstr "Iniciar sesión"
@@ -5906,7 +5924,7 @@ msgstr "No hay entradas en este directorio"
 msgid "No files found"
 msgstr "No se han encontrado archivos"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:841
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:868
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8874,7 +8892,7 @@ msgstr ""
 msgid "The gateway address must not be a local IP address"
 msgstr "La dirección de la puerta de enlace no debe ser una dirección IP local"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:752
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:766
 msgid ""
 "The generated configuration can be imported into a WireGuard client "
 "application to setup a connection towards this device."
@@ -9003,7 +9021,7 @@ msgstr ""
 msgid "The private key for your Yggdrasil node"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "
@@ -11488,9 +11506,6 @@ msgstr "« Volver"
 
 #~ msgid "Additional Hosts files"
 #~ msgstr "Archivos de hosts adicionales"
-
-#~ msgid "Addresses"
-#~ msgstr "Direcciones"
 
 #~ msgid "All Servers"
 #~ msgstr "Todos los servidores"

@@ -423,7 +423,7 @@ run_chinadns_ng() {
 	([ -n "$_chnlist" ] || [ -n "$_gfwlist" ]) && [ -s "${RULES_PATH}/gfwlist" ] && {
 		local _gfwlist_file="${TMP_PATH}/chinadns_gfwlist"
 		cp -a "${RULES_PATH}/gfwlist" "${_gfwlist_file}"
-		_extra_param="${_extra_param} -g ${_gfwlist_file}"
+		_extra_param="${_extra_param} -g ${_gfwlist_file} -A gfwlist,gfwlist6"
 		#当只有使用gfwlist模式时设置默认DNS为本地直连
 		[ -n "$_gfwlist" ] && [ -z "$_chnlist" ] && _default_tag="chn"
 	}
@@ -1415,25 +1415,25 @@ acl_app() {
 								redir_port=$(get_new_port $(expr $redir_port + 1))
 								eval node_${tcp_node}_redir_port=$redir_port
 								tcp_port=$redir_port
-								config_file="acl/${tcp_node}_SOCKS_${socks_port}.json"
 
 								local type=$(echo $(config_n_get $tcp_node type) | tr 'A-Z' 'a-z')
 								if [ -n "${type}" ] && ([ "${type}" = "v2ray" ] || [ "${type}" = "xray" ]); then
-									config_file=$(echo $config_file | sed "s/SOCKS/TCP_SOCKS/g")
+									config_file="acl/${tcp_node}_TCP_${redir_port}.json"
 									_extra_param="socks_address=127.0.0.1 socks_port=$socks_port"
 									if [ "$dns_mode" = "v2ray" -o "$dns_mode" = "xray" ]; then
-										config_file=$(echo $config_file | sed "s/TCP_/DNS_TCP_/g")
 										dns_port=$(get_new_port $(expr $dns_port + 1))
 										_dns_port=$dns_port
+										config_file=$(echo $config_file | sed "s/TCP_/DNS_${_dns_port}_TCP_/g")
 										_extra_param="dns_listen_port=${_dns_port} remote_dns_protocol=${v2ray_dns_mode} remote_dns_tcp_server=${remote_dns} remote_dns_doh=${remote_dns} dns_client_ip=${dns_client_ip} dns_query_strategy=${DNS_QUERY_STRATEGY}"
 									fi
-									[ "$udp_node" != "nil" ] && [ "$udp_node" = "tcp" ] && {
+									[ "$udp_node" != "nil" ] && ([ "$udp_node" = "tcp" ] || [ "$udp_node" = "$tcp_node" ]) && {
 										config_file=$(echo $config_file | sed "s/TCP_/TCP_UDP_/g")
 										_extra_param="${_extra_param} udp_redir_port=$redir_port"
 									}
 									config_file="$TMP_PATH/$config_file"
 									run_v2ray flag=$tcp_node node=$tcp_node tcp_redir_port=$redir_port ${_extra_param} config_file=$config_file
 								else
+									config_file="acl/${tcp_node}_SOCKS_${socks_port}.json"
 									run_socks flag=$tcp_node node=$tcp_node bind=127.0.0.1 socks_port=$socks_port config_file=$config_file
 									local log_file=$TMP_ACL_PATH/ipt2socks_${tcp_node}_${redir_port}.log
 									log_file="/dev/null"
@@ -1460,6 +1460,9 @@ acl_app() {
 						udp_node=$UDP_NODE
 						udp_port=$UDP_REDIR_PORT
 					fi
+				elif [ "$udp_node" = "$tcp_node" ]; then
+					udp_node=$tcp_node
+					udp_port=$tcp_port
 				else
 					[ "$(config_get_type $udp_node nil)" = "nodes" ] && {
 						if [ "$udp_node" = "$UDP_NODE" ]; then
@@ -1476,14 +1479,14 @@ acl_app() {
 								redir_port=$(get_new_port $(expr $redir_port + 1))
 								eval node_${udp_node}_redir_port=$redir_port
 								udp_port=$redir_port
-								config_file="acl/${udp_node}_SOCKS_${socks_port}.json"
 
 								local type=$(echo $(config_n_get $udp_node type) | tr 'A-Z' 'a-z')
 								if [ -n "${type}" ] && ([ "${type}" = "v2ray" ] || [ "${type}" = "xray" ]); then
-									config_file=$(echo $config_file | sed "s/SOCKS/TCP_UDP_SOCKS/g")
+									config_file="acl/${udp_node}_UDP_${redir_port}.json"
 									config_file="$TMP_PATH/$config_file"
 									run_v2ray flag=$udp_node node=$udp_node udp_redir_port=$redir_port config_file=$config_file
 								else
+									config_file="acl/${udp_node}_SOCKS_${socks_port}.json"
 									run_socks flag=$udp_node node=$udp_node bind=127.0.0.1 socks_port=$socks_port config_file=$config_file
 									local log_file=$TMP_ACL_PATH/ipt2socks_${udp_node}_${redir_port}.log
 									log_file="/dev/null"

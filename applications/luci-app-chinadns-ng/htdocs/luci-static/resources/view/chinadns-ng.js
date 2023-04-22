@@ -106,10 +106,6 @@ return view.extend({
 		_('Priority matching China website list, default priority matching gfwlist.'));
 		o.rmempty = false;
 
-		o = s.option(form.Flag, 'add_tagchn_ip', _('Add chn ip'),
-		_('Add the resolution result of chn domain name to ipset/nftset.'));
-		o.rmempty = false;
-
 		o = s.option(form.Flag, 'noip_as_chnip', _('Accept response without IP'),
 		_('Accept reply with qtype of A/AAAA but no IP.'));
 		o.rmempty = false;
@@ -127,6 +123,14 @@ return view.extend({
 
 		o = s.option(form.Value, 'ipset_name6', _('The name of the China IPv6 ipset collection'));
 		o.placeholder = 'chnroute6';
+
+		o = s.option(form.Value, 'add_tagchn_ip', _('Add chn ip'),
+		_('Add the resolution result of chn domain name to ipset/nftset.'));
+		o.placeholder = 'chnroute';
+
+		o = s.option(form.Value, 'add_taggfw_ip', _('Add gfw ip'),
+		_('Add the resolution result of gfw domain name to ipset/nftset.'));
+		o.placeholder = 'gfwlist';
 
 		o = s.option(form.Value, 'gfwlist_file', _('Blacklist domain name file'),
 		_('The domain names in this file only use trusted DNS queries, Multiple files are separated by commas.'));

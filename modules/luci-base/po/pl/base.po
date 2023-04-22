@@ -635,6 +635,10 @@ msgstr ""
 msgid "Address to access local relay bridge"
 msgstr "Adres dostępowy do \"relay bridge\""
 
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid "Addresses"
+msgstr "Adresy"
+
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:3
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:15
 msgid "Administration"
@@ -743,7 +747,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr "Zezwól użytkownikowi <em>root</em> na logowanie się przy pomocy hasła"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:624
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:56
 msgid "Allowed IPs"
 msgstr "Dozwolone IP"
@@ -1131,7 +1135,7 @@ msgstr "Wróć do przeglądu"
 msgid "Back to configuration"
 msgstr "Wróć do konfiguracji"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:834
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Back to peer configuration"
 msgstr ""
 
@@ -1733,7 +1737,7 @@ msgstr "Próba połączenia nieudana"
 msgid "Connection attempt failed."
 msgstr "Próba połączenia nieudana."
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid "Connection endpoint"
 msgstr ""
 
@@ -1900,6 +1904,14 @@ msgstr "Serwis DHCPv6"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:49
 msgid "DNS"
 msgstr "DNS"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers"
+msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers for the tunnel. Some clients will require this to be set."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:367
 msgid "DNS filter"
@@ -3486,11 +3498,11 @@ msgstr "Wygeneruj PMK lokalnie"
 msgid "Generate archive"
 msgstr "Twórz archiwum"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:819
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:846
 msgid "Generate configuration"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:859
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:886
 msgid "Generate configuration…"
 msgstr ""
 
@@ -3507,7 +3519,7 @@ msgstr ""
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:793
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:820
 msgid "Generating QR code…"
 msgstr ""
 
@@ -3850,7 +3862,13 @@ msgstr "Nieprawidłowy adres IP"
 msgid "IP address is missing"
 msgstr "Brakuje adresu IP"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid ""
+"IP addresses for the peer to use inside the tunnel. Some clients require "
+"this setting."
+msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 msgid ""
 "IP addresses that are allowed inside the tunnel. The peer will accept "
 "tunnelled packets with source IP addresses matching this list and route back "
@@ -4584,7 +4602,7 @@ msgid "Invalid server URL"
 msgstr ""
 
 #: modules/luci-base/luasrc/view/sysauth.htm:12
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:139
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:140
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:37
 msgid "Invalid username and/or password! Please try again."
 msgstr "Niewłaściwy login i/lub hasło! Spróbuj ponownie."
@@ -5110,7 +5128,7 @@ msgstr ""
 "Sieć logiczna, do której tunel zostanie dodany (zmostkowy) (opcjonalnie)."
 
 #: modules/luci-base/luasrc/view/sysauth.htm:38
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:153
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:154
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:41
 msgid "Login"
 msgstr "Zaloguj"
@@ -5888,7 +5906,7 @@ msgstr "Brak wpisów w tym katalogu"
 msgid "No files found"
 msgstr "Nie znaleziono plików"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:841
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:868
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8845,7 +8863,7 @@ msgstr ""
 msgid "The gateway address must not be a local IP address"
 msgstr "Adres bramki nie może być lokalnym adresem IP"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:752
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:766
 msgid ""
 "The generated configuration can be imported into a WireGuard client "
 "application to setup a connection towards this device."
@@ -8975,7 +8993,7 @@ msgstr ""
 msgid "The private key for your Yggdrasil node"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "
@@ -11444,9 +11462,6 @@ msgstr "« Wróć"
 
 #~ msgid "Additional Hosts files"
 #~ msgstr "Dodatkowe pliki hosts"
-
-#~ msgid "Addresses"
-#~ msgstr "Adresy"
 
 #~ msgid "All Servers"
 #~ msgstr "Wszystkie serwery"

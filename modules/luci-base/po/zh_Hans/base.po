@@ -643,6 +643,10 @@ msgstr "地址设置无效"
 msgid "Address to access local relay bridge"
 msgstr "接入本地中继桥的地址"
 
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid "Addresses"
+msgstr "地址"
+
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:3
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:15
 msgid "Administration"
@@ -749,7 +753,7 @@ msgid "Allow the <em>root</em> user to login with password"
 msgstr "允许 <em>root</em> 用户凭密码登录"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:624
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:56
 msgid "Allowed IPs"
 msgstr "允许的 IP"
@@ -1130,7 +1134,7 @@ msgstr "返回至概览"
 msgid "Back to configuration"
 msgstr "返回至配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:834
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:861
 msgid "Back to peer configuration"
 msgstr "返回对端配置"
 
@@ -1737,7 +1741,7 @@ msgstr "尝试连接失败"
 msgid "Connection attempt failed."
 msgstr "尝试连接失败。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid "Connection endpoint"
 msgstr "连接端点"
 
@@ -1899,6 +1903,14 @@ msgstr "DHCPv6 服务"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:49
 msgid "DNS"
 msgstr ""
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers"
+msgstr "DNS 服务器"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:804
+msgid "DNS Servers for the tunnel. Some clients will require this to be set."
+msgstr "隧道的 DNS 服务器。一些客户端需要此设置。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:367
 msgid "DNS filter"
@@ -3484,11 +3496,11 @@ msgstr "本地生成 PMK"
 msgid "Generate archive"
 msgstr "生成备份"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:819
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:846
 msgid "Generate configuration"
 msgstr "生成配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:859
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:886
 msgid "Generate configuration…"
 msgstr "生成配置…"
 
@@ -3505,7 +3517,7 @@ msgstr "生成预共享密钥"
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr "生成适合在 WireGuard 对端上导入的配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:793
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:820
 msgid "Generating QR code…"
 msgstr "正在生成二维码…"
 
@@ -3849,7 +3861,13 @@ msgstr "IP 地址无效"
 msgid "IP address is missing"
 msgstr "IP 地址缺失"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:798
+msgid ""
+"IP addresses for the peer to use inside the tunnel. Some clients require "
+"this setting."
+msgstr "对端在隧道内使用的 IP 地址。一些客户端需要此设置。"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
 msgid ""
 "IP addresses that are allowed inside the tunnel. The peer will accept "
 "tunnelled packets with source IP addresses matching this list and route back "
@@ -4570,7 +4588,7 @@ msgid "Invalid server URL"
 msgstr "无效的服务器 URL"
 
 #: modules/luci-base/luasrc/view/sysauth.htm:12
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:139
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:140
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:37
 msgid "Invalid username and/or password! Please try again."
 msgstr "无效的用户名和/或密码！请重试。"
@@ -5106,7 +5124,7 @@ msgid "Logical network to which the tunnel will be added (bridged) (optional)."
 msgstr "隧道将要被添加（桥接）到的逻辑网络（可选）。"
 
 #: modules/luci-base/luasrc/view/sysauth.htm:38
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:153
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:154
 #: themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/sysauth.htm:41
 msgid "Login"
 msgstr "登录"
@@ -5886,7 +5904,7 @@ msgstr "此目录中没有内容"
 msgid "No files found"
 msgstr "未找到文件"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:841
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:868
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -8793,7 +8811,7 @@ msgstr "频率与 1 分钟平均 CPU 负载直接成正比。"
 msgid "The gateway address must not be a local IP address"
 msgstr "网关地址不能是本地 IP 地址"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:752
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:766
 msgid ""
 "The generated configuration can be imported into a WireGuard client "
 "application to setup a connection towards this device."
@@ -8913,7 +8931,7 @@ msgstr ""
 msgid "The private key for your Yggdrasil node"
 msgstr "Yggdrasil 节点的私钥"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:771
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "
@@ -10745,7 +10763,8 @@ msgstr "有效的多播 MAC 地址"
 msgid ""
 "valid network device name between 1 and 15 characters not containing \":\", "
 "\"/\", \"%\" or spaces"
-msgstr "1 到 15 个字符之间的有效网络设备名称，不包含 \":\"、\"/\"、\"%\" 或空格"
+msgstr ""
+"1 到 15 个字符之间的有效网络设备名称，不包含 \":\"、\"/\"、\"%\" 或空格"
 
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:441
 msgid "valid network device name, not \".\" or \"..\""
