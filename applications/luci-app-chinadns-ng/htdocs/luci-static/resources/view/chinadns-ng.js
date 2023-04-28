@@ -124,9 +124,9 @@ return view.extend({
 		o = s.option(form.Value, 'ipset_name6', _('The name of the China IPv6 ipset collection'));
 		o.placeholder = 'chnroute6';
 
-		o = s.option(form.Value, 'add_tagchn_ip', _('Add chn ip'),
+		o = s.option(form.Flag, 'add_tagchn_ip', _('Add chn ip'),
 		_('Add the resolution result of chn domain name to ipset/nftset.'));
-		o.placeholder = 'chnroute';
+		o.rmempty = false;
 
 		o = s.option(form.Value, 'add_taggfw_ip', _('Add gfw ip'),
 		_('Add the resolution result of gfw domain name to ipset/nftset.'));
@@ -165,6 +165,8 @@ return view.extend({
 		o.placeholder = '1';
 		o.datatype = 'uinteger';
 		o.rmempty = false;
+
+		o = s.option(form.Flag, 'verbose', _('Verbose log'));
 
 		return m.render();
 	}
