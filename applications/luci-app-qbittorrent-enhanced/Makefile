@@ -1,7 +1,6 @@
-# Copyright (C) 2019 Openwrt.org
+# SPDX-License-Identifier: GPL-2.0-only
 #
-# This is free software, licensed under the Apache License, Version 2.0 .
-#
+# Copyright (C) 2017-2023 bishuiwuhen
 
 include $(TOPDIR)/rules.mk
 

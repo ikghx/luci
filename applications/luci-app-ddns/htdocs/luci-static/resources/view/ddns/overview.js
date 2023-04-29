@@ -517,8 +517,7 @@ return view.extend({
 			service_name = s2.option(form.ListValue, 'service_name',
 					String.format('%s', _("DDNS Service provider")));
 			service_name.value('-',"-- " + _("custom") + " --");
-			for (var elem in _this.services)
-				service_name.value(elem);
+			Object.keys(_this.services).sort().forEach(name => service_name.value(name));
 			service_name.validate = function(section_id, value) {
 				if (value == '') return _("Select a service");
 				if (s2.service_supported == null) return _("Checking the service support...");
@@ -640,8 +639,7 @@ return view.extend({
 					String.format('%s', _("DDNS Service provider")));
 				service_name.modalonly = true;
 				service_name.value('-',"-- " + _("custom") + " --");
-				for (var elem in _this.services)
-					service_name.value(elem);
+				Object.keys(_this.services).sort().forEach(name => service_name.value(name));
 				service_name.cfgvalue = function(section_id) {
 					return uci.get('ddns', section_id, 'service_name') || '-';
 				};

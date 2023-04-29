@@ -35,7 +35,7 @@ var CBIQBitStatus = form.DummyValue.extend({
 		var extAgrs = ['instances', 'qbittorrent-enhanced.main'];
 		var label = E('em', {}, _('Collecting data...'));
 		var btn = E('button', { 'class': 'cbi-button cbi-button-apply' }, _('Start qBittorrent'));
-		var node = E('div', {}, [label, btn]);
+		var node = E('div', {}, [E('div', {}, label), btn]);
 		poll.add(function() {
 			return callServiceList('qbittorrent-enhanced', extAgrs).then(function(res) {
 				if (res.running) {
@@ -56,16 +56,17 @@ var CBIQBitStatus = form.DummyValue.extend({
 var CBIRandomPort = form.Value.extend({
 	renderWidget: function(section_id, option_index, cfgvalue) {
 		var node = this.super('renderWidget', arguments),
-		groupChildren = Array.from(node.childNodes);
+		    groupChildren = Array.from(node.childNodes);
+
 		groupChildren.push(E('button', {
 				'class': 'cbi-button cbi-button-neutral',
-				'click': L.bind(function (section_id) {
+				'click': L.bind(function(section_id) {
 					this.getUIElement(section_id).setValue(randomPort());
 				}, this, section_id),
-			}, _('Generate Randomly')));
-		dom.content(node, E('div', {
-				'class': 'control-group'
-			}, groupChildren));
+			}, _('Generate Randomly'))
+		);
+
+		dom.content(node, E('div', { 'class': 'control-group' }, groupChildren));
 		return node;
 	}
 });
@@ -433,12 +434,12 @@ return view.extend({
 		o.password = true;
 		o.formvalue = function(section_id) {
 			var node = this.map.findElement('id', this.cbid(section_id));
-			if (node && node.getAttribute('data-changed') == 'true') {
-			var value = dom.callClassMethod(node, 'getValue');
-			if (value) {
-				var flag = ver[1].split('.').map(function (res) {
-						return parseInt(res)
-					}) >= [4, 2, 0];
+			if (node && node.getAttribute('data-changed') == 'true')
+			{
+				var value = dom.callClassMethod(node, 'getValue');
+				if (value)
+				{
+					var flag = ver[1].split('.').map(function(res) {return parseInt(res)}) >= [4, 2, 0];
 					return encryptPassword(value, flag);
 				}
 				return null;
@@ -521,11 +522,11 @@ return view.extend({
 		o = s.taboption('webui', form.TextValue, 'CustomHTTPHeaders', _('Custom HTTP Headers'));
 		o.depends('CustomHTTPHeadersEnabled', 'true');
 		o.placeholder = _('Header: value pairs, one per line');
-		o.cfgvalue = function (section_id) {
+		o.cfgvalue = function(section_id) {
 			var cv = this.super('cfgvalue', arguments);
 			return cv ? cv.replace(/\\n/g, '\n') : cv;
 		}
-		o.formvalue = function (section_id) {
+		o.formvalue = function(section_id) {
 			var fv = this.super('formvalue', arguments);
 			return fv ? fv.replace(/\\n/g, '\n') : fv;
 		}

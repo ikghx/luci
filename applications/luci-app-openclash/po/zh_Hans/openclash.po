@@ -57,6 +57,7 @@ msgstr "(仅中国数据)"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:748
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:762
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:780
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:790
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1122
 msgid "(Only Meta Core)"
 msgstr "（仅 Meta 内核）"
@@ -273,7 +274,7 @@ msgid "Alecthw-lite-Version"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:114
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:802
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:859
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:48
 msgid "All Groups"
 msgstr "所有策略组"
@@ -466,7 +467,7 @@ msgstr "自动展开嵌套的策略组并进行解锁检测，启用后可能会
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:147
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-file-manage.lua:116
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-manage.lua:34
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:824
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:881
 msgid "Back Settings"
 msgstr "返回概览"
 
@@ -867,7 +868,7 @@ msgstr "正在收集数据..."
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:128
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:138
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:271
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:816
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:873
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:265
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1272
 msgid "Commit Settings"
@@ -2506,6 +2507,14 @@ msgstr "最大开放流"
 msgid "Max UDP Relay Packet Size"
 msgstr "最大 UDP 中继数据包大小"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:804
+msgid "Max-connections"
+msgstr "最大连接数"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:818
+msgid "Max-streams"
+msgstr "最大数据流"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:293
 msgid "Memconservative"
 msgstr "小内存模式"
@@ -2517,6 +2526,10 @@ msgstr "Meta 设置"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:225
 msgid "Microsoft"
 msgstr "微软服务（Microsoft）"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:811
+msgid "Min-streams"
+msgstr "最小数据流"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/status.htm:80
 msgid "Mix"
@@ -2583,6 +2596,10 @@ msgstr ""
 msgid "Multiple Must Be a Positive Integer and No More Than 50"
 msgstr "倍数必须是正整数且不大于50"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:790
+msgid "Multiplex"
+msgstr "复用"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:40
 msgid "Name For Distinguishing"
 msgstr "用于区分，请勿重名"
@@ -2636,7 +2653,7 @@ msgid ""
 msgstr "未选择编译版本，请到上方标签选择后重试！"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:112
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:800
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:857
 msgid "No Need Set when Config Create, The added Proxy Groups Must Exist"
 msgstr ""
 "注意：使用一键生成配置文件功能时无需设置此项，修改配置文件前添加的策略组必须"
@@ -2865,6 +2882,10 @@ msgstr "订阅时仅更新节点和代理集，保留下方策略组设置，不
 msgid "Only intranet allowed"
 msgstr "仅允许内网"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:839
+msgid "Only-tcp"
+msgstr "仅 tcp"
+
 #: applications/luci-app-openclash/luasrc/view/openclash/status.htm:260
 #: applications/luci-app-openclash/luasrc/view/openclash/status.htm:261
 #: applications/luci-app-openclash/luasrc/view/openclash/status.htm:813
@@ -2946,7 +2967,11 @@ msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:704
 msgid "Packet-Encoding"
-msgstr ""
+msgstr "数据包编码"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:825
+msgid "Padding"
+msgstr "填充"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/switch_mode.htm:31
 msgid "Page has been switched to Fake-IP mode!"
@@ -3089,6 +3114,7 @@ msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:280
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:316
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:796
 msgid "Protocol"
 msgstr ""
 
@@ -3140,7 +3166,7 @@ msgid "Proxy"
 msgstr "必须代理的流量"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:111
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:799
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:856
 msgid "Proxy Group"
 msgstr "添加到策略组（请勿重复添加）"
 
@@ -3739,6 +3765,10 @@ msgstr "开始刷新"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-manage.lua:85
 msgid "State"
 msgstr "状态"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:832
+msgid "Statistic"
+msgstr "统计"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:302
 msgid "Steam"
@@ -4545,7 +4575,7 @@ msgid "http"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:104
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:790
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:847
 msgid "interface-name"
 msgstr "指定出口网卡"
 
@@ -4682,7 +4712,7 @@ msgid "restls-script"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:109
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:795
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:852
 msgid "routing-mark"
 msgstr "指定路由标记"
 
