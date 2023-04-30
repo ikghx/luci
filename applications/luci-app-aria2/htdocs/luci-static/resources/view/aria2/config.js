@@ -335,6 +335,7 @@ return view.extend({
 			o = s.taboption('http', form.Value, 'ca_certificate', _('CA certificate'),
 				_('Use the certificate authorities in FILE to verify the peers. The certificate'
 				+ ' file must be in PEM format and can contain multiple CA certificates.'));
+			o.value('/etc/ssl/cert.pem');
 			o.depends('check_certificate', 'true');
 
 			o = s.taboption('http', form.Value, 'certificate', _('Certificate'),

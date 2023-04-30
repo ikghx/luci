@@ -10,14 +10,15 @@ LUCI_DEPENDS:=+dnsmasq-full +ipset +node +unblockneteasemusic \
 LUCI_PKGARCH:=all
 
 PKG_NAME:=luci-app-unblockneteasemusic
-PKG_VERSION:=3.1
-PKG_RELEASE:=5
+PKG_VERSION:=3.2
+PKG_RELEASE:=2
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
 define Package/luci-app-unblockneteasemusic/conffiles
 /etc/config/unblockneteasemusic
 /usr/share/unblockneteasemusic/core/
+/usr/share/unblockneteasemusic/core/local_ver
 /usr/share/unblockneteasemusic/server.crt
 /usr/share/unblockneteasemusic/server.key
 endef
