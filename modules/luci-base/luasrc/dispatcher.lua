@@ -348,7 +348,7 @@ local function tree_to_json(node, json)
 				elseif subname == "rpc" and subnode.module == "luci.controller.rpc" then
 					spec.auth = {
 						login = false,
-						methods = { "query:auth", "cookie:sysauth_https", "cookie:sysauth_http" }
+						methods = { "query:auth", "cookie:sysauth_https", "cookie:sysauth_http", "cookie:sysauth" }
 					}
 				elseif subnode.module == "luci.controller.admin.uci" then
 					spec.auth = {
@@ -1064,7 +1064,7 @@ function dispatch(request)
 			         "Install luci-mod-admin-full and retry. " ..
 			         "If the module is already installed, try removing the /tmp/luci-indexcache file.")
 		else
-			error404("No page is registered at '/" .. xml.pcdata(table.concat(requested_path_full, "/")) .. "'.\n" ..
+			error404("No page is registered at '/" .. xml.pcdata(table.concat(lookup_ctx.request_path, "/")) .. "'.\n" ..
 			         "If this url belongs to an extension, make sure it is properly installed.\n" ..
 			         "If the extension was recently installed, try removing the /tmp/luci-indexcache file.")
 		end
