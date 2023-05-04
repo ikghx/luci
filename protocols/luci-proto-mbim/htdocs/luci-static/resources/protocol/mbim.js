@@ -90,6 +90,12 @@ return network.registerProtocol('mbim', {
 		o.depends('auth', 'both');
 		o.password = true;
 
+		o = s.taboption('general', form.ListValue, 'pdptype', _('PDP Type'));
+		o.value('ipv4v6', 'IPv4/IPv6');
+		o.value('ipv4', 'IPv4');
+		o.value('ipv6', 'IPv6');
+		o.default = 'ipv4v6';
+
 		if (L.hasSystemFeature('ipv6')) {
 			o = s.taboption('advanced', form.Flag, 'ipv6', _('Enable IPv6 negotiation'));
 			o.default = o.disabled;
@@ -99,10 +105,5 @@ return network.registerProtocol('mbim', {
 		o.placeholder = '10';
 		o.datatype    = 'min(1)';
 
-		o = s.taboption('general', form.ListValue, 'pdptype', _('PDP Type'));
-		o.value('ipv4v6', 'IPv4/IPv6');
-		o.value('ipv4', 'IPv4');
-		o.value('ipv6', 'IPv6');
-		o.default = 'ipv4v6';
 	}
 });
