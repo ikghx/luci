@@ -75,7 +75,7 @@ s.anonymous = true
 s.addremove = true
 
 s.create = function(e, t)
-	TypedSection.create(e, api.gen_uuid())
+	TypedSection.create(e, api.gen_short_uuid())
 end
 
 s.remove = function(self, section)

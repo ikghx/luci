@@ -388,7 +388,6 @@ local function processData(szType, content, add_mode, add_from)
 		result.address = info.add
 		result.port = info.port
 		result.protocol = 'vmess'
-		result.alter_id = info.aid
 		result.uuid = info.id
 		result.remarks = info.ps
 		-- result.mux = 1
@@ -1060,7 +1059,7 @@ local function update_node(manual)
 		local remark = v["remark"]
 		local list = v["list"]
 		for _, vv in ipairs(list) do
-			local cfgid = uci:section(appname, "nodes", api.gen_uuid())
+			local cfgid = uci:section(appname, "nodes", api.gen_short_uuid())
 			for kkk, vvv in pairs(vv) do
 				uci:set(appname, cfgid, kkk, vvv)
 			end
