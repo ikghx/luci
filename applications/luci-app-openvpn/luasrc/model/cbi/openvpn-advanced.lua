@@ -767,6 +767,10 @@ local knownParams = {
 			"ncp_ciphers",
 			"CHACHA20-POLY1305:AES-128-GCM:AES-256-GCM",
 			translate("Restrict the allowed ciphers to be negotiated") },
+		{ Value,
+			"data_ciphers",
+			"CHACHA20-POLY1305:AES-256-GCM:AES-128-GCM:AES-256-CBC",  
+			translate("Restrict the allowed ciphers to be negotiated") },
 	} }
 }
 
