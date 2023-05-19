@@ -193,10 +193,10 @@ if not fs.access(CACHE_DNS_PATH) then
 		local address = t.address
 		if datatypes.hostname(address) then
 			set_domain_dns(address, LOCAL_DNS)
-			set_domain_ipset(address, "passwall_vpsiplist,passwall_vpsiplist6")
+			set_domain_ipset(address, "passwall_vpslist,passwall_vpslist6")
 		end
 	end)
-	log(string.format("  - 节点列表中的域名(vpsiplist)：%s", LOCAL_DNS or "默认"))
+	log(string.format("  - 节点列表中的域名(vpslist)：%s", LOCAL_DNS or "默认"))
 
 	--始终用国内DNS解析直连（白名单）列表
 	for line in io.lines("/usr/share/passwall/rules/direct_host") do
