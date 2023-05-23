@@ -63,7 +63,7 @@ return view.extend({
 			_('Allow connection using smb(v1) protocol.'));
 
 		s.taboption('general', form.Flag, 'disable_async_io', _('Force synchronous I/O'),
-			_('On lower-end devices may increase speeds, by forceing synchronous I/O instead of the default asynchronous.'));
+			_('On lower-end devices may increase speeds, by forcing synchronous I/O instead of the default asynchronous.'));
 
 		s.taboption('general', form.Flag, 'macos', _('Enable macOS compatible shares'),
 			_('Enables Apple\'s AAPL extension globally and adds macOS compatibility options to all shares.'));
