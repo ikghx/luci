@@ -12,7 +12,7 @@ fetch_pic_url() {
     bing)
         local picpath=$(wget -T1 -qO- \
             "https://www.bing.com/HPImageArchive.aspx?format=js&n=1" |
-            jsonfilter -q -e '@.images[0].url')
+            jsonfilter -qe '@.images[0].url')
         [ -n "${picpath}" ] && echo "//www.bing.com${picpath}"
         ;;
     unsplash)
