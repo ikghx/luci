@@ -14,7 +14,7 @@ LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+iptables +dnsmasq-full +coreutils +coreutils-nohup +bash \
 	+curl +ca-bundle +kmod-tun +kmod-ipt-nat +kmod-inet-diag \
 	+ip-full +ipset +iptables-mod-tproxy +iptables-mod-extra +libcap \
-	+libcap-bin +ip6tables-mod-nat +clash_tun +ruby-yaml +unzip
+	+libcap-bin +ip6tables-mod-nat +openclash-tun +ruby-yaml +unzip
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/openclash
