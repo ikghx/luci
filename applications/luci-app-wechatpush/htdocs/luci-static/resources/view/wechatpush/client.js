@@ -203,14 +203,11 @@ return view.extend({
                     var value2 = row2.cells[columnIndex].textContent.trim();
 
                     if (columnIndex === 0) {
-                        // Sorting by hostname length
                         return value1.length - value2.length;
                     } else if (columnIndex === 1) {
-                        // Sorting by IP address
                         value1 = ipToNumber(value1);
                         value2 = ipToNumber(value2);
                     } else if (columnIndex === 4) {
-                        // Sorting by online time
                         value1 = parseOnlineTime(value1);
                         value2 = parseOnlineTime(value2);
                     }
