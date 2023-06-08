@@ -1173,7 +1173,7 @@ function createtree_json()
 	local files = {}
 	local cachefile
 
-	for file in (fs.glob("/usr/share/luci/menu.d/*.json") or function() end) do
+	for file in (fs.glob("/usr/share/luci/menu.d/*.json", "/etc/config/*") or function() end) do
 		files[#files+1] = file
 	end
 

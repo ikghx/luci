@@ -374,6 +374,7 @@ var UITextfield = UIElement.extend(/** @lends LuCI.ui.Textfield.prototype */ {
 			'disabled': this.options.disabled ? '' : null,
 			'maxlength': this.options.maxlength,
 			'placeholder': this.options.placeholder,
+			'autocomplete': this.options.password ? 'new-password' : null,
 			'value': this.value,
 		});
 
@@ -3472,6 +3473,10 @@ var UITable = baseclass.extend(/** @lends LuCI.ui.table.prototype */ {
 		this.update(this.data, this.placeholder);
 	}
 });
+
+// Because the menu can depend on uci values, we need to flush the cache
+// after uci mutations.
+document.addEventListener('uci-applied', () => UIMenu.flushCache());
 
 /**
  * @class ui

@@ -1,10 +1,27 @@
 'use strict';
 'require form';
 'require fs';
+'require uci';
 'require view';
 
 return view.extend({
-	render: function (stats) {
+	load: function() {
+		return L.resolveDefault(fs.list('/etc/ssl/acme/'), []).then(function(entries) {
+			var certs = [];
+			for (var i = 0; i < entries.length; i++) {
+				if (entries[i].type == 'file' && entries[i].name.match(/\.key$/)) {
+					certs.push(entries[i]);
+				}
+			}
+			return certs;
+		});
+	},
+
+	_handleCheckService: function(event, section, newVal) {
+		document.getElementById("acmeshWikiInstructonUrl").href = "https://github.com/acmesh-official/acme.sh/wiki/dnsapi#" + newVal;
+	},
+
+	render: function (certs) {
 		var m, s, o;
 
 		m = new form.Map("acme", _("ACME certificates"),
@@ -36,7 +53,7 @@ return view.extend({
 		s.nodescriptions = true;
 
 		o = s.tab("general", _("General Settings"));
-		o = s.tab("challenge", _("Challenge Validation"));
+		o = s.tab("challenge_dns", _("DNS Challenge Validation"));
 		o = s.tab("advanced", _('Advanced Settings'));
 
 		o = s.taboption('general', form.Flag, "enabled", _("Enabled"));
@@ -47,16 +64,17 @@ return view.extend({
 				"The first name will be the subject name, subsequent names will be alt names. " +
 				"Note that all domain names must point at the router in the global DNS."));
 		o.datatype = "list(string)";
+		o.rmempty = false;
 
-		o = s.taboption('challenge', form.ListValue, "validation_method", _("Validation method"),
+		o = s.taboption("general", form.ListValue, "validation_method", _("Validation method"),
 			_("Standalone mode will use the built-in webserver of acme.sh to issue a certificate. " +
 			"Webroot mode will use an existing webserver to issue a certificate. " +
 			"DNS mode will allow you to use the DNS API of your DNS provider to issue a certificate."));
-		o.value("standalone", _("Standalone"));
 		o.value("dns", _("DNS"));
-		o.default = "standalone";
+		o.value("standalone", _("Standalone"));
+		o.default = "dns";
 
-		o = s.taboption('challenge', form.ListValue, "dns", _("DNS API"),
+		o = s.taboption("challenge_dns", form.ListValue, "dns", _("DNS API"),
 			_("To use DNS mode to issue certificates, set this to the name of a DNS API supported by acme.sh. " +
 				"See https://github.com/acmesh-official/acme.sh/wiki/dnsapi for the list of available APIs. " +
 				"In DNS mode, the domain name does not have to resolve to the router IP. " +
@@ -65,9 +83,10 @@ return view.extend({
 		o.depends("validation_method", "dns");
 		// List of supported DNS API. Names are same as file names in acme.sh for easier search.
 		// May be outdated but not changed too often.
-		o.value("dns_1984hosting", "1984.is");
-		o.value("dns_acmedns", "ACME DNS API");
+		o.value("", "")
+		o.value("dns_acmedns", "ACME DNS API github.com/joohoi/acme-dns");
 		o.value("dns_acmeproxy", "ACME Proxy github.com/mdbraber/acmeproxy");
+		o.value("dns_1984hosting", "1984.is");
 		o.value("dns_active24", "Active24.com");
 		o.value("dns_ad", "Alwaysdata.com");
 		o.value("dns_ali", "Alibaba Cloud Aliyun.com");
@@ -88,7 +107,7 @@ return view.extend({
 		o.value("dns_cpanel", "CPanel");
 		o.value("dns_curanet", "curanet.dk scannet.dk wannafind.dk dandomain.dk");
 		o.value("dns_cyon", "cayon.ch");
-		o.value("dns_da", "DirectAdmin.com");
+		o.value("dns_da", "DirectAdmin Panel");
 		o.value("dns_ddnss", "DDNSS.de");
 		o.value("dns_desec", "deSEC.io");
 		o.value("dns_df", "DynDnsFree.de");
@@ -99,7 +118,7 @@ return view.extend({
 		o.value("dns_doapi", "Domain-Offensive do.de");
 		o.value("dns_domeneshop", "DomeneShop.no");
 		o.value("dns_dp", "DNSPod.cn");
-		// o.value("dns_dpi", "DNSPod.com");
+		o.value("dns_dpi", "DNSPod.com");
 		o.value("dns_dreamhost", "DreamHost.com");
 		o.value("dns_duckdns", "DuckDNS.org");
 		o.value("dns_durabledns", "DurableDNS.com");
@@ -201,10 +220,17 @@ return view.extend({
 		o.value("dns_zilore", "zilore.com");
 		o.value("dns_zone", "Zone.ee");
 		o.value("dns_zonomi", "Zonomi.com");
-		o.default = "dns_duckdns"; // The most popular DDNS
+		o.modalonly = true;
+		o.rmempty = false;
+		o.onchange = L.bind(this._handleCheckService);
+
+		o = s.taboption("challenge_dns", form.DummyValue, "_wiki_url", _("See instructions"), "");
+		o.rawhtml = true;
+		o.default = '<a id="acmeshWikiInstructonUrl" target="_blank" href="https://github.com/acmesh-official/acme.sh/wiki/dnsapi">Acme Wiki DNS API</a>'
+		o.depends("validation_method", "dns");
 		o.modalonly = true;
 
-		o = s.taboption('challenge', form.DynamicList, "credentials", _("DNS API credentials"),
+		o = s.taboption("challenge_dns", form.DynamicList, "credentials", _("DNS API credentials"),
 			_("The credentials for the DNS API mode selected above. " +
 				"See https://github.com/acmesh-official/acme.sh/wiki/dnsapi for the format of credentials required by each API. " +
 				"Add multiple entries here in KEY=VAL shell variable format to supply multiple credential variables."))
@@ -212,14 +238,14 @@ return view.extend({
 		o.depends("validation_method", "dns");
 		o.modalonly = true;
 
-		o = s.taboption('challenge', form.Value, "calias", _("Challenge Alias"),
+		o = s.taboption("challenge_dns", form.Value, "calias", _("Challenge Alias"),
 			_("The challenge alias to use for ALL domains. " +
 				"See https://github.com/acmesh-official/acme.sh/wiki/DNS-alias-mode for the details of this process. " +
 				"LUCI only supports one challenge alias per certificate."));
 		o.depends("validation_method", "dns");
 		o.modalonly = true;
 
-		o = s.taboption('challenge', form.Value, "dalias", _("Domain Alias"),
+		o = s.taboption("challenge_dns", form.Value, "dalias", _("Domain Alias"),
 			_("The domain alias to use for ALL domains. " +
 				"See https://github.com/acmesh-official/acme.sh/wiki/DNS-alias-mode for the details of this process. " +
 				"LUCI only supports one challenge domain per certificate."));
@@ -233,12 +259,12 @@ return view.extend({
 
 		o = s.taboption('advanced', form.ListValue, "key_type", _("Key size"),
 			_("Key size (and type) for the generated certificate."));
+		o.value("", "");
 		o.value("rsa2048", _("RSA 2048 bits"));
 		o.value("rsa3072", _("RSA 3072 bits"));
 		o.value("rsa4096", _("RSA 4096 bits"));
 		o.value("ec256", _("ECC 256 bits"));
 		o.value("ec384", _("ECC 384 bits"));
-		o.default = "ec256";
 		o.modalonly = true;
 
 		o = s.taboption('advanced', form.Flag, "use_acme_server",
@@ -260,7 +286,38 @@ return view.extend({
 		o.datatype    = 'uinteger';
 		o.modalonly = true;
 
+
+		s = m.section(form.GridSection, '_certificates');
+
+		s.render = L.bind(function(view, section_id) {
+			var table = E('table', { 'class': 'table cbi-section-table', 'id': 'certificates_table' }, [
+				E('tr', { 'class': 'tr table-titles' }, [
+					E('th', { 'class': 'th' }, _('Main Domain')),
+					E('th', { 'class': 'th' }, _('Private key path')),
+					E('th', { 'class': 'th' }, _('Public certificate path')),
+					E('th', { 'class': 'th' }, _('Issied on')),
+				])
+			]);
+
+			var rows = certs.map(function(cert) {
+				let domain = cert.name.substring(0, cert.name.length - 4);
+				let issueDate = new Date(cert.mtime * 1000).toLocaleDateString();
+				return [
+					domain,
+					"/etc/ssl/acme/" + domain + ".key",
+					"/etc/ssl/acme/" + domain + ".fullchain.crt",
+					issueDate,
+				];
+			});
+
+			cbi_update_table(table, rows, E('em', _('There are no certificates.')));
+
+			return E('div', { 'class': 'cbi-section cbi-tblsection' }, [
+				E('h3', _('Certificates')), table ]);
+		}, o, this);
+
 		return m.render()
 	}
+
 })
 
