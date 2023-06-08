@@ -8,7 +8,7 @@ PKG_MAINTAINER:=tty228 <tty228@yeah.net>
 
 LUCI_TITLE:=LuCI support for wechatpush
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+iputils-arping +curl +jq +bash +luci-i18n-wrtbwmon-zh-cn
+LUCI_DEPENDS:=+iputils-arping +curl +jq +bash +luci-app-wrtbwmon
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/wechatpush
