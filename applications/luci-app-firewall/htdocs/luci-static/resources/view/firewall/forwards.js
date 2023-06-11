@@ -20,7 +20,7 @@ function rule_proto_txt(s, ctHelpers) {
 		};
 	});
 
-	m = String(uci.get('firewall', s, 'helper') || '').match(/^(!\s*)?(\S+)$/);
+	var m = String(uci.get('firewall', s, 'helper') || '').match(/^(!\s*)?(\S+)$/);
 	var h = m ? {
 		val:  m[0].toUpperCase(),
 		inv:  m[1],
