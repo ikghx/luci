@@ -420,6 +420,6 @@ luci.sys.call("uci commit " .. name)
 
 if reboot == 1 then
 	log("重启服务，应用新的规则。")
-	luci.sys.call("/usr/share/" .. name .. "/iptables.sh flush_ipset > /dev/null 2>&1 &")
+	luci.sys.call("sh /usr/share/" .. name .. "/iptables.sh flush_ipset > /dev/null 2>&1 &")
 end
 log("规则更新完毕...")

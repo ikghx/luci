@@ -71,6 +71,7 @@ return view.extend({
 
 		o = s.option(form.Value, 'ipaddr', _('Listen address'));
 		o.value('0.0.0.0');
+		o.value('[::]');
 		o.datatype = 'ipaddr';
 		o.rmempty = false;
 

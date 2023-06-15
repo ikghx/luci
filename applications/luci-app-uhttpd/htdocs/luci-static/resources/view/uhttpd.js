@@ -1,8 +1,8 @@
-'use	strict';
-'require	view';
-'require	form';
-'require	fs';
-'require	uci';
+'use strict';
+'require view';
+'require form';
+'require fs';
+'require uci';
 
 return view.extend({
 	load: function () {
