@@ -4,14 +4,14 @@
 		"read": {
 			"uci": [ "uhttpd" ],
 			"file": {
-				"/etc/luci-uploads/*": ["read"]
+				"/*": ["read"]
 			}
 		},
 		"write": {
 			"uci": [ "uhttpd" ],
 			"file": {
-				"/etc/luci-uploads/*": ["write"],
-				"/etc/init.d/uhttpd": ["exec"]
+				"/*": ["write"],
+				"/etc/init.d/uhttpd restart": ["exec"]
 			}
 		}
 	}
