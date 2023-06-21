@@ -13,7 +13,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.12.1\n"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:219
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:221
 msgid ""
 "<em>Via proxy</em> routes requests to the given target via the specified "
 "upstream proxy, <em>Reject access</em> disables any upstream proxy for the "
@@ -31,11 +31,11 @@ msgstr ""
 "Dodaje nagłówek http \"X-Tinyproxy\" z adresem IP klienta do przekazywanych "
 "żądań"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:126
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:128
 msgid "Allowed clients"
 msgstr "Dozwolone klienty"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:133
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:135
 msgid "Allowed connect ports"
 msgstr "Dozwolone porty połączenia"
 
@@ -43,7 +43,7 @@ msgstr "Dozwolone porty połączenia"
 msgid "Bind address"
 msgstr "Zwiąż adres"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:149
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:151
 msgid ""
 "By default, basic POSIX expressions are used for filtering. Enable this to "
 "activate extended regular expressions"
@@ -51,7 +51,7 @@ msgstr ""
 "Domyślnie do filtrowania używane są podstawowe wyrażenia POSIX. Włącz tę "
 "opcję, aby aktywować rozszerzone wyrażenia regularne"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:153
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:155
 msgid ""
 "By default, filter strings are treated as case-insensitive. Enable this to "
 "make the matching case-sensitive"
@@ -59,7 +59,7 @@ msgstr ""
 "Domyślnie ciągi filtrowania traktowane są jako wrażliwe na wielkość liter. "
 "Włącz tę opcję, aby dopasowania były wrażliwe na wielkości liter"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:145
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:147
 msgid ""
 "By default, filtering is done based on domain names. Enable this to match "
 "against URLs instead"
@@ -67,7 +67,7 @@ msgstr ""
 "Domyślnie filtrowanie jest wykonywane w oparciu o nazwy domen. Włącz tę "
 "opcję, aby dopasować się do adresów URL zamiast"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:157
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:159
 msgid ""
 "By default, the filter rules act as blacklist. Enable this option to only "
 "allow matched URLs or domain names"
@@ -75,7 +75,7 @@ msgstr ""
 "Domyślnie, reguły filtra działają jako czarna lista. Zaznacz tę opcję, aby "
 "zezwalać wyłącznie na pasujące URL-e lub nazwy domen"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:226
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:228
 msgid ""
 "Can be either an IP address or range, a domain name or \".\" for any host "
 "without domain"
@@ -87,13 +87,17 @@ msgstr ""
 msgid "Configuration"
 msgstr "Konfiguracja"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:164
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:166
 msgid "Connection timeout"
 msgstr "Limit czasu połączenia"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:156
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:158
 msgid "Default deny"
 msgstr "Domyślnie blokuj"
+
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:111
+msgid "Disable Via Header"
+msgstr ""
 
 #: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:17
 msgid "Enable"
@@ -107,19 +111,19 @@ msgstr "Strona błędu"
 msgid "Failed to retrieve statistics from url:"
 msgstr "Nieudane pobieranie statystyk z adresu URL:"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:148
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:150
 msgid "Filter by RegExp"
 msgstr "Filtruj z użyciem RegExp"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:144
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:146
 msgid "Filter by URLs"
 msgstr "Filtruj po adresach URL"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:152
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:154
 msgid "Filter case-sensitive"
 msgstr "Filtr wrażliwy na wielkość liter"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:140
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:142
 msgid "Filter file"
 msgstr "Plik z filtrami"
 
@@ -148,18 +152,18 @@ msgid "HTML template file to serve when HTTP errors occur"
 msgstr "Plik szablonu HTML używany do prezentacji komunikatów błędu"
 
 # Zgaduję, że to ma coś wspólnego z nagłówkami zapytań - stąd takie tłumaczenie.
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:118
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:120
 msgid "Header whitelist"
 msgstr "Biała lista nagłówków"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:127
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:129
 msgid ""
 "List of IP addresses or ranges which are allowed to use the proxy server"
 msgstr ""
 "Lista adresów IP lub zakresów, które są dopuszczone do korzystania z serwera "
 "proxy"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:134
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:136
 msgid ""
 "List of allowed ports for the CONNECT method. A single value \"0\" disables "
 "CONNECT completely, an empty list allows all ports"
@@ -189,23 +193,23 @@ msgstr "Poziom logowania"
 msgid "Logging verbosity of the Tinyproxy process"
 msgstr "Szczegółowość logowania procesów Tinyproxy"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:172
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:174
 msgid "Max. clients"
 msgstr "Maks. klientów"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:200
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:202
 msgid "Max. requests per server"
 msgstr "Maks. żądań na serwer"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:186
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:188
 msgid "Max. spare servers"
 msgstr "Maks. uruchomionych serwerów"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:173
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:175
 msgid "Maximum allowed number of concurrently connected clients"
 msgstr "Maksymalna dopuszczalna liczba jednocześnie podłączonych klientów"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:201
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:203
 msgid ""
 "Maximum allowed number of requests per process. If it is exeeded, the "
 "process is restarted. Zero means unlimited."
@@ -213,34 +217,34 @@ msgstr ""
 "Maksymalna dopuszczalna liczba żądań na proces. Jeśli zostanie przekroczona, "
 "proces zostanie ponownie uruchomiony. Zero oznacza bez limitu."
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:187
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:189
 msgid "Maximum number of prepared idle processes"
 msgstr "Maksymalna liczba przygotowanych bezczynnych procesów"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:165
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:167
 msgid "Maximum number of seconds an inactive connection is held open"
 msgstr ""
 "Maksymalna liczba sekund dla podtrzymywania otwartego nieaktywnego połączenie"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:179
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:181
 msgid "Min. spare servers"
 msgstr "Min. liczba zapasowych serwerów"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:180
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:182
 msgid "Minimum number of prepared idle processes"
 msgstr "Minimalna liczba przygotowanych bezczynnych procesów"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:194
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:196
 msgid "Number of idle processes to start when launching Tinyproxy"
 msgstr ""
 "Liczba bezczynnych procesów do włączenia podczas uruchamiania Tinyproxy"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:141
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:143
 msgid "Plaintext file with URLs or domains to filter. One entry per line"
 msgstr ""
 "Plik tekstowy z URL-ami lub domenami do filtrowania. Jeden wpis na linię"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:218
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:220
 msgid "Policy"
 msgstr "Polityka"
 
@@ -248,7 +252,7 @@ msgstr "Polityka"
 msgid "Privacy settings"
 msgstr "Ustawienia prywatności"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:222
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:224
 msgid "Reject access"
 msgstr "Odmów dostępu"
 
@@ -260,7 +264,7 @@ msgstr "Ustawienia serwera"
 msgid "Server limits"
 msgstr "Limity serwera"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:119
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:121
 msgid ""
 "Specifies HTTP header names which are allowed to pass-through, all others "
 "are discarded. Leave empty to disable header filtering"
@@ -272,7 +276,7 @@ msgstr ""
 msgid "Specifies the HTTP port Tinyproxy is listening on for requests"
 msgstr "Określa port, na którym Tinyproxy będzie oczekiwać żądań HTTP"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:112
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:114
 msgid "Specifies the Tinyproxy hostname to use in the Via HTTP header"
 msgstr "Określa nazwę hosta używaną przez Tinyproxy w nagłówku HTTP \"Via\""
 
@@ -291,7 +295,7 @@ msgstr "Określa adresy, z których Tinyproxy oczekuje żądań"
 msgid "Specifies the group name the Tinyproxy process is running as"
 msgstr "Określ nazwę grupy, pod jaką będzie pracował proces Tinyproxy"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:234
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:236
 msgid ""
 "Specifies the upstream proxy to use for accessing the target host. Format is "
 "<code>address:port</code> or <code>socks5 address:port</code>"
@@ -301,7 +305,7 @@ msgstr ""
 msgid "Specifies the user name the Tinyproxy process is running as"
 msgstr "Określ nazwę użytkownika, pod jaką będzie pracował proces Tinyproxy"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:193
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:195
 msgid "Start spare servers"
 msgstr "Uruchamiane serwery zapasowe"
 
@@ -313,7 +317,7 @@ msgstr "Strona statystyk"
 msgid "Status"
 msgstr "Status"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:225
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:227
 msgid "Target host"
 msgstr "Host docelowy"
 
@@ -330,11 +334,11 @@ msgstr "Status serwera Tinyproxy"
 msgid "Tinyproxy is a small and fast non-caching HTTP(S)-Proxy"
 msgstr "Tinyproxy to mały i szybki niebuforujący serwer proxy HTTP(S)"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:211
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:213
 msgid "Upstream Proxies"
 msgstr "Serwery proxy typu upstream"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:212
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:214
 msgid ""
 "Upstream proxy rules define proxy servers to use when accessing certain IP "
 "addresses or domains."
@@ -350,12 +354,12 @@ msgstr "Użyj dziennika systemowego"
 msgid "User"
 msgstr "Użytkownik"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:111
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:113
 msgid "Via hostname"
 msgstr "Nazwa hosta via"
 
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:221
-#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:233
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:223
+#: applications/luci-app-tinyproxy/luasrc/model/cbi/tinyproxy.lua:235
 msgid "Via proxy"
 msgstr "Proxy via"
 
