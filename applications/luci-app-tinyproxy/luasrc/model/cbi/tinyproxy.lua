@@ -115,6 +115,7 @@ o = s:taboption("privacy", Value, "ViaProxyName", translate("Via hostname"),
 
 o.placeholder = "tinyproxy"
 o.datatype = "hostname"
+o:depends("DisableViaHeader", 0)
 
 
 s:taboption("privacy", DynamicList, "Anonymous", translate("Header whitelist"),
