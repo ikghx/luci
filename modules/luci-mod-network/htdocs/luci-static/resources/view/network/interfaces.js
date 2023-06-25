@@ -915,7 +915,6 @@ return view.extend({
 
 					so = ss.taboption('ipv6', form.Value, 'dhcpv6_pd_min_len', _('<abbr title="Prefix Delegation">PD</abbr> minimum length'),
 						_('Configures the minimum delegated prefix length assigned to a requesting downstream router, potentially overriding a requested prefix length. If left unspecified, the device will assign the smallest available prefix greater than or equal to the requested prefix.'));
-					so.optional = true;
 					so.datatype = 'range(1,62)';
 					so.depends('dhcpv6', 'server');
 
