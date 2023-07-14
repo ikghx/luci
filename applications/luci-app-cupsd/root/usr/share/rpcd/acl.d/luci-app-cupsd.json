@@ -1,0 +1,21 @@
+{
+	"luci-app-cupsd": {
+		"description": "Grant UCI access for luci-app-cupsd",
+		"read": {
+			"file": {
+				"/etc/cups/cupsd.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "cupsd" ]
+		},
+		"write": {
+			"file": {
+				"/etc/cups/cupsd.conf": [ "write" ],
+				"/etc/init.d/cupsd restart": [ "exec" ]
+			},
+			"uci": [ "cupsd" ]
+		}
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"admin/services/frpc": {
+		"title": "frp client",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/frpc/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-frpc" ],
+			"uci": { "frpc": true }
+		}
+	},
+
+	"admin/services/frpc/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "frpc/base"
+		}
+	},
+
+	"admin/services/frpc/conf": {
+		"title": "Client configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "frpc/conf"
+		}
+	}
+}

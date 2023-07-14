@@ -1,0 +1,25 @@
+{
+	"luci-app-oscam": {
+		"description": "Grant UCI access for luci-app-oscam",
+		"read": {
+			"file": {
+				"/etc/oscam/oscam.conf": [ "read" ],
+				"/etc/oscam/oscam.server": [ "read" ],
+				"/etc/oscam/oscam.user": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "oscam" ]
+		},
+		"write": {
+			"file": {
+				"/etc/oscam/oscam.conf": [ "write" ],
+				"/etc/oscam/oscam.server": [ "write" ],
+				"/etc/oscam/oscam.user": [ "write" ],
+				"/etc/init.d/oscam restart": [ "exec" ]
+			},
+			"uci": [ "oscam" ]
+		}
+	}
+}

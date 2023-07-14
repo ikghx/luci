@@ -1,0 +1,18 @@
+{
+	"luci-app-chinadns-ng": {
+		"description": "Grant UCI access for luci-app-chinadns-ng",
+		"read": {
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "chinadns-ng" ]
+		},
+		"write": {
+			"file": {
+				"/etc/init.d/chinadns-ng restart": [ "exec" ],
+				"/etc/chinadns-ng/up_data.sh": [ "exec" ]
+			},
+			"uci": [ "chinadns-ng" ]
+		}
+	}
+}

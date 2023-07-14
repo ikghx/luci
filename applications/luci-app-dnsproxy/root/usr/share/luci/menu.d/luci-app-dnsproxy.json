@@ -1,0 +1,67 @@
+{
+	"admin/services/dnsproxy": {
+		"title": "DNS Proxy",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/dnsproxy/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-dnsproxy" ],
+			"uci": { "dnsproxy": true }
+		}
+	},
+
+	"admin/services/dnsproxy/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "dnsproxy/base"
+		}
+	},
+
+	"admin/services/dnsproxy/nxdomain": {
+		"title": "NXDOMAIN",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "dnsproxy/nxdomain"
+		}
+	},
+
+	"admin/services/dnsproxy/cache": {
+		"title": "Cache",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "dnsproxy/cache"
+		}
+	},
+
+	"admin/services/dnsproxy/dns64": {
+		"title": "DNS64",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "dnsproxy/dns64"
+		}
+	},
+
+	"admin/services/dnsproxy/edns": {
+		"title": "EDNS",
+		"order": 5,
+		"action": {
+			"type": "view",
+			"path": "dnsproxy/edns"
+		}
+	},
+
+	"admin/services/dnsproxy/servers": {
+		"title": "Servers",
+		"order": 6,
+		"action": {
+			"type": "view",
+			"path": "dnsproxy/servers"
+		}
+	}
+}

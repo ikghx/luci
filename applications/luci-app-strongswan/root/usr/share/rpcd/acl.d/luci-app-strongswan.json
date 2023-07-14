@@ -1,0 +1,27 @@
+{
+	"luci-app-strongswan": {
+		"description": "Grant UCI access for luci-app-strongswan",
+		"read": {
+			"file": {
+				"/etc/ipsec.conf": [ "read" ],
+				"/etc/ipsec.secrets": [ "read" ],
+				"/etc/strongswan.conf": [ "read" ],
+				"/etc/swanctl/swanctl.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "ipsec" ]
+		},
+		"write": {
+			"file": {
+				"/etc/ipsec.conf": [ "write" ],
+				"/etc/ipsec.secrets": [ "write" ],
+				"/etc/strongswan.conf": [ "write" ],
+				"/etc/swanctl/swanctl.conf": [ "write" ],
+				"/etc/init.d/swanctl restart": [ "exec" ]
+			},
+			"uci": [ "ipsec" ]
+		}
+	}
+}

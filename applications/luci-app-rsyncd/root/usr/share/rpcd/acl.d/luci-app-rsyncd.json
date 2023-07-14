@@ -1,0 +1,25 @@
+{
+	"luci-app-rsyncd": {
+		"description": "Grant UCI access for luci-app-rsyncd",
+		"read": {
+			"file": {
+				"/etc/rsyncd.conf": [ "read" ],
+				"/etc/rsyncd.secrets": [ "read" ],
+				"/etc/rsyncd.password": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "rsyncd" ]
+		},
+		"write": {
+			"file": {
+				"/etc/rsyncd.conf": [ "write" ],
+				"/etc/rsyncd.secrets": [ "write" ],
+				"/etc/rsyncd.password": [ "write" ],
+				"/etc/init.d/rsyncd restart": [ "exec" ]
+			},
+			"uci": [ "rsyncd" ]
+		}
+	}
+}

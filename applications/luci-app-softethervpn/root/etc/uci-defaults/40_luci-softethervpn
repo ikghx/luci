@@ -1,0 +1,11 @@
+#!/bin/sh
+
+uci -q batch <<-EOF >/dev/null
+	delete firewall.softethervpn
+	set firewall.softethervpn=include
+	set firewall.softethervpn.type=script
+	set firewall.softethervpn.path=/usr/share/softethervpn/firewall.include
+	set firewall.softethervpn.reload=1
+EOF
+
+exit 0

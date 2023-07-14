@@ -1,0 +1,49 @@
+{
+	"admin/nas/tgt": {
+		"title": "tgt",
+		"action": {
+			"type": "alias",
+			"path": "admin/nas/tgt/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-tgt" ],
+			"uci": { "tgt": true }
+		}
+	},
+
+	"admin/nas/tgt/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "tgt/base"
+		}
+	},
+
+	"admin/nas/tgt/target": {
+		"title": "iSCSI target",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "tgt/target"
+		}
+	},
+
+	"admin/nas/tgt/lun": {
+		"title": "iSCSI lun",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "tgt/lun"
+		}
+	},
+
+	"admin/nas/tgt/account": {
+		"title": "iSCSI account",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "tgt/account"
+		}
+	}
+}

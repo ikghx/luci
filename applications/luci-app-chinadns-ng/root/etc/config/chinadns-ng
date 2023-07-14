@@ -1,0 +1,22 @@
+
+config chinadns-ng
+	option enable '0'
+	option bind_addr '127.0.0.1'
+	option bind_port '5335'
+	option china_dns '119.29.29.29,223.5.5.5'
+	option trust_dns '127.0.0.1#5334'
+	option reuse_port '1'
+	option chnlist_first '0'
+	option noip_as_chnip '0'
+	option no_ipv6 '0'
+	option nice '0'
+	option ipset_name4 'chnroute'
+	option ipset_name6 'chnroute6'
+	option add_tagchn_ip '1'
+	option add_taggfw_ip 'gfwlist,gfwlist6'
+	option gfwlist_file '/etc/chinadns-ng/proxy-list.txt'
+	option chnlist_file '/etc/chinadns-ng/direct-list.txt'
+	option default_tag 'chn'
+	option timeout_sec '3'
+	option repeat_times '1'
+

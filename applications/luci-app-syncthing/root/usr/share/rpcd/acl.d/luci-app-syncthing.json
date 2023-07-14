@@ -1,0 +1,17 @@
+{
+	"luci-app-syncthing": {
+		"description": "Grant UCI access for luci-app-syncthing",
+		"read": {
+			"file": {
+				"/etc/passwd": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "syncthing" ]
+		},
+		"write": {
+			"uci": [ "syncthing" ]
+		}
+	}
+}

@@ -1,0 +1,29 @@
+#!/bin/sh /etc/rc.common
+START=98
+
+USE_PROCD=1
+PROG=/usr/bin/frps
+CONFIGFILE=/etc/frp/frps.ini
+
+start_instance() {
+	local cfg="$1"
+	local enabled
+
+	config_get_bool enabled "$cfg" 'enabled' 0
+	[ $enabled -gt 0 ] || return 1
+
+	procd_open_instance
+	procd_set_param command "$PROG" -c "$CONFIGFILE"
+	procd_set_param file "$CONFIGFILE"
+	procd_set_param respawn
+	procd_close_instance
+}
+
+start_service() {
+	config_load 'frps'
+	config_foreach start_instance 'base'
+}
+
+service_triggers() {
+	procd_add_reload_trigger "frps"
+}

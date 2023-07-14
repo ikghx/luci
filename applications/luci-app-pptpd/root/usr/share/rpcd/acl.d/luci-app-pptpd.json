@@ -1,0 +1,14 @@
+{
+	"luci-app-pptpd": {
+		"description": "Grant UCI access for luci-app-pptpd",
+		"read": {
+			"uci": [ "pptpd" ]
+		},
+		"write": {
+			"file": {
+				"/etc/firewall.user": [ "write" ]
+			},
+			"uci": [ "pptpd" ]
+		}
+	}
+}
