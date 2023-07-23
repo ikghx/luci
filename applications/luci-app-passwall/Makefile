@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=4.66-8
+PKG_VERSION:=4.66-12
 PKG_RELEASE:=
 
 PKG_CONFIG_DEPENDS:= \
@@ -26,6 +26,7 @@ PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Simple_Obfs \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_GO \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_tuic_client \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_V2ray \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin \
@@ -36,7 +37,8 @@ LUCI_TITLE:=LuCI support for PassWall
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
 	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
-	+microsocks +resolveip +tcping +unzip \
+	+microsocks +resolveip +tcping +unzip +dnsmasq-full +ipt2socks +nftables \
+	+kmod-nft-socket +kmod-nft-tproxy +kmod-nft-nat \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Brook:brook \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy:haproxy \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria:hysteria \
@@ -52,6 +54,7 @@ LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Simple_Obfs:simple-obfs \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_GO:trojan-go \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus:trojan-plus \
+	+PACKAGE_$(PKG_NAME)_INCLUDE_tuic_client:tuic-client \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray:v2ray-core \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata:v2ray-geoip \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata:v2ray-geosite \
@@ -61,31 +64,6 @@ LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
 
 define Package/$(PKG_NAME)/config
 menu "Configuration"
-
-config PACKAGE_$(PKG_NAME)_Iptables_Transparent_Proxy
-	bool "Iptables Transparent Proxy"
-	select PACKAGE_dnsmasq-full
-	select PACKAGE_ipset
-	select PACKAGE_ipt2socks
-	select PACKAGE_iptables
-	select PACKAGE_iptables-zz-legacy
-	select PACKAGE_iptables-mod-conntrack-extra
-	select PACKAGE_iptables-mod-iprange
-	select PACKAGE_iptables-mod-socket
-	select PACKAGE_iptables-mod-tproxy
-	select PACKAGE_kmod-ipt-nat
-	depends on PACKAGE_$(PKG_NAME)
-	default y if ! PACKAGE_firewall4
-
-config PACKAGE_$(PKG_NAME)_Nftables_Transparent_Proxy
-	bool "Nftables Transparent Proxy"
-	select PACKAGE_dnsmasq-full
-	select PACKAGE_nftables
-	select PACKAGE_kmod-nft-socket
-	select PACKAGE_kmod-nft-tproxy
-	select PACKAGE_kmod-nft-nat
-	depends on PACKAGE_$(PKG_NAME)
-	default y if PACKAGE_firewall4
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Brook
 	bool "Include Brook"
@@ -145,6 +123,11 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_GO
 config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus
 	bool "Include Trojan-Plus"
 	default y
+
+config PACKAGE_$(PKG_NAME)_INCLUDE_tuic_client
+	bool "Include tuic-client"
+	depends on aarch64||arm||i386||x86_64
+	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray
 	bool "Include V2ray"

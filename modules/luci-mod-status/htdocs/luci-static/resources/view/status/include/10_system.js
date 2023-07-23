@@ -18,6 +18,21 @@ var callSystemInfo = rpc.declare({
 	method: 'info'
 });
 
+var callCPUInfo = rpc.declare({
+	object: 'luci',
+	method: 'getCPUInfo'
+});
+
+var callCPUUsage = rpc.declare({
+	object: 'luci',
+	method: 'getCPUUsage'
+});
+
+var callTempInfo = rpc.declare({
+	object: 'luci',
+	method: 'getTempInfo'
+});
+
 return baseclass.extend({
 	title: _('System'),
 
@@ -25,6 +40,9 @@ return baseclass.extend({
 		return Promise.all([
 			L.resolveDefault(callSystemBoard(), {}),
 			L.resolveDefault(callSystemInfo(), {}),
+			L.resolveDefault(callCPUInfo(), {}),
+			L.resolveDefault(callCPUUsage(), {}),
+			L.resolveDefault(callTempInfo(), {}),
 			L.resolveDefault(callLuciVersion(), { revision: _('unknown version'), branch: 'LuCI' })
 		]);
 	},
@@ -32,7 +50,10 @@ return baseclass.extend({
 	render: function(data) {
 		var boardinfo   = data[0],
 		    systeminfo  = data[1],
-		    luciversion = data[2];
+		    cpuinfo     = data[2],
+		    cpuusage    = data[3],
+		    tempinfo    = data[4],
+		    luciversion = data[5];
 
 		luciversion = luciversion.branch + ' ' + luciversion.revision;
 
@@ -54,7 +75,7 @@ return baseclass.extend({
 		var fields = [
 			_('Hostname'),         boardinfo.hostname,
 			_('Model'),            boardinfo.model,
-			_('Architecture'),     boardinfo.system,
+			_('Architecture'),     cpuinfo.cpuinfo || boardinfo.system,
 			_('Target Platform'),  (L.isObject(boardinfo.release) ? boardinfo.release.target : ''),
 			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || ''),
 			_('Kernel Version'),   boardinfo.kernel,
@@ -64,8 +85,14 @@ return baseclass.extend({
 				systeminfo.load[0] / 65535.0,
 				systeminfo.load[1] / 65535.0,
 				systeminfo.load[2] / 65535.0
-			) : null
+			) : null,
+			_('CPU usage (%)'),    cpuusage.cpuusage
 		];
+
+		if (tempinfo.tempinfo) {
+			fields.splice(6, 0, _('Temperature'));
+			fields.splice(7, 0, tempinfo.tempinfo);
+		}
 
 		var table = E('table', { 'class': 'table' });
 

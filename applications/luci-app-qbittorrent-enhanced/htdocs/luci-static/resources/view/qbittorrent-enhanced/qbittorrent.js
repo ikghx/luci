@@ -118,19 +118,15 @@ return view.extend({
 			E('script', { 'src': L.resource('view/qbittorrent-enhanced/asmcrypto.all.es5.min.js') })
 			])
 		);
-		return fs.exec('/usr/bin/qbittorrent-nox-enhanced', ['-v'], {'HOME': '/var/run/qbittorrent-enhanced'}).then(function(res) {
-			var ver = res.stdout.trim().match(/v(\d+(\.\d+){2,3})(alpha\d+|beta\d+|rc\d)?$/) || null;
-			return ver ? ver.splice(0, 2) : ['', ''];
-		});
 	},
 
 	render: function(ver) {
 		var m, s, o;
 
-		m = new form.Map('qbittorrent-enhanced', _('qBittorrent Enhanced'), '%s %s %s.<br\><b style="color:red">%s</b>'
+		m = new form.Map('qbittorrent-enhanced', _('qBittorrent Enhanced'), '%s %s<br\><b style="color:red">%s</b>'
 			.format(_('A BT/PT downloader base on Qt.'), _('Refer to the'),
 			'<a href="https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-' +
-			'in-qBittorrent" target="_blank">help</a>', _('Current Version: %s').format(ver[0])));
+			'in-qBittorrent" target="_blank">help</a>'));
 
 		s = m.section(form.TypedSection);
 		s.title = _('qBittorrent Status');
@@ -418,8 +414,8 @@ return view.extend({
 		o = s.taboption('webui', form.Value, 'Locale', _('Locale Language'),
 			_('The supported language codes can be used to customize the setting.'));
 		o.value('en', _('English (en)'));
-		o.value('zh', _('Chinese (zh)'));
-		o.default = 'zh';
+		o.value('zh_CN', _('Chinese (zh_CN)'));
+		o.default = 'zh_CN';
 
 		o = s.taboption('webui', form.Flag, 'UseUPnP', _('Use UPnP for WebUI'),
 			_('Using the UPnP / NAT-PMP port of the router for connecting to WebUI.'));

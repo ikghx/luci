@@ -3,9 +3,9 @@
 uci -q batch <<-EOF >"/dev/null"
 	delete firewall.unblockneteasemusic
 	set firewall.unblockneteasemusic=include
-	set firewall.unblockneteasemusic.type=script
-	set firewall.unblockneteasemusic.path=/var/run/unblockneteasemusic/fw3.include
-	set firewall.unblockneteasemusic.reload=1
+	set firewall.unblockneteasemusic.type=nftables
+	set firewall.unblockneteasemusic.path=/var/run/unblockneteasemusic/fw4.nft
+	set firewall.unblockneteasemusic.position=table-post
 	commit firewall
 EOF
 

@@ -64,6 +64,7 @@ static int nixio_tls_ctx(lua_State * L) {
 	if (!(*ctx)) {
 		return luaL_error(L, "unable to create TLS context");
 	}
+
 	/* Setting the minimum version of SSL */
 	SSL_CTX_set_min_proto_version(*ctx,TLS1_2_VERSION);
 	/* Setting do not verify certificate */

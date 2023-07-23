@@ -76,8 +76,9 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'addr_type', _('Listening address type'));
-		o.value('local', _('Local'));
-		o.value('lan', _('LAN'));
+		o.value('local');
+		o.value('lan');
+		o.value('all');
 
 		o = s.option(form.Value, 'port', _('Listen Port'));
 		o.datatype = 'port';

@@ -63,7 +63,6 @@ static int nixio_tls_sock_recv(lua_State *L) {
 		lua_pushlstring(L, buffer, readc);
 		return 1;
 	}
-
 }
 
 static int nixio_tls_sock_send(lua_State *L) {
@@ -120,9 +119,6 @@ static int nixio_tls_sock__gc(lua_State *L) {
 	if (sock->socket) {
 		SSL_free(sock->socket);
 		sock->socket = NULL;
-#ifdef WITH_AXTLS
-		free(sock->pbuffer);
-#endif
 	}
 	return 0;
 }

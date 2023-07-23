@@ -1,0 +1,44 @@
+<script type="text/javascript">//<![CDATA[
+XHR.poll(1, '<%=luci.dispatcher.build_url("admin/nas/amule/status")%>', null,
+	function(x, data) {
+		var tb = document.getElementById('amule_status');
+		if (data && tb) {
+			if (data.amuled) {
+				var links = '<em><b style=color:green><%:aMule daemon is running.%></b></em>';
+				tb.innerHTML = links;
+			} else {
+				tb.innerHTML = '<em><b style=color:red><%:aMule daemon is not running.%></b></em>';
+			}
+		}
+	}
+);
+// event handler for download files
+function onclick_down_kad(id) {
+    if(confirm("<%:Existing file will be overwritten, do you really want to proceed?%>"))
+    {
+	var btnXHR = new XHR();
+	btnXHR.post('<%=url('admin/nas/amule/down_kad')%>', { token: '<%=token%>' },
+		function(x) {}
+	);
+    }
+}
+
+function onclick_down_ed2k(id) {
+    if(confirm("<%:Existing file will be overwritten, do you really want to proceed?%>"))
+    {
+	var btnXHR = new XHR();
+	btnXHR.post('<%=url('admin/nas/amule/down_ed2k')%>', { token: '<%=token%>' },
+		function(x) {}
+	);
+    }
+}
+
+//]]>
+</script>
+<style>.mar-10 {margin-left: 10px; margin-right: 10px;}</style>
+<fieldset class="cbi-section">
+	<legend><%:aMule Status%></legend>
+	<p id="amule_status">
+		<em><%:Collecting data...%></em>
+	</p>
+</fieldset>

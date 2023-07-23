@@ -152,7 +152,7 @@ msgstr "ACCEPT - Deaktiver adresseomskrivning"
 msgid "Action"
 msgstr "Handling"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:308
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -162,7 +162,7 @@ msgstr ""
 "zonedestinationstrafik, f.eks. <code>-p tcp --dport 443</code> for kun at "
 "matche udgående HTTPS-trafik."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:294
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:298
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -186,19 +186,19 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:161
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:182
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:181
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:96
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:100
 msgid "Advanced Settings"
 msgstr "Avancerede indstillinger"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:265
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:269
 msgid "Allow \"invalid\" traffic"
 msgstr "Tillad \"ugyldig\" trafik"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:367
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:371
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "Tillad videresendelse fra <em>kildezoner</em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:326
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:330
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "Tillad videresendelse til <em>destinationszoner</em>:"
 
@@ -231,11 +231,11 @@ msgstr "Anvend den givne DSCP-klasse eller værdi på etablerede forbindelser."
 msgid "Assign the specified connection tracking helper to matched traffic."
 msgstr "Tildel den angivne forbindelsessporingshjælper til matchet trafik."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:268
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:272
 msgid "Automatic helper assignment"
 msgstr "Automatisk hjælpertildeling"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:268
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:272
 msgid ""
 "Automatically assign conntrack helpers based on traffic protocol and port"
 msgstr "Tildel automatisk conntrack-hjælpere baseret på trafikprotokol og port"
@@ -245,11 +245,11 @@ msgstr "Tildel automatisk conntrack-hjælpere baseret på trafikprotokol og port
 msgid "Comment"
 msgstr "Kommentar"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:97
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:101
 msgid "Conntrack Settings"
 msgstr "Forbindelsesindstillinger"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:272
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:276
 msgid "Conntrack helpers"
 msgstr "Forbindelseshjælpere"
 
@@ -265,15 +265,15 @@ msgstr "Fortsæt"
 msgid "Counters"
 msgstr "Tællere"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:213
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:217
 msgid "Covered devices"
 msgstr "Dækkede enheder"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:165
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:169
 msgid "Covered networks"
 msgstr "Dækkede netværk"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:218
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:222
 msgid "Covered subnets"
 msgstr "Dækkede subnets"
 
@@ -322,7 +322,7 @@ msgstr "Destination zone"
 msgid "Device name"
 msgstr "Enhedens navn"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:265
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:269
 msgid ""
 "Do not install extra rules to reject forwarded traffic with conntrack state "
 "<em>invalid</em>. This may be required for complex asymmetric route setups."
@@ -341,6 +341,14 @@ msgstr "Drop ugyldige pakker"
 msgid "Enable"
 msgstr "Aktiver"
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:49
+msgid "Enable FullCone NAT"
+msgstr ""
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:50
+msgid "Enable FullCone NAT6"
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:302
 msgid "Enable NAT Loopback"
 msgstr "Aktiver NAT Loopback"
@@ -349,11 +357,11 @@ msgstr "Aktiver NAT Loopback"
 msgid "Enable SYN-flood protection"
 msgstr "Aktiver SYN-flood beskyttelse"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:278
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:282
 msgid "Enable logging on this zone"
 msgstr "Aktiver logning på denne zone"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:150
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:154
 msgid ""
 "Enable network address and port translation IPv4 (NAT4 or NAPT4) for "
 "outbound traffic on this zone. This is typically enabled on the <em>wan</em> "
@@ -363,7 +371,7 @@ msgstr ""
 "udgående trafik på denne zone. Dette er typisk aktiveret på zonen <em>wan</"
 "em>."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:225
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:229
 msgid ""
 "Enable network address and port translation IPv6 (NAT6 or NAPT6) for "
 "outbound traffic on this zone."
@@ -383,11 +391,11 @@ msgstr "Aktiverer sporing af pakke og byttetælling for sættet."
 msgid "Expecting: %s"
 msgstr "Forventer: %s"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:65
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:69
 msgid "Experimental feature. Not fully compatible with QoS/SQM."
 msgstr "Eksperimentel funktion. Ikke fuldt kompatibel med QoS/SQM."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:272
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:276
 msgid "Explicitly choses allowed connection tracking helpers for zone traffic"
 msgstr "Vælger eksplicit tilladte forbindelsessporingshjælpere til zonetrafik"
 
@@ -405,15 +413,15 @@ msgstr "Ekstern port"
 msgid "Extra arguments"
 msgstr "Ekstra argumenter"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:308
 msgid "Extra destination arguments"
 msgstr "Ekstra destinationsargumenter"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:98
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:102
 msgid "Extra iptables arguments"
 msgstr "Ekstra iptables-argumenter"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:294
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:298
 msgid "Extra source arguments"
 msgstr "Ekstra kildeargumenter"
 
@@ -453,8 +461,8 @@ msgstr "Firewall - Zoneindstillinger"
 msgid "Firewall configuration migration"
 msgstr "Firewall-konfigurationsmigrering"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:52
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:135
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:56
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:139
 msgid "Forward"
 msgstr "Videresend"
 
@@ -536,7 +544,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:181
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:180
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:41
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:95
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:99
 #: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:17
 msgid "General Settings"
 msgstr "Generelle indstillinger"
@@ -545,7 +553,7 @@ msgstr "Generelle indstillinger"
 msgid "Grant access to firewall configuration"
 msgstr "Giv adgang til firewall-konfiguration"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:76
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:80
 msgid "Hardware flow offloading"
 msgstr "Aflæsning af hardwareflow"
 
@@ -554,9 +562,6 @@ msgid "IP (range)"
 msgstr "IP (rækkevidde)"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:32
-msgid "IP Sets"
-msgstr "IP-sæt"
-
 #: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:53
 msgid "IP sets"
 msgstr ""
@@ -574,14 +579,14 @@ msgid "IPv4"
 msgstr "IPv4"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:291
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:238
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:242
 msgid "IPv4 and IPv6"
 msgstr "IPv4 og IPv6"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:190
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:292
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:218
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:239
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:243
 msgid "IPv4 only"
 msgstr "Kun IPv4"
 
@@ -589,14 +594,14 @@ msgstr "Kun IPv4"
 msgid "IPv6"
 msgstr "IPv6"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:224
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:228
 msgid "IPv6 Masquerading"
 msgstr "IPv6-maskering"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:191
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:293
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:240
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:244
 msgid "IPv6 only"
 msgstr "Kun IPv4"
 
@@ -636,8 +641,8 @@ msgstr ""
 msgid "Initial Hash Size"
 msgstr "Oprindelig hash-størrelse"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:50
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:133
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:54
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:137
 msgid "Input"
 msgstr "Input"
 
@@ -665,7 +670,7 @@ msgstr "Ugyldig grænseværdi"
 msgid "Limit burst"
 msgstr "Grænse brist"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:281
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:285
 msgid "Limit log messages"
 msgstr "Begræns logmeddelelser"
 
@@ -683,8 +688,8 @@ msgstr ""
 "Begræns matchning til <var>%{limit.num}</var> pakker pr. <var>%{limit.unit}</"
 "var>%{limit.burst? burst <var>%{limit.burst}</var>}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:157
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:232
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:161
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:236
 msgid "Limited masquerading enabled"
 msgstr "Begrænset maskering aktiveret"
 
@@ -700,11 +705,11 @@ msgstr "Loopback-kilde-IP"
 msgid "MASQUERADE - Automatically rewrite to outbound interface IP"
 msgstr "MASKERING - Omskriv automatisk til udgående grænseflade IP"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:162
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:166
 msgid "MSS clamping"
 msgstr "MSS fastspænding"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:149
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:153
 msgid "Masquerading"
 msgstr "Maskering"
 
@@ -827,7 +832,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:45
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:209
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:188
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:111
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:115
 msgid "Name"
 msgstr "Navn"
 
@@ -864,8 +869,8 @@ msgstr "Udgående enhed"
 msgid "Outbound zone"
 msgstr "Udgående zone"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:51
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:134
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:55
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:138
 msgid "Output"
 msgstr "Output"
 
@@ -892,7 +897,7 @@ msgstr ""
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "Sender yderligere argumenter til iptables. Brug med omhu!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:291
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:295
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -956,23 +961,23 @@ msgstr "Henvis til eksternt sæt"
 msgid "Reflection zones"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:77
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:81
 msgid "Requires hardware NAT support. Implemented at least for mt7621"
 msgstr ""
 "Kræver hardware NAT-understøttelse. Implementeret i det mindste for mt7621"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:254
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:258
 msgid "Restrict Masquerading to given destination subnets"
 msgstr "Begræns Maskering til givne destination subnets"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:243
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:247
 msgid "Restrict Masquerading to given source subnets"
 msgstr "Begræns Maskering til givne kilde subnets"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:187
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:288
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:215
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:237
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:241
 msgid "Restrict to address family"
 msgstr "Begræns til adresse familie"
 
@@ -992,7 +997,7 @@ msgstr "Omskriv matchet trafik til den angivne kildeport eller portinterval."
 msgid "Rewrite port"
 msgstr "Omskriv port"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:64
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:68
 msgid "Routing/NAT Offloading"
 msgstr "Routing/NAT Offloading"
 
@@ -1021,11 +1026,11 @@ msgstr ""
 "Indstil den givne mærkeværdi på etablerede forbindelser. Formatet er værdi[/"
 "mask]. Hvis der er angivet en maske, ændres kun de bits, der er sat i masken."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:72
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:76
 msgid "Software based offloading for routing/NAT"
 msgstr "Softwarebaseret offloading til routing/NAT"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:71
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:75
 msgid "Software flow offloading"
 msgstr "Software flow offloading"
 
@@ -1115,8 +1120,8 @@ msgstr ""
 "Firewallen opretter zoner over dine netværksgrænseflader for at kontrollere "
 "netværkstrafikstrømmen."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:209
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:322
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:213
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:326
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1133,7 +1138,7 @@ msgstr ""
 "til wan betyder <em>ikke</em> en tilladelse til også at videresende fra wan "
 "til lan."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:107
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:111
 msgid ""
 "This section defines common properties of %q. The <em>input</em> and "
 "<em>output</em> options set the default policies for traffic entering and "
@@ -1271,7 +1276,7 @@ msgstr "Unavngiven regel"
 msgid "Unnamed set"
 msgstr "Unavngivet sæt"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:112
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:116
 msgid "Unnamed zone"
 msgstr "Unavngiven zone"
 
@@ -1303,7 +1308,7 @@ msgstr "Brug intern IP-adresse"
 msgid "Use ipset"
 msgstr "Brug ipset"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:213
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:217
 msgid ""
 "Use this option to classify zone traffic by raw, non-<em>uci</em> managed "
 "network devices."
@@ -1311,7 +1316,7 @@ msgstr ""
 "Brug denne mulighed til at klassificere zonetrafik efter rå, ikke-<em>uci</"
 "em>-administrerede netværksenheder."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:218
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:222
 msgid ""
 "Use this option to classify zone traffic by source or destination subnet "
 "instead of networks or devices."
@@ -1349,11 +1354,11 @@ msgstr "Din enhed kører ikke firewall4."
 msgid "Your device runs firewall4."
 msgstr "Din enhed kører firewall4."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:125
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:129
 msgid "Zone ⇒ Forwardings"
 msgstr "Zone ⇒ Videresendelser"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:83
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:87
 msgid "Zones"
 msgstr "Zoner"
 
@@ -1364,8 +1369,8 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:426
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:58
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:141
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:62
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:145
 msgid "accept"
 msgstr "accept"
 
@@ -1453,8 +1458,8 @@ msgid "don't track"
 msgstr "spor ikke"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:425
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:57
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:140
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:61
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:144
 msgid "drop"
 msgstr "drop"
 
@@ -1522,8 +1527,8 @@ msgid "port: Port"
 msgstr "port: Port:"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:427
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:56
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:139
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:60
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:143
 msgid "reject"
 msgstr "afvis"
 
@@ -1566,9 +1571,9 @@ msgstr "src_port: Kildeport"
 msgid "this device"
 msgstr "denne enhed"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:106
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:208
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:321
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:110
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:212
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:325
 msgid "this new zone"
 msgstr "denne nye zone"
 
@@ -1588,6 +1593,9 @@ msgstr "op til 65536 poster."
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:338
 msgid "valid firewall mark"
 msgstr "gyldigt firewallmærke"
+
+#~ msgid "IP Sets"
+#~ msgstr "IP-sæt"
 
 #~ msgid "ipv4"
 #~ msgstr "ipv4"

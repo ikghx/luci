@@ -3,7 +3,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for Nginx.
-LUCI_DEPENDS:=+nginx +zoneinfo-core +zoneinfo-asia +unzip +openssl-util +sudo
+LUCI_DEPENDS:=+nginx +nginx-mod-brotli +nginx-mod-dav-ext +zoneinfo-core +zoneinfo-asia +unzip +openssl-util +sudo
 
 PKG_MAINTAINER:=KGHX
 PKG_LICENSE:=Apache-2.0

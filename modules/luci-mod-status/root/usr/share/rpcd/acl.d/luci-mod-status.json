@@ -3,7 +3,7 @@
 		"description": "Grant access to realtime statistics",
 		"read": {
 			"ubus": {
-				"luci": [ "getConntrackList", "getRealtimeStats" ],
+				"luci": [ "getConntrackList", "getRealtimeStats", "getCPUInfo", "getCPUUsage", "getOnlineUsers", "getTempInfo" ],
 				"network.rrdns": [ "lookup" ]
 			}
 		}
@@ -91,18 +91,6 @@
 			},
 			"ubus": {
 				"file": [ "exec" ]
-			}
-		}
-	},
-
-	"luci-mod-status-index-pstore": {
-		"description": "Grant access to kernel crash logs",
-		"read": {
-			"file": {
-				"/sys/fs/pstore/*": [ "read" ]
-			},
-			"ubus": {
-				"file": [ "list", "read" ]
 			}
 		}
 	}

@@ -8,14 +8,14 @@ CFLAGS       += -std=gnu99
 ifeq (,$(findstring Darwin,$(OS)))
 	NIXIO_LDFLAGS += -lcrypt -shared
 else
-        NIXIO_LDFLAGS += -bundle -undefined dynamic_lookup
-	EXTRA_CFLAGS += -D__DARWIN__
+	NIXIO_LDFLAGS += -bundle -undefined dynamic_lookup
+	EXTRA_CFLAGS  += -D__DARWIN__
 endif
 
 NIXIO_OBJ = nixio.o socket.o sockopt.o bind.o address.o \
-	    protoent.o poll.o io.o file.o splice.o process.o \
-	    syslog.o bit.o binary.o fs.o user.o \
-	    $(if $(NIXIO_TLS),tls-crypto.o tls-context.o tls-socket.o,)
+		protoent.o poll.o io.o file.o splice.o process.o \
+		syslog.o bit.o binary.o fs.o user.o \
+		$(if $(NIXIO_TLS),tls-crypto.o tls-context.o tls-socket.o,)
 
 ifeq ($(NIXIO_TLS),openssl)
 	NIXIO_LDFLAGS += -lssl -lcrypto
@@ -23,7 +23,7 @@ endif
 
 ifeq ($(NIXIO_TLS),wolfssl)
 	NIXIO_LDFLAGS += -lwolfssl
-	TLS_CFLAGS = -include wolfssl-compat.h
+	TLS_CFLAGS = -DWITH_WOLFSSL
 endif
 
 ifeq ($(NIXIO_TLS),)
@@ -66,7 +66,7 @@ tls-context.o: $(TLS_DEPENDS) tls-context.c
 	
 tls-socket.o: $(TLS_DEPENDS) tls-socket.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(NIXIO_CFLAGS) $(LUA_CFLAGS) $(FPIC) $(TLS_CFLAGS) -c -o $@ tls-socket.c
-endif	
+endif
 
 compile: $(NIXIO_OBJ)
 	$(CC) $(LDFLAGS) $(SHLIB_FLAGS) -o $(NIXIO_SO) $(NIXIO_OBJ) $(NIXIO_LDFLAGS) $(NIXIO_LDFLAGS_POST)
