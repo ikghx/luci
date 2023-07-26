@@ -22,6 +22,7 @@ s.addremove = false
 s.anonymous = true
 
 s:tab("limit", translate("Limit Rate by IP Address"))
+s:tab("limitmac", translate("Limit Rate by Mac Address"))
 s:tab("priority", translate("Traffic Priority"))
 
 --
@@ -58,6 +59,12 @@ o:depends("limit_type","static")
 o:value("bytes", "Bytes/s")
 o:value("kbytes", "KBytes/s")
 o:value("mbytes", "MBytes/s")
+
+--
+-- limit speed by mac address
+--
+o = s:taboption("limitmac", Flag, "limit_mac_enable", translate("Limit Enable"), translate("Enable Limit Rate Feature"))
+o.rmempty = false
 
 --
 -- Priority
