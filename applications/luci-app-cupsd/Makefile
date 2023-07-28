@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for cupsd
-LUCI_DEPENDS:=+kmod-usb-printer +kmod-usb-storage \
+LUCI_DEPENDS:=+kmod-usb-printer +kmod-usb-storage +cups \
 +cups-bjnp +cups-bsd +cups-client +cups-filters +cups-ppdc
 
 include ../../luci.mk

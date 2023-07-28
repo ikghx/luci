@@ -3,7 +3,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for usbipd
-LUCI_DEPENDS:=+usbip-client +usbip-server
+LUCI_DEPENDS:=+usbip +usbip-client +usbip-server
 
 PKG_MAINTAINER:=KGHX
 PKG_LICENSE:=Apache-2.0

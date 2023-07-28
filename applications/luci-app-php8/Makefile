@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for PHP8.
-LUCI_DEPENDS:=+php8-mod-mysqli +php8-mod-mbstring +php8-mod-ldap \
+LUCI_DEPENDS:=+php8 +php8-mod-mysqli +php8-mod-mbstring +php8-mod-ldap \
 +php8-mod-intl +php8-mod-imap +php8-mod-iconv +php8-mod-gmp +php8-mod-gettext \
 +php8-mod-gd +php8-mod-ftp +php8-mod-fileinfo +php8-mod-filter +php8-mod-exif \
 +php8-mod-dom +php8-mod-curl +php8-mod-ctype +php8-mod-calendar +php8-mod-bcmath \
