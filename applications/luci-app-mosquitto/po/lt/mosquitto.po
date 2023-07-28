@@ -10,6 +10,10 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:153
+msgid "Address"
+msgstr ""
+
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:61
 msgid "Allow anonymous connections"
 msgstr ""
@@ -21,7 +25,7 @@ msgstr ""
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:163
 msgid ""
 "Attempt to notify the local and remote broker of connection status, defaults "
-"to $SYS/broker/connections/<clientid>/state"
+"to $SYS/broker/connections/&lt;clientid&gt;/state"
 msgstr ""
 
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:177
@@ -96,6 +100,14 @@ msgstr ""
 msgid "Connection name"
 msgstr ""
 
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:20
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:98
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:120
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:174
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:213
+msgid "Default"
+msgstr ""
+
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:118
 msgid "Depends on your openssl version, empty to support all"
 msgstr ""
@@ -104,8 +116,16 @@ msgstr ""
 msgid "Directory to search for CA files"
 msgstr ""
 
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:22
+msgid "Disabled"
+msgstr ""
+
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:52
 msgid "Disallow remote access to this broker"
+msgstr ""
+
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:21
+msgid "Enabled"
 msgstr ""
 
 #: applications/luci-app-mosquitto/root/usr/share/rpcd/acl.d/luci-app-mosquitto.json:3
@@ -156,7 +176,7 @@ msgid "Limit for message queue when offline"
 msgstr ""
 
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:68
-msgid "Limit for message queue when offline, zero to disable)"
+msgid "Limit for message queue when offline, zero to disable"
 msgstr ""
 
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:92
@@ -189,6 +209,10 @@ msgstr ""
 
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:26
 msgid "Mosquitto MQTT Broker"
+msgstr ""
+
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:50
+msgid "None"
 msgstr ""
 
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:165
@@ -291,6 +315,10 @@ msgstr ""
 msgid "Should persistence to disk be enabled at all"
 msgstr ""
 
+#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:48
+msgid "System Log"
+msgstr ""
+
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:117
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:211
 msgid "TLS Version"
@@ -328,10 +356,6 @@ msgstr ""
 
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:45
 msgid "You can have multiple, but 'none' will override all others"
-msgstr ""
-
-#: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:153
-msgid "address"
 msgstr ""
 
 #: applications/luci-app-mosquitto/luasrc/model/cbi/mosquitto.lua:153

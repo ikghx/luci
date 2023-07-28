@@ -727,6 +727,10 @@ msgstr "Dodaj klucz"
 msgid "Add local domain suffix to names served from hosts files."
 msgstr "Dodaj lokalny sufiks domeny do nazw urządzeń z pliku hosts."
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:144
+msgid "Add multicast rule"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:482
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1169
 msgid "Add new interface..."
@@ -739,6 +743,10 @@ msgstr ""
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:224
 msgid "Add peer"
 msgstr "Dodaj peera"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:136
+msgid "Add peer address"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1018
 msgid "Add static forward and reverse DNS entries for this host."
@@ -901,6 +909,10 @@ msgstr "Zezwól użytkownikowi <em>root</em> na logowanie się przy pomocy hasł
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:56
 msgid "Allowed IPs"
 msgstr "Dozwolone adresy IP"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:129
+msgid "Allowed public keys"
+msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:315
 msgid "AllowedIPs setting is invalid"
@@ -1448,6 +1460,15 @@ msgstr "Przeglądaj…"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js:40
 msgid "Buffered"
 msgstr "Buforowana"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:116
+msgid ""
+"By default, node info contains some defaults including the platform, "
+"architecture and Yggdrasil version. These can help when surveying the "
+"network and diagnosing network routing problems. Enabling node info privacy "
+"prevents this, so that only items specified in \"Node info\" are sent back "
+"if specified."
+msgstr ""
 
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:130
 msgid "CA certificate (PEM encoded)"
@@ -2344,6 +2365,7 @@ msgid "Device unreachable! Still waiting for device..."
 msgstr "Urządzenie nieosiągalne! Wciąż czekam na urządzenie..."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1282
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:148
 msgid "Devices"
 msgstr "Urządzenia"
 
@@ -2591,6 +2613,7 @@ msgid "Do you want to replace the current PSK?"
 msgstr "Czy chcesz zastąpić obecny PSK?"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:100
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:50
 msgid "Do you want to replace the current keys?"
 msgstr "Czy chcesz zastąpić obecne klucze?"
 
@@ -3695,6 +3718,7 @@ msgid "Generate configuration…"
 msgstr "Wygeneruj konfigurację…"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:109
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:57
 msgid "Generate new key pair"
 msgstr "Wygeneruj nową parę kluczy"
 
@@ -3763,6 +3787,10 @@ msgstr "Udziel dostępu do procedur LuCI OpenConnect"
 #: protocols/luci-proto-wireguard/root/usr/share/rpcd/acl.d/luci-wireguard.json:3
 msgid "Grant access to LuCI Wireguard procedures"
 msgstr "Udziel dostępu LuCI do procedur Wireguard"
+
+#: protocols/luci-proto-yggdrasil/root/usr/share/rpcd/acl.d/luci-yggdrasil.json:3
+msgid "Grant access to LuCI Yggdrasil procedures"
+msgstr ""
 
 #: protocols/luci-proto-openfortivpn/root/usr/share/rpcd/acl.d/luci-openfortivpn.json:3
 msgid "Grant access to LuCI openfortivpn procedures"
@@ -4834,6 +4862,15 @@ msgstr "Nieprawidłowa nazwa hosta lub adres IPv4"
 msgid "Invalid port"
 msgstr "Nieprawidłowy port"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:11
+msgid "Invalid private key string"
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:17
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:26
+msgid "Invalid public key string"
+msgstr ""
+
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:108
 msgid "Invalid server URL"
 msgstr "Nieprawidłowy adres URL serwera"
@@ -5152,6 +5189,14 @@ msgstr "Lista kluczy SSH do autoryzacji"
 msgid "List of domains to allow RFC1918 responses for."
 msgstr "Lista domen zezwalających na odpowiedzi RFC1918."
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:129
+msgid ""
+"List of peer public keys to allow incoming peering connections from. If left "
+"empty then all connections will be allowed by default. This does not affect "
+"outgoing peerings, nor does it affect link-local peers discovered via "
+"multicast."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:319
 msgid "List of upstream resolvers to forward queries to."
 msgstr "Lista źródłowych resolwerów, do których będą przekazywane zapytania."
@@ -5165,8 +5210,25 @@ msgstr "Port nasłuchiwania"
 msgid "Listen address"
 msgstr "Nasłuchiwany adres"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:126
+msgid "Listen addresses"
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:126
+msgid ""
+"Listen addresses for incoming connections. You will need to add listeners in "
+"order to accept incoming peerings from non-local nodes. Multicast peer "
+"discovery will work regardless of any listeners sethere. Each listener "
+"should be specified in URI format, e.g.tls://0.0.0.0:0 or tls://[::]:0 to "
+"listen on all interfaces."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:440
 msgid "Listen and Relay IP family must be homogeneous."
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:123
+msgid "Listen for peers"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:374
@@ -5183,6 +5245,10 @@ msgid ""
 "Listen only on the specified interfaces, and loopback if not excluded "
 "explicitly."
 msgstr "Ogranicz nasłuchiwanie do tych interfesjów oraz pętli zwrotnej."
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:153
+msgid "Listen to multicast beacons"
+msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:299
 msgid "ListenPort setting is invalid"
@@ -5446,6 +5512,7 @@ msgstr "MHz"
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:53
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:196
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:46
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:107
 msgid "MTU"
 msgstr "MTU"
 
@@ -5870,6 +5937,10 @@ msgstr "Tryb multicast"
 msgid "Multicast routing"
 msgstr "Trasowanie multicast"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:142
+msgid "Multicast rules"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:829
 msgid "Multicast to unicast"
 msgstr "Multicast do unicastu"
@@ -6234,6 +6305,14 @@ msgstr "Brak zasad w tym łańcuchu."
 msgid "No zone assigned"
 msgstr "Brak przypisanej strefy"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:112
+msgid "Node info"
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:116
+msgid "Node info privacy"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:58
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:84
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:187
@@ -6498,6 +6577,13 @@ msgstr "Usunięto opcję"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1792
 msgid "Optional"
 msgstr "Opcjonalne"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:112
+msgid ""
+"Optional node info. This must be a { \"key\": \"value\", ... } map or set as "
+"null. This is entirely optional but, if set, is visible to the whole network "
+"on request."
+msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:142
 msgid "Optional, free-form notes about this device"
@@ -7036,10 +7122,18 @@ msgstr "Adres IP peera do przydzielenia"
 msgid "Peer MAC address"
 msgstr "MAC adres peera"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:138
+msgid "Peer URI"
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:14
 #: modules/luci-compat/luasrc/model/network.lua:32
 msgid "Peer address is missing"
 msgstr "Brakuje adresu peera"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:132
+msgid "Peer addresses"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:698
 msgid "Peer device name"
@@ -7049,7 +7143,12 @@ msgstr "Nazwa urządzenia peera"
 msgid "Peer disabled"
 msgstr "Peer wyłączony"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:140
+msgid "Peer interface"
+msgstr ""
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:214
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:120
 msgid "Peers"
 msgstr "Peery"
 
@@ -7143,6 +7242,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:742
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/dropbear.js:21
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:155
 msgid "Port"
 msgstr "Port"
 
@@ -7253,6 +7353,10 @@ msgstr "Prywatne (Zapobiega komunikacji pomiędzy MAC VLANami)"
 msgid "Private Key"
 msgstr "Klucz prywatny"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:96
+msgid "Private key"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1715
 msgid "Private key password"
 msgstr ""
@@ -7326,6 +7430,10 @@ msgstr ""
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:54
 msgid "Public Key"
 msgstr "Klucz publiczny"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:101
+msgid "Public key"
+msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:547
 msgid "Public key is missing"
@@ -8234,6 +8342,10 @@ msgstr ""
 "Wysyłaj żądania echa LCP w określonych odstępach czasu w sekundach, "
 "skuteczne tylko w połączeniu z progiem błędu"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:151
+msgid "Send multicast beacon"
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:24
 msgid "Send the hostname of this device"
 msgstr "Wysyłaj nazwę hosta tego urządzenia"
@@ -8679,6 +8791,13 @@ msgstr ""
 "Określ klasę ruchu. Może to być <code>inherit</code> (zewnętrzny nagłówek "
 "dziedziczy wartość nagłówka wewnętrznego) lub wartość szesnastkowa <code>00.."
 "FF</code> (opcjonalnie)."
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:107
+msgid ""
+"Specify an MTU (Maximum Transmission Unit) for your local TUN interface. "
+"Default is the largest supported size for your platform. The lowest possible "
+"value is 1280."
+msgstr ""
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:69
@@ -9422,6 +9541,10 @@ msgstr ""
 "służy do połączenia z inną większą siecią, taką jak Internet i innymi "
 "portami sieci lokalnej."
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:96
+msgid "The private key for your Yggdrasil node"
+msgstr ""
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
@@ -9431,6 +9554,10 @@ msgstr ""
 "Publiczna nazwa hosta lub adres IP systemu, z którym ma się połączyć peer. "
 "Zazwyczaj jest to statyczny publiczny adres IP, statyczna nazwa hosta lub "
 "domena DDNS."
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:101
+msgid "The public key for your Yggdrasil node"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:623
 msgid "The query response interval must be lower than the query interval value"
@@ -9914,6 +10041,11 @@ msgstr "Tylko UMTS"
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:43
 msgid "UMTS/GPRS/EV-DO"
 msgstr "UMTS/GPRS/EV-DO"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:32
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:38
+msgid "URI scheme not supported"
+msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:255
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:361
@@ -10762,6 +10894,10 @@ msgstr "Zasady XOR (balance-xor, 2)"
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4094
 msgid "Yes"
 msgstr "Tak"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:70
+msgid "Yggdrasil Network"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:177
 msgid ""
