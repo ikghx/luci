@@ -10,7 +10,7 @@ PKG_LICENSE_FILES:=LICENSE
 
 LUCI_TITLE:=LuCI support for koolproxyR
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+luci-compat +koolproxy +openssl-util +ipset +dnsmasq-full +iptables-mod-nat-extra +wget
+LUCI_DEPENDS:=+luci-compat +koolproxy +openssl-util +ipset +dnsmasq-full +iptables-mod-nat-extra +wget-ssl
 
 include ../../luci.mk
 

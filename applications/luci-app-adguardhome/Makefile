@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for adguardhome
-LUCI_DEPENDS:=+luci-compat +wget +adguardhome
+LUCI_DEPENDS:=+luci-compat +wget-ssl +adguardhome
 LUCI_PKGARCH:=all
 PKG_VERSION:=1.8
 PKG_RELEASE:=16
