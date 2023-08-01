@@ -947,15 +947,11 @@ return view.extend({
 					o = ss.taboption('advanced', CBIWifiCountryValue, 'country', _('Country code'), _('Used to help determine the regulatory requirements that apply to the wireless radio.'));
 					o.wifiNetwork = radioNet;
 
-					o = ss.taboption('advanced', form.ListValue, 'cell_density', _('Coverage cell density'), _('Configures data rates and a RSSI client connection threshold for the coverage cell density.<br />Normal - 6, 12, 24 Mbps basic rates if 802.11b rates unused else to 5.5, 11 Mbps. -80 dBm RSSI threshold.<br />High - 12, 24 Mbps basic rates if 802.11b rates unused else to 11 Mbps rate. -75 dBm RSSI threshold.<br />Very High - 24 Mbps basic rate if 802.11b rates unused else to 11 Mbps rate. -70, -65, -60 dBm RSSI threshold.<br />Supported rates lower than the minimum basic rate are not offered.'));
+					o = ss.taboption('advanced', form.ListValue, 'cell_density', _('Coverage cell density'), _('Configures data rates based on the coverage cell density. Normal configures basic rates to 6, 12, 24 Mbps if legacy 802.11b rates are not used else to 5.5, 11 Mbps. High configures basic rates to 12, 24 Mbps if legacy 802.11b rates are not used else to the 11 Mbps rate. Very High configures 24 Mbps as the basic rate. Supported rates lower than the minimum basic rate are not offered.'));
 					o.value('0', _('Disabled'));
-					o.value('1', _('Low (Normal), -80 dBm RSSI Gate'));
-					o.value('2', _('Medium, -75 dBm RSSI Gate'));
-					o.value('3', _('High, -70 dBm RSSI Gate'));
-					o.value('4', _('High, -67 dBm RSSI Gate'));
-					o.value('5', _('High, -65 dBm RSSI Gate'));
-					o.value('6', _('Very High, -62 dBm RSSI Gate'));
-					o.value('7', _('Very High, -60 dBm RSSI Gate'));
+					o.value('1', _('Normal'));
+					o.value('2', _('High'));
+					o.value('3', _('Very High'));
 
 					o = ss.taboption('advanced', form.Value, 'distance', _('Distance optimization'), _('Distance to the farthest network member in meters.'));
 					o.datatype = 'or(range(0,114750),"auto")';
@@ -971,9 +967,6 @@ return view.extend({
 
 					o = ss.taboption('advanced', form.Flag, 'noscan', _('Disable coexistence scanning (2.4Ghz Only)'), _('Disable channel coexistence scanning to always permit use of a channel wider than 20 MHz even where a channel for another <abbr title="Basic Service Set">BSS</abbr> overlaps. Not standards compliant and enabling may cause harmful interference.'));
 					o.rmempty = true;
-
-					o = ss.taboption('advanced', form.Flag, 'vendor_vht', _('Enable 256-QAM'), _('802.11n 2.4Ghz Only'));
-					o.default = o.disabled;
 
 					o = ss.taboption('advanced', form.Value, 'beacon_int', _('Beacon interval'), _('Time interval between the transmission of beacon frames in milliseconds.'));
 					o.datatype = 'range(15,65535)';
