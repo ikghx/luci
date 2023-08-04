@@ -60,7 +60,7 @@ return network.registerProtocol('dslite', {
 		o.rmempty  = false;
 		o.default  = 'ignore';
 		o.datatype = 'or("ignore",range(0,255))';
-		o.value('ignore', _('ignore'));
+		o.value('ignore', _('Ignore'));
 		for (var i = 0; i < 256; i++)
 			o.value(i);
 
