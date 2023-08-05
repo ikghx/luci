@@ -148,7 +148,7 @@ msgstr "1"
 msgid "1 Minute Load:"
 msgstr "1 Dakikalık Yük:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:995
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:994
 msgid "1 days"
 msgstr ""
 
@@ -158,11 +158,11 @@ msgid "1 flag"
 msgid_plural "%d flags"
 msgstr[0] "%d işaret"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:992
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:991
 msgid "1 hours"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:994
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:993
 msgid "12 hours"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgctxt "sstp log level value"
 msgid "3"
 msgstr "3"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:993
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:992
 msgid "3 hours"
 msgstr ""
 
@@ -231,11 +231,11 @@ msgstr "464XLAT (CLAT)"
 msgid "5 Minute Load:"
 msgstr "5 Dakikalık Yük:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:991
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:990
 msgid "5 minutes"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:996
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:995
 msgid "7 days"
 msgstr ""
 
@@ -903,8 +903,8 @@ msgid "Allow system feature probing"
 msgstr "Sistemin özellik araştırmasına izin ver"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/dropbear.js:31
-msgid "Allow the <em>root</em> user to login with password"
-msgstr "<em>root</em> kullanıcısının parolayla oturum açmasına izin ver"
+msgid "Allow the <em>root</em> user to log in with password"
+msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:624
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
@@ -3964,10 +3964,10 @@ msgstr "Ana makine, bu dosya adını önyükleme sunucusundan ister."
 msgid "Host-Uniq tag content"
 msgstr "Host-Uniq etiket içeriği"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:989
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:988
 msgid ""
 "Host-specific lease time, e.g. <code>5m</code>, <code>3h</code>, <code>7d</"
-"code>."
+"code>, or <code>ignore</code> to ignore DHCP requests from this host."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:39
@@ -4377,7 +4377,7 @@ msgstr "Kimlik"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1020
 msgid ""
 "If a host matches an entry which cannot be used because it specifies an "
-"address on a different subnet, the tag <em>known-othernet</em> is set."
+"address on a different subnet, the tag <code>known-othernet</code> is set."
 msgstr ""
 
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:96
@@ -4471,7 +4471,7 @@ msgstr ""
 "değerleri ile erişilemediğinden, verilerin değiş tokuşunun çok yavaş bir "
 "süreç olduğunu unutmayın."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:955
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:997
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:63
 msgid "Ignore"
 msgstr ""
@@ -4489,7 +4489,7 @@ msgid "Ignore interface"
 msgstr "Arayüzü yoksay"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1019
-msgid "Ignore requests from unknown machines using <em>!known</em>."
+msgid "Ignore requests from unknown machines using <code>!known</code>."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:453
@@ -4610,7 +4610,7 @@ msgstr "Gelen anahtar"
 msgid "Incoming serialization"
 msgstr "Gelen serileştirme"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:997
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:996
 msgid "Infinite"
 msgstr ""
 
@@ -5099,7 +5099,7 @@ msgstr "Rotaları öğren"
 msgid "Lease file"
 msgstr "Leasefile"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:988
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:987
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:696
 msgid "Lease time"
 msgstr "Kira süresi"
@@ -5394,6 +5394,20 @@ msgstr ""
 msgid "Log facility"
 msgstr ""
 
+#: modules/luci-base/ucode/template/sysauth.ut:38
+#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:154
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:36
+msgid "Log in"
+msgstr ""
+
+#: modules/luci-base/htdocs/luci-static/resources/luci.js:2674
+msgid "Log in…"
+msgstr ""
+
+#: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:90
+msgid "Log out"
+msgstr ""
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:187
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:122
 msgid "Log output level"
@@ -5424,16 +5438,6 @@ msgstr ""
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:62
 msgid "Logical network to which the tunnel will be added (bridged) (optional)."
 msgstr "Tünelin ekleneceği mantıksal ağ (köprülü) (isteğe bağlı)."
-
-#: modules/luci-base/ucode/template/sysauth.ut:38
-#: themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm:154
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:36
-msgid "Login"
-msgstr "Oturum Aç"
-
-#: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:90
-msgid "Logout"
-msgstr "Oturumu Kapat"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:732
 msgid "Loose filtering"
@@ -6456,7 +6460,7 @@ msgstr "Durum Gecikmesi"
 msgid "On-link"
 msgstr "Bağlantı rotası"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:962
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:961
 msgid "One of hostname or MAC address must be specified!"
 msgstr "Ana bilgisayar adı veya mac adreslerinden biri belirtilmelidir!"
 
@@ -8396,6 +8400,10 @@ msgstr ""
 "(Ayarlandıysa, taşıyıcı algılama olayları, çalışırken hotplug işleyicilerini "
 "çağırmaz)."
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:956
+msgid "Set routes up for proxied IPv6 neighbours."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:806
 msgid ""
 "Set the autonomous address-configuration flag in the prefix information "
@@ -8433,10 +8441,6 @@ msgstr "İşlem modunu ayarlama başarısız oldu"
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/uhttpd.js:11
 msgid "Settings"
 msgstr "Ayarlar"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:956
-msgid "Setup routes for proxied IPv6 neighbours."
-msgstr "Proxy'li IPv6 komşuları için kurulum yolları."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:210
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:39
@@ -9220,11 +9224,11 @@ msgstr ""
 "HE.net uç nokta güncelleme yapılandırması değişti, şimdi kullanıcı kimliği "
 "yerine düz kullanıcı adını kullanmalısınız!"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:971
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:970
 msgid "The IP address %h is already used by another static lease"
 msgstr "%h IP adresi zaten başka bir statik kiralama tarafından kullanılıyor"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:980
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:979
 msgid "The IP address is outside of any DHCP pool address range"
 msgstr "IP adresi, herhangi bir DHCP havuzu adres aralığının dışında"
 
@@ -9233,9 +9237,7 @@ msgid "The IP address of the boot server"
 msgstr "Önyükleme sunucusunun IP adresi"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:954
-msgid ""
-"The IP address to be used for this host, or <em>ignore</em> to ignore any "
-"DHCP request from this host."
+msgid "The IP address to be used for this host."
 msgstr ""
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:40
@@ -9410,10 +9412,8 @@ msgstr "Ağ geçidi adresi yerel bir IP adresi olmamalıdır"
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:766
 msgid ""
 "The generated configuration can be imported into a WireGuard client "
-"application to setup a connection towards this device."
+"application to set a connection up towards this device."
 msgstr ""
-"Oluşturulan konfigürasyon, bu cihaza bir bağlantı kurmak için bir WireGuard "
-"istemci uygulamasına aktarılabilir."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:172
 msgid "The given SSH public key has already been added."
@@ -9894,10 +9894,6 @@ msgid ""
 "provider supplied) configuration file, use the <strong><a class=\"full-"
 "import\" href=\"#\">import configuration</a></strong> instead."
 msgstr ""
-
-#: modules/luci-base/htdocs/luci-static/resources/luci.js:2674
-msgid "To login…"
-msgstr "Giriş yap…"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:400
 msgid ""
@@ -10725,8 +10721,8 @@ msgstr "Ağırlık"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1018
 msgid ""
-"When a host matches an entry then the special tag <em>known</em> is set. Use "
-"<em>known</em> to match all known hosts."
+"When a host matches an entry then the special tag <code>known</code> is set. "
+"Use <code>known</code> to match all known hosts."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1062
@@ -11585,6 +11581,28 @@ msgstr "evet"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Geri"
+
+#~ msgid "Login"
+#~ msgstr "Oturum Aç"
+
+#~ msgid "Allow the <em>root</em> user to login with password"
+#~ msgstr "<em>root</em> kullanıcısının parolayla oturum açmasına izin ver"
+
+#~ msgid "Logout"
+#~ msgstr "Oturumu Kapat"
+
+#~ msgid "Setup routes for proxied IPv6 neighbours."
+#~ msgstr "Proxy'li IPv6 komşuları için kurulum yolları."
+
+#~ msgid ""
+#~ "The generated configuration can be imported into a WireGuard client "
+#~ "application to setup a connection towards this device."
+#~ msgstr ""
+#~ "Oluşturulan konfigürasyon, bu cihaza bir bağlantı kurmak için bir "
+#~ "WireGuard istemci uygulamasına aktarılabilir."
+
+#~ msgid "To login…"
+#~ msgstr "Giriş yap…"
 
 #~ msgid "IPv6 suffix (hex)"
 #~ msgstr ""
