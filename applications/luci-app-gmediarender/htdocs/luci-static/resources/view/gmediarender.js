@@ -74,7 +74,7 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'port', _('Port'));
-		o.placeholder = '49494';
+		o.placeholder = '49152';
 		o.datatype = 'range(49152,65535)';
 		o.rmempty = false;
 

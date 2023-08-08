@@ -255,17 +255,17 @@ return view.extend({
 		s.addremove = false;
 
 		s.tab('general', _('General Settings'));
-		s.tab('relay', _('Relay'));
-		s.tab('files', _('Resolv and Hosts Files'));
-		s.tab('pxe_tftp', _('PXE/TFTP Settings'));
 		s.tab('advanced', _('Advanced Settings'));
 		s.tab('leases', _('Static Leases'));
+		s.tab('files', _('Resolv and Hosts Files'));
 		s.tab('hosts', _('Hostnames'));
+		s.tab('ipsets', _('IP sets'));
+		s.tab('relay', _('Relay'));
 		s.tab('srvhosts', _('SRV'));
 		s.tab('mxhosts', _('MX'));
 		s.tab('cnamehosts', _('CNAME'));
 		s.tab('txtrecords', _('TXT'));
-		s.tab('ipsets', _('IP sets'));
+		s.tab('pxe_tftp', _('PXE/TFTP Settings'));
 		s.tab('template', _('Edit configuration'));
 
 		o = s.taboption('general', form.Flag, 'enabled', _('Enable'));
