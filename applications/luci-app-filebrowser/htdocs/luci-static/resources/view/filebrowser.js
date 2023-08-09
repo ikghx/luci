@@ -87,12 +87,12 @@ return view.extend({
 		o.datatype = 'directory';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'cert', _('Certificate'));
+		o = s.option(form.Value, 'cert', _('Certificate'), _('Optional'));
 		o.placeholder = '/etc/cert.pem';
 		o.datatype = 'directory';
 		o.rmempty = true;
 
-		o = s.option(form.Value, 'key', _('Certificate key'));
+		o = s.option(form.Value, 'key', _('Certificate key'), _('Optional'));
 		o.placeholder = '/etc/cert.key';
 		o.datatype = 'directory';
 		o.rmempty = true;
