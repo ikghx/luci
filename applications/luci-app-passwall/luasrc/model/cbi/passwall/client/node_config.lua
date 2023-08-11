@@ -132,6 +132,7 @@ iface:depends("protocol", "_iface")
 
 local nodes_table = {}
 local balancers_table = {}
+local iface_table = {}
 for k, e in ipairs(api.get_valid_nodes()) do
 	if e.node_type == "normal" then
 		nodes_table[#nodes_table + 1] = {
@@ -141,6 +142,12 @@ for k, e in ipairs(api.get_valid_nodes()) do
 	end
 	if e.protocol == "_balancing" then
 		balancers_table[#balancers_table + 1] = {
+			id = e[".name"],
+			remarks = e["remark"]
+		}
+	end
+	if e.protocol == "_iface" then
+		iface_table[#iface_table + 1] = {
 			id = e[".name"],
 			remarks = e["remark"]
 		}
@@ -179,6 +186,9 @@ if #nodes_table > 0 then
 	for k, v in pairs(balancers_table) do
 		o:value(v.id, v.remarks)
 	end
+	for k, v in pairs(iface_table) do
+		o:value(v.id, v.remarks)
+	end
 	for k, v in pairs(nodes_table) do
 		o:value(v.id, v.remarks)
 	end
@@ -195,6 +205,9 @@ uci:foreach(appname, "shunt_rules", function(e)
 
 		if #nodes_table > 0 then
 			for k, v in pairs(balancers_table) do
+				o:value(v.id, v.remarks)
+			end
+			for k, v in pairs(iface_table) do
 				o:value(v.id, v.remarks)
 			end
 			local pt = s:option(ListValue, e[".name"] .. "_proxy_tag", string.format('* <a style="color:red">%s</a>', e.remarks .. " " .. translate("Preproxy")))
@@ -223,6 +236,9 @@ default_node:value("_blackhole", translate("Blackhole"))
 
 if #nodes_table > 0 then
 	for k, v in pairs(balancers_table) do
+		default_node:value(v.id, v.remarks)
+	end
+	for k, v in pairs(iface_table) do
 		default_node:value(v.id, v.remarks)
 	end
 	local dpt = s:option(ListValue, "default_proxy_tag", string.format('* <a style="color:red">%s</a>', translate("Default Preproxy")), translate("When using, localhost will connect this node first and then use this node to connect the default node."))
