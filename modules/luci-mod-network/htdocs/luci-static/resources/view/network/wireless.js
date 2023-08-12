@@ -2271,5 +2271,7 @@ return view.extend({
 
 			return E([ nodes, E('h3', _('Associations')), table ]);
 		}, this, m));
-	}
+	},
+
+	handleReset: null
 });
