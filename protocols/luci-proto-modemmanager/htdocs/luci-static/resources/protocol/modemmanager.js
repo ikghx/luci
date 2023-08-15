@@ -48,7 +48,7 @@ return network.registerProtocol('modemmanager', {
 		var dev = this.getL3Device() || this.getDevice(), o;
 
 		o = s.taboption('general', form.ListValue, '_modem_device', _('Modem device'));
-		o.ucioption = 'ctl_device';
+		o.ucioption = 'device';
 		o.rmempty = false;
 		o.load = function(section_id) {
 			return helper.getModems().then(L.bind(function(devices) {
