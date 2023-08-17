@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=MJPG-Streamer service configuration module
-LUCI_DEPENDS:=+luci-compat +mjpg-streamer +mjpg-streamer-input-uvc \
+LUCI_DEPENDS:=+mjpg-streamer +mjpg-streamer-input-uvc \
 +mjpg-streamer-output-file +mjpg-streamer-output-http +mjpg-streamer-www \
 +kmod-video-core +kmod-video-pwc +kmod-video-uvc +kmod-video-gspca-core \
 +kmod-video-gspca-zc3xx +kmod-video-gspca-sonixb +kmod-video-gspca-sonixj \
