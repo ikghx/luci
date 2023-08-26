@@ -1630,6 +1630,9 @@ return view.extend({
 						o = ss.taboption('roaming', form.Flag, 'rrm_beacon_report', _('Beacon Report'), _('802.11k: Enable beacon report via radio measurements.'));
 						o.depends({ ieee80211k: '1' });
 						o.default = o.enabled;
+
+						o = ss.taboption('roaming', form.Flag, 'rnr', _('Reduced Neighbor Report'));
+						o.depends({ ieee80211k: '1' });
 						/* 802.11k settings end */
 
 						/* 802.11v settings start */
