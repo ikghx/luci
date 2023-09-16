@@ -20,7 +20,6 @@ function vmess_vless()
 				users = {
 					{
 						id = server.vmess_id,
-						alterId = (server.v2ray_protocol == "vmess" or not server.v2ray_protocol) and tonumber(server.alter_id) or nil,
 						security = (server.v2ray_protocol == "vmess" or not server.v2ray_protocol) and server.security or nil,
 						encryption = (server.v2ray_protocol == "vless") and server.vless_encryption or nil,
 						flow = ((server.tls == '1') or (server.reality == '1')) and server.tls_flow or nil
@@ -316,7 +315,7 @@ local tuic = {
 				udp_relay_mode = server.udp_relay_mode,
 				congestion_control = server.congestion_control,
 				heartbeat = server.heartbeat and server.heartbeat .. "s" or nil,
-				timeout = server.timeout and server.timeout .. "s" or nil,,
+				timeout = server.timeout and server.timeout .. "s" or nil,
 				gc_interval = server.gc_interval and server.gc_interval .. "s" or nil,
 				gc_lifetime = server.gc_lifetime and server.gc_lifetime .. "s" or nil,
 				alpn = server.tls_alpn,

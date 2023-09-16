@@ -78,6 +78,11 @@ return view.extend({
 		o.placeholder = '/etc/tailscale/tailscaled.state';
 		o.rmempty = false;
 
+		o = s.option(form.ListValue, 'fw_mode', _('Firewall Mode'));
+		o.value('nftables');
+		o.value('iptables');
+		o.rmempty = false;
+
 		o = s.option(form.Flag, 'log_stderr', _('output error log'));
 
 		o = s.option(form.Flag, 'log_stdout', _('output standard log'));
