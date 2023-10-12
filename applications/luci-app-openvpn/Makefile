@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for OpenVPN
-LUCI_DEPENDS:=+luci-compat +openvpn-openssl +openssl-util
+LUCI_DEPENDS:=+luci-base +luci-compat +openvpn-openssl +openssl-util
 
 PKG_LICENSE:=Apache-2.0
 

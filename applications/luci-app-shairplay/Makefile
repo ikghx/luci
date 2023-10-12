@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for Shairplay
-LUCI_DEPENDS:=+luci-compat +shairplay +kmod-usb-audio
+LUCI_DEPENDS:=+luci-base +luci-compat +shairplay +kmod-usb-audio
 
 include ../../luci.mk
 

@@ -325,6 +325,18 @@ return view.extend({
 		o.placeholder = '192.168.9.1#5335';
 		o.validate = validateServerSpec;
 
+		o = s.taboption('general', form.Value, 'add_subnet',
+			_('Add subnet'),
+			_('Add a subnet address to the DNS queries which are forwarded upstream.'));
+		o.placeholder = '32,128 or 192.168.9.0/24';
+
+		o = s.taboption('general', form.ListValue, 'add_mac',
+			_('Add MAC'),
+			_('Add the MAC address of the requestor to DNS queries which are forwarded upstream.'));
+		o.value('text');
+		o.value('base64');
+		o.optional = true;
+
 		o = s.taboption('general', form.DynamicList, 'address',
 			_('Static address'),
 			_('Resolve specified FQDNs to an IP.') + '<br />' +
@@ -717,7 +729,8 @@ return view.extend({
 		so.optional = true;
 
 		Object.values(L.uci.sections('dhcp', 'dnsmasq')).forEach(function(val, index) {
-			so.value(index, _('%s (Domain: %s, Local: %s)').format(index, val.domain || '?', val.local || '?'));
+			const nameValueMap = new Map(Object.entries(val));
+			so.value(nameValueMap.get('.name'), _('%s (Name: %s, Domain: %s, Local: %s)', 'dnsmasq instance description value').format(nameValueMap.get('.index'), nameValueMap.get('.name') || 'noname', val.domain || 'unset', val.local || 'unset'));
 		});
 
 		o = s.taboption('srvhosts', form.SectionValue, '__srvhosts__', form.TableSection, 'srvhost', null,
@@ -1033,7 +1046,8 @@ return view.extend({
 		so.optional = true;
 
 		Object.values(L.uci.sections('dhcp', 'dnsmasq')).forEach(function(val, index) {
-			so.value(index, _('%s (Domain: %s, Local: %s)').format(index, val.domain || '?', val.local || '?'));
+			const nameValueMap = new Map(Object.entries(val));
+			so.value(nameValueMap.get('.name'), _('%s (Name: %s, Domain: %s, Local: %s)', 'dnsmasq instance description value').format(nameValueMap.get('.index'), nameValueMap.get('.name') || 'noname', val.domain || 'unset', val.local || 'unset'));
 		});
 
 

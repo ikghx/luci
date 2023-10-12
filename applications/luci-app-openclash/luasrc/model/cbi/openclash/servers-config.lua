@@ -135,6 +135,7 @@ o:value("vmess", translate("Vmess"))
 o:value("trojan", translate("trojan"))
 o:value("vless", translate("Vless ")..translate("(Only Meta Core)"))
 o:value("hysteria", translate("Hysteria ")..translate("(Only Meta Core)"))
+o:value("hysteria2", translate("Hysteria2 ")..translate("(Only Meta Core)"))
 o:value("wireguard", translate("WireGuard")..translate("(TUN&Meta Core)"))
 o:value("tuic", translate("Tuic")..translate("(Only Meta Core)"))
 o:value("snell", translate("Snell"))
@@ -170,6 +171,7 @@ o.rmempty = false
 o:depends("type", "ss")
 o:depends("type", "ssr")
 o:depends("type", "trojan")
+o:depends("type", "hysteria2")
 
 -- [[ Tuic ]]--
 o = s:option(Value, "tc_ip", translate("Server IP"))
@@ -286,11 +288,13 @@ o = s:option(Value, "hysteria_up", translate("up"))
 o.rmempty = false
 o.description = translate("Required")
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 
 o = s:option(Value, "hysteria_down", translate("down"))
 o.rmempty = false
 o.description = translate("Required")
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 
 o = s:option(Value, "psk", translate("Psk"))
 o.rmempty = true
@@ -545,6 +549,7 @@ o:depends("type", "http")
 o:depends("type", "trojan")
 o:depends("type", "vless")
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 o:depends("type", "tuic")
 
 -- [[ TLS ]]--
@@ -591,6 +596,7 @@ o.rmempty = true
 o:depends("type", "trojan")
 o:depends("type", "http")
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 
 -- [[ headers ]]--
 o = s:option(DynamicList, "http_headers", translate("headers"))
@@ -623,6 +629,7 @@ o.rmempty = false
 o:value("h3")
 o:value("h2")
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 
 -- [[ trojan-ws-path ]]--
 o = s:option(Value, "trojan_ws_path", translate("Path"))
@@ -639,8 +646,15 @@ o:depends("obfs_trojan", "ws")
 -- [[ hysteria_obfs ]]--
 o = s:option(Value, "hysteria_obfs", translate("obfs"))
 o.rmempty = true
-o.placeholder = "yourpassword"
+o.placeholder = "obfs-str"
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
+
+-- [[ hysteria_obfs_password ]]--
+o = s:option(Value, "hysteria_obfs_password", translate("obfs-password"))
+o.rmempty = true
+o.placeholder = translate("yourpassword")
+o:depends("type", "hysteria2")
 
 -- [[ hysteria_auth ]]--
 --o = s:option(Value, "hysteria_auth", translate("auth"))
@@ -659,12 +673,14 @@ o = s:option(Value, "hysteria_ca", translate("ca"))
 o.rmempty = true
 o.placeholder = "./my.ca"
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 
 -- [[ hysteria_ca_str ]]--
 o = s:option(Value, "hysteria_ca_str", translate("ca_str"))
 o.rmempty = true
 o.placeholder = "xyz"
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 
 -- [[ recv_window_conn ]]--
 o = s:option(Value, "recv_window_conn", translate("recv_window_conn"))
@@ -720,7 +736,7 @@ o:value("true")
 o:value("false")
 o:depends("type", "vmess")
 
--- [[ TFO ]]--
+-- [[ Fast Open ]]--
 o = s:option(ListValue, "fast_open", translate("Fast Open"))
 o.rmempty = true
 o.default = "true"
@@ -748,6 +764,7 @@ o:depends("type", "snell")
 o = s:option(Value, "fingerprint", translate("Fingerprint")..translate("(Only Meta Core)"))
 o.rmempty = true
 o:depends("type", "hysteria")
+o:depends("type", "hysteria2")
 o:depends("type", "socks5")
 o:depends("type", "http")
 o:depends("type", "trojan")
@@ -925,4 +942,5 @@ o.write = function()
 end
 
 m:append(Template("openclash/toolbar_show"))
+m:append(Template("openclash/config_editor"))
 return m

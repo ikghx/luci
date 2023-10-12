@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=ACME package - LuCI interface
-LUCI_DEPENDS:=+luci-mod-admin-full +acme-acmesh-dnsapi
+LUCI_DEPENDS:=+luci-base +acme-acmesh-dnsapi
 
 PKG_MAINTAINER:=Toke Høiland-Jørgensen <toke@toke.dk>
 PKG_LICENSE:=GPL-3.0-or-later

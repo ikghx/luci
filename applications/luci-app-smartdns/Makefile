@@ -9,8 +9,8 @@ PKG_MAINTAINER:=Nick Peng <pymumu@gmail.com>
 
 LUCI_TITLE:=LuCI for smartdns
 LUCI_DESCRIPTION:=Provides Luci for smartdns
-LUCI_DEPENDS:=+smartdns
-LUCI_PKGARCH:=all
+LUCI_DEPENDS:=+luci-base +smartdns
+
 
 include ../../luci.mk
 

@@ -964,11 +964,17 @@ return view.extend({
 
 					so = ss.taboption('ipv6', form.Value, 'preferred_lifetime', _('IPv6 Prefix Lifetime'), _('Preferred lifetime for a prefix.'));
 					so.optional = true;
-					so.default = '12h';
+					so.placeholder = '12h';
+					so.value('5m', _('5 minutes'));
+					so.value('1h', _('1 hours'));
+					so.value('3h', _('3 hours'));
+					so.value('12h', _('12 hours'));
+					so.value('1d', _('1 days'));
+					so.value('7d', _('7 days'));
 
 					//This is a ra_* setting, but its placement is more logical/findable under IPv6 settings.
 					so = ss.taboption('ipv6', form.Flag, 'ra_useleasetime', _('Follow IPv4 Lifetime'), _('DHCPv4 <code>leasetime</code> is used as limit and preferred lifetime of the IPv6 prefix.'));
-					so.default = so.enabled;
+					so.optional = true;
 				}
 
 				ifc.renderFormOptions(s);

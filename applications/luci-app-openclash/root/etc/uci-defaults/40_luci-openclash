@@ -1,14 +1,16 @@
 #!/bin/bash
 . /lib/functions.sh
 
-uci -q batch <<-EOF >/dev/null
-	delete firewall.openclash
-	set firewall.openclash=include
-	set firewall.openclash.type=script
-	set firewall.openclash.path=/var/etc/openclash.include
-	set firewall.openclash.reload=1
-	commit firewall
-EOF
+uci -q delete ucitrack.@openclash[-1]
+uci -q add ucitrack openclash
+uci -q set ucitrack.@openclash[-1].init=openclash
+uci -q commit ucitrack
+uci -q delete firewall.openclash
+uci -q set firewall.openclash=include
+uci -q set firewall.openclash.type=script
+uci -q set firewall.openclash.path=/var/etc/openclash.include
+[ -n "$(command -v fw4)" ] || uci -q set firewall.openclash.reload=1
+uci -q commit firewall
 
 mkdir -p /etc/openclash/config
 mkdir -p /etc/openclash/proxy_provider
@@ -178,4 +180,26 @@ fi
 uci -q set openclash.config.enable=0
 uci -q commit openclash
 
+#set tun interface firewall rule
+add_utun_firewall_zone()
+{
+	local section="$1"
+	local name network
+	config_get "name" "$section" "name" ""
+	config_get "network" "$section" "network" ""
+	if [ "$name" = "lan" ] && [ -z "$(echo $network |grep utun)" ]; then
+		uci -q set firewall."$section".network="$network utun"
+		uci -q commit firewall
+	fi
+}
+
+uci -q set network.utun=interface
+uci -q set network.utun.proto=none
+uci -q set network.utun.device=utun
+uci -q commit network
+
+config_load "firewall"
+config_foreach add_utun_firewall_zone "zone"
+
+rm -f /tmp/luci-indexcache
 exit 0

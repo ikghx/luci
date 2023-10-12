@@ -53,8 +53,8 @@ o.datatype = "port"
 o = s:option(Flag, option_name("auth"), translate("Auth"))
 o.validate = function(self, value, t)
 	if value and value == "1" then
-		local user_v = s.fields[option_name("username")]:formvalue(t) or ""
-		local pass_v = s.fields[option_name("password")]:formvalue(t) or ""
+		local user_v = s.fields[option_name("username")] and s.fields[option_name("username")]:formvalue(t) or ""
+		local pass_v = s.fields[option_name("password")] and s.fields[option_name("password")]:formvalue(t) or ""
 		if user_v == "" or pass_v == "" then
 			return nil, translate("Username and Password must be used together!")
 		end
@@ -202,11 +202,11 @@ o = s:option(Flag, option_name("tls"), translate("TLS"))
 o.default = 0
 o.validate = function(self, value, t)
 	if value then
-		local reality = s.fields[option_name("reality")]:formvalue(t)
+		local reality = s.fields[option_name("reality")] and s.fields[option_name("reality")]:formvalue(t) or nil
 		if reality and reality == "1" then return value end
 		if value == "1" then
-			local ca = s.fields[option_name("tls_certificateFile")]:formvalue(t) or ""
-			local key = s.fields[option_name("tls_keyFile")]:formvalue(t) or ""
+			local ca = s.fields[option_name("tls_certificateFile")] and s.fields[option_name("tls_certificateFile")]:formvalue(t) or ""
+			local key = s.fields[option_name("tls_keyFile")] and s.fields[option_name("tls_keyFile")]:formvalue(t) or ""
 			if ca == "" or key == "" then
 				return nil, translate("Public key and Private key path can not be empty!")
 			end
@@ -282,6 +282,28 @@ o.validate = function(self, value, t)
 		end
 	end
 	return nil
+end
+
+if singbox_tags:find("with_ech") then
+	o = s:option(Flag, option_name("ech"), translate("ECH"))
+	o.default = "0"
+	o:depends({ [option_name("tls")] = true, [option_name("flow")] = "", [option_name("reality")] = false })
+	o:depends({ [option_name("protocol")] = "naive" })
+	o:depends({ [option_name("protocol")] = "hysteria" })
+	o:depends({ [option_name("protocol")] = "tuic" })
+	o:depends({ [option_name("protocol")] = "hysteria2" })
+
+	o = s:option(Value, option_name("ech_key"), translate("ECH Key"))
+	o.default = ""
+	o:depends({ [option_name("ech")] = true })
+
+	o = s:option(Flag, option_name("pq_signature_schemes_enabled"), translate("PQ signature schemes"))
+	o.default = "0"
+	o:depends({ [option_name("ech")] = true })
+
+	o = s:option(Flag, option_name("dynamic_record_sizing_disabled"), translate("Disable adaptive sizing of TLS records"))
+	o.default = "0"
+	o:depends({ [option_name("ech")] = true })
 end
 
 o = s:option(ListValue, option_name("transport"), translate("Transport"))

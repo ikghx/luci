@@ -1,0 +1,403 @@
+# your proxy name will be changed to {user}.{proxy}
+# 您的代理名称将更改为 {user}.{proxy}
+user = "your_name"
+
+# A literal address or host name for IPv6 must be enclosed
+# in square brackets, as in "[::1]:80", "[ipv6-host]:http" or "[ipv6-host%zone]:80"
+# For single serverAddr field, no need square brackets, like serverAddr = "::".
+# 服务端 IP 地址和 TCP 端口，可使用域名。
+serverAddr = "0.0.0.0"
+serverPort = 7000
+
+# STUN server to help penetrate NAT hole.
+# STUN 服务器帮助穿透 NAT 漏洞。
+# natHoleStunServer = "stun.easyvoip.com:3478"
+
+# Decide if exit program when first login failed, otherwise continuous relogin to frps
+# default is true
+# 决定首次登录失败是否退出程序，否则不断重新登录 frps
+# 默认为 true
+loginFailExit = true
+
+# console or real logFile path like ./frpc.log
+# 日志文件路径。
+log.to = "./frpc.log"
+# trace, debug, info, warn, error
+# 日志等级。
+log.level = "info"
+# 日志记录最大天数
+log.maxDays = 3
+# disable log colors when log.to is console, default is false
+# 当 log.to 为控制台时禁用日志颜色，默认为 false
+log.disablePrintColor = false
+
+auth.method = "token"
+# auth.additionalScopes specifies additional scopes to include authentication information.
+# Optional values are HeartBeats, NewWorkConns.
+# auth.additionalScopes 指定包含身份验证信息的附加范围。
+# 可选值为 HeartBeats、NewWorkConns。
+# auth.additionalScopes = ["HeartBeats", "NewWorkConns"]
+
+# auth token
+# 授权令牌
+auth.token = "12345678"
+
+# oidc.clientID specifies the client ID to use to get a token in OIDC authentication.
+# auth.oidc.clientID = ""
+# oidc.clientSecret specifies the client secret to use to get a token in OIDC authentication.
+# auth.oidc.clientSecret = ""
+# oidc.audience specifies the audience of the token in OIDC authentication.
+# auth.oidc.audience = ""
+# oidc_scope specifies the permisssions of the token in OIDC authentication if AuthenticationMethod == "oidc". By default, this value is "".
+# auth.oidc.scope = ""
+# oidc.tokenEndpointURL specifies the URL which implements OIDC Token Endpoint.
+# It will be used to get an OIDC token.
+# auth.oidc.tokenEndpointURL = ""
+
+# oidc.additionalEndpointParams specifies additional parameters to be sent to the OIDC Token Endpoint.
+# For example, if you want to specify the "audience" parameter, you can set as follow.
+# frp will add "audience=<value>" "var1=<value>" to the additional parameters.
+# auth.oidc.additionalEndpointParams.audience = "https://dev.auth.com/api/v2/"
+# auth.oidc.additionalEndpointParams.var1 = "foobar"
+
+# Set admin address for control frpc's action by http api such as reload
+# 设置管理地址，用于通过http api控制frpc的动作，如reload
+webServer.addr = "127.0.0.1"
+webServer.port = 7400
+webServer.user = "admin"
+webServer.password = "admin"
+# Admin assets directory. By default, these assets are bundled with frpc.
+# 管理资源目录。默认情况下，这些资源与 frpc 捆绑在一起。
+# webServer.assetsDir = "./static"
+
+# Enable golang pprof handlers in admin listener.
+# 在管理监听器中启用 golang pprof 处理程序。
+webServer.pprofEnable = false
+
+# The maximum amount of time a dial to server will wait for a connect to complete. Default value is 10 seconds.
+# 拨号到服务器等待连接完成的最长时间。默认值为 10 秒。
+# transport.dialServerTimeout = 10
+
+# dialServerKeepalive specifies the interval between keep-alive probes for an active network connection between frpc and frps.
+# If negative, keep-alive probes are disabled.
+# dialServerKeepalive 指定 frpc 和 frps 之间活动网络连接的 keep-alive 探测之间的时间间隔。
+# 如果为负，则禁用保持活动探测。
+# transport.dialServerKeepalive = 7200
+
+# connections will be established in advance, default value is zero
+# 连接将提前建立，默认值为零
+transport.poolCount = 5
+
+# If tcp stream multiplexing is used, default is true, it must be same with frps
+# 如果使用tcp流复用，默认为true，必须与frps相同
+# transport.tcpMux = true
+
+# Specify keep alive interval for tcp mux.
+# only valid if tcpMux is enabled.
+# 指定 tcp mux 的保持活动间隔。
+# 仅当 tcpMux 启用时才有效。
+# transport.tcpMuxKeepaliveInterval = 60
+
+# Communication protocol used to connect to server
+# supports tcp, kcp, quic, websocket and wss now, default is tcp
+# 用于连接服务器的通信协议
+# 现在支持 tcp、kcp、quic、websocket 和 wss，默认为 tcp
+transport.protocol = "tcp"
+
+# set client binding ip when connect server, default is empty.
+# only when protocol = tcp or websocket, the value will be used.
+# 设置客户端连接服务器时绑定的ip，默认为空。
+# 仅当protocol = tcp或websocket时，才会使用该值。
+transport.connectServerLocalIP = "0.0.0.0"
+
+# if you want to connect frps by http proxy or socks5 proxy or ntlm proxy, you can set proxyURL here or in global environment variables
+# 如果你想通过http代理或者socks5代理或者ntlm代理连接frps，可以在这里或者全局环境变量中设置proxyURL
+# it only works when protocol is tcp
+# transport.proxyURL = "http://user:passwd@192.168.1.128:8080"
+# transport.proxyURL = "socks5://user:passwd@192.168.1.128:1080"
+# transport.proxyURL = "ntlm://user:passwd@192.168.1.128:2080"
+
+# quic protocol options
+# quic 协议选项
+# transport.quic.keepalivePeriod = 10
+# transport.quic.maxIdleTimeout = 30
+# transport.quic.maxIncomingStreams = 100000
+
+# If tls.enable is true, frpc will connect frps by tls.
+# Since v0.50.0, the default value has been changed to true, and tls is enabled by default.
+# 如果tls.enable为true，frpc将通过tls连接frps。
+# 从v0.50.0开始，默认值改为true，并且默认启用tls。
+transport.tls.enable = true
+
+# transport.tls.certFile = "client.crt"
+# transport.tls.keyFile = "client.key"
+# transport.tls.trustedCaFile = "ca.crt"
+# transport.tls.serverName = "example.com"
+
+# If the disableCustomTLSFirstByte is set to false, frpc will establish a connection with frps using the
+# first custom byte when tls is enabled.
+# Since v0.50.0, the default value has been changed to true, and the first custom byte is disabled by default.
+# 如果disableCustomTLSFirstByte设置为false，frpc将使用以下方式与frps建立连接
+# 启用 tls 时的第一个自定义字节。
+# 从v0.50.0开始，默认值改为true，并且默认禁用第一个自定义字节。
+# transport.tls.disableCustomTLSFirstByte = true
+
+# Heartbeat configure, it's not recommended to modify the default value.
+# The default value of heartbeat_interval is 10 and heartbeat_timeout is 90. Set negative value
+# to disable it.
+# 心跳配置，不建议修改默认值。
+# heartbeat_interval 默认值为 10，heartbeat_timeout 为 90。设置负值即可禁用。
+# transport.heartbeatInterval = 30
+# transport.heartbeatTimeout = 90
+
+# Specify a dns server, so frpc will use this instead of default one
+# 指定一个dns服务器，这样frpc将使用它而不是默认的
+# dnsServer = "8.8.8.8"
+
+# Proxy names you want to start.
+# Default is empty, means all proxies.
+# 您要启动的代理名称。
+# 默认为空，表示所有代理。
+# start = ["ssh", "dns"]
+
+# Specify udp packet size, unit is byte. If not set, the default value is 1500.
+# This parameter should be same between client and server.
+# It affects the udp and sudp proxy.
+# 指定udp数据包大小，单位为字节。 如果未设置，则默认值为 1500。
+# 客户端和服务端之间的此参数应相同。可用范围：100-1500
+# 它会影响 udp 和 sudp 代理。
+udpPacketSize = 1500
+
+# Additional metadatas for client.
+# 客户端的附加元数据。
+metadatas.var1 = "abc"
+metadatas.var2 = "123"
+
+# Include other config files for proxies.
+# 包含代理的其他配置文件。
+# includes = ["./confd/*.ini"]
+
+[[proxies]]
+# 'ssh' is the unique proxy name
+# If global user is not empty, it will be changed to {user}.{proxy} such as 'your_name.ssh'
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+# Limit bandwidth for this proxy, unit is KB and MB
+transport.bandwidthLimit = "1MB"
+# Where to limit bandwidth, can be 'client' or 'server', default is 'client'
+transport.bandwidthLimitMode = "client"
+# If true, traffic of this proxy will be encrypted, default is false
+transport.useEncryption = false
+# If true, traffic will be compressed
+transport.useCompression = false
+# Remote port listen by frps
+remotePort = 6001
+# frps will load balancing connections for proxies in same group
+loadBalancer.group = "test_group"
+# group should have same group key
+loadBalancer.groupKey = "123456"
+# Enable health check for the backend service, it supports 'tcp' and 'http' now.
+# frpc will connect local service's port to detect it's healthy status
+healthCheck.type = "tcp"
+# Health check connection timeout
+healthCheck.timeoutSeconds = 3
+# If continuous failed in 3 times, the proxy will be removed from frps
+healthCheck.maxFailed = 3
+# every 10 seconds will do a health check
+healthCheck.intervalSeconds = 10
+# additional meta info for each proxy
+metadatas.var1 = "abc"
+metadatas.var2 = "123"
+
+[[proxies]]
+name = "ssh_random"
+type = "tcp"
+localIP = "192.168.31.100"
+localPort = 22
+# If remote_port is 0, frps will assign a random port for you
+remotePort = 0
+
+[[proxies]]
+name = "dns"
+type = "udp"
+localIP = "114.114.114.114"
+localPort = 53
+remotePort = 6002
+
+# Resolve your domain names to [server_addr] so you can use http://web01.yourdomain.com to browse web01 and http://web02.yourdomain.com to browse web02
+[[proxies]]
+name = "web01"
+type = "http"
+localIP = "127.0.0.1"
+localPort = 80
+# http username and password are safety certification for http protocol
+# if not set, you can access this custom_domains without certification
+httpUser = "admin"
+httpPassword = "admin"
+# if domain for frps is frps.com, then you can access [web01] proxy by URL http://web01.frps.com
+subdomain = "web01"
+customDomains = ["web01.yourdomain.com"]
+# locations is only available for http type
+locations = ["/", "/pic"]
+# route requests to this service if http basic auto user is abc
+# route_by_http_user = abc
+hostHeaderRewrite = "example.com"
+# params with prefix "header_" will be used to update http request headers
+requestHeaders.set.x-from-where = "frp"
+healthCheck.type = "http"
+# frpc will send a GET http request '/status' to local http service
+# http service is alive when it return 2xx http response code
+healthCheck.path = "/status"
+healthCheck.intervalSeconds = 10
+healthCheck.maxFailed = 3
+healthCheck.timeoutSeconds = 3
+
+[[proxies]]
+name = "web02"
+type = "https"
+localIP = "127.0.0.1"
+localPort = 8000
+subdomain = "web02"
+customDomains = ["web02.yourdomain.com"]
+# if not empty, frpc will use proxy protocol to transfer connection info to your local service
+# v1 or v2 or empty
+transport.proxyProtocolVersion = "v2"
+
+[[proxies]]
+name = "tcpmuxhttpconnect"
+type = "tcpmux"
+multiplexer = "httpconnect"
+localIP = "127.0.0.1"
+localPort = 10701
+customDomains = ["tunnel1"]
+# routeByHTTPUser = "user1"
+
+[[proxies]]
+name = "plugin_unix_domain_socket"
+type = "tcp"
+remotePort = 6003
+# if plugin is defined, local_ip and local_port is useless
+# plugin will handle connections got from frps
+[proxies.plugin]
+type = "unix_domain_socket"
+unixPath = "/var/run/docker.sock"
+
+[[proxies]]
+name = "plugin_http_proxy"
+type = "tcp"
+remotePort = 6004
+[proxies.plugin]
+type = "http_proxy"
+httpUser = "abc"
+httpPassword = "abc"
+
+[[proxies]]
+name = "plugin_socks5"
+type = "tcp"
+remotePort = 6005
+[proxies.plugin]
+type = "socks5"
+username = "abc"
+password = "abc"
+
+[[proxies]]
+name = "plugin_static_file"
+type = "tcp"
+remotePort = 6006
+[proxies.plugin]
+type = "static_file"
+localPath = "/var/www/blog"
+stripPrefix = "static"
+httpUser = "abc"
+httpPassword = "abc"
+
+[[proxies]]
+name = "plugin_https2http"
+type = "https"
+customDomains = ["test.yourdomain.com"]
+[proxies.plugin]
+type = "https2http"
+localAddr = "127.0.0.1:80"
+crtPath = "./server.crt"
+keyPath = "./server.key"
+hostHeaderRewrite = "127.0.0.1"
+requestHeaders.set.x-from-where = "frp"
+
+[[proxies]]
+name = "plugin_https2https"
+type = "https"
+customDomains = ["test.yourdomain.com"]
+[proxies.plugin]
+type = "https2https"
+localAddr = "127.0.0.1:443"
+crtPath = "./server.crt"
+keyPath = "./server.key"
+hostHeaderRewrite = "127.0.0.1"
+requestHeaders.set.x-from-where = "frp"
+
+[[proxies]]
+name = "plugin_http2https"
+type = "http"
+customDomains = ["test.yourdomain.com"]
+[proxies.plugin]
+type = "http2https"
+localAddr = "127.0.0.1:443"
+hostHeaderRewrite = "127.0.0.1"
+requestHeaders.set.x-from-where = "frp"
+
+[[proxies]]
+name = "secret_tcp"
+# If the type is secret tcp, remote_port is useless
+# Who want to connect local port should deploy another frpc with stcp proxy and role is visitor
+type = "stcp"
+# secretKey is used for authentication for visitors
+secretKey = "abcdefg"
+localIP = "127.0.0.1"
+localPort = 22
+# If not empty, only visitors from specified users can connect.
+# Otherwise, visitors from same user can connect. '*' means allow all users.
+allowUsers = ["*"]
+
+[[proxies]]
+name = "p2p_tcp"
+type = "xtcp"
+secretKey = "abcdefg"
+localIP = "127.0.0.1"
+localPort = 22
+# If not empty, only visitors from specified users can connect.
+# Otherwise, visitors from same user can connect. '*' means allow all users.
+allowUsers = ["user1", "user2"]
+
+# frpc role visitor -> frps -> frpc role server
+[[visitors]]
+name = "secret_tcp_visitor"
+type = "stcp"
+# the server name you want to visitor
+serverName = "secret_tcp"
+secretKey = "abcdefg"
+# connect this address to visitor stcp server
+bindAddr = "127.0.0.1"
+# bindPort can be less than 0, it means don't bind to the port and only receive connections redirected from
+# other visitors. (This is not supported for SUDP now)
+bindPort = 9000
+
+[[visitors]]
+name = "p2p_tcp_visitor"
+type = "xtcp"
+# if the server user is not set, it defaults to the current user
+serverUser = "user1"
+serverName = "p2p_tcp"
+secretKey = "abcdefg"
+bindAddr = "127.0.0.1"
+# bindPort can be less than 0, it means don't bind to the port and only receive connections redirected from
+# other visitors. (This is not supported for SUDP now)
+bindPort = 9001
+# when automatic tunnel persistence is required, set it to true
+keepTunnelOpen = false
+# effective when keep_tunnel_open is set to true, the number of attempts to punch through per hour
+maxRetriesAnHour = 8
+minRetryInterval = 90
+# fallbackTo = "stcp_visitor"
+# fallbackTimeoutMs = 500
