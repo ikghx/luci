@@ -6,14 +6,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=4.71-1
+PKG_VERSION:=4.71-2
 PKG_RELEASE:=
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_$(PKG_NAME)_Iptables_Transparent_Proxy \
 	CONFIG_PACKAGE_$(PKG_NAME)_Nftables_Transparent_Proxy \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Brook \
-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_ChinaDNS_NG \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy \
@@ -36,7 +35,7 @@ PKG_CONFIG_DEPENDS:= \
 LUCI_TITLE:=LuCI support for PassWall
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
-	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
+	+chinadns-ng +dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
 	+microsocks +resolveip +tcping +unzip +dnsmasq-full +ipt2socks +nftables \
 	+kmod-nft-socket +kmod-nft-tproxy +kmod-nft-nat \
 	+PACKAGE_$(PKG_NAME)_INCLUDE_Brook:brook \
@@ -67,10 +66,6 @@ menu "Configuration"
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Brook
 	bool "Include Brook"
-	default n
-
-	config PACKAGE_$(PKG_NAME)_INCLUDE_ChinaDNS_NG
-	bool "Include ChinaDNS-NG"
 	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy
