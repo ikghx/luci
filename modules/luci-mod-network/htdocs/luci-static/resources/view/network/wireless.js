@@ -1606,11 +1606,11 @@ return view.extend({
 					o.placeholder = '0';
 					o.rmempty = true;
 
-					o = ss.taboption('roaming', form.DynamicList, 'r0kh', _('External R0 key holder list'), _('List of R0 key holders in the mobility domain.<br />Format: MAC-Address,NAS-Identifier,128-bit key in hexadecimal<br />Used to map the R0 key holder ID (NAS-Identifier) to a destination MAC address when requesting a PMK-R1 key from the R0 key holder that the client used during its initial mobility domain association.'));
+					o = ss.taboption('roaming', form.DynamicList, 'r0kh', _('External R0 key holder list'), _('List of R0 key holders in the mobility domain.<br />Format: MAC-Address,NAS-Identifier,256-bit key in hexadecimal<br />Used to map the R0 key holder ID (NAS-Identifier) to a destination MAC address when requesting a PMK-R1 key from the R0 key holder that the client used during its initial mobility domain association.'));
 					o.depends({ ieee80211r: '1' });
 					o.rmempty = true;
 
-					o = ss.taboption('roaming', form.DynamicList, 'r1kh', _('External R1 key holder list'), _ ('List of R1 key holders in the mobility domain.<br />Format: MAC-Address,R1KH-ID as 6 octets with colons,128-bit key in hexadecimal<br />Used to map the R1 key holder ID to a destination MAC address when sending a PMK-R1 key from the R0 key holder and also to permit R1 keyholders in the mobility domain to request PMK-R1 keys.'));
+					o = ss.taboption('roaming', form.DynamicList, 'r1kh', _('External R1 key holder list'), _ ('List of R1 key holders in the mobility domain.<br />Format: MAC-Address,R1KH-ID as 6 octets with colons,256-bit key in hexadecimal<br />Used to map the R1 key holder ID to a destination MAC address when sending a PMK-R1 key from the R0 key holder and also to permit R1 keyholders in the mobility domain to request PMK-R1 keys.'));
 					o.depends({ ieee80211r: '1' });
 					o.rmempty = true;
 					// End of 802.11r options
