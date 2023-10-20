@@ -1,6 +1,6 @@
 # A literal address or host name for IPv6 must be enclosed
 # in square brackets, as in "[::1]:80", "[ipv6-host]:http" or "[ipv6-host%zone]:80"
-# For single "bind_addr" field, no need square brackets, like "bind_addr = ::".
+# For single "bindAddr" field, no need square brackets, like `bindAddr = "::"`.
 # 服务端监听的 IP 地址与 TCP 端口。
 bindAddr = "0.0.0.0"
 bindPort = 7000
@@ -17,9 +17,9 @@ kcpBindPort = 7000
 # 如果未设置，则在 frps 中禁用 quic。
 # quicBindPort = 7002
 
-# Specify which address proxy will listen for, default value is same with bind_addr
+# Specify which address proxy will listen for, default value is same with bindAddr
 # 指定代理监听哪个地址，默认值与 bindAddr 相同
-# proxy_bind_addr = "127.0.0.1"
+# proxyBindAddr = "127.0.0.1"
 
 # quic protocol options
 # quic 协议选项
@@ -28,7 +28,7 @@ kcpBindPort = 7000
 # transport.quic.maxIncomingStreams = 100000
 
 # Heartbeat configure, it's not recommended to modify the default value
-# The default value of heartbeat_timeout is 90. Set negative value to disable it.
+# The default value of heartbeatTimeout is 90. Set negative value to disable it.
 # 心跳配置，不建议修改默认值
 # heartbeatTimeout 默认值为 90。设置负值即可禁用。
 # transport.heartbeatTimeout = 90
@@ -81,7 +81,7 @@ vhostHTTPSPort = 443
 # 如果设置了端口，它将监听这个端口的 HTTP 请求。默认此值为 0。
 # tcpmuxHTTPConnectPort = 1337
 
-# If tcpmux_passthrough is true, frps won't do any update on traffic.
+# If tcpmuxPassthrough is true, frps won't do any update on traffic.
 # 如果启用此选项，frps 不会对流量做任何更新。
 # tcpmuxPassthrough = false
 
