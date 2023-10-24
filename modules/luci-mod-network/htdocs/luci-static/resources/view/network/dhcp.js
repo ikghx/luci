@@ -386,17 +386,18 @@ return view.extend({
 		o.value('AAAA', _('IPv6 address'));
 		o.optional = true;
 
-		o = s.taboption('general', form.DynamicList, 'interface',
+		o = s.taboption('general', widgets.NetworkSelect, 'interface',
 			_('Listen interfaces'),
 			_('Listen only on the specified interfaces, and loopback if not excluded explicitly.'));
-		o.optional = true;
-		o.placeholder = 'lan';
+		o.multiple = true;
+		o.nocreate = true;
 
-		o = s.taboption('general', form.DynamicList, 'notinterface',
+		o = s.taboption('general', widgets.NetworkSelect, 'notinterface',
 			_('Exclude interfaces'),
 			_('Do not listen on the specified interfaces.'));
-		o.value('pppoe-wan');
-		o.optional = true;
+		o.loopback = true;
+		o.multiple = true;
+		o.nocreate = true;
 
 		o = s.taboption('relay', form.SectionValue, '__relays__', form.TableSection, 'relay', null,
 			_('Relay DHCP requests elsewhere. OK: v4↔v4, v6↔v6. Not OK: v4↔v6, v6↔v4.')
