@@ -83,9 +83,13 @@ return view.extend({
 
 		o = s.option(form.Flag, 'fastest_addr', _('Fastest address'), _('Respond to A or AAAA requests only with the fastest IP address.'));
 
+		o = s.option(form.Flag, 'http3', _('Use http3'));
+
 		o = s.option(form.Flag, 'insecure', _('Disable TLS certificate validation'));
 
 		o = s.option(form.Flag, 'ipv6_disabled', _('Disable IPv6'), _('all AAAA requests will be replied with NoError RCode and empty answer.'));
+
+		o = s.option(form.Value, 'timeout', _('Timeout'));
 
 		o = s.option(form.Value, 'max_go_routines', _('Max go routines'), _('Set the maximum number of go routines. A value <= 0 will not not set a maximum.'));
 
