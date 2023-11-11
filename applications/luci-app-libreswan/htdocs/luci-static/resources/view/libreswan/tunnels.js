@@ -3,8 +3,8 @@
 'require form';
 'require ui';
 'require uci';
-'require network'
-'require validation'
+'require network';
+'require validation';
 'require tools.widgets as widgets';
 
 function calculateNetwork(addr, mask) {
@@ -135,12 +135,15 @@ return view.extend({
 
 		o = s.taboption('authentication', form.ListValue, 'authby', _('Auth Method'));
 		o.default = 'secret'
-		o.value('secret', _('Preshare Key'));
+		o.value('secret', _('Shared Secret'));
+		o.value('never', 'Never');
+		o.value('null', 'Null');
 		o.modalonly = true;
 		o.optional = false;
 
-		o = s.taboption('authentication', form.Value, 'psk', _('Preshare Key'));
-		o.datatype = 'and(string, minlenght(8))'
+		o = s.taboption('authentication', form.Value, 'psk', _('Preshared Key'));
+		o.datatype = 'and(string, minlength(8))'
+		o.depends({ 'authby' : 'secret' });
 		o.password = true;
 		o.modalonly = true;
 		o.optional = false;
@@ -157,22 +160,45 @@ return view.extend({
 		}
 		o.modalonly = true;
 
-		o = s.taboption('advanced', form.Value, 'ikelifetime', _('IKE Life Time'));
-		o.datatype = 'uinteger';
-		o.default = 10800;
+		o = s.taboption('advanced', form.Value, 'ikelifetime', _('IKE Life Time'), _('Acceptable values are an integer followed by m, h, d'));
+		o.default = '8h';
+		o.value('1h', '1h');
+		o.value('2h', '2h');
+		o.value('4h', '4h');
+		o.value('8h', '8h');
+		o.value('12h', '12h');
+		o.value('16h', '16h');
+		o.value('24h', '24h');
 		o.modalonly = false;
 		o.modalonly = true;
+		o.validate = function(section_id, value) {
+			if (!/^[0-9]{1,3}[smhd]$/.test(value)) {
+				return _('Acceptable values are an integer followed by m, h, d');
+			}
+			return true;
+		}
 
 		o = s.taboption('advanced', form.Flag, 'rekey', _('Rekey'));
 		o.default = false;
 		o.modalonly = false;
 		o.modalonly = true;
 
-		o = s.taboption('advanced', form.Value, 'rekeymargin', _('Rekey Margin Time'));
-		o.datatype = 'uinteger';
-		o.default = 540;
+		o = s.taboption('advanced', form.Value, 'rekeymargin', _('Rekey Margin Time'), _('Acceptable values are an integer followed by m, h, d'));
+		o.default = '9m';
+		o.value('5m', '5m');
+		o.value('9m', '9m');
+		o.value('15m', '15m');
+		o.value('20m', '20m');
+		o.value('30m', '30m');
+		o.value('60m', '60m');
 		o.modalonly = false;
 		o.modalonly = true;
+		o.validate = function(section_id, value) {
+			if (!/^[0-9]{1,3}[smhd]$/.test(value)) {
+				return _('Acceptable values are an integer followed by m, h, d');
+			}
+			return true;
+		}
 
 		o = s.taboption('advanced', form.ListValue, 'dpdaction', _('DPD Action'));
 		o.default = 'restart';

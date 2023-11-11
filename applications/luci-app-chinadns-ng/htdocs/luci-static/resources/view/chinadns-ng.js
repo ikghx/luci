@@ -81,8 +81,8 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'bind_addr', _('Listen address'));
+		o.value('::');
 		o.value('127.0.0.1');
-		o.value('0.0.0.0');
 		o.datatype = 'ipaddr';
 		o.rmempty = false;
 
