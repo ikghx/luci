@@ -3,22 +3,24 @@
 'require network';
 'require rpc';
 'require tools.widgets as widgets';
+'require uci';
 'require ui';
 network.registerPatternVirtual(/^yggdrasil-.+$/);
 
 function validatePrivateKey(section_id,value) {
-	if (!value.match(/^([0-9a-fA-F]){128}$/))
-		return _('Invalid private key string');
+	if (value.length == 0) {
+		return true;
+	};
+	if (!value.match(/^([0-9a-fA-F]){128}$/)) {
+		if (value != "auto") {
+			return _('Invalid private key string');
+		}
+		return true;
+	}
 	return true;
 };
 
 function validatePublicKey(section_id,value) {
-	if (!value.match(/^([0-9a-fA-F]){64}$/))
-		return _('Invalid public key string');
-	return true;
-};
-
-function validatePublicKeyOrEmpty(section_id,value) {
 	if (value.length == 0) {
 		return true;
 	};
@@ -27,14 +29,17 @@ function validatePublicKeyOrEmpty(section_id,value) {
 	return true;
 };
 
-function validateYggdrasilUri(section_id,value) {
-	if (!value.match(/^(tls|tcp|unix):\/\//))
+function validateYggdrasilListenUri(section_id,value) {
+	if (value.length == 0) {
+		return true;
+	};
+	if (!value.match(/^(tls|tcp|unix|quic):\/\//))
 		return _('URI scheme not supported');
 	return true;
 };
 
 function validateYggdrasilPeerUri(section_id,value) {
-	if (!value.match(/^(tls|tcp|unix|socks):\/\//))
+	if (!value.match(/^(tls|tcp|unix|quic|socks|socktls):\/\//))
 		return _('URI scheme not supported');
 	return true;
 };
@@ -58,10 +63,100 @@ var cbiKeyPairGenerate = form.DummyValue.extend({
 	}
 });
 
+function updateActivePeers(ifname) {
+	getPeers(ifname).then(function(peers){
+		var table = document.querySelector('#yggdrasil-active-peerings-' + ifname);
+		if (table) {
+			while (table.rows.length > 1) { table.deleteRow(1); }
+			peers.forEach(function(peer) {
+				var row = table.insertRow(-1);
+				row.style.fontSize = "xx-small";
+				if (!peer.up) {
+					row.style.opacity = "66%";
+				}
+				var cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.textContent = peer.remote;
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.textContent = peer.up ? "Up" : "Down";
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.textContent = peer.inbound ? "In" : "Out";
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.innerHTML = "<u style='cursor: default'>" + peer.address + "</u>"
+				cell.dataToggle = "tooltip";
+				cell.title = "Key: " + peer.key;
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.textContent = '%t'.format(peer.uptime);
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.textContent = '%.2mB'.format(peer.bytes_recvd);
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.textContent = '%.2mB'.format(peer.bytes_sent);
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				cell.textContent = peer.priority;
+
+				cell = row.insertCell(-1)
+				cell.className = "td"
+				if (!peer.up) {
+					cell.innerHTML = "<u style='cursor: default'>%t ago</u>".format(peer.last_error_time)
+					cell.dataToggle = "tooltip"
+					cell.title = peer.last_error
+				} else {
+					cell.innerHTML = "-"
+				}
+			});
+			setTimeout(updateActivePeers.bind(this, ifname), 5000);
+		}
+	});
+}
+
+
+var cbiActivePeers = form.DummyValue.extend({
+	cfgvalue: function(section_id, value) {
+		updateActivePeers(this.option);
+		return E('table', {
+			'class': 'table',
+			'id': 'yggdrasil-active-peerings-' + this.option,
+		},[
+			E('tr', {'class': 'tr'}, [
+				E('th', {'class': 'th'}, _('URI')),
+				E('th', {'class': 'th'}, _('State')),
+				E('th', {'class': 'th'}, _('Dir')),
+				E('th', {'class': 'th'}, _('IP Address')),
+				E('th', {'class': 'th'}, _('Uptime')),
+				E('th', {'class': 'th'}, _('RX')),
+				E('th', {'class': 'th'}, _('TX')),
+				E('th', {'class': 'th'}, _('Priority')),
+				E('th', {'class': 'th'}, _('Last Error')),
+			])
+		]);
+	}
+});
+
 var generateKey = rpc.declare({
 	object:'luci.yggdrasil',
 	method:'generateKeyPair',
 	expect:{keys:{}}
+});
+
+var getPeers = rpc.declare({
+	object:'luci.yggdrasil',
+	method:'getPeers',
+	params:['interface'],
+	expect:{peers:[]}
 });
 
 return network.registerProtocol('yggdrasil',
@@ -92,7 +187,6 @@ return network.registerProtocol('yggdrasil',
 		},
 		renderFormOptions: function(s) {
 			var o, ss;
-
 			o=s.taboption('general',form.Value,'private_key',_('Private key'),_('The private key for your Yggdrasil node'));
 			o.optional=false;
 			o.password=true;
@@ -119,15 +213,19 @@ return network.registerProtocol('yggdrasil',
 			try {
 				s.tab('peers',_('Peers'));
 			} catch(e) {};
+			o=s.taboption('peers', form.SectionValue, '_active', form.NamedSection, this.sid, "interface", _("Active peers"))
+			ss=o.subsection;
+			ss.option(cbiActivePeers, this.sid);
 
 			o=s.taboption('peers', form.SectionValue, '_listen', form.NamedSection, this.sid, "interface", _("Listen for peers"))
 			ss=o.subsection;
 
-			o=ss.option(form.DynamicList,'listen_address',_('Listen addresses'),_('Listen addresses for incoming connections. You will need to add listeners in order to accept incoming peerings from non-local nodes. Multicast peer discovery will work regardless of any listeners sethere. Each listener should be specified in URI format, e.g.tls://0.0.0.0:0 or tls://[::]:0 to listen on all interfaces.'));
+			o=ss.option(form.DynamicList,'listen_address',_('Listen addresses'),_('Listen addresses for incoming connections. You will need to add listeners in order to accept incoming peerings from non-local nodes. Multicast peer discovery will work regardless of any listeners set here. Each listener should be specified in URI format, e.g.tls://0.0.0.0:0 or tls://[::]:0 to listen on all interfaces.'));
 			o.placeholder="tls://0.0.0.0:0"
+			o.validate=validateYggdrasilListenUri;
 
 			o=s.taboption('peers',form.DynamicList,'allowed_public_key',_('Allowed public keys'),_('List of peer public keys to allow incoming peering connections from. If left empty then all connections will be allowed by default. This does not affect outgoing peerings, nor does it affect link-local peers discovered via multicast.'));
-			o.validate=validatePublicKeyOrEmpty;
+			o.validate=validatePublicKey;
 
 			o=s.taboption('peers', form.SectionValue, '_peers', form.TableSection, 'yggdrasil_%s_peer'.format(this.sid), _("Peer addresses"))
 			ss=o.subsection;
@@ -137,6 +235,7 @@ return network.registerProtocol('yggdrasil',
 
 			o=ss.option(form.Value,"address",_("Peer URI"));
 			o.placeholder="tls://0.0.0.0:0"
+			o.validate=validateYggdrasilPeerUri;
 			ss.option(widgets.NetworkSelect,"interface",_("Peer interface"));
 
 			o=s.taboption('peers', form.SectionValue, '_interfaces', form.TableSection, 'yggdrasil_%s_interface'.format(this.sid), _("Multicast rules"))
@@ -155,6 +254,9 @@ return network.registerProtocol('yggdrasil',
 			o=ss.option(form.Value,"port",_("Port"));
 			o.optional=true;
 			o.datatype='range(1, 65535)';
+
+			o=ss.option(form.Value,"password",_("Password"));
+			o.optional=true;
 
 			return;
 		},
