@@ -9,7 +9,6 @@ LUCI_DEPENDS:=@(aarch64||arm||x86_64) \
 	+docker \
 	+dockerd \
 	+ttyd \
-	+cgroupfs-mount \
 	+kmod-crypto-ctr \
 	+kmod-crypto-gcm \
 	+kmod-dummy \

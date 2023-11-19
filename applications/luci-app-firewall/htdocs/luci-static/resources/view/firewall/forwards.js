@@ -101,7 +101,7 @@ function validate_opt_family(m, section_id, opt) {
 	var dip = dopt.formvalue(section_id) || '',
 	    fm = fmopt.formvalue(section_id) || '';
 
-	if (fm == '' || (fm == 'ipv6' && (dip.indexOf(':') != -1 || dip == '')) || (fm == 'ipv4' && dip.indexOf(':') == -1))
+	if (fm == '' || (fm == 'any' && dip == '') || (fm == 'ipv6' && (dip.indexOf(':') != -1 || dip == '')) || (fm == 'ipv4' && dip.indexOf(':') == -1))
 		return true;
 
 	return _('Address family, Internal IP address must match');
@@ -187,6 +187,7 @@ return view.extend({
 			o = s.taboption('general', form.ListValue, 'family', _('Restrict to address family'));
 			o.modalonly = true;
 			o.rmempty = true;
+			o.value('any', _('IPv4 and IPv6'));
 			o.value('ipv4', _('IPv4 only'));
 			o.value('ipv6', _('IPv6 only'));
 			o.value('', _('automatic'));  // infer from zone or used IP addresses

@@ -59,12 +59,17 @@ function smartdnsRenderStatus(res) {
 
 	var autoSetDnsmasq = uci.get_first('smartdns', 'smartdns', 'auto_set_dnsmasq');
 	var smartdnsPort = uci.get_first('smartdns', 'smartdns', 'port');
+	var smartdnsEnable = uci.get_first('smartdns', 'smartdns', 'enabled');
 	var dnsmasqServer = uci.get_first('dhcp', 'dnsmasq', 'server');
 
 	if (isRunning) {
 		renderHTML += "<span style=\"color:green;font-weight:bold\">SmartDNS - " + _("Running") + "</span>";
 	} else {
 		renderHTML += "<span style=\"color:red;font-weight:bold\">SmartDNS - " + _("Not running") + "</span>";
+		if (smartdnsEnable === '1') {
+			renderHTML += "<br /><span style=\"color:red;font-weight:bold\">" + _("Please check the system logs and check if the configuration is valid.");
+			renderHTML += "</span>";
+		}
 		return renderHTML;
 	}
 
@@ -136,6 +141,7 @@ return view.extend({
 		s.tab("files", _("Download Files Setting"), _("Download domain list files for domain-rule and include config files, please refresh the page after download to take effect."));
 		s.tab("proxy", _("Proxy Server Settings"));
 		s.tab("custom", _("Custom Settings"));
+		s.tab("log", _("Log Settings"));
 
 		///////////////////////////////////////
 		// Basic Settings
@@ -219,6 +225,30 @@ return view.extend({
 		o.rmempty = false;
 		o.default = o.enabled;
 
+		// Enable DOT server;
+		o = s.taboption("advanced", form.Flag, "tls_server", _("DOT Server"), _("Enable DOT DNS Server"));
+		o.rmempty = false;
+		o.default = o.disabled;
+
+		o = s.taboption("advanced", form.Value, "tls_server_port", _("DOT Server Port"), _("Smartdns DOT server port."));
+		o.placeholder = 853;
+		o.default = 853;
+		o.datatype = "port";
+		o.rempty = false;
+		o.depends('tls_server', '1');
+
+		// Enable DOH server;
+		o = s.taboption("advanced", form.Flag, "doh_server", _("DOH Server"), _("Enable DOH DNS Server"));
+		o.rmempty = false;
+		o.default = o.disabled;
+
+		o = s.taboption("advanced", form.Value, "doh_server_port", _("DOH Server Port"), _("Smartdns DOH server port."));
+		o.placeholder = 443;
+		o.default = 443;
+		o.datatype = "port";
+		o.rempty = false;
+		o.depends('https_server', '1');
+
 		// Support IPV6;
 		o = s.taboption("advanced", form.Flag, "ipv6_server", _("IPV6 Server"), _("Enable IPV6 DNS Server"));
 		o.rmempty = false;
@@ -253,7 +283,7 @@ return view.extend({
 
 		// cache-size;
 		o = s.taboption("advanced", form.Value, "cache_size", _("Cache Size"), _("DNS domain result cache size"));
-		o.datatype = 'uinteger';
+		o.datatype = 'range(0,10000)';
 		o.rempty = true;
 
 		// cache-persist;
@@ -320,14 +350,14 @@ return view.extend({
 
 		// rr-ttl;
 		o = s.taboption("advanced", form.Value, "rr_ttl", _("Domain TTL"), _("TTL for all domain result."));
-		o.datatype = 'uinteger';
+		o.datatype = 'range(0,3600)';
 		o.rempty = true;
 
 		// rr-ttl-min;
 		o = s.taboption("advanced", form.Value, "rr_ttl_min", _("Domain TTL Min"),
 			_("Minimum TTL for all domain result."));
 		o.rempty = true;
-		o.datatype = 'uinteger';
+		o.datatype = 'range(0,3600)';
 		o.placeholder = "600";
 		o.default = 600;
 
@@ -335,13 +365,13 @@ return view.extend({
 		o = s.taboption("advanced", form.Value, "rr_ttl_max", _("Domain TTL Max"),
 			_("Maximum TTL for all domain result."));
 		o.rempty = true;
-		o.datatype = 'uinteger';
+		o.datatype = 'range(0,3600)';
 
 		// rr-ttl-reply-max;
 		o = s.taboption("advanced", form.Value, "rr_ttl_reply_max", _("Reply Domain TTL Max"),
 			_("Reply maximum TTL for all domain result."));
 		o.rempty = true;
-    o.datatype = 'uinteger';
+    o.datatype = 'range(0,3600)';
 
 		// other args
 		o = s.taboption("advanced", form.Value, "server_flags", _("Additional Server Args"), 
@@ -487,10 +517,22 @@ return view.extend({
 		///////////////////////////////////////
 		// download Files Settings
 		///////////////////////////////////////
-		o = s.taboption("files", form.Flag, "enable_auto_update", _("Enable Auto Update"), _("Enable daily auto update."));
+		o = s.taboption("files", form.Flag, "enable_auto_update", _("Enable Auto Update"), _("Enable daily (weekly) auto update."));
 		o.rmempty = true;
 		o.default = o.disabled;
 		o.rempty = true;
+
+		o = s.taboption("files", form.ListValue, "auto_update_week_time", _("Update Time (Every Week)"));
+		o.value('*', _('Every Day'));
+		o.value('1', _('Every Monday'));
+		o.value('2', _('Every Tuesday'));
+		o.value('3', _('Every Wednesday'));
+		o.value('4', _('Every Thursday'));
+		o.value('5', _('Every Friday'));
+		o.value('6', _('Every Saturday'));
+		o.value('0', _('Every Sunday'));
+		o.default = "*";
+		o.depends('enable_auto_update', '1');
 
 		o = s.taboption('files', form.ListValue, 'auto_update_day_time', _("Update time (every day)"));
 		for (var i = 0; i < 24; i++)
@@ -602,28 +644,42 @@ return view.extend({
 		o.rmempty = true;
 		o.default = o.disabled;
 
-		o = s.taboption("custom", form.Value, "log_size", _("Log Size"));
+		///////////////////////////////////////
+		// log settings;
+		///////////////////////////////////////
+		o = s.taboption("log", form.Value, "log_size", _("Log Size"));
 		o.rmempty = true;
 		o.placeholder = "default";
 
-		o = s.taboption("custom", form.ListValue, "log_level", _("Log Level"));
+		o = s.taboption("log", form.ListValue, "log_level", _("Log Level"));
 		o.rmempty = true;
 		o.value("", _("default"));
-		o.value("Debug");
-		o.value("Info");
-		o.value("Notice");
-		o.value("Warning");
-		o.value("Error");
-		o.value("Critical");
-		o.value("Off");
+		o.value("debug");
+		o.value("info");
+		o.value("notice");
+		o.value("warn");
+		o.value("error");
+		o.value("fatal");
+		o.value("off");
 
-		o = s.taboption("custom", form.Value, "log_num", _("Log Number"));
+		o = s.taboption("log", form.Value, "log_num", _("Log Number"));
 		o.rmempty = true;
 		o.placeholder = "default";
 
-		o = s.taboption("custom", form.Value, "log_file", _("Log File"))
+		o = s.taboption("log", form.Value, "log_file", _("Log File"))
 		o.rmempty = true
 		o.placeholder = "/var/log/smartdns/smartdns.log"
+
+		o = s.taboption("log", form.DummyValue, "_view_log", _("View Log"));
+		o.renderWidget = function () {
+			return E('button', {
+				'class': 'btn cbi-button',
+				'id': 'btn_view_log',
+				'click': ui.createHandlerFn(this, function () {
+					window.location.href = "smartdns/log";
+				})
+			}, [_("View Log")]);
+		}
 
 		////////////////
 		// Upstream servers;
@@ -801,6 +857,7 @@ return view.extend({
 		s.tab("forwarding", _('DNS Forwarding Setting'));
 		s.tab("block", _("DNS Block Setting"));
 		s.tab("domain-rule-list", _("Domain Rule List"), _("Set Specific domain rule list."));
+    s.tab("ip-rule-list", _("IP Rule List"), _("Set Specific ip rule list."));
 		s.tab("domain-address", _("Domain Address"), _("Set Specific domain ip address."));
 		s.tab("blackip-list", _("IP Blacklist"), _("Set Specific ip blacklist."));
 
@@ -1124,6 +1181,72 @@ return view.extend({
 				return fs.write('/etc/smartdns/address.conf', formvalue.trim().replace(/\r\n/g, '\n') + '\n');
 			});
 		};
+
+		///////////////////////////////////////
+		// ip rule list;
+		///////////////////////////////////////
+		o = s.taboption('ip-rule-list', form.SectionValue, '__ip-rule-list__', form.GridSection, 'ip-rule-list', _('IP Rule List'),
+			_('Configure ip rule list.'));
+
+		ss = o.subsection;
+
+		ss.addremove = true;
+		ss.anonymous = true;
+		ss.sortable = true;
+
+		// enable flag;
+		so = ss.option(form.Flag, "enabled", _("Enable"), _("Enable"));
+		so.rmempty = false;
+		so.default = so.enabled;
+		so.editable = true;
+
+		// name;
+		so = ss.option(form.Value, "name", _("IP Rule Name"), _("IP Rule Name"));
+		so.rmempty = true;
+		so.datatype = "string";
+
+		so = ss.option(form.FileUpload, "ip_set_file", _("IP Set File"), _("Upload IP set file."));
+		so.rmempty = true
+		so.datatype = "file"
+		so.modalonly = true;
+		so.root_directory = "/etc/smartdns/ip-set"
+
+		so = ss.option(form.DynamicList, "ip_addr", _("IP Addresses"), _("IP addresses, CIDR format."));
+		so.rmempty = true;
+		so.datatype = "ipaddr"
+		so.modalonly = true;
+
+		so = ss.option(form.Flag, "whitelist_ip", _("Whitelist IP"), _("Whitelist IP Rule, Accept IP addresses within the range."));
+		so.rmempty = true;
+		so.default = so.disabled;
+		so.modalonly = true;
+
+		so = ss.option(form.Flag, "blacklist_ip", _("Blacklist IP"), _("Blacklist IP Rule, Decline IP addresses within the range."));
+		so.rmempty = true;
+		so.default = so.disabled;
+		so.modalonly = true;
+
+		so = ss.option(form.Flag, "ignore_ip", _("Ignore IP"), _("Do not use these IP addresses."));
+		so.rmempty = true;
+		so.default = so.disabled;
+		so.modalonly = true;
+
+		so = ss.option(form.Flag, "bogus_nxdomain", _("Bogus nxdomain"), _("Return SOA when the requested result contains a specified IP address."));
+		so.rmempty = true;
+		so.default = so.disabled;
+		so.modalonly = true;
+
+		so = ss.option(form.DynamicList, "ip_alias", _("IP alias"), _("IP Address Mapping, Can be used for CDN acceleration with Anycast IP, such as Cloudflare's CDN."));
+		so.rmempty = true;
+		so.datatype = 'ipaddr("nomask")';
+		so.modalonly = true;
+
+		// other args
+		so = ss.option(form.Value, "addition_flag", _("Additional Rule Flag"),
+			_("Additional Flags for rules, read help on ip-rule for more information."))
+		so.default = ""
+		so.rempty = true
+		so.modalonly = true;
 
 		////////////////
 		// Support
