@@ -14,11 +14,7 @@ LUCI_DEPENDS:=@(aarch64||arm||x86_64) \
 	+kmod-dummy \
 	+kmod-macvlan \
 	+kmod-ipsec \
-	+kmod-vxlan \
-	+procps-ng-top \
-	+procps-ng-ps \
-	+bash
-LUCI_PKGARCH:=all
+	+kmod-vxlan
 
 PKG_LICENSE:=AGPL-3.0
 PKG_MAINTAINER:=lisaac <lisaac.cn@gmail.com> \
