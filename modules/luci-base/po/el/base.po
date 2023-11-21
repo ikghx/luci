@@ -438,6 +438,12 @@ msgstr ""
 msgid "A configuration for the device \"%s\" already exists"
 msgstr "Υπάρχει ήδη μια διαμόρφωση για τη συσκευή \"%s\"."
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:200
+msgid ""
+"A default MTU of 65535 is set by Yggdrasil. It is recomended to utilize the "
+"default."
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2779
 msgid "A directory with the same name already exists."
 msgstr "Ένας φάκελος με το ίδιο όνομα υπάρχει ήδη."
@@ -602,6 +608,10 @@ msgstr ""
 "Αποδεχτείτε ερωτήματα DNS μόνο από κεντρικούς υπολογιστές των οποίων η "
 "διεύθυνση βρίσκεται σε τοπικό υποδίκτυο."
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:226
+msgid "Accept from public keys"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:751
 msgid "Accept local"
 msgstr "Αποδοχή τοπικού"
@@ -671,7 +681,7 @@ msgstr "Ενεργές Διαδρομές IPv6"
 msgid "Active IPv6 Rules"
 msgstr "Ενεργοί κανόνες IPv6"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:216
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:215
 msgid "Active peers"
 msgstr ""
 
@@ -742,12 +752,21 @@ msgstr "Προσθήκη περίπτωσης"
 msgid "Add key"
 msgstr "Προσθήκη κλειδιού"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:222
+msgid ""
+"Add listeners in order to accept incoming peerings from non-local nodes. "
+"Multicast peer discovery works regardless of listeners set here. URI Format: "
+"<code>tls://0.0.0.0:0</code> or <code>tls://[::]:0</code> to listen on all "
+"interfaces. Choose an acceptable URI <code>tls://</code>, <code>tcp://</"
+"code>, <code>unix://</code> or <code>quic://</code>"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:353
 msgid "Add local domain suffix to names served from hosts files."
 msgstr ""
 "Προσθήκη κατάληξης τοπικού τομέα για ονόματα εξυπηρετούμενα από αρχεία hosts"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:243
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:242
 msgid "Add multicast rule"
 msgstr ""
 
@@ -764,7 +783,7 @@ msgstr ""
 msgid "Add peer"
 msgstr "Προσθήκη ομότιμου"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:234
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:233
 msgid "Add peer address"
 msgstr ""
 
@@ -956,10 +975,6 @@ msgstr "Επιτρεπόμενες IPs"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:86
 msgid "Allowed network technology"
-msgstr ""
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:227
-msgid "Allowed public keys"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:315
@@ -1502,15 +1517,6 @@ msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js:40
 msgid "Buffered"
-msgstr ""
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:210
-msgid ""
-"By default, node info contains some defaults including the platform, "
-"architecture and Yggdrasil version. These can help when surveying the "
-"network and diagnosing network routing problems. Enabling node info privacy "
-"prevents this, so that only items specified in \"Node info\" are sent back "
-"if specified."
 msgstr ""
 
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:130
@@ -2406,7 +2412,7 @@ msgid "Device unreachable! Still waiting for device..."
 msgstr "Αποτυχία σύνδεσης με συσκευή! Παραμονή για συσκευή..."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1319
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:247
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:246
 msgid "Devices"
 msgstr "Συσκευές"
 
@@ -2423,7 +2429,7 @@ msgstr "Διαγνωστικά"
 msgid "Dial number"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:137
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:136
 msgid "Dir"
 msgstr ""
 
@@ -2656,7 +2662,6 @@ msgid "Do you want to replace the current PSK?"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:100
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:55
 msgid "Do you want to replace the current keys?"
 msgstr ""
 
@@ -3052,6 +3057,13 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:889
 msgid "Enable network"
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:209
+msgid ""
+"Enable node info privacy so that only items specified in \"Node info\" are "
+"sent back. Otherwise defaults including the platform, architecture and "
+"Yggdrasil version are included."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1555
@@ -4072,7 +4084,7 @@ msgstr ""
 msgid "IMEI"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:138
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:137
 msgid "IP Address"
 msgstr ""
 
@@ -4415,6 +4427,12 @@ msgstr ""
 
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:93
 msgid "If checked, encryption is disabled"
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:226
+msgid ""
+"If empty, all incoming connections will be allowed (default). This does not "
+"affect outgoing peerings, nor link-local peers discovered via multicast."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1072
@@ -4882,11 +4900,11 @@ msgid "Invalid port"
 msgstr ""
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:16
-msgid "Invalid private key string"
+msgid "Invalid private key string %s"
 msgstr ""
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:28
-msgid "Invalid public key string"
+msgid "Invalid public key string %s"
 msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:108
@@ -5074,7 +5092,7 @@ msgid ""
 "probability of being selected."
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:143
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:142
 msgid "Last Error"
 msgstr ""
 
@@ -5208,14 +5226,6 @@ msgstr ""
 msgid "List of domains to allow RFC1918 responses for."
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:227
-msgid ""
-"List of peer public keys to allow incoming peering connections from. If left "
-"empty then all connections will be allowed by default. This does not affect "
-"outgoing peerings, nor does it affect link-local peers discovered via "
-"multicast."
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:449
 msgid "List of upstream resolvers to forward queries to."
 msgstr ""
@@ -5225,20 +5235,11 @@ msgstr ""
 msgid "Listen Port"
 msgstr "Θύρα ακρόασης"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:223
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:222
 msgid "Listen addresses"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:223
-msgid ""
-"Listen addresses for incoming connections. You will need to add listeners in "
-"order to accept incoming peerings from non-local nodes. Multicast peer "
-"discovery will work regardless of any listeners set here. Each listener "
-"should be specified in URI format, e.g.tls://0.0.0.0:0 or tls://[::]:0 to "
-"listen on all interfaces."
-msgstr ""
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:220
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:219
 msgid "Listen for peers"
 msgstr ""
 
@@ -5256,7 +5257,7 @@ msgid ""
 "explicitly."
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:252
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:251
 msgid "Listen to multicast beacons"
 msgstr ""
 
@@ -5525,7 +5526,7 @@ msgstr "MHz"
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:53
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:196
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:46
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:201
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:200
 msgid "MTU"
 msgstr "MTU"
 
@@ -5940,7 +5941,7 @@ msgstr ""
 msgid "Multicast routing"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:241
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:240
 msgid "Multicast rules"
 msgstr ""
 
@@ -6320,11 +6321,11 @@ msgstr "Δεν υπάρχει κανόνας σε αυτή την αλυσίδα
 msgid "No zone assigned"
 msgstr "Δεν έχει ανατεθεί ζώνη"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:206
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid "Node info"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:210
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:209
 msgid "Node info privacy"
 msgstr ""
 
@@ -6583,7 +6584,7 @@ msgstr ""
 msgid "Optional hostname to assign"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:206
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid ""
 "Optional node info. This must be a { \"key\": \"value\", ... } map or set as "
 "null. This is entirely optional but, if set, is visible to the whole network "
@@ -7025,7 +7026,7 @@ msgstr ""
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:152
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:103
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:58
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:258
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:257
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:19
 msgid "Password"
 msgstr "Κωδικός Πρόσβασης"
@@ -7098,7 +7099,7 @@ msgstr ""
 msgid "Peer MAC address"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:236
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:235
 msgid "Peer URI"
 msgstr ""
 
@@ -7107,7 +7108,7 @@ msgstr ""
 msgid "Peer address is missing"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:230
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:229
 msgid "Peer addresses"
 msgstr ""
 
@@ -7119,12 +7120,12 @@ msgstr ""
 msgid "Peer disabled"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:239
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:238
 msgid "Peer interface"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:214
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:214
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:213
 msgid "Peers"
 msgstr "Ομότιμοι"
 
@@ -7218,7 +7219,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:820
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/dropbear.js:20
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:254
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:253
 msgid "Port"
 msgstr "Θύρα"
 
@@ -7315,7 +7316,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:130
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:214
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:240
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:142
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:141
 msgid "Priority"
 msgstr ""
 
@@ -7334,7 +7335,7 @@ msgstr ""
 msgid "Private Key"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:190
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:189
 msgid "Private key"
 msgstr ""
 
@@ -7408,7 +7409,7 @@ msgstr ""
 msgid "Public Key"
 msgstr "Δημόσιο κλειδί"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:195
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:194
 msgid "Public key"
 msgstr ""
 
@@ -7509,7 +7510,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:49
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:84
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:140
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:139
 msgid "RX"
 msgstr "RX"
 
@@ -8298,7 +8299,7 @@ msgid ""
 "conjunction with failure threshold"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:250
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:249
 msgid "Send multicast beacon"
 msgstr ""
 
@@ -8704,13 +8705,6 @@ msgid ""
 "FF</code> (optional)."
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:201
-msgid ""
-"Specify an MTU (Maximum Transmission Unit) for your local TUN interface. "
-"Default is the largest supported size for your platform. The lowest possible "
-"value is 1280."
-msgstr ""
-
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:69
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:69
@@ -8777,7 +8771,7 @@ msgid "Startup"
 msgstr "Εκκίνηση"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:90
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:136
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:135
 msgid "State"
 msgstr ""
 
@@ -8925,7 +8919,7 @@ msgid "Syntax: <code>/fqdn[/fqdn…]/[ipaddr]</code>."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:810
-msgid "Syntax: <code>_service._proto.example.com</code>."
+msgid "Syntax: <code>_service._proto.example.com</code>"
 msgstr ""
 
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:26
@@ -8998,7 +8992,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:50
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:85
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:141
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:140
 msgid "TX"
 msgstr "TX"
 
@@ -9401,7 +9395,7 @@ msgid ""
 "next greater network like the internet and other ports for a local network."
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:190
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:189
 msgid "The private key for your Yggdrasil node"
 msgstr ""
 
@@ -9412,7 +9406,7 @@ msgid ""
 "domain."
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:195
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:194
 msgid "The public key for your Yggdrasil node"
 msgstr ""
 
@@ -9869,13 +9863,12 @@ msgstr ""
 msgid "UMTS/GPRS/EV-DO"
 msgstr "UMTS/GPRS/EV-DO"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:135
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:134
 msgid "URI"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:37
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:43
-msgid "URI scheme not supported"
+msgid "URI scheme %s not supported"
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:255
@@ -10031,6 +10024,10 @@ msgstr ""
 msgid "Unsupported MAP type"
 msgstr ""
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:37
+msgid "Unsupported URI scheme in %s"
+msgstr ""
+
 #: modules/luci-compat/luasrc/model/network/proto_ncm.lua:69
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:31
 msgid "Unsupported modem"
@@ -10122,7 +10119,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:82
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js:83
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:139
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:138
 msgid "Uptime"
 msgstr "Χρόνος λειτουργίας"
 
@@ -10691,7 +10688,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:165
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:164
 msgid "Yggdrasil Network"
 msgstr ""
 

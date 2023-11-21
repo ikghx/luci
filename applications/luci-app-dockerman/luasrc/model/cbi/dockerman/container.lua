@@ -778,7 +778,7 @@ elseif action == "stats" then
 	local response = dk.containers:top({id = container_id, query = {ps_args="-aux"}})
 	local container_top
 
-		if response.code ~= 409 then
+	if response.code ~= 409 then
 		if response.code ~= 200 then
 			response = dk.containers:top({id = container_id})
 		end
@@ -790,9 +790,8 @@ elseif action == "stats" then
 		if response.code == 200 then
 			container_top = response.body
 		end
-	end
 
-	local table_stats = {
+		local table_stats = {
 			cpu = {
 				key=translate("CPU Usage"),
 				value='-'

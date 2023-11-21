@@ -451,6 +451,12 @@ msgstr ""
 msgid "A configuration for the device \"%s\" already exists"
 msgstr "Конфигурация для устройства «%s» уже существует"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:200
+msgid ""
+"A default MTU of 65535 is set by Yggdrasil. It is recomended to utilize the "
+"default."
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2779
 msgid "A directory with the same name already exists."
 msgstr "Директория с таким же именем уже существует."
@@ -617,6 +623,10 @@ msgstr "Отсутствующий интерфейс"
 msgid "Accept DNS queries only from hosts whose address is on a local subnet."
 msgstr "Ограничение сервиса DNS, для подсетей интерфейса использующего DNS."
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:226
+msgid "Accept from public keys"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:751
 msgid "Accept local"
 msgstr "Принимать локальные данные"
@@ -686,7 +696,7 @@ msgstr "Активные IPv6 маршруты"
 msgid "Active IPv6 Rules"
 msgstr "Активные IPv6 правила"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:216
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:215
 msgid "Active peers"
 msgstr ""
 
@@ -757,12 +767,21 @@ msgstr "Добавить экземпляр"
 msgid "Add key"
 msgstr "Добавить ключ"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:222
+msgid ""
+"Add listeners in order to accept incoming peerings from non-local nodes. "
+"Multicast peer discovery works regardless of listeners set here. URI Format: "
+"<code>tls://0.0.0.0:0</code> or <code>tls://[::]:0</code> to listen on all "
+"interfaces. Choose an acceptable URI <code>tls://</code>, <code>tcp://</"
+"code>, <code>unix://</code> or <code>quic://</code>"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:353
 msgid "Add local domain suffix to names served from hosts files."
 msgstr ""
 "Добавить локальный суффикс домена для имен из файла hosts (/etc/hosts)."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:243
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:242
 msgid "Add multicast rule"
 msgstr ""
 
@@ -779,7 +798,7 @@ msgstr ""
 msgid "Add peer"
 msgstr "Добавить узел (peer)"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:234
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:233
 msgid "Add peer address"
 msgstr ""
 
@@ -969,10 +988,6 @@ msgstr "Разрешенные IP-адреса"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:86
 msgid "Allowed network technology"
-msgstr ""
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:227
-msgid "Allowed public keys"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:315
@@ -1532,15 +1547,6 @@ msgstr "Обзор…"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js:40
 msgid "Buffered"
 msgstr "Буфер"
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:210
-msgid ""
-"By default, node info contains some defaults including the platform, "
-"architecture and Yggdrasil version. These can help when surveying the "
-"network and diagnosing network routing problems. Enabling node info privacy "
-"prevents this, so that only items specified in \"Node info\" are sent back "
-"if specified."
-msgstr ""
 
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:130
 msgid "CA certificate (PEM encoded)"
@@ -2458,7 +2464,7 @@ msgid "Device unreachable! Still waiting for device..."
 msgstr "Устройство недоступно! Ожидание устройства..."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1319
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:247
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:246
 msgid "Devices"
 msgstr "Устройства"
 
@@ -2475,7 +2481,7 @@ msgstr "Диагностика"
 msgid "Dial number"
 msgstr "Dial номер"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:137
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:136
 msgid "Dir"
 msgstr ""
 
@@ -2712,7 +2718,6 @@ msgid "Do you want to replace the current PSK?"
 msgstr "Вы хотите заменить текущий PSK?"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:100
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:55
 msgid "Do you want to replace the current keys?"
 msgstr "Вы хотите заменить текущие ключи?"
 
@@ -3128,6 +3133,13 @@ msgstr "Включить поддержку мультикаста"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:889
 msgid "Enable network"
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:209
+msgid ""
+"Enable node info privacy so that only items specified in \"Node info\" are "
+"sent back. Otherwise defaults including the platform, architecture and "
+"Yggdrasil version are included."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1555
@@ -4172,7 +4184,7 @@ msgstr "IKE DH группа"
 msgid "IMEI"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:138
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:137
 msgid "IP Address"
 msgstr ""
 
@@ -4519,6 +4531,12 @@ msgstr "Если включено, к опциям pppd добавляется �
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:93
 msgid "If checked, encryption is disabled"
 msgstr "Если выбрано, то шифрование выключено"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:226
+msgid ""
+"If empty, all incoming connections will be allowed (default). This does not "
+"affect outgoing peerings, nor link-local peers discovered via multicast."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1072
 msgid ""
@@ -5009,11 +5027,11 @@ msgid "Invalid port"
 msgstr "Неверный порт"
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:16
-msgid "Invalid private key string"
+msgid "Invalid private key string %s"
 msgstr ""
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:28
-msgid "Invalid public key string"
+msgid "Invalid public key string %s"
 msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:108
@@ -5202,7 +5220,7 @@ msgstr ""
 "Большие веса (с одинаковым приоритетом) имеют пропорционально большую "
 "вероятность быть выбранными."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:143
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:142
 msgid "Last Error"
 msgstr ""
 
@@ -5338,14 +5356,6 @@ msgstr "Список файлов ключей SSH для авторизации
 msgid "List of domains to allow RFC1918 responses for."
 msgstr "Список доменов, для которых разрешены ответы RFC1918."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:227
-msgid ""
-"List of peer public keys to allow incoming peering connections from. If left "
-"empty then all connections will be allowed by default. This does not affect "
-"outgoing peerings, nor does it affect link-local peers discovered via "
-"multicast."
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:449
 msgid "List of upstream resolvers to forward queries to."
 msgstr ""
@@ -5357,20 +5367,11 @@ msgstr ""
 msgid "Listen Port"
 msgstr "Порт для входящих соединений"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:223
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:222
 msgid "Listen addresses"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:223
-msgid ""
-"Listen addresses for incoming connections. You will need to add listeners in "
-"order to accept incoming peerings from non-local nodes. Multicast peer "
-"discovery will work regardless of any listeners set here. Each listener "
-"should be specified in URI format, e.g.tls://0.0.0.0:0 or tls://[::]:0 to "
-"listen on all interfaces."
-msgstr ""
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:220
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:219
 msgid "Listen for peers"
 msgstr ""
 
@@ -5390,7 +5391,7 @@ msgid ""
 "explicitly."
 msgstr "Ограничьте прослушивание этих интерфейсов и замыкание на себя."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:252
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:251
 msgid "Listen to multicast beacons"
 msgstr ""
 
@@ -5664,7 +5665,7 @@ msgstr "МГц"
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:53
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:196
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:46
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:201
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:200
 msgid "MTU"
 msgstr "MTU"
 
@@ -6094,7 +6095,7 @@ msgstr "Многоадресный (multicast) режим"
 msgid "Multicast routing"
 msgstr "Многоадресная (multicast) маршрутизация"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:241
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:240
 msgid "Multicast rules"
 msgstr ""
 
@@ -6480,11 +6481,11 @@ msgstr "Нет правил в данной цепочке."
 msgid "No zone assigned"
 msgstr "Зона не присвоена"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:206
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid "Node info"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:210
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:209
 msgid "Node info privacy"
 msgstr ""
 
@@ -6754,7 +6755,7 @@ msgstr "Необязательно"
 msgid "Optional hostname to assign"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:206
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid ""
 "Optional node info. This must be a { \"key\": \"value\", ... } map or set as "
 "null. This is entirely optional but, if set, is visible to the whole network "
@@ -7221,7 +7222,7 @@ msgstr ""
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:152
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:103
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:58
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:258
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:257
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:19
 msgid "Password"
 msgstr "Пароль"
@@ -7297,7 +7298,7 @@ msgstr "IP-адрес узла для назначения"
 msgid "Peer MAC address"
 msgstr "MAC-адрес узла"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:236
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:235
 msgid "Peer URI"
 msgstr ""
 
@@ -7306,7 +7307,7 @@ msgstr ""
 msgid "Peer address is missing"
 msgstr "Отсутствует адрес узла"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:230
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:229
 msgid "Peer addresses"
 msgstr ""
 
@@ -7318,12 +7319,12 @@ msgstr "Имя устройства узла"
 msgid "Peer disabled"
 msgstr "Узел отключен"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:239
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:238
 msgid "Peer interface"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:214
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:214
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:213
 msgid "Peers"
 msgstr "Узлы (peers)"
 
@@ -7417,7 +7418,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:820
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/dropbear.js:20
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:254
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:253
 msgid "Port"
 msgstr "Порт"
 
@@ -7517,7 +7518,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:130
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:214
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:240
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:142
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:141
 msgid "Priority"
 msgstr "Приоритет"
 
@@ -7536,7 +7537,7 @@ msgstr "Частный (предотвращение связи между MAC V
 msgid "Private Key"
 msgstr "Приватный ключ"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:190
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:189
 msgid "Private key"
 msgstr ""
 
@@ -7614,7 +7615,7 @@ msgstr ""
 msgid "Public Key"
 msgstr "Публичный ключ"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:195
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:194
 msgid "Public key"
 msgstr ""
 
@@ -7723,7 +7724,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:49
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:84
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:140
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:139
 msgid "RX"
 msgstr "Получено (RX)"
 
@@ -8543,7 +8544,7 @@ msgstr ""
 "Отправлять эхо-пакеты LCP с указанным интервалом (секунды), эффективно "
 "только в сочетании с порогом ошибок"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:250
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:249
 msgid "Send multicast beacon"
 msgstr ""
 
@@ -9000,13 +9001,6 @@ msgstr ""
 "внешнего заголовка наследуется из значения внутреннего заголовка) или "
 "шестнадцатеричное значение <code>00...FF</code> (необязательно)."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:201
-msgid ""
-"Specify an MTU (Maximum Transmission Unit) for your local TUN interface. "
-"Default is the largest supported size for your platform. The lowest possible "
-"value is 1280."
-msgstr ""
-
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:69
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:69
@@ -9077,7 +9071,7 @@ msgid "Startup"
 msgstr "Автозапуск"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:90
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:136
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:135
 msgid "State"
 msgstr ""
 
@@ -9230,8 +9224,8 @@ msgid "Syntax: <code>/fqdn[/fqdn…]/[ipaddr]</code>."
 msgstr "Синтаксис: <code>/fqdn[/fqdn…]/[ipaddr]</code>."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:810
-msgid "Syntax: <code>_service._proto.example.com</code>."
-msgstr "Синтаксис: <code>_service._proto.example.com</code>."
+msgid "Syntax: <code>_service._proto.example.com</code>"
+msgstr ""
 
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:26
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js:37
@@ -9303,7 +9297,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:50
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:85
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:141
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:140
 msgid "TX"
 msgstr "Передано (TX)"
 
@@ -9761,7 +9755,7 @@ msgstr ""
 "внешней сети, например к Интернету и другие порты предназначенные для "
 "внутренней — локальной сети."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:190
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:189
 msgid "The private key for your Yggdrasil node"
 msgstr ""
 
@@ -9775,7 +9769,7 @@ msgstr ""
 "узел. Обычно это статический публичный IP-адрес, статическое имя хоста или "
 "имя домена DDNS."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:195
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:194
 msgid "The public key for your Yggdrasil node"
 msgstr ""
 
@@ -10272,13 +10266,12 @@ msgstr "Только UMTS"
 msgid "UMTS/GPRS/EV-DO"
 msgstr "UMTS/GPRS/EV-DO"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:135
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:134
 msgid "URI"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:37
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:43
-msgid "URI scheme not supported"
+msgid "URI scheme %s not supported"
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:255
@@ -10438,6 +10431,10 @@ msgstr "Неопознанная ошибка"
 msgid "Unsupported MAP type"
 msgstr "Не поддерживаемый тип MAP"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:37
+msgid "Unsupported URI scheme in %s"
+msgstr ""
+
 #: modules/luci-compat/luasrc/model/network/proto_ncm.lua:69
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:31
 msgid "Unsupported modem"
@@ -10537,7 +10534,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:82
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js:83
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:139
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:138
 msgid "Uptime"
 msgstr "Время работы"
 
@@ -11144,7 +11141,7 @@ msgstr "Политика XOR (balance-xor, 2)"
 msgid "Yes"
 msgstr "Да"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:165
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:164
 msgid "Yggdrasil Network"
 msgstr ""
 
@@ -11833,6 +11830,9 @@ msgstr "да"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Назад"
+
+#~ msgid "Syntax: <code>_service._proto.example.com</code>."
+#~ msgstr "Синтаксис: <code>_service._proto.example.com</code>."
 
 #~ msgid "Do not forward DNS queries without dots or domain parts."
 #~ msgstr ""

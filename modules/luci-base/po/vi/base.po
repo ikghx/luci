@@ -444,6 +444,12 @@ msgstr ""
 msgid "A configuration for the device \"%s\" already exists"
 msgstr "Đã tồn tại một cấu hình cho thiết bị \"%s\""
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:200
+msgid ""
+"A default MTU of 65535 is set by Yggdrasil. It is recomended to utilize the "
+"default."
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2779
 msgid "A directory with the same name already exists."
 msgstr "thư mục có tên này đã tồn tại."
@@ -612,6 +618,10 @@ msgstr ""
 "Giới hạn dịch vụ DNS đối với các giao diện mạng con mà chúng tôi đang phục "
 "vụ DNS."
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:226
+msgid "Accept from public keys"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:751
 msgid "Accept local"
 msgstr "Chấp nhận cục bộ"
@@ -683,7 +693,7 @@ msgstr "Active IPv6 Routes"
 msgid "Active IPv6 Rules"
 msgstr "Luật IPv6 hoạt động"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:216
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:215
 msgid "Active peers"
 msgstr ""
 
@@ -754,11 +764,20 @@ msgstr "Thêm phiên bản"
 msgid "Add key"
 msgstr "Thêm khóa"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:222
+msgid ""
+"Add listeners in order to accept incoming peerings from non-local nodes. "
+"Multicast peer discovery works regardless of listeners set here. URI Format: "
+"<code>tls://0.0.0.0:0</code> or <code>tls://[::]:0</code> to listen on all "
+"interfaces. Choose an acceptable URI <code>tls://</code>, <code>tcp://</"
+"code>, <code>unix://</code> or <code>quic://</code>"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:353
 msgid "Add local domain suffix to names served from hosts files."
 msgstr "Thêm hậu tố tên miền cục bộ vào tên được phân phát từ tệp máy chủ."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:243
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:242
 msgid "Add multicast rule"
 msgstr ""
 
@@ -775,7 +794,7 @@ msgstr ""
 msgid "Add peer"
 msgstr "Thêm cặp"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:234
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:233
 msgid "Add peer address"
 msgstr ""
 
@@ -961,10 +980,6 @@ msgstr "cho phép IPs"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:86
 msgid "Allowed network technology"
-msgstr ""
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:227
-msgid "Allowed public keys"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:315
@@ -1518,15 +1533,6 @@ msgstr "Duyệt qua…"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js:40
 msgid "Buffered"
 msgstr "Đệm"
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:210
-msgid ""
-"By default, node info contains some defaults including the platform, "
-"architecture and Yggdrasil version. These can help when surveying the "
-"network and diagnosing network routing problems. Enabling node info privacy "
-"prevents this, so that only items specified in \"Node info\" are sent back "
-"if specified."
-msgstr ""
 
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:130
 msgid "CA certificate (PEM encoded)"
@@ -2441,7 +2447,7 @@ msgid "Device unreachable! Still waiting for device..."
 msgstr "Thiết bị không thể kết nối! Vẫn đang chờ đợi thiết bị..."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1319
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:247
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:246
 msgid "Devices"
 msgstr "Các thiết bị"
 
@@ -2458,7 +2464,7 @@ msgstr "Chẩn đoán"
 msgid "Dial number"
 msgstr "Quay số"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:137
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:136
 msgid "Dir"
 msgstr ""
 
@@ -2695,7 +2701,6 @@ msgid "Do you want to replace the current PSK?"
 msgstr "Bạn có muốn thay thế PSK hiện tại không?"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:100
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:55
 msgid "Do you want to replace the current keys?"
 msgstr "Bạn có muốn thay thế các khóa hiện tại không?"
 
@@ -3109,6 +3114,13 @@ msgstr "Bật hỗ trợ đa phát"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:889
 msgid "Enable network"
+msgstr ""
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:209
+msgid ""
+"Enable node info privacy so that only items specified in \"Node info\" are "
+"sent back. Otherwise defaults including the platform, architecture and "
+"Yggdrasil version are included."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1555
@@ -4152,7 +4164,7 @@ msgstr "Nhóm IKE DH"
 msgid "IMEI"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:138
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:137
 msgid "IP Address"
 msgstr ""
 
@@ -4499,6 +4511,12 @@ msgstr "Nếu được chọn, thêm \"+ipv6\" vào các tùy chọn pppd"
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:93
 msgid "If checked, encryption is disabled"
 msgstr "Nếu chọn, vô hiệu hóa chế độ mã hóa"
+
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:226
+msgid ""
+"If empty, all incoming connections will be allowed (default). This does not "
+"affect outgoing peerings, nor link-local peers discovered via multicast."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1072
 msgid ""
@@ -4983,11 +5001,11 @@ msgid "Invalid port"
 msgstr "Cổng không hợp lệ"
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:16
-msgid "Invalid private key string"
+msgid "Invalid private key string %s"
 msgstr ""
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:28
-msgid "Invalid public key string"
+msgid "Invalid public key string %s"
 msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:108
@@ -5174,7 +5192,7 @@ msgid ""
 "probability of being selected."
 msgstr "Các trọng số lớn hơn (cùng prio) sẽ có xác suất cao hơn được chọn."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:143
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:142
 msgid "Last Error"
 msgstr ""
 
@@ -5310,14 +5328,6 @@ msgstr "Danh sách tập tin khóa SSH để xác thực"
 msgid "List of domains to allow RFC1918 responses for."
 msgstr "Danh sách tên miền chấp nhận phản hồi RFC1918."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:227
-msgid ""
-"List of peer public keys to allow incoming peering connections from. If left "
-"empty then all connections will be allowed by default. This does not affect "
-"outgoing peerings, nor does it affect link-local peers discovered via "
-"multicast."
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:449
 msgid "List of upstream resolvers to forward queries to."
 msgstr "Danh sách các trình giải quyết upstream để chuyển tiếp các truy vấn."
@@ -5327,20 +5337,11 @@ msgstr "Danh sách các trình giải quyết upstream để chuyển tiếp cá
 msgid "Listen Port"
 msgstr "Listen Port"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:223
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:222
 msgid "Listen addresses"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:223
-msgid ""
-"Listen addresses for incoming connections. You will need to add listeners in "
-"order to accept incoming peerings from non-local nodes. Multicast peer "
-"discovery will work regardless of any listeners set here. Each listener "
-"should be specified in URI format, e.g.tls://0.0.0.0:0 or tls://[::]:0 to "
-"listen on all interfaces."
-msgstr ""
-
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:220
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:219
 msgid "Listen for peers"
 msgstr ""
 
@@ -5360,7 +5361,7 @@ msgstr ""
 "Chỉ lắng nghe trên các giao diện được chỉ định và loopback nếu không được "
 "loại trừ rõ ràng."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:252
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:251
 msgid "Listen to multicast beacons"
 msgstr ""
 
@@ -5631,7 +5632,7 @@ msgstr "MHz"
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:53
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:196
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:46
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:201
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:200
 msgid "MTU"
 msgstr "MTU"
 
@@ -6058,7 +6059,7 @@ msgstr "Chế độ đa điểm"
 msgid "Multicast routing"
 msgstr "Định tuyến đa điểm"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:241
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:240
 msgid "Multicast rules"
 msgstr ""
 
@@ -6442,11 +6443,11 @@ msgstr "Không có quy luật trong chuỗi này."
 msgid "No zone assigned"
 msgstr "Không có vùng nào được gán"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:206
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid "Node info"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:210
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:209
 msgid "Node info privacy"
 msgstr ""
 
@@ -6715,7 +6716,7 @@ msgstr "Tùy chọn"
 msgid "Optional hostname to assign"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:206
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid ""
 "Optional node info. This must be a { \"key\": \"value\", ... } map or set as "
 "null. This is entirely optional but, if set, is visible to the whole network "
@@ -7179,7 +7180,7 @@ msgstr ""
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:152
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:103
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:58
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:258
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:257
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:19
 msgid "Password"
 msgstr "Mật khẩu"
@@ -7255,7 +7256,7 @@ msgstr "Địa chỉ IP thiết bị mạng ngang hàng để gắn kết"
 msgid "Peer MAC address"
 msgstr "Địa chỉ MAC của Đồng nghiệp"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:236
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:235
 msgid "Peer URI"
 msgstr ""
 
@@ -7264,7 +7265,7 @@ msgstr ""
 msgid "Peer address is missing"
 msgstr "Địa chỉ thiết bị mạng ngang hàng bị mất"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:230
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:229
 msgid "Peer addresses"
 msgstr ""
 
@@ -7276,12 +7277,12 @@ msgstr "Tên thiết bị Đồng nghiệp"
 msgid "Peer disabled"
 msgstr "Đồng nghiệp bị vô hiệu hóa"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:239
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:238
 msgid "Peer interface"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:214
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:214
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:213
 msgid "Peers"
 msgstr "Peers"
 
@@ -7375,7 +7376,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:820
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/dropbear.js:20
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:254
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:253
 msgid "Port"
 msgstr "Cổng"
 
@@ -7476,7 +7477,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:130
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:214
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:240
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:142
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:141
 msgid "Priority"
 msgstr "Ưu tiên"
 
@@ -7495,7 +7496,7 @@ msgstr "Riêng tư (Ngăn không cho việc giao tiếp giữa các MAC VLAN)"
 msgid "Private Key"
 msgstr "Khóa riêng"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:190
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:189
 msgid "Private key"
 msgstr ""
 
@@ -7573,7 +7574,7 @@ msgstr ""
 msgid "Public Key"
 msgstr "Khóa công khai"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:195
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:194
 msgid "Public key"
 msgstr ""
 
@@ -7681,7 +7682,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:49
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:84
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:140
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:139
 msgid "RX"
 msgstr "RX"
 
@@ -8493,7 +8494,7 @@ msgstr ""
 "Gửi yêu cầu ping LCP theo khoảng thời gian cho trước tính bằng giây, chỉ có "
 "hiệu lực khi kết hợp với ngưỡng lỗi"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:250
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:249
 msgid "Send multicast beacon"
 msgstr ""
 
@@ -8945,13 +8946,6 @@ msgstr ""
 "thừa hưởng giá trị của header bên trong) hoặc một giá trị hệ thập lục phân "
 "<code>00..FF</code> (tùy chọn)."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:201
-msgid ""
-"Specify an MTU (Maximum Transmission Unit) for your local TUN interface. "
-"Default is the largest supported size for your platform. The lowest possible "
-"value is 1280."
-msgstr ""
-
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:69
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:69
@@ -9020,7 +9014,7 @@ msgid "Startup"
 msgstr "Khởi động"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:90
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:136
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:135
 msgid "State"
 msgstr ""
 
@@ -9174,8 +9168,8 @@ msgid "Syntax: <code>/fqdn[/fqdn…]/[ipaddr]</code>."
 msgstr "Cú pháp: <code>/fqdn[/fqdn…]/[ipaddr]</code>."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:810
-msgid "Syntax: <code>_service._proto.example.com</code>."
-msgstr "Cú pháp: <code>_service._proto.example.com</code>."
+msgid "Syntax: <code>_service._proto.example.com</code>"
+msgstr ""
 
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:26
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js:37
@@ -9247,7 +9241,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:50
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:85
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:141
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:140
 msgid "TX"
 msgstr "TX"
 
@@ -9703,7 +9697,7 @@ msgstr ""
 "một cổng Uplink để kết nối với mạng lớn hơn tiếp theo như internet và các "
 "cổng khác cho mạng cục bộ."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:190
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:189
 msgid "The private key for your Yggdrasil node"
 msgstr ""
 
@@ -9717,7 +9711,7 @@ msgstr ""
 "đẳng nên kết nối tới. Thông thường đây là một địa chỉ IP công cộng tĩnh, một "
 "tên máy chủ tĩnh hoặc một miền DDNS."
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:195
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:194
 msgid "The public key for your Yggdrasil node"
 msgstr ""
 
@@ -10214,13 +10208,12 @@ msgstr "Chỉ UMTS"
 msgid "UMTS/GPRS/EV-DO"
 msgstr "UMTS/GPRS/EV-DO"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:135
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:134
 msgid "URI"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:37
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:43
-msgid "URI scheme not supported"
+msgid "URI scheme %s not supported"
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:255
@@ -10380,6 +10373,10 @@ msgstr "Lỗi không thể xác định"
 msgid "Unsupported MAP type"
 msgstr "Không hỗ trợ giao thức MAP"
 
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:37
+msgid "Unsupported URI scheme in %s"
+msgstr ""
+
 #: modules/luci-compat/luasrc/model/network/proto_ncm.lua:69
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:31
 msgid "Unsupported modem"
@@ -10479,7 +10476,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:82
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js:83
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:139
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:138
 msgid "Uptime"
 msgstr "Thời gian hoạt động"
 
@@ -11078,7 +11075,7 @@ msgstr "Chính sách XOR (cân bằng xor, 2)"
 msgid "Yes"
 msgstr "Có"
 
-#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:165
+#: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:164
 msgid "Yggdrasil Network"
 msgstr ""
 
@@ -11767,6 +11764,9 @@ msgstr "có"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Quay lại"
+
+#~ msgid "Syntax: <code>_service._proto.example.com</code>."
+#~ msgstr "Cú pháp: <code>_service._proto.example.com</code>."
 
 #~ msgid "Do not forward DNS queries without dots or domain parts."
 #~ msgstr ""
