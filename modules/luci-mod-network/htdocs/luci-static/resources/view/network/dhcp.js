@@ -401,7 +401,8 @@ return view.extend({
 
 		o = s.taboption('filteropts', form.Flag, 'rebind_protection',
 			_('Rebind protection'),
-			_('Discard upstream responses containing <a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noreferrer noopener">RFC1918</a> addresses.'));
+			_('Discard upstream responses containing <a href="%s">RFC1918</a> addresses.').format('https://www.rfc-editor.org/rfc/rfc1918') + '<br />' +
+			_('Discard also upstream responses containing <a href="%s">RFC4193</a>, Link-Local and private IPv4-Mapped <a href="%s">RFC4291</a> IPv6 Addresses.').format('https://www.rfc-editor.org/rfc/rfc4193', 'https://www.rfc-editor.org/rfc/rfc4291'));
 		o.rmempty = false;
 
 		o = s.taboption('filteropts', form.Flag, 'rebind_localhost',
@@ -807,15 +808,15 @@ return view.extend({
 		ss.sortable  = true;
 		ss.rowcolors = true;
 
-		so = ss.option(form.Value, 'srv', _('SRV'), _('Syntax: <code>_service._proto.example.com</code>'));
+		so = ss.option(form.Value, 'srv', _('SRV'), _('Syntax: <code>_service._proto.example.com.</code>'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-		so.placeholder = '_sip._tcp.example.com';
+		so.placeholder = '_sip._tcp.example.com.';
 
 		so = ss.option(form.Value, 'target', _('Target'), _('CNAME or FQDN'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-		so.placeholder = 'sip.example.com';
+		so.placeholder = 'sip.example.com.';
 
 		so = ss.option(form.Value, 'port', _('Port'));
 		so.rmempty = false;
@@ -845,12 +846,12 @@ return view.extend({
 		so = ss.option(form.Value, 'domain', _('Domain'), _('CNAME or FQDN'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-		so.placeholder = 'example.com';
+		so.placeholder = 'example.com.';
 
 		so = ss.option(form.Value, 'relay', _('Relay'), _('Mail Server'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-		so.placeholder = 'relay.example.com';
+		so.placeholder = 'relay.example.com.';
 
 		so = ss.option(form.Value, 'pref', _('Priority'), _('Ordinal: lower comes first.'));
 		so.rmempty = true;
@@ -869,12 +870,12 @@ return view.extend({
 		so = ss.option(form.Value, 'cname', _('Domain'), _('CNAME'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-		so.placeholder = 'www.example.com';
+		so.placeholder = 'www.example.com.';
 
 		so = ss.option(form.Value, 'target', _('Target'), _('Domain'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
-		so.placeholder = 'example.com';
+		so.placeholder = 'example.com.';
 
 		o = s.taboption('txtrecords', form.SectionValue, '__txtrecords__', form.TableSection, 'txtrecord', null,
 			_('Bind TXT records to a domain name.')
@@ -1076,8 +1077,8 @@ return view.extend({
 
 		so = ss.option(form.Value, 'hostid',
 			_('IPv6-Suffix (hex)'),
-			_('The IPv6 interface identifier (address suffix) as hexadecimal number (max. 8 chars).'));
-		so.datatype = 'and(rangelength(0,8),hexstring)';
+			_('The IPv6 interface identifier (address suffix) as hexadecimal number (max. 16 chars).'));
+		so.datatype = 'and(rangelength(0,16),hexstring)';
 
 		so = ss.option(form.DynamicList, 'tag',
 			_('Tag'),
