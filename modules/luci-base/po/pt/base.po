@@ -888,10 +888,10 @@ msgstr "Definições Avançadas"
 msgid "Advanced device options"
 msgstr "Opções avançadas do aparelho"
 
-#: protocols/luci-proto-cni/htdocs/luci-static/resources/protocol/cni.js:34
+#: protocols/luci-proto-external/htdocs/luci-static/resources/protocol/external.js:34
 msgid ""
-"Afer making changes to network using CNI protocol, network must be manually "
-"restarted."
+"Afer making changes to network using external protocol, network must be "
+"manually restarted."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:568
@@ -1338,7 +1338,7 @@ msgstr "Transição do BSS"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:182
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1018
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1849
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:407
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:422
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:149
 msgid "BSSID"
 msgstr "BSSID"
@@ -1585,10 +1585,6 @@ msgstr ""
 msgid "CNAME or FQDN"
 msgstr ""
 
-#: protocols/luci-proto-cni/htdocs/luci-static/resources/protocol/cni.js:7
-msgid "CNI (Externally managed interface)"
-msgstr "CNI (interface gerida externamente)"
-
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js:89
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/processes.js:85
 msgid "CPU usage (%)"
@@ -1741,17 +1737,17 @@ msgstr "Altera a palavra-passe de administrador para acesso ao aparelho"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:184
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:504
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1847
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:404
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:419
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:170
 msgid "Channel"
 msgstr "Canal"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:372
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:387
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:105
 msgid "Channel Analysis"
 msgstr "Análise dos canais"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:405
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:420
 msgid "Channel Width"
 msgstr "Largura do canal"
 
@@ -2326,7 +2322,7 @@ msgstr ""
 msgid "Defines a specific MTU for this route"
 msgstr "Define uma MTU específica para esta rota"
 
-#: protocols/luci-proto-cni/htdocs/luci-static/resources/protocol/cni.js:34
+#: protocols/luci-proto-external/htdocs/luci-static/resources/protocol/external.js:34
 msgid "Delay"
 msgstr ""
 
@@ -2426,7 +2422,7 @@ msgstr "Zona de destino"
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:281
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:357
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:393
-#: protocols/luci-proto-cni/htdocs/luci-static/resources/protocol/cni.js:29
+#: protocols/luci-proto-external/htdocs/luci-static/resources/protocol/external.js:29
 msgid "Device"
 msgstr "Aparelho"
 
@@ -3414,6 +3410,10 @@ msgstr "Porta do Servidor externo de logs de sistema"
 msgid "External system log server protocol"
 msgstr "Protocolo do servidor externo de logs do sistema"
 
+#: protocols/luci-proto-external/htdocs/luci-static/resources/protocol/external.js:7
+msgid "Externally managed interface"
+msgstr ""
+
 #: protocols/luci-proto-pppossh/htdocs/luci-static/resources/protocol/pppossh.js:79
 msgid "Extra SSH command options"
 msgstr "Opções adicionais do comando SSH"
@@ -3882,7 +3882,7 @@ msgstr "Configurações Globais"
 msgid "Global network options"
 msgstr "Opções de rede globais"
 
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:70
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:71
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:90
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:67
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:92
@@ -3890,7 +3890,7 @@ msgid "Go to firmware upgrade..."
 msgstr "Ir à atualização do firmware..."
 
 #: themes/luci-theme-argon/luasrc/view/themes/argon/header.htm:180
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:60
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:61
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:80
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:57
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:82
@@ -5076,7 +5076,7 @@ msgstr ""
 "equipamento, por favor verifique o ficheiro da imagem!"
 
 #: themes/luci-theme-argon/luasrc/view/themes/argon/header.htm:187
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:77
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:78
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:97
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:72
 msgid "JavaScript required!"
@@ -5472,7 +5472,7 @@ msgstr "Servidor de DNS IPv6 local"
 msgid "Local IPv6 address"
 msgstr "Endereço IPv6 Local"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:225
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:237
 msgid "Local Interface"
 msgstr ""
 
@@ -5953,7 +5953,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:486
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:988
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1848
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:406
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:421
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:148
 msgid "Mode"
 msgstr "Modo"
@@ -6351,7 +6351,7 @@ msgstr "Nenhuma interface WireGuard foi configurada."
 msgid "No allowed mode configuration found."
 msgstr ""
 
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:68
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:69
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:88
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:65
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:90
@@ -6435,7 +6435,7 @@ msgid "No nftables ruleset loaded."
 msgstr "Nenhuma regra nftables foi carregada."
 
 #: themes/luci-theme-argon/luasrc/view/themes/argon/header.htm:175
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:57
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:58
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:77
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:54
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:79
@@ -7352,7 +7352,7 @@ msgid "Perform reset"
 msgstr "Executar reset"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1862
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:428
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:443
 msgid "Performing wireless scan…"
 msgstr ""
 
@@ -7852,7 +7852,7 @@ msgstr ""
 msgid "References"
 msgstr "Referências"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:377
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:392
 msgid "Refresh Channels"
 msgstr "Atualiza os canais"
 
@@ -8422,7 +8422,7 @@ msgstr "Chaves-SSH"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1007
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1846
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2106
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:403
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:418
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:147
 msgid "SSID"
 msgstr "SSID"
@@ -8479,6 +8479,10 @@ msgstr "Procurar"
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:90
 msgid "Scheduled Tasks"
 msgstr "Tarefas Agendadas"
+
+#: protocols/luci-proto-external/htdocs/luci-static/resources/protocol/external.js:41
+msgid "Search domain"
+msgstr ""
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:39
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:62
@@ -8682,7 +8686,7 @@ msgstr "Desligar esta interface"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:186
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1845
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:42
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:402
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:417
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:146
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:235
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:278
@@ -9249,7 +9253,7 @@ msgstr "Propriedades do Sistema"
 msgid "System log buffer size"
 msgstr "Tamanho do buffer de registro do sistema"
 
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:67
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:68
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:87
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:64
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:89
@@ -9479,8 +9483,8 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1080
 msgid ""
-"The IPv6 interface identifier (address suffix) as hexadecimal number (max. 8 "
-"chars)."
+"The IPv6 interface identifier (address suffix) as hexadecimal number (max. "
+"16 chars)."
 msgstr ""
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:53
@@ -9939,7 +9943,7 @@ msgid "There are no changes to apply"
 msgstr "Não há alterações a serem aplicadas"
 
 #: themes/luci-theme-argon/luasrc/view/themes/argon/header.htm:176
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:58
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:59
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:78
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:55
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:80
@@ -11192,7 +11196,7 @@ msgid "You may add multiple unique Relay address on the same Listen address."
 msgstr ""
 
 #: themes/luci-theme-argon/luasrc/view/themes/argon/header.htm:188
-#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:78
+#: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:79
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:98
 #: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:73
 msgid ""
@@ -11394,7 +11398,7 @@ msgid "hexadecimal encoded value"
 msgstr "valor codificado hexadecimal"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1922
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:313
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:328
 msgid "hidden"
 msgstr "escondido"
 
@@ -11844,6 +11848,9 @@ msgstr "sim"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Voltar"
+
+#~ msgid "CNI (Externally managed interface)"
+#~ msgstr "CNI (interface gerida externamente)"
 
 #~ msgid "Syntax: <code>_service._proto.example.com</code>."
 #~ msgstr "Sintaxe: <code>_service._proto.example.com</code>."
