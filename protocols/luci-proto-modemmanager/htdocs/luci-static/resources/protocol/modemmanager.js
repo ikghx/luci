@@ -145,13 +145,15 @@ return network.registerProtocol('modemmanager', {
 
 		s.taboption('advanced', form.Flag, 'allow_roaming', _('allow roaming'));
 
-		o = s.taboption('general', form.Value, 'signalrate', _('Signal refresh rate'));
-		o.datatype = 'uinteger';
-
 		o = s.taboption('advanced', form.Value, 'mtu', _('Override MTU'));
 		o.placeholder = dev ? (dev.getMTU() || '1500') : '1500';
 		o.datatype    = 'max(9200)';
 
+		o = s.taboption('general', form.Value, 'signalrate', _('Signal refresh rate'), _("In seconds"));
+		o.datatype = 'uinteger';
+		
+		s.taboption('general', form.Value, 'metric', _('Gateway metric'));
+		
 		s.taboption('advanced', form.Flag, 'debugmode', _('Enable Debugmode'));
 
 		o = s.taboption('advanced', form.ListValue, 'loglevel', _('Log output level'));

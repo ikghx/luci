@@ -12,7 +12,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.15-dev\n"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1093
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1109
 msgid "!known (not known)"
 msgstr ""
 
@@ -45,12 +45,6 @@ msgstr "%d perccel ezelőtt"
 msgid "%ds ago"
 msgstr "%d másodperccel ezelőtt"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:795
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1104
-msgctxt "dnsmasq instance description value"
-msgid "%s (Name: %s, Domain: %s, Local: %s)"
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/switch.js:35
 msgid "%s is untagged in multiple VLANs!"
 msgstr "A(z) %s címkézetlen több VLAN-ban!"
@@ -63,7 +57,7 @@ msgstr "A(z) %s címkézetlen több VLAN-ban!"
 msgid "(%d minute window, %d second interval)"
 msgstr "(%d perces ablak, %d másodperces időköz)"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:800
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:828
 msgid "(Note: while _http is possible, no browsers support SRV records.)"
 msgstr ""
 
@@ -150,7 +144,7 @@ msgstr ""
 msgid "1 Minute Load:"
 msgstr "1 perces terhelés:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1065
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1081
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:995
 msgid "1 days"
 msgstr ""
@@ -162,12 +156,12 @@ msgid_plural "%d flags"
 msgstr[0] ""
 msgstr[1] ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1062
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1078
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:992
 msgid "1 hours"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1064
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1080
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:994
 msgid "12 hours"
 msgstr ""
@@ -212,7 +206,7 @@ msgctxt "sstp log level value"
 msgid "3"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1063
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1079
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:993
 msgid "3 hours"
 msgstr ""
@@ -238,12 +232,12 @@ msgstr "464XLAT (CLAT)"
 msgid "5 Minute Load:"
 msgstr "5 perces terhelés:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1061
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1077
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:991
 msgid "5 minutes"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1066
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1082
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:996
 msgid "7 days"
 msgstr ""
@@ -311,6 +305,10 @@ msgid ""
 "retry timeout in milliseconds."
 msgstr ""
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:236
+msgid "; invalid MAC:"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:711
 msgid "<abbr title=\"Internet Protocol Version 4\">IPv4</abbr>-Netmask"
 msgstr "<abbr title=\"Internet Protocol Version 4\">IPv4</abbr> hálózati maszk"
@@ -351,13 +349,13 @@ msgstr ""
 msgid "<abbr title=\"Router Advertisement\">RA</abbr>-Service"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:317
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:346
 msgid ""
 "<code>/#/</code> matches any domain. <code>/example.com/</code> returns "
 "NXDOMAIN."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:318
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:347
 msgid ""
 "<code>/example.com/#</code> returns NULL addresses (<code>0.0.0.0</code> and "
 "<code>::</code>) for example.com and its subdomains."
@@ -594,7 +592,7 @@ msgstr "ATM eszközszám"
 msgid "Absent Interface"
 msgstr "Hiányzó csatoló"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:423
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:452
 msgid "Accept DNS queries only from hosts whose address is on a local subnet."
 msgstr ""
 "DNS-szolgáltatás korlátozása azokra az alhálózati csatolókra, amelyeken DNS-"
@@ -714,7 +712,7 @@ msgstr "IPv6-cím hozzáadása…"
 msgid "Add LED action"
 msgstr "LED művelet hozzáadása"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:461
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:490
 msgid "Add MAC"
 msgstr ""
 
@@ -722,7 +720,7 @@ msgstr ""
 msgid "Add VLAN"
 msgstr "VLAN hozzáadása"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:457
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:486
 msgid "Add a subnet address to the DNS queries which are forwarded upstream."
 msgstr ""
 
@@ -753,7 +751,7 @@ msgid ""
 "code>, <code>unix://</code> or <code>quic://</code>"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:353
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:382
 msgid "Add local domain suffix to names served from hosts files."
 msgstr ""
 "Helyi tartományutótag hozzáadása a hosts fájlokból kiszolgált nevekhez."
@@ -779,15 +777,15 @@ msgstr "Partner hozzáadása"
 msgid "Add peer address"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1114
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1129
 msgid "Add static forward and reverse DNS entries for this host."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:456
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:485
 msgid "Add subnet"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:462
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:491
 msgid ""
 "Add the MAC address of the requestor to DNS queries which are forwarded "
 "upstream."
@@ -801,11 +799,11 @@ msgstr "Hozzáadás a feketelistához"
 msgid "Add to Whitelist"
 msgstr "Hozzáadás a fehérlistához"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:645
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:674
 msgid "Additional hosts files"
 msgstr "További gépek fájljai"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:444
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:473
 msgid "Additional servers file"
 msgstr "További kiszolgálók fájlja"
 
@@ -822,7 +820,7 @@ msgstr "További kiszolgálók fájlja"
 msgid "Address"
 msgstr "Cím"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:706
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:735
 msgid "Address families of \"Relay from\" and \"Relay to address\" must match."
 msgstr ""
 
@@ -848,7 +846,7 @@ msgstr "Címek"
 msgid "Administration"
 msgstr "Adminisztráció"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:272
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:301
 msgid "Advanced"
 msgstr ""
 
@@ -895,18 +893,18 @@ msgstr "Álnév csatoló"
 msgid "Alias of \"%s\""
 msgstr "„%s” álneve"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:369
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:398
 msgid "All servers"
 msgstr "Összes kiszolgáló"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:334
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:363
 msgid ""
 "Allocate IP addresses sequentially, starting from the lowest available "
 "address."
 msgstr ""
 "IP-címek lefoglalása sorrendben, kezdve a legalacsonyabb elérhető címtől."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:333
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:362
 msgid "Allocate IPs sequentially"
 msgstr "IP lefoglalása egymás után"
 
@@ -927,7 +925,7 @@ msgstr "Örökölt 802.11b sebességek engedélyezése"
 msgid "Allow listed, deny others"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:409
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:438
 msgid "Allow localhost"
 msgstr "Localhost engedélyezése"
 
@@ -982,7 +980,7 @@ msgstr ""
 msgid "Always on (kernel: default-on)"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:786
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:815
 msgid "Always send DHCP Options. Sometimes needed, with e.g. PXELinux."
 msgstr ""
 
@@ -1068,7 +1066,7 @@ msgstr ""
 msgid "Any zone"
 msgstr "Bármely zóna"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:781
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:810
 msgid "Apply DHCP Options to this net. (Empty = all clients)."
 msgstr ""
 
@@ -1126,7 +1124,7 @@ msgstr ""
 "Minden egyes nyilvános IPv6-előtag megadott hosszú részének hozzárendelése "
 "ehhez a csatolóhoz"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1085
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1101
 msgid "Assign new, freeform tags to this entry."
 msgstr ""
 
@@ -1189,7 +1187,7 @@ msgstr ""
 msgid "Authentication type is not applicable to the selected EAP method."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:294
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:323
 msgid "Authoritative"
 msgstr "Hiteles"
 
@@ -1377,19 +1375,19 @@ msgstr ""
 "alapvető fájlokból, valamint a felhasználó által meghatározott biztonsági "
 "mentés mintákból áll."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:837
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:865
 msgid "Bind MX records to a domain name."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:881
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:909
 msgid "Bind TXT records to a domain name."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:329
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:358
 msgid "Bind dynamic"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:330
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:359
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:307
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:59
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:64
@@ -1403,11 +1401,11 @@ msgstr ""
 msgid "Bind interface"
 msgstr "Csatoló kötése"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:327
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:356
 msgid "Bind mode"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:799
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:827
 msgid ""
 "Bind service records to a domain name: specify the location of services."
 msgstr ""
@@ -1434,7 +1432,7 @@ msgstr "Bitráta"
 msgid "Bonding Mode"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:700
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:729
 msgid "Both \"Relay from\" and \"Relay to address\" must be specified."
 msgstr ""
 
@@ -1491,7 +1489,7 @@ msgstr "Felhozás rendszerindításkor"
 msgid "Bring up the bridge interface even if no ports are attached"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1109
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1124
 msgid "Broadcast"
 msgstr ""
 
@@ -1531,13 +1529,13 @@ msgstr ""
 msgid "CLAT configuration failed"
 msgstr "A CLAT beállítása nem sikerült"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:285
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:870
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:314
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:898
 msgid "CNAME"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:816
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:846
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:844
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:874
 msgid "CNAME or FQDN"
 msgstr ""
 
@@ -2083,11 +2081,11 @@ msgstr ""
 msgid "DAE secret"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:310
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:339
 msgid "DHCP FQDN"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:775
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:804
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:727
 msgid "DHCP Options"
 msgstr ""
@@ -2096,7 +2094,7 @@ msgstr ""
 msgid "DHCP Server"
 msgstr "DHCP kiszolgáló"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:264
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:293
 #: modules/luci-mod-network/root/usr/share/luci/menu.d/luci-mod-network.json:62
 msgid "DHCP and DNS"
 msgstr "DHCP és DNS"
@@ -2130,7 +2128,7 @@ msgstr "DHCPv6-szolgáltatás"
 msgid "DNS"
 msgstr "DNS"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:298
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:327
 msgid "DNS Redirect"
 msgstr ""
 
@@ -2142,15 +2140,15 @@ msgstr ""
 msgid "DNS Servers for the tunnel. Some clients will require this to be set."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:427
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:456
 msgid "DNS filter"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:449
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:478
 msgid "DNS forwardings"
 msgstr "DNS továbbítások"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:600
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:629
 msgid "DNS query port"
 msgstr "<abbr title=\"Domain Name System\">DNS</abbr> lekérdezési port"
 
@@ -2158,7 +2156,7 @@ msgstr "<abbr title=\"Domain Name System\">DNS</abbr> lekérdezési port"
 msgid "DNS search domains"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:593
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:622
 msgid "DNS server port"
 msgstr "<abbr title=\"Domain Name System\">DNS</abbr>-kiszolgáló portja"
 
@@ -2174,11 +2172,11 @@ msgstr ""
 msgid "DNS-Label / FQDN"
 msgstr "DNS-címke / FQDN"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:342
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:371
 msgid "DNSSEC"
 msgstr "DNSSEC"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:346
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:375
 msgid "DNSSEC check unsigned"
 msgstr "DNSSEC ellenőrzés előjel nélkül"
 
@@ -2208,7 +2206,7 @@ msgid "DTIM period"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:60
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1071
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1087
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:136
 msgid "DUID"
 msgstr "DUID"
@@ -2219,7 +2217,7 @@ msgstr "Adatsebesség"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:188
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:199
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:161
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:163
 msgid "Debug"
 msgstr "Hibakeresés"
 
@@ -2408,7 +2406,7 @@ msgstr "Eszköz elérhetetlen! Még mindig várok a készülékre..."
 msgid "Devices"
 msgstr "Eszközök"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:277
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:306
 msgid "Devices &amp; Ports"
 msgstr ""
 
@@ -2511,13 +2509,13 @@ msgstr ""
 msgid "Disassociate on low ACK"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:405
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:434
 msgid ""
 "Discard also upstream responses containing <a href=\"%s\">RFC4193</a>, Link-"
 "Local and private IPv4-Mapped <a href=\"%s\">RFC4291</a> IPv6 Addresses."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:404
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:433
 msgid ""
 "Discard upstream responses containing <a href=\"%s\">RFC1918</a> addresses."
 msgstr "Külső <a href=\"%s\">RFC1918</a> válaszok elvetése."
@@ -2567,19 +2565,19 @@ msgstr ""
 msgid "Distributed ARP Table"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1099
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1115
 msgid ""
 "Dnsmasq instance to which this DHCP host section is bound. If unspecified, "
 "the section is valid for all dnsmasq instances."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:790
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:819
 msgid ""
 "Dnsmasq instance to which this boot section is bound. If unspecified, the "
 "section is valid for all dnsmasq instances."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:265
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:294
 msgid ""
 "Dnsmasq is a lightweight <abbr title=\"Dynamic Host Configuration "
 "Protocol\">DHCP</abbr> server and <abbr title=\"Domain Name System\">DNS</"
@@ -2590,7 +2588,7 @@ msgstr ""
 "abbr>-továbbító <abbr title=\"Network Address Translation\">NAT</abbr> "
 "tűzfalak számára."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:357
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:386
 msgid "Do not cache negative replies, e.g. for non-existent domains."
 msgstr ""
 "Ne gyorsítótárazza a negatív válaszokat, például nem létező tartományoknál."
@@ -2603,7 +2601,7 @@ msgstr ""
 msgid "Do not create host route to peer (optional)."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:587
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:616
 msgid "Do not listen on the specified interfaces."
 msgstr "Figyelés megakadályozása ezeken a csatolókon."
 
@@ -2660,18 +2658,19 @@ msgstr ""
 msgid "Do you want to replace the current keys?"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:846
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:870
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:875
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:940
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:98
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:874
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:898
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:903
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:968
 msgid "Domain"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:394
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:423
 msgid "Domain required"
 msgstr "Tartomány szükséges"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:414
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:443
 msgid "Domain whitelist"
 msgstr "Tartomány fehérlista"
 
@@ -2808,7 +2807,7 @@ msgid ""
 "having static leases will be served."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:328
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:357
 msgid "Dynamically bind to an interface or only to the interface in use."
 msgstr ""
 
@@ -2834,7 +2833,7 @@ msgstr ""
 msgid "Edit"
 msgstr "Szerkesztés"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:288
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:317
 msgid "Edit configuration"
 msgstr ""
 
@@ -2846,7 +2845,7 @@ msgstr ""
 msgid "Edit peer"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:956
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:984
 msgid "Edit static lease"
 msgstr ""
 
@@ -2895,7 +2894,7 @@ msgstr ""
 msgid "Emergency"
 msgstr "Vészhelyzet"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:290
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:319
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:891
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:931
 msgid "Enable"
@@ -2934,7 +2933,7 @@ msgstr "<abbr title=\"Spanning Tree Protocol\">STP</abbr> engedélyezése"
 msgid "Enable <abbr title=\"Stateless Address Auto Config\">SLAAC</abbr>"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:302
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:331
 msgid "Enable DHCPv4 Rapid Commit Option"
 msgstr ""
 
@@ -2944,7 +2943,7 @@ msgstr ""
 msgid "Enable DNS lookups"
 msgstr "DNS keresések engedélyezése"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:155
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:157
 msgid "Enable Debugmode"
 msgstr ""
 
@@ -2994,7 +2993,7 @@ msgstr ""
 msgid "Enable Single DES"
 msgstr "Egyszeres DES engedélyezése"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:731
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:760
 msgid "Enable TFTP server"
 msgstr "TFTP kiszolgáló engedélyezése"
 
@@ -3010,7 +3009,7 @@ msgstr "VLAN funkcionalitás engedélyezése"
 msgid "Enable WPS push button"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:565
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:594
 msgid "Enable asynchronous logging"
 msgstr ""
 
@@ -3021,7 +3020,7 @@ msgid ""
 "Secure\">HTTPS</abbr> port."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:373
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:402
 msgid "Enable connmark allow list"
 msgstr ""
 
@@ -3205,7 +3204,7 @@ msgstr "Törlés…"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:106
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:107
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:192
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:158
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:160
 msgid "Error"
 msgstr "Hiba"
 
@@ -3223,7 +3222,7 @@ msgstr "Ethernet adapter"
 msgid "Ethernet Switch"
 msgstr "Ethernet kapcsoló"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:586
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:615
 msgid "Exclude interfaces"
 msgstr "Csatolók kizárása"
 
@@ -3233,7 +3232,7 @@ msgid ""
 "resolution to other systems."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:410
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:439
 msgid ""
 "Exempt <code>127.0.0.0/8</code> and <code>::1</code> from rebinding checks, "
 "e.g. for <abbr title=\"Real-time Block List\">RBL</abbr> services."
@@ -3243,11 +3242,11 @@ msgstr ""
 msgid "Existing device"
 msgstr "Létező eszköz"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:352
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:381
 msgid "Expand hosts"
 msgstr "Gépek kinyitása"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:695
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:724
 msgid "Expected port number."
 msgstr ""
 
@@ -3263,7 +3262,7 @@ msgstr ""
 msgid "Expecting a valid IPv6 address"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:207
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:236
 msgid "Expecting a valid MAC address, optionally including wildcards"
 msgstr ""
 
@@ -3273,14 +3272,14 @@ msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2269
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:64
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:128
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:134
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:162
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:178
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:182
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:186
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:189
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:143
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:149
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:177
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:193
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:197
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:201
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:204
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:208
 msgid "Expecting: %s"
 msgstr "Elvárás: %s"
 
@@ -3293,7 +3292,7 @@ msgid ""
 "Expiry time of leased addresses, minimum is 2 minutes (<code>2m</code>)."
 msgstr "Bérelt címek lejárati ideje, legalább 2 perc (<code>2m</code>)."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:360
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:389
 msgid "Expose additional filesystem paths"
 msgstr ""
 
@@ -3329,7 +3328,7 @@ msgstr ""
 msgid "Extra SSH command options"
 msgstr "További SSH parancs kapcsolók"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:571
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:600
 msgid "Extra logging for DHCP"
 msgstr ""
 
@@ -3391,7 +3390,7 @@ msgstr ""
 msgid "Failed to set operating mode"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:531
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:560
 msgid "Fast DNS retry"
 msgstr ""
 
@@ -3403,7 +3402,7 @@ msgstr ""
 msgid "File"
 msgstr "Fájl"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:445
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:474
 msgid ""
 "File listing upstream resolvers, optionally domain-specific, e.g. "
 "<code>server=1.2.3.4</code>, <code>server=/domain/1.2.3.4</code>."
@@ -3416,26 +3415,26 @@ msgstr ""
 msgid "File not accessible"
 msgstr "A fájl nem érhető el"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:542
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:571
 msgid "File to log received DNS queries to. Leave empty to log to syslog."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:628
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:657
 msgid "File to store DHCP lease information."
 msgstr ""
 "a fájl, ahol a megadott <abbr title=\"Dynamic Host Configuration "
 "Protocol\">DHCP</abbr> bérletek tárolásra kerülnek."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:636
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:665
 msgid "File with upstream resolvers."
 msgstr "helyi <abbr title=\"Domain Name System\">DNS</abbr>-fájl."
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2870
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:757
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:786
 msgid "Filename"
 msgstr "Fájlnév"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:742
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:771
 msgid "Filename of the boot image advertised to clients."
 msgstr "Az ügyfeleknek meghirdetett rendszerindító lemezkép fájlneve."
 
@@ -3444,23 +3443,23 @@ msgstr "Az ügyfeleknek meghirdetett rendszerindító lemezkép fájlneve."
 msgid "Filesystem"
 msgstr "Fájlrendszer"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:273
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:302
 msgid "Filter"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:439
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:468
 msgid "Filter SRV/SOA service discovery"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:434
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:463
 msgid "Filter private"
 msgstr "Személyes szűrése"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:428
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:457
 msgid "Filter these addresses from dnsmasq replies."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:440
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:469
 msgid ""
 "Filters SRV/SOA service discovery, to avoid triggering dial-on-demand links."
 msgstr ""
@@ -3516,7 +3515,7 @@ msgstr "Firmware fájl"
 msgid "Firmware Version"
 msgstr "Firmware verzió"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:601
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:630
 msgid "Fixed source port for outbound DNS queries."
 msgstr "Rögzített forrásport a kimenő DNS-lekérdezéseknél."
 
@@ -3546,7 +3545,7 @@ msgstr "Telepítés…"
 msgid "Follow IPv4 Lifetime"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:785
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:814
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:706
 msgid "Force"
 msgstr "Kényszerítés"
@@ -3565,7 +3564,7 @@ msgstr ""
 msgid "Force MLD version"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1110
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1125
 msgid "Force broadcast DHCP response."
 msgstr ""
 
@@ -3573,7 +3572,7 @@ msgstr ""
 msgid "Force link"
 msgstr "Kapcsolat kényszerítése"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:299
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:328
 msgid "Force redirect all local DNS queries to DNSMasq, a.k.a. DNS Hijacking."
 msgstr ""
 
@@ -3630,7 +3629,7 @@ msgstr "Hálópartner forgalmának továbbítása"
 msgid "Forward multicast packets as unicast packets on this device."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1113
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1128
 msgid "Forward/reverse DNS"
 msgstr ""
 
@@ -3638,7 +3637,7 @@ msgstr ""
 msgid "Forwarding mode"
 msgstr "Továbbítási mód"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:274
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:303
 msgid "Forwards"
 msgstr ""
 
@@ -3712,7 +3711,11 @@ msgstr "Átjáró portok"
 msgid "Gateway address is invalid"
 msgstr "Az átjáró címe érvénytelen"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:271
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:155
+msgid "Gateway metric"
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:300
 msgid "General"
 msgstr ""
 
@@ -3827,7 +3830,7 @@ msgstr ""
 msgid "Grant access to LuCI Wireguard procedures"
 msgstr ""
 
-#: protocols/luci-proto-yggdrasil/root/usr/share/rpcd/acl.d/luci-yggdrasil.json:3
+#: protocols/luci-proto-yggdrasil/root/usr/share/rpcd/acl.d/luci-proto-yggdrasil.json:3
 msgid "Grant access to LuCI Yggdrasil procedures"
 msgstr ""
 
@@ -3944,7 +3947,7 @@ msgstr ""
 msgid "Hang Up"
 msgstr "Befejezés"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:532
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:561
 msgid ""
 "Have dnsmasq actively issue round-robin DNS queries to the upstream DNS."
 "(Unit: ms)"
@@ -4003,7 +4006,7 @@ msgstr "Gép"
 msgid "Host expiry timeout"
 msgstr "Gép lejárati időkorlátja"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:758
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:787
 msgid "Host requests this filename from the boot server."
 msgstr ""
 
@@ -4011,15 +4014,15 @@ msgstr ""
 msgid "Host-Uniq tag content"
 msgstr "Egyedi gépcímketartalom"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1059
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1075
 msgid ""
 "Host-specific lease time, e.g. <code>5m</code>, <code>3h</code>, <code>7d</"
 "code>, or <code>ignore</code> to ignore DHCP requests from this host."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:39
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:906
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:959
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:934
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:987
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js:76
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:87
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:135
@@ -4030,11 +4033,11 @@ msgstr "Gépnév"
 msgid "Hostname to send when requesting DHCP"
 msgstr "DHCP kérésekor küldendő gépnév"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:280
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:309
 msgid "Hostnames"
 msgstr "Gépnevek"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:899
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:927
 msgid ""
 "Hostnames are used to bind a domain name to an IP address. This setting is "
 "redundant for hostnames already configured with static leases, but it can be "
@@ -4110,7 +4113,7 @@ msgstr "IP protokoll"
 msgid "IP Type"
 msgstr "IP típusa"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:910
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:938
 msgid "IP address"
 msgstr "IP-cím"
 
@@ -4147,12 +4150,12 @@ msgctxt "nft meta l4proto"
 msgid "IP protocol"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:281
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:935
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:310
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:963
 msgid "IP sets"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:388
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:417
 msgid "IPs to override with NXDOMAIN"
 msgstr "Hamis NX-tartomány felülbírálása"
 
@@ -4194,8 +4197,8 @@ msgstr "Külső IPv4"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:178
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:40
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:429
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1024
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:458
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1040
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:88
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:195
 msgid "IPv4 address"
@@ -4327,7 +4330,7 @@ msgstr "Külső IPv6"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:183
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:59
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:430
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:459
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:135
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:221
 msgid "IPv6 address"
@@ -4398,7 +4401,7 @@ msgstr ""
 msgid "IPv6-PD"
 msgstr "IPv6-PD"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1079
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1095
 msgid "IPv6-Suffix (hex)"
 msgstr ""
 
@@ -4421,7 +4424,7 @@ msgstr "IPv6 IPv4 felett (6to4)"
 msgid "Identity"
 msgstr "Személyazonosság"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1091
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1107
 msgid ""
 "If a host matches an entry which cannot be used because it specifies an "
 "address on a different subnet, the tag <code>known-othernet</code> is set."
@@ -4479,12 +4482,12 @@ msgid ""
 "otherwise modifications will be reverted."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:518
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:547
 msgid ""
 "If the query result returned by upstream has no TTL, add a default TTL time."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:566
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:595
 msgid ""
 "If the queue of log-lines becomes full, dnsmasq will log the overflow, and "
 "the number of messages lost. The default queue length is 5."
@@ -4521,17 +4524,17 @@ msgstr ""
 "cserehelyeszköz nem érhető el akkora adatsebességgel, mint a <abbr "
 "title=\"Random Access Memory\">RAM</abbr>."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1025
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1068
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1041
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1084
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:63
 msgid "Ignore"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:642
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:671
 msgid "Ignore <code>/etc/hosts</code>"
 msgstr "Az <code>/etc/hosts</code> mellőzése"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:650
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:679
 msgid "Ignore hosts directory"
 msgstr ""
 
@@ -4539,11 +4542,11 @@ msgstr ""
 msgid "Ignore interface"
 msgstr "Csatoló mellőzése"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1090
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1106
 msgid "Ignore requests from unknown machines using <code>!known</code>."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:632
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:661
 msgid "Ignore resolv file"
 msgstr "A feloldási fájl figyelmen kívül hagyása"
 
@@ -4589,7 +4592,7 @@ msgstr ""
 msgid "In"
 msgstr "Be"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:975
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1003
 msgid ""
 "In DHCPv4, it is possible to include more than one mac address. This allows "
 "an IP address to be associated with multiple macaddrs, and dnsmasq abandons "
@@ -4611,6 +4614,11 @@ msgstr ""
 "A rendszerhez való jogosulatlan hozzáférés megakadályozása érdekében a "
 "kérése blokkolva lett. Kattintson a lenti „Folytatás »” gombra az előző "
 "oldalra történő visszatéréshez."
+
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:152
+#, fuzzy
+msgid "In seconds"
+msgstr "másodperc múlva"
 
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:156
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:128
@@ -4657,12 +4665,12 @@ msgstr ""
 msgid "Incoming serialization"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1067
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1083
 msgid "Infinite"
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:189
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:160
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:162
 msgid "Info"
 msgstr "Információ"
 
@@ -4728,8 +4736,8 @@ msgstr ""
 msgid "Install protocol extensions..."
 msgstr "Protokollkiterjesztések telepítése…"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:789
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1098
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:818
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1114
 msgid "Instance"
 msgstr ""
 
@@ -5104,7 +5112,7 @@ msgstr "Nyelv"
 msgid "Language and Style"
 msgstr "Nyelv és stílus"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:803
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:831
 msgid ""
 "Larger weights (of the same prio) are given a proportionately higher "
 "probability of being selected."
@@ -5137,11 +5145,11 @@ msgstr "Tanulás"
 msgid "Learn routes"
 msgstr "Útvonalak tanulása"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:627
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:656
 msgid "Lease file"
 msgstr "Bérletfájl"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1058
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1074
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:696
 msgid "Lease time"
 msgstr "Bérleti idő"
@@ -5185,7 +5193,7 @@ msgstr "Jelmagyarázat:"
 msgid "Limit"
 msgstr "Korlát"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:275
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:304
 msgid "Limits"
 msgstr ""
 
@@ -5214,7 +5222,7 @@ msgctxt "nft @ll,off,len"
 msgid "Link layer header bits %d-%d"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:928
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:956
 msgid ""
 "List of IP sets to populate with the IPs of DNS lookup results of the FQDNs "
 "also specified here."
@@ -5242,11 +5250,11 @@ msgstr ""
 msgid "List of SSH key files for auth"
 msgstr "SSH kulcsfájlok listája a hitelesítéshez"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:415
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:444
 msgid "List of domains to allow RFC1918 responses for."
 msgstr "Tartományok listája, amelyeknél az RFC1918 válaszok engedélyezettek."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:450
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:479
 msgid "List of upstream resolvers to forward queries to."
 msgstr ""
 "<abbr title=\"Domain Name System\">DNS</abbr>-kiszolgálók listája, ahová a "
@@ -5265,7 +5273,7 @@ msgstr ""
 msgid "Listen for peers"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:580
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:609
 msgid "Listen interfaces"
 msgstr "Figyelési csatolók"
 
@@ -5273,7 +5281,7 @@ msgstr "Figyelési csatolók"
 msgid "Listen only on the given interface or, if unspecified, on all"
 msgstr "Figyelés csak a megadott csatolón, vagy az összesen, ha nincs megadva"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:581
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:610
 msgid ""
 "Listen only on the specified interfaces, and loopback if not excluded "
 "explicitly."
@@ -5287,7 +5295,7 @@ msgstr ""
 msgid "ListenPort setting is invalid"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:594
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:623
 msgid "Listening port for inbound DNS queries."
 msgstr "Port figyelése a bejövő DNS-lekérdezésekhez."
 
@@ -5318,6 +5326,7 @@ msgid "Loading view…"
 msgstr "Nézet betöltése…"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:998
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:101
 msgid "Local"
 msgstr "Helyi"
 
@@ -5375,21 +5384,21 @@ msgstr "Helyi idő"
 msgid "Local ULA"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:306
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:335
 msgid "Local domain"
 msgstr "Helyi tartomány"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:307
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:336
 msgid "Local domain suffix appended to DHCP names and hosts file entries."
 msgstr ""
 "A DHCP nevekhez és a hosts fájl bejegyzéseihez hozzáfűzött helyi "
 "tartományutótagok."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:399
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:428
 msgid "Local server"
 msgstr "Helyi kiszolgáló"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:422
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:451
 msgid "Local service only"
 msgstr "Csak helyi szolgáltatás"
 
@@ -5397,7 +5406,7 @@ msgstr "Csak helyi szolgáltatás"
 msgid "Local wireguard key"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:337
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:366
 msgid "Localise queries"
 msgstr "Lekérdezések behatárolása"
 
@@ -5405,7 +5414,7 @@ msgstr "Lekérdezések behatárolása"
 msgid "Location Area Code"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:276
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:305
 msgid "Log"
 msgstr ""
 
@@ -5414,7 +5423,7 @@ msgctxt "nft log action"
 msgid "Log event \"<strong>%h</strong>…\""
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:541
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:570
 msgid "Log facility"
 msgstr ""
 
@@ -5433,11 +5442,11 @@ msgid "Log out"
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:187
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:157
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:159
 msgid "Log output level"
 msgstr "Napló kimeneti szintje"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:537
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:566
 msgid "Log queries"
 msgstr "Lekérdezések naplózása"
 
@@ -5517,7 +5526,7 @@ msgid ""
 "the <abbr title=\"Basic Service Set Identifier\">BSSID</abbr>."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:973
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1001
 msgid "MAC address(es)"
 msgstr ""
 
@@ -5554,11 +5563,11 @@ msgstr "MHz"
 msgid "MTU"
 msgstr "MTU"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:284
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:313
 msgid "MX"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:851
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:879
 msgid "Mail Server"
 msgstr ""
 
@@ -5592,7 +5601,7 @@ msgstr ""
 msgid "Master"
 msgstr "Mester"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1088
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1104
 msgid "Match Tag"
 msgstr ""
 
@@ -5600,28 +5609,28 @@ msgstr ""
 msgid "Max <abbr title=\"Router Advertisement\">RA</abbr> interval"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:616
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:645
 msgid ""
 "Max valid value <code>65535</code>. Useful for systems behind firewalls."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:468
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:497
 msgid "Max. DHCP leases"
 msgstr ""
 "<abbr title=\"maximal\">Legnagyobb</abbr> <abbr title=\"Dynamic Host "
 "Configuration Protocol\">DHCP</abbr> bérletek"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:475
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:504
 msgid "Max. EDNS0 packet size"
 msgstr ""
 "<abbr title=\"maximal\">Max.</abbr> <abbr title=\"Extension Mechanisms for "
 "Domain Name System\">EDNS0</abbr> csomagméret"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:482
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:511
 msgid "Max. concurrent queries"
 msgstr "<abbr title=\"maximal\">Legtöbb</abbr> egyidejű lekérdezés"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:510
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:539
 msgid "Maximum TTL"
 msgstr ""
 
@@ -5629,15 +5638,15 @@ msgstr ""
 msgid "Maximum age"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:469
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:498
 msgid "Maximum allowed number of active DHCP leases."
 msgstr "Aktív DHCP bérletek legnagyobb megengedett száma."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:483
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:512
 msgid "Maximum allowed number of concurrent DNS queries."
 msgstr "Egyidejű DNS-lekérdezések legnagyobb megengedett száma."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:476
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:505
 msgid "Maximum allowed size of EDNS0 UDP packets."
 msgstr "EDNS.0 UDP csomagok legnagyobb megengedett mérete."
 
@@ -5645,7 +5654,7 @@ msgstr "EDNS.0 UDP csomagok legnagyobb megengedett mérete."
 msgid "Maximum amount of seconds to wait for the modem to become ready"
 msgstr "Legnagyobb várakozási idő a modem kész állapotára másodpercben"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:503
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:532
 msgid "Maximum cache TTL"
 msgstr ""
 
@@ -5666,7 +5675,7 @@ msgstr "Bérelt címek legnagyobb száma."
 msgid "Maximum snooping table size"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:615
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:644
 msgid "Maximum source port"
 msgstr ""
 
@@ -5687,7 +5696,7 @@ msgid ""
 "reduced by the driver."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:441
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:470
 msgid "May prevent VoIP or other services from working."
 msgstr ""
 
@@ -5764,7 +5773,7 @@ msgstr ""
 msgid "Min <abbr title=\"Router Advertisement\">RA</abbr> interval"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:608
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:637
 msgid "Min valid value <code>1024</code>. Useful for systems behind firewalls."
 msgstr ""
 
@@ -5772,7 +5781,7 @@ msgstr ""
 msgid "Minimum ARP validity time"
 msgstr "Minimum ARP validálási idő"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:496
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:525
 msgid "Minimum cache TTL"
 msgstr ""
 
@@ -5782,7 +5791,7 @@ msgid ""
 "Prevents ARP cache thrashing."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:607
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:636
 msgid "Minimum source port"
 msgstr ""
 
@@ -6026,7 +6035,8 @@ msgstr "NTP-kiszolgáló jelöltek"
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2618
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4207
 #: modules/luci-compat/luasrc/view/cbi/tblsection.htm:27
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:890
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:95
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:918
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1174
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:68
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:36
@@ -6052,7 +6062,7 @@ msgid ""
 "with a hidden SSID."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:396
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:425
 msgid ""
 "Names not in <code>/etc/hosts</code> are answered <code>Not found</code>."
 msgstr ""
@@ -6066,7 +6076,7 @@ msgstr "Navigáció"
 msgid "Nebula Network"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:517
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:546
 msgid "Negative TTL"
 msgstr ""
 
@@ -6105,7 +6115,7 @@ msgstr ""
 msgid "Network address"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:741
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:770
 msgid "Network boot image"
 msgstr "Hálózati rendszerindító lemezkép"
 
@@ -6149,7 +6159,7 @@ msgstr "Hálózati csatoló"
 msgid "Network operator MCCMNC"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:780
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:809
 msgid "Network-ID"
 msgstr ""
 
@@ -6163,11 +6173,11 @@ msgctxt "No WireGuard peer handshake yet"
 msgid "Never"
 msgstr "Soha"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:395
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:424
 msgid "Never forward DNS queries lacking dots or domain parts."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:400
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:429
 msgid ""
 "Never forward matching domains and subdomains, resolve from DHCP or hosts "
 "files only."
@@ -6297,7 +6307,7 @@ msgstr "Nincs elérhető információ"
 msgid "No matching prefix delegation"
 msgstr "Nincs egyező előtag-delegálás"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:356
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:385
 msgid "No negative cache"
 msgstr "Nincs negatív gyorsítótár"
 
@@ -6331,7 +6341,7 @@ msgstr ""
 msgid "No public keys present yet."
 msgstr "Még nincsenek nyilvános kulcsok."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:323
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:352
 msgid "No round robin"
 msgstr ""
 
@@ -6420,7 +6430,7 @@ msgstr "Nincs elindítva rendszerindításkor"
 msgid "Not supported"
 msgstr "Nem támogatott"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:654
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:683
 msgid ""
 "Note: you may also need a DHCP Proxy (currently unavailable) when specifying "
 "a non-standard Relay address port(<code>address#port</code>)."
@@ -6448,7 +6458,7 @@ msgstr ""
 msgid "Number of beacon periods that clients are allowed to remain asleep for."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:490
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:519
 msgid "Number of cached DNS entries, 10000 is maximum, 0 is no caching."
 msgstr ""
 "Gyorsítótárazott DNS-bejegyzések száma (legfeljebb 10000, 0 megadásakor "
@@ -6494,7 +6504,7 @@ msgstr "Állapotkori késleltetés"
 msgid "On-link"
 msgstr "Kapcsolatkori útválasztás"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1032
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1048
 msgid "One of hostname or MAC address must be specified!"
 msgstr "A gépnév vagy a MAC-cím egyikét meg kell adni!"
 
@@ -6521,7 +6531,7 @@ msgstr "Egy vagy több kötelező mezőnek nincs értéke!"
 msgid "Online Users"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:709
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:738
 msgid "Only accept replies via"
 msgstr ""
 
@@ -6611,7 +6621,7 @@ msgstr "Beállítás eltávolítva"
 msgid "Optional"
 msgstr "Elhagyható"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:960
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:988
 msgid "Optional hostname to assign"
 msgstr ""
 
@@ -6727,12 +6737,12 @@ msgstr "Beállítások"
 msgid "Options:"
 msgstr "Opciók:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:831
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:859
 msgid "Ordinal: Higher comes first."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:826
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:856
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:854
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:884
 msgid "Ordinal: lower comes first."
 msgstr ""
 
@@ -6808,7 +6818,7 @@ msgstr "IPv6 routing tábla feloldása"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:74
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:53
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:128
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:151
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:148
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:197
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:72
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:132
@@ -7001,11 +7011,11 @@ msgstr ""
 msgid "PTM/EFM (Packet Transfer Mode)"
 msgstr "PTM/EFM (csomagátviteli mód)"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:382
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:411
 msgid "PTR record"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:287
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:316
 msgid "PXE/TFTP"
 msgstr ""
 
@@ -7266,7 +7276,7 @@ msgstr ""
 msgid "Polling interval (sec)"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:821
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:849
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/dropbear.js:20
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:253
 msgid "Port"
@@ -7362,8 +7372,8 @@ msgid ""
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:563
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:826
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:856
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:854
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:884
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:130
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:214
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:240
@@ -7506,7 +7516,7 @@ msgstr "QMI sejtes"
 msgid "Quality"
 msgstr "Minőség"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:370
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:399
 msgid "Query all available upstream resolvers."
 msgstr ""
 "Az összes elérhető külső <abbr title=\"Domain Name System\">DNS</abbr>-"
@@ -7599,7 +7609,7 @@ msgstr ""
 "Nyers hexadecimális kódolású bájtok. Hagyja üresen, hacsak az internet-"
 "szolgáltatója nem követelni meg"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:624
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:653
 msgid "Read <code>/etc/ethers</code> to configure the DHCP server."
 msgstr ""
 "Az <code>/etc/ethers</code> fájl olvasása a <abbr title=\"Dynamic Host "
@@ -7621,7 +7631,7 @@ msgstr ""
 msgid "Reassociation deadline in time units (TUs / 1.024 ms) [1000-65535]."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:403
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:432
 msgid "Rebind protection"
 msgstr "Újrakötési védelem"
 
@@ -7733,7 +7743,7 @@ msgctxt "nft reject with tcp reset"
 msgid "Reject packet with <strong>TCP reset</strong>"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:435
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:464
 msgid ""
 "Reject reverse lookups to <a href=\"%s\">RFC6303</a> IP ranges (<code>*.IN-"
 "ADDR.ARPA,*.IP6.ARPA</code>) not in <code>/etc/hosts</code>."
@@ -7746,8 +7756,8 @@ msgid ""
 msgstr ""
 
 #: modules/luci-compat/luasrc/model/network/proto_relay.lua:153
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:282
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:851
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:311
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:879
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:39
 msgid "Relay"
 msgstr "Átjátszás"
@@ -7757,7 +7767,7 @@ msgstr "Átjátszás"
 msgid "Relay Bridge"
 msgstr "Átjátszó híd"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:653
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:682
 msgid "Relay DHCP requests elsewhere. OK: v4↔v4, v6↔v6. Not OK: v4↔v6, v6↔v4."
 msgstr ""
 
@@ -7770,11 +7780,11 @@ msgstr "Átjátszás hálózatok között"
 msgid "Relay bridge"
 msgstr "Átjátszó híd"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:663
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:692
 msgid "Relay from"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:683
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:712
 msgid "Relay to address"
 msgstr ""
 
@@ -7969,15 +7979,15 @@ msgstr "Számlálók nullázása"
 msgid "Reset to defaults"
 msgstr "Visszaállítás az alapértelmezettekre"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:278
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:307
 msgid "Resolv &amp; Hosts Files"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:635
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:664
 msgid "Resolv file"
 msgstr "Fájl feloldása"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:315
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:344
 msgid "Resolve specified FQDNs to an IP."
 msgstr ""
 
@@ -8012,11 +8022,11 @@ msgstr "Visszaállítás"
 msgid "Restore backup"
 msgstr "Biztonsági mentés visszaállítása"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:383
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:412
 msgid "Return a PTR DNS record."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:338
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:367
 msgid ""
 "Return answers to DNS queries matching the subnet from which the query was "
 "received if multiple IPs are available."
@@ -8108,7 +8118,7 @@ msgstr ""
 msgid "Robustness"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:735
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:764
 msgid "Root directory for files served via TFTP."
 msgstr ""
 
@@ -8224,8 +8234,8 @@ msgstr ""
 msgid "SNR"
 msgstr "SNR"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:283
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:811
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:312
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:839
 msgid "SRV"
 msgstr ""
 
@@ -8386,11 +8396,11 @@ msgstr ""
 msgid "Server"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:769
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:798
 msgid "Server address"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:763
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:792
 msgid "Server name"
 msgstr ""
 
@@ -8415,7 +8425,7 @@ msgstr "A munkamenet lejárt"
 msgid "Set Static"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:862
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:890
 msgid "Set an alias for a hostname."
 msgstr ""
 
@@ -8524,9 +8534,10 @@ msgstr "Jel/zaj"
 msgid "Signal Quality"
 msgstr ""
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:148
-msgid "Signal refresh rate"
-msgstr ""
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:152
+#, fuzzy
+msgid "Signal Refresh Rate"
+msgstr "Jel frissítési ráta"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/wireless.js:262
 msgid "Signal:"
@@ -8537,7 +8548,7 @@ msgstr "Jel:"
 msgid "Size"
 msgstr "Méret"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:489
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:518
 msgid "Size of DNS query cache"
 msgstr "A DNS lekérdezési gyorsítótár mérete"
 
@@ -8626,7 +8637,7 @@ msgctxt "nft ip sport"
 msgid "Source port"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:749
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:778
 msgid "Special PXE boot options for Dnsmasq."
 msgstr ""
 
@@ -8810,15 +8821,15 @@ msgstr ""
 "Egy MTU (Maximum Transmission Unit – legnagyobb átviteli egység) megadása az "
 "alapértelmezettől (1280 bájttól) eltérően."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:504
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:533
 msgid "Specify the maximum TTL for cached DNS entries."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:497
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:526
 msgid "Specify the minimum TTL for cached DNS entries."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:511
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:540
 msgid "Specify time-to-live in seconds for maximum TTL to send to clients."
 msgstr ""
 
@@ -8878,7 +8889,7 @@ msgstr "Statikus IPv6-útvonalak"
 msgid "Static Lease"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:279
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:308
 msgid "Static Leases"
 msgstr "Statikus bérletek"
 
@@ -8890,11 +8901,11 @@ msgstr ""
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2090
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:172
 #: modules/luci-compat/luasrc/model/network.lua:967
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:314
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:343
 msgid "Static address"
 msgstr "Statikus cím"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:946
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:974
 msgid ""
 "Static leases are used to assign fixed IP addresses and symbolic hostnames "
 "to DHCP clients. They are also required for non-dynamic interface "
@@ -8934,7 +8945,7 @@ msgstr ""
 msgid "Strict filtering"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:365
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:394
 msgid "Strict order"
 msgstr "Szigorú sorrend"
 
@@ -8951,11 +8962,11 @@ msgstr ""
 msgid "Submit"
 msgstr "Elküldés"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:575
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:604
 msgid "Suppress logging"
 msgstr "Naplózás elnyomása"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:576
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:605
 msgid "Suppress logging of the routine operation for the DHCP protocol."
 msgstr "Ezen protokollok rutinműveletei naplózásának elnyomása."
 
@@ -9010,11 +9021,11 @@ msgstr "Szinkronizálás NTP-kiszolgálóval"
 msgid "Sync with browser"
 msgstr "Szinkronizálás a böngészővel"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:316
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:345
 msgid "Syntax: <code>/fqdn[/fqdn…]/[ipaddr]</code>."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:811
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:839
 msgid "Syntax: <code>_service._proto.example.com.</code>"
 msgstr ""
 
@@ -9070,7 +9081,7 @@ msgstr ""
 msgid "TCP:"
 msgstr "TCP:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:734
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:763
 msgid "TFTP server root"
 msgstr "TFTP-kiszolgáló gyökere"
 
@@ -9104,12 +9115,12 @@ msgstr ""
 msgid "TX-Power"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:286
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:894
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:315
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:922
 msgid "TXT"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:894
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:922
 msgid "TXT DNS record"
 msgstr ""
 
@@ -9121,7 +9132,7 @@ msgstr ""
 msgid "Table"
 msgstr "Tábla"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1084
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1100
 msgid "Tag"
 msgstr ""
 
@@ -9130,8 +9141,8 @@ msgctxt "VLAN port state"
 msgid "Tagged"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:816
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:875
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:844
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:903
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:58
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:66
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:204
@@ -9194,7 +9205,7 @@ msgid ""
 "the configuration."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1072
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1088
 msgid "The DHCPv6-DUID (DHCP unique identifier) of this host."
 msgstr ""
 
@@ -9212,19 +9223,19 @@ msgstr ""
 "A HE.net végpont frissítési beállítása megváltozott, most az egyszerű "
 "felhasználónevet kell használnia a felhasználó-azonosító helyett!"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1041
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1057
 msgid "The IP address %h is already used by another static lease"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1050
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1066
 msgid "The IP address is outside of any DHCP pool address range"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:770
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:799
 msgid "The IP address of the boot server"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1024
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1040
 msgid ""
 "The IP address to be used for this host, or <em>ignore</em> to ignore any "
 "DHCP request from this host."
@@ -9252,7 +9263,7 @@ msgid ""
 "The IPv6 address or the fully-qualified domain name of the remote tunnel end."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1080
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1096
 msgid ""
 "The IPv6 interface identifier (address suffix) as hexadecimal number (max. "
 "16 chars)."
@@ -9287,7 +9298,7 @@ msgstr ""
 msgid "The LED is always in default state on."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:239
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:268
 msgid ""
 "The MAC address %h is already used by another static lease in the same DHCP "
 "pool"
@@ -9415,7 +9426,7 @@ msgstr ""
 "A megadott SSH nyilvános kulcs érvénytelen. Adjon meg megfelelő nyilvános "
 "RSA vagy ECDSA kulcsokat."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:974
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1002
 msgid "The hardware address(es) of this entry/host, separated by spaces."
 msgstr ""
 
@@ -9427,7 +9438,7 @@ msgid ""
 "to be received and retransmitted which costs airtime)"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:764
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:793
 msgid "The hostname of the boot server"
 msgstr ""
 
@@ -9612,7 +9623,7 @@ msgstr "A rendszerjelszó sikeresen megváltoztatva."
 msgid "The sysupgrade command failed with code %d"
 msgstr "A rendszerfrissítési parancs meghiúsult %d kóddal"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:948
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:976
 msgid ""
 "The tag construct filters which host directives are used; more than one tag "
 "can be provided, in this case the request must match all of them. Tagged "
@@ -9666,8 +9677,8 @@ msgid ""
 "nftables rules is discouraged and may lead to incomplete traffic filtering."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1154
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1186
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1169
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1201
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:130
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:179
 msgid "There are no active leases"
@@ -9744,7 +9755,7 @@ msgstr ""
 "Ez az alagút-közvetítő által hozzárendelt helyi végpont címe, amely "
 "általában így végződik: <code>...:2/64</code>"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:295
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:324
 msgid "This is the only DHCP server in the local network."
 msgstr ""
 "Ez az egyetlen <abbr title=\"Dynamic Host Configuration Protocol\">DHCP</"
@@ -9906,7 +9917,7 @@ msgstr ""
 msgid "Transfer"
 msgstr "Átvitel"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:389
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:418
 msgid ""
 "Transform replies which contain the specified addresses or subnets into "
 "NXDOMAIN responses."
@@ -10267,7 +10278,7 @@ msgid ""
 "will be restarted to apply the updated configuration."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:366
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:395
 msgid "Upstream resolvers will be queried in the order of the resolv file."
 msgstr ""
 "A <abbr title=\"Domain Name System\">DNS</abbr>-kiszolgálók a feloldási "
@@ -10279,7 +10290,7 @@ msgstr ""
 msgid "Uptime"
 msgstr "Futási idő"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:623
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:652
 msgid "Use <code>/etc/ethers</code>"
 msgstr "<code>/etc/ethers</code> használata"
 
@@ -10400,7 +10411,7 @@ msgstr "Rendszertanúsítványok használata"
 msgid "Use system certificates for inner-tunnel"
 msgstr "Rendszertanúsítványok használata a belső alagútnál"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:947
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:975
 msgid ""
 "Use the <em>Add</em> Button to add a new lease entry. The <em>MAC address</"
 "em> identifies the host, the <em>IPv4 address</em> specifies the fixed "
@@ -10566,7 +10577,7 @@ msgstr ""
 msgid "VXLANv6 (RFC7348)"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:343
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:372
 msgid ""
 "Validate DNS replies and cache DNSSEC data, requires upstream to support "
 "DNSSEC."
@@ -10592,7 +10603,7 @@ msgstr "Gyártó"
 msgid "Vendor Class to send when requesting DHCP"
 msgstr "DHCP kérésekor küldendő gyártóosztály"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:347
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:376
 msgid "Verify unsigned domain responses really come from unsigned domains."
 msgstr ""
 
@@ -10668,7 +10679,7 @@ msgstr "Várakozás a készülékre..."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:191
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:201
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:159
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:161
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
@@ -10686,11 +10697,11 @@ msgstr "Gyenge"
 msgid "Weak security"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:831
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:859
 msgid "Weight"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1089
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1105
 msgid ""
 "When a host matches an entry then the special tag <code>known</code> is set. "
 "Use <code>known</code> to match all known hosts."
@@ -10840,7 +10851,7 @@ msgstr ""
 msgid "Wireless network: Enabled"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:538
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:567
 msgid ""
 "Write received DNS queries to syslog, dump cache on SIGUSR1, include "
 "requesting IP."
@@ -10882,16 +10893,16 @@ msgstr ""
 "előkészítő parancsfájlokat, mint például a „network” parancsfájlt, akkor az "
 "eszköz elérhetetlenné válhat!</strong>"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:802
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:830
 msgid "You may add multiple records for the same Target."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:838
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:882
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:866
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:910
 msgid "You may add multiple records for the same domain."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:655
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:684
 msgid "You may add multiple unique Relay address on the same Listen address."
 msgstr ""
 
@@ -10921,7 +10932,7 @@ msgstr "ZRam mérete"
 msgid "allow roaming"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:604
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:633
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:153
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:164
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:103
@@ -10963,13 +10974,13 @@ msgstr "baseT"
 msgid "bridged"
 msgstr "áthidalt"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:716
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:745
 msgid ""
 "configuration file: /etc/dnsmasq.conf, Make changes as needed, Take effect "
 "immediately after Save & Apply."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:376
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:405
 msgid "connmark allow list"
 msgstr ""
 
@@ -11037,11 +11048,11 @@ msgstr ""
 msgid "disabled"
 msgstr "letiltva"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:303
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:332
 msgid "dnsmasq will respond to a DHCPDISCOVER message."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:890
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:918
 msgid "domain name"
 msgstr ""
 
@@ -11066,8 +11077,8 @@ msgctxt "WireGuard keep alive interval"
 msgid "every %ds"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1134
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1164
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1149
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1179
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:101
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:148
 msgid "expired"
@@ -11117,7 +11128,7 @@ msgstr ""
 msgid "hybrid mode"
 msgstr "hibrid mód"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:525
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:554
 msgid ""
 "if a DNS name exists in the cache, but its time-to-live has expired, dnsmasq "
 "will return the data anyway."
@@ -11137,15 +11148,15 @@ msgstr "8 és 63 karakter közötti kulcs"
 msgid "key with either 5 or 13 characters"
 msgstr "kulcs 5 vagy 13 karakterrel"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1092
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1108
 msgid "known (known)"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1094
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1110
 msgid "known-othernet (on different subnet)"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:572
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:601
 msgid ""
 "log all the options sent to DHCP clients and the tags used to determine them."
 msgstr ""
@@ -11243,11 +11254,11 @@ msgstr "véletlen"
 msgid "randomly generated"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:361
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:390
 msgid "read-only mount path to expose it to dnsmasq."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:324
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:353
 msgid ""
 "records are always returned in the order that they are received from "
 "upstream."
@@ -11282,7 +11293,7 @@ msgstr "kiszolgálómód"
 msgid "sstpc Log-level"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:562
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:591
 msgid "stderr"
 msgstr ""
 
@@ -11294,7 +11305,7 @@ msgstr ""
 msgid "string with characters, numbers and spaces only."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:311
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:340
 msgid ""
 "the unqualified name is no longer put in the DNS, only qualified names are "
 "kept."
@@ -11315,8 +11326,8 @@ msgstr "egyedi érték"
 msgid "unknown version"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1132
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1162
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1147
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1177
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:99
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:146
 msgid "unlimited"
@@ -11339,13 +11350,13 @@ msgstr "nincs meghatározva"
 msgid "unspecified -or- create:"
 msgstr "meghatározatlan -vagy- létrehozás:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:524
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:553
 msgid "use stale cache (TTL)"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:265
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:178
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:189
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:193
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:204
 msgid "valid IP address"
 msgstr "érvényes IP-cím"
 
@@ -11358,7 +11369,7 @@ msgid "valid IPv4 CIDR"
 msgstr "érvényes IPv4 CIDR"
 
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:273
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:182
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:197
 msgid "valid IPv4 address"
 msgstr "érvényes IPv4-cím"
 
@@ -11387,7 +11398,7 @@ msgid "valid IPv6 CIDR"
 msgstr "érvényes IPv6 CIDR"
 
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:281
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:186
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:201
 msgid "valid IPv6 address"
 msgstr "érvényes IPv6-cím"
 
@@ -11447,9 +11458,9 @@ msgstr "érvényes gép:port"
 
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:378
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:380
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:128
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:134
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:162
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:143
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:149
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:177
 msgid "valid hostname"
 msgstr "érvényes gépnév"
 
@@ -11489,7 +11500,7 @@ msgid "valid port or port range (port1-port2)"
 msgstr "érvényes port vagy porttartomány (port1-port2)"
 
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:346
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:193
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:208
 msgid "valid port value"
 msgstr "érvényes portérték"
 
@@ -11891,10 +11902,6 @@ msgstr "« Vissza"
 #~ msgstr ""
 #~ "<abbr title=\"Extended Service Set Identifier\">ESSID</abbr> elrejtése"
 
-#, fuzzy
-#~ msgid "In seconds"
-#~ msgstr "másodperc múlva"
-
 #~ msgid ""
 #~ "Instead of joining any network with a matching SSID, only connect to the "
 #~ "BSSID <code>%h</code>."
@@ -12065,10 +12072,6 @@ msgstr "« Vissza"
 
 #~ msgid "Short Preamble"
 #~ msgstr "Rövid előszó"
-
-#, fuzzy
-#~ msgid "Signal Refresh Rate"
-#~ msgstr "Jel frissítési ráta"
 
 #~ msgid ""
 #~ "Specifies the maximum transmit power the wireless radio may use. "
