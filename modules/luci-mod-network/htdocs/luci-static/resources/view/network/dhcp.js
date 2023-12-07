@@ -307,7 +307,7 @@ return view.extend({
 		s.tab('files', _('Resolv &amp; Hosts Files'));
 		s.tab('leases', _('Static Leases'));
 		s.tab('hosts', _('Hostnames'));
-		s.tab('ipsets', _('IP sets'));
+		s.tab('nftsets', _('NFT sets'));
 		s.tab('relay', _('Relay'));
 		s.tab('srvhosts', _('SRV'));
 		s.tab('mxhosts', _('MX'));
@@ -339,12 +339,32 @@ return view.extend({
 			_('DHCP FQDN'),
 			_('the unqualified name is no longer put in the DNS, only qualified names are kept.'));
 
+		function customi18n(template, values) {
+			return template.replace(/\{(\w+)\}/g, (match, key) => values[key] || match);
+		};
+
 		o = s.taboption('general', form.DynamicList, 'address',
 			_('Static address'),
 			_('Resolve specified FQDNs to an IP.') + '<br />' +
-			_('Syntax: <code>/fqdn[/fqdn…]/[ipaddr]</code>.') + '<br />' +
-			_('<code>/#/</code> matches any domain. <code>/example.com/</code> returns NXDOMAIN.') + '<br />' +
-			_('<code>/example.com/#</code> returns NULL addresses (<code>0.0.0.0</code> and <code>::</code>) for example.com and its subdomains.'));
+			customi18n(_('Syntax: {code_syntax}.'),
+				{code_syntax: '<code>/fqdn[/fqdn…]/[ipaddr]</code>'}) + '<br />' +
+			customi18n(_('{example_nx} returns {nxdomain}.',
+				'hint: <code>/example.com/</code> returns <code>NXDOMAIN</code>.'),
+				{example_nx: '<code>/example.com/</code>', nxdomain: '<code>NXDOMAIN</code>'}) + '<br />' +
+			customi18n(_('{any_domain} matches any domain (and returns {nxdomain}).',
+				'hint: <code>/#/</code> matches any domain (and returns NXDOMAIN).'),
+				{any_domain:'<code>/#/</code>', nxdomain: '<code>NXDOMAIN</code>'}) + '<br />' +
+			customi18n(
+				_('{example_null} returns {null_addr} addresses ({null_ipv4}, {null_ipv6}) for {example_com} and its subdomains.',
+					'hint: <code>/example.com/#</code> returns NULL addresses (<code>0.0.0.0</code>, <code>::</code>) for example.com and its subdomains.'),
+				{	example_null: '<code>/example.com/#</code>',
+					null_addr: '<code>NULL</code>', 
+					null_ipv4: '<code>0.0.0.0</code>',
+					null_ipv6: '<code>::</code>',
+					example_com: '<code>example.com</code>',
+				}
+			)
+		);
 		o.optional = true;
 		o.placeholder = '/openwrt.org/192.168.9.1';
 
@@ -952,23 +972,38 @@ return view.extend({
 			so.value(ipv4, '%s (%s)'.format(ipv4, ipaddrs[ipv4]));
 		});
 
-		o = s.taboption('ipsets', form.SectionValue, '__ipsets__', form.GridSection, 'ipset', null,
-			_('List of IP sets to populate with the IPs of DNS lookup results of the FQDNs also specified here.'));
+		o = s.taboption('nftsets', form.SectionValue, '__nftsets__', form.GridSection, 'nftset', null,
+			_('List of NFT sets to populate with the IPs of DNS lookup results of the FQDNs also specified here.'));
 
 		ss = o.subsection;
 		ss.addremove = true;
 		ss.anonymous = true;
 		ss.sortable  = true;
+		ss.rowcolors = true;
+		ss.modaltitle = _('Edit NFT set');
 
-		so = ss.option(form.DynamicList, 'name', _('IP sets'));
+		so = ss.option(form.DynamicList, 'name', _('NFT sets'));
 		so.rmempty = false;
 		so.datatype = 'string';
-		so.placeholder = 'ipset';
+		so.placeholder = 'nftset';
 
 		so = ss.option(form.DynamicList, 'domain', _('Domain'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
 		so.placeholder = 'example.com';
+
+		so = ss.option(form.Value, 'table', _('Table'));
+
+		so = ss.option(form.Value, 'table_family', _('Table IP family'));
+		so.rmempty = true;
+		so.value('inet', _('IPv4+IPv6'));
+		so.value('ip', _('IPv4'));
+		so.value('ip6', _('IPv6'));
+
+		so = ss.option(form.Value, 'family', _('IP family'));
+		so.rmempty = true;
+		so.value('4');
+		so.value('6');
 
 		o = s.taboption('leases', form.SectionValue, '__leases__', form.GridSection, 'host', null,
 			_('Static leases are used to assign fixed IP addresses and symbolic hostnames to DHCP clients. They are also required for non-dynamic interface configurations where only hosts with a corresponding lease are served.') + '<br /><br />' +
@@ -1102,9 +1137,10 @@ return view.extend({
 
 		so = ss.option(form.DynamicList, 'match_tag',
 			_('Match Tag'),
-			_('When a host matches an entry then the special tag <code>known</code> is set. Use <code>known</code> to match all known hosts.') + '<br /><br />' +
-			_('Ignore requests from unknown machines using <code>!known</code>.') + '<br /><br />' +
-			_('If a host matches an entry which cannot be used because it specifies an address on a different subnet, the tag <code>known-othernet</code> is set.'));
+			_('When a host matches an entry then the special tag %s is set. Use %s to match all known hosts.').format('<code>known</code>', 
+'<code>known</code>') + '<br /><br />' +
+			_('Ignore requests from unknown machines using %s.').format('<code>!known</code>') + '<br /><br />' +
+			_('If a host matches an entry which cannot be used because it specifies an address on a different subnet, the tag %s is set.').format('<code>known-othernet</code>'));
 		so.value('known', _('known (known)'));
 		so.value('!known', _('!known (not known)'));
 		so.value('known-othernet', _('known-othernet (on different subnet)'));
