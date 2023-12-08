@@ -307,7 +307,7 @@ return view.extend({
 		s.tab('files', _('Resolv &amp; Hosts Files'));
 		s.tab('leases', _('Static Leases'));
 		s.tab('hosts', _('Hostnames'));
-		s.tab('nftsets', _('NFT sets'));
+		s.tab('ipsets', _('IP sets'));
 		s.tab('relay', _('Relay'));
 		s.tab('srvhosts', _('SRV'));
 		s.tab('mxhosts', _('MX'));
@@ -972,38 +972,37 @@ return view.extend({
 			so.value(ipv4, '%s (%s)'.format(ipv4, ipaddrs[ipv4]));
 		});
 
-		o = s.taboption('nftsets', form.SectionValue, '__nftsets__', form.GridSection, 'nftset', null,
-			_('List of NFT sets to populate with the IPs of DNS lookup results of the FQDNs also specified here.'));
+		o = s.taboption('ipsets', form.SectionValue, '__ipsets__', form.GridSection, 'ipset', null,
+			_('List of IP sets to populate with the IPs of DNS lookup results of the FQDNs also specified here.') + '<br />' +
+			_('IPsets are forward compatible with nftsets: fw4 converts IPsets to nftsets.'));
 
 		ss = o.subsection;
 		ss.addremove = true;
 		ss.anonymous = true;
 		ss.sortable  = true;
 		ss.rowcolors = true;
-		ss.modaltitle = _('Edit NFT set');
+		ss.nodescriptions = true;
+		ss.rowcolors = true;
+		ss.modaltitle = _('Edit IP set');
 
-		so = ss.option(form.DynamicList, 'name', _('NFT sets'));
+		so = ss.option(form.DynamicList, 'name', _('Name of the set'));
 		so.rmempty = false;
 		so.datatype = 'string';
-		so.placeholder = 'nftset';
 
-		so = ss.option(form.DynamicList, 'domain', _('Domain'));
+		so = ss.option(form.DynamicList, 'domain', _('FQDN'));
 		so.rmempty = false;
 		so.datatype = 'hostname';
 		so.placeholder = 'example.com';
 
-		so = ss.option(form.Value, 'table', _('Table'));
+		so = ss.option(form.Value, 'table', _('Netfilter table name'), _('Defaults to fw4.'));
+		so.placeholder = 'fw4';
+		so.rmempty = true;
 
 		so = ss.option(form.Value, 'table_family', _('Table IP family'));
 		so.rmempty = true;
 		so.value('inet', _('IPv4+IPv6'));
 		so.value('ip', _('IPv4'));
 		so.value('ip6', _('IPv6'));
-
-		so = ss.option(form.Value, 'family', _('IP family'));
-		so.rmempty = true;
-		so.value('4');
-		so.value('6');
 
 		o = s.taboption('leases', form.SectionValue, '__leases__', form.GridSection, 'host', null,
 			_('Static leases are used to assign fixed IP addresses and symbolic hostnames to DHCP clients. They are also required for non-dynamic interface configurations where only hosts with a corresponding lease are served.') + '<br /><br />' +
@@ -1034,7 +1033,7 @@ return view.extend({
 
 		so = ss.option(form.Value, 'mac',
 			_('MAC address(es)'),
-			_('The hardware address(es) of this entry/host, separated by spaces.') + '<br /><br />' + 
+			_('The hardware address(es) of this entry/host.') + '<br /><br />' + 
 			_('In DHCPv4, it is possible to include more than one mac address. This allows an IP address to be associated with multiple macaddrs, and dnsmasq abandons a DHCP lease to one of the macaddrs when another asks for a lease. It only works reliably if only one of the macaddrs is active at any time.'));
 		//As a special case, in DHCPv4, it is possible to include more than one hardware address. eg: --dhcp-host=11:22:33:44:55:66,12:34:56:78:90:12,192.168.0.2 This allows an IP address to be associated with multiple hardware addresses, and gives dnsmasq permission to abandon a DHCP lease to one of the hardware addresses when another one asks for a lease
 		so.rmempty  = true;
@@ -1137,8 +1136,7 @@ return view.extend({
 
 		so = ss.option(form.DynamicList, 'match_tag',
 			_('Match Tag'),
-			_('When a host matches an entry then the special tag %s is set. Use %s to match all known hosts.').format('<code>known</code>', 
-'<code>known</code>') + '<br /><br />' +
+			_('When a host matches an entry then the special tag %s is set. Use %s to match all known hosts.').format('<code>known</code>', '<code>known</code>') + '<br /><br />' +
 			_('Ignore requests from unknown machines using %s.').format('<code>!known</code>') + '<br /><br />' +
 			_('If a host matches an entry which cannot be used because it specifies an address on a different subnet, the tag %s is set.').format('<code>known-othernet</code>'));
 		so.value('known', _('known (known)'));
