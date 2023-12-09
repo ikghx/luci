@@ -298,12 +298,12 @@ return view.extend({
 		s.addremove = true;
 
 		s.tab('general', _('General'));
+		s.tab('devices', _('Devices &amp; Ports'));
 		s.tab('advanced', _('Advanced'));
 		s.tab('filteropts', _('Filter'));
 		s.tab('forward', _('Forwards'));
 		s.tab('limits', _('Limits'));
 		s.tab('logging', _('Log'));
-		s.tab('devices', _('Devices &amp; Ports'));
 		s.tab('files', _('Resolv &amp; Hosts Files'));
 		s.tab('leases', _('Static Leases'));
 		s.tab('hosts', _('Hostnames'));
@@ -382,6 +382,49 @@ return view.extend({
 			_('Allocate IPs sequentially'),
 			_('Allocate IP addresses sequentially, starting from the lowest available address.'));
 
+		o = s.taboption('devices', widgets.NetworkSelect, 'interface',
+			_('Listen interfaces'),
+			_('Listen only on the specified interfaces, and loopback if not excluded explicitly.'));
+		o.multiple = true;
+		o.nocreate = true;
+
+		o = s.taboption('devices', widgets.NetworkSelect, 'notinterface',
+			_('Exclude interfaces'),
+			_('Do not listen on the specified interfaces.'));
+		o.loopback = true;
+		o.multiple = true;
+		o.nocreate = true;
+
+		o = s.taboption('devices', form.Value, 'port',
+			_('DNS server port'),
+			_('Listening port for inbound DNS queries.'));
+		o.optional = true;
+		o.datatype = 'port';
+		o.placeholder = 53;
+
+		o = s.taboption('devices', form.Value, 'queryport',
+			_('DNS query port'),
+			_('Fixed source port for outbound DNS queries.'));
+		o.optional = true;
+		o.datatype = 'port';
+		o.placeholder = _('any');
+
+		o = s.taboption('devices', form.Value, 'minport',
+			_('Minimum source port'),
+			_('Min valid value <code>1024</code>. Useful for systems behind firewalls.'));
+		o.optional = true;
+		o.datatype = 'port';
+		o.placeholder = 1024;
+		o.depends('queryport', '');
+
+		o = s.taboption('devices', form.Value, 'maxport',
+			_('Maximum source port'),
+			_('Max valid value <code>65535</code>. Useful for systems behind firewalls.'));
+		o.optional = true;
+		o.datatype = 'port';
+		o.placeholder = 50000;
+		o.depends('queryport', '');
+
 		s.taboption('advanced', form.Flag, 'localise_queries',
 			_('Localise queries'),
 			_('Return answers to DNS queries matching the subnet from which the query was received if multiple IPs are available.'));
@@ -412,7 +455,7 @@ return view.extend({
 
 		o = s.taboption('advanced', form.Flag, 'strictorder',
 			_('Strict order'),
-			_('Upstream resolvers will be queried in the order of the resolv file.'));
+			_('Query upstream resolvers in the order they appear in the resolv file.'));
 
 		o = s.taboption('advanced', form.Flag, 'allservers',
 			_('All servers'),
@@ -442,11 +485,11 @@ return view.extend({
 		s.taboption('filteropts', form.Flag, 'domainneeded',
 			_('Domain required'),
 			_('Never forward DNS queries lacking dots or domain parts.'),
-			_('Names not in <code>/etc/hosts</code> are answered <code>Not found</code>.'));
+			_('Names not in %s are answered %s.', 'hint: Names not in <code>/etc/hosts</code> are answered <code>Not found</code>.').format('<code>/etc/hosts</code>', '<code>Not found</code>'));
 
 		s.taboption('filteropts', form.Value, 'local',
-			_('Local server'),
-			_('Never forward matching domains and subdomains, resolve from DHCP or hosts files only.'));
+			_('Serve these locally'),
+			_('Never forward these matching domains or subdomains; resolve from DHCP or hosts files only.'));
 
 		o = s.taboption('filteropts', form.Flag, 'rebind_protection',
 			_('Rebind protection'),
@@ -496,7 +539,7 @@ return view.extend({
 
 		o = s.taboption('forward', form.DynamicList, 'server',
 			_('DNS forwardings'),
-			_('List of upstream resolvers to forward queries to.'));
+			_('Forward specific domain queries to specific upstream servers.'));
 		o.optional = true;
 		o.placeholder = '192.168.9.1#5335';
 		o.validate = validateServerSpec;
@@ -542,15 +585,16 @@ return view.extend({
 		o.placeholder = 1000;
 
 		o = s.taboption('limits', form.Value, 'min_cache_ttl',
-			_('Minimum cache TTL'),
-			_('Specify the minimum TTL for cached DNS entries.'));
+			_('Min cache TTL'),
+			_('Extend short TTL values to the time given when caching them.') +
+			_(' (Max 1h)'));
 		o.optional = true;
 		o.datatype = 'range(0,3600)';
 		o.placeholder = 60;
 
 		o = s.taboption('limits', form.Value, 'max_cache_ttl',
-			_('Maximum cache TTL'),
-			_('Specify the maximum TTL for cached DNS entries.'));
+			_('Max cache TTL'),
+			_('Set a maximum TTL value for entries in the cache.'));
 		o.optional = true;
 		o.datatype = 'range(0,3600)';
 		o.placeholder = 3600;
@@ -617,56 +661,13 @@ return view.extend({
 		o.depends('logqueries', '1');
 
 		o = s.taboption('logging', form.Flag, 'logdhcp',
-			_('Extra logging for DHCP'),
-			_('log all the options sent to DHCP clients and the tags used to determine them.'));
+			_('Extra DHCP logging'),
+			_('Log all options sent to DHCP clients and the tags used to determine them.'));
 
 		o = s.taboption('logging', form.Flag, 'quietdhcp',
 			_('Suppress logging'),
 			_('Suppress logging of the routine operation for the DHCP protocol.'));
 		o.depends('logdhcp', '0');
-
-		o = s.taboption('devices', widgets.NetworkSelect, 'interface',
-			_('Listen interfaces'),
-			_('Listen only on the specified interfaces, and loopback if not excluded explicitly.'));
-		o.multiple = true;
-		o.nocreate = true;
-
-		o = s.taboption('devices', widgets.NetworkSelect, 'notinterface',
-			_('Exclude interfaces'),
-			_('Do not listen on the specified interfaces.'));
-		o.loopback = true;
-		o.multiple = true;
-		o.nocreate = true;
-
-		o = s.taboption('devices', form.Value, 'port',
-			_('DNS server port'),
-			_('Listening port for inbound DNS queries.'));
-		o.optional = true;
-		o.datatype = 'port';
-		o.placeholder = 53;
-
-		o = s.taboption('devices', form.Value, 'queryport',
-			_('DNS query port'),
-			_('Fixed source port for outbound DNS queries.'));
-		o.optional = true;
-		o.datatype = 'port';
-		o.placeholder = _('any');
-
-		o = s.taboption('devices', form.Value, 'minport',
-			_('Minimum source port'),
-			_('Min valid value <code>1024</code>. Useful for systems behind firewalls.'));
-		o.optional = true;
-		o.datatype = 'port';
-		o.placeholder = 1024;
-		o.depends('queryport', '');
-
-		o = s.taboption('devices', form.Value, 'maxport',
-			_('Maximum source port'),
-			_('Max valid value <code>65535</code>. Useful for systems behind firewalls.'));
-		o.optional = true;
-		o.datatype = 'port';
-		o.placeholder = 50000;
-		o.depends('queryport', '');
 
 		s.taboption('files', form.Flag, 'readethers',
 			_('Use <code>/etc/ethers</code>'),
@@ -1031,11 +1032,10 @@ return view.extend({
 			uci.unset('dhcp', section, 'dns');
 		};
 
-		so = ss.option(form.Value, 'mac',
+		so = ss.option(form.DynamicList, 'mac',
 			_('MAC address(es)'),
 			_('The hardware address(es) of this entry/host.') + '<br /><br />' + 
 			_('In DHCPv4, it is possible to include more than one mac address. This allows an IP address to be associated with multiple macaddrs, and dnsmasq abandons a DHCP lease to one of the macaddrs when another asks for a lease. It only works reliably if only one of the macaddrs is active at any time.'));
-		//As a special case, in DHCPv4, it is possible to include more than one hardware address. eg: --dhcp-host=11:22:33:44:55:66,12:34:56:78:90:12,192.168.0.2 This allows an IP address to be associated with multiple hardware addresses, and gives dnsmasq permission to abandon a DHCP lease to one of the hardware addresses when another one asks for a lease
 		so.rmempty  = true;
 		so.cfgvalue = function(section) {
 			var macs = L.toArray(uci.get('dhcp', section, 'mac'));
