@@ -1758,8 +1758,7 @@ end
 function wifinet.active_mode(self)
 	local m = self.iwinfo.mode or self:ubus("net", "config", "mode") or self:get("mode") or "ap"
 
-	if     m == "ap"      then m = "Access Point"
-	elseif m == "Master"  then m = "Access Point"
+	if     m == "ap"      then m = "Master"
 	elseif m == "sta"     then m = "Client"
 	elseif m == "adhoc"   then m = "Ad-Hoc"
 	elseif m == "mesh"    then m = "Mesh Point"

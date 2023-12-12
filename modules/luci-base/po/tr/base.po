@@ -617,7 +617,7 @@ msgstr "Yerel adreslerden gelen paketleri kabul et"
 msgid "Access Concentrator"
 msgstr "Erişim Çoğullayıcı"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3870
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:989
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 msgid "Access Point"
@@ -674,7 +674,7 @@ msgstr "Aktif IPv6 Kurallar"
 msgid "Active peers"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:991
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
 msgid "Ad-Hoc"
@@ -1768,7 +1768,7 @@ msgstr ""
 "Belirtilen mtdblock dosyasını indirmek için \"mtdblock'u kaydet\" e "
 "tıklayın. (NOT: BU ÖZELLİK PROFESYONELLER İÇİNDİR!)"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:990
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:88
@@ -1776,7 +1776,7 @@ msgid "Client"
 msgstr "İstemci"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:37
 msgid "Client ID to send when requesting DHCP"
 msgstr "DHCP istendiğinde gönderilecek İstemci Kimliği"
 
@@ -2643,6 +2643,10 @@ msgstr ""
 "Hiçbir <abbr title=\"Neighbour Discovery Protocol\">NDP</abbr> paketini "
 "proxy yapma."
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+msgid "Do not send a Release when restarting"
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:25
 msgid "Do not send a hostname"
 msgstr "Bir ana bilgisayar adı göndermeyin"
@@ -3120,6 +3124,10 @@ msgstr "Çok noktaya yayın trafiği desteğini etkinleştirin (isteğe bağlı)
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:67
 msgid "Enable the DF (Don't Fragment) flag of the encapsulating packets."
 msgstr "Kapsüllenen paketlerin DF (Parçalama) bayrağını etkinleştirin."
+
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:34
+msgid "Enable to reduce the risk of prefix changes following a restart"
+msgstr ""
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:75
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:75
@@ -4219,11 +4227,6 @@ msgstr "Sahte NX Etki Alanını Geçersiz Kılma"
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:9
 msgid "IPsec XFRM"
 msgstr "IPsec XFRM"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
-msgid ""
-"IPsets are forward compatible with nftsets: fw4 converts IPsets to nftsets."
-msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1005
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js:87
@@ -5671,7 +5674,7 @@ msgstr "Manuel"
 msgid "Manufacturer"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
 msgid "Master (VLAN)"
 msgstr ""
 
@@ -5814,7 +5817,7 @@ msgstr ""
 msgid "Mesh ID"
 msgstr "Mesh kimliği"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
 msgid "Mesh Point"
 msgstr ""
 
@@ -5967,7 +5970,7 @@ msgstr "Modem başlatma zaman aşımı"
 msgid "ModemManager"
 msgstr "ModemManager"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1076
 msgid "Monitor"
 msgstr "İzle"
@@ -7000,11 +7003,11 @@ msgstr ""
 msgid "Owner"
 msgstr "Sahip"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
 msgid "P2P Client"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
 msgid "P2P Go"
 msgstr ""
 
@@ -9707,6 +9710,10 @@ msgstr ""
 "<abbr title=\"Router Advertisement\">RA</abbr> mesajlarında yayınlanacak "
 "maksimum atlama sayısı. Maksimum 255 atlamadır."
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
+msgid "The netfilter components below are only regarded when running fw4."
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4699
 msgid ""
 "The network access to this device could be interrupted by changing settings "
@@ -10369,7 +10376,7 @@ msgstr ""
 "oluşturulur."
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2092
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3880
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
 #: modules/luci-compat/luasrc/model/network.lua:971
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:585
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:17
@@ -10856,7 +10863,7 @@ msgstr "Sanal Ethernet"
 msgid "Virtual dynamic interface"
 msgstr "Sanal dinamik arayüz"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 msgid "WDS"
@@ -11058,9 +11065,9 @@ msgid "Wireless Adapter"
 msgstr "Kablosuz Adaptör"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2974
-#: modules/luci-base/htdocs/luci-static/resources/network.js:4288
+#: modules/luci-base/htdocs/luci-static/resources/network.js:4287
 #: modules/luci-compat/luasrc/model/network.lua:1405
-#: modules/luci-compat/luasrc/model/network.lua:1869
+#: modules/luci-compat/luasrc/model/network.lua:1868
 msgid "Wireless Network"
 msgstr "Kablosuz ağ"
 

@@ -620,7 +620,7 @@ msgstr "接受具有本地源地址的数据包"
 msgid "Access Concentrator"
 msgstr "接入集中器"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3870
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:989
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 msgid "Access Point"
@@ -677,7 +677,7 @@ msgstr "活跃的 IPv6 规则"
 msgid "Active peers"
 msgstr "活动的对端"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:991
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
 msgid "Ad-Hoc"
@@ -1763,7 +1763,7 @@ msgstr ""
 "点击“保存 mtdblock”以下载指定的 mtdblock 分区文件。（注意：此功能适用于专业人"
 "士！）"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:990
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:88
@@ -1771,7 +1771,7 @@ msgid "Client"
 msgstr "客户端"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:37
 msgid "Client ID to send when requesting DHCP"
 msgstr "请求 DHCP 时发送的客户端 ID"
 
@@ -2624,6 +2624,10 @@ msgid ""
 "packets."
 msgstr "不代理任何 <abbr title=\"邻居发现协议\">NDP</abbr> 数据包。"
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+msgid "Do not send a Release when restarting"
+msgstr "重启时不发送 Release"
+
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:25
 msgid "Do not send a hostname"
 msgstr "不发送主机名"
@@ -3101,6 +3105,10 @@ msgstr "启用多播传输支持（可选）。"
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:67
 msgid "Enable the DF (Don't Fragment) flag of the encapsulating packets."
 msgstr "启用后报文的 DF（禁止分片）标志。"
+
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:34
+msgid "Enable to reduce the risk of prefix changes following a restart."
+msgstr "启用以降低重启后前缀发生变更的风险。"
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:75
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:75
@@ -4193,11 +4201,6 @@ msgstr "忽略虚假空域名解析"
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:9
 msgid "IPsec XFRM"
 msgstr "IPsec XFRM"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
-msgid ""
-"IPsets are forward compatible with nftsets: fw4 converts IPsets to nftsets."
-msgstr "IPsets 与 nftsets 向前兼容：fw4 将 IPsets 转换为 nftsets。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1005
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js:87
@@ -5634,7 +5637,7 @@ msgstr "手动"
 msgid "Manufacturer"
 msgstr "制造商"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
 msgid "Master (VLAN)"
 msgstr "主设备 (VLAN)"
 
@@ -5775,7 +5778,7 @@ msgstr "内存虚拟大小"
 msgid "Mesh ID"
 msgstr "Mesh ID"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
 msgid "Mesh Point"
 msgstr "Mesh 节点"
 
@@ -5924,7 +5927,7 @@ msgstr "调制解调器初始化超时"
 msgid "ModemManager"
 msgstr "调制解调器管理器"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1076
 msgid "Monitor"
 msgstr "监听"
@@ -6947,11 +6950,11 @@ msgstr "自己的号码"
 msgid "Owner"
 msgstr "用户名"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
 msgid "P2P Client"
 msgstr "P2P 客户端"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
 msgid "P2P Go"
 msgstr ""
 
@@ -9569,6 +9572,10 @@ msgstr ""
 "将在 <abbr title=\"路由器通告\">RA</abbr>消息中发布的最大跳数。最大值为 255 "
 "跳。"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
+msgid "The netfilter components below are only regarded when running fw4."
+msgstr "下面的 netfilter 组件仅在运行 fw4 时才被考虑。"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4699
 msgid ""
 "The network access to this device could be interrupted by changing settings "
@@ -10194,7 +10201,7 @@ msgstr ""
 "缀在首次安装时随机生成。"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2092
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3880
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
 #: modules/luci-compat/luasrc/model/network.lua:971
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:585
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:17
@@ -10666,7 +10673,7 @@ msgstr "虚拟以太网"
 msgid "Virtual dynamic interface"
 msgstr "虚拟动态接口"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 msgid "WDS"
@@ -10872,9 +10879,9 @@ msgid "Wireless Adapter"
 msgstr "无线适配器"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2974
-#: modules/luci-base/htdocs/luci-static/resources/network.js:4288
+#: modules/luci-base/htdocs/luci-static/resources/network.js:4287
 #: modules/luci-compat/luasrc/model/network.lua:1405
-#: modules/luci-compat/luasrc/model/network.lua:1869
+#: modules/luci-compat/luasrc/model/network.lua:1868
 msgid "Wireless Network"
 msgstr "无线网络"
 

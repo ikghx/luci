@@ -3831,7 +3831,7 @@ WifiNetwork = baseclass.extend(/** @lends LuCI.network.WifiNetwork.prototype */ 
 	 * @returns {string}
 	 * Returns the human readable mode name as reported by iwinfo or uci mode.
 	 * Possible returned values are:
-	 *  - `Access Point`
+	 *  - `Master`
 	 *  - `Ad-Hoc`
 	 *  - `Client`
 	 *  - `Monitor`
@@ -3846,8 +3846,7 @@ WifiNetwork = baseclass.extend(/** @lends LuCI.network.WifiNetwork.prototype */ 
 		var mode = this.ubus('net', 'iwinfo', 'mode') || this.getMode();
 
 		switch (mode) {
-		case 'Master':  return 'Access Point';
-		case 'ap':      return 'Access Point';
+		case 'ap':      return 'Master';
 		case 'sta':     return 'Client';
 		case 'adhoc':   return 'Ad-Hoc';
 		case 'mesh':    return 'Mesh Point';
@@ -3868,16 +3867,16 @@ WifiNetwork = baseclass.extend(/** @lends LuCI.network.WifiNetwork.prototype */ 
 		var mode = this.getActiveMode();
 
 		switch (mode) {
-		case "Access Point": return _('Access Point');
-		case "Ad-Hoc":       return _('Ad-Hoc');
-		case "Client":       return _('Client');
-		case "Monitor":      return _('Monitor');
-		case "Master(VLAN)": return _('Master (VLAN)');
-		case "WDS":          return _('WDS');
-		case "Mesh Point":   return _('Mesh Point');
-		case "P2P Client":   return _('P2P Client');
-		case "P2P Go":       return _('P2P Go');
-		case "Unknown":      return _('Unknown');
+		case 'Master':       return _('Access Point');
+		case 'Ad-Hoc':       return _('Ad-Hoc');
+		case 'Client':       return _('Client');
+		case 'Monitor':      return _('Monitor');
+		case 'Master(VLAN)': return _('Master (VLAN)');
+		case 'WDS':          return _('WDS');
+		case 'Mesh Point':   return _('Mesh Point');
+		case 'P2P Client':   return _('P2P Client');
+		case 'P2P Go':       return _('P2P Go');
+		case 'Unknown':      return _('Unknown');
 		default:             return mode;
 		}
 	},

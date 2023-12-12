@@ -622,7 +622,7 @@ msgstr "Accepteer pakketten met lokale bronadressen"
 msgid "Access Concentrator"
 msgstr "Toegang Concentrator"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3870
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:989
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 msgid "Access Point"
@@ -679,7 +679,7 @@ msgstr "Actieve IPv6-regels"
 msgid "Active peers"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:991
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
 msgid "Ad-Hoc"
@@ -1781,7 +1781,7 @@ msgstr ""
 "Klik op \"Bewaar mtdblock\" om het gespecificeerde mtdblock-bestand te "
 "downloaden. (OPMERKING: DEZE FUNCTIE IS VOOR PROFESSIONALS! )"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:990
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:88
@@ -1789,7 +1789,7 @@ msgid "Client"
 msgstr "Cliënt"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:37
 msgid "Client ID to send when requesting DHCP"
 msgstr "Client-ID om te verzenden bij het aanvragen van DHCP"
 
@@ -2658,6 +2658,10 @@ msgid ""
 msgstr ""
 "Proxy geen <abbr title=\"Neighbour Discovery Protocol\">NDP</abbr>-pakketten."
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+msgid "Do not send a Release when restarting"
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:25
 msgid "Do not send a hostname"
 msgstr "Stuur geen hostnaam"
@@ -3145,6 +3149,10 @@ msgstr "Ondersteuning voor multicast-verkeer inschakelen (optioneel)."
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:67
 msgid "Enable the DF (Don't Fragment) flag of the encapsulating packets."
 msgstr "De DF (Don't Fragment) vlag van de inkapselende pakketten inschakelen."
+
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:34
+msgid "Enable to reduce the risk of prefix changes following a restart"
+msgstr ""
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:75
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:75
@@ -4254,11 +4262,6 @@ msgstr "IP's om te overschrijven met NXDOMAIN"
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:9
 msgid "IPsec XFRM"
 msgstr "IPsec XFRM"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
-msgid ""
-"IPsets are forward compatible with nftsets: fw4 converts IPsets to nftsets."
-msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1005
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js:87
@@ -5712,7 +5715,7 @@ msgstr "Handmatig"
 msgid "Manufacturer"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
 msgid "Master (VLAN)"
 msgstr ""
 
@@ -5852,7 +5855,7 @@ msgstr ""
 msgid "Mesh ID"
 msgstr "Mesh-ID"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
 msgid "Mesh Point"
 msgstr ""
 
@@ -6004,7 +6007,7 @@ msgstr "Modem init time-out"
 msgid "ModemManager"
 msgstr "ModemManager"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1076
 msgid "Monitor"
 msgstr "Monitor"
@@ -7040,11 +7043,11 @@ msgstr ""
 msgid "Owner"
 msgstr "Eigenaar"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
 msgid "P2P Client"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
 msgid "P2P Go"
 msgstr ""
 
@@ -9766,6 +9769,10 @@ msgstr ""
 "Het maximale aantal hops dat moet worden gepubliceerd in <abbr "
 "title=\"Router Advertisement\">RA</abbr>-berichten. Maximaal is 255 hops."
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
+msgid "The netfilter components below are only regarded when running fw4."
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4699
 msgid ""
 "The network access to this device could be interrupted by changing settings "
@@ -10434,7 +10441,7 @@ msgstr ""
 "willekeurig gegenereerd bij de eerste installatie."
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2092
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3880
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
 #: modules/luci-compat/luasrc/model/network.lua:971
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:585
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:17
@@ -10924,7 +10931,7 @@ msgstr "Virtueel Ethernet"
 msgid "Virtual dynamic interface"
 msgstr "Virtuele dynamische interface"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 msgid "WDS"
@@ -11131,9 +11138,9 @@ msgid "Wireless Adapter"
 msgstr "Draadloze adapter"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2974
-#: modules/luci-base/htdocs/luci-static/resources/network.js:4288
+#: modules/luci-base/htdocs/luci-static/resources/network.js:4287
 #: modules/luci-compat/luasrc/model/network.lua:1405
-#: modules/luci-compat/luasrc/model/network.lua:1869
+#: modules/luci-compat/luasrc/model/network.lua:1868
 msgid "Wireless Network"
 msgstr "Draadloos netwerk"
 

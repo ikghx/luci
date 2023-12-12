@@ -606,7 +606,7 @@ msgstr "Hyväksy paketit, joilla on paikallinen lähdeosoite"
 msgid "Access Concentrator"
 msgstr "Pääsy keskitin"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3870
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:989
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 msgid "Access Point"
@@ -663,7 +663,7 @@ msgstr "Aktiiviset IPv6-säännöt"
 msgid "Active peers"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3871
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:991
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
 msgid "Ad-Hoc"
@@ -1744,7 +1744,7 @@ msgstr ""
 "Lataa määritetty mtdblock-tiedosto valitsemalla Tallenna mtdblock. (HUOM: "
 "TÄMÄ OMINAISUUS ON AMMATTILAISILLE! )"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3872
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:990
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:88
@@ -1752,7 +1752,7 @@ msgid "Client"
 msgstr "Asiakas"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:37
 msgid "Client ID to send when requesting DHCP"
 msgstr "Asiakastunnus, joka lähetetään DHCP: tä pyydettäessä"
 
@@ -2604,6 +2604,10 @@ msgid ""
 "packets."
 msgstr ""
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:33
+msgid "Do not send a Release when restarting"
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:25
 msgid "Do not send a hostname"
 msgstr "Älä lähetä isäntänimeä"
@@ -3074,6 +3078,10 @@ msgstr "Lisää tuki multicast -liikenteelle (valinnainen)"
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:67
 msgid "Enable the DF (Don't Fragment) flag of the encapsulating packets."
 msgstr "Ota käyttöön kapselointipakettien DF (Don't Fragment) -lippu."
+
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:34
+msgid "Enable to reduce the risk of prefix changes following a restart"
+msgstr ""
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:75
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:75
@@ -4162,11 +4170,6 @@ msgstr "Väärän NX-alueen ohitus"
 
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:9
 msgid "IPsec XFRM"
-msgstr ""
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
-msgid ""
-"IPsets are forward compatible with nftsets: fw4 converts IPsets to nftsets."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1005
@@ -5594,7 +5597,7 @@ msgstr "Manuaalinen"
 msgid "Manufacturer"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
 msgid "Master (VLAN)"
 msgstr ""
 
@@ -5735,7 +5738,7 @@ msgstr ""
 msgid "Mesh ID"
 msgstr "Mesh ID"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
 msgid "Mesh Point"
 msgstr ""
 
@@ -5884,7 +5887,7 @@ msgstr "Modeemin aikakatkaisu"
 msgid "ModemManager"
 msgstr "ModemManager"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3874
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3873
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1076
 msgid "Monitor"
 msgstr "Valvonta"
@@ -6896,11 +6899,11 @@ msgstr ""
 msgid "Owner"
 msgstr "Omistaja"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3877
 msgid "P2P Client"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3878
 msgid "P2P Go"
 msgstr ""
 
@@ -9517,6 +9520,10 @@ msgstr ""
 "<abbr title=\"Router Advertisement\">RA</abbr>-viesteissä julkaistava "
 "hyppyjen enimmäismäärä. Suurin mahdollinen on 255 hyppyä."
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:978
+msgid "The netfilter components below are only regarded when running fw4."
+msgstr ""
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4699
 msgid ""
 "The network access to this device could be interrupted by changing settings "
@@ -10145,7 +10152,7 @@ msgid ""
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2092
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3880
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3879
 #: modules/luci-compat/luasrc/model/network.lua:971
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:585
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:17
@@ -10624,7 +10631,7 @@ msgstr ""
 msgid "Virtual dynamic interface"
 msgstr "Virtuaalinen dynaaminen sovitin"
 
-#: modules/luci-base/htdocs/luci-static/resources/network.js:3876
+#: modules/luci-base/htdocs/luci-static/resources/network.js:3875
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1104
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1105
 msgid "WDS"
@@ -10812,9 +10819,9 @@ msgid "Wireless Adapter"
 msgstr "Langaton sovitin"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2974
-#: modules/luci-base/htdocs/luci-static/resources/network.js:4288
+#: modules/luci-base/htdocs/luci-static/resources/network.js:4287
 #: modules/luci-compat/luasrc/model/network.lua:1405
-#: modules/luci-compat/luasrc/model/network.lua:1869
+#: modules/luci-compat/luasrc/model/network.lua:1868
 msgid "Wireless Network"
 msgstr "Langaton verkko"
 

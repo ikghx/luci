@@ -30,6 +30,10 @@ return network.registerProtocol('dhcpv6', {
 		o.value('64');
 		o.default = 'auto';
 
+		o = s.taboption('general', form.Flag, 'norelease', _('Do not send a Release when restarting'),
+						_('Enable to reduce the risk of prefix changes following a restart.'));
+		o.default = '1';
+
 		o = s.taboption('advanced', form.Value, 'clientid', _('Client ID to send when requesting DHCP'));
 		o.datatype  = 'hexstring';
 	}

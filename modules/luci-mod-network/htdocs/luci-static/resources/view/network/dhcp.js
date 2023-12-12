@@ -975,7 +975,7 @@ return view.extend({
 
 		o = s.taboption('ipsets', form.SectionValue, '__ipsets__', form.GridSection, 'ipset', null,
 			_('List of IP sets to populate with the IPs of DNS lookup results of the FQDNs also specified here.') + '<br />' +
-			_('IPsets are forward compatible with nftsets: fw4 converts IPsets to nftsets.'));
+			_('The netfilter components below are only regarded when running fw4.'));
 
 		ss = o.subsection;
 		ss.addremove = true;
