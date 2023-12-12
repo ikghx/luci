@@ -1036,9 +1036,9 @@ return view.extend({
 					o.optional = true;
 					o.modalonly = true;
 
-					o = s.taboption("timer", form.Value, "retry_count",
-						_("Error Retry Counter"),
-						_("On Error the script will stop execution after given number of retrys.")
+					o = s.taboption("timer", form.Value, "retry_max_count",
+						_("Error Max Retry Counter"),
+						_("On Error the script will stop execution after the given number of retries.")
 						+ "<br />" +
 						_("The default setting of '0' will retry infinitely."));
 					o.placeholder = "0";
@@ -1048,7 +1048,7 @@ return view.extend({
 
 					o = s.taboption("timer", form.Value, "retry_interval",
 						_("Error Retry Interval"),
-						_("The interval between which each succesive retry will commence."));
+  						_("The interval between which each successive retry commences."));
 					o.placeholder = "60";
 					o.optional = true;
 					o.modalonly = true;
