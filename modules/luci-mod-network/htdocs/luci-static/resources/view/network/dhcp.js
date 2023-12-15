@@ -1106,7 +1106,7 @@ return view.extend({
 
 		so = ss.option(form.Value, 'leasetime', 
 			_('Lease time'),
-			_('Host-specific lease time, e.g. <code>5m</code>, <code>3h</code>, <code>7d</code>, or <code>ignore</code> to ignore DHCP requests from this host.'));
+			_('Host-specific lease time, e.g. <code>5m</code>, <code>3h</code>, <code>7d</code>.'));
 		so.rmempty = true;
 		so.value('5m', _('5 minutes'));
 		so.value('1h', _('1 hours'));
@@ -1115,7 +1115,6 @@ return view.extend({
 		so.value('1d', _('1 days'));
 		so.value('7d', _('7 days'));
 		so.value('infinite', _('Infinite'));
-		so.value('ignore', _('Ignore'));
 
 		so = ss.option(form.Value, 'duid',
 			_('DUID'),

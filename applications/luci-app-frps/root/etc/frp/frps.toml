@@ -20,18 +20,18 @@ kcpBindPort = 7000
 # quicBindPort = 7002
 
 # Specify which address proxy will listen for, default value is same with bindAddr
-# 指定代理监听哪个地址，默认值与 bindAddr 相同
+# 指定代理监听哪个地址，默认值与 bindAddr 相同。
 # proxyBindAddr = "127.0.0.1"
 
 # quic protocol options
-# quic 协议选项
+# quic 协议选项。
 # transport.quic.keepalivePeriod = 10
 # transport.quic.maxIdleTimeout = 30
 # transport.quic.maxIncomingStreams = 100000
 
 # Heartbeat configure, it's not recommended to modify the default value
 # The default value of heartbeatTimeout is 90. Set negative value to disable it.
-# 心跳配置，不建议修改默认值
+# 心跳配置，不建议修改默认值。
 # heartbeatTimeout 默认值为 90。设置负值即可禁用。
 # transport.heartbeatTimeout = 90
 
@@ -172,13 +172,13 @@ allowPorts = [
 ]
 
 # Max ports can be used for each client, default value is 0 means no limit
-# 每个客户端可以使用的最大端口数，默认值为0表示无限制
+# 每个客户端可以使用的最大端口数，默认值为 0 表示无限制
 maxPortsPerClient = 0
 
 # If subDomainHost is not empty, you can set subdomain when type is http or https in frpc's configure file
 # When subdomain is est, the host used by routing is test.frps.com
-# 如果subDomainHost不为空，则可以在frpc的配置文件中设置type为http或https时的子域名
-# subdomain为est时，路由使用的host为test.frps.com
+# 如果subDomainHost不为空，则可以在frpc的配置文件中设置 type 为 http 或 https 时的子域名
+# subdomain 为 est 时，路由使用的 host 为 test.frps.com
 subDomainHost = "frps.com"
 
 # custom 404 page for HTTP requests
@@ -188,7 +188,7 @@ subDomainHost = "frps.com"
 # specify udp packet size, unit is byte. If not set, the default value is 1500.
 # This parameter should be same between client and server.
 # It affects the udp and sudp proxy.
-# 指定udp数据包大小，单位为字节。 如果未设置，则默认值为 1500。
+# 指定udp数据包大小，单位为字节。 如果未设置，则默认值为 1500
 # 客户端和服务端之间的此参数应相同。可用范围：100-1500
 # 它会影响 udp 和 sudp 代理。
 udpPacketSize = 1500
@@ -196,6 +196,17 @@ udpPacketSize = 1500
 # Retention time for NAT hole punching strategy data.
 # NAT 打洞策略数据的保留时间。
 natholeAnalysisDataReserveHours = 168
+
+# ssh tunnel gateway
+# If you want to enable this feature, the bindPort parameter is required, while others are optional.
+# By default, this feature is disabled. It will be enabled if bindPort is greater than 0.
+# ssh 隧道网关
+# 如果要启用此功能，bindPort 参数是必需的，其他参数是可选的。
+# 默认情况下，该功能处于禁用状态。 如果bindPort大于0则启用。
+# sshTunnelGateway.bindPort = 2200
+# sshTunnelGateway.privateKeyFile = "/home/frp-user/.ssh/id_rsa"
+# sshTunnelGateway.autoGenPrivateKeyPath = ""
+# sshTunnelGateway.authorizedKeysFile = "/home/frp-user/.ssh/authorized_keys"
 
 [[httpPlugins]]
 name = "user-manager"
