@@ -290,6 +290,29 @@ return view.extend({
 		    networks = hosts_duids_pools[3],
 		    m, s, o, ss, so;
 
+		let noi18nstrings = {
+			etc_hosts: '<code>/etc/hosts</code>',
+			etc_ethers: '<code>/etc/ethers</code>',
+			localhost_v6: '<code>::1</code>',
+			loopback_slash_8_v4: '<code>127.0.0.0/8</code>',
+			not_found: '<code>Not found</code>',
+			nxdomain: '<code>NXDOMAIN</code>',
+			rfc_1918_link: '<a href="https://www.rfc-editor.org/rfc/rfc1918">RFC1918</a>',
+			rfc_4193_link: '<a href="https://www.rfc-editor.org/rfc/rfc4193">RFC4193</a>',
+			rfc_4291_link: '<a href="https://www.rfc-editor.org/rfc/rfc4291">RFC4291</a>',
+			rfc_6303_link: '<a href="https://www.rfc-editor.org/rfc/rfc6303">RFC6303</a>',
+			reverse_arpa: '<code>*.IN-ADDR.ARPA,*.IP6.ARPA</code>',
+			servers_file_entry01: '<code>server=1.2.3.4</code>',
+			servers_file_entry02: '<code>server=/domain/1.2.3.4</code>',
+
+		};
+
+		function customi18n(template, values) {
+			if (!values)
+				values = noi18nstrings;
+			return template.replace(/\{(\w+)\}/g, (match, key) => values[key] || match);
+		};
+
 		m = new form.Map('dhcp', _('DHCP and DNS'),
 			_('Dnsmasq is a lightweight <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server and <abbr title="Domain Name System">DNS</abbr> forwarder.'));
 
@@ -338,10 +361,6 @@ return view.extend({
 		o = s.taboption('general', form.Flag, 'fqdn',
 			_('DHCP FQDN'),
 			_('the unqualified name is no longer put in the DNS, only qualified names are kept.'));
-
-		function customi18n(template, values) {
-			return template.replace(/\{(\w+)\}/g, (match, key) => values[key] || match);
-		};
 
 		o = s.taboption('general', form.DynamicList, 'address',
 			_('Static address'),
@@ -427,7 +446,9 @@ return view.extend({
 
 		s.taboption('advanced', form.Flag, 'localise_queries',
 			_('Localise queries'),
-			_('Return answers to DNS queries matching the subnet from which the query was received if multiple IPs are available.'));
+			customi18n(_('Limit response records (from {etc_hosts}) to those that fall within the subnet of the querying interface.') ) + '<br />' +
+			_('This prevents unreachable IPs in subnets not accessible to you.') + '<br />' +
+			_('Note: IPv4 only.'));
 
 		if (L.hasSystemFeature('dnsmasq', 'dnssec')) {
 			o = s.taboption('advanced', form.Flag, 'dnssec',
@@ -459,7 +480,7 @@ return view.extend({
 
 		o = s.taboption('advanced', form.Flag, 'allservers',
 			_('All servers'),
-			_('Query all available upstream resolvers.'));
+			_('Query all available upstream resolvers.') + ' ' + _('First answer wins.'));
 
 		o = s.taboption('advanced', form.Flag, 'connmark_allowlist_enable',
 			_('Enable connmark allow list'));
@@ -477,34 +498,42 @@ return view.extend({
 		o.placeholder = '1.9.168.192.in-addr.arpa.,"name"';
 
 		o = s.taboption('advanced', form.DynamicList, 'bogusnxdomain',
-			_('IPs to override with NXDOMAIN'),
-			_('Transform replies which contain the specified addresses or subnets into NXDOMAIN responses.'));
+			customi18n(_('IPs to override with {nxdomain}') ),
+			customi18n(_('Transform replies which contain the specified addresses or subnets into {nxdomain} responses.') )
+		);
 		o.optional = true;
 		o.placeholder = '64.94.110.11';
 
 		s.taboption('filteropts', form.Flag, 'domainneeded',
 			_('Domain required'),
-			_('Never forward DNS queries lacking dots or domain parts.'),
-			_('Names not in %s are answered %s.', 'hint: Names not in <code>/etc/hosts</code> are answered <code>Not found</code>.').format('<code>/etc/hosts</code>', '<code>Not found</code>'));
+			_('Never forward DNS queries which lack dots or domain parts.') + '<br />' +
+			customi18n(_('Names not in {etc_hosts} are answered {not_found}.') )
+		);
 
 		s.taboption('filteropts', form.Value, 'local',
-			_('Serve these locally'),
+			_('Resolve these locally'),
 			_('Never forward these matching domains or subdomains; resolve from DHCP or hosts files only.'));
+		o.placeholder = '/internal.example.com/private.example.com/example.org';
 
 		o = s.taboption('filteropts', form.Flag, 'rebind_protection',
 			_('Rebind protection'),
-			_('Discard upstream responses containing <a href="%s">RFC1918</a> addresses.').format('https://www.rfc-editor.org/rfc/rfc1918') + '<br />' +
-			_('Discard also upstream responses containing <a href="%s">RFC4193</a>, Link-Local and private IPv4-Mapped <a href="%s">RFC4291</a> IPv6 Addresses.').format('https://www.rfc-editor.org/rfc/rfc4193', 'https://www.rfc-editor.org/rfc/rfc4291'));
+			customi18n(_('Discard upstream responses containing {rfc_1918_link} addresses.') ) + '<br />' +
+			customi18n(_('Discard also upstream responses containing {rfc_4193_link}, Link-Local and private IPv4-Mapped {rfc_4291_link} IPv6 Addresses.') )	
+		);
 		o.rmempty = false;
 
 		o = s.taboption('filteropts', form.Flag, 'rebind_localhost',
 			_('Allow localhost'),
-			_('Exempt <code>127.0.0.0/8</code> and <code>::1</code> from rebinding checks, e.g. for <abbr title="Real-time Block List">RBL</abbr> services.'));
+			customi18n(
+			_('Exempt {loopback_slash_8_v4} and {localhost_v6} from rebinding checks, e.g. for <abbr title="Real-time Block List">RBL</abbr> services.')
+			)
+		);
 		o.depends('rebind_protection', '1');
 
 		o = s.taboption('filteropts', form.DynamicList, 'rebind_domain',
 			_('Domain whitelist'),
-			_('List of domains to allow RFC1918 responses for.'));
+			customi18n(_('List of domains to allow {rfc_1918_link} responses for.') )
+		);
 		o.depends('rebind_protection', '1');
 		o.optional = true;
 		o.placeholder = 'ihost.netflix.com';
@@ -524,7 +553,9 @@ return view.extend({
 
 		o = s.taboption('filteropts', form.Flag, 'boguspriv',
 			_('Filter private'),
-			_('Reject reverse lookups to <a href="%s">RFC6303</a> IP ranges (<code>*.IN-ADDR.ARPA,*.IP6.ARPA</code>) not in <code>/etc/hosts</code>.').format('https://www.rfc-editor.org/rfc/rfc6303')); 
+			customi18n(
+			_('Reject reverse lookups to {rfc_6303_link} IP ranges ({reverse_arpa}) not in {etc_hosts}.') )
+		); 
 		o.default = o.enabled;
 
 		s.taboption('filteropts', form.Flag, 'filterwin2k',
@@ -534,7 +565,8 @@ return view.extend({
 
 		o = s.taboption('forward', form.Value, 'serversfile',
 			_('Additional servers file'),
-			_('File listing upstream resolvers, optionally domain-specific, e.g. <code>server=1.2.3.4</code>, <code>server=/domain/1.2.3.4</code>.'));
+			customi18n(_('File listing upstream resolvers, optionally domain-specific, e.g. {servers_file_entry01}, {servers_file_entry02}.') )
+		);
 		o.placeholder = '/etc/dnsmasq.servers';
 
 		o = s.taboption('forward', form.DynamicList, 'server',
@@ -628,7 +660,7 @@ return view.extend({
 
 		o = s.taboption('logging', form.Flag, 'logqueries',
 			_('Log queries'),
-			_('Write received DNS queries to syslog, dump cache on SIGUSR1, include requesting IP.'));
+			_('Write received DNS queries to syslog.') + ' ' + _('Dump cache on SIGUSR1, include requesting IP.'));
 
 		o = s.taboption('logging', form.Value, 'logfacility',
 			_('Log facility'),
@@ -670,8 +702,9 @@ return view.extend({
 		o.depends('logdhcp', '0');
 
 		s.taboption('files', form.Flag, 'readethers',
-			_('Use <code>/etc/ethers</code>'),
-			_('Read <code>/etc/ethers</code> to configure the DHCP server.'));
+			customi18n(_('Use {etc_ethers}') ),
+			customi18n(_('Read {etc_ethers} to configure the DHCP server.') )
+			);
 
 		o = s.taboption('files', form.Value, 'leasefile',
 			_('Lease file'),
@@ -689,7 +722,8 @@ return view.extend({
 		o.optional = true;
 
 		o = s.taboption('files', form.Flag, 'nohosts',
-			_('Ignore <code>/etc/hosts</code>'));
+			customi18n(_('Ignore {etc_hosts}') )
+		);
 
 		o = s.taboption('files', form.DynamicList, 'addnhosts',
 			_('Additional hosts files'));
@@ -857,7 +891,7 @@ return view.extend({
 		ss.sortable  = true;
 		ss.rowcolors = true;
 
-		so = ss.option(form.Value, 'srv', _('SRV'), _('Syntax: <code>_service._proto.example.com.</code>'));
+		so = ss.option(form.Value, 'srv', _('SRV'), _('Syntax:') + ' ' + '<code>_service._proto.example.com.</code>');
 		so.rmempty = false;
 		so.datatype = 'hostname';
 		so.placeholder = '_sip._tcp.example.com.';
