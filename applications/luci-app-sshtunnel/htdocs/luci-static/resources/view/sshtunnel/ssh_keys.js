@@ -8,17 +8,23 @@ var allSshKeys = {};
 var hasSshKeygen = false;
 
 return view.extend({
+	handleSaveApply: null,
+	handleSave: null,
+	handleReset: null,
+
 	load: function () {
 		return L.resolveDefault(fs.list('/root/.ssh/'), []).then(function (entries) {
 			var tasks = [
+				// detect if OpenSSH ssh-keygen is installed
 				L.resolveDefault(fs.stat('/usr/bin/ssh-keygen'), {}),
 			];
+			var sshKeyNames = _findAllPossibleIdKeys(entries);
+
 			// read pub keys
-			for (var i = 0; i < entries.length; i++) {
-				if (entries[i].type === 'file' && entries[i].name.match(/\.pub$/)) {
-					tasks.push(Promise.resolve(entries[i].name));
-					tasks.push(fs.lines('/root/.ssh/' + entries[i].name));
-				}
+			for (var sshKeyName of sshKeyNames) {
+				var sshPubKeyName = sshKeyName + '.pub';
+				tasks.push(Promise.resolve(sshKeyName));
+				tasks.push(_loadPublicKey(sshPubKeyName));
 			}
 			return Promise.all(tasks);
 		});
@@ -31,7 +37,7 @@ return view.extend({
 		var m, s, o;
 
 		m = new form.Map('sshtunnel', _('SSH Tunnels'),
-			_('This configures <a %s>SSH Tunnels</a>')
+			_('This configures <a %s>SSH Tunnels</a>.')
 				.format('href="https://openwrt.org/docs/guide-user/services/ssh/sshtunnel"')
 		);
 
@@ -42,12 +48,37 @@ return view.extend({
 	},
 });
 
+function _findAllPossibleIdKeys(entries) {
+	var sshKeyNames = [];
+	for (var item of entries) {
+		if (item.type !== 'file') {
+			continue
+		}
+		// a key file should have a corresponding .pub file
+		if (item.name.endsWith('.pub')) {
+			var sshPubKeyName = item.name;
+			var sshKeyName = sshPubKeyName.substring(0, sshPubKeyName.length - 4);
+			if (!sshKeyNames.includes(sshKeyName)) {
+				sshKeyNames.push(sshKeyName)
+			}
+		} else {
+			// or at least it should start with id_ e.g. id_dropbear
+			if (item.name.startsWith('id_')) {
+				var sshKeyName = item.name;
+				if (!sshKeyNames.includes(sshKeyName)) {
+					sshKeyNames.push(sshKeyName)
+				}
+			}
+		}
+	}
+	return sshKeyNames;
+}
+
 function _splitSshKeys(sshFiles) {
 	var sshKeys = {};
 	for (var i = 0; i < sshFiles.length; i++) {
-		var sshPubKeyName = sshFiles[i];
-		var sshKeyName = sshPubKeyName.substring(0, sshPubKeyName.length - 4);
-		i++;
+		var sshKeyName = sshFiles[i];
+		i++; // next is a .pub content
 		var sshPub = sshFiles[i];
 		sshKeys[sshKeyName] = '<small><code>' + sshPub + '</code></small>';
 	}
@@ -67,16 +98,17 @@ function _renderSshKeys(sshKeys) {
 	cbi_update_table(table, rows, null);
 
 	var keyGenBtn = E('div', {}, [
+		E('h4', _('Generate a new key')),
 		E('form', {
 			'submit': _handleKeyGenSubmit,
 		}, [
-			E('label', {}, _('Generate a new key') + ': '),
+			E('label', {}, _('Name') + ': '),
 			E('span', {'class': 'control-group'}, [
 				E('input', {
 					'type': 'text',
 					'name': 'keyName',
 					'value': 'id_ed25519',
-					'pattern': '^[a-zA-Z][a-zA-Z0-9_\.]+',
+					'pattern': '^[a-zA-Z][a-zA-Z0-9_.@\\-+]+',
 					'required': 'required',
 					'maxsize': '35',
 					'autocomplete': 'off',
@@ -97,13 +129,14 @@ function _renderSshKeys(sshKeys) {
 			_('In LuCI you can do that with <a %s>System / Administration / SSH-Keys</a>')
 				.format('href="/cgi-bin/luci/admin/system/admin/sshkeys"')
 		),
-		keyGenBtn, table
+		table, keyGenBtn,
 	]);
 }
 
 function _handleKeyGenSubmit(event) {
 	event.preventDefault();
 	var keyName = document.querySelector('input[name="keyName"]').value;
+	keyName = keyName.startsWith('id_') ? keyName : 'id_' + keyName;
 	if (allSshKeys[keyName]) {
 		document.body.scrollTop = document.documentElement.scrollTop = 0;
 		ui.addNotification(null, E('p', _('A key with that name already exists.'), 'error'));
@@ -128,4 +161,30 @@ function _handleKeyGenSubmit(event) {
 		ui.addNotification(null, E('p', _('Unable to generate a key: %s').format(e.message)), 'error');
 	});
 	return false;
+}
+
+function _extractPubKeyFromOutput(res) {
+	var lines  = res.stdout.split('\n');
+	for (var line of lines) {
+		if (line.startsWith("ssh-")) {
+			return line;
+		}
+	}
+	return "";
+}
+
+function _loadPublicKey(sshPubKeyName) {
+	return fs.read('/root/.ssh/' + sshPubKeyName)
+		.catch(function (error) {
+			// If there is no the .pub file then this is probably a Dropbear key e.g. id_dropbear.
+			// We can extract it's public key by executing: dropbearkey -y -f /root/.ssh/id_dropbear
+			var sshKeyName = sshPubKeyName.substring(0, sshPubKeyName.length - 4);
+			return fs.exec('/usr/bin/dropbearkey', ['-y', '-f', '/root/.ssh/' + sshKeyName]).then(function (res) {
+				if (res.code === 0) {
+					return _extractPubKeyFromOutput(res);
+				} else {
+					throw new Error(res.stdout + ' ' + res.stderr);
+				}
+			})
+		});
 }
