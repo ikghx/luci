@@ -358,6 +358,10 @@ return view.extend({
 			_('Local domain'),
 			_('Local domain suffix appended to DHCP names and hosts file entries.'));
 
+		s.taboption('general', form.Flag, 'expandhosts',
+			_('Expand hosts'),
+			_('Add local domain suffix to names served from hosts files.'));
+
 		o = s.taboption('general', form.Flag, 'fqdn',
 			_('DHCP FQDN'),
 			_('the unqualified name is no longer put in the DNS, only qualified names are kept.'));
@@ -391,11 +395,9 @@ return view.extend({
 			_('No round robin'),
 			_('records are always returned in the order that they are received from upstream.'));
 
-		o = s.taboption('general', form.ListValue, 'bind',
-			_('Bind mode'),
-			_('Dynamically bind to an interface or only to the interface in use.'));
-		o.value('dynamic', _('Bind dynamic'));
-		o.value('interfaces', _('Bind interface'));
+		o = s.taboption('general', form.Flag, 'allservers',
+			_('All servers'),
+			_('Query all available upstream resolvers.') + ' ' + _('First answer wins.'));
 
 		o = s.taboption('general', form.Flag, 'sequential_ip',
 			_('Allocate IPs sequentially'),
@@ -413,6 +415,12 @@ return view.extend({
 		o.loopback = true;
 		o.multiple = true;
 		o.nocreate = true;
+
+		o = s.taboption('devices', form.ListValue, 'bind',
+			_('Bind mode'),
+			_('Dynamically bind to an interface or only to the interface in use.'));
+		o.value('dynamic', _('Bind dynamic'));
+		o.value('interfaces', _('Bind interface'));
 
 		o = s.taboption('devices', form.Value, 'port',
 			_('DNS server port'),
@@ -444,12 +452,6 @@ return view.extend({
 		o.placeholder = 50000;
 		o.depends('queryport', '');
 
-		s.taboption('advanced', form.Flag, 'localise_queries',
-			_('Localise queries'),
-			customi18n(_('Limit response records (from {etc_hosts}) to those that fall within the subnet of the querying interface.') ) + '<br />' +
-			_('This prevents unreachable IPs in subnets not accessible to you.') + '<br />' +
-			_('Note: IPv4 only.'));
-
 		if (L.hasSystemFeature('dnsmasq', 'dnssec')) {
 			o = s.taboption('advanced', form.Flag, 'dnssec',
 				_('DNSSEC'),
@@ -461,26 +463,10 @@ return view.extend({
 			o.default = o.enabled;
 		}
 
-		s.taboption('advanced', form.Flag, 'expandhosts',
-			_('Expand hosts'),
-			_('Add local domain suffix to names served from hosts files.'));
-
-		s.taboption('advanced', form.Flag, 'nonegcache',
-			_('No negative cache'),
-			_('Do not cache negative replies, e.g. for non-existent domains.'));
-
 		o = s.taboption('advanced', form.DynamicList, 'addnmount',
 			_('Expose additional filesystem paths'),
 			_('read-only mount path to expose it to dnsmasq.'));
 		o.placeholder = '/etc/dnsmasq.d';
-
-		o = s.taboption('advanced', form.Flag, 'strictorder',
-			_('Strict order'),
-			_('Query upstream resolvers in the order they appear in the resolv file.'));
-
-		o = s.taboption('advanced', form.Flag, 'allservers',
-			_('All servers'),
-			_('Query all available upstream resolvers.') + ' ' + _('First answer wins.'));
 
 		o = s.taboption('advanced', form.Flag, 'connmark_allowlist_enable',
 			_('Enable connmark allow list'));
@@ -496,13 +482,6 @@ return view.extend({
 			_('Return a PTR DNS record.'));
 		o.optional = true;
 		o.placeholder = '1.9.168.192.in-addr.arpa.,"name"';
-
-		o = s.taboption('advanced', form.DynamicList, 'bogusnxdomain',
-			customi18n(_('IPs to override with {nxdomain}') ),
-			customi18n(_('Transform replies which contain the specified addresses or subnets into {nxdomain} responses.') )
-		);
-		o.optional = true;
-		o.placeholder = '64.94.110.11';
 
 		s.taboption('filteropts', form.Flag, 'domainneeded',
 			_('Domain required'),
@@ -544,6 +523,12 @@ return view.extend({
 			_('Accept DNS queries only from hosts whose address is on a local subnet.'));
 		o.rmempty = false;
 
+		s.taboption('filteropts', form.Flag, 'localise_queries',
+			_('Localise queries'),
+			customi18n(_('Limit response records (from {etc_hosts}) to those that fall within the subnet of the querying interface.') ) + '<br />' +
+			_('This prevents unreachable IPs in subnets not accessible to you.') + '<br />' +
+			_('Note: IPv4 only.'));
+
 		o = s.taboption('filteropts', form.ListValue, 'dnsfilter',
 			_('DNS filter'),
 			_('Filter these addresses from dnsmasq replies.'));
@@ -562,6 +547,17 @@ return view.extend({
 			_('Filter SRV/SOA service discovery'),
 			_('Filters SRV/SOA service discovery, to avoid triggering dial-on-demand links.') + '<br />' +
 			_('May prevent VoIP or other services from working.'));
+
+		s.taboption('filteropts', form.Flag, 'nonegcache',
+			_('No negative cache'),
+			_('Do not cache negative replies, e.g. for non-existent domains.'));
+
+		o = s.taboption('filteropts', form.DynamicList, 'bogusnxdomain',
+			customi18n(_('IPs to override with {nxdomain}') ),
+			customi18n(_('Transform replies which contain the specified addresses or subnets into {nxdomain} responses.') )
+		);
+		o.optional = true;
+		o.placeholder = '64.94.110.11';
 
 		o = s.taboption('forward', form.Value, 'serversfile',
 			_('Additional servers file'),
@@ -710,6 +706,10 @@ return view.extend({
 			_('Lease file'),
 			_('File to store DHCP lease information.'));
 		o.value('/tmp/dhcp.leases');
+
+		o = s.taboption('files', form.Flag, 'strictorder',
+			_('Strict order'),
+			_('Query upstream resolvers in the order they appear in the resolv file.'));
 
 		o = s.taboption('files', form.Flag, 'noresolv',
 			_('Ignore resolv file'));
@@ -1017,7 +1017,6 @@ return view.extend({
 		ss.sortable  = true;
 		ss.rowcolors = true;
 		ss.nodescriptions = true;
-		ss.rowcolors = true;
 		ss.modaltitle = _('Edit IP set');
 
 		so = ss.option(form.DynamicList, 'name', _('Name of the set'));
@@ -1033,7 +1032,7 @@ return view.extend({
 		so.placeholder = 'fw4';
 		so.rmempty = true;
 
-		so = ss.option(form.Value, 'table_family', _('Table IP family'));
+		so = ss.option(form.ListValue, 'table_family', _('Table IP family'));
 		so.rmempty = true;
 		so.value('inet', _('IPv4+IPv6'));
 		so.value('ip', _('IPv4'));

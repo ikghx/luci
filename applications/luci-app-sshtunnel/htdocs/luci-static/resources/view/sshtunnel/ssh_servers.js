@@ -128,7 +128,7 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('advanced', form.Value, 'ProxyCommand', _('Proxy tunnel command'),
-			_('The command to use to connect to the serve.') + '<br />' +
+			_('The command to use to connect to the server.') + '<br />' +
 			_('For example, the following command would connect via an HTTP proxy:') + '<br />' +
 			'<code>ncat --proxy-type http --proxy-auth alice:secret --proxy 192.168.1.2:8080 %h %p</code>' +
 			_manSshConfig('ProxyCommand')
@@ -140,33 +140,28 @@ return view.extend({
 });
 
 function _findAllPossibleIdKeys(entries) {
-	var sshKeyNames = [];
-	for (var item of entries) {
-		if (item.type !== 'file') {
-			continue
-		}
+	var sshKeyNames = new Set();
+	var fileNames = entries.filter(item => item.type === 'file').map(item => item.name);
+	for (var fileName of fileNames) {
 		// a key file should have a corresponding .pub file
-		if (item.name.endsWith('.pub')) {
-			var sshPubKeyName = item.name;
-			var sshKeyName = sshPubKeyName.substring(0, sshPubKeyName.length - 4);
-			if (!sshKeyNames.includes(sshKeyName)) {
-				sshKeyNames.push(sshKeyName)
+		if (fileName.endsWith('.pub')) {
+			var sshKeyName = fileName.slice(0, -4);
+			// if such a key exists then add it
+			if (fileNames.includes(sshKeyName)) {
+				sshKeyNames.add(sshKeyName);
 			}
 		} else {
 			// or at least it should start with id_ e.g. id_dropbear
-			if (item.name.startsWith('id_')) {
-				var sshKeyName = item.name;
-				if (!sshKeyNames.includes(sshKeyName)) {
-					sshKeyNames.push(sshKeyName)
-				}
+			if (fileName.startsWith('id_')) {
+				var sshKeyName = fileName;
+				sshKeyNames.add(sshKeyName);
 			}
 		}
 	}
-	return sshKeyNames;
+	return Array.from(sshKeyNames);
 }
 
 function _manSshConfig(opt) {
 	return '<br />' + _('See %s.')
-			.format('<a target="_blank" href="https://manpages.ubuntu.com/manpages/noble/en/man5/ssh_config.5.html' +
-				'#:~:text='+ opt + '">ssh_config ' + opt + '</a>');
+			.format('<a target="_blank" href="https://manpages.debian.org/testing/openssh-client/ssh_config.5#'+ opt + '">ssh_config ' + opt + '</a>');
 }

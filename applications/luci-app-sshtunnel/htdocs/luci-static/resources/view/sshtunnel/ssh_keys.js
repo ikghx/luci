@@ -49,29 +49,25 @@ return view.extend({
 });
 
 function _findAllPossibleIdKeys(entries) {
-	var sshKeyNames = [];
-	for (var item of entries) {
-		if (item.type !== 'file') {
-			continue
-		}
+	var sshKeyNames = new Set();
+	var fileNames = entries.filter(item => item.type === 'file').map(item => item.name);
+	for (var fileName of fileNames) {
 		// a key file should have a corresponding .pub file
-		if (item.name.endsWith('.pub')) {
-			var sshPubKeyName = item.name;
-			var sshKeyName = sshPubKeyName.substring(0, sshPubKeyName.length - 4);
-			if (!sshKeyNames.includes(sshKeyName)) {
-				sshKeyNames.push(sshKeyName)
+		if (fileName.endsWith('.pub')) {
+			var sshKeyName = fileName.slice(0, -4);
+			// if such a key exists then add it
+			if (fileNames.includes(sshKeyName)) {
+				sshKeyNames.add(sshKeyName);
 			}
 		} else {
 			// or at least it should start with id_ e.g. id_dropbear
-			if (item.name.startsWith('id_')) {
-				var sshKeyName = item.name;
-				if (!sshKeyNames.includes(sshKeyName)) {
-					sshKeyNames.push(sshKeyName)
-				}
+			if (fileName.startsWith('id_')) {
+				var sshKeyName = fileName;
+				sshKeyNames.add(sshKeyName);
 			}
 		}
 	}
-	return sshKeyNames;
+	return Array.from(sshKeyNames);
 }
 
 function _splitSshKeys(sshFiles) {
@@ -166,25 +162,26 @@ function _handleKeyGenSubmit(event) {
 function _extractPubKeyFromOutput(res) {
 	var lines  = res.stdout.split('\n');
 	for (var line of lines) {
-		if (line.startsWith("ssh-")) {
+		if (line.startsWith('ssh-')) {
 			return line;
 		}
 	}
-	return "";
+	return '';
 }
 
 function _loadPublicKey(sshPubKeyName) {
 	return fs.read('/root/.ssh/' + sshPubKeyName)
-		.catch(function (error) {
+		.catch(() => {
 			// If there is no the .pub file then this is probably a Dropbear key e.g. id_dropbear.
 			// We can extract it's public key by executing: dropbearkey -y -f /root/.ssh/id_dropbear
 			var sshKeyName = sshPubKeyName.substring(0, sshPubKeyName.length - 4);
-			return fs.exec('/usr/bin/dropbearkey', ['-y', '-f', '/root/.ssh/' + sshKeyName]).then(function (res) {
+			return fs.exec('/usr/bin/dropbearkey', ['-y', '-f', '/root/.ssh/' + sshKeyName]).then((res) => {
 				if (res.code === 0) {
 					return _extractPubKeyFromOutput(res);
 				} else {
-					throw new Error(res.stdout + ' ' + res.stderr);
+					console.log('dropbearkey: ' + res.stdout + ' ' + res.stderr);
+					return '';
 				}
-			})
+			}).catch(()=> '');
 		});
 }

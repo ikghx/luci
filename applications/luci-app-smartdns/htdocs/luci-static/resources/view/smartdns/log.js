@@ -79,7 +79,7 @@ return view.extend({
 				'src': L.resource(['icons/loading.gif']),
 				'alt': _('Loading...'),
 				'style': 'vertical-align:middle'
-			}, _('Collecting data ...'))
+			}, _('Collecting data...'))
 		);
 
 		var clear_log_button = E('th', {}, [
