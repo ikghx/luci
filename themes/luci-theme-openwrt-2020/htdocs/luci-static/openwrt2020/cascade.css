@@ -1,5 +1,5 @@
 :root {
-	--main-bright-color: #00A3E1;
+	--main-bright-color: #00B5E2;
 	--main-dark-color: #002B49;
 	--secondary-bright-color: #FFFFFF;
 	--secondary-dark-color: #212322;
@@ -383,8 +383,6 @@ tr.placeholder > td {
 	justify-content: space-around;
 	max-width: 120px;
 	padding: .2em;
-	white-space: normal;
-	text-align: center;
 }
 
 .assoclist td > .ifacebadge::after {
@@ -677,7 +675,7 @@ p > a {
 	flex-direction: column;
 	padding: 0;
 	text-align: center;
-	min-width: 100%;
+	width: 100%;
 	max-width: 150px;
 }
 
@@ -687,7 +685,6 @@ p > a {
 }
 
 .ifacebox-body {
-	width: 100%;
 	text-align: center;
 	padding: .3em .25em .25em .25em;
 	white-space: nowrap;
@@ -721,7 +718,7 @@ p > a {
 
 .network-status-table > .ifacebox {
 	max-width: none;
-	flex-grow: 1;
+	flex: 1 1 45%;
 	margin: .25em;
 	min-width: 250px;
 }
@@ -1095,21 +1092,6 @@ textarea {
 .control-group > input[type="text"],
 .control-group > input[type="password"] {
 	flex: 10;
-}
-
-.cbi-title-section {
-	display: flex;
-	flex-wrap: wrap;
-	margin: 0 0 1rem 0;
-}
-
-.cbi-title-field {
-	flex: 1;
-	margin: 0;
-}
-
-.cbi-title-buttons {
-	display: flex;
 }
 
 .cbi-value {
