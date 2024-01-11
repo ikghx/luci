@@ -3,8 +3,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI for Zerotier
-LUCI_DEPENDS:=+zerotier
-LUCI_PKGARCH:=all
+LUCI_DEPENDS:=+zerotier +jsonfilter +ucode
 
 PKG_LICENSE:=Apache-2.0
 
