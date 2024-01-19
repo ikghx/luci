@@ -329,6 +329,7 @@ return view.extend({
 		s.tab('logging', _('Log'));
 		s.tab('files', _('Resolv &amp; Hosts Files'));
 		s.tab('leases', _('Static Leases'));
+		s.tab('tags', _('Tag'));
 		s.tab('hosts', _('Hostnames'));
 		s.tab('ipsets', _('IP sets'));
 		s.tab('relay', _('Relay'));
@@ -1166,6 +1167,10 @@ return view.extend({
 			_('Tag'),
 			_('Assign new, freeform tags to this entry.'));
 
+		Object.values(L.uci.sections('dhcp', 'tag')).forEach(function(val) {
+			so.value(val['.name']);
+		});
+
 		so = ss.option(form.DynamicList, 'match_tag',
 			_('Match Tag'),
 			_('When a host matches an entry then the special tag %s is set. Use %s to match all known hosts.').format('<code>known</code>', '<code>known</code>') + '<br /><br />' +
@@ -1198,6 +1203,19 @@ return view.extend({
 
 		if (has_dhcpv6)
 			o = s.taboption('leases', CBILease6Status, '__status6__');
+
+		o = s.taboption('tags', form.SectionValue, '__tags__', form.GridSection, 'tag', null,
+			_('Use tags to advertise different gateway and/or DNS to different hosts. Hosts can be associated with tags in "%s" tab').format(_('Static Leases')) + '<br />' +
+			_('DHCP Options') + ': ' + _('Define additional DHCP options,  for example "<code>6,192.168.2.1,192.168.2.2</code>" which advertises different DNS servers to clients.') +
+			_('"<code>3,192.168.2.1</code>" which advertises different gateway to clients.') + '<br />' +
+			_('Note: Do not use "odhcpd" or network interface (such as "lan", "wan", "wan6", etc.) as name when adding tags, conflicts will occur. It is recommended to prefix the name with "t_" to avoid such conflicts.'));
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.anonymous = false;
+		ss.sortable = true;
+
+		so = ss.option(form.DynamicList, 'dhcp_option', _('DHCP Options'));
 
 		return m.render().then(function(mapEl) {
 			poll.add(function() {
