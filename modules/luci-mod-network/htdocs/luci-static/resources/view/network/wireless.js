@@ -1555,9 +1555,9 @@ return view.extend({
 					var has_80211r = L.hasSystemFeature('hostapd', '11r') || L.hasSystemFeature('hostapd', 'eap');
 
 					o = ss.taboption('roaming', form.Flag, 'ieee80211r', _('802.11r'), _('Enable 802.11r <abbr title="Fast Transition">FT</abbr> roaming between APs that are part of the same mobility domain.'));
-					add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+					add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa2', 'wpa3', 'wpa3-mixed'] });
 					if (has_80211r)
-						add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk-mixed', 'sae', 'sae-mixed'] });
+						add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk2', 'psk-mixed', 'sae', 'sae-mixed'] });
 					o.rmempty = true;
 
 					o = ss.taboption('roaming', form.Value, 'nasid', _('NAS identifier'), _('NAS identifier is used for two different purposes, RADIUS and 802.11r R0 key holder ID.<br />Not needed with WPA-PSK/WPA2-PSK/WPA3-SAE.'));
@@ -1584,7 +1584,7 @@ return view.extend({
 					o.rmempty = true;
 
 					o = ss.taboption('roaming', form.Flag, 'ft_psk_generate_local', _('Generate PMK locally'), _('When using a <abbr title="Pre-Shared Key">PSK</abbr>, the <abbr title="Pairwise Master Key">PMK</abbr> can be generated automatically. When enabled, the R0/R1 key options below are not applied. Disable to use the R0 and R1 key options.'));
-					o.depends({ ieee80211r: '1' });
+					add_dependency_permutations(o, { ieee80211r: ['1'], mode: ['ap', 'ap-wds'], encryption: ['psk2', 'psk-mixed'] });
 					o.default = o.enabled;
 					o.rmempty = false;
 

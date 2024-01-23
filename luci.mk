@@ -333,20 +333,10 @@ define LuciTranslation
   endef
 
   define Package/luci-i18n-$(LUCI_BASENAME)-$(1)/install
-	$$(INSTALL_DIR) $$(1)/etc/uci-defaults
-	echo "uci set luci.languages.$(subst -,_,$(1))='$(LUCI_LANG.$(2))'; uci commit luci" \
-		> $$(1)/etc/uci-defaults/luci-i18n-$(LUCI_BASENAME)-$(1)
 	$$(INSTALL_DIR) $$(1)$(LUCI_LIBRARYDIR)/i18n
 	$(foreach po,$(wildcard ${CURDIR}/po/$(2)/*.po), \
 		po2lmo $(po) \
 			$$(1)$(LUCI_LIBRARYDIR)/i18n/$(basename $(notdir $(po))).$(1).lmo;)
-  endef
-
-  define Package/luci-i18n-$(LUCI_BASENAME)-$(1)/postinst
-	[ -n "$$$${IPKG_INSTROOT}" ] || {
-		(. /etc/uci-defaults/luci-i18n-$(LUCI_BASENAME)-$(1)) && rm -f /etc/uci-defaults/luci-i18n-$(LUCI_BASENAME)-$(1)
-		exit 0
-	}
   endef
 
   LUCI_BUILD_PACKAGES += luci-i18n-$(LUCI_BASENAME)-$(1)
