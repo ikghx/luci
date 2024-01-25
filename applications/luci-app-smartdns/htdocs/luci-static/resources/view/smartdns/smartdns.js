@@ -1535,12 +1535,6 @@ return view.extend({
 			});
 		};
 
-		// other args
-		so = ss.option(form.Value, "addition_flag", _("Additional Rule Flag"),
-			_("Additional Flags for rules, read help on ip-rule for more information."))
-		so.default = ""
-		so.rempty = true
-		so.modalonly = true;
 
 		////////////////
 		// ip rules;
@@ -1611,6 +1605,12 @@ return view.extend({
 		so.datatype = 'ipaddr("nomask")';
 		so.modalonly = true;
 
+		// other args
+		so = ss.option(form.Value, "addition_flag", _("Additional Rule Flag"),
+			_("Additional Flags for rules, read help on ip-rule for more information."))
+		so.default = ""
+		so.rempty = true
+		so.modalonly = true;
 		///////////////////////////////////////
 		// IP Blacklist;
 		///////////////////////////////////////

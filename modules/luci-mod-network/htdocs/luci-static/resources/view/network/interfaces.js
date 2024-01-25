@@ -247,16 +247,16 @@ function has_peerdns(proto) {
 
 function has_sourcefilter(proto) {
 	switch (proto) {
+	case '3g':
 	case 'dhcpv6':
 	case 'directip':
-	case 'ppp':
-	case 'pppoe':
-	case 'pppoa':
-	case 'pptp':
-	case 'qmi':
 	case 'mbim':
 	case 'ncm':
-	case '3g':
+	case 'ppp':
+	case 'pppoa':
+	case 'pppoe':
+	case 'pptp':
+	case 'qmi':
 		return true;
 	}
 
