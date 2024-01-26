@@ -835,11 +835,11 @@ return view.extend({
 
 		/* PXE - https://openwrt.org/docs/guide-user/base-system/dhcp#booting_options */
 		o = s.taboption('pxe_tftp', form.SectionValue, '__pxe__', form.GridSection, 'boot', null,
-			_('Special PXE boot options for Dnsmasq.'));
-
+			_('Special <abbr title="Preboot eXecution Environment">PXE</abbr> boot options for Dnsmasq.'));
 		ss = o.subsection;
 		ss.addremove = true;
 		ss.anonymous = true;
+		ss.modaltitle = _('Edit PXE/TFTP/BOOTP Host');
 		ss.nodescriptions = true;
 
 		so = ss.option(form.Value, 'filename',
@@ -861,18 +861,21 @@ return view.extend({
 		so.placeholder = '192.168.9.1';
 
 		so = ss.option(form.DynamicList, 'dhcp_option',
-			_('DHCP Options'));
+			_('DHCP Options'),
+			_('Additional options to send to the below match tags.') + '<br />' +
+			_('%s means "the address of the system running dnsmasq".').format('<code>0.0.0.0</code>'));
 		so.optional = true;
 		so.placeholder = '66,192.168.9.1';
 
-		so = ss.option(widgets.DeviceSelect, 'networkid',
-			_('Network-ID'),
-			_('Apply DHCP Options to this net. (Empty = all clients).'));
+		so = ss.option(form.Value, 'networkid',
+			_('Match this Tag'),
+			_('Only DHCP Clients with this tag are sent this boot option.'));
 		so.optional = true;
+		so.noaliases = true;
 
 		so = ss.option(form.Flag, 'force',
 			_('Force'),
-			_('Always send DHCP Options. Sometimes needed, with e.g. PXELinux.'));
+			_('Always send the chosen DHCP options. Sometimes needed, with e.g. PXELinux.'));
 
 		so = ss.option(form.Value, 'instance',
 			_('Instance'),
