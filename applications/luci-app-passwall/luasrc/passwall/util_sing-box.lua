@@ -201,8 +201,8 @@ function gen_outbound(flag, node, tag, proxy_table)
 			protocol_table = {
 				method = node.method or nil,
 				password = node.password or "",
-				plugin = node.plugin and nil,
-				plugin_opts = node.plugin_opts and nil,
+				plugin = (node.plugin_enabled and node.plugin) or nil,
+				plugin_opts = (node.plugin_enabled and node.plugin_opts) or nil,
 				udp_over_tcp = node.uot == "1" and {
 					enabled = true,
 					version = 2
@@ -1310,15 +1310,14 @@ function gen_config(var)
 				strategy = remote_strategy,
 			})
 
-			if tags and tags:find("with_clash_api") then
-				if not experimental then
-					experimental = {}
-				end
-				experimental.clash_api = {
-					store_fakeip = true,
-					cache_file = "/tmp/singbox_passwall_" .. flag .. ".db"
-				}
+			if not experimental then
+				experimental = {}
 			end
+			experimental.cache_file = {
+				enabled = true,
+				store_fakeip = true,
+				path = "/tmp/singbox_passwall_" .. flag .. ".db"
+			}
 		end
 	
 		if direct_dns_udp_server then

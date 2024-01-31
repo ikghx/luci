@@ -146,7 +146,7 @@ if (has_singbox or has_xray) and #nodes_table > 0 then
 			o.cfgvalue = get_cfgvalue(v.id, "preproxy_enabled")
 			o.write = get_write(v.id, "preproxy_enabled")
 
-			o = s:taboption("Main", Value, vid .. "-main_node", string.format('<a style="color:red">%s</a>', translate("Preproxy Node")), translate("Set the node to be used as a pre-proxy. Each rule (including <code>Default</code>) has a separate switch that controls whether this rule uses the pre-proxy or not."))
+			o = s:taboption("Main", Value, vid .. "-main_node", string.format('<a style=\"color:red\">%s</a>', translate("Preproxy Node")), translate("Set the node to be used as a pre-proxy. Each rule (including <code>Default</code>) has a separate switch that controls whether this rule uses the pre-proxy or not."))
 			o:depends(vid .. "-preproxy_enabled", "1")
 			for k1, v1 in pairs(balancing_list) do
 				o:value(v1.id, v1.remark)
@@ -179,7 +179,7 @@ if (has_singbox or has_xray) and #nodes_table > 0 then
 					o:value("_direct", translate("Direct Connection"))
 					o:value("_blackhole", translate("Blackhole"))
 
-					local pt = s:taboption("Main", ListValue, vid .. "-".. id .. "_proxy_tag", string.format('* <a style="color:red">%s</a>', e.remarks .. " " .. translate("Preproxy")))
+					local pt = s:taboption("Main", ListValue, vid .. "-".. id .. "_proxy_tag", string.format('* <a style=\"color:red\">%s</a>', e.remarks .. " " .. translate("Preproxy")))
 					pt.cfgvalue = get_cfgvalue(v.id, id .. "_proxy_tag")
 					pt.write = get_write(v.id, id .. "_proxy_tag")
 					pt:value("nil", translate("Close"))
@@ -199,7 +199,7 @@ if (has_singbox or has_xray) and #nodes_table > 0 then
 			end)
 
 			local id = "default_node"
-			o = s:taboption("Main", Value, vid .. "-" .. id, string.format('* <a style="color:red">%s</a>', translate("Default")))
+			o = s:taboption("Main", Value, vid .. "-" .. id, string.format('* <a style=\"color:red\">%s</a>', translate("Default")))
 			o.cfgvalue = get_cfgvalue(v.id, id)
 			o.write = get_write(v.id, id)
 			o:depends("tcp_node", v.id)
@@ -216,7 +216,7 @@ if (has_singbox or has_xray) and #nodes_table > 0 then
 			end
 
 			local id = "default_proxy_tag"
-			o = s:taboption("Main", ListValue, vid .. "-" .. id, string.format('* <a style="color:red">%s</a>', translate("Default Preproxy")), translate("When using, localhost will connect this node first and then use this node to connect the default node."))
+			o = s:taboption("Main", ListValue, vid .. "-" .. id, string.format('* <a style=\"color:red\">%s</a>', translate("Default Preproxy")), translate("When using, localhost will connect this node first and then use this node to connect the default node."))
 			o.cfgvalue = get_cfgvalue(v.id, id)
 			o.write = get_write(v.id, id)
 			o:value("nil", translate("Close"))
@@ -231,7 +231,7 @@ if (has_singbox or has_xray) and #nodes_table > 0 then
 		local tips = s:taboption("Main", DummyValue, "tips", " ")
 		tips.rawhtml = true
 		tips.cfgvalue = function(t, n)
-			return string.format('<a style="color: red">%s</a>', translate("There are no available nodes, please add or subscribe nodes first."))
+			return string.format('<a style=\"color:red\">%s</a>', translate("There are no available nodes, please add or subscribe nodes first."))
 		end
 		tips:depends({ tcp_node = "nil", ["!reverse"] = true })
 		for k, v in pairs(shunt_list) do
@@ -472,7 +472,7 @@ localhost_udp_proxy_mode.validate = redir_mode_validate
 tips = s:taboption("Proxy", DummyValue, "tips", " ")
 tips.rawhtml = true
 tips.cfgvalue = function(t, n)
-	return string.format('<a style="color: red" href="%s">%s</a>', api.url("acl"), translate("Want different devices to use different proxy modes/ports/nodes? Please use access control."))
+	return string.format('<a style=\"color:red\" href="%s">%s</a>', api.url("acl"), translate("Want different devices to use different proxy modes/ports/nodes? Please use access control."))
 end
 
 s:tab("log", translate("Log"))

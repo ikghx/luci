@@ -41,6 +41,7 @@ return view.extend({
 							? formatLogEntry(logObj)
 							: '';
 					} catch (error) {
+						console.error('Error parsing log entry:', error);
 						return '';
 					}
 				});

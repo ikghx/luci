@@ -1404,19 +1404,25 @@ return view.extend({
 				}
 
 
+				o = ss.taboption('encryption', form.Flag, 'ppsk', _('Enable Private PSK (PPSK)'), _('Private Pre-Shared Key (PPSK) allows the use of different Pre-Shared Key for each STA MAC address. Private MAC\'s PSKs are stored on RADIUS server.'));
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'] });
+
 				o = ss.taboption('encryption', form.Value, 'auth_server', _('RADIUS authentication server'));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 				o.rmempty = true;
 				o.datatype = 'host(0)';
 
 				o = ss.taboption('encryption', form.Value, 'auth_port', _('RADIUS authentication port'), _('Default %d').format(1812));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 				o.rmempty = true;
 				o.datatype = 'port';
 				o.placeholder = '1812';
 
 				o = ss.taboption('encryption', form.Value, 'auth_secret', _('RADIUS authentication secret'));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 				o.rmempty = true;
 				o.password = true;
 
@@ -1455,6 +1461,7 @@ return view.extend({
 				/* extra RADIUS settings start */
 				o = ss.taboption('encryption', form.ListValue, 'dynamic_vlan', _('Dynamic VLAN'), _('Required: Rejects auth if RADIUS server does not provide appropriate VLAN attributes.'));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 				o.value('0', _('Disabled'));
 				o.value('1', _('Optional'));
 				o.value('2', _('Required'));
@@ -1464,15 +1471,18 @@ return view.extend({
 
 				o = ss.taboption('encryption', form.Flag, 'per_sta_vif', _('Per STA VLAN'), _('Each STA is assigned its own AP_VLAN interface.'));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 
 				o = ss.taboption('encryption', form.ListValue, 'vlan_naming', _('VLAN Naming'), _('When hostapd creates a VLAN interface on vlan_tagged_interfaces, it needs to know how to name it.'));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+        add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 				o.value('0', _('vlan<XXX>'));
 				o.value('1', _('<vlan_tagged_interface>.<XXX>'));
 				o.default = '1';
 
 				o = ss.taboption('encryption', widgets.DeviceSelect, 'vlan_tagged_interface', _('VLAN Tagged Interface'), _('Interface where 802.1q tagged packets should appear when a RADIUS server is used.'));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 				o.size = 1;
 				o.rmempty = true;
 				o.multiple = false;
@@ -1482,6 +1492,7 @@ return view.extend({
 
 				o = ss.taboption('encryption', form.Value, 'vlan_bridge', _('VLAN Bridge Naming Scheme'), _('Bridge (prefix) to add the wifi and the tagged interface to.'));
 				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['wpa', 'wpa2', 'wpa3', 'wpa3-mixed'] });
+				add_dependency_permutations(o, { mode: ['ap', 'ap-wds'], encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['1'] });
 				o.rmempty = true;
 				o.placeholder = 'br-vlan';
 				/* extra RADIUS settings end */
@@ -1493,10 +1504,7 @@ return view.extend({
 
 
 				o = ss.taboption('encryption', form.Value, '_wpa_key', _('Passphrase'), _('Passphrase used to encrypt the wireless network, also known as a <abbr title="Pre-Shared Key">PSK</abbr>.'));
-				o.depends('encryption', 'psk');
-				o.depends('encryption', 'psk2');
-				o.depends('encryption', 'psk+psk2');
-				o.depends('encryption', 'psk-mixed');
+				add_dependency_permutations(o, { encryption: ['psk', 'psk2', 'psk+psk2', 'psk-mixed'], ppsk: ['0'] });
 				o.depends('encryption', 'sae');
 				o.depends('encryption', 'sae-mixed');
 				o.datatype = 'wpakey';

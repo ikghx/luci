@@ -1,16 +1,8 @@
-/* SPDX-License-Identifier: GPL-3.0-only
- *
- * Copyright (C) 2022 ImmortalWrt.org
- */
-
 'use strict';
 'require form';
-'require fs';
 'require poll';
 'require rpc';
 'require uci';
-'require ui';
-'require validation';
 'require view';
 
 var callServiceList = rpc.declare({
@@ -75,27 +67,26 @@ return view.extend({
 
 		s = m.section(form.NamedSection, 'config', 'v2raya');
 
-		o = s.option(form.Flag, 'enabled', _('Enabled'));
-		o.default = o.disabled;
+		o = s.option(form.Flag, 'enabled', _('Enable'));
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'address', _('Listening address'));
 		o.datatype = 'ipaddrport(1)';
-		o.default = '0.0.0.0:2017';
-		o.rmempty = false;
-
-		o = s.option(form.Value, 'config', _('Configuration directory'));
-		o.datatype = 'path';
-		o.default = '/etc/v2raya';
-		o.rmempty = false;
+		o.placeholder = '0.0.0.0:2017';
 
 		o = s.option(form.ListValue, 'ipv6_support', _('IPv6 support'),
-			_('Make sure your IPv6 network works fine before you turn it on.'));
-		o.value('auto', _('auto'));
-		o.value('on', _('on'));
-		o.value('off', _('off'));
+			_('Requires working IPv6 connectivity.'));
+		o.value('auto', _('Auto'));
+		o.value('on', _('On'));
+		o.value('off', _('Off'));
 		o.default = 'auto';
-		o.rmempty = false;
+
+		o = s.option(form.ListValue, 'nftables_support', _('Nftables support'),
+			_('Requires nftables.'));
+		o.value('auto', _('Auto'));
+		o.value('on', _('On'));
+		o.value('off', _('Off'));
+		o.default = 'auto';
 
 		o = s.option(form.ListValue, 'log_level', _('Log level'));
 		o.value('trace', _('Trace'));
@@ -104,28 +95,15 @@ return view.extend({
 		o.value('warn', _('Warning'));
 		o.value('error', _('Error'));
 		o.default = 'info';
-		o.rmempty = false;
-
-		o = s.option(form.Value, 'log_file', _('Log file path'));
-		o.datatype = 'path';
-		o.default = '/var/log/v2raya/v2raya.log';
-		o.rmempty = false;
-		/* Due to ACL rule, this value must retain default otherwise log page will be broken */
-		o.readonly = true;
 
 		o = s.option(form.Value, 'log_max_days', _('Max log retention period'),
-			_('Maximum number of days to keep log files.'));
+			_('Unit: days.'));
 		o.datatype = 'uinteger';
-		o.default = '3';
-		o.rmempty = false;
+		o.placeholder = '3';
 
 		o = s.option(form.Flag, 'log_disable_color', _('Disable log color output'));
-		o.default = o.enabled;
-		o.rmempty = false;
 
 		o = s.option(form.Flag, 'log_disable_timestamp', _('Disable log timestamp'));
-		o.default = o.disabled;
-		o.rmempty = false;
 
 		o = s.option(form.Value, 'v2ray_bin', _('v2ray binary path'),
 			_('Executable v2ray binary path. Auto-detect if put it empty (recommended).'));
