@@ -82,7 +82,7 @@ return view.extend({
 	},
 	render: function(info) {
 		return E([], [
-			E('h2', { 'class': 'section-title' }, _('Cloudflared Logs')),
+			E('h2', { 'class': 'section-title' }, _('Log')),
 			E('div', { 'id': 'logs' }, [
 				E('label', { 'for': 'filter-level', 'style': 'margin-right: 8px;' }, _('Filter Level:')),
 				E('select', { 'id': 'filter-level', 'style': 'margin-right: 8px;' }, [

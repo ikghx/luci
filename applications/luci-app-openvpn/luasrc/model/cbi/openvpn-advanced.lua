@@ -367,6 +367,10 @@ local knownParams = {
 			{ "net30", "p2p", "subnet" },
 			translate("'net30', 'p2p', or 'subnet'"),
 			{dev_type="tun" } },
+		{ Flag,
+			"disable_dco",
+			0,
+			translate("Disable data channel offloading support") },
 	} },
 
 	{ "vpn", translate("VPN"), {

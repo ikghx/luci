@@ -57,7 +57,7 @@ transport.maxPoolCount = 5
 
 # transport.tls.force specifies whether to only accept TLS-encrypted connections. By default, the value is false.
 # Transport.tls.force 指定是否只接受 TLS 加密的连接。 默认情况下，该值为 false。
-tls.force = false
+transport.tls.force = false
 
 # transport.tls.certFile = "server.crt"
 # transport.tls.keyFile = "server.key"
@@ -176,7 +176,7 @@ allowPorts = [
 maxPortsPerClient = 0
 
 # If subDomainHost is not empty, you can set subdomain when type is http or https in frpc's configure file
-# When subdomain is est, the host used by routing is test.frps.com
+# When subdomain is test, the host used by routing is test.frps.com
 # 如果subDomainHost不为空，则可以在frpc的配置文件中设置 type 为 http 或 https 时的子域名
 # subdomain 为 est 时，路由使用的 host 为 test.frps.com
 subDomainHost = "frps.com"

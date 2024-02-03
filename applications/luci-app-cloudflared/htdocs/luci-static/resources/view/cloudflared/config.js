@@ -33,7 +33,7 @@ function renderStatus(isRunning) {
 	if (isRunning) {
 		renderHTML = String.format(spanTemp, 'green', _('Running'));
 	} else {
-		renderHTML = String.format(spanTemp, 'red', _('Not running'));
+		renderHTML = String.format(spanTemp, 'red', _('Not Running'));
 	}
 
 	return renderHTML;
@@ -49,9 +49,9 @@ return view.extend({
 	render: function (data) {
 		var m, s, o;
 
-		m = new form.Map('cloudflared', _('Cloudflared Zero Trust Tunnel'),
+		m = new form.Map('cloudflared', _('Cloudflare Zero Trust Tunnel'),
 			_('Cloudflare Zero Trust Security services help you get maximum security both from outside and within the network.') + '<br />' +
-			_('Create and manage your cloudflared network on the <a %s>Cloudflare Zero Trust</a> website.')
+			_('Create and manage your network on the <a %s>Cloudflare Zero Trust</a> dashboard.')
 				.format('href="https://one.dash.cloudflare.com" target="_blank"') + '<br />' +
 			_('See <a %s>documentation</a>.')
 				.format('href="https://openwrt.org/docs/guide-user/services/vpn/cloudfare_tunnel" target="_blank"')
@@ -76,14 +76,13 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.TextValue, 'token', _('Token'),
-			_('The tunnel’s token is shown in the dashboard when you first create the tunnel.')
+			_('The tunnel token is shown in the dashboard once you create a tunnel.')
 		);
 		o.optional = true;
 		o.rmempty = false;
 		o.monospace = true;
 
-		o = s.option(form.FileUpload, 'config', _('Config file'),
-			_('The path to a configuration file in YAML format.') + '<br />' +
+		o = s.option(form.FileUpload, 'config', _('Config file path'),
 			_('See <a %s>documentation</a>.')
 				.format('href="https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/local-management/configuration-file/" target="_blank"')
 		);
@@ -93,7 +92,7 @@ return view.extend({
 
 		o = s.option(form.FileUpload, 'origincert', _('Certificate of Origin'),
 			_('The account certificate for your zones authorizing the client to serve as an Origin for that zone') + '<br />' +
-			_('You can obtain a certificate <a %s>here</a>.')
+			_('Obtain a certificate <a %s>here</a>.')
 				.format('href="https://dash.cloudflare.com/argotunnel" target="_blank"')
 		);
 		o.default = '/etc/cloudflared/cert.pem';
@@ -101,7 +100,7 @@ return view.extend({
 		o.optional = true;
 
 		o = s.option(form.ListValue, 'region', _('Region'),
-			_('Choose the region to which connections are established.')
+			_('The region to which connections are established.')
 		);
 		o.value('us', _('United States'));
 		o.optional = true;
