@@ -6,11 +6,17 @@
 			"ubus": {
 				"service": [ "list" ]
 			},
-			"file": [ "/var/log/cloudflared.log" ]
+			"file": {
+				"/etc/cloudflared/*": [ "read" ],
+				"/var/log/cloudflared.log": [ "read" ]
+			}
 		},
 		"write": {
 			"uci": [ "cloudflared" ],
-			"file": [ "/etc/cloudflared/" ]
+			"file": {
+				"/etc/cloudflared/*": [ "write" ],
+				"/usr/bin/cloudflared *": [ "exec" ]
+			}
 		}
 	}
 }

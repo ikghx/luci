@@ -65,7 +65,7 @@ function smartdnsRenderStatus(res) {
 	if (isRunning) {
 		renderHTML += "<span style=\"color:green;font-weight:bold\">SmartDNS - " + _("Running") + "</span>";
 	} else {
-		renderHTML += "<span style=\"color:red;font-weight:bold\">SmartDNS - " + _("Not running") + "</span>";
+		renderHTML += "<span style=\"color:red;font-weight:bold\">SmartDNS - " + _("Not Running") + "</span>";
 		if (smartdnsEnable === '1') {
 			renderHTML += "<br /><span style=\"color:red;font-weight:bold\">" + _("Please check the system logs and check if the configuration is valid.");
 			renderHTML += "</span>";

@@ -6,7 +6,7 @@ local state = (luci.sys.call("pidof cifsd > /dev/null") == 0)
 if state then	
 	state_msg = "<b><font color=\"green\">" .. translate("Running") .. "</font></b>"
 else
-	state_msg = "<b><font color=\"red\">" .. translate("Not running") .. "</font></b>"
+	state_msg = "<b><font color=\"red\">" .. translate("Not Running") .. "</font></b>"
 end
 
 m = Map("cifs", translate("Mounting NAT drives") .. state_msg)

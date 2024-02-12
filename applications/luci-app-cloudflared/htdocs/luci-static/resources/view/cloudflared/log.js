@@ -88,7 +88,7 @@ return view.extend({
 				E('select', { 'id': 'filter-level', 'style': 'margin-right: 8px;' }, [
 					E('option', { 'value': 'all', 'selected': 'selected' }, _('All')),
 					E('option', { 'value': 'info' }, _('Info')),
-					E('option', { 'value': 'warn' }, _('Warn')),
+					E('option', { 'value': 'warn' }, _('Warning')),
 					E('option', { 'value': 'error' }, _('Error')),
 				]),
 				E('label', { 'for': 'log-direction', 'style': 'margin-right: 8px;' }, _('Log Direction:')),

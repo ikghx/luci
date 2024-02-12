@@ -97,7 +97,7 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 					</div>
 				</div>
 				<div class="pure-u-2-3">
-					<h4 id="status_tcp_node">TCP<br /><span class="red"><%:Not running%></span></h4>
+					<h4 id="status_tcp_node">TCP<br /><span class="red"><%:Not Running%></span></h4>
 				</div>
 			</div>
 		</div>
@@ -109,7 +109,7 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 					</div>
 				</div>
 				<div class="pure-u-2-3">
-					<h4 id="status_udp_node">UDP<br /><span class="red"><%:Not running%></span></h4>
+					<h4 id="status_udp_node">UDP<br /><span class="red"><%:Not Running%></span></h4>
 				</div>
 			</div>
 		</div>
@@ -121,7 +121,7 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 					</div>
 				</div>
 				<div class="pure-u-2-3">
-					<h4 id="status_dns">DNS<br /><span class="red"><%:Not running%></span></h4>
+					<h4 id="status_dns">DNS<br /><span class="red"><%:Not Running%></span></h4>
 				</div>
 			</div>
 		</div>
@@ -133,7 +133,7 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 					</div>
 				</div>
 				<div class="pure-u-2-3">
-					<h4 id="status_haproxy"><%:Load Balancing%><br /><span class="red"><%:Not running%></span></h4>
+					<h4 id="status_haproxy"><%:Load Balancing%><br /><span class="red"><%:Not Running%></span></h4>
 				</div>
 			</div>
 		</div>
@@ -205,7 +205,7 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 							if (data["tcp_node_status"])
 								text += '<span class="green"><%:Running%></span>';
 							else
-								text += '<span class="red"><%:Not running%></span>';
+								text += '<span class="red"><%:Not Running%></span>';
 							status_tcp_node.innerHTML = text;
 						}
 					}
@@ -217,7 +217,7 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 							if (data["udp_node_status"])
 								text += '<span class="green"><%:Running%></span>';
 							else
-								text += '<span class="red"><%:Not running%></span>';
+								text += '<span class="red"><%:Not Running%></span>';
 							status_udp_node.innerHTML = text;
 						}
 					}
@@ -225,13 +225,13 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 					if (data.dns_mode_status) {
 						status_dns.innerHTML = 'DNS<br /><span class="green"><%:Running%></span>';
 					} else {
-						status_dns.innerHTML = 'DNS<br /><span class="red"><%:Not running%></span>';
+						status_dns.innerHTML = 'DNS<br /><span class="red"><%:Not Running%></span>';
 					}
 					if (status_haproxy) {
 						if (data.haproxy_status) {
 							status_haproxy.innerHTML = '<%:Load Balancing%><br /><span class="green"><%:Running%></span>'
 						} else {
-							status_haproxy.innerHTML = '<%:Load Balancing%><br /><span class="red"><%:Not running%></span>'
+							status_haproxy.innerHTML = '<%:Load Balancing%><br /><span class="red"><%:Not Running%></span>'
 						}
 					}
 				}

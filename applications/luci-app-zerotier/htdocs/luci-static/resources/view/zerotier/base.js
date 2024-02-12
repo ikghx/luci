@@ -5,9 +5,7 @@
 
 'use strict';
 'require form';
-'require poll';
 'require rpc';
-'require uci';
 'require view';
 
 var callServiceList = rpc.declare({
@@ -22,52 +20,36 @@ function getServiceStatus() {
 		var isRunning = false;
 		try {
 			isRunning = res['zerotier']['instances']['instance1']['running'];
-		} catch (e) { }
+		} catch (ignored) {}
 		return isRunning;
 	});
 }
 
-function renderStatus(isRunning) {
-	var spanTemp = '<em><span style="color:%s"><strong>%s %s</strong></span></em>';
-	var renderHTML;
-	if (isRunning) {
-		renderHTML = String.format(spanTemp, 'green', _('ZeroTier'), _('Running'));
-	} else {
-		renderHTML = String.format(spanTemp, 'red', _('ZeroTier'), _('Not running'));
-	}
-
-	return renderHTML;
-}
-
 return view.extend({
-	load: function() {
+	load: function () {
 		return Promise.all([
-			uci.load('zerotier')
+			getServiceStatus()
 		]);
 	},
 
 	render: function(data) {
+		let isRunning = data[0];	
 		var m, s, o;
 
 		m = new form.Map('zerotier', _('ZeroTier'),
 			_('ZeroTier is an open source, cross-platform and easy to use virtual LAN.'));
 
-		s = m.section(form.TypedSection);
-		s.anonymous = true;
-		s.render = function () {
-			poll.add(function () {
-				return L.resolveDefault(getServiceStatus()).then(function (res) {
-					var view = document.getElementById("service_status");
-					view.innerHTML = renderStatus(res);
-				});
-			});
-
-			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
-					E('p', { id: 'service_status' }, _('Collecting data...'))
-			]);
-		}
-
 		s = m.section(form.NamedSection, 'sample_config', 'config');
+
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function(section_id) {
+			var span = '<b><span style="color:%s">%s</span></b>';
+			var renderHTML = isRunning ?
+				String.format(span, 'green', _('Running')) :
+				String.format(span, 'red', _('Not Running'));
+			return renderHTML;
+		};
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.rmempty = false;

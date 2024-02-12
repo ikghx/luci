@@ -567,7 +567,7 @@ return view.extend({
 		o.placeholder = '/etc/dnsmasq.servers';
 
 		o = s.taboption('forward', form.DynamicList, 'server',
-			_('DNS forwardings'),
+			_('DNS Forwards'),
 			_('Forward specific domain queries to specific upstream servers.'));
 		o.optional = true;
 		o.placeholder = '192.168.9.1#5335';
@@ -1284,7 +1284,7 @@ return view.extend({
 
 								return [
 									host || '-',
-									lease.ip6addrs ? lease.ip6addrs.join(' ') : lease.ip6addr,
+									lease.ip6addrs ? lease.ip6addrs.join('<br />') : lease.ip6addr,
 									lease.duid,
 									exp
 								];

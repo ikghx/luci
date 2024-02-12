@@ -2,40 +2,25 @@
 'require view';
 'require form';
 'require fs';
-'require poll';
 'require rpc';
-'require uci';
 'require ui';
 'require tools.widgets as widgets';
 
 var callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
-	params: [ 'name' ],
+	params: ['name'],
 	expect: { '': {} }
 });
 
 function getServiceStatus() {
-	return L.resolveDefault(callServiceList('mosdns'), {})
-		.then(function (res) {
-			var isRunning = false;
-			try {
-				isRunning = res['mosdns']['instances']['instance1']['running'];
-			} catch (e) { }
-			return isRunning;
-		});
-}
-
-function renderStatus(isRunning) {
-	var spanTemp = '<em><span style="color:%s"><strong>%s</strong></span></em>';
-	var renderHTML;
-	if (isRunning) {
-		renderHTML = String.format(spanTemp, 'green', _('Running'));
-	} else {
-		renderHTML = String.format(spanTemp, 'red', _('Not running'));
-	}
-
-	return renderHTML;
+	return L.resolveDefault(callServiceList('mosdns'), {}).then(function (res) {
+		var isRunning = false;
+		try {
+			isRunning = res['mosdns']['instances']['instance1']['running'];
+		} catch (ignored) {}
+		return isRunning;
+	});
 }
 
 return view.extend({
@@ -48,35 +33,30 @@ return view.extend({
 		.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
 	},
 
-	load: function() {
+	load: function () {
 		return Promise.all([
-			uci.load('mosdns')
+			getServiceStatus()
 		]);
 	},
 
-	render: function(res) {
-
+	render: function(data) {
+		let isRunning = data[0];
 		var m, s, o;
 
 		m = new form.Map('mosdns', _('MosDNS'), _('A plug-in DNS forwarder/splitter.'));
 
-		s = m.section(form.TypedSection);
-		s.anonymous = true;
-		s.render = function () {
-			poll.add(function () {
-				return L.resolveDefault(getServiceStatus()).then(function (res) {
-					var view = document.getElementById("service_status");
-					view.innerHTML = renderStatus(res);
-				});
-			});
-
-			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
-					E('p', { id: 'service_status' }, _('Collecting data...'))
-			]);
-		}
-
 		s = m.section(form.TypedSection, 'mosdns');
 		s.anonymous = true;
+
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function(section_id) {
+			var span = '<b><span style="color:%s">%s</span></b>';
+			var renderHTML = isRunning ?
+				String.format(span, 'green', _('Running')) :
+				String.format(span, 'red', _('Not Running'));
+			return renderHTML;
+		};
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.rmempty = false;

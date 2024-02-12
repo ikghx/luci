@@ -32,7 +32,7 @@ function renderStatus(isRunning) {
 	if (isRunning) {
 		renderHTML = String.format(spanTemp, 'green', _('Running'));
 	} else {
-		renderHTML = String.format(spanTemp, 'red', _('Not running'));
+		renderHTML = String.format(spanTemp, 'red', _('Not Running'));
 	}
 
 	return renderHTML;

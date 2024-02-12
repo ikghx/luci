@@ -10,60 +10,46 @@ var callServiceList = rpc.declare({
 	method: 'list',
 	params: ['name'],
 	expect: { '': {} }
-});	
+});
 
 function getServiceStatus() {
 	return L.resolveDefault(callServiceList('wifidogx'), {}).then(function (res) {
 		var isRunning = false;
 		try {
 			isRunning = res['wifidogx']['instances']['instance1']['running'];
-		} catch (e) { }
+		} catch (ignored) {}
 		return isRunning;
 	});
 }
 
-function renderStatus(isRunning) {
-	var renderHTML = "";
-	var spanTemp = '<em><span style="color:%s"><strong>%s %s</strong></span></em>';
-
-	if (isRunning) {
-		renderHTML += String.format(spanTemp, 'green', _("apfree-wifidog"), _("Running"));
-	} else {
-		renderHTML += String.format(spanTemp, 'red', _("apfree-wifidog"), _("Not running"));
-	}
-
-	return renderHTML;
-}
-
 return view.extend({
-	render: function() {
+	load: function () {
+		return Promise.all([
+			getServiceStatus()
+		]);
+	},
+
+	render: function(data) {
+		let isRunning = data[0];
 		var m, s, o;
 
 		m = new form.Map('wifidogx', _('ApFree-WiFiDog'));
 		m.description = _("apfree-wifiodg is a Stable & Secure captive portal solution.");
 
-		s = m.section(form.NamedSection, '_status');
-		s.anonymous = true;
-		s.render = function (section_id) {
-			L.Poll.add(function () {
-				return L.resolveDefault(getServiceStatus()).then(function(res) {
-					var view = document.getElementById("service_status");
-					view.innerHTML = renderStatus(res);
-				});
-			});
-
-			return E('div', { class: 'cbi-map' },
-				E('fieldset', { class: 'cbi-section'}, [
-					E('p', { id: 'service_status' },
-						_('Collecting data...'))
-				])
-			);
-		}
-
 		s = m.section(form.TypedSection, "wifidogx", _("ApFree-WiFiDog"), 
 			_("ApFree-WiFiDog Settings"));
 		s.anonymous = true;
-		
+
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function(section_id) {
+			var span = '<b><span style="color:%s">%s</span></b>';
+			var renderHTML = isRunning ?
+				String.format(span, 'green', _('Running')) :
+				String.format(span, 'red', _('Not Running'));
+			return renderHTML;
+		};
+
 		o = s.option(form.Flag, 'enabled', _('Enable'));
 		o.rmempty = false;
 
