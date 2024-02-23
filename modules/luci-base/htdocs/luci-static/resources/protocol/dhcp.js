@@ -38,5 +38,9 @@ return network.registerProtocol('dhcp', {
 		o.datatype  = 'hexstring';
 
 		s.taboption('advanced', form.Value, 'vendorid', _('Vendor Class to send when requesting DHCP'));
+
+		o = s.taboption('advanced', form.Value, 'sendopts', _('additional DHCP options to send when requesting DHCP'),
+			_('Multiple parameters are separated by spaces.'));
+		o.placeholder = '0x3c:1111 0x37:2222';
 	}
 });
