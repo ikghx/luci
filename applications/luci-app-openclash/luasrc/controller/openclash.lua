@@ -650,7 +650,7 @@ function set_subinfo_url()
 end
 
 function sub_info_get()
-	local filepath, filename, sub_url, sub_info, info, upload, download, total, expire, http_code, len, percent, day_left, day_expire
+	local filepath, filename, sub_url, sub_info, info, upload, download, total, expire, http_code, len, percent, day_left, day_expire, surplus, used
 	local info_tb = {}
 	filename = luci.http.formvalue("filename")
 	sub_info = ""
@@ -701,7 +701,6 @@ function sub_info_get()
 						else
 							day_left = 0
 						end
-						
 						if used and total and used < total then
 							percent = string.format("%.1f",((total-used)/total)*100) or nil
 						elseif used == nil or total == nil or total == 0 then
@@ -709,6 +708,7 @@ function sub_info_get()
 						else
 							percent = 0
 						end
+						surplus = fs.filesize(total - used) or "null"
 						total = fs.filesize(total) or "null"
 						used = fs.filesize(used) or "null"
 						sub_info = "Successful"
@@ -723,6 +723,7 @@ function sub_info_get()
 	luci.http.write_json({
 		http_code = http_code,
 		sub_info = sub_info,
+		surplus = surplus,
 		used = used,
 		total = total,
 		percent = percent,
@@ -1067,7 +1068,8 @@ function action_status()
 		db_forward_ssl = db_foward_ssl(),
 		web = is_web(),
 		cn_port = cn_port(),
-		restricted_mode = restricted_mode();
+		restricted_mode = restricted_mode(),
+		core_type = uci:get("openclash", "config", "core_type") or "Dev";
 	})
 end
 

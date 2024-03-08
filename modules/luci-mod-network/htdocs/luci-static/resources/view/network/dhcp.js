@@ -574,16 +574,26 @@ return view.extend({
 		o.validate = validateServerSpec;
 
 		o = s.taboption('forward', form.Value, 'add_subnet',
-			_('Add subnet'),
+			_('Add subnet address'),
 			_('Add a subnet address to the DNS queries which are forwarded upstream.'));
+		o.depends('strip_subnet', '0');
 		o.placeholder = '32,128 or 192.168.9.0/24';
 
+		o = s.taboption('forward', form.Flag, 'strip_subnet',
+			_('Remove subnet address'),
+			_('Remove any subnet address already present in a downstream query before forwarding it upstream.'));
+
 		o = s.taboption('forward', form.ListValue, 'add_mac',
-			_('Add MAC'),
+			_('Add MAC address'),
 			_('Add the MAC address of the requestor to DNS queries which are forwarded upstream.'));
+		o.depends('strip_mac', '0');
 		o.value('text');
 		o.value('base64');
 		o.optional = true;
+
+		o = s.taboption('forward', form.Flag, 'strip_mac',
+			_('Remove MAC address'),
+			_('Remove any MAC address information already in downstream queries before forwarding upstream.'));
 
 		o = s.taboption('limits', form.Value, 'dhcpleasemax',
 			_('Max. DHCP leases'),

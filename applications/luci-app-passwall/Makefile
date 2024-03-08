@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=4.74-3
+PKG_VERSION:=4.75-6
 PKG_RELEASE:=
 
 PKG_CONFIG_DEPENDS:= \
@@ -39,6 +39,7 @@ LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
 
 define Package/$(PKG_NAME)/config
 menu "Configuration"
+	depends on PACKAGE_$(PKG_NAME)
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy
 	bool "Include Haproxy"

@@ -4,25 +4,20 @@ config global
 	option socks_enabled '0'
 	option tcp_node 'nil'
 	option udp_node 'tcp'
-	option tcp_node_socks_port '1070'
-	option filter_proxy_ipv6 '0'
 	option dns_mode 'dns2tcp'
 	option remote_dns '1.1.1.1'
 	option use_default_dns 'direct'
-	option use_direct_list '1'
-	option use_proxy_list '1'
-	option use_block_list '1'
-	option use_gfw_list '1'
 	option chn_list 'direct'
 	option tcp_proxy_mode 'proxy'
 	option udp_proxy_mode 'proxy'
-	option localhost_tcp_proxy_mode 'default'
-	option localhost_udp_proxy_mode 'default'
+	option localhost_proxy '1'
+	option client_proxy '1'
 	option acl_enable '0'
 	option close_log_tcp '1'
 	option close_log_udp '1'
 	option loglevel 'error'
 	option trojan_loglevel '4'
+	option advanced_log_feature '0'
 
 config global_haproxy
 	option balancing_enable '0'
@@ -40,7 +35,7 @@ config global_forwarding
 	option tcp_redir_ports '1:65535'
 	option udp_redir_ports '1:65535'
 	option accept_icmp '0'
-	option use_nft '0'
+	option use_nft '1'
 	option tcp_proxy_way 'tproxy'
 	option ipv6_tproxy '0'
 
@@ -209,3 +204,4 @@ config shunt_rules 'Direct'
 120.53.53.53/32
 geoip:cn
 geoip:private'
+
