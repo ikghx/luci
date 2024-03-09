@@ -18,6 +18,18 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.4-dev\n"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:47
+msgid "0 - At most once"
+msgstr "0 - 最多一次"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:48
+msgid "1 - At least once"
+msgstr "1 - 至少一次"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:49
+msgid "2 - Exactly once"
+msgstr "2 - 恰好一次"
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/statistics/rrdtool/definitions/apcups.js:7
 #: applications/luci-app-statistics/root/usr/share/luci/statistics/plugins/apcups.json:2
 msgid "APC UPS"
@@ -71,8 +83,9 @@ msgstr "备份 RRD 统计数据"
 msgid ""
 "Backup and restore RRD statistics to/from non-volatile storage around "
 "shutdown, reboot, and/or sysupgrade"
-msgstr "在关机、重启和/或系统升级前后备份 RRD 统计数据到非易失性存储器/"
-"从非易失性存储器还原 RRD 统计数据"
+msgstr ""
+"在关机、重启和/或系统升级前后备份 RRD 统计数据到非易失性存储器/从非易失性存储"
+"器还原 RRD 统计数据"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/collectd.js:59
 msgid "Base Directory"
@@ -156,6 +169,10 @@ msgstr "Chrony 插件配置"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/chrony.js:32
 msgid "Chrony monitoring enabled"
 msgstr "已启用计时监控"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:72
+msgid "CleanSession"
+msgstr "清理会话"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/olsrd.js:21
 msgid "CollectLinks"
@@ -430,6 +447,12 @@ msgstr "预期有效时间范围"
 msgid "Extra items"
 msgstr "额外项目"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:61
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:68
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:75
+msgid "False"
+msgstr ""
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/curl.js:14
 msgid "Fetch pages"
 msgstr "提取页面"
@@ -518,6 +541,7 @@ msgid ""
 "not to 100%."
 msgstr "隐藏可用内存项会使图形缩放至实际内存用量，不是 100%。"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:29
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/olsrd.js:14
 msgid "Host"
 msgstr "主机"
@@ -886,7 +910,20 @@ msgstr "正监控温控区 %s"
 msgid "More details about frequency usage and transitions"
 msgstr "有关频率使用和切换的更多详细信息"
 
+#: applications/luci-app-statistics/root/usr/share/luci/statistics/plugins/mqtt.json:2
+msgid "Mqtt"
+msgstr ""
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:6
+msgid "Mqtt Plugin Configuration"
+msgstr "Mqtt 插件配置"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:86
+msgid "Mqtt plugin enabled"
+msgstr "启用 Mqtt 插件"
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/curl.js:25
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:25
 msgid "Name"
 msgstr "名称"
 
@@ -977,6 +1014,10 @@ msgstr "Output 插件"
 msgid "Overview"
 msgstr "概览"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:41
+msgid "Password"
+msgstr ""
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/memory.js:23
 msgid "Percent values"
 msgstr "百分比"
@@ -994,6 +1035,7 @@ msgstr "Ping 插件配置"
 msgid "Plugin is disabled"
 msgstr "插件已禁用"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:34
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/olsrd.js:18
 msgid "Port"
 msgstr "端口"
@@ -1010,6 +1052,10 @@ msgstr "chronyd 端口"
 msgid "Possibly bug in collectd. Only 127.0.0.1 and localhost work"
 msgstr "可能是 collectd 的 bug。只有 127.0.0.1 和 localhost 工作"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:53
+msgid "Prefix"
+msgstr "前缀"
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/statistics/rrdtool/definitions/processes.js:7
 #: applications/luci-app-statistics/root/usr/share/luci/statistics/plugins/processes.json:2
 msgid "Processes"
@@ -1024,9 +1070,17 @@ msgstr "进程插件配置"
 msgid "Processor"
 msgstr "处理器"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:21
+msgid "Publish"
+msgstr "发布"
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/netlink.js:26
 msgid "Qdisc monitoring"
 msgstr "Qdisc 监测"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:46
+msgid "QoS"
+msgstr ""
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/rrdtool.js:62
 msgid "RRD XFiles Factor"
@@ -1063,6 +1117,10 @@ msgstr "按使用状态统计"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/cpu.js:32
 msgid "Report in percent"
 msgstr "按百分比统计"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:58
+msgid "Retain"
+msgstr "保持"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/rrdtool.js:57
 msgid "Rows per RRA"
@@ -1118,6 +1176,10 @@ msgstr "脚本"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/rrdtool.js:95
 msgid "Seconds"
 msgstr "秒"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:11
+msgid "Sends or receives data via mqtt"
+msgstr "通过 mqtt 发送或接收数据"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/sensors.js:25
 msgid "Sensor list"
@@ -1252,6 +1314,10 @@ msgstr "csv 存储目录"
 msgid "Store data values as rates instead of absolute values"
 msgstr "存储数据值变化量而不是绝对值"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:65
+msgid "StoreRates"
+msgstr "商店价格"
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/rrdtool.js:43
 msgid "Stored timespans"
 msgstr "存储时间跨度"
@@ -1259,6 +1325,10 @@ msgstr "存储时间跨度"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/csv.js:24
 msgid "Storing CSV data in %s"
 msgstr "正在将 CSV 数据保存到 %s"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:22
+msgid "Subscribe"
+msgstr "订阅"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/tcpconns.js:30
 msgid "Summary of all ports"
@@ -1559,6 +1629,16 @@ msgstr "定义本地收集数据被发送到哪台 Collected 服务器。"
 msgid "Timeout for polling chrony"
 msgstr "轮询时间超时"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:79
+msgid "Topic"
+msgstr "主题"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:60
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:67
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:74
+msgid "True"
+msgstr ""
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/collectd.js:80
 msgid "Try to look up fully qualified hostname"
 msgstr "尝试解析主机全域名"
@@ -1570,6 +1650,10 @@ msgstr "发送端远端重发"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/statistics/rrdtool/definitions/dsl.js:167
 msgid "Tx Retransmitted Near"
 msgstr "发送端近端重发"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:20
+msgid "Type"
+msgstr ""
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/statistics/rrdtool/definitions/nut.js:7
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/nut.js:14
@@ -1621,6 +1705,7 @@ msgstr "正在使用的 PID 文件"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/exec.js:27
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/exec.js:47
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:38
 msgid "User"
 msgstr "用户"
 
