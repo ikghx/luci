@@ -74,7 +74,7 @@ return view.extend({
 			_('Once a specific ip address authed successfully with user/pass, it is added to a whitelist and may use the proxy without auth.'));
 		o.depends({'user': '', '!reverse': true});
 
-		o = s.option(form.Flag, 'disable_log', _('Disable log'));
+		o = s.option(form.Flag, 'quiet', _('Disable log'));
 		o.rmempty = false;
 
 		return m.render();

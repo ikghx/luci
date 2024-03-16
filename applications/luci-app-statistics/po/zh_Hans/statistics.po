@@ -387,6 +387,7 @@ msgstr "启用统计"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/tcpconns.js:12
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/thermal.js:13
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/unixsock.js:13
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/users.js:10
 msgid "Enable this plugin"
 msgstr "启用该插件"
 
@@ -897,6 +898,10 @@ msgstr[0] "正监控 %d 个进程"
 msgid "Monitoring one sensor"
 msgid_plural "Monitoring %d sensors"
 msgstr[0] "正监控 %d 个传感器"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/users.js:14
+msgid "Monitoring shell users count"
+msgstr "监控 shell 用户数"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/splash_leases.js:10
 msgid "Monitoring splash leases"
@@ -1593,6 +1598,13 @@ msgstr "unixsock 插件创建一个 unix 套接字可用于读取 Collectd 实�
 msgid "The uptime plugin collects statistics about the uptime of the system."
 msgstr "运行时间插件收集系统启动时间的统计信息。"
 
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/users.js:7
+msgid ""
+"The users plugin collects statistics about users logged in locally via "
+"shell. NOTE: Local shell (wtmp) tracking is NOT enabled in default builds. "
+"Additional setup is required to get non-zero counts."
+msgstr "users 插件收集有关通过 shell 本地登录的用户的统计信息。注意：默认版本中未启用本地 shell (wtmp) 跟踪。需要额外的设置才能获得非零计数。"
+
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/graphs.js:179
 msgid "There is no RRD data available yet to render graphs."
 msgstr "尚无可用的RRD数据来制作图表。"
@@ -1708,6 +1720,14 @@ msgstr "正在使用的 PID 文件"
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/mqtt.js:38
 msgid "User"
 msgstr "用户"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/statistics/rrdtool/definitions/users.js:7
+msgid "Users"
+msgstr "用户"
+
+#: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/users.js:6
+msgid "Users Plugin Configuration"
+msgstr "用户插件配置"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/statistics/rrdtool/definitions/dsl.js:92
 msgid "Vectoring Down"

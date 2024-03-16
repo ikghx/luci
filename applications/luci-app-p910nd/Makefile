@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 OpenWrt.org
+# Copyright (C) 2024 Paul Donald <newtwen@gmail.com>
 #
 # This is free software, licensed under the Apache License, Version 2.0 .
 #

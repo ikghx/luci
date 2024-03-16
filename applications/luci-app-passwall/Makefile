@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=4.75-6
+PKG_VERSION:=4.75-9
 PKG_RELEASE:=
 
 PKG_CONFIG_DEPENDS:= \
@@ -34,7 +34,7 @@ LUCI_TITLE:=LuCI support for PassWall
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
 	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
-	+microsocks +resolveip +tcping +unzip +dnsmasq-full +ipt2socks +nftables \
+	+microsocks +resolveip +tcping +ipt2socks +nftables \
 	+kmod-nft-socket +kmod-nft-tproxy +kmod-nft-nat
 
 define Package/$(PKG_NAME)/config
@@ -126,6 +126,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray"
 	select PACKAGE_xray-core
+	select PACKAGE_unzip
 	default y if aarch64||arm||i386||x86_64
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray_Plugin

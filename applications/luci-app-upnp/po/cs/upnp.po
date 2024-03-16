@@ -14,11 +14,9 @@ msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:199
 msgid ""
-"ACLs specify which external ports may be redirected to which internal "
-"addresses and ports"
+"ACLs specify which external ports can be forwarded to which client addresses "
+"and ports, IPv6 always allowed."
 msgstr ""
-"ACL stanovují, které vnější porty by měly být přesměrovány na které vnitřní "
-"adresy a porty"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:219
 msgid "Action"
@@ -26,24 +24,24 @@ msgstr "Akce"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:31
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:113
-msgid "Active UPnP Redirects"
-msgstr "Aktivní přesměrování UPnP"
+msgid "Active Port Forwards"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:119
 msgid "Advanced Settings"
 msgstr "Pokročilá nastavení"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:131
-msgid "Advertise as IGDv1 device instead of IGDv2"
-msgstr "Inzerovat jako IGDv1 zařízení místo IGDv2"
+msgid "Advertise as UPnP IGDv1 device (no IPv6) instead of IGDv2"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:220
 msgid "Allow"
 msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:128
-msgid "Allow adding forwards only to requesting ip addresses"
-msgstr "Povolit přesměrování pouze na dotazující ip adresy"
+msgid "Allow adding port forwards only to requesting IP addresses"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:155
 msgid "Announced model number"
@@ -63,11 +61,13 @@ msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:45
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:85
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:211
 msgid "Client Address"
 msgstr "Adresa klienta"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:47
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:87
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:215
 msgid "Client Port"
 msgstr "Port klienta"
 
@@ -99,20 +99,20 @@ msgid "Disable IPv6"
 msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:141
-msgid "Downlink"
-msgstr "Downlink"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:130
-msgid "Enable IGDv1 mode"
-msgstr "Povolit režim IGDv1"
+msgid "Download speed"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:125
-msgid "Enable NAT-PMP functionality"
-msgstr "Povolit funkčnost NAT-PMP"
+msgid "Enable PCP/NAT-PMP protocol"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:124
-msgid "Enable UPnP functionality"
-msgstr "Povolit funkčnost UPnP"
+msgid "Enable UPnP IGD protocol"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:130
+msgid "Enable UPnP IGDv1 mode"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:138
 msgid "Enable additional logging"
@@ -122,18 +122,11 @@ msgstr "Povolit přídavné logování"
 msgid "Enable secure mode"
 msgstr "Povolit bezpečný režim"
 
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:121
-msgid "Enabled"
-msgstr ""
-
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:44
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:84
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:207
 msgid "External Port"
 msgstr "Vnější port"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:207
-msgid "External ports"
-msgstr "Vnější porty"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:135
 msgid "Forced forwarding"
@@ -144,29 +137,13 @@ msgid "General Settings"
 msgstr "Obecná nastavení"
 
 #: applications/luci-app-upnp/root/usr/share/rpcd/acl.d/luci-app-upnp.json:3
-msgid "Grant access to upnp procedures"
+msgid "Grant access to UPnP IGD & PCP/NAT-PMP"
 msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:46
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:86
 msgid "Host"
 msgstr "Hostitel"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:211
-msgid "Internal addresses"
-msgstr "Vnitřní adresy"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:215
-msgid "Internal ports"
-msgstr "Vnitřní porty"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:198
-msgid "MiniUPnP ACLs"
-msgstr "MiniUPnP ACL listy"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:116
-msgid "MiniUPnP settings"
-msgstr "Nastavení MiniUPnP"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:157
 msgid "Notify interval (second)"
@@ -190,8 +167,8 @@ msgid "Puts extra debugging information into the system log"
 msgstr "Vypisovat extra ladící informace do systémového záznamu"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:151
-msgid "Report system instead of daemon uptime"
-msgstr "Hlásit uptime systému namísto uptime daemonu"
+msgid "Report system instead of service uptime"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:177
 msgid "STUN Host"
@@ -201,11 +178,27 @@ msgstr ""
 msgid "STUN Port"
 msgstr ""
 
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:198
+msgid "Service ACLs"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:116
+msgid "Service Settings"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:172
+msgid "Service lease file"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:121
+msgid "Start service"
+msgstr ""
+
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:70
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:66
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:110
-msgid "There are no active redirects."
-msgstr "Neexistují žádná aktivní přesměrování."
+msgid "There are no active port forwards."
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:136
 msgid ""
@@ -214,23 +207,18 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json:3
-msgid "UPnP"
-msgstr "UPnP"
+msgid "UPnP IGD & PCP/NAT-PMP"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:75
+msgid "UPnP IGD & PCP/NAT-PMP Service"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:76
 msgid ""
-"UPnP allows clients in the local network to automatically configure the "
-"router."
+"UPnP IGD & PCP/NAT-PMP allows clients on the local network to automatically "
+"configure port forwards on the router. Also called Universal Plug and Play."
 msgstr ""
-"UPnP umožňuje klientům v místní síti automaticky nakonfigurovat router."
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:172
-msgid "UPnP lease file"
-msgstr "Soubor UPnP výpůjček"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:75
-msgid "Universal Plug & Play"
-msgstr "Univerzální Plug & Play"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:60
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:56
@@ -239,8 +227,8 @@ msgid "Unknown"
 msgstr "Neznámé"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:144
-msgid "Uplink"
-msgstr "Uplink"
+msgid "Upload speed"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:175
 msgid "Use STUN"
@@ -250,6 +238,73 @@ msgstr ""
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:145
 msgid "Value in KByte/s, informational only"
 msgstr "Pouze informační hodnoty (v KByte/s)"
+
+#~ msgid ""
+#~ "ACLs specify which external ports may be redirected to which internal "
+#~ "addresses and ports"
+#~ msgstr ""
+#~ "ACL stanovují, které vnější porty by měly být přesměrovány na které "
+#~ "vnitřní adresy a porty"
+
+#~ msgid "Active UPnP Redirects"
+#~ msgstr "Aktivní přesměrování UPnP"
+
+#~ msgid "Advertise as IGDv1 device instead of IGDv2"
+#~ msgstr "Inzerovat jako IGDv1 zařízení místo IGDv2"
+
+#~ msgid "Allow adding forwards only to requesting ip addresses"
+#~ msgstr "Povolit přesměrování pouze na dotazující ip adresy"
+
+#~ msgid "Downlink"
+#~ msgstr "Downlink"
+
+#~ msgid "Enable IGDv1 mode"
+#~ msgstr "Povolit režim IGDv1"
+
+#~ msgid "Enable NAT-PMP functionality"
+#~ msgstr "Povolit funkčnost NAT-PMP"
+
+#~ msgid "Enable UPnP functionality"
+#~ msgstr "Povolit funkčnost UPnP"
+
+#~ msgid "External ports"
+#~ msgstr "Vnější porty"
+
+#~ msgid "Internal addresses"
+#~ msgstr "Vnitřní adresy"
+
+#~ msgid "Internal ports"
+#~ msgstr "Vnitřní porty"
+
+#~ msgid "MiniUPnP ACLs"
+#~ msgstr "MiniUPnP ACL listy"
+
+#~ msgid "MiniUPnP settings"
+#~ msgstr "Nastavení MiniUPnP"
+
+#~ msgid "Report system instead of daemon uptime"
+#~ msgstr "Hlásit uptime systému namísto uptime daemonu"
+
+#~ msgid "There are no active redirects."
+#~ msgstr "Neexistují žádná aktivní přesměrování."
+
+#~ msgid "UPnP"
+#~ msgstr "UPnP"
+
+#~ msgid ""
+#~ "UPnP allows clients in the local network to automatically configure the "
+#~ "router."
+#~ msgstr ""
+#~ "UPnP umožňuje klientům v místní síti automaticky nakonfigurovat router."
+
+#~ msgid "UPnP lease file"
+#~ msgstr "Soubor UPnP výpůjček"
+
+#~ msgid "Universal Plug & Play"
+#~ msgstr "Univerzální Plug & Play"
+
+#~ msgid "Uplink"
+#~ msgstr "Uplink"
 
 #~ msgid "Clean rules interval"
 #~ msgstr "Interval čištění pravidel"

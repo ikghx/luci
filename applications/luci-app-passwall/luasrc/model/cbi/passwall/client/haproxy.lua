@@ -1,5 +1,5 @@
 local api = require "luci.passwall.api"
-local appname = api.appname
+local appname = "passwall"
 local sys = api.sys
 local net = require "luci.model.network".init()
 local datatypes = api.datatypes
@@ -60,7 +60,7 @@ o:depends("balancing_enable", true)
 o = s:option(DummyValue, "health_check_tips", " ")
 o.rawhtml = true
 o.cfgvalue = function(t, n)
-	return string.format('<span style=\"color:red\">%s</span>', translate("When the availability test is used, the load balancing node will be converted into a Socks node. when node list set customizing, must be a Socks node, otherwise the health check will be invalid."))
+	return string.format('<span style=\"color:red\">%s</span>', translate("When the URL test is used, the load balancing node will be converted into a Socks node. when node list set customizing, must be a Socks node, otherwise the health check will be invalid."))
 end
 o:depends("health_check_type", "passwall_logic")
 

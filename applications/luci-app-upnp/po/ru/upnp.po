@@ -18,11 +18,9 @@ msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:199
 msgid ""
-"ACLs specify which external ports may be redirected to which internal "
-"addresses and ports"
+"ACLs specify which external ports can be forwarded to which client addresses "
+"and ports, IPv6 always allowed."
 msgstr ""
-"Список доступа задает внешние порты для перенаправления на внутренние адреса "
-"и порты"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:219
 msgid "Action"
@@ -30,24 +28,24 @@ msgstr "Действие"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:31
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:113
-msgid "Active UPnP Redirects"
-msgstr "Активные UPnP-переадресации"
+msgid "Active Port Forwards"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:119
 msgid "Advanced Settings"
 msgstr "Расширенные настройки"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:131
-msgid "Advertise as IGDv1 device instead of IGDv2"
-msgstr "Объявить как IGDv1 устройство вместо IGDv2"
+msgid "Advertise as UPnP IGDv1 device (no IPv6) instead of IGDv2"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:220
 msgid "Allow"
 msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:128
-msgid "Allow adding forwards only to requesting ip addresses"
-msgstr "Разрешить перенаправление только для запрашивающих IP-адресов"
+msgid "Allow adding port forwards only to requesting IP addresses"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:155
 msgid "Announced model number"
@@ -67,11 +65,13 @@ msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:45
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:85
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:211
 msgid "Client Address"
 msgstr "Адрес клиента"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:47
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:87
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:215
 msgid "Client Port"
 msgstr "Порт клиента"
 
@@ -103,20 +103,20 @@ msgid "Disable IPv6"
 msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:141
-msgid "Downlink"
-msgstr "Внутреннее соединение"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:130
-msgid "Enable IGDv1 mode"
-msgstr "IGDv1 режим"
+msgid "Download speed"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:125
-msgid "Enable NAT-PMP functionality"
-msgstr "Включить NAT-PMP"
+msgid "Enable PCP/NAT-PMP protocol"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:124
-msgid "Enable UPnP functionality"
-msgstr "Включить UPnP"
+msgid "Enable UPnP IGD protocol"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:130
+msgid "Enable UPnP IGDv1 mode"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:138
 msgid "Enable additional logging"
@@ -126,18 +126,11 @@ msgstr "Дополнительное журналирование"
 msgid "Enable secure mode"
 msgstr "Защищённый режим"
 
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:121
-msgid "Enabled"
-msgstr ""
-
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:44
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:84
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:207
 msgid "External Port"
 msgstr "Внешний порт"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:207
-msgid "External ports"
-msgstr "Внешние порты"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:135
 msgid "Forced forwarding"
@@ -148,29 +141,13 @@ msgid "General Settings"
 msgstr "Общие настройки"
 
 #: applications/luci-app-upnp/root/usr/share/rpcd/acl.d/luci-app-upnp.json:3
-msgid "Grant access to upnp procedures"
-msgstr "Предоставить доступ к процедурам UPnP"
+msgid "Grant access to UPnP IGD & PCP/NAT-PMP"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:46
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:86
 msgid "Host"
 msgstr "Устройство"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:211
-msgid "Internal addresses"
-msgstr "Внутренние адреса"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:215
-msgid "Internal ports"
-msgstr "Внутренние порты"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:198
-msgid "MiniUPnP ACLs"
-msgstr "Список доступа MiniUPnP"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:116
-msgid "MiniUPnP settings"
-msgstr "Настройки MiniUPnP"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:157
 msgid "Notify interval (second)"
@@ -194,8 +171,8 @@ msgid "Puts extra debugging information into the system log"
 msgstr "Добавлять дополнительную отладочную информацию в системный журнал"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:151
-msgid "Report system instead of daemon uptime"
-msgstr "Сообщать время работы системы вместо службы"
+msgid "Report system instead of service uptime"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:177
 msgid "STUN Host"
@@ -205,11 +182,27 @@ msgstr "Хост STUN"
 msgid "STUN Port"
 msgstr "Порт STUN"
 
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:198
+msgid "Service ACLs"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:116
+msgid "Service Settings"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:172
+msgid "Service lease file"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:121
+msgid "Start service"
+msgstr ""
+
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:70
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:66
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:110
-msgid "There are no active redirects."
-msgstr "Активные переадресации отсутствуют."
+msgid "There are no active port forwards."
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:136
 msgid ""
@@ -218,24 +211,18 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json:3
-msgid "UPnP"
-msgstr "UPnP"
+msgid "UPnP IGD & PCP/NAT-PMP"
+msgstr ""
+
+#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:75
+msgid "UPnP IGD & PCP/NAT-PMP Service"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:76
 msgid ""
-"UPnP allows clients in the local network to automatically configure the "
-"router."
+"UPnP IGD & PCP/NAT-PMP allows clients on the local network to automatically "
+"configure port forwards on the router. Also called Universal Plug and Play."
 msgstr ""
-"UPnP позволяет клиентам в локальной сети автоматически настраивать "
-"маршрутизатор."
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:172
-msgid "UPnP lease file"
-msgstr "Файл аренды UPnP"
-
-#: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:75
-msgid "Universal Plug & Play"
-msgstr "Universal Plug & Play"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/status/include/80_upnp.js:60
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:56
@@ -244,8 +231,8 @@ msgid "Unknown"
 msgstr "Неизвестно"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:144
-msgid "Uplink"
-msgstr "Внешнее соединение"
+msgid "Upload speed"
+msgstr ""
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:175
 msgid "Use STUN"
@@ -255,6 +242,77 @@ msgstr "Используйте STUN"
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:145
 msgid "Value in KByte/s, informational only"
 msgstr "Значение в КБ/с, только для информации"
+
+#~ msgid ""
+#~ "ACLs specify which external ports may be redirected to which internal "
+#~ "addresses and ports"
+#~ msgstr ""
+#~ "Список доступа задает внешние порты для перенаправления на внутренние "
+#~ "адреса и порты"
+
+#~ msgid "Active UPnP Redirects"
+#~ msgstr "Активные UPnP-переадресации"
+
+#~ msgid "Advertise as IGDv1 device instead of IGDv2"
+#~ msgstr "Объявить как IGDv1 устройство вместо IGDv2"
+
+#~ msgid "Allow adding forwards only to requesting ip addresses"
+#~ msgstr "Разрешить перенаправление только для запрашивающих IP-адресов"
+
+#~ msgid "Downlink"
+#~ msgstr "Внутреннее соединение"
+
+#~ msgid "Enable IGDv1 mode"
+#~ msgstr "IGDv1 режим"
+
+#~ msgid "Enable NAT-PMP functionality"
+#~ msgstr "Включить NAT-PMP"
+
+#~ msgid "Enable UPnP functionality"
+#~ msgstr "Включить UPnP"
+
+#~ msgid "External ports"
+#~ msgstr "Внешние порты"
+
+#~ msgid "Grant access to upnp procedures"
+#~ msgstr "Предоставить доступ к процедурам UPnP"
+
+#~ msgid "Internal addresses"
+#~ msgstr "Внутренние адреса"
+
+#~ msgid "Internal ports"
+#~ msgstr "Внутренние порты"
+
+#~ msgid "MiniUPnP ACLs"
+#~ msgstr "Список доступа MiniUPnP"
+
+#~ msgid "MiniUPnP settings"
+#~ msgstr "Настройки MiniUPnP"
+
+#~ msgid "Report system instead of daemon uptime"
+#~ msgstr "Сообщать время работы системы вместо службы"
+
+#~ msgid "There are no active redirects."
+#~ msgstr "Активные переадресации отсутствуют."
+
+#~ msgid "UPnP"
+#~ msgstr "UPnP"
+
+#~ msgid ""
+#~ "UPnP allows clients in the local network to automatically configure the "
+#~ "router."
+#~ msgstr ""
+#~ "UPnP позволяет клиентам в локальной сети автоматически настраивать "
+#~ "маршрутизатор."
+
+#~ msgid "UPnP lease file"
+#~ msgstr "Файл аренды UPnP"
+
+#~ msgid "Universal Plug & Play"
+#~ msgstr "Universal Plug & Play"
+
+#~ msgid "Uplink"
+#~ msgstr "Внешнее соединение"
 
 #~ msgid "Clean rules interval"
 #~ msgstr "Интервал очистки правил"

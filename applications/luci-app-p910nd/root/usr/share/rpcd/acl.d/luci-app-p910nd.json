@@ -2,22 +2,17 @@
 	"luci-app-p910nd": {
 		"description": "Grant UCI access for luci-app-p910nd",
 		"read": {
-			"cgi-io": [ "exec" ],
 			"uci": [ "p910nd" ],
 			"file": {
-				"TODO: /etc/hotplug.d/usb/50_usb_printer_hotplug": [ "read, exec" ],
-				"/bin/cat /sys/*": ["exec"],
-				"/bin/grep -RH *": ["exec"],
-				"/sys/bus*": ["read"],
+				"/usr/bin/find -L /dev -maxdepth 3 -type c -name lp*": ["exec"],
+				"/usr/libexec/opkg-call list-installed": ["exec"]
 			},
 			"ubus": {
-				"luci": [ "p910nd" ],
-				"file": [ "stat" ]
+				"luci": [ "p910nd" ]
 			}
 		},
 		"write": {
-			"cgi-io": [ "exec" ],
-			"uci": [ "p910nd" ],
+			"uci": [ "p910nd" ]
 		}
 	}
 }
