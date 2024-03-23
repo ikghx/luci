@@ -237,7 +237,7 @@ msgstr ""
 "在 <abbr title=\"扩展服务集\">ESS</abbr> 中提供 <abbr title=\"Fast "
 "Transition\">FT</abbr> 的 AP 组的 4 个字符的十六进制标识符。"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:18
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:20
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/464xlat.js:11
 msgid "464XLAT (CLAT)"
 msgstr "464XLAT（CLAT）"
@@ -2256,6 +2256,10 @@ msgstr "调试"
 msgid "Default %d"
 msgstr "默认 %d"
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
+msgid "Default gateway"
+msgstr "默认网关"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:844
 msgid "Default router"
 msgstr "默认路由器"
@@ -3197,6 +3201,7 @@ msgstr ""
 "WPA3-SAE"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:59
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:62
 msgid "Encapsulation limit"
 msgstr "封装限制"
 
@@ -4323,6 +4328,11 @@ msgstr "地址/网络掩码表示法中的 IPv4 网络"
 msgid "IPv4 only"
 msgstr "仅 IPv4"
 
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:16
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:10
+msgid "IPv4 over IPv6 (RFC2473-IPIPv6)"
+msgstr ""
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:52
 msgid "IPv4 prefix"
 msgstr "IPv4 地址前缀"
@@ -4592,6 +4602,7 @@ msgid ""
 msgstr "如果日志行队列已满，dnsmasq 将记录溢出和丢失的消息数。默认队列长度为 5"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1033
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:134
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:156
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:129
@@ -4619,6 +4630,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1127
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:63
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:66
 msgid "Ignore"
 msgstr "忽略"
 
@@ -5095,7 +5107,7 @@ msgstr "保留当前配置"
 msgid "Keep-Alive"
 msgstr "保活"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:38
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:39
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:84
 msgid "Kernel Log"
 msgstr "内核日志"
@@ -5264,6 +5276,7 @@ msgstr "留空则自动探测"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:48
 msgid "Leave empty to use the current WAN address"
 msgstr "留空则使用当前 WAN 地址"
 
@@ -5427,7 +5440,7 @@ msgstr "正在载入目录内容…"
 msgid "Loading view…"
 msgstr "正在载入视图…"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:997
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1006
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:101
 msgid "Local"
 msgstr "本地"
@@ -5451,6 +5464,7 @@ msgstr "要分配的本地 IP 地址"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:40
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:39
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:44
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:151
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:44
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:44
@@ -5465,6 +5479,7 @@ msgstr "本地 IPV6 DNS 服务器"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:54
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:48
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:44
 msgid "Local IPv6 address"
 msgstr "本机 IPv6 地址"
@@ -5635,12 +5650,12 @@ msgstr ""
 msgid "MAC address(es)"
 msgstr "MAC 地址(es)"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:16
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:18
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:13
 msgid "MAP / LW4over6"
 msgstr "MAP / LW4over6配置"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:62
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:65
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:7
 msgid "MAP rule is invalid"
 msgstr "MAP 规则无效"
@@ -6435,7 +6450,7 @@ msgstr "无主机路由"
 msgid "No information available"
 msgstr "无可用信息"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:63
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:66
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:8
 msgid "No matching prefix delegation"
 msgstr "无匹配的前缀委托"
@@ -6472,6 +6487,10 @@ msgstr "未找到首选的模式配置。"
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:283
 msgid "No public keys present yet."
 msgstr "当前还没有公钥。"
+
+#: modules/luci-base/htdocs/luci-static/resources/tools/views.js:20
+msgid "No related logs yet!"
+msgstr "还没有相关日志！"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:396
 msgid "No round robin"
@@ -8010,6 +8029,7 @@ msgstr "远程 IPv6 地址"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:42
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:42
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:40
 msgid "Remote IPv6 address or FQDN"
 msgstr "远程 IPv6 地址或 FQDN"
 
@@ -9270,7 +9290,7 @@ msgstr "语法： {code_syntax}."
 msgid "System"
 msgstr "系统"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:44
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:45
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:63
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
@@ -9551,7 +9571,7 @@ msgstr "MAC 地址 %h 已被同一个 DHCP 池中的另一个静态租约使用"
 msgid "The MTU must not exceed the parent device MTU of %d bytes"
 msgstr "MTU 不能超过父设备 MTU 的 %d 字节"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:991
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1000
 msgid "The VLAN ID must be unique"
 msgstr "VLAN ID 必须是唯一的"
 
@@ -9845,6 +9865,10 @@ msgstr "所选选项与 %s 模式不兼容。"
 #: modules/luci-base/ucode/template/csrftoken.ut:11
 msgid "The submitted security token is invalid or already expired!"
 msgstr "提交的安全令牌无效或已过期！"
+
+#: modules/luci-base/htdocs/luci-static/resources/tools/views.js:27
+msgid "The syslog output, pre-filtered for messages related to:"
+msgstr "系统日志输出，预先过滤与以下相关的消息："
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:98
 msgid ""
@@ -10230,6 +10254,7 @@ msgstr "隧道接口"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/464xlat.js:44
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:55
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:58
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:76
 msgid "Tunnel Link"
 msgstr "隧道链接"
@@ -10333,7 +10358,7 @@ msgstr "无法重置 ip6tables 计数器：%s"
 msgid "Unable to reset iptables counters: %s"
 msgstr "无法重置 iptables 计数器：%s"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:61
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:64
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:7
 msgid "Unable to resolve AFTR host name"
 msgstr "无法解析 AFTR 主机名"
@@ -10432,7 +10457,7 @@ msgstr "未保存的配置"
 msgid "Unspecified error"
 msgstr "未指定的错误"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:64
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:67
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:9
 msgid "Unsupported MAP type"
 msgstr "不支持的 MAP 类型"
@@ -10565,6 +10590,7 @@ msgstr "参考 ISO/IEC 3166 alpha2 国家代码。"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:69
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:53
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:67
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:78
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:84
 msgid "Use MTU on tunnel interface"
 msgstr "隧道接口的 MTU"
@@ -10617,6 +10643,7 @@ msgid "Use default gateway"
 msgstr "使用默认网关"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1055
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:73
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:138
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:164
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:133
@@ -10750,7 +10777,7 @@ msgid "VLAN (802.1q)"
 msgstr "VLAN (802.1q)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:469
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:972
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:981
 msgid "VLAN ID"
 msgstr "VLAN ID"
 

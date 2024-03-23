@@ -30,7 +30,7 @@ function renderStatus(isRunning, port) {
 			window.location.hostname, port, _('Open Web Interface'));
 		renderHTML = spanTemp.format('green', _('v2rayA'), _('Running')) + button;
 	} else {
-		renderHTML = spanTemp.format('red', _('v2rayA'), _('Not running'));
+		renderHTML = spanTemp.format('red', _('v2rayA'), _('Not Running'));
 	}
 
 	return renderHTML;

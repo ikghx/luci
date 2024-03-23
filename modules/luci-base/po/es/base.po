@@ -238,7 +238,7 @@ msgid ""
 "Set\">ESS</abbr>."
 msgstr ""
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:18
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:20
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/464xlat.js:11
 msgid "464XLAT (CLAT)"
 msgstr "464XLAT (CLAT)"
@@ -2306,6 +2306,10 @@ msgstr "Depurar"
 msgid "Default %d"
 msgstr ""
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
+msgid "Default gateway"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:844
 msgid "Default router"
 msgstr "Enrutador predeterminado"
@@ -3263,6 +3267,7 @@ msgid ""
 msgstr ""
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:59
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:62
 msgid "Encapsulation limit"
 msgstr "Límite de encapsulación"
 
@@ -4414,6 +4419,11 @@ msgstr "Red IPv4 en notación de dirección / máscara de red"
 msgid "IPv4 only"
 msgstr "Solo IPv4"
 
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:16
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:10
+msgid "IPv4 over IPv6 (RFC2473-IPIPv6)"
+msgstr ""
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:52
 msgid "IPv4 prefix"
 msgstr "Prefijo IPv4"
@@ -4689,6 +4699,7 @@ msgid ""
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1033
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:134
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:156
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:129
@@ -4720,6 +4731,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1127
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:63
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:66
 msgid "Ignore"
 msgstr ""
 
@@ -5209,7 +5221,7 @@ msgstr "Mantener los ajustes y conservar la configuración actual"
 msgid "Keep-Alive"
 msgstr "Mantener viva"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:38
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:39
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:84
 msgid "Kernel Log"
 msgstr "Registro del núcleo"
@@ -5380,6 +5392,7 @@ msgstr "Deje vacío para autodetectar"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:48
 msgid "Leave empty to use the current WAN address"
 msgstr "Deje vacío para usar la dirección WAN actual"
 
@@ -5538,7 +5551,7 @@ msgstr "Cargando el contenido del directorio…"
 msgid "Loading view…"
 msgstr "Cargando vista…"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:997
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1006
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:101
 msgid "Local"
 msgstr "Local"
@@ -5562,6 +5575,7 @@ msgstr "Dirección IP local para asignar"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:40
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:39
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:44
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:151
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:44
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:44
@@ -5576,6 +5590,7 @@ msgstr "Servidor DNS IPv6 local"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:54
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:48
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:44
 msgid "Local IPv6 address"
 msgstr "Dirección IPv6 local"
@@ -5746,12 +5761,12 @@ msgstr ""
 msgid "MAC address(es)"
 msgstr ""
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:16
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:18
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:13
 msgid "MAP / LW4over6"
 msgstr "MAP / LW4over6"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:62
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:65
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:7
 msgid "MAP rule is invalid"
 msgstr "La regla MAP no es válida"
@@ -6557,7 +6572,7 @@ msgstr "Sin ruta de host"
 msgid "No information available"
 msgstr "No hay información disponible"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:63
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:66
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:8
 msgid "No matching prefix delegation"
 msgstr "No hay delegación de prefijo coincidente"
@@ -6596,6 +6611,10 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:283
 msgid "No public keys present yet."
 msgstr "No hay claves públicas presentes todavía."
+
+#: modules/luci-base/htdocs/luci-static/resources/tools/views.js:20
+msgid "No related logs yet!"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:396
 msgid "No round robin"
@@ -8170,6 +8189,7 @@ msgstr "Dirección IPv6 remota"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:42
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:42
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:40
 msgid "Remote IPv6 address or FQDN"
 msgstr "Dirección IPv6 remota o FQDN"
 
@@ -9491,7 +9511,7 @@ msgstr ""
 msgid "System"
 msgstr "Sistema"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:44
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:45
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:63
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
@@ -9798,7 +9818,7 @@ msgstr ""
 msgid "The MTU must not exceed the parent device MTU of %d bytes"
 msgstr "La MTU no debe exceder la MTU del dispositivo principal de %d bytes"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:991
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1000
 msgid "The VLAN ID must be unique"
 msgstr "La ID de VLAN debe ser única"
 
@@ -10126,6 +10146,10 @@ msgstr ""
 #: modules/luci-base/ucode/template/csrftoken.ut:11
 msgid "The submitted security token is invalid or already expired!"
 msgstr "¡El token de seguridad enviado no es válido o ya está vencido!"
+
+#: modules/luci-base/htdocs/luci-static/resources/tools/views.js:27
+msgid "The syslog output, pre-filtered for messages related to:"
+msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:98
 msgid ""
@@ -10540,6 +10564,7 @@ msgstr "Interfaz de túnel"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/464xlat.js:44
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:55
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:58
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:76
 msgid "Tunnel Link"
 msgstr "Enlace del túnel"
@@ -10643,7 +10668,7 @@ msgstr "No se pueden restablecer los contadores de ip6tables: %s"
 msgid "Unable to reset iptables counters: %s"
 msgstr "No se pueden restablecer los contadores de iptables: %s"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:61
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:64
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:7
 msgid "Unable to resolve AFTR host name"
 msgstr "No se puede resolver el nombre de host AFTR"
@@ -10744,7 +10769,7 @@ msgstr "Cambios sin aplicar"
 msgid "Unspecified error"
 msgstr "Error no especificado"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:64
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:67
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:9
 msgid "Unsupported MAP type"
 msgstr "Tipo de MAP no soportado"
@@ -10884,6 +10909,7 @@ msgstr "Usa códigos de país ISO/IEC 3166 alpha2."
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:69
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:53
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:67
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:78
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:84
 msgid "Use MTU on tunnel interface"
 msgstr "MTU a usar en el interfaz de túnel"
@@ -10936,6 +10962,7 @@ msgid "Use default gateway"
 msgstr "Utilizar la puerta de enlace predeterminada"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1055
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:73
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:138
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:164
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:133
@@ -11071,7 +11098,7 @@ msgid "VLAN (802.1q)"
 msgstr "VLAN (802.1q)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:469
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:972
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:981
 msgid "VLAN ID"
 msgstr "ID de VLAN"
 
@@ -12192,6 +12219,9 @@ msgstr ""
 msgid "« Back"
 msgstr "« Volver"
 
+#~ msgid "ignore"
+#~ msgstr "ignorar"
+
 #~ msgid "Run a filesystem check before mounting the device"
 #~ msgstr "Comprobar el sistema de archivos antes de montar el dispositivo"
 
@@ -12365,9 +12395,6 @@ msgstr "« Volver"
 
 #~ msgid "IPv6 suffix (hex)"
 #~ msgstr "Sufijo IPv6 (hex)"
-
-#~ msgid "ignore"
-#~ msgstr "ignorar"
 
 #~ msgid "4-character hexadecimal ID"
 #~ msgstr "ID hexadecimal de 4 caracteres"

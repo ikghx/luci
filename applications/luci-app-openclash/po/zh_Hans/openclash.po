@@ -569,8 +569,13 @@ msgid "Bypass The China Network Flows, Improve Performance"
 msgstr "启用后中国大陆流量将不再经过内核，提升系统性能"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:259
-msgid "Bypass The China Network Flows, Improve Performance, Depend on Dnsmasq"
-msgstr "启用后中国大陆流量将不再经过内核，提升系统性能，此功能依赖于 Dnsmasq"
+msgid ""
+"Bypass The China Network Flows, Improve Performance, If Inaccessibility on "
+"Bypass Gateway, Try to Enable Bypass Gateway Compatible Option, Depend on "
+"Dnsmasq"
+msgstr ""
+"启用后中国大陆流量将不再经过内核，提升系统性能，如旁路由遇到无法访问，请尝试"
+"启用旁路由兼容模式，此功能依赖于 Dnsmasq"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:240
 msgid "Bypassing Server Addresses And Preventing Duplicate Proxies"
@@ -1512,6 +1517,10 @@ msgstr "下载总量:"
 msgid "Down:"
 msgstr "下载:"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:315
+msgid "Downlink Capacity(Default:Mbps)"
+msgstr "下行链路容量（默认：Mbps）"
+
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:170
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:171
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:172
@@ -2178,8 +2187,8 @@ msgid "Hongkong/Macau/Taiwan"
 msgstr "港澳台限定"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:727
-msgid "Hop Interval"
-msgstr "跳跃间隔"
+msgid "Hop Interval (Unit:second)"
+msgstr "跳跃间隔（单位：秒）"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:261
 msgid "Hosts"
@@ -2900,10 +2909,6 @@ msgid ""
 "format will not release flash space after updating"
 msgstr "注意：客户端可能无法更新，因为squashfs格式的固件更新后不会释放闪存空间"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:355
-msgid "Obfs"
-msgstr "混淆插件"
-
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:360
 msgid "Obfs param(optional)"
 msgstr "混淆参数（可选）"
@@ -3141,8 +3146,8 @@ msgid "Port For Dashboard Login From Public Network"
 msgstr "设置映射端口，便于从公网访问时自动登录"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:171
-msgid "Port Hopping"
-msgstr "端口跳跃"
+msgid "Port Range"
+msgstr "端口范围值"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:340
 msgid "Prefetch Netflix, Disney Plus Domains"
@@ -4385,6 +4390,10 @@ msgstr "请先在配置文件管理页面上传您的规则集文件"
 msgid "Update time (every day)"
 msgstr "更新时间(每天)"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:309
+msgid "Uplink Capacity(Default:Mbps)"
+msgstr "上行链路容量（默认：Mbps）"
+
 #: applications/luci-app-openclash/luasrc/view/openclash/upload.htm:14
 msgid "Upload"
 msgstr ""
@@ -4624,10 +4633,6 @@ msgstr ""
 msgid "dnsmasq-china-list-testingcf-jsdelivr"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:315
-msgid "down"
-msgstr ""
-
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:554
 msgid "early-data-header-name"
 msgstr ""
@@ -4776,9 +4781,10 @@ msgstr "米哈游"
 msgid "mux"
 msgstr ""
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:355
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:669
 msgid "obfs"
-msgstr ""
+msgstr "混淆插件"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:450
 msgid "obfs-hosts"
@@ -4795,7 +4801,7 @@ msgstr "传输协议"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:462
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:676
 msgid "obfs-password"
-msgstr ""
+msgstr "混淆密码"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:479
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:490
@@ -4887,10 +4893,6 @@ msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:390
 msgid "udp-over-tcp"
-msgstr ""
-
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:309
-msgid "up"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config.lua:105
@@ -5164,9 +5166,8 @@ msgid ""
 msgstr "版本内核更新失败，请确认设备闪存空间足够后再试！"
 
 msgid ""
-"No Compiled Version Selected, Please Select In Global Settings And Try "
-"Again!"
-msgstr "未选择编译版本，请到全局设置中选择后再试！"
+"No Compiled Version Selected, Please Select In Update Page And Try Again!"
+msgstr "未选择编译版本，请到升级页面选择后再试！"
 
 msgid "Core Has Not Been Updated, Stop Continuing Operation!"
 msgstr "版本内核没有更新，停止继续操作！"

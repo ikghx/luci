@@ -234,7 +234,7 @@ msgid ""
 "Set\">ESS</abbr>."
 msgstr ""
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:18
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:20
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/464xlat.js:11
 msgid "464XLAT (CLAT)"
 msgstr "464XLAT (CLAT)"
@@ -2268,6 +2268,10 @@ msgstr "Hata ayıklama"
 msgid "Default %d"
 msgstr ""
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
+msgid "Default gateway"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:844
 msgid "Default router"
 msgstr "Varsayılan yönlendirici"
@@ -3212,6 +3216,7 @@ msgid ""
 msgstr ""
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:59
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:62
 msgid "Encapsulation limit"
 msgstr "Kapsülleme sınırı"
 
@@ -4342,6 +4347,11 @@ msgstr "Adres/ağ maskesi gösteriminde IPv4 ağı"
 msgid "IPv4 only"
 msgstr "Yalnızca IPv4"
 
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:16
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:10
+msgid "IPv4 over IPv6 (RFC2473-IPIPv6)"
+msgstr ""
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:52
 msgid "IPv4 prefix"
 msgstr "IPv4 ön eki"
@@ -4613,6 +4623,7 @@ msgid ""
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1033
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:134
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:156
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:129
@@ -4644,6 +4655,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1127
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:63
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:66
 msgid "Ignore"
 msgstr ""
 
@@ -5131,7 +5143,7 @@ msgstr "Ayarları koruyun ve mevcut yapılandırmayı koruyun"
 msgid "Keep-Alive"
 msgstr ""
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:38
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:39
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:84
 msgid "Kernel Log"
 msgstr "Çekirdek Günlüğü"
@@ -5302,6 +5314,7 @@ msgstr "Otomatik algılanması için boş bırakın"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:48
 msgid "Leave empty to use the current WAN address"
 msgstr "Mevcut WAN adresini kullanmak için boş bırakın"
 
@@ -5456,7 +5469,7 @@ msgstr "Dizin içeriği yükleniyor…"
 msgid "Loading view…"
 msgstr "Görünüm yükleniyor…"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:997
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1006
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:101
 msgid "Local"
 msgstr "Yerel"
@@ -5480,6 +5493,7 @@ msgstr "Atanacak yerel IP adresi"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:40
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:39
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:39
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:44
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:151
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:44
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:44
@@ -5494,6 +5508,7 @@ msgstr "Yerel IPv6 DNS sunucusu"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:54
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:48
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:44
 msgid "Local IPv6 address"
 msgstr "Yerel IPv6 adresi"
@@ -5663,12 +5678,12 @@ msgstr ""
 msgid "MAC address(es)"
 msgstr ""
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:16
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:18
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:13
 msgid "MAP / LW4over6"
 msgstr "MAP / LW4over6"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:62
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:65
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:7
 msgid "MAP rule is invalid"
 msgstr "MAP kuralı geçersiz"
@@ -6470,7 +6485,7 @@ msgstr "Ana makine yolu yok"
 msgid "No information available"
 msgstr "Bilgi bulunmamaktadır"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:63
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:66
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:8
 msgid "No matching prefix delegation"
 msgstr "Eşleşen önek yetkisi yok"
@@ -6508,6 +6523,10 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:283
 msgid "No public keys present yet."
 msgstr "Henüz genel anahtar yok."
+
+#: modules/luci-base/htdocs/luci-static/resources/tools/views.js:20
+msgid "No related logs yet!"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:396
 msgid "No round robin"
@@ -8057,6 +8076,7 @@ msgstr "Uzak IPv6 adresi"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:42
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:42
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:40
 msgid "Remote IPv6 address or FQDN"
 msgstr "Uzak IPv6 adresi veya FQDN"
 
@@ -9364,7 +9384,7 @@ msgstr ""
 msgid "System"
 msgstr "Sistem"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:44
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:45
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:63
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
@@ -9659,7 +9679,7 @@ msgstr ""
 msgid "The MTU must not exceed the parent device MTU of %d bytes"
 msgstr "MTU, %d baytlık ana aygıt MTU'sunu aşmamalıdır"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:991
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1000
 msgid "The VLAN ID must be unique"
 msgstr "VLAN kimliği benzersiz olmalıdır"
 
@@ -9977,6 +9997,10 @@ msgstr ""
 #: modules/luci-base/ucode/template/csrftoken.ut:11
 msgid "The submitted security token is invalid or already expired!"
 msgstr "Gönderilen güvenlik jetonu geçersiz veya süresi zaten dolmuş!"
+
+#: modules/luci-base/htdocs/luci-static/resources/tools/views.js:27
+msgid "The syslog output, pre-filtered for messages related to:"
+msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:98
 msgid ""
@@ -10390,6 +10414,7 @@ msgstr "Tünel Arayüzü"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/464xlat.js:44
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:55
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:58
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:76
 msgid "Tunnel Link"
 msgstr "Tünel Bağlantısı"
@@ -10493,7 +10518,7 @@ msgstr "ip6tables sayaçları sıfırlanamıyor: %s"
 msgid "Unable to reset iptables counters: %s"
 msgstr "İptables sayaçları sıfırlanamıyor: %s"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:61
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:64
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:7
 msgid "Unable to resolve AFTR host name"
 msgstr "AFTR ana bilgisayar adı çözülemiyor"
@@ -10593,7 +10618,7 @@ msgstr "Kaydedilmemiş Değişiklikler"
 msgid "Unspecified error"
 msgstr "Belirtilmemiş hata"
 
-#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:64
+#: modules/luci-compat/luasrc/model/network/proto_4x6.lua:67
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:9
 msgid "Unsupported MAP type"
 msgstr "Desteklenmeyen MAP türü"
@@ -10732,6 +10757,7 @@ msgstr "ISO/IEC 3166 alpha2 ülke kodlarını kullan."
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:69
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:53
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:67
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:78
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:84
 msgid "Use MTU on tunnel interface"
 msgstr "Tünel arayüzünde MTU kullanın"
@@ -10784,6 +10810,7 @@ msgid "Use default gateway"
 msgstr "Varsayılan ağ geçidini kullan"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1055
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:73
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:138
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:164
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:133
@@ -10918,7 +10945,7 @@ msgid "VLAN (802.1q)"
 msgstr "VLAN (802.1q)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:469
-#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:972
+#: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:981
 msgid "VLAN ID"
 msgstr "VLAN Kimliği"
 
@@ -12026,6 +12053,9 @@ msgstr ""
 msgid "« Back"
 msgstr "« Geri"
 
+#~ msgid "ignore"
+#~ msgstr "göz ardı et"
+
 #~ msgid "Run a filesystem check before mounting the device"
 #~ msgstr "Cihazı bağlamadan önce bir dosya sistemi kontrolü yapın"
 
@@ -12193,9 +12223,6 @@ msgstr "« Geri"
 #~ msgid "IPv6 suffix (hex)"
 #~ msgstr ""
 #~ "<abbr title=\"Internet Protocol Version 6\">IPv6</abbr>-Son ek (onaltılık)"
-
-#~ msgid "ignore"
-#~ msgstr "göz ardı et"
 
 #~ msgid "4-character hexadecimal ID"
 #~ msgstr "4 karakterli onaltılık kimlik"
