@@ -30,6 +30,16 @@ return view.extend({
 		o.nocreate = true;
 		o.optional = true;
 
+		o = s.option(form.ListValue, 'loglevel', _('Log level'));
+		o.value('0', _('Emergency'));
+		o.value('1');
+		o.value('2');
+		o.value('3');
+		o.value('4');
+		o.value('5');
+		o.value('6');
+		o.value('7', _('Debug'));
+
 		o = s.option(form.Value, 'threads', _('Worker threads'),
 			_('Leave 0 or <em>empty</em> to auto detect.'));
 		o.datatype = 'uinteger';

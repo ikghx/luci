@@ -57,6 +57,7 @@ return view.extend({
 
 		status = new adb.status();
 		m = new form.Map(pkg.Name, _("AdBlock-Fast - Configuration"));
+
 		s1 = m.section(form.NamedSection, "config", pkg.Name);
 		s1.tab("tab_basic", _("Basic Configuration"));
 		s1.tab("tab_advanced", _("Advanced Configuration"));
@@ -208,13 +209,15 @@ return view.extend({
 					section_id,
 					"dnsmasq_instance"
 				);
-				switch (val) {
-					case "*":
-					case "-":
-						return val;
-					default:
-						return "+";
-				}
+				if (val && val[0]) {
+					switch (val[0]) {
+						case "*":
+						case "-":
+							return val[0];
+						default:
+							return "+";
+					}
+				} else return "*";
 			};
 			o.write = function (section_id, formvalue) {
 				L.uci.set(pkg.Name, section_id, "dnsmasq_instance", formvalue);
@@ -238,7 +241,7 @@ return view.extend({
 					key = element[".name"];
 					description = element[".name"];
 				}
-				o.value(key, _("%s").format(description));
+				o.value(key, description);
 			});
 			o.depends("dnsmasq_instance_option", "+");
 			o.retain = true;
@@ -262,8 +265,6 @@ return view.extend({
 			o.value("-", _("No AdBlock on SmartDNS"));
 			o.default = "*";
 			o.depends("dns", "smartdns.domainset");
-			o.depends("dns", "smartdns.ipset");
-			o.depends("dns", "smartdns.nftset");
 			o.retain = true;
 			o.cfgvalue = function (section_id) {
 				let val = this.map.data.get(
@@ -271,13 +272,15 @@ return view.extend({
 					section_id,
 					"smartdns_instance"
 				);
-				switch (val) {
-					case "*":
-					case "-":
-						return val;
-					default:
-						return "+";
-				}
+				if (val && val[0]) {
+					switch (val[0]) {
+						case "*":
+						case "-":
+							return val[0];
+						default:
+							return "+";
+					}
+				} else return "*";
 			};
 			o.write = function (section_id, formvalue) {
 				L.uci.set(pkg.Name, section_id, "smartdns_instance", formvalue);
@@ -303,7 +306,7 @@ return view.extend({
 					key = element[".name"];
 					description = element[".name"];
 				}
-				o.value(key, _("%s").format(description));
+				o.value(key, description);
 			});
 			o.depends("smartdns_instance_option", "+");
 			o.retain = true;
