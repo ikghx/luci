@@ -170,7 +170,7 @@ gen_nftset() {
 get_jump_ipt() {
 	case "$1" in
 	direct)
-		echo "counter return"
+		echo "mark != 1 counter return"
 		;;
 	proxy)
 		if [ -n "$2" ] && [ -n "$(echo $2 | grep "^counter")" ]; then
@@ -253,6 +253,11 @@ load_acl() {
 			[ "${use_global_config}" = "1" ] && { 
 				tcp_node_remark=$(config_n_get $TCP_NODE remarks)
 				udp_node_remark=$(config_n_get $UDP_NODE remarks)
+				use_direct_list=${USE_DIRECT_LIST}
+				use_proxy_list=${USE_PROXY_LIST}
+				use_block_list=${USE_BLOCK_LIST}
+				use_gfw_list=${USE_GFW_LIST}
+				chn_list=${CHN_LIST}
 			}
 
 			for i in $(cat ${TMP_ACL_PATH}/${sid}/rule_list); do
@@ -1213,10 +1218,15 @@ del_firewall_rule() {
 }
 
 flush_nftset() {
-	del_firewall_rule
+	$DIR/app.sh echolog "清空 NFTSET。"
 	for _name in $(nft -a list sets | grep -E "passwall" | awk -F 'set ' '{print $2}' | awk '{print $1}'); do
 		destroy_nftset ${_name}
 	done
+}
+
+flush_nftset_reload() {
+	del_firewall_rule
+	flush_nftset
 	rm -rf /tmp/singbox_passwall*
 	rm -rf /tmp/etc/passwall_tmp/dnsmasq*
 	/etc/init.d/passwall reload
@@ -1322,6 +1332,9 @@ insert_rule_after)
 	;;
 flush_nftset)
 	flush_nftset
+	;;
+flush_nftset_reload)
+	flush_nftset_reload
 	;;
 get_wan_ip)
 	get_wan_ip

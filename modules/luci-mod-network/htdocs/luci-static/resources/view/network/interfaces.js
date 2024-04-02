@@ -502,7 +502,8 @@ return view.extend({
 		s.load = function() {
 			return Promise.all([
 				network.getNetworks(),
-				firewall.getZones()
+				firewall.getZones(),
+				uci.load('system')
 			]).then(L.bind(function(data) {
 				this.networks = data[0];
 				this.zones = data[1];
@@ -962,12 +963,10 @@ return view.extend({
 						_('Forward DHCPv6 messages between the designated master interface and downstream interfaces.'));
 					so.value('hybrid', _('hybrid mode'), ' ');
 
-
 					so = ss.taboption('ipv6', form.Value, 'dhcpv6_pd_min_len', _('<abbr title="Prefix Delegation">PD</abbr> minimum length'),
 						_('Configures the minimum delegated prefix length assigned to a requesting downstream router, potentially overriding a requested prefix length. If left unspecified, the device will assign the smallest available prefix greater than or equal to the requested prefix.'));
 					so.datatype = 'range(1,62)';
 					so.depends('dhcpv6', 'server');
-
 
 					so = ss.taboption('ipv6', form.DynamicList, 'dns', _('Announced IPv6 DNS servers'),
 						_('Specifies a fixed list of IPv6 DNS server addresses to announce via DHCPv6. If left unspecified, the device will announce itself as IPv6 DNS server unless the <em>Local IPv6 DNS server</em> option is disabled.'));
@@ -993,6 +992,27 @@ return view.extend({
 					so.depends('dhcpv6', 'server');
 					so.depends({ dhcpv6: 'hybrid', master: '0' });
 
+					//This is a DHCPv6 specific odhcpd setting
+					so = ss.taboption('ipv6', form.DynamicList, 'ntp', _('NTP Servers'),
+						_('DHCPv6 option 56. %s.', 'DHCPv6 option 56. RFC5908 link').format('<a href="%s" target="_blank">RFC5908</a>').format('https://www.rfc-editor.org/rfc/rfc5908#section-4'));
+					so.datatype = 'host(0)';
+					for(var x of uci.get('system', 'ntp', 'server') || '') {
+						so.value(x);
+					}
+					var lan_net = this.networks.filter(function(n) { return n.getName() == 'lan' })[0];
+					// If ntpd is set up, suggest our IP(v6) also
+					if(uci.get('system', 'ntp', 'enable_server')) {
+						lan_net.getIPAddrs().forEach(function(i4) {
+							so.value(i4.split('/')[0]);
+						});
+						lan_net.getIP6Addrs().forEach(function(i6) {
+							so.value(i6.split('/')[0]);
+						});
+					}
+					so.optional = true;
+					so.rmempty = true;
+					so.depends('dhcpv6', 'server');
+					so.depends({ dhcpv6: 'hybrid', master: '0' });
 
 					so = ss.taboption('ipv6', cbiRichListValue, 'ndp', _('<abbr title="Neighbour Discovery Protocol">NDP</abbr>-Proxy'),
 						_('Configures the operation mode of the NDP proxy service on this interface.'));
@@ -1576,7 +1596,10 @@ return view.extend({
 		s.addremove = false;
 		s.anonymous = true;
 
-		o = s.option(form.Value, 'ula_prefix', _('IPv6 ULA-Prefix'), _('Unique Local Address - in the range <code>fc00::/7</code>.  Typically only within the &#8216;local&#8217; half <code>fd00::/8</code>. ULA for IPv6 is analogous to IPv4 private network addressing. This prefix is randomly generated at first install.'));
+		o = s.option(form.Value, 'ula_prefix', _('IPv6 ULA-Prefix'),
+			_('Unique Local Address (%s) - prefix <code>fd00::/8</code> (the L bit is always 1).').format('<a href="%s" target="_blank">RFC4193</a>').format('https://datatracker.ietf.org/doc/html/rfc4193#section-3') + ' ' +
+			_('ULA for IPv6 is analogous to IPv4 private network addressing.') + ' ' +
+			_('This prefix is randomly generated at first install.'));
 		o.datatype = 'cidr6';
 
 		o = s.option(form.Flag, 'packet_steering', _('Packet Steering'), _('Enable packet steering across all CPUs. May help or hinder network speed.'));
