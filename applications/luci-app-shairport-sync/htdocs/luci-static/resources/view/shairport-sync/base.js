@@ -98,17 +98,22 @@ return view.extend({
 		o.datatype = 'uinteger';
 		o.depends('regtype', '_raop._tcp');
 
-		o = s.option(form.Flag, 'statistics', _('Output statistics'));
-		o.enabled = 'yes';
-		o.disabled = 'no';
-
 		o = s.option(form.Value, 'drift', _('Drift tolerance'), _('seconds'));
 		o.placeholder = '0.002';
 
 		o = s.option(form.Value, 'resync_threshold', _('Resync threshold'), _('seconds'));
 		o.placeholder = '0.050';
 
-		o = s.option(form.ListValue, 'log_verbosity', _('Log output level'));
+		o = s.option(form.Flag, 'diagnostics_statistics', _('Diagnostic statistics'));
+		o.enabled = 'yes';
+		o.disabled = 'no';
+
+		o = s.option(form.ListValue, 'diagnostics_log_output_to', _('Diagnostic log output to'));
+		o.value('syslog', _('System log'));
+		o.value('stderr', _('Standard error'));
+		o.value('stdout', _('Standard output'));
+
+		o = s.option(form.ListValue, 'diagnostics_log_verbosity', _('Log output level'));
 		o.value('0', _('None'));
 		o.value('1', _('Warning'));
 		o.value('2', _('Debug'));
