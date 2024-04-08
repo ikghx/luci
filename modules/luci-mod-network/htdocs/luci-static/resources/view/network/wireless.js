@@ -1849,23 +1849,16 @@ return view.extend({
 							o.value('0', _('Disabled'));
 							o.value('1', _('Enabled'));
 							o.value('2', _('Enabled (workaround mode)'));
-
-							add_dependency_permutations(o, { mode: ['ap', 'ap-wds', 'sta', 'sta-wds'], encryption: ['psk-mixed', 'psk2', 'sae', 'sae-mixed', 'wpa2', 'wpa3', 'wpa3-mixed', 'owe'] });
+							o.default = '0';
+							o.depends('ieee80211w', '1');
+							o.depends('ieee80211w', '2');
 
 							o.validate = function(section_id, value) {
-								var mfpopt = this.section.children.filter(function(o) { return o.option == 'ieee80211w' })[0],
-								mfpval = mfpopt.formvalue(section_id);
-
-								if ((value == '1' || value == '2') && mfpval == '0') {
-									return _('Requires 802.11w to be set to optional or required.');
-								}
-
 								var modeopt = this.section.children.filter(function(o) { return o.option == 'mode' })[0],
-								modeval = modeopt.formvalue(section_id),
-								modetitle = modeopt.vallist[modeopt.keylist.indexOf(modeval)];
+								modeval = modeopt.formvalue(section_id);
 
 								if ((value == '2') && ((modeval == 'sta') || (modeval == 'sta-wds'))) {
-									return _('The selected option is incompatible with %s mode.').format(modetitle);
+									return _('Workaround mode can only be used when acting as an access point.');
 								}
 
 								return true;

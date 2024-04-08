@@ -288,7 +288,7 @@ return view.extend({
 		    duids = hosts_duids_pools[1],
 		    pools = hosts_duids_pools[2],
 		    networks = hosts_duids_pools[3],
-		    m, s, o, ss, so;
+		    m, s, o, ss, so, dnss;
 
 		let noi18nstrings = {
 			etc_hosts: '<code>/etc/hosts</code>',
@@ -319,10 +319,45 @@ return view.extend({
 		s = m.section(form.TypedSection, 'dnsmasq');
 		s.anonymous = false;
 		s.addremove = true;
+		s.addbtntitle = _('Add server instance', 'Dnsmasq instance');
+
+		s.renderContents = function(/* ... */) {
+			var renderTask = form.TypedSection.prototype.renderContents.apply(this, arguments),
+			    sections = this.cfgsections();
+
+			return Promise.resolve(renderTask).then(function(nodes) {
+				if (sections.length < 2) {
+					nodes.querySelector('#cbi-dhcp-dnsmasq > h3').remove();
+					nodes.querySelector('#cbi-dhcp-dnsmasq > .cbi-section-remove').remove();
+				}
+				else {
+					nodes.querySelectorAll('#cbi-dhcp-dnsmasq > .cbi-section-remove').forEach(function(div, i) {
+						var section = uci.get('dhcp', sections[i]),
+						    hline = div.nextElementSibling,
+						    btn = div.firstElementChild;
+
+						if (!section || section['.anonymous']) {
+							hline.innerText = i ? _('Unnamed instance #%d', 'Dnsmasq instance').format(i+1) : _('Default instance', 'Dnsmasq instance');
+							btn.innerText = i ? _('Remove instance #%d', 'Dnsmasq instance').format(i+1) : _('Remove default instance', 'Dnsmasq instance');
+						}
+						else {
+							hline.innerText = _('Instance "%q"', 'Dnsmasq instance').format(section['.name']);
+							btn.innerText = _('Remove instance "%q"', 'Dnsmasq instance').format(section['.name']);
+						}
+					});
+				}
+
+				nodes.querySelector('#cbi-dhcp-dnsmasq > .cbi-section-create input').placeholder = _('New instance name…', 'Dnsmasq instance');
+
+				return nodes;
+			});
+		};
+
 
 		s.tab('general', _('General'));
 		s.tab('devices', _('Devices &amp; Ports'));
 		s.tab('advanced', _('Advanced'));
+    s.tab('dnsrecords', _('DNS Records'));
 		s.tab('filteropts', _('Filter'));
 		s.tab('forward', _('Forwards'));
 		s.tab('limits', _('Limits'));
@@ -330,13 +365,8 @@ return view.extend({
 		s.tab('files', _('Resolv &amp; Hosts Files'));
 		s.tab('leases', _('Static Leases'));
 		s.tab('tags', _('Tag'));
-		s.tab('hosts', _('Hostnames'));
 		s.tab('ipsets', _('IP sets'));
 		s.tab('relay', _('Relay'));
-		s.tab('srvhosts', _('SRV'));
-		s.tab('mxhosts', _('MX'));
-		s.tab('cnamehosts', _('CNAME'));
-		s.tab('txtrecords', _('TXT'));
 		s.tab('pxe_tftp', _('PXE/TFTP'));
 		s.tab('template', _('Edit configuration'));
 
@@ -897,7 +927,20 @@ return view.extend({
 			so.value(index, display_str);
 		});
 
-		o = s.taboption('srvhosts', form.SectionValue, '__srvhosts__', form.TableSection, 'srvhost', null,
+		o = s.taboption('dnsrecords', form.SectionValue, '__dnsrecords__', form.TypedSection, '__dnsrecords__');
+
+		dnss = o.subsection;
+
+		dnss.anonymous = true;
+		dnss.cfgsections = function() { return [ '__dnsrecords__' ] };
+
+		dnss.tab('hosts', _('Hostnames'));
+		dnss.tab('srvhosts', _('SRV'));
+		dnss.tab('mxhosts', _('MX'));
+		dnss.tab('cnamehosts', _('CNAME'));
+    dnss.tab('txtrecords', _('TXT'));
+
+		o = dnss.taboption('srvhosts', form.SectionValue, '__srvhosts__', form.TableSection, 'srvhost', null,
 			_('Bind service records to a domain name: specify the location of services.') + (' <a href="%s">RFC2782</a>.').format('https://datatracker.ietf.org/doc/html/rfc2782')
 			+ '<br />' + ('_service: _sip, _ldap, _imap, _stun, _xmpp-client, … ') + _('(Note: while _http is possible, no browsers support SRV records.)')
 			+ '<br />' + ('_proto: _tcp, _udp, _sctp, _quic, …')
@@ -935,7 +978,7 @@ return view.extend({
 		so.datatype = 'range(0,65535)';
 		so.placeholder = '50';
 
-		o = s.taboption('mxhosts', form.SectionValue, '__mxhosts__', form.TableSection, 'mxhost', null,
+		o = dnss.taboption('mxhosts', form.SectionValue, '__mxhosts__', form.TableSection, 'mxhost', null,
 			_('Bind MX records to a domain name.')
 			 + '<br />' + _('You may add multiple records for the same domain.'));
 
@@ -960,7 +1003,7 @@ return view.extend({
 		so.datatype = 'range(0,65535)';
 		so.placeholder = '0';
 
-		o = s.taboption('cnamehosts', form.SectionValue, '__cname__', form.TableSection, 'cname', null,
+		o = dnss.taboption('cnamehosts', form.SectionValue, '__cname__', form.TableSection, 'cname', null,
 			_('Set an alias for a hostname.'));
 
 		ss = o.subsection;
@@ -979,7 +1022,7 @@ return view.extend({
 		so.datatype = 'hostname';
 		so.placeholder = 'example.com.';
 
-		o = s.taboption('txtrecords', form.SectionValue, '__txtrecords__', form.TableSection, 'txtrecord', null,
+		o = dnss.taboption('txtrecords', form.SectionValue, '__txtrecords__', form.TableSection, 'txtrecord', null,
 			_('Bind TXT records to a domain name.')
 			 + '<br />' + _('You may add multiple records for the same domain.'));
 
@@ -997,7 +1040,7 @@ return view.extend({
 		so.rmempty = false;
 		so.placeholder = 'k=rsa; p=<KEY>';
 
-		o = s.taboption('hosts', form.SectionValue, '__hosts__', form.GridSection, 'domain', null,
+		o = dnss.taboption('hosts', form.SectionValue, '__hosts__', form.GridSection, 'domain', null,
 			_('Hostnames are used to bind a domain name to an IP address. This setting is redundant for hostnames already configured with static leases, but it can be useful to rebind an FQDN.'));
 
 		ss = o.subsection;
