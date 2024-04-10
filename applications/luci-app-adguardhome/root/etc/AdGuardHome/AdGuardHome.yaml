@@ -33,8 +33,7 @@ dns:
     - 2606:4700:4700::1111
     - 2001:4860:4860::8888
   fallback_dns: []
-  all_servers: false
-  fastest_addr: false
+  upstream_mode: load_balance
   fastest_timeout: 1s
   allowed_clients: []
   disallowed_clients: []
@@ -70,6 +69,7 @@ dns:
   serve_http3: false
   use_http3_upstreams: false
   serve_plain_dns: true
+  hostsfile_enabled: true
 tls:
   enabled: false
   server_name: ""
@@ -86,12 +86,14 @@ tls:
   private_key_path: ""
   strict_sni_check: false
 querylog:
+  dir_path: ""
   ignored: []
   interval: 168h
   size_memory: 1000
   enabled: true
   file_enabled: true
 statistics:
+  dir_path: ""
   ignored: []
   interval: 168h
   enabled: true
@@ -173,4 +175,4 @@ os:
   group: ""
   user: ""
   rlimit_nofile: 0
-schema_version: 27
+schema_version: 28
