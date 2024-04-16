@@ -103,11 +103,11 @@ return view.extend({
 		rfc1918Filter.default = rfc1918Filter.enabled;
 		rfc1918Filter.rmempty = false;
 
-		cert_file = ucs.taboption('general', form.FileUpload, 'cert', _('HTTPS Certificate (DER or PEM format)'), _('Files can only be uploaded and saved to the /etc/luci-uploads directory.'));
+		cert_file = ucs.taboption('general', form.FileUpload, 'cert', _('HTTPS Certificate (DER or PEM format)'));
 		cert_file.root_directory = '/';
 		cert_file.enable_remove = false;
 
-		key_file = ucs.taboption('general', form.FileUpload, 'key', _('HTTPS Private Key (DER or PEM format)'), _('Files can only be uploaded and saved to the /etc/luci-uploads directory.'));
+		key_file = ucs.taboption('general', form.FileUpload, 'key', _('HTTPS Private Key (DER or PEM format)'));
 		key_file.root_directory = '/';
 		key_file.enable_remove = false;
 
