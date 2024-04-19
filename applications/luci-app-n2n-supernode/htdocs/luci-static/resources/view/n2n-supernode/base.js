@@ -1,6 +1,7 @@
 'use strict';
 'require view';
 'require form';
+'require poll';
 'require rpc';
 
 var callServiceList = rpc.declare({
@@ -15,9 +16,17 @@ function getServiceStatus() {
 		var isRunning = false;
 		try {
 			isRunning = res['supernode']['instances']['instance1']['running'];
-		} catch (ignored) {}
+		} catch (e) {}
 		return isRunning;
 	});
+}
+
+function renderStatus(isRunning) {
+    const spanTemp = '<span style="color:%s"><strong>%s</strong></span>';
+
+    return isRunning
+        ? String.format(spanTemp, 'green', _('Running'))
+        : String.format(spanTemp, 'red', _('Not Running'));
 }
 
 return view.extend({
@@ -31,20 +40,25 @@ return view.extend({
 		let isRunning = data[0];
 		var m, s, o;
 
-		m = new form.Map('n2n-supernode', _('N2N Supernode') + status, _('N2N supernode UDP server.'));
+		m = new form.Map('n2n-supernode', _('N2N Supernode'), _('N2N supernode UDP server.'));
 
 		s = m.section(form.TypedSection, 'base');
 		s.anonymous = true;
 
 		o = s.option(form.DummyValue, '_status', _('Status'));
 		o.rawhtml = true;
-		o.cfgvalue = function(section_id) {
-			var span = '<b><span style="color:%s">%s</span></b>';
-			var renderHTML = isRunning ?
-				String.format(span, 'green', _('Running')) :
-				String.format(span, 'red', _('Not Running'));
-			return renderHTML;
-		};
+		o.cfgvalue = function () {
+			poll.add(function () {
+				return L.resolveDefault(getServiceStatus()).then(function (res) {
+					var view = document.getElementById('service_status');
+					view.innerHTML = renderStatus(res);
+				});
+			});
+
+			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
+					E('p', { id: 'service_status' }, _('Collecting data...'))
+			]);
+		}
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.rmempty = false;

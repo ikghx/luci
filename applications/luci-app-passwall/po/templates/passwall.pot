@@ -165,6 +165,11 @@ msgstr ""
 msgid "All"
 msgstr ""
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:138
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:161
+msgid "Annotation: Begining with #"
+msgstr ""
+
 #: applications/luci-app-passwall/luasrc/controller/passwall.lua:30
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/app_update.lua:8
 msgid "App Update"
@@ -288,7 +293,7 @@ msgid ""
 "custom probe URL."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:156
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:159
 msgid "CIDR: such as '127.0.0.0/8'."
 msgstr ""
 
@@ -718,14 +723,6 @@ msgstr ""
 msgid "Domain matcher"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:136
-msgid ""
-"Domains from file: Such as 'ext:file:tag'. The value must begin with ext: "
-"(lowercase), and followed by filename and tag. The file is placed in "
-"resource directory, and has the same format of geosite.dat. The tag must "
-"exist in the file."
-msgstr ""
-
 #: applications/luci-app-passwall/luasrc/passwall/api.lua:809
 msgid "Download url is required."
 msgstr ""
@@ -988,7 +985,7 @@ msgstr ""
 msgid "From Share URL"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:134
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:136
 msgid ""
 "Full domain: Begining with 'full:' and the rest is a domain. When the "
 "targeting domain is exactly the value, the rule takes effect. Example: rule "
@@ -1022,7 +1019,7 @@ msgstr ""
 msgid "GeoIP"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:157
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:160
 msgid ""
 "GeoIP: such as 'geoip:cn'. It begins with geoip: (lower case) and followed "
 "by two letter of country code."
@@ -1191,20 +1188,12 @@ msgstr ""
 msgid "IP range"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:155
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:158
 msgid "IP: such as '127.0.0.1'."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:85
 msgid "IPSet"
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:158
-msgid ""
-"IPs from file: Such as 'ext:file:tag'. The value must begin with ext: "
-"(lowercase), and followed by filename and tag. The file is placed in "
-"resource directory, and has the same format of geoip.dat. The tag must exist "
-"in the file."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:641
@@ -1674,7 +1663,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:76
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:134
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:190
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:149
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:152
 msgid "Not valid IP format, please re-enter!"
 msgstr ""
 
@@ -1689,7 +1678,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:48
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:106
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:162
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:125
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:127
 msgid "Not valid domain name, please re-enter!"
 msgstr ""
 
@@ -1829,7 +1818,7 @@ msgstr ""
 msgid "PinSHA256"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:131
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:133
 msgid ""
 "Plaintext: If this string matches any part of the targeting domain, this "
 "rule takes effet. Example: rule 'sina.com' matches targeting domain 'sina."
@@ -1884,7 +1873,7 @@ msgstr ""
 msgid "Pre shared key"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:135
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:137
 msgid ""
 "Pre-defined domain list: Begining with 'geosite:' and the rest is a name, "
 "such as geosite:google or geosite:cn."
@@ -2063,7 +2052,7 @@ msgstr ""
 msgid "Recommended value: Sec-WebSocket-Protocol"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:132
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:134
 msgid ""
 "Regular expression: Begining with 'regexp:', the rest is a regular "
 "expression. When the regexp matches targeting domain, this rule takes "
@@ -2362,7 +2351,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:133
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:135
 msgid ""
 "Subdomain (recommended): Begining with 'domain:' and the rest is a domain. "
 "When the targeting domain is exactly the value, or is a subdomain of the "

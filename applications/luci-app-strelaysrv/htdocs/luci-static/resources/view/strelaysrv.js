@@ -3,7 +3,6 @@
 'require form';
 'require poll';
 'require rpc';
-'require uci';
 'require tools.widgets as widgets';
 
 var callServiceList = rpc.declare({
@@ -39,7 +38,7 @@ function renderStatus(isRunning) {
 return view.extend({
 	load: function() {
 		return Promise.all([
-			uci.load('strelaysrv')
+			getServiceStatus()
 		]);
 	},
 
@@ -52,12 +51,15 @@ return view.extend({
 		+ (' <a href="%s">Help</a>.').format('https://docs.syncthing.net/users/strelaysrv.html')
 		+ '<br />' + _('Anyone can run a relay server, and it will automatically join the relay pool and be available to Syncthing users.'));
 
-		s = m.section(form.TypedSection);
+		s = m.section(form.TypedSection, 'strelaysrv');
 		s.anonymous = true;
-		s.render = function () {
+
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function () {
 			poll.add(function () {
 				return L.resolveDefault(getServiceStatus()).then(function (res) {
-					var view = document.getElementById("service_status");
+					var view = document.getElementById('service_status');
 					view.innerHTML = renderStatus(res);
 				});
 			});
@@ -66,9 +68,6 @@ return view.extend({
 					E('p', { id: 'service_status' }, _('Collecting data...'))
 			]);
 		}
-
-		s = m.section(form.TypedSection, 'strelaysrv');
-		s.anonymous = true;
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.rmempty = false;

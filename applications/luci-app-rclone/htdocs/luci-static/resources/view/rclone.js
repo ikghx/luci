@@ -3,7 +3,6 @@
 'require form';
 'require poll';
 'require rpc';
-'require uci';
 
 var callServiceList = rpc.declare({
 	object: 'service',
@@ -38,7 +37,7 @@ function renderStatus(isRunning) {
 return view.extend({
 	load: function() {
 		return Promise.all([
-			uci.load('rclone')
+			getServiceStatus()
 		]);
 	},
 
@@ -50,10 +49,15 @@ return view.extend({
 
 		s = m.section(form.TypedSection);
 		s.anonymous = true;
-		s.render = function () {
+
+		s = m.section(form.NamedSection, 'global', 'global');
+
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function () {
 			poll.add(function () {
 				return L.resolveDefault(getServiceStatus()).then(function (res) {
-					var view = document.getElementById("service_status");
+					var view = document.getElementById('service_status');
 					view.innerHTML = renderStatus(res);
 				});
 			});
@@ -62,8 +66,6 @@ return view.extend({
 					E('p', { id: 'service_status' }, _('Collecting data...'))
 			]);
 		}
-
-		s = m.section(form.NamedSection, 'global', 'global');
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 		o.rmempty = false;

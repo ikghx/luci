@@ -1,9 +1,7 @@
 'use strict';
 'require view';
 'require form';
-'require poll';
 'require rpc';
-'require uci';
 
 var callServiceList = rpc.declare({
 	object: 'service',

@@ -32,9 +32,9 @@ function renderStatus(isRunning) {
 	var spanTemp = '<em><span style="color:%s"><strong>%s %s</strong></span></em>';
 	var renderHTML;
 	if (isRunning) {
-		renderHTML = String.format(spanTemp, 'green', _('wechatpush'), _('RUNNING'));
+		renderHTML = String.format(spanTemp, 'green', _('wechatpush'), _('Running'));
 	} else {
-		renderHTML = String.format(spanTemp, 'red', _('wechatpush'), _('NOT RUNNING'));
+		renderHTML = String.format(spanTemp, 'red', _('wechatpush'), _('Not Running'));
 	}
 
 	return renderHTML;

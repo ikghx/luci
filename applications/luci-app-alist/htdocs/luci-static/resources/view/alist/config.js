@@ -31,9 +31,9 @@ function renderStatus(isRunning, port) {
 	if (isRunning) {
 		var button = String.format('&#160;<a class="btn cbi-button" href="http://%s:%s" target="_blank" rel="noreferrer noopener">%s</a>',
 			window.location.hostname, port, _('Open Web Interface'));
-		renderHTML = spanTemp.format('green', _('AList'), _('RUNNING')) + button;
+		renderHTML = spanTemp.format('green', _('AList'), _('Running')) + button;
 	} else {
-		renderHTML = spanTemp.format('red', _('AList'), _('NOT RUNNING'));
+		renderHTML = spanTemp.format('red', _('AList'), _('Not Running'));
 	}
 
 	return renderHTML;
@@ -69,7 +69,10 @@ return view.extend({
 
 		s = m.section(form.TypedSection);
 		s.anonymous = true;
-		s.render = function () {
+
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function () {
 			poll.add(function () {
 				return L.resolveDefault(getServiceStatus()).then(function (res) {
 					var view = document.getElementById('service_status');

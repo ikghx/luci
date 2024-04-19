@@ -50,9 +50,11 @@ return view.extend({
 		m = new form.Map('v2raya', _('v2rayA'),
 			_('v2rayA is a V2Ray Linux client supporting global transparent proxy, compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.'));
 
-		s = m.section(form.TypedSection);
-		s.anonymous = true;
-		s.render = function () {
+		s = m.section(form.NamedSection, 'config', 'v2raya');
+
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function () {
 			poll.add(function () {
 				return L.resolveDefault(getServiceStatus()).then(function (res) {
 					var view = document.getElementById('service_status');
@@ -64,8 +66,6 @@ return view.extend({
 					E('p', { id: 'service_status' }, _('Collecting data...'))
 			]);
 		}
-
-		s = m.section(form.NamedSection, 'config', 'v2raya');
 
 		o = s.option(form.Flag, 'enabled', _('Enable'));
 		o.rmempty = false;

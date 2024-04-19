@@ -2,6 +2,7 @@
 'require view';
 'require fs';
 'require form';
+'require poll';
 'require ui';
 'require rpc';
 
@@ -44,18 +45,21 @@ return view.extend({
 
         s = m.section(form.NamedSection);
         s.anonymous = true;
-        s.render = function () {
-            L.Poll.add(function () {
-                return L.resolveDefault(getServiceStatus()).then(function (res) {
-                    const view = document.getElementById('status');
-                    view.innerHTML = renderStatus(res);
-                });
-            });
 
-            return E('div', { class: 'cbi-section' }, [
-                E('p', { id: 'status' }, _('Loading...'))
-            ]);
-        }
+		o = s.option(form.DummyValue, '_status', _('Status'));
+		o.rawhtml = true;
+		o.cfgvalue = function () {
+			poll.add(function () {
+				return L.resolveDefault(getServiceStatus()).then(function (res) {
+					var view = document.getElementById('service_status');
+					view.innerHTML = renderStatus(res);
+				});
+			});
+
+			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
+					E('p', { id: 'service_status' }, _('Collecting data...'))
+			]);
+		}
 
         s = m.section(form.TypedSection, 'irqbalance', _('Snapshot of current IRQs'));
         s.anonymous = true;
