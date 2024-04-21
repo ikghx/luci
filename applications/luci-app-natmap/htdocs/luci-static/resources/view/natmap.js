@@ -138,6 +138,14 @@ return view.extend({
 			if (s) return s.port;
 		};
 
+		o = s.option(form.Flag, 'log_stdout', _('Send logs to system log'));
+		o.editable = true;
+		o.modalonly = true;
+
+		o = s.option(form.Flag, 'log_stderr', _('Send error log to system log'));
+		o.editable = true;
+		o.modalonly = true;
+
 		return m.render();
 	}
 });

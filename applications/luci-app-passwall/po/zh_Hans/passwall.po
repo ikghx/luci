@@ -15,9 +15,9 @@ msgid "%s App Path"
 msgstr "%s 程序路径"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:472
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:475
-msgid "%s Node Log Close"
-msgstr "%s 节点日志关闭"
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:476
+msgid "%s Node Log"
+msgstr "%s 节点日志"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:65
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:72
@@ -61,7 +61,7 @@ msgid ""
 msgstr ""
 "IPOnDemand：当匹配时碰到任何基于 IP 的规则，将域名立即解析为 IP 进行匹配。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:551
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:553
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:59
 msgid "0 is not use"
 msgstr "0为不使用"
@@ -158,7 +158,7 @@ msgstr "端口跳跃额外端口"
 msgid "Address (Support Domain Name)"
 msgstr "地址（支持域名）"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:493
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:495
 msgid "Advanced log feature"
 msgstr "高级日志功能"
 
@@ -170,7 +170,7 @@ msgstr "当你隐藏后想再次显示，地址栏输入例："
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:159
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:204
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:215
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:487
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:489
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:42
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:52
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:71
@@ -389,8 +389,8 @@ msgstr "中国域名列表(Chnlist)更新URL"
 msgid "ChinaDNS-NG"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:368
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:383
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:367
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:382
 msgid "ChinaDNS-NG Domain Default Tag"
 msgstr "ChinaDNS-NG 域名默认标签"
 
@@ -510,7 +510,7 @@ msgstr "控制台账号"
 msgid "Copy"
 msgstr "复制"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:491
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:493
 msgid "Critical"
 msgstr ""
 
@@ -564,7 +564,7 @@ msgstr "更新时间小时"
 msgid "DeSelect all"
 msgstr "全不选"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:480
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:482
 msgid "Debug"
 msgstr ""
 
@@ -573,8 +573,10 @@ msgstr ""
 msgid "Decimal numbers separated by \",\" or Base64-encoded strings."
 msgstr ""
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:369
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:175
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:202
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:384
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:170
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:205
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:325
@@ -599,6 +601,16 @@ msgstr "默认前置代理"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:449
 msgid "Default Proxy Mode"
 msgstr "默认代理模式"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:374
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:389
+msgid ""
+"Default: Forward to both direct and remote DNS, if the direct DNS resolution "
+"result is a mainland China ip, then use the direct result, otherwise use the "
+"remote result."
+msgstr ""
+"默认：同时转发给直连和远程DNS，如果直连DNS解析结果是大陆ip，则使用直连结果，"
+"否则使用远程结果。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:17
 msgid "Delay Settings"
@@ -654,9 +666,9 @@ msgstr "目标协议"
 msgid "Direct Connection"
 msgstr "直连"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:372
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:371
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:384
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:387
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:386
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:399
 msgid "Direct DNS"
 msgstr "直连 DNS"
@@ -665,8 +677,8 @@ msgstr "直连 DNS"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:388
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:391
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:403
-msgid "Direct DNS Internet experience may be better, but DNS will be leaked!"
-msgstr "直连DNS上网体验可能会更佳，但是会泄露DNS！"
+msgid "Direct DNS: Internet experience may be better, but DNS will be leaked!"
+msgstr "直连DNS：上网体验可能会更佳，但是会泄露DNS！"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:219
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:420
@@ -779,8 +791,10 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl.lua:32
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:49
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:98
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:509
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:531
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:472
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:476
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:511
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:533
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:91
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:20
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:64
@@ -849,8 +863,8 @@ msgstr "加密"
 msgid "Enter interface"
 msgstr "进入界面"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:483
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:490
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:485
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:492
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:33
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:72
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:174
@@ -949,7 +963,7 @@ msgstr "指纹伪造"
 msgid "Firewall tools"
 msgstr "防火墙工具"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:493
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:495
 msgid "For professionals only."
 msgstr "仅限专业人士使用。"
 
@@ -957,16 +971,6 @@ msgstr "仅限专业人士使用。"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:86
 msgid "Format must be:"
 msgstr "格式必须为："
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:374
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:389
-msgid ""
-"Forward to both remote and direct DNS, if the direct DNS resolution result "
-"is a mainland China ip, then use the direct result, otherwise use the remote "
-"result"
-msgstr ""
-"同时转发给远程和直连DNS，如果直连DNS解析结果是大陆ip，则使用直连结果，否则使"
-"用远程结果"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:34
 msgid "Forwarding Settings"
@@ -1266,8 +1270,8 @@ msgstr "在浏览器输入路由IP加端口访问，如：192.168.9.1:1188"
 msgid "Inbound Tag"
 msgstr "入站标签"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:481
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:488
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:483
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:490
 msgid "Info"
 msgstr ""
 
@@ -1385,8 +1389,8 @@ msgid "List of backup nodes"
 msgstr "备用节点的列表"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:249
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:545
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:551
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:547
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:553
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:53
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:59
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:21
@@ -1449,19 +1453,19 @@ msgstr "V2ray/Xray 资源文件目录"
 msgid "Log"
 msgstr "日志"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:478
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:485
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:480
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:487
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:387
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:418
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:99
 msgid "Log Level"
 msgstr "日志等级"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:496
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:498
 msgid "Logging to system log"
 msgstr "记录到系统日志"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:496
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:498
 msgid ""
 "Logging to the system log for more advanced functions. For example, send "
 "logs to a dedicated log server."
@@ -1669,7 +1673,7 @@ msgstr "不支持这种样式的："
 
 #: applications/luci-app-passwall/luasrc/controller/passwall.lua:177
 #: applications/luci-app-passwall/luasrc/controller/passwall.lua:189
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:410
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:409
 msgid "Not enabled log"
 msgstr "未启用日志"
 
@@ -1835,7 +1839,7 @@ msgstr "在此处粘贴分享信息"
 msgid "Permit without stream"
 msgstr "无子连接时的健康检查"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:500
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:502
 msgid "Persist log file directory"
 msgstr "持久性日志文件目录"
 
@@ -2110,10 +2114,10 @@ msgid "Remote Address"
 msgstr "远程地址"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:304
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:371
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:370
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:383
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:315
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:386
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:385
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:398
 msgid "Remote DNS"
 msgstr "远程 DNS"
@@ -2128,10 +2132,11 @@ msgstr "远程 DNS DoH"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:390
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:402
 msgid ""
-"Remote DNS can avoid more DNS leaks, but some domestic domain names maybe to "
-"proxy!"
+"Remote DNS: Can avoid more DNS leaks, but some domestic domain names maybe "
+"to proxy!"
 msgstr ""
-"远程DNS可以避免更多的DNS泄露，但会导致规则列表外的某些国内域名可能会走代理！"
+"远程DNS：可以避免更多的DNS泄露，但会导致规则列表外的某些国内域名可能会走代"
+"理！"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:91
 msgid "Remote Port"
@@ -2319,11 +2324,6 @@ msgid ""
 msgstr ""
 "Sing-Box 会在启动时自动下载资源文件，您可以使用此功能实现升级资源文件。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:370
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:385
-msgid "Smart DNS"
-msgstr "智能 DNS"
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
 msgid "Sniffing"
 msgstr "流量嗅探"
@@ -2338,14 +2338,14 @@ msgid "Socks"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:61
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:512
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:514
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:15
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:91
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:90
 msgid "Socks Config"
 msgstr "Socks 配置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:535
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:537
 msgid "Socks Node"
 msgstr "Socks 节点"
 
@@ -2386,7 +2386,7 @@ msgstr ""
 msgid "Standby"
 msgstr "备用"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:524
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:526
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:35
 msgid "Status"
 msgstr ""
@@ -2520,15 +2520,10 @@ msgstr "客户端DNS和默认网关必须指向本路由器。"
 msgid "The client file is not suitable for current device."
 msgstr "客户端文件不适合当前设备。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:385
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:400
-msgid "The default DNS used when not in the domain name rules list."
-msgstr "当域名不在规则列表中时使用的默认 DNS。"
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:363
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:378
-msgid "The effect is better, but will increase the memory."
-msgstr "效果更好，但会增加内存使用。"
+msgid "The effect is better, recommend."
+msgstr "效果更好，推荐使用。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:143
 msgid ""
@@ -2571,7 +2566,7 @@ msgstr ""
 "列表中为IPv6的局域网IP列表，代表局域网直连IP。如果需要代理列表中的局域网IP，"
 "请将其在该列表中清除,并将其添加到代理列表中。默认情况下不要修改这个列表。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:500
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:502
 msgid ""
 "The path to the directory used to store persist log files, the \"/\" at the "
 "end can be omitted. Leave it blank to disable this feature."
@@ -2854,8 +2849,8 @@ msgid ""
 "access control."
 msgstr "希望不同设备使用不同的代理模式/端口/节点？请使用访问控制。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:482
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:489
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:484
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:491
 msgid "Warning"
 msgstr ""
 
@@ -2892,6 +2887,13 @@ msgstr "更新时间星期"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:108
 msgid "When detects main node is available, switch back to the main node."
 msgstr "当检测到主节点可用时，切换回主节点。"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:373
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:386
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:388
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:401
+msgid "When not matching any domain name list:"
+msgstr "当不匹配任何域名列表时："
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:461
 msgid ""
