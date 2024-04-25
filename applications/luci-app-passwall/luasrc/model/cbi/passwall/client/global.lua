@@ -258,11 +258,8 @@ o.default = "0"
 
 ---- DNS Forward Mode
 dns_mode = s:taboption("DNS", ListValue, "dns_mode", translate("Filter Mode"))
-dns_mode.rmempty = false
-dns_mode:reset_values()
-if api.is_finded("dns2tcp") then
-	dns_mode:value("dns2tcp", translatef("Requery DNS By %s", "TCP"))
-end
+dns_mode:value("tcp", translatef("Requery DNS By %s", "TCP"))
+dns_mode:value("udp", translatef("Requery DNS By %s", "UDP"))
 if api.is_finded("dns2socks") then
 	dns_mode:value("dns2socks", "dns2socks")
 end
@@ -272,9 +269,8 @@ end
 if has_xray then
 	dns_mode:value("xray", "Xray")
 end
-dns_mode:value("udp", translatef("Requery DNS By %s", "UDP"))
 
-o = s:taboption("DNS", ListValue, "xray_dns_mode", " ")
+o = s:taboption("DNS", ListValue, "xray_dns_mode", translate("Request protocol"))
 o:value("tcp", "TCP")
 o:value("tcp+doh", "TCP + DoH (" .. translate("A/AAAA type") .. ")")
 o:depends("dns_mode", "xray")
@@ -287,7 +283,7 @@ o.write = function(self, section, value)
 	end
 end
 
-o = s:taboption("DNS", ListValue, "singbox_dns_mode", " ")
+o = s:taboption("DNS", ListValue, "singbox_dns_mode", translate("Request protocol"))
 o:value("tcp", "TCP")
 o:value("doh", "DoH")
 o:depends("dns_mode", "sing-box")
@@ -323,7 +319,7 @@ o:value("9.9.9.9", "9.9.9.9 (Quad9-Recommended)")
 o:value("208.67.222.222", "208.67.222.222 (OpenDNS)")
 o:value("208.67.220.220", "208.67.220.220 (OpenDNS)")
 o:depends({dns_mode = "dns2socks"})
-o:depends({dns_mode = "dns2tcp"})
+o:depends({dns_mode = "tcp"})
 o:depends({dns_mode = "udp"})
 o:depends({xray_dns_mode = "tcp"})
 o:depends({xray_dns_mode = "tcp+doh"})
@@ -366,13 +362,6 @@ o.validate = function(self, value, t)
 	end
 	return value
 end
-
-o = s:taboption("DNS", Flag, "dns_cache", translate("Cache Resolved"))
-o.default = "1"
-o:depends({dns_mode = "dns2socks"})
-o:depends({dns_mode = "sing-box", remote_fakedns = false})
-o:depends({dns_mode = "xray"})
-o.rmempty = false
 
 if api.is_finded("chinadns-ng") then
 	o = s:taboption("DNS", Flag, "chinadns_ng", translate("ChinaDNS-NG"), translate("The effect is better, recommend."))
