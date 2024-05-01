@@ -368,13 +368,15 @@ return view.extend({
 
 		if (!('usteer' in data[0])) {
 			m = new form.Map('usteer', _('Usteer'),
-				_('Usteer is not running. Make sure it is installed and running.') +
+				_('Usteer is not running. Make sure it is installed and running.') +' '+
+				_('An incorrect parameter can cause usteer to fail to startup.') +' '+
 				_('To start it running try %s').format('<code>/etc/init.d/usteer start</code>')
 			);
-			return m.render();
 		}
 
-		m = new form.Map('usteer', _('Usteer'));
+		else {
+			m = new form.Map('usteer', _('Usteer'));
+		}
 
 		Hosts = data[1];
 		Remotehosts = data[2];
@@ -389,11 +391,13 @@ return view.extend({
 		s.tab('hearingmap', _('Hearing map'));
 		s.tab('settings', _('Settings'));
 
-		o = s.taboption('status', Clientinfooverview);
-		o.readonly = true;
+		if (('usteer' in data[0])) {
+			o = s.taboption('status', Clientinfooverview);
+			o.readonly = true;
 
-		o = s.taboption('hearingmap', HearingMap);
-		o.readonly = true;
+			o = s.taboption('hearingmap', HearingMap);
+			o.readonly = true;
+		}
 
 		o = s.taboption('settings', Settingstitle);
 		o.readonly = true;
@@ -404,10 +408,10 @@ return view.extend({
 		o.default = '1';
 		o.rmempty = false;
 
-		o = s.taboption('settings', form.Flag, 'local_mode', _('Local mode'), _('Disable network communication (default false)'));
+		o = s.taboption('settings', form.Flag, 'local_mode', _('Local mode'), _('Disable network communication')+' ('+_('default false')+')');
 		o.rmempty = false;
 
-		o = s.taboption('settings', form.Flag, 'ipv6', _('IPv6 mode'), _('Use IPv6 for remote exchange (default false)'));
+		o = s.taboption('settings', form.Flag, 'ipv6', _('IPv6 mode'), _('Use IPv6 for remote exchange')+' ('+_('default false')+')');
 		o.rmempty = false;
 
 
@@ -476,10 +480,10 @@ return view.extend({
 		o.placeholder = 10;
 		o.datatype = 'uinteger';
 
-		o = s.taboption('settings', form.Flag, 'assoc_steering', _('Assoc steering'), _('Allow rejecting assoc requests for steering purposes (default false)'));
+		o = s.taboption('settings', form.Flag, 'assoc_steering', _('Assoc steering'), _('Allow rejecting assoc requests for steering purposes')+' ('+_('default false')+')');
 		o.optional = true;
 
-		o = s.taboption('settings', form.Flag, 'probe_steering', _('Probe steering'), _('Allow ignoring probe requests for steering purposes (default false)'));
+		o = s.taboption('settings', form.Flag, 'probe_steering', _('Probe steering'), _('Allow ignoring probe requests for steering purposes')+' ('+_('default false')+')');
 		o.optional = true;
 
 		o = s.taboption('settings', form.Value, 'min_connect_snr', _('Min connect SNR'), _('Minimum signal-to-noise ratio or signal level (dBm) to allow connections'));
@@ -555,7 +559,7 @@ return view.extend({
 		o.placeholder = 0;
 		o.datatype = 'uinteger';
 
-		o = s.taboption('settings', form.Flag, 'load_kick_enabled', _('Load kick enabled'), _('Enable kicking client on excessive channel load (default false)'));
+		o = s.taboption('settings', form.Flag, 'load_kick_enabled', _('Load kick enabled'), _('Enable kicking client on excessive channel load')+' ('+_('default false')+')');
 		o.optional = true;
 
 		o = s.taboption('settings', form.Value, 'load_kick_threshold', _('Load kick threshold'), _('Minimum channel load (%) before kicking clients'));
@@ -618,7 +622,7 @@ return view.extend({
 		o.optional = true;
 		o.datatype = 'list(string)';
 
-		o = s.taboption('settings', form.DynamicList, 'ssid_list', _('SSID list'), _('List of SSIDs to enable steering on (empty means all)'));
+		o = s.taboption('settings', form.DynamicList, 'ssid_list', _('SSID list'), _('List of SSIDs to enable steering on')+' ('+_('empty means all')+')');
 		WifiNetworks.forEach(function (wifiNetwork) {
 			if (wifiNetwork.getSSID() && (!o.keylist || o.keylist.indexOf(wifiNetwork.getSSID()) === -1)) {
 				o.value(wifiNetwork.getSSID())

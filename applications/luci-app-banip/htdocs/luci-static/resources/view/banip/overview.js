@@ -1,4 +1,5 @@
 'use strict';
+'require dom';
 'require view';
 'require poll';
 'require fs';
@@ -11,7 +12,13 @@
 	button handling
 */
 function handleAction(ev) {
-	fs.exec_direct('/etc/init.d/banip', [ev])
+	if (ev === 'restart') {
+		let map = document.querySelector('.cbi-map');
+		dom.callClassMethod(map, 'save').then(function() {
+			classes.ui.changes.apply(false);
+		});
+	}
+	return fs.exec_direct('/etc/init.d/banip', [ev])
 }
 
 return view.extend({
@@ -222,7 +229,7 @@ return view.extend({
 						'click': ui.createHandlerFn(this, function () {
 							return handleAction('restart');
 						})
-					}, [_('Restart')])
+					}, [_('Apply & Restart')])
 				])
 			]);
 		}, o, this);
@@ -472,9 +479,19 @@ return view.extend({
 
 		let feed, feeds, descr;
 		if (result[0]) {
-			feeds = JSON.parse(result[0]);
+			try {
+				feeds = JSON.parse(result[0]);
+			} catch (e) {
+				feeds = "";
+				ui.addNotification(null, E('p', _('Unable to parse the custom feed file: %s').format(e.message)), 'error');
+			}
 		} else if (result[1]) {
-			feeds = JSON.parse(result[1]);
+			try {
+				feeds = JSON.parse(result[1]);
+			} catch (e) {
+				feeds = "";
+				ui.addNotification(null, E('p', _('Unable to parse the default feed file: %s').format(e.message)), 'error');
+			}
 		}
 		if (feeds) {
 			o = s.taboption('adv_set', form.MultiValue, 'ban_blockinput', _('WAN-Input Chain'), _('Limit certain feeds to the WAN-Input chain.'));
@@ -633,10 +650,15 @@ return view.extend({
 
 			o = s.taboption('feeds', form.MultiValue, 'ban_country', _('Countries (RIR)'));
 			for (let i = 0; i < countries.length; i++) {
-				ccode = countries[i].match(/^(\w+)\t/)[1].trim();
-				rir = countries[i].match(/^\w+\t(\w+)\t/)[1].trim();
-				country = countries[i].match(/^\w+\t\w+\t(.*$)/)[1].trim();
-				o.value(ccode, country + ' (' + rir + ')');
+				try {
+					ccode = countries[i].match(/^(\w+)\t/)[1].trim();
+					rir = countries[i].match(/^\w+\t(\w+)\t/)[1].trim();
+					country = countries[i].match(/^\w+\t\w+\t(.*$)/)[1].trim();
+					o.value(ccode, country + ' (' + rir + ')');
+				} catch (e) {
+					countries[i] = "";
+					ui.addNotification(null, E('p', _('Unable to parse the countries file: %s').format(e.message)), 'error');
+				}
 			}
 			o.optional = true;
 			o.rmempty = true;
@@ -663,11 +685,15 @@ return view.extend({
 		o = s.taboption('feeds', form.DynamicList, 'ban_allowurl', _('Allowlist Feed URLs'));
 		if (countries) {
 			for (let i = 0; i < countries.length; i++) {
-				ccode = countries[i].match(/^(\w+)\t/)[1].trim();
-				rir = countries[i].match(/^\w+\t(\w+)\t/)[1].trim();
-				country = countries[i].match(/^\w+\t\w+\t(.*$)/)[1].trim();
-				o.value('https://www.ipdeny.com/ipblocks/data/aggregated/' + ccode + '-aggregated.zone', country + ' IPv4 (' + rir + ')');
-				o.value('https://www.ipdeny.com/ipv6/ipaddresses/aggregated/' + ccode + '-aggregated.zone', country + ' IPv6 (' + rir + ')');
+				try {
+					ccode = countries[i].match(/^(\w+)\t/)[1].trim();
+					rir = countries[i].match(/^\w+\t(\w+)\t/)[1].trim();
+					country = countries[i].match(/^\w+\t\w+\t(.*$)/)[1].trim();
+					o.value('https://www.ipdeny.com/ipblocks/data/aggregated/' + ccode + '-aggregated.zone', country + ' IPv4 (' + rir + ')');
+					o.value('https://www.ipdeny.com/ipv6/ipaddresses/aggregated/' + ccode + '-aggregated.zone', country + ' IPv6 (' + rir + ')');
+				} catch (e) {
+					countries[i] = "";
+				}
 			}
 		}
 		o.optional = true;
