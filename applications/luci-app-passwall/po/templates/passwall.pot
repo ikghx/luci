@@ -276,11 +276,11 @@ msgstr ""
 msgid "Browser access:"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:170
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:158
 msgid "Buffer Size"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:170
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:158
 msgid "Buffer size for every connection (kB)"
 msgstr ""
 
@@ -521,19 +521,19 @@ msgstr ""
 msgid "Custom Socks"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:184
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:171
 msgid "Custom geoip Path"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:188
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:175
 msgid "Custom geoip URL"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:193
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:180
 msgid "Custom geosite Path"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:197
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:184
 msgid "Custom geosite URL"
 msgstr ""
 
@@ -871,6 +871,10 @@ msgstr ""
 msgid "Example:"
 msgstr ""
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:151
+msgid "Excluded Domains"
+msgstr ""
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:266
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:263
 msgid "Experimental feature."
@@ -1173,10 +1177,6 @@ msgstr ""
 msgid "Hop Interval"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:157
-msgid "Hosts added into No Sniffing Lists will not resolve again on server."
-msgstr ""
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:75
 msgid "How often to test"
 msgstr ""
@@ -1254,6 +1254,12 @@ msgstr ""
 msgid ""
 "If is domain name, The requested domain name will be resolved to IP before "
 "connect."
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:151
+msgid ""
+"If the traffic sniffing result is in this list, the destination address will "
+"not be overridden."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/view/passwall/global/faq.htm:36
@@ -1601,10 +1607,6 @@ msgstr ""
 msgid "No Proxy"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:157
-msgid "No Sniffing Lists"
-msgstr ""
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:148
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:157
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:186
@@ -1790,11 +1792,13 @@ msgstr ""
 msgid "Other Settings"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:180
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:167
 msgid "Override the connection destination address"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:180
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:167
 msgid "Override the connection destination address with the sniffed domain."
 msgstr ""
 
@@ -2144,7 +2148,7 @@ msgstr ""
 msgid "Remote Port"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:202
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:189
 msgid "Remove resource files"
 msgstr ""
 
@@ -2261,7 +2265,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:124
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:176
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:163
 msgid "Settings"
 msgstr ""
 
@@ -2335,18 +2339,10 @@ msgstr ""
 msgid "Shunt Rule"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:203
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:190
 msgid ""
 "Sing-Box will automatically download resource files when starting, you can "
 "use this feature achieve upgrade resource files."
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
-msgid "Sniffing"
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:152
-msgid "Sniffing Route Only"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:31
@@ -2900,10 +2896,6 @@ msgid ""
 "When the URL test is used, the load balancing node will be converted into a "
 "Socks node. when node list set customizing, must be a Socks node, otherwise "
 "the health check will be invalid."
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
-msgid "When using the shunt, this option will be forced to be enabled."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:222

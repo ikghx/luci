@@ -20,7 +20,7 @@ return view.extend({
 		o.rmempty = false;
 		o.optional = false;
 
-		o = s.taboption('general', form.ListValue, 'state', _('state'),
+		o = s.taboption('general', form.ListValue, 'state', _('State'),
 			_('Initial State. As soon as the other machine(s) come up,') +
 			_('an election will be held and the machine with the highest "priority" will become MASTER.'));
 		o.value('MASTER', _('Master'));
@@ -129,6 +129,7 @@ return view.extend({
 
 		o = s.taboption('garp', form.ListValue, 'garp_master_delay', _('GARP Delay'),
 			_('Gratuitous Master Delay in seconds'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.value('1');
 		o.value('3');
@@ -139,6 +140,7 @@ return view.extend({
 
 		o = s.taboption('garp', form.ListValue, 'garp_master_repeat', _('GARP Repeat'),
 			_('Gratuitous Master Repeat in seconds'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.value('1');
 		o.value('3');
@@ -149,6 +151,7 @@ return view.extend({
 
 		o = s.taboption('garp', form.ListValue, 'garp_master_refresh', _('GARP Refresh'),
 			_('Gratuitous Master Refresh in seconds'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.value('1');
 		o.value('3');
@@ -159,6 +162,7 @@ return view.extend({
 
 		o = s.taboption('garp', form.ListValue, 'garp_master_refresh_repeat', _('GARP Refresh Repeat'),
 			_('Gratuitous Master Refresh Repeat in seconds'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.value('1');
 		o.value('3');

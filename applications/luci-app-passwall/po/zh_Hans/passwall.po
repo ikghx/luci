@@ -289,11 +289,11 @@ msgstr "屏蔽列表"
 msgid "Browser access:"
 msgstr "浏览器访问："
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:170
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:158
 msgid "Buffer Size"
 msgstr "缓冲区大小"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:170
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:158
 msgid "Buffer size for every connection (kB)"
 msgstr "每一个连接的缓冲区大小（kB）"
 
@@ -350,7 +350,9 @@ msgid ""
 "Certain browsers such as Chrome have built-in DNS service, which may affect "
 "DNS resolution settings. You can go to 'Settings -> Privacy and security -> "
 "Use secure DNS' menu to turn it off."
-msgstr "某些浏览器如Chrome等内置此功能,这会影响设置的DNS解析。您可以进入 '设置->私隐和安全->使用安全DNS' 菜单,将其关闭。"
+msgstr ""
+"某些浏览器如Chrome等内置此功能,这会影响设置的DNS解析。您可以进入 '设置->私隐"
+"和安全->使用安全DNS' 菜单,将其关闭。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:47
 msgid "Certificate fingerprint"
@@ -534,19 +536,19 @@ msgstr "自定义接口"
 msgid "Custom Socks"
 msgstr "自定义 Socks"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:184
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:171
 msgid "Custom geoip Path"
 msgstr "自定义geoip文件路径"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:188
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:175
 msgid "Custom geoip URL"
 msgstr "自定义geoip文件更新链接"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:193
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:180
 msgid "Custom geosite Path"
 msgstr "自定义geosite文件路径"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:197
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:184
 msgid "Custom geosite URL"
 msgstr "自定义geosite文件更新链接"
 
@@ -886,6 +888,10 @@ msgstr "每天"
 msgid "Example:"
 msgstr "示例："
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:151
+msgid "Excluded Domains"
+msgstr "排除域名"
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:266
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:263
 msgid "Experimental feature."
@@ -982,7 +988,9 @@ msgstr "对于Windows系统,请在命令提示符中运行命令 'ipconfig /flus
 msgid ""
 "For mobile devices, you can clear it by reconnecting to the network, such as "
 "toggling Airplane Mode and reconnecting to WiFi."
-msgstr "对于移动设备,可通过重新接入网络的方式清除。比如开关一次飞行模式,重新连接WiFi。"
+msgstr ""
+"对于移动设备,可通过重新接入网络的方式清除。比如开关一次飞行模式,重新连接"
+"WiFi。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:481
 msgid "For professionals only."
@@ -1192,10 +1200,6 @@ msgstr "劫持ICMPv6 (IPv6 PING)"
 msgid "Hop Interval"
 msgstr "端口跳跃时间 "
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:157
-msgid "Hosts added into No Sniffing Lists will not resolve again on server."
-msgstr "加入的域名不会再次在服务器解析。"
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:75
 msgid "How often to test"
 msgstr "多久检测一次"
@@ -1275,12 +1279,20 @@ msgid ""
 "connect."
 msgstr "如果是域名，域名将在请求发出之前解析为 IP。"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:151
+msgid ""
+"If the traffic sniffing result is in this list, the destination address will "
+"not be overridden."
+msgstr "如果流量嗅探结果在此列表中，则不会覆盖目标地址。"
+
 #: applications/luci-app-passwall/luasrc/view/passwall/global/faq.htm:36
 msgid ""
 "If you are unable to access the internet after reboot, please try clearing "
 "the cache of your terminal devices (make sure to close all open browser "
 "application windows first, this step is especially important):"
-msgstr "如果在重启后无法上网,请尝试清除终端设备的缓存（先关闭所有正在使用的浏览器应用程序，这一步尤其重要）："
+msgstr ""
+"如果在重启后无法上网,请尝试清除终端设备的缓存（先关闭所有正在使用的浏览器应用"
+"程序，这一步尤其重要）："
 
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:943
 msgid "Import Finished"
@@ -1624,10 +1636,6 @@ msgstr "发现新版本，但未能获得新版本的下载地址。"
 msgid "No Proxy"
 msgstr "不代理"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:157
-msgid "No Sniffing Lists"
-msgstr "不进行流量嗅探的域名列表"
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:148
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:157
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:186
@@ -1815,11 +1823,13 @@ msgstr "原版Trojan只支持'tls'，请选择'tls'。"
 msgid "Other Settings"
 msgstr "高级设置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:180
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:167
 msgid "Override the connection destination address"
 msgstr "覆盖连接目标地址"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:180
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:167
 msgid "Override the connection destination address with the sniffed domain."
 msgstr "用探测出的域名覆盖连接目标地址。"
 
@@ -1907,7 +1917,9 @@ msgid ""
 "Please make sure your device's network settings point both the DNS server "
 "and default gateway to this router, to ensure DNS queries are properly "
 "routed."
-msgstr "请确认您设备的网络设置,客户端DNS服务器和默认网关应均指向本路由器,以确保DNS查询正确路由。"
+msgstr ""
+"请确认您设备的网络设置,客户端DNS服务器和默认网关应均指向本路由器,以确保DNS查"
+"询正确路由。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:65
 msgid ""
@@ -2178,7 +2190,7 @@ msgstr ""
 msgid "Remote Port"
 msgstr "远程端口"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:202
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:189
 msgid "Remove resource files"
 msgstr "删除资源文件"
 
@@ -2297,7 +2309,7 @@ msgstr ""
 "则是否使用前置代理。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:124
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:176
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:163
 msgid "Settings"
 msgstr ""
 
@@ -2371,20 +2383,12 @@ msgstr "分流"
 msgid "Shunt Rule"
 msgstr "分流规则"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:203
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:190
 msgid ""
 "Sing-Box will automatically download resource files when starting, you can "
 "use this feature achieve upgrade resource files."
 msgstr ""
 "Sing-Box 会在启动时自动下载资源文件，您可以使用此功能实现升级资源文件。"
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
-msgid "Sniffing"
-msgstr "流量嗅探"
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:152
-msgid "Sniffing Route Only"
-msgstr "流量嗅探仅供路由使用"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:31
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:38
@@ -2932,7 +2936,9 @@ msgid ""
 "When selected, devices in LAN can transparent proxy. Otherwise, it will not "
 "be proxy. But you can still use access control to allow the designated "
 "device to proxy."
-msgstr "当勾选时，局域网内的设备可以透明代理。否则，将不代理。但您仍然可以使用访问控制允许指定的设备代理。"
+msgstr ""
+"当勾选时，局域网内的设备可以透明代理。否则，将不代理。但您仍然可以使用访问控"
+"制允许指定的设备代理。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:340
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:371
@@ -2959,10 +2965,6 @@ msgid ""
 msgstr ""
 "当使用URL测试时，负载均衡节点将转换成Socks节点。下面的节点列表自定义时必须为"
 "Socks节点，否则健康检查将无效。"
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:147
-msgid "When using the shunt, this option will be forced to be enabled."
-msgstr "使用分流时，将强制启用此选项。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:222
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:220

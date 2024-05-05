@@ -28,7 +28,7 @@ return baseclass.extend({
 				E('tr', { 'class': 'tr table-titles' }, [
 					E('th', { 'class': 'th' }, _('Name')),
 					E('th', { 'class': 'th' }, _('Interface')),
-					E('th', { 'class': 'th' }, _('Active State')),
+					E('th', { 'class': 'th' }, _('Active State/State')),
 					E('th', { 'class': 'th' }, _('Probes Sent')),
 					E('th', { 'class': 'th' }, _('Probes Received')),
 					E('th', { 'class': 'th' }, _('Last Transition')),
