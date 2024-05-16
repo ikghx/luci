@@ -142,6 +142,9 @@ return network.registerProtocol('openconnect', {
 		o.placeholder = '443';
 		o.datatype    = 'port';
 
+		o = s.taboption('general', form.Value, 'uri', _('VPN Server URI'));
+		o.placeholder = 'https://vpn.example.com:4443';
+
 		o = s.taboption('general', form.Value, 'request', _('VPN Server URL request additional parameter'));
 		o.placeholder = '/';
 

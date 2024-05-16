@@ -18,6 +18,5 @@ uci -q batch <<-EOF >/dev/null
 EOF
 
 [ ! -s "/etc/config/passwall" ] && cp -f /usr/share/passwall/0_default_config /etc/config/passwall
-touch /etc/config/passwall_show >/dev/null 2>&1
 
 exit 0
