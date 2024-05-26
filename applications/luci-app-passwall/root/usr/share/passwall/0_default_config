@@ -17,7 +17,7 @@ config global
 	option log_udp '0'
 	option loglevel 'error'
 	option trojan_loglevel '4'
-	option advanced_log_feature '0'
+	option dns_shunt 'dnsmasq'
 
 config global_haproxy
 	option balancing_enable '0'
@@ -34,7 +34,6 @@ config global_forwarding
 	option udp_proxy_drop_ports 'disable'
 	option tcp_redir_ports '1:65535'
 	option udp_redir_ports '1:65535'
-	option accept_icmp '0'
 	option use_nft '1'
 	option tcp_proxy_way 'tproxy'
 	option ipv6_tproxy '0'
@@ -52,6 +51,7 @@ config global_singbox
 config global_other
 	option nodes_ping 'auto_ping tcping'
 	option ipv6_tproxy '0'
+	option auto_detection_time '0'
 
 config global_rules
 	option auto_update '0'
