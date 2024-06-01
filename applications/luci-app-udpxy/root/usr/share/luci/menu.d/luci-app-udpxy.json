@@ -3,12 +3,11 @@
 		"title": "udpxy",
 		"action": {
 			"type": "view",
-			"path": "udpxy",
-			"post": { "cbi.submit": true }
+			"path": "udpxy"
 		},
 		"depends": {
 			"acl": [ "luci-app-udpxy" ],
-			"fs": { "/etc/config/udpxy": "file" }
+			"uci": { "udpxy": true }
 		}
 	}
 }
