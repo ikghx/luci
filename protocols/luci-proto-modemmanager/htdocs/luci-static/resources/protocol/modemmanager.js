@@ -147,6 +147,8 @@ return network.registerProtocol('modemmanager', {
 
 		s.taboption('advanced', form.Flag, 'allow_roaming', _('allow roaming'));
 
+		s.taboption('advanced', form.Flag, 'force_connection', _('force connection'));
+
 		o = s.taboption('advanced', form.Value, 'mtu', _('Override MTU'));
 		o.placeholder = dev ? (dev.getMTU() || '1500') : '1500';
 		o.datatype    = 'max(9200)';
