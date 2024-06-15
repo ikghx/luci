@@ -124,7 +124,7 @@ return view.extend({
 			if (value.startsWith('*')) {
 				let method = this.section.children.filter(function (o) { return o.option == 'validation_method'; })[0].formvalue(section_id);
 				if (method && method !== 'dns') {
-					return _('A domain name with wildcard * available only when the Validation Method: DNS');
+					return _('wildcards * require Validation method: DNS');
 				}
 			}
 			return true;
@@ -646,8 +646,6 @@ function _importDdns(ddnsDomains) {
 			}
 		}
 	}
-	console.log(certSections);
-	console.log(certSectionDomains);
 	for (let ddnsDomain of ddnsDomains) {
 		let sectionId = ddnsDomain.sectionId;
 		// ensure unique sectionId
