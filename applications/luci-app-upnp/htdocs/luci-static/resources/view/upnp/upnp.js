@@ -122,7 +122,7 @@ return view.extend({
 		o.rmempty  = false;
 
 		s.taboption('general', form.Flag, 'enable_upnp', _('Enable UPnP IGD protocol')).default = '1'
-		s.taboption('general', form.Flag, 'enable_natpmp', _('Enable PCP/NAT-PMP protocol')).default = '1'
+		s.taboption('general', form.Flag, 'enable_pcp_pmp', _('Enable PCP/NAT-PMP protocol')).default = '1'
 
 		s.taboption('general', form.Flag, 'secure_mode', _('Enable secure mode'),
 			_('Allow adding port forwards only to requesting IP addresses')).default = '1'
