@@ -4,7 +4,10 @@
 		"read": {
 			"ubus": {
 				"service": [ "list" ],
-				"luci": [ "setInitAction" ]
+				"luci": [ "setInitAction" ],
+				"luci.qbittorrent-enhanced": [
+					"get-version"
+				]
 			},
 			"file": {
 				"/etc/passwd": [ "read" ]

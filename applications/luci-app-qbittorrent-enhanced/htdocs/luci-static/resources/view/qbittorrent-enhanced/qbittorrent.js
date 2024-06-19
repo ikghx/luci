@@ -10,6 +10,12 @@
 
 var splitter_html = '<p style="font-size:20px;font-weight:bold;color: DodgerBlue">%s</p>';
 
+var callGetVersion = rpc.declare({
+	object: 'luci.qbittorrent-enhanced',
+	method: 'get-version',
+	expect: {}
+});
+
 var callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
@@ -71,12 +77,44 @@ var CBIRandomPort = form.Value.extend({
 	}
 });
 
-function encryptPassword (pwd, flag) {
+async function encryptPassword(pwd, flag) {
 	if (flag) {
-		var salt, key;
-		salt = new Uint8Array(16);
+		var crypto = window.crypto;
+		var salt = new Uint8Array(16), key;
+
 		asmCrypto.getRandomValues(salt);
-		key = asmCrypto.Pbkdf2HmacSha512(asmCrypto.string_to_bytes(pwd), salt, 100000, 64);
+		//crypto.getRandomValues(salt);
+
+		if (crypto.subtle
+			&& typeof crypto.subtle['importKey'] === 'function'
+			&& typeof crypto.subtle['deriveKey'] === 'function') {
+			var enc, keyMaterial, derivedKey;
+			enc = new TextEncoder();
+			keyMaterial =  await crypto.subtle.importKey(
+				"raw",
+				enc.encode(pwd),
+				{ name: "PBKDF2" },
+				false,
+				["deriveBits", "deriveKey"]
+			);
+
+			derivedKey = await crypto.subtle.deriveKey(
+				{
+					name: "PBKDF2",
+					salt,
+					iterations: 100000,
+					hash: "SHA-512",
+				},
+				keyMaterial,
+				{ name: "HMAC", hash: { name: "SHA-256" } },
+				true,
+				["verify"]
+			);
+			key = new Uint8Array(await crypto.subtle.exportKey('raw', derivedKey));
+		}
+		else {
+			key = asmCrypto.Pbkdf2HmacSha512(asmCrypto.string_to_bytes(pwd), salt, 100000, 64);
+		}
 		return asmCrypto.bytes_to_base64(salt) + ':' + asmCrypto.bytes_to_base64(key);
 	}
 	else {
@@ -118,15 +156,19 @@ return view.extend({
 			E('script', { 'src': L.resource('view/qbittorrent-enhanced/asmcrypto.all.es5.min.js') })
 			])
 		);
+		return callGetVersion().then(function(res) {
+			var ver = res.version ? res.version.trim().match(/v(\d+(\.\d+){2,3})(alpha\d+|beta\d+|rc\d)?$/) : null;
+			return ver ? ver.splice(0, 2) : ['', ''];
+		});
 	},
 
 	render: function(ver) {
 		var m, s, o;
 
-		m = new form.Map('qbittorrent-enhanced', _('qBittorrent Enhanced'), '%s %s<br\><b style="color:red">%s</b>'
+		m = new form.Map('qbittorrent-enhanced', _('qBittorrent Enhanced'), '%s %s %s<br\><b style="color:red">%s</b>'
 			.format(_('A BT/PT downloader base on Qt.'), _('Refer to the'),
 			'<a href="https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-' +
-			'in-qBittorrent" target="_blank">help</a>'));
+			'in-qBittorrent" target="_blank">help</a>', _('Current Version: %s').format(ver[0])));
 
 		s = m.section(form.TypedSection);
 		s.title = _('qBittorrent Status');
@@ -428,19 +470,11 @@ return view.extend({
 
 		o = s.taboption('webui', form.Value, 'Password', _('Password'), _('The login password for WebUI.'));
 		o.password = true;
-		o.formvalue = function(section_id) {
-			var node = this.map.findElement('id', this.cbid(section_id));
-			if (node && node.getAttribute('data-changed') == 'true')
-			{
-				var value = dom.callClassMethod(node, 'getValue');
-				if (value)
-				{
-					var flag = ver[1].split('.').map(function(res) {return parseInt(res)}) >= [4, 2, 0];
-					return encryptPassword(value, flag);
-				}
-				return null;
-			}
-			return this.super('formvalue', arguments);
+		o.write = function(section_id, formvalue) {
+			var flag = ver[1].split('.').map(function(res) {return parseInt(res)}) >= [4, 2, 0];
+			return encryptPassword(formvalue, flag).then(L.bind(function(r) {
+				this.super('write', [section_id,  r]);
+			}, this));
 		}
 
 		o = s.taboption('webui', form.Value, 'Address', _('Listening Address'), _('The listening IP address for WebUI.'));
