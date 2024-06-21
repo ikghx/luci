@@ -783,6 +783,7 @@ return view.extend({
 						o.value("/etc/ssl/cert.pem");
 						o.value("IGNORE", _("ignore"));
 						o.rmempty = false;
+						o.optional = true;
 					};
 
 
