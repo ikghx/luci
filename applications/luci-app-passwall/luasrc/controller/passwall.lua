@@ -21,10 +21,14 @@ function index()
 	entry({"admin", "vpn", appname, "reset_config"}, call("reset_config")).leaf = true
 	entry({"admin", "vpn", appname, "show"}, call("show_menu")).leaf = true
 	entry({"admin", "vpn", appname, "hide"}, call("hide_menu")).leaf = true
-	if uci:get(appname, "@global[0]", "hide_from_luci") == "1" then
-		return
+	local e
+	if uci:get(appname, "@global[0]", "hide_from_luci") ~= "1" then
+		e = entry({"admin", "vpn", appname}, alias("admin", "services", appname, "settings"), _("Pass Wall"), -1)
+	else
+		e = entry({"admin", "vpn", appname}, alias("admin", "services", appname, "settings"), nil, -1)
 	end
-	entry({"admin", "vpn", appname}, alias("admin", "vpn", appname, "settings"), _("Pass Wall"), -1).acl_depends = { "luci-app-passwall" }
+	e.dependent = true
+	e.acl_depends = { "luci-app-passwall" }
 	--[[ Client ]]
 	entry({"admin", "vpn", appname, "settings"}, cbi(appname .. "/client/global"), _("Basic Settings"), 1).dependent = true
 	entry({"admin", "vpn", appname, "node_list"}, cbi(appname .. "/client/node_list"), _("Node List"), 2).dependent = true
