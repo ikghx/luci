@@ -214,6 +214,9 @@ msgid "Auth Type"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:130
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:109
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:131
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:639
 msgid "Auto"
 msgstr ""
 
@@ -452,7 +455,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:238
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:430
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:596
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:646
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:658
 msgid "Close(Not use)"
 msgstr ""
 
@@ -611,7 +614,7 @@ msgstr ""
 msgid "Delay Start"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:108
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:116
 msgid "Delete All Subscribe Node"
 msgstr ""
 
@@ -623,7 +626,7 @@ msgstr ""
 msgid "Delete select nodes"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:167
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:175
 msgid "Delete the subscribed node"
 msgstr ""
 
@@ -733,6 +736,8 @@ msgstr ""
 msgid "Domain"
 msgstr ""
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:107
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:128
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:248
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:637
 msgid "Domain Strategy"
@@ -822,7 +827,7 @@ msgstr ""
 msgid "Enable auto update rules"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:129
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:138
 msgid "Enable auto update subscribe"
 msgstr ""
 
@@ -867,42 +872,42 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:141
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:150
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:52
 msgid "Every Friday"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:137
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:146
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:48
 msgid "Every Monday"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:142
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:151
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:53
 msgid "Every Saturday"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:143
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:152
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:54
 msgid "Every Sunday"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:140
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:149
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:51
 msgid "Every Thursday"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:138
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:147
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:49
 msgid "Every Tuesday"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:139
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:148
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:50
 msgid "Every Wednesday"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:136
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:145
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:47
 msgid "Every day"
 msgstr ""
@@ -1267,11 +1272,15 @@ msgstr ""
 msgid "IPSet"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:641
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:112
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:134
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:642
 msgid "IPv4 Only"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:642
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:113
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:135
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:643
 msgid "IPv6 Only"
 msgstr ""
 
@@ -1437,7 +1446,7 @@ msgid "Lan IP List"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:594
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:644
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:656
 msgid "Landing node"
 msgstr ""
 
@@ -1538,7 +1547,7 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:135
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:144
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:46
 msgid "Loop Mode"
 msgstr ""
@@ -1568,11 +1577,11 @@ msgstr ""
 msgid "Make sure socks service is available on this address."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:174
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:182
 msgid "Manual subscription"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:114
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:122
 msgid "Manual subscription All"
 msgstr ""
 
@@ -1705,7 +1714,7 @@ msgstr ""
 msgid "Node Weight"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:160
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:168
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:422
 msgid "Node num"
 msgstr ""
@@ -1823,7 +1832,7 @@ msgid "Only recommend to use with VLESS-TCP-XTLS-Vision."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:594
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:644
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:656
 msgid "Only support a layer of proxy."
 msgstr ""
 
@@ -1926,7 +1935,7 @@ msgid ""
 "uppercase and lowercase."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:121
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:129
 msgid ""
 "Please input the subscription url first, save and submit before manual "
 "subscription."
@@ -1976,11 +1985,15 @@ msgid ""
 "such as geosite:google or geosite:cn."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:639
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:110
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:132
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:640
 msgid "Prefer IPv4"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:640
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:111
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:133
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:641
 msgid "Prefer IPv6"
 msgstr ""
 
@@ -2165,7 +2178,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:53
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:24
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:92
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:132
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:140
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:104
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:12
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:40
@@ -2309,6 +2322,11 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:51
 msgid "Set the TUIC proxy server ip address"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:107
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:128
+msgid "Set the default domain resolution strategy for the sing-box node."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:142
@@ -2469,7 +2487,7 @@ msgstr ""
 msgid "Subscribe Remark"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:163
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:171
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:56
 msgid "Subscribe URL"
 msgstr ""
@@ -2664,7 +2682,7 @@ msgid ""
 "(RFC7871)."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:144
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:152
 msgid "This remark already exists, please change a new remark."
 msgstr ""
 
@@ -2795,17 +2813,17 @@ msgstr ""
 msgid "Unpacking..."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:163
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:172
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:74
 msgid "Update Interval(hour)"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:134
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:143
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:45
 msgid "Update Mode"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:149
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:158
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:60
 msgid "Update Time(every day)"
 msgstr ""
@@ -2859,10 +2877,11 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:104
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:113
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:122
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:130
 msgid "Use global config"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:169
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:178
 msgid "User-Agent"
 msgstr ""
 
@@ -3093,7 +3112,7 @@ msgstr ""
 msgid "gfwlist/gfwlist"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:164
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:173
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:75
 msgid "hour"
 msgstr ""
