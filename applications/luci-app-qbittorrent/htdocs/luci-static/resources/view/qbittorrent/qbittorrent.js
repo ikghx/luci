@@ -168,7 +168,7 @@ return view.extend({
 		m = new form.Map('qbittorrent', _('qBittorrent'), '%s %s %s<br\><b style="color:red">%s</b>'
 			.format(_('A BT/PT downloader base on Qt.'), _('Refer to the'),
 			'<a href="https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-' +
-			'in-qBittorrent" target="_blank">help</a>', _('Current Version: %s.').format(ver[0])));
+			'in-qBittorrent" target="_blank">help</a>', _('Current Version: %s').format(ver[0])));
 
 		s = m.section(form.TypedSection);
 		s.title = _('qBittorrent Status');
