@@ -24,7 +24,7 @@ var CBILogreadBox = function(logtag, name) {
 			});
 			return E('div', { class: 'cbi-map' },
 				E('div', { class: 'cbi-section' }, [
-				E('div', { class: 'cbi-section-descr' }, _('The syslog output, pre-filtered for messages related to: ' + name)),
+				E('div', { class: 'cbi-section-descr' }, _('The syslog output, pre-filtered for messages related to: ') + name),
 				E('textarea', {
 					'id': 'logfile',
 					'style': 'width: 100% !important; padding: 5px; font-family: monospace',
