@@ -23,7 +23,7 @@ msgstr "Hinzufügen"
 msgid "Add host device to the container"
 msgstr "Host-Gerät zum Container hinzufügen"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:223
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:229
 msgid "Additional iptables parameters"
 msgstr ""
 
@@ -35,6 +35,10 @@ msgstr "Erweitert"
 msgid "Allocates an ephemeral host port for all of a container's exposed ports"
 msgstr ""
 "Weist einen kurzlebigen Host-Port für alle offenen Ports eines Containers zu"
+
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:176
+msgid "Allow Docker to create ip6tables rules"
+msgstr ""
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:170
 msgid "Allow Docker to create iptables rules"
@@ -64,7 +68,7 @@ msgstr "Automatische Erstellung einer macvlan-Schnittstelle in Openwrt"
 msgid "Available"
 msgstr "Verfügbar"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:177
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:183
 msgid "Baidu"
 msgstr ""
 
@@ -93,7 +97,7 @@ msgstr ""
 "Die Block IO-Gewichtung (relative Gewichtung) akzeptiert einen "
 "Gewichtungswert zwischen 10 und 1000."
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:217
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:223
 msgid "Blocked interfaces"
 msgstr ""
 
@@ -149,7 +153,7 @@ msgstr ""
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:202
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:208
 msgid "Client connection"
 msgstr "Client-Verbindung"
 
@@ -238,7 +242,7 @@ msgstr "Neues Docker-Netzwerk erstellen"
 msgid "Created"
 msgstr "Erzeugt"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:197
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:203
 msgid "Critical"
 msgstr ""
 
@@ -254,7 +258,7 @@ msgstr ""
 msgid "DNS"
 msgstr "DNS"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:193
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:199
 msgid "Debug"
 msgstr "Debuggen"
 
@@ -315,7 +319,7 @@ msgstr "Docker - Überblick"
 msgid "Docker - Volumes"
 msgstr "Docker - Volumes"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:179
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:185
 msgid "Docker Hub"
 msgstr ""
 
@@ -336,11 +340,11 @@ msgstr "Docker-Version"
 msgid "Docker actions done."
 msgstr "Docker-Aktionen ausgeführt."
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:212
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:218
 msgid "Docker bridge name"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:180
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:186
 msgid "Docker io"
 msgstr ""
 
@@ -367,6 +371,10 @@ msgstr ""
 msgid "Enable IPv6"
 msgstr "IPv6 aktivieren"
 
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:175
+msgid "Enable ip6tables"
+msgstr ""
+
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:169
 msgid "Enable iptables"
 msgstr ""
@@ -379,7 +387,7 @@ msgstr "Umgebung"
 msgid "Environmental Variable(-e)"
 msgstr "Umgebungsvariable(-e)"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:196
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:202
 msgid "Error"
 msgstr "Fehler"
 
@@ -412,7 +420,7 @@ msgstr "Datei"
 msgid "Finish Time"
 msgstr "Endzeit"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:209
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:215
 msgid "Firewall Settings"
 msgstr ""
 
@@ -437,7 +445,7 @@ msgstr "Gateway"
 msgid "Go to relevant configuration page"
 msgstr "Gehe zur entsprechenden Konfigurationsseite"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:178
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:184
 msgid "Google"
 msgstr ""
 
@@ -519,7 +527,7 @@ msgstr "Adresse des Indexservers"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:423
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:32
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:194
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:200
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container.htm:3
 msgid "Info"
 msgstr "Info"
@@ -572,15 +580,15 @@ msgstr "Verknüpfungen"
 msgid "Links with other containers"
 msgstr "Verknüpfungen mit anderen Containern"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:185
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:191
 msgid "Local"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:191
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:197
 msgid "Log Level"
 msgstr "Protokollebene"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:184
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:190
 msgid "Log driver"
 msgstr ""
 
@@ -647,7 +655,7 @@ msgstr ""
 "Name des Netzwerks, das beim Erstellen eines Containers ausgewählt werden "
 "kann"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:176
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:182
 msgid "NetEase"
 msgstr ""
 
@@ -745,7 +753,7 @@ msgstr "Bitte geben Sie die <docker create/run>-Befehlszeile ein:"
 msgid "Ports"
 msgstr "Ports"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:218
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:224
 msgid "Prevent the external network from directly connecting to Docker host."
 msgstr ""
 
@@ -770,7 +778,7 @@ msgid "Pull Image"
 msgstr "Abbild ziehen"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:29
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:175
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:181
 msgid "Registry Mirrors"
 msgstr "Registry-Spiegel"
 
@@ -851,7 +859,7 @@ msgstr "Benutzerdefinierte DNS-Server einstellen"
 msgid "Set environment variables to inside the container"
 msgstr "Umgebungsvariablen innerhalb des Containers setzen"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:192
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:198
 msgid "Set the logging level"
 msgstr "Einstellen der Protokollebene"
 
@@ -864,7 +872,7 @@ msgstr ""
 msgid "Size"
 msgstr "Größe"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:203
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:209
 msgid "Specifies where the Docker daemon will listen for client connections"
 msgstr ""
 
@@ -1028,7 +1036,7 @@ msgstr "Volumes"
 msgid "Volumes overview"
 msgstr "Übersicht über Volumes"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:195
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:201
 msgid "Warning"
 msgstr "Warnung"
 

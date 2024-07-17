@@ -22,7 +22,7 @@ msgstr ""
 msgid "Add host device to the container"
 msgstr "将主机设备添加到容器"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:223
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:229
 msgid "Additional iptables parameters"
 msgstr "附加 iptables 参数"
 
@@ -33,6 +33,11 @@ msgstr "高级选项"
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:579
 msgid "Allocates an ephemeral host port for all of a container's exposed ports"
 msgstr "为容器的所有暴露端口分配临时主机端口"
+
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:176
+msgid "Allow Docker to create ip6tables rules"
+msgstr ""
+"允许 Docker 创建 ip6tables 规则，容器的暴露端口将绕过防火墙公开至所有接口。"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:170
 msgid "Allow Docker to create iptables rules"
@@ -61,7 +66,7 @@ msgstr "在 Openwrt 中自动创建 macvlan 界面"
 msgid "Available"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:177
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:183
 msgid "Baidu"
 msgstr "百度"
 
@@ -88,7 +93,7 @@ msgid ""
 "Block IO weight (relative weight) accepts a weight value between 10 and 1000."
 msgstr "块 IO 权重（相对权重）接受10到1000之间的数值。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:217
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:223
 msgid "Blocked interfaces"
 msgstr "封锁接口"
 
@@ -140,7 +145,7 @@ msgstr "无法连接到 docker 守护进程，请检查！"
 msgid "Cancel"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:202
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:208
 msgid "Client connection"
 msgstr "客户端连接"
 
@@ -229,7 +234,7 @@ msgstr "创建新的Docker网络"
 msgid "Created"
 msgstr "创建时间"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:197
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:203
 msgid "Critical"
 msgstr ""
 
@@ -245,7 +250,7 @@ msgstr "删除中"
 msgid "DNS"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:193
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:199
 msgid "Debug"
 msgstr ""
 
@@ -306,7 +311,7 @@ msgstr "Docker-概述"
 msgid "Docker - Volumes"
 msgstr "Docker-卷"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:179
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:185
 msgid "Docker Hub"
 msgstr ""
 
@@ -327,11 +332,11 @@ msgstr "Docker 版本"
 msgid "Docker actions done."
 msgstr "Docker 执行完成。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:212
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:218
 msgid "Docker bridge name"
 msgstr "Docker 网桥名称"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:180
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:186
 msgid "Docker io"
 msgstr ""
 
@@ -358,6 +363,10 @@ msgstr ""
 msgid "Enable IPv6"
 msgstr "启用 IPv6"
 
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:175
+msgid "Enable ip6tables"
+msgstr "启用 ip6tables"
+
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:169
 msgid "Enable iptables"
 msgstr "启用 iptables"
@@ -370,7 +379,7 @@ msgstr "环境变量"
 msgid "Environmental Variable(-e)"
 msgstr "环境变量（-e）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:196
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:202
 msgid "Error"
 msgstr ""
 
@@ -403,7 +412,7 @@ msgstr ""
 msgid "Finish Time"
 msgstr "完成时间"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:209
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:215
 msgid "Firewall Settings"
 msgstr ""
 
@@ -428,7 +437,7 @@ msgstr ""
 msgid "Go to relevant configuration page"
 msgstr "进入相关配置页面"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:178
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:184
 msgid "Google"
 msgstr ""
 
@@ -510,7 +519,7 @@ msgstr "索引服务器地址"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:423
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:32
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:194
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:200
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container.htm:3
 msgid "Info"
 msgstr ""
@@ -561,15 +570,15 @@ msgstr "链接"
 msgid "Links with other containers"
 msgstr "与其他容器的链接"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:185
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:191
 msgid "Local"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:191
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:197
 msgid "Log Level"
 msgstr "日志等级"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:184
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:190
 msgid "Log driver"
 msgstr "日志驱动程序"
 
@@ -634,7 +643,7 @@ msgstr ""
 msgid "Name of the network that can be selected during container creation"
 msgstr "在容器创建时可以选择网络的名称"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:176
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:182
 msgid "NetEase"
 msgstr "网易"
 
@@ -728,7 +737,7 @@ msgstr "请输入 <docker create/run> 的命令行："
 msgid "Ports"
 msgstr "端口"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:218
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:224
 msgid "Prevent the external network from directly connecting to Docker host."
 msgstr "阻止外部网络直接连接到 Docker 主机。"
 
@@ -753,7 +762,7 @@ msgid "Pull Image"
 msgstr "拉取镜像"
 
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:29
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:175
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:181
 msgid "Registry Mirrors"
 msgstr "镜像加速器"
 
@@ -834,7 +843,7 @@ msgstr "设置自定义 DNS 服务器"
 msgid "Set environment variables to inside the container"
 msgstr "在容器内部设置环境变量"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:192
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:198
 msgid "Set the logging level"
 msgstr "设置日志记录级别"
 
@@ -847,7 +856,7 @@ msgstr "设置"
 msgid "Size"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:203
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:209
 msgid "Specifies where the Docker daemon will listen for client connections"
 msgstr "指定Docker守护程序将在何处侦听客户端连接"
 
@@ -1005,7 +1014,7 @@ msgstr "存储卷"
 msgid "Volumes overview"
 msgstr "卷概览"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:195
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:201
 msgid "Warning"
 msgstr ""
 

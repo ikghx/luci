@@ -171,6 +171,12 @@ if nixio.fs.access("/usr/bin/dockerd") then
 	o.rmempty = false
 	o:depends("remote_endpoint", 0)
 
+	o = s:option(Flag, "ip6tables",
+		translate("Enable ip6tables"),
+		translate("Allow Docker to create ip6tables rules"))
+	o.rmempty = false
+	o:depends("remote_endpoint", 0)
+
 	o = s:option(DynamicList, "registry_mirrors",
 		translate("Registry Mirrors"))
 	o:value("https://hub-mirror.c.163.com", translate("NetEase"))
