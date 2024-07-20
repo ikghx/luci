@@ -1241,9 +1241,9 @@ return view.extend({
 				o.depends('encryption', 'psk-mixed');
 				o.value('auto', _('auto'));
 				o.value('ccmp', _('CCMP-AES (Strong security)'));
-				o.value('ccmp256', _('CCMP-256 (Strong security)'));
-				o.value('gcmp', _('GCMP (Strong security)'));
-				o.value('gcmp256', _('GCMP-256 (Strong security)'));
+				o.value('ccmp256', _('CCMP-256-AES (Strong security)'));
+				o.value('gcmp', _('GCMP-AES (Strong security)'));
+				o.value('gcmp256', _('GCMP-256-AES (Strong security)'));
 				o.value('tkip+ccmp', _('TKIP-RC4/CCMP-AES (Medium security)'));
 				o.value('tkip', _('TKIP-RC4 (Weak security)'));
 				o.write = ss.children.filter(function(o) { return o.option == 'encryption' })[0].write;

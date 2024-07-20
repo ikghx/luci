@@ -1392,11 +1392,11 @@ return view.extend({
 		ss.modaltitle = _('Edit VC');
 		ss.rowcolors = true;
 
-		so = ss.option(form.Value, 'vendorclass', _('Match Vendor Class...'));
+		so = ss.option(form.Value, 'vendorclass', _('Match this Vendor Class'));
 		so.rmempty = false;
 		so.optional = false;
 
-		so = ss.option(form.Value, 'networkid', _('...to set this Tag'));
+		so = ss.option(form.Value, 'networkid', _('In order to set this Tag'));
 		so.rmempty = false;
 		so.optional = false;
 
@@ -1417,11 +1417,11 @@ return view.extend({
 		ss.modaltitle = _('Edit UC');
 		ss.rowcolors = true;
 
-		so = ss.option(form.Value, 'userclass', _('Match User Class...'));
+		so = ss.option(form.Value, 'userclass', _('Match this User Class'));
 		so.rmempty = false;
 		so.optional = false;
 
-		so = ss.option(form.Value, 'networkid', _('...to set this Tag'));
+		so = ss.option(form.Value, 'networkid', _('In order to set this Tag'));
 		so.rmempty = false;
 		so.optional = false;
 
@@ -1449,12 +1449,12 @@ return view.extend({
 		ss.modaltitle = _('Edit Match');
 		ss.rowcolors = true;
 
-		so = ss.option(form.Value, 'match', _('Match this client option(+value)...'));
+		so = ss.option(form.Value, 'match', _('Match this client option(+value)'));
 		so.rmempty = false;
 		so.optional = false;
 		so.placeholder = '61,8c:80:90:01:02:03';
 
-		so = ss.option(form.Value, 'networkid', _('...to set this Tag'));
+		so = ss.option(form.Value, 'networkid', _('In order to set this Tag'));
 		so.rmempty = false;
 		so.optional = false;
 		so.placeholder = 'myuniqueclientid'

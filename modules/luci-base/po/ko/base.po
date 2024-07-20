@@ -163,12 +163,6 @@ msgstr "-- uuid로 지정 --"
 msgid "-- please select --"
 msgstr "-- 선택하세요 --"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1399
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1424
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1457
-msgid "...to set this Tag"
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1362
 msgid "...to this matching Tag"
 msgstr ""
@@ -808,6 +802,10 @@ msgstr "IPv6 주소 추가…"
 msgid "Add LED action"
 msgstr "LED 액션 추가"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:638
+msgid "Add MAC address"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/switch.js:221
 msgid "Add VLAN"
 msgstr "VLAN 추가"
@@ -870,10 +868,6 @@ msgstr "피어 추가"
 msgid "Add peer address"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:638
-msgid "Add requestor MAC"
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:353
 msgctxt "Dnsmasq instance"
 msgid "Add server instance"
@@ -884,7 +878,7 @@ msgid "Add static forward and reverse DNS entries for this host."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:655
-msgid "Add subnet address to forwards"
+msgid "Add subnet address"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:639
@@ -1234,16 +1228,12 @@ msgid ""
 "loads."
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4753
-msgid "Apply and keep settings"
-msgstr "적용 및 설정 유지"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:119
 #, fuzzy
 msgid "Apply backup?"
 msgstr "백업을 적용하시겠습니까?"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4779
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4776
 msgid "Apply request failed with status <code>%h</code>"
 msgstr "적용 요청 실패: 응답 코드 <code>%h</code>"
 
@@ -1252,16 +1242,17 @@ msgid "Apply these DHCP Options..."
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2174
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4495
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4616
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4492
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4614
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4750
 msgid "Apply unchecked"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4749
-msgid "Apply with revert after connectivity loss"
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4746
+msgid "Apply, reverting in case of connectivity loss"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4689
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4687
 msgid "Applying configuration changes… %ds"
 msgstr ""
 
@@ -1460,10 +1451,6 @@ msgstr ""
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:149
 msgid "BSSID"
 msgstr "BSSID"
-
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3211
-msgid "Back"
-msgstr "뒤로"
 
 #: modules/luci-compat/luasrc/view/cbi/footer.htm:14
 #: modules/luci-compat/luasrc/view/cbi/simpleform.htm:48
@@ -1672,7 +1659,7 @@ msgid "Broadcast"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2884
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4246
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4252
 msgid "Browse…"
 msgstr ""
 
@@ -1694,7 +1681,7 @@ msgid "CA certificate; if empty it will be saved after the first connection."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1244
-msgid "CCMP-256 (Strong security)"
+msgid "CCMP-256-AES (Strong security)"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1243
@@ -1735,8 +1722,8 @@ msgid "Call failed"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2976
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4255
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4745
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4223
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4742
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:14
 #: modules/luci-compat/luasrc/view/cbi/simpleform.htm:52
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:188
@@ -1859,18 +1846,18 @@ msgctxt "Yet unknown nftables chain hook"
 msgid "Chain hook \"%h\""
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4475
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4470
 msgid "Changes"
 msgstr "변경 사항"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4739
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4737
 msgid ""
 "Changes have been made to the existing connection via \"%h\". This could "
 "inhibit access to this device. Any IP change requires <strong>connecting to "
 "the new IP</strong> within %d seconds to retain the changes."
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4815
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4812
 msgid "Changes have been reverted."
 msgstr ""
 
@@ -1908,10 +1895,6 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:195
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:197
 msgid "Checking image…"
-msgstr ""
-
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4740
-msgid "Choose how to apply changes:"
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:429
@@ -1974,7 +1957,7 @@ msgstr ""
 msgid "Client inactivity limit"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4492
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4489
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:173
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:179
 msgid "Close"
@@ -2036,7 +2019,7 @@ msgstr ""
 msgid "Config File"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4475
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4470
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:456
 msgid "Configuration"
 msgstr "설정"
@@ -2045,11 +2028,11 @@ msgstr "설정"
 msgid "Configuration Export"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4664
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4662
 msgid "Configuration changes applied."
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4602
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4600
 msgid "Configuration changes have been rolled back!"
 msgstr ""
 
@@ -2138,7 +2121,7 @@ msgstr ""
 msgid "Connections"
 msgstr "연결"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4738
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4736
 msgid "Connectivity change"
 msgstr ""
 
@@ -2180,7 +2163,7 @@ msgctxt "Chain policy: accept"
 msgid "Continue processing unmatched packets"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4638
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4636
 msgid ""
 "Could not regain access to the device after applying the configuration "
 "changes. You might need to reconnect if you modified network related "
@@ -2629,7 +2612,7 @@ msgstr ""
 msgid "Device type"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4637
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4635
 msgid "Device unreachable!"
 msgstr ""
 
@@ -2787,9 +2770,10 @@ msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:611
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2978
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3211
 #: modules/luci-base/htdocs/luci-static/resources/form.js:3225
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3754
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4608
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4606
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1928
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:360
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:45
@@ -3702,7 +3686,7 @@ msgstr ""
 msgid "Failed to configure modem"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4596
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4594
 msgid "Failed to confirm apply within %ds, waiting for rollback…"
 msgstr ""
 
@@ -4033,12 +4017,12 @@ msgid ""
 "wireguard.com'>wireguard.com</a>."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1245
-msgid "GCMP (Strong security)"
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1246
+msgid "GCMP-256-AES (Strong security)"
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1246
-msgid "GCMP-256 (Strong security)"
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1245
+msgid "GCMP-AES (Strong security)"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:128
@@ -4983,10 +4967,19 @@ msgid ""
 "order to avoid broadcast loops that can bring the entire LAN to a standstill."
 msgstr ""
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1457
+msgid "In order to Set this Tag"
+msgstr ""
+
 #: modules/luci-base/ucode/template/csrftoken.ut:13
 msgid ""
 "In order to prevent unauthorized access to the system, your request has been "
 "blocked. Click \"Continue »\" below to return to the previous page."
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1399
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1424
+msgid "In order to set this Tag"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1343
@@ -5601,7 +5594,7 @@ msgstr ""
 msgid "Legacy rules detected"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4477
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4472
 msgid "Legend:"
 msgstr ""
 
@@ -6066,26 +6059,26 @@ msgid ""
 "on them."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1420
-msgid "Match User Class..."
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1385
 msgid ""
 "Match Vendor Class (VC) strings sent by DHCP clients as a trigger to set "
 "tags on them."
 msgstr ""
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1395
-msgid "Match Vendor Class..."
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:954
 msgid "Match this Tag"
 msgstr ""
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1420
+msgid "Match this User Class"
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1395
+msgid "Match this Vendor Class"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1452
-msgid "Match this client option(+value)..."
+msgid "Match this client option(+value)"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1441
@@ -6548,7 +6541,7 @@ msgid "NTP server candidates"
 msgstr "NTP 서버 목록"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2574
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4232
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4238
 #: modules/luci-compat/luasrc/view/cbi/tblsection.htm:27
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:107
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1078
@@ -7188,11 +7181,11 @@ msgstr ""
 msgid "Option \"%s\" must not be empty."
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4484
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4479
 msgid "Option changed"
 msgstr "변경된 option"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4486
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4481
 msgid "Option removed"
 msgstr "삭제된 option"
 
@@ -8701,19 +8694,19 @@ msgstr "암호 보이기/숨기기"
 msgid "Reverse path filter"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4506
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4503
 msgid "Revert"
 msgstr "변경 취소"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4612
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4610
 msgid "Revert changes"
 msgstr "변경사항 되돌리기"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4824
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4821
 msgid "Revert request failed with status <code>%h</code>"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4804
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4801
 msgid "Reverting configuration…"
 msgstr "설정 되돌리는 중…"
 
@@ -8951,7 +8944,7 @@ msgid "Save"
 msgstr "저장"
 
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2173
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4494
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4491
 #: modules/luci-compat/luasrc/view/cbi/footer.htm:22
 msgid "Save & Apply"
 msgstr "저장 & 적용"
@@ -8998,11 +8991,11 @@ msgstr ""
 msgid "Section %s is empty."
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4480
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4475
 msgid "Section added"
 msgstr "추가된 section"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4482
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4477
 msgid "Section removed"
 msgstr "섹션 삭제됨"
 
@@ -9220,7 +9213,7 @@ msgstr ""
 msgid "Signal:"
 msgstr "신호:"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4233
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4239
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:224
 msgid "Size"
 msgstr "크기"
@@ -9551,7 +9544,7 @@ msgstr "시작 우선순위"
 msgid "Start refresh"
 msgstr "새로고침 시작"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4727
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4725
 msgid "Starting configuration apply…"
 msgstr "구성 적용 시작하는 중…"
 
@@ -10070,7 +10063,7 @@ msgstr "다음과 같은 오류 때문에 구성 파일을 불러오지 못했�
 msgid "The default (%s) is zero for both IPv4 and IPv6."
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4603
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4601
 msgid ""
 "The device could not be reached within %d seconds after applying the pending "
 "changes, which caused the configuration to be rolled back for safety "
@@ -10407,7 +10400,7 @@ msgstr ""
 msgid "There are no active leases"
 msgstr "활성화 되어 있는 임대 없음"
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4771
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4768
 msgid "There are no changes to apply"
 msgstr "변경된 사항이 없습니다"
 
@@ -10932,7 +10925,7 @@ msgstr ""
 msgid "Unnamed key"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4420
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4415
 msgid "Unsaved Changes"
 msgstr "적용 안된 변경 사항"
 
@@ -10976,7 +10969,7 @@ msgstr ""
 msgid "Up"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4307
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4303
 msgid "Upload"
 msgstr ""
 
@@ -11001,17 +10994,17 @@ msgstr ""
 msgid "Upload file…"
 msgstr ""
 
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4253
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4221
 msgid "Upload has been cancelled"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2812
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4295
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4291
 msgid "Upload request failed: %s"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4214
-#: modules/luci-base/htdocs/luci-static/resources/ui.js:4268
+#: modules/luci-base/htdocs/luci-static/resources/ui.js:4264
 msgid "Uploading file…"
 msgstr ""
 
@@ -12370,6 +12363,12 @@ msgstr ""
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« 이전"
+
+#~ msgid "Apply and keep settings"
+#~ msgstr "적용 및 설정 유지"
+
+#~ msgid "Back"
+#~ msgstr "뒤로"
 
 #~ msgid ""
 #~ "Public keys allow for the passwordless SSH logins with a higher security "
