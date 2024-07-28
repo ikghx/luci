@@ -234,7 +234,7 @@ function expandAndFormatMAC(macs) {
 		}
 	});
 
-	return result.length ? result.join(' ') : null;
+	return result.length ? result : null;
 }
 
 function isValidMAC(sid, s) {
@@ -1180,33 +1180,14 @@ return view.extend({
 			_('In DHCPv4, it is possible to include more than one mac address. This allows an IP address to be associated with multiple macaddrs, and dnsmasq abandons a DHCP lease to one of the macaddrs when another asks for a lease. It only works reliably if only one of the macaddrs is active at any time.'));
 		so.rmempty  = true;
 		so.cfgvalue = function(section) {
-			var macs = L.toArray(uci.get('dhcp', section, 'mac'));
-			return expandAndFormatMAC(macs);
+			var macs = uci.get('dhcp', section, 'mac');
+			if(!Array.isArray(macs)){
+				return expandAndFormatMAC(L.toArray(macs));
+			} else {
+				return expandAndFormatMAC(macs);
+			}
 		};
-		so.renderWidget = function(section_id, option_index, cfgvalue) {
-			var node = form.Value.prototype.renderWidget.apply(this, [section_id, option_index, cfgvalue]),
-			    ipopt = this.section.children.filter(function(o) { return o.option == 'ip' })[0];
-
-			node.addEventListener('cbi-dropdown-change', L.bind(function(ipopt, section_id, ev) {
-				var mac = ev.detail.value.value;
-				if (mac == null || mac == '' || !hosts[mac])
-					return;
-
-				var iphint = L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4)[0];
-				if (iphint == null)
-					return;
-
-				var ip = ipopt.formvalue(section_id);
-				if (ip != null && ip != '')
-					return;
-
-				var node = ipopt.map.findElement('id', ipopt.cbid(section_id));
-				if (node)
-					dom.callClassMethod(node, 'setValue', iphint);
-			}, this, ipopt, section_id));
-
-			return node;
-		};
+		//removed jows renderwidget function which hindered multi-mac entry
 		so.validate = validateMACAddr.bind(so, pools);
 		Object.keys(hosts).forEach(function(mac) {
 			var hint = hosts[mac].name || L.toArray(hosts[mac].ipaddrs || hosts[mac].ipv4)[0];
