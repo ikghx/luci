@@ -9,7 +9,9 @@
 		},
 		"write": {
 			"file": {
-				"/var/log/vsftpd.log": [ "write" ]
+				"/var/log/vsftpd.log": [ "write" ],
+				"/etc/init.d/vsftpd start" : [ "exec" ],
+				"/etc/init.d/vsftpd stop" : [ "exec" ]
 			},
 			"uci": [ "vsftpd" ]
 		}

@@ -1,9 +1,25 @@
 'use strict';
 'require view';
+'require fs';
+'require ui';
 'require form';
 'require rpc';
 
 return view.extend({
+
+	handleStart: function(m, ev) {
+		return fs.exec('/etc/init.d/vsftpd', [ 'start' ])
+			.then(L.bind(this.load, this))
+			.then(L.bind(this.render, this))
+			.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
+	},
+
+	handleStop: function(m, ev) {
+		return fs.exec('/etc/init.d/vsftpd', [ 'stop' ])
+			.then(L.bind(this.load, this))
+			.then(L.bind(this.render, this))
+			.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
+	},
 
 	render: function(res) {
 
@@ -12,6 +28,18 @@ return view.extend({
 		m = new form.Map('vsftpd', _('FTP Server') , _('vsftpd is a fast and secure FTP server.'));
 
 		s = m.section(form.NamedSection, 'listen', 'listen', _('Listening Settings'));
+
+		o = s.option(form.Button, '_start');
+		o.title      = '&#160;';
+		o.inputtitle = _('Start');
+		o.inputstyle = 'save';
+		o.onclick = L.bind(this.handleStart, this, m);
+
+		o = s.option(form.Button, '_stop');
+		o.title      = '&#160;';
+		o.inputtitle = _('Stop');
+		o.inputstyle = 'reset';
+		o.onclick = L.bind(this.handleStop, this, m);
 
 		o = s.option(form.Flag, 'enable4', _('Enable IPv4'));
 		o.depends('enable6', '0');
