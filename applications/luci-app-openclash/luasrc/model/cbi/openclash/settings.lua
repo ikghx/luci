@@ -38,7 +38,8 @@ m.description = translate("Note: To restore the default configuration, try acces
 "<br/>"..font_green..translate("Note: Game proxy please use nodes except VMess")..font_off..
 "<br/>"..font_green..translate("Note: If you need to perform client access control in Fake-IP mode, please change the DNS hijacking mode to firewall forwarding")..font_off..
 "<br/>"..translate("Note: The default proxy routes local traffic, BT, PT download, etc., please use Redir-Host mode as much as possible and pay attention to traffic avoidance")..
-"<br/>"..translate("Note: If the connection is abnormal, please follow the steps on this page to check first")..": ".."<a href='javascript:void(0)' onclick='javascript:return winOpen(\"https://github.com/vernesong/OpenClash/wiki/%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%BC%82%E5%B8%B8%E6%97%B6%E6%8E%92%E6%9F%A5%E5%8E%9F%E5%9B%A0\")'>"..translate("Click to the page").."</a>"
+"<br/>"..translate("Note: If the connection is abnormal, please follow the steps on this page to check first")..": ".."<a href='javascript:void(0)' onclick='javascript:return winOpen(\"https://github.com/vernesong/OpenClash/wiki/%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%BC%82%E5%B8%B8%E6%97%B6%E6%8E%92%E6%9F%A5%E5%8E%9F%E5%9B%A0\")'>"..translate("Click to the page").."</a>"..
+"<br/>"..font_green..translate("For More Useful Meta Core Functions Go Wiki")..": "..font_off.."<a href='javascript:void(0)' onclick='javascript:return winOpen(\"https://wiki.metacubex.one/\")'>"..translate("https://wiki.metacubex.one/").."</a>"
 
 s = m:section(TypedSection, "openclash")
 s.anonymous = true
@@ -58,10 +59,6 @@ s:tab("version_update", translate("Version Update"))
 s:tab("developer", translate("Developer Settings"))
 s:tab("debug", translate("Debug Logs"))
 s:tab("dlercloud", translate("Dler Cloud"))
-
-o = s:taboption("op_mode", Flag, "enable_meta_core", font_red..bold_on..translate("Enable Meta Core")..bold_off..font_off)
-o.description = font_red..bold_on..translate("Some Premium Core Features are Unavailable, For Other More Useful Functions Go Wiki:")..bold_off..font_off.." ".."<a href='javascript:void(0)' onclick='javascript:return winOpen(\"https://wiki.metacubex.one/\")'>https://wiki.metacubex.one/</a>"
-o.default = 0
 
 o = s:taboption("op_mode", ListValue, "en_mode", font_red..bold_on..translate("Select Mode")..bold_off..font_off)
 o.description = translate("Select Mode For OpenClash Work, Try Flush DNS Cache If Network Error")
@@ -99,20 +96,7 @@ o.description = translate("Select Proxy Mode")
 o:value("rule", translate("Rule Proxy Mode"))
 o:value("global", translate("Global Proxy Mode"))
 o:value("direct", translate("Direct Proxy Mode"))
-o:value("script", translate("Script Proxy Mode (Tun Core Only)"))
 o.default = "rule"
-
--- eBPF support setting
-o = s:taboption("op_mode", ListValue, "ebpf_action_interface", translate("eBPF Action Interface"))
-o.description = translate("Select outbound interface for eBPF to apply traffic management").."<br>"..font_red..bold_on.."1."..translate("Warning! Highly experimental configs. Will disable default firewall traffic inbound").."<br>2."..translate("Needs kernel support for eBPF functionality. And it takes about 130MB memory to starts").."<br>3."..translate("Might improve direct connection performance").."<br>4."..translate("Only support redir-host-tun")..bold_off..font_off
-o:value("0", translate("Disable"))
-o.default = "0"
-local interfaces = SYS.exec("ls -l /sys/class/net/ 2>/dev/null |awk '{print $9}' 2>/dev/null")
-for interface in string.gmatch(interfaces, "%S+") do
-   o:value(interface)
-end
-o:depends{en_mode = "redir-host-tun"}
-
 
 o = s:taboption("op_mode", Value, "delay_start", translate("Delay Start (s)"))
 o.description = translate("Delay Start On Boot")
