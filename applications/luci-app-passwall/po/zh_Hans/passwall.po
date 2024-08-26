@@ -123,7 +123,7 @@ msgstr "访问控制"
 msgid "Add"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:73
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:85
 msgid ""
 "Add a node, Export Of Multi WAN Only support Multi Wan. Load specific "
 "gravity range 1-256. Multiple primary servers can be load balanced, standby "
@@ -228,7 +228,7 @@ msgid "Auth Type"
 msgstr "认证类型"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:323
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:131
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:143
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:109
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:131
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:653
@@ -268,6 +268,7 @@ msgid "Balancing Strategy"
 msgstr "负载均衡策略"
 
 #: applications/luci-app-passwall/luasrc/controller/passwall.lua:33
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:21
 msgid "Basic Settings"
 msgstr "基本设置"
 
@@ -819,7 +820,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:573
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:610
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:632
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:94
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:106
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:19
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:66
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:9
@@ -951,7 +952,7 @@ msgstr "排除域名"
 msgid "Experimental feature."
 msgstr "实验性功能。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:130
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:142
 msgid "Export Of Multi WAN"
 msgstr "多 WAN 指定出口"
 
@@ -1211,11 +1212,11 @@ msgid "Handshake Server Port"
 msgstr "握手服务器端口"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:47
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:118
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:130
 msgid "Haproxy Port"
 msgstr "负载均衡端口"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:59
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:71
 msgid "Health Check Inter"
 msgstr "健康检查节点间隔时间"
 
@@ -1656,7 +1657,7 @@ msgid "Misconfigured"
 msgstr "配置不当"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:515
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:138
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:150
 msgid "Mode"
 msgstr ""
 
@@ -1728,7 +1729,7 @@ msgstr "没有分流规则？点我前往去添加。"
 msgid "Node"
 msgstr "节点"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:99
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:111
 msgid "Node Address"
 msgstr "节点地址"
 
@@ -1737,6 +1738,7 @@ msgid "Node Config"
 msgstr "节点配置"
 
 #: applications/luci-app-passwall/luasrc/controller/passwall.lua:34
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:83
 msgid "Node List"
 msgstr "节点列表"
 
@@ -1748,7 +1750,7 @@ msgstr "节点备注"
 msgid "Node Subscribe"
 msgstr "节点订阅"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:124
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:136
 msgid "Node Weight"
 msgstr "负载比重"
 
@@ -1818,7 +1820,7 @@ msgstr "不是有效 IPv6 格式，请重新输入！"
 msgid "Not valid domain name, please re-enter!"
 msgstr "不是有效域名，请重新输入！"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:74
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:86
 msgid ""
 "Note that the node configuration parameters for load balancing must be "
 "consistent when use TCP health check type, otherwise it cannot be used "
@@ -2064,7 +2066,7 @@ msgstr "前置代理"
 msgid "Preproxy Node"
 msgstr "前置代理节点"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:139
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:151
 msgid "Primary"
 msgstr "主要"
 
@@ -2086,6 +2088,7 @@ msgstr "私钥文件绝对路径"
 msgid "Probe Interval"
 msgstr "探测间隔"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:59
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:113
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:137
 msgid "Probe URL"
@@ -2536,7 +2539,7 @@ msgstr ""
 msgid "SplitHTTP Path"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:140
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:152
 msgid "Standby"
 msgstr "备用"
 
@@ -2666,6 +2669,7 @@ msgstr "发送窗口（无需确认即可发送的最大字节数：默认8Mb*2�
 msgid "Test"
 msgstr "测试"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:67
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:113
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:146
 msgid "The URL used to detect the connection status."
@@ -2893,7 +2897,7 @@ msgstr "URL 测试"
 msgid "Unexpected error"
 msgstr "意外错误"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:59
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:71
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:22
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:74
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:79
@@ -3077,7 +3081,7 @@ msgstr "当勾选时，只能本机访问。"
 msgid "When selected, localhost can transparent proxy."
 msgstr "当勾选时，路由器本机可以透明代理。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:66
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:78
 msgid ""
 "When the URL test is used, the load balancing node will be converted into a "
 "Socks node. when node list set customizing, must be a Socks node, otherwise "
