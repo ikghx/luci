@@ -257,30 +257,12 @@ o:depends("en_mode", "redir-host")
 o:depends("en_mode", "redir-host-tun")
 o:depends("en_mode", "redir-host-mix")
 
-if op_mode == "redir-host" then
-	o = s:taboption("traffic_control", ListValue, "china_ip_route", translate("China IP Route"))
-	o.description = translate("Bypass Specified Regions Network Flows, Improve Performance")
-	o.default = 0
-	o:value("0", translate("Disable"))
-	o:value("1", translate("Bypass Mainland China"))
-	o:value("2", translate("Bypass Overseas"))
-else
-	o = s:taboption("traffic_control", ListValue, "china_ip_route", translate("China IP Route"))
-	o.description = translate("Bypass Specified Regions Network Flows, Improve Performance, If Inaccessibility on Bypass Gateway, Try to Enable Bypass Gateway Compatible Option, Depend on Dnsmasq")
-	o.default = 0
-	o:value("0", translate("Disable"))
-	o:value("1", translate("Bypass Mainland China"))
-	o:value("2", translate("Bypass Overseas"))
-	o:depends("enable_redirect_dns", "1")
-	o:depends("enable_redirect_dns", "0")
-
-	o = s:taboption("traffic_control", Value, "custom_china_domain_dns_server", translate("Specify CN DNS Server"))
-	o.description = translate("Specify DNS Server For CN Domain Lists, Only One IP Server Address Support")
-	o.default = "114.114.114.114"
-	o.placeholder = translate("114.114.114.114 or 127.0.0.1#5300")
-	o:depends("china_ip_route", "1")
-	o:depends("china_ip_route", "2")
-end
+o = s:taboption("traffic_control", ListValue, "china_ip_route", translate("China IP Route"))
+o.description = translate("Bypass Specified Regions Network Flows, Improve Performance, If Inaccessibility on Bypass Gateway, Try to Enable Bypass Gateway Compatible Option")
+o.default = 0
+o:value("0", translate("Disable"))
+o:value("1", translate("Bypass Mainland China"))
+o:value("2", translate("Bypass Overseas"))
 
 o = s:taboption("traffic_control", Flag, "intranet_allowed", translate("Only intranet allowed"))
 o.description = translate("When Enabled, The Control Panel And The Connection Broker Port Will Not Be Accessible From The Public Network")
@@ -343,45 +325,6 @@ function o.write(self, section, value)
 end
 
 --Stream Enhance
-se_dns_ip = s:taboption("stream_enhance", DynamicList, "lan_block_google_dns_ips", translate("LAN Block Google DNS IP List"))
-se_dns_ip.datatype = "ipmask"
-se_dns_ip.rmempty  = true
-
-se_dns_mac = s:taboption("stream_enhance", DynamicList, "lan_block_google_dns_macs", translate("LAN Block Google DNS Mac List"))
-se_dns_mac.datatype = "list(macaddr)"
-se_dns_mac.rmempty  = true
-
-luci.ip.neighbors({ family = 4 }, function(n)
-	if n.mac and n.dest then
-		se_dns_ip:value(n.dest:string())
-		se_dns_mac:value(n.mac, "%s (%s)" %{ n.mac, n.dest:string() })
-	end
-end)
-
-if string.len(SYS.exec("/usr/share/openclash/openclash_get_network.lua 'gateway6'")) ~= 0 then
-luci.ip.neighbors({ family = 6 }, function(n)
-	if n.mac and n.dest then
-		se_dns_ip:value(n.dest:string())
-		se_dns_mac:value(n.mac, "%s (%s)" %{ n.mac, n.dest:string() })
-	end
-end)
-end
-
-o = s:taboption("stream_enhance", Flag, "stream_domains_prefetch", translate("Prefetch Netflix, Disney Plus Domains"))
-o.description = translate("Prevent Some Devices From Directly Using IP Access To Cause Unlocking Failure, Recommend Use meta Sniffer Function")
-o.default = 0
-o:depends("router_self_proxy", "1")
-
-o = s:taboption("stream_enhance", Value, "stream_domains_prefetch_interval", translate("Domains Prefetch Interval(min)"))
-o.default = "1440"
-o.datatype = "uinteger"
-o.description = translate("Will Run Once Immediately After Started, The Interval Does Not Need To Be Too Short (Take Effect Immediately After Commit)")
-o:depends("stream_domains_prefetch", "1")
-
-o = s:taboption("stream_enhance", DummyValue, "stream_domains_update", translate("Update Preset Domains List"))
-o:depends("stream_domains_prefetch", "1")
-o.template = "openclash/download_stream_domains"
-
 o = s:taboption("stream_enhance", Flag, "stream_auto_select", font_red..bold_on..translate("Auto Select Unlock Proxy")..bold_off..font_off)
 o.description = translate("Auto Select Proxy For Streaming Unlock, Support Netflix, Disney Plus, HBO And YouTube Premium, etc")
 o.default = 0
@@ -1063,16 +1006,6 @@ o.rmempty = false
 o.description = translate("Custom Chnroute6 Lists URL, Click Button Below To Refresh After Edit")
 o:value("https://ispip.clang.cn/all_cn_ipv6.txt", translate("Clang-CN-IPV6")..translate("(Default)"))
 o.default = "https://ispip.clang.cn/all_cn_ipv6.txt"
-
-o = s:taboption("chnr_update", Value, "cndomain_custom_url")
-o.title = translate("Custom CN Doamin Lists URL")
-o.rmempty = false
-o.description = translate("Custom CN Doamin Dnsmasq Conf URL, Click Button Below To Refresh After Edit")
-o:value("https://testingcf.jsdelivr.net/gh/felixonmars/dnsmasq-china-list@master/accelerated-domains.china.conf", translate("dnsmasq-china-list-testingcf-jsdelivr")..translate("(Default)"))
-o:value("https://fastly.jsdelivr.net/gh/felixonmars/dnsmasq-china-list@master/accelerated-domains.china.conf", translate("dnsmasq-china-list-fastly-jsdelivr"))
-o:value("https://raw.fastgit.org/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf", translate("dnsmasq-china-list-fastgit"))
-o:value("https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf", translate("dnsmasq-china-list-github"))
-o.default = "https://testingcf.jsdelivr.net/gh/felixonmars/dnsmasq-china-list@master/accelerated-domains.china.conf"
 
 o = s:taboption("chnr_update", Button, translate("Chnroute Lists Update")) 
 o.title = translate("Update Chnroute Lists")
