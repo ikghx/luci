@@ -107,6 +107,7 @@ msgstr "访问控制列表是用于指定特殊 IP 代理模式的工具。"
 msgid "Accept LAN Access"
 msgstr "接受局域网访问"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:382
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:490
 msgid ""
 "Accept: Trust the Reply, using this option can improve DNS resolution speeds "
@@ -402,10 +403,6 @@ msgstr "中国列表"
 msgid "China List(Chnlist) Update URL"
 msgstr "中国域名列表(Chnlist)更新URL"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:368
-msgid "ChinaDNS-NG Domain Default Tag"
-msgstr "ChinaDNS-NG 域名默认标签"
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:21
 msgid "Clang.CN"
 msgstr ""
@@ -588,7 +585,6 @@ msgstr ""
 msgid "Decimal numbers separated by \",\" or Base64-encoded strings."
 msgstr "用“,”隔开的十进制数字或 Base64 编码字符串。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:370
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:233
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:260
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:188
@@ -601,7 +597,8 @@ msgstr "用“,”隔开的十进制数字或 Base64 编码字符串。"
 msgid "Default"
 msgstr "默认"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:381
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:368
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:386
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:476
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:494
 msgid "Default DNS"
@@ -617,15 +614,6 @@ msgstr "默认前置代理"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:546
 msgid "Default Proxy Mode"
 msgstr "默认代理模式"
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:375
-msgid ""
-"Default: Forward to both direct and remote DNS, if the direct DNS resolution "
-"result is a mainland China ip, then use the direct result, otherwise use the "
-"remote result."
-msgstr ""
-"默认：同时转发给直连和远程DNS，如果直连DNS解析结果是大陆ip，则使用直连结果，"
-"否则使用远程结果。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:16
 msgid "Delay Settings"
@@ -681,8 +669,8 @@ msgstr "目标协议"
 msgid "Direct Connection"
 msgstr "直连"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:372
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:384
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:371
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:389
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:144
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:321
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:334
@@ -694,7 +682,6 @@ msgid "Direct DNS"
 msgstr "直连 DNS"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:377
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:388
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:485
 msgid "Direct DNS: Internet experience may be better, but DNS will be leaked!"
 msgstr "直连 DNS：上网体验可能会更佳，但是会泄露 DNS！"
@@ -743,6 +730,7 @@ msgstr "丢弃列表"
 msgid "Discard List,But Keep List First"
 msgstr "丢弃列表，但保留列表优先"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:381
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:489
 msgid "Do not accept: Wait and use Remote DNS Reply."
 msgstr "不接受：等待并使用远程 DNS 的响应。"
@@ -1362,6 +1350,7 @@ msgstr ""
 msgid "Import Finished"
 msgstr "导入完成："
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:380
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:488
 msgid "In smart mode, no-ip reply from Direct DNS:"
 msgstr "使用智能模式，直连 DNS 返回空响应时:"
@@ -2244,8 +2233,8 @@ msgid "Remote Address"
 msgstr "远程地址"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:309
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:371
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:383
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:370
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:388
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:420
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:478
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:496
@@ -2258,7 +2247,6 @@ msgid "Remote DNS DoH"
 msgstr "远程 DNS DoH"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:376
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:387
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:484
 msgid ""
 "Remote DNS: Can avoid more DNS leaks, but some domestic domain names maybe "
@@ -2480,14 +2468,17 @@ msgid ""
 msgstr ""
 "Sing-Box 会在启动时自动下载资源文件，您可以使用此功能实现升级资源文件。"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:373
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:481
 msgid "Smart, Accept no-ip reply from Direct DNS"
 msgstr "智能，接受直连 DNS 空响应"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:372
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:480
 msgid "Smart, Do not accept no-ip reply from Direct DNS"
 msgstr "智能，不接受直连 DNS 空响应"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:379
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:487
 msgid ""
 "Smart: Forward to both direct and remote DNS, if the direct DNS resolution "
@@ -3049,8 +3040,7 @@ msgstr ""
 msgid "When detects main node is available, switch back to the main node."
 msgstr "当检测到主节点可用时，切换回主节点。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:374
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:386
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:375
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:483
 msgid "When not matching any domain name list:"
 msgstr "当不匹配任何域名列表时："
