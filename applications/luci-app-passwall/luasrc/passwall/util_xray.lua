@@ -1003,15 +1003,6 @@ function gen_config(var)
 				end
 			end)
 
-			if default_outbound_tag or default_balancer_tag then
-				table.insert(rules, {
-					type = "field",
-					outboundTag = default_outbound_tag,
-					balancerTag = default_balancer_tag,
-					network = "tcp,udp"
-				})
-			end
-
 			routing = {
 				domainStrategy = node.domainStrategy or "AsIs",
 				domainMatcher = node.domainMatcher or "hybrid",
