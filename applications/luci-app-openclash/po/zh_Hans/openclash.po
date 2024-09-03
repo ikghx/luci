@@ -21,7 +21,7 @@ msgstr "(默认，全部国家且仅写入iso_code和geoname_id)"
 msgid "(Default)"
 msgstr "(默认)"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:456
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:463
 msgid "(Extended)"
 msgstr "（候补匹配）"
 
@@ -39,7 +39,7 @@ msgid "(Only CN)"
 msgstr "(仅中国数据)"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:152
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:541
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:548
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:56
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:72
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:77
@@ -71,7 +71,7 @@ msgstr "（仅 Meta 内核）"
 msgid "(Only TUN Core)"
 msgstr "（仅 TUN 内核）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:436
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:443
 msgid "(Priority)"
 msgstr "（优先匹配）"
 
@@ -83,8 +83,8 @@ msgstr "(由品云提供，支持 Vless)"
 msgid "(TUN&Meta Core)"
 msgstr "（TUN&Meta 内核）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:494
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:546
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:501
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:553
 msgid "(Take Effect After Choose Above)"
 msgstr "（在上方设置中启用本功能后生效）"
 
@@ -148,7 +148,7 @@ msgid ""
 "of the rule you have downloaded, and save the settings"
 msgstr "3、在此页面设置您已下载的规则的对应配置文件、策略组并保存设置"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:332
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:339
 msgid "360"
 msgstr ""
 
@@ -245,7 +245,7 @@ msgstr "广告（AdBlock）"
 msgid "Add"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:494
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:501
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:14
 msgid "Add Custom DNS Servers"
 msgstr "设置自定义上游 DNS 服务器"
@@ -281,7 +281,7 @@ msgstr ""
 msgid "AlterId"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:317
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:324
 msgid "Always"
 msgstr ""
 
@@ -289,7 +289,7 @@ msgstr ""
 msgid "Amazon Prime Video"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:330
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:337
 msgid "Android"
 msgstr ""
 
@@ -307,7 +307,7 @@ msgstr "插入节点类型"
 msgid "Append Position"
 msgstr "规则集匹配顺序"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:426
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:433
 msgid ""
 "Append Some Rules to Config, Allow Only Traffic Proxies that Match the Rule, "
 "Prevent BT/P2P Passing"
@@ -330,7 +330,7 @@ msgstr "苹果服务（Apple）"
 msgid "Apple TV"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:626
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:633
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config.lua:453
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:278
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:274
@@ -537,6 +537,10 @@ msgstr "黑名单模式"
 msgid "Black&White"
 msgstr "黑白名单"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:232
+msgid "Blacklist Mode"
+msgstr "黑名单模式"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:110
 msgid "Bypass Gateway Compatible"
 msgstr "旁路网关（旁路由）兼容"
@@ -582,20 +586,20 @@ msgid ""
 "After Startup"
 msgstr "存储 Fake-IP 的 DNS 解析记录到文件，提升内核启动后的反应速度和稳定性"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:322
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:329
 msgid ""
 "Change The Client Fingerprint, Only Support TLS Transport in TCP/GRPC/WS/"
 "HTTP For Vless/Vmess and Trojan"
 msgstr ""
 "自动修改客户端 TLS 指纹，目前仅支持 Vless/Vmess(TCP/GRPC/WS/HTTP) 和 Trojan"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:302
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:309
 msgid ""
 "Change The Delay Calculation Method To Remove Extra Delays Such as "
 "Handshaking"
 msgstr "更换延迟计算方式，通过去除握手等额外开销来降低延迟数值"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:306
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:313
 msgid ""
 "Change The TCP Keep-alive Interval, Selecting a Larger Value Avoids Abnormal "
 "Resource Consumption"
@@ -743,7 +747,7 @@ msgstr "选择规则格式, 了解使用方式请前往："
 msgid "Choose The Rule Providers Type"
 msgstr "选择规则集类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:326
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:333
 msgid "Chrome"
 msgstr ""
 
@@ -780,7 +784,7 @@ msgstr "点击更新规则"
 msgid "Click to the page"
 msgstr "点击前往"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:321
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:328
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:807
 msgid "Client Fingerprint"
 msgstr "客户端指纹"
@@ -868,7 +872,7 @@ msgstr "关闭旧链接"
 msgid "Collecting data..."
 msgstr "正在收集数据..."
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:619
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:626
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:211
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:121
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config.lua:440
@@ -911,7 +915,7 @@ msgstr "已选择编译版本（点击更新或下载时自动保存）"
 msgid "Config Alias"
 msgstr "配置文件名"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:567
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:574
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:38
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:43
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:38
@@ -1088,11 +1092,11 @@ msgstr "大陆IPv6段更新 URL"
 msgid "Custom Chnroute6 Lists URL, Click Button Below To Refresh After Edit"
 msgstr "自定义大陆 IPv6 段的更新来源，编辑后点击下方按钮生效"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:429
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:436
 msgid "Custom Clash Rules"
 msgstr "*自定义规则"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:476
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:483
 msgid ""
 "Custom Config Overwrite Scripts Which Will Run After Plugin Own Completely, "
 "Please Be Careful, The Wrong Changes May Lead to Exceptions"
@@ -1134,7 +1138,7 @@ msgstr "自定义 GeoSite 数据库的更新来源，编辑后点击下方按钮
 msgid "Custom GeoSite URL"
 msgstr "GeoSite 数据库更新 URL"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:278
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:285
 msgid ""
 "Custom Hosts Here, You May Need to Turn off The Rebinding Protection Option "
 "of Dnsmasq When Hosts Has Set a Reserved Address, For More Go:"
@@ -1150,12 +1154,12 @@ msgstr "自定义参数"
 msgid "Custom Rule Providers Append"
 msgstr "自定义规则集附加"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:436
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:456
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:443
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:463
 msgid "Custom Rules Here, For More Go:"
 msgstr "在上方设置自定义规则，详细信息请参阅:"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:355
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:362
 msgid "Custom Sniffer Settings"
 msgstr "自定义流量探测（嗅探）设置"
 
@@ -1175,7 +1179,7 @@ msgstr "自定义模板"
 msgid "Custom Template URL"
 msgstr "自定义模板地址"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:356
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:363
 msgid "Custom The Force and Skip Sniffing Doamin Lists"
 msgstr "自定义强制和忽略流量探测（嗅探）的域名列表"
 
@@ -1200,22 +1204,22 @@ msgstr "DNS 仅通过特定接口进行查询"
 msgid "DNS Port"
 msgstr "DNS监听端口"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:525
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:532
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:37
 msgid "DNS Server Address"
 msgstr "服务器地址"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:517
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:524
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:28
 msgid "DNS Server Group"
 msgstr "服务器分组"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:531
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:538
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:44
 msgid "DNS Server Port"
 msgstr "服务器端口"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:536
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:543
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:50
 msgid "DNS Server Type"
 msgstr "服务器类型"
@@ -1269,7 +1273,7 @@ msgstr "参考配置文件，方便您查询各项参数注释和正确的设置
 msgid "Default Interface Name:"
 msgstr "当前系统默认接口:"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:520
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:527
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:32
 msgid "Default-NameServer"
 msgstr ""
@@ -1331,10 +1335,10 @@ msgstr "Direct【全局直连】"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:94
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:167
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:182
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:307
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:315
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:323
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:337
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:314
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:322
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:330
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:344
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:134
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:142
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:150
@@ -1436,7 +1440,7 @@ msgstr "请勿添加类型前缀"
 msgid "Domain Name For Dashboard Login From Public Network"
 msgstr "设置公网域名，便于从公网访问时自动登录"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:231
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:238
 msgid "Domain Names In The List Do Not Return Fake-IP, One rule per line"
 msgstr "每行请只填写一个域名，列表中的域名在 Fake-IP 模式下将返回真实IP地址"
 
@@ -1448,7 +1452,7 @@ msgstr ""
 "每行请只填写一个域名，列表中的域名将使用上方指定的 DNS 进行查询并返回真实IP地"
 "址，此功能依赖于 Dnsmasq"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:255
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:262
 msgid ""
 "Domain Names In The List Use The Custom DNS Server, But Still Return Fake-IP "
 "Results, One rule per line"
@@ -1539,7 +1543,7 @@ msgstr "正在下载规则..."
 msgid "Easy to Use"
 msgstr "操作简易"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:331
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:338
 msgid "Edge"
 msgstr ""
 
@@ -1579,9 +1583,9 @@ msgid "Emoji"
 msgstr "添加Emoji"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/client.lua:56
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:509
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:560
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:595
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:516
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:567
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:602
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:135
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:143
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:151
@@ -1603,7 +1607,7 @@ msgstr "添加Emoji"
 msgid "Enable"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:342
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:349
 msgid "Enable GeoIP Dat"
 msgstr "启用 GeoIP Dat 版数据库"
 
@@ -1611,7 +1615,7 @@ msgstr "启用 GeoIP Dat 版数据库"
 msgid "Enable OpenClash"
 msgstr "启动 OpenClash"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:421
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:428
 msgid "Enable Other Rules"
 msgstr "第三方规则"
 
@@ -1619,11 +1623,11 @@ msgstr "第三方规则"
 msgid "Enable Port Hopping"
 msgstr "启用端口跃迁"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:313
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:320
 msgid "Enable Process Rule"
 msgstr "启用进程规则"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:346
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:353
 msgid "Enable Sniffer"
 msgstr "*启用流量（域名）探测"
 
@@ -1631,7 +1635,7 @@ msgstr "*启用流量（域名）探测"
 msgid "Enable Specify DNS Server"
 msgstr "启用第二 DNS 服务器"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:297
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:304
 msgid "Enable Tcp Concurrent"
 msgstr "*启用 TCP 并发"
 
@@ -1639,7 +1643,7 @@ msgstr "*启用 TCP 并发"
 msgid "Enable Transport Protocol Settings"
 msgstr "启用传输协议设置"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:301
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:308
 msgid "Enable Unified Delay"
 msgstr "*启用统一延迟"
 
@@ -1781,11 +1785,23 @@ msgstr ""
 msgid "Fake-IP Range (IPv4 Cidr)"
 msgstr "Fake-IP 地址范围 (IPv4 Cidr)"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:230
+msgid ""
+"Fake-IP is not returned if the matching succeeds when blacklist mode or Fake-"
+"IP is returned if the matching succeeds when whitelist mode"
+msgstr ""
+"黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 "
+"Fake-IP"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:226
 msgid "Fake-IP-Filter"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:519
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:229
+msgid "Fake-IP-Filter-Mode"
+msgstr ""
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:526
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:31
 msgid "FallBack"
 msgstr ""
@@ -1838,7 +1854,7 @@ msgstr "文件已成功上传到"
 msgid "Fingerprint"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:327
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:334
 msgid "Firefox"
 msgstr ""
 
@@ -1891,11 +1907,11 @@ msgstr "强制 HTTP/3"
 msgid "Force HTTP/3 to connect"
 msgstr "强制使用 HTTP/3 进行连接"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:350
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:357
 msgid "Forced Sniff Pure IP"
 msgstr "探测（嗅探）纯 IP 连接"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:351
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:358
 msgid "Forced Sniff Pure IP Connections"
 msgstr "强制探测（嗅探）所有纯 IP 的连接"
 
@@ -1952,7 +1968,7 @@ msgstr "GeoIP 数据库日期"
 msgid "GeoSite Data Update"
 msgstr "GeoSite 数据库日期"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:336
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:343
 msgid "Geodata Loader Mode"
 msgstr "Geodata 数据加载方式"
 
@@ -2072,7 +2088,7 @@ msgstr ""
 msgid "HTTP(S) Port"
 msgstr "HTTP(S) 代理端口"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:540
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:547
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:55
 msgid "HTTPS"
 msgstr ""
@@ -2123,7 +2139,7 @@ msgstr "港澳台限定"
 msgid "Hop Interval (Unit:second)"
 msgstr "跳跃间隔（单位：秒）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:273
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:280
 msgid "Hosts"
 msgstr ""
 
@@ -2139,7 +2155,7 @@ msgstr ""
 msgid "Hysterir QUIC parameters"
 msgstr "QUIC 参数"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:329
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:336
 msgid "IOS"
 msgstr ""
 
@@ -2151,8 +2167,8 @@ msgstr ""
 msgid "IP Address"
 msgstr "IP 地址"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:436
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:456
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:443
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:463
 msgid "IP To CIDR:"
 msgstr "在线 IP 段转 CIDR 地址:"
 
@@ -2492,7 +2508,7 @@ msgstr "最大连接数"
 msgid "Max-streams"
 msgstr "最大数据流"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:338
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:345
 msgid "Memconservative"
 msgstr "小内存模式"
 
@@ -2591,7 +2607,7 @@ msgstr "复用"
 msgid "Name For Distinguishing"
 msgstr "用于区分，请勿重名"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:518
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:525
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:30
 msgid "NameServer"
 msgstr ""
@@ -2600,11 +2616,11 @@ msgstr ""
 msgid "NameServer Group Must Be Set"
 msgstr "NameServer 组必须设置至少一个"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:250
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:257
 msgid "Nameserver-Policy"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:343
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:350
 msgid "Need Download First"
 msgstr "请提前下载"
 
@@ -2672,10 +2688,10 @@ msgstr "节点域名解析"
 msgid "Node Select Backup"
 msgstr "策略组节点选择 备份日期"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:324
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:569
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:577
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:583
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:331
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:576
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:584
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:590
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:101
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:108
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:236
@@ -2696,9 +2712,9 @@ msgstr ""
 msgid "Not Exist"
 msgstr "未下载"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:526
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:604
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:609
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:533
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:611
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:616
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:50
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:127
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:39
@@ -2735,7 +2751,7 @@ msgstr "未选择"
 msgid "Not Set"
 msgstr "未设置"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:581
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:588
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:39
 msgid "Note"
 msgstr "备注"
@@ -2823,7 +2839,7 @@ msgstr "注意：客户端可能无法更新，因为squashfs格式的固件更�
 msgid "Obfs param(optional)"
 msgstr "混淆参数（可选）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:316
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:323
 msgid "Off"
 msgstr ""
 
@@ -2919,12 +2935,12 @@ msgstr "第三方规则集附加"
 msgid "Other Rule Providers List"
 msgstr "第三方规则集列表"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:546
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:553
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:26
 msgid "Other Rules Edit"
 msgstr "设置第三方规则"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:572
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:579
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:72
 msgid "Other Rules Name"
 msgstr "第三方规则"
@@ -2974,7 +2990,7 @@ msgstr "页面已切换为 Redir-Host 模式！"
 msgid "Paramount Plus"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:608
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:615
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:179
 msgid "Password"
 msgstr ""
@@ -3198,11 +3214,11 @@ msgstr "管理页面公网SSL访问"
 msgid "Public Key"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:333
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:340
 msgid "QQ"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:541
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:548
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:56
 msgid "QUIC"
 msgstr ""
@@ -3238,7 +3254,7 @@ msgstr ""
 msgid "Ram:"
 msgstr "内存占用:"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:325
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:332
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:341
 msgid "Random"
 msgstr "随机选择"
@@ -3335,7 +3351,7 @@ msgstr "删除成功！"
 msgid "Rename"
 msgstr "重命名"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:343
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:350
 msgid "Replace GEOIP MMDB With GEOIP Dat, Large Size File"
 msgstr "使用 Geoip Dat 替换 GEOIP MMDB 数据库, 文件体积较大且无内置"
 
@@ -3393,7 +3409,7 @@ msgstr "规则类型"
 msgid "Rule Format"
 msgstr "规则格式"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:425
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:432
 msgid "Rule Match Proxy Mode"
 msgstr "仅代理命中规则流量"
 
@@ -3490,7 +3506,7 @@ msgstr ""
 "在线订阅转换启用时支持：SS/SSR/Vmess 等节点链接和订阅链接，多个链接请每行一个"
 "或用 | 分隔"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:328
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:335
 msgid "Safari"
 msgstr ""
 
@@ -3581,7 +3597,7 @@ msgstr "服务器端口"
 msgid "Server name"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:587
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:594
 msgid "Set Authentication of SOCKS5/HTTP(S)"
 msgstr "设置 SOCKS5/HTTP(S) 认证信息"
 
@@ -3665,7 +3681,7 @@ msgstr "小闪存模式"
 msgid "Snell"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:347
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:354
 msgid "Sniffer Will Prevent Domain Name Proxy and DNS Hijack Failure"
 msgstr "流量（域名）探测能有效防止域名分流异常和DNS劫持失败"
 
@@ -3724,7 +3740,7 @@ msgstr "测速流量（Speedtest）"
 msgid "Spotify"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:339
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:346
 msgid "Standard"
 msgstr "标准模式"
 
@@ -3759,7 +3775,7 @@ msgstr "策略类型"
 msgid "Streaming Enhance"
 msgstr "流媒体增强"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:318
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:325
 msgid "Strict"
 msgstr "严格"
 
@@ -3861,16 +3877,16 @@ msgstr ""
 msgid "System　"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:538
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:545
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:53
 msgid "TCP"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:298
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:305
 msgid "TCP Concurrent Request IPs, Choose The Lowest Latency One To Connection"
 msgstr "TCP 并发请求所有 IP 地址，然后选择延迟最低的一个进行连接"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:305
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:312
 msgid "TCP Keep-alive Interval(s)"
 msgstr "TCP Keep-alive 间隔（s）"
 
@@ -3878,7 +3894,7 @@ msgstr "TCP Keep-alive 间隔（s）"
 msgid "TFO"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:539
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:546
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:54
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:578
 msgid "TLS"
@@ -4082,7 +4098,7 @@ msgstr ""
 msgid "Type CDN URL, Format Like"
 msgstr "输入链接地址，格式请参考"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:537
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:544
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:52
 msgid "UDP"
 msgstr ""
@@ -4289,7 +4305,7 @@ msgstr "上传文件类型"
 msgid "Urltest"
 msgstr "低延迟优先"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:430
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:437
 msgid "Use Custom Rules"
 msgstr "启用后将把自定义规则增加到配置文件，规则请到下方文本框编辑"
 
@@ -4306,7 +4322,7 @@ msgstr "添加到所有配置文件"
 msgid "Use For Node Domain Resolve"
 msgstr "用于解析节点域名的 IP 地址"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:422
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:429
 msgid "Use Other Rules"
 msgstr ""
 "将覆盖配置文件内的所有规则 (不包括自定义规则)，启用前请先在此页面下方创建配置"
@@ -4331,7 +4347,7 @@ msgstr "用户已取消。"
 msgid "User-Agent: okhttp/3.11.0 Dalvik/2.1.0 ......"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:603
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:610
 msgid "Username"
 msgstr ""
 
@@ -4391,7 +4407,7 @@ msgid ""
 "group management> page to add"
 msgstr "本页设置时如策略组为空，请先到《服务器与策略组管理》页面进行添加"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:314
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:321
 msgid ""
 "Whether to Enable Process Rules, If You Are Not Sure, Please Choose off "
 "Which Useful in Router Environment"
@@ -4401,15 +4417,19 @@ msgstr "是否启用进程规则，在路由环境下保持关闭可以提升性
 msgid "White List Mode"
 msgstr "白名单模式"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:403
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:233
+msgid "Whitelist Mode"
+msgstr "白名单模式"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:410
 msgid "Will Disable Sniffing If Domains(sni) in The List"
 msgstr "列表中的域名（sni）不会进行探测（嗅探）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:383
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:390
 msgid "Will Only Sniffing If Ports in The List"
 msgstr "仅探测（嗅探）列表中指定的协议端口"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:363
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:370
 msgid "Will Override Dns Queries If Domains in The List"
 msgstr "列表中的域名将会强制进行探测（嗅探）"
 
@@ -4575,7 +4595,7 @@ msgstr ""
 msgid "lhie1 Rule Update"
 msgstr "lhie1 规则更新日期"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:575
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:582
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:74
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:31
 msgid "lhie1 Rules"
@@ -5959,6 +5979,16 @@ msgstr "测试失败..."
 
 msgid "test is successful"
 msgstr "测试成功..."
+
+msgid ""
+"Tip: Because Need Ensure Bypassing IP Option Work, Deleted The Fake-IP-"
+"Filter Rule"
+msgstr "提示：为保证绕过 IP 正常工作，已在 Fake-IP-Filter 中删除规则"
+
+msgid ""
+"Tip: Because Need Ensure Bypassing IP Option Work, Added The Fake-IP-"
+"Filter Rule"
+msgstr "提示：为保证绕过 IP 正常工作，已在 Fake-IP-Filter 中添加规则"
 
 msgid "Error: Config File Tested Faild, Please Check The Log Infos!"
 msgstr "错误：配置文件测试失败，请查看《内核日志》排查失败原因！"
