@@ -82,8 +82,8 @@ msgid "Chain"
 msgstr "链"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:395
-msgid "Command failed: %s"
-msgstr "命令失败了：%s"
+msgid "Command failed: '%s'"
+msgstr "命令失败了: '%s'"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:71
 msgid "Condensed output"
@@ -121,7 +121,7 @@ msgstr "DSCP标记"
 msgid "Default ICMP Interface"
 msgstr "默认ICMP接口"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:526
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:529
 msgid "Disable"
 msgstr "禁用"
 
@@ -131,7 +131,7 @@ msgstr "禁用"
 msgid "Disabled"
 msgstr "已禁用"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:520
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:523
 msgid "Disabling %s service"
 msgstr "禁用 %s 服务中"
 
@@ -157,11 +157,11 @@ msgstr "Dnsmasq nft 集"
 msgid "Do not enforce policies when their gateway is down"
 msgstr "当网关关闭时不要执行策略"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:573
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:576
 msgid "Donate to the Project"
 msgstr "向项目捐款"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:507
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:510
 msgid "Enable"
 msgstr "启用"
 
@@ -173,7 +173,7 @@ msgstr "启用"
 msgid "Enabled"
 msgstr "启用"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:501
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:504
 msgid "Enabling %s service"
 msgstr "启用 %s 服务中"
 
@@ -181,7 +181,7 @@ msgstr "启用 %s 服务中"
 msgid "Error running custom user file '%s'"
 msgstr "运行自定义用户文件 '%s' 出错"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:415
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:418
 msgid "Errors encountered, please check the %sREADME%s"
 msgstr "遇到错误，请检查 %sREADME%s"
 
@@ -192,12 +192,12 @@ msgid ""
 msgstr "服务使用的FW掩码。高掩码用于避免与SQM / QoS冲突。谨慎更改"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:391
-msgid "Failed to download '%s'!"
-msgstr "下载 '%s' 失败！"
+msgid "Failed to download '%s'"
+msgstr "下载 '%s' 失败"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:389
-msgid "Failed to download '%s', HTTPS is not supported!"
-msgstr "下载 '%s' 失败，HTTPS 不受支持！"
+msgid "Failed to download '%s', HTTPS is not supported"
+msgstr "下载 '%s' 失败，HTTPS 不受支持"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:384
 msgid "Failed to install fw4 nft file '%s'"
@@ -242,6 +242,10 @@ msgstr "不活跃"
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:54
 msgid "Inactive (Disabled)"
 msgstr "不活跃（已停用）"
+
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:397
+msgid "Incompatible custom user file detected '%s'"
+msgstr "检测到不兼容的自定义用户文件 '%s'"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:263
 msgid ""
@@ -316,7 +320,9 @@ msgid ""
 "Name, local address and remote DNS fields are required. Multiple local "
 "addresses/devices can be space separated. For more information on options, "
 "check the %sREADME%s."
-msgstr "名称、本地地址和远程 DNS 字段为必填项。多个本地地址/设备可以用空格分隔。有关选项的更多信息，请查看 %sREADME%s。"
+msgstr ""
+"名称、本地地址和远程 DNS 字段为必填项。多个本地地址/设备可以用空格分隔。有关"
+"选项的更多信息，请查看 %sREADME%s。"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:179
 msgid "No Change"
@@ -336,7 +342,7 @@ msgid "Path"
 msgstr "路径"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:215
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:581
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:584
 msgid "Please %sdonate%s to support development of this project."
 msgstr "请 %sdonate%s 来支持该项目的发展。"
 
@@ -382,8 +388,8 @@ msgstr "策略 '%s' 没有来源/目的地参数"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:386
 msgid ""
-"Policy '%s' refers to URL which can't be downloaded in 'secure_reload' mode!"
-msgstr "策略 '%s' 指向的 URL 无法在 'secure_reload' 模式下下载！"
+"Policy '%s' refers to URL which can't be downloaded in 'secure_reload' mode"
+msgstr "策略 '%s' 指向的 URL 无法在 'secure_reload' 模式下下载"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:10
 msgid "Policy Based Routing"
@@ -447,11 +453,11 @@ msgid ""
 "Resolver set support (%s) requires nftables, but nft binary cannot be found"
 msgstr "需要 nftables 方能支持解析器集 (%s)，然而找不到 nft 二进制文件"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:469
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:472
 msgid "Restart"
 msgstr "重启"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:463
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:466
 msgid "Restarting %s service"
 msgstr "重启 %s 服务中"
 
@@ -479,11 +485,11 @@ msgstr "详见 %sREADME%s。"
 msgid "Select Add for -A/add and Insert for -I/Insert."
 msgstr "选择 -A/add 表示添加，I/Insert 表示插入。"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:552
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:555
 msgid "Service Control"
 msgstr "服务控制"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:400
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:403
 msgid "Service Errors"
 msgstr "服务错误"
 
@@ -515,11 +521,11 @@ msgstr ""
 msgid "Skipping IPv6 policy '%s' as IPv6 support is disabled"
 msgstr "因禁用 IPv6 支持而跳过 IPv6 策略 '%s'"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:450
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:453
 msgid "Start"
 msgstr "启动"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:444
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:447
 msgid "Starting %s service"
 msgstr "启动 %s 服务中"
 
@@ -534,7 +540,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:488
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:491
 msgid "Stop"
 msgstr "停止"
 
@@ -546,7 +552,7 @@ msgstr "已停止（已停用）。"
 msgid "Stopped."
 msgstr "已停止。"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:482
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:485
 msgid "Stopping %s service"
 msgstr "停止 %s 服务中"
 
@@ -605,8 +611,8 @@ msgid "The WebUI application (luci-app-pbr) is outdated, please update it"
 msgstr "WebUI 应用程序（luci-app-pbr）已过时，请更新"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:393
-msgid "The file:// schema requires curl, but it's not detected on this system!"
-msgstr "file:// 协议需要 curl，但未在此系统中检测到 curl！"
+msgid "The file:// schema requires curl, but it's not detected on this system"
+msgstr "file:// 协议需要 curl，但未在此系统中检测到 curl"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:329
 msgid "The ipset name '%s' is longer than allowed 31 characters"
@@ -624,7 +630,7 @@ msgstr "主要包（pbr）已过时，请更新"
 msgid "Unexpected exit or service termination: '%s'"
 msgstr "意外的退出或服务终止：'%s'"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:412
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:415
 msgid "Unknown error!"
 msgstr "未知错误！"
 
