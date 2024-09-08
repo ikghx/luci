@@ -457,7 +457,7 @@ var CBIWifiFrequencyValue = form.Value.extend({
 
 		this.setValues(mode, this.modes);
 
-		if (/EHT80|EHT160/EHT240/EHT320/.test(htval))
+		if (/EHT80|EHT160|EHT240|EHT320/.test(htval))
 			mode.value = 'be';
 		else if (/HE20|HE40|HE80|HE160/.test(htval))
 			mode.value = 'ax';
