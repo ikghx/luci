@@ -1,0 +1,40 @@
+{
+	"admin/vpn/hev-socks5-server": {
+		"title": "Hev Socks5 Server",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/hev-socks5-server/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-hev-socks5-server" ],
+			"uci": { "hev-socks5-server": true }
+		}
+	},
+
+	"admin/vpn/hev-socks5-server/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "hev-socks5-server/base"
+		}
+	},
+
+	"admin/vpn/hev-socks5-server/conf1": {
+		"title": "Basic configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "hev-socks5-server/conf1"
+		}
+	},
+
+	"admin/vpn/hev-socks5-server/conf2": {
+		"title": "Auth list",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "hev-socks5-server/conf2"
+		}
+	}
+}

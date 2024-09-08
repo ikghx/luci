@@ -1,0 +1,23 @@
+{
+	"luci-app-hev-socks5-server": {
+		"description": "Grant UCI access for luci-app-hev-socks5-server",
+		"read": {
+			"file": {
+				"/etc/hev-socks5-server/main.yml": [ "read" ],
+				"/etc/hev-socks5-server/auth.txt": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "hev-socks5-server" ]
+		},
+		"write": {
+			"file": {
+				"/etc/hev-socks5-server/main.yml": [ "write" ],
+				"/etc/hev-socks5-server/auth.txt": [ "write" ],
+				"/etc/init.d/hev-socks5-server restart": [ "exec" ]
+			},
+			"uci": [ "hev-socks5-server" ]
+		}
+	}
+}

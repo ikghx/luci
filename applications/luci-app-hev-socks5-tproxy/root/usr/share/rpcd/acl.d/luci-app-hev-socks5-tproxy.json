@@ -1,0 +1,21 @@
+{
+	"luci-app-hev-socks5-tproxy": {
+		"description": "Grant UCI access for luci-app-hev-socks5-tproxy",
+		"read": {
+			"file": {
+				"/etc/hev-socks5-tproxy/main.yml": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "hev-socks5-tproxy" ]
+		},
+		"write": {
+			"file": {
+				"/etc/hev-socks5-tproxy/main.yml": [ "write" ],
+				"/etc/init.d/hev-socks5-tproxy restart": [ "exec" ]
+			},
+			"uci": [ "hev-socks5-tproxy" ]
+		}
+	}
+}

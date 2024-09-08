@@ -1,0 +1,31 @@
+{
+	"admin/vpn/hev-socks5-tproxy": {
+		"title": "Hev Socks5 TProxy",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/hev-socks5-tproxy/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-hev-socks5-tproxy" ],
+			"uci": { "hev-socks5-tproxy": true }
+		}
+	},
+
+	"admin/vpn/hev-socks5-tproxy/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "hev-socks5-tproxy/base"
+		}
+	},
+
+	"admin/vpn/hev-socks5-tproxy/conf1": {
+		"title": "Basic configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "hev-socks5-tproxy/conf1"
+		}
+	}
+}

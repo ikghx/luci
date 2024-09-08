@@ -1,0 +1,31 @@
+{
+	"admin/vpn/hev-socks5-tunnel": {
+		"title": "Hev Socks5 Tunnel",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/hev-socks5-tunnel/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-hev-socks5-tunnel" ],
+			"uci": { "hev-socks5-tunnel": true }
+		}
+	},
+
+	"admin/vpn/hev-socks5-tunnel/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "hev-socks5-tunnel/base"
+		}
+	},
+
+	"admin/vpn/hev-socks5-tunnel/conf1": {
+		"title": "Basic configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "hev-socks5-tunnel/conf1"
+		}
+	}
+}
