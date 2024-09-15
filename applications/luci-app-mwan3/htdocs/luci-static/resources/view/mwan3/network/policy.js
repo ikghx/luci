@@ -42,7 +42,7 @@ return view.extend({
 
 				for (let j = 0; j < sections.length; j++) {
 					if (sections[j]['.name'] == v) {
-						return _('Policies may not share the same name as configured interfaces, members or rules');
+						return _('Policies may not share the same name as configured interfaces, members or rules.');
 					}
 				}
 				if (v.length > 15) return _('Name length shall not exceed 15 characters');
