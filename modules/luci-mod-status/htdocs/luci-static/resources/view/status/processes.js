@@ -46,7 +46,7 @@ return view.extend({
 			rows.push([
 				proc.PID,
 				proc.USER,
-				proc.COMMAND,
+				E('span', {'style': 'word-break: break-word'}, proc.COMMAND),
 				vsz,
 				mem,
 				proc['%CPU'].replace('%',' %'),
