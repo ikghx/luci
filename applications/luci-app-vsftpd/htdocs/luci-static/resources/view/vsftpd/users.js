@@ -38,15 +38,20 @@ return view.extend({
 		o = s.option(form.Value, 'umask', _('vusers file mode umask'));
 		o.maxlength = 3;
 		o.default = '022';
+		o.editable = true;
 
 		o = s.option(form.Value, 'maxrate', _('vusers max transmit rate'), _('in B/s, 0 means no limitation'));
 		o.default = '0';
+		o.editable = true;
 
 		o = s.option(form.Flag, 'writemkdir', _('Enable write/mkdir'));
+		o.editable = true;
 
 		o = s.option(form.Flag, 'upload', _('Enable upload'));
+		o.editable = true;
 
 		o = s.option(form.Flag, 'others', _('Enable other rights'), _('Include rename, deletion ...'));
+		o.editable = true;
 
 		return m.render();
 	}

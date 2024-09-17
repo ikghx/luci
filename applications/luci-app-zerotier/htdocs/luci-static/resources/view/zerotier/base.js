@@ -48,7 +48,9 @@ return view.extend({
 		m = new form.Map('zerotier', _('ZeroTier'),
 			_('ZeroTier is an open source, cross-platform and easy to use virtual LAN.'));
 
-		s = m.section(form.NamedSection, 'sample_config', 'config');
+		s = m.section(form.TypedSection, 'zerotier');
+		s.anonymous = true;
+		s.addremove = false;
 
 		o = s.option(form.DummyValue, '_status', _('Status'));
 		o.rawhtml = true;
@@ -75,7 +77,7 @@ return view.extend({
 		o.placeholder = '/etc/zerotier';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'local_conf', _('path to the local.conf'), _('Optional'));
+		o = s.option(form.Value, 'local_conf_path', _('path to the local.conf'), _('Optional'));
 		o.placeholder = '/etc/zerotier.conf';
 		o.rmempty = true;
 
@@ -86,9 +88,6 @@ return view.extend({
 
 		o = s.option(form.Value, 'secret', _('Auth secret'), _('Optional, Equivalent to Device ID.'));
 		o.rmempty = true;
-
-		o = s.option(form.DynamicList, 'join', _('Network ID'));
-		o.rmempty = false;
 
 		o = s.option(form.Flag, 'nat', _('Auto NAT clients'),
 			_('Allow ZeroTier clients access your LAN network.'));
