@@ -73,9 +73,10 @@ return view.extend({
 
 		o = s.option(form.Value, 'log_file', _('Enable log file'), _('Log file path'));
 
-		o = s.option(form.Flag, 'all_servers', _('Enable all servers'), _('Enable parallel queries to all configured upstream servers.'));
-
-		o = s.option(form.Flag, 'fastest_addr', _('Fastest address'), _('Respond to A or AAAA requests only with the fastest IP address.'));
+		o = s.option(form.ListValue, 'upstream_mode', _('Upstreams logic mode'));
+		o.value("load_balance", _("Load Balancing"));
+		o.value("parallel", _("Parallel"));
+		o.value("fastest_addr", _("Fastest address"));
 
 		o = s.option(form.Flag, 'http3', _('Use http3'));
 

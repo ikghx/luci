@@ -3398,9 +3398,9 @@ WifiDevice = baseclass.extend(/** @lends LuCI.network.WifiDevice.prototype */ {
 	 *  - `HE160` - applicable to IEEE 802.11ax, 160 MHz wide channels
 	 *  - `EHT20` - applicable to IEEE 802.11be, 20 MHz wide channels
 	 *  - `EHT40` - applicable to IEEE 802.11be, 40 MHz wide channels
-   *  - `EHT80` - applicable to IEEE 802.11be, 80 MHz wide channels
-   *  - `EHT160` - applicable to IEEE 802.11be, 160 MHz wide channels
-   *  - `EHT320` - applicable to IEEE 802.11be, 320 MHz wide channels
+	 *  - `EHT80` - applicable to IEEE 802.11be, 80 MHz wide channels
+	 *  - `EHT160` - applicable to IEEE 802.11be, 160 MHz wide channels
+	 *  - `EHT320` - applicable to IEEE 802.11be, 320 MHz wide channels
 	 */
 	getHTModes: function() {
 		var htmodes = this.ubus('dev', 'iwinfo', 'htmodes');
