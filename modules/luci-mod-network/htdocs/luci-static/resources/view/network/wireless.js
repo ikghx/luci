@@ -408,8 +408,8 @@ var CBIWifiFrequencyValue = form.Value.extend({
 			sel.remove(0);
 
 		for (var i = 0; vals && i < vals.length; i += 3)
-			if (vals[i+2])
-				sel.add(E('option', { value: vals[i+0] }, [ vals[i+1] ]));
+			if (vals[i + 2])
+				sel.add(E('option', { value: vals[i + 0] }, [vals[i + 1]]));
 
 		if (vals && !isNaN(vals.selected))
 			sel.selectedIndex = vals.selected;
@@ -449,13 +449,13 @@ var CBIWifiFrequencyValue = form.Value.extend({
 
 	setInitialValues: function(section_id, elem) {
 		var mode = elem.querySelector('.mode'),
-		    band = elem.querySelector('.band'),
-		    chan = elem.querySelector('.channel'),
-		    bwdt = elem.querySelector('.htmode'),
-		    htval = uci.get('wireless', section_id, 'htmode'),
-		    hwval = uci.get('wireless', section_id, 'hwmode'),
-		    chval = uci.get('wireless', section_id, 'channel'),
-		    bandval = uci.get('wireless', section_id, 'band');
+			band = elem.querySelector('.band'),
+			chan = elem.querySelector('.channel'),
+			bwdt = elem.querySelector('.htmode'),
+			htval = uci.get('wireless', section_id, 'htmode'),
+			hwval = uci.get('wireless', section_id, 'hwmode'),
+			chval = uci.get('wireless', section_id, 'channel'),
+			bandval = uci.get('wireless', section_id, 'band');
 
 		this.setValues(mode, this.modes);
 
@@ -478,9 +478,9 @@ var CBIWifiFrequencyValue = form.Value.extend({
 			if (mode.value === 'be') 
 				band.value = '6g';
 			else if (/a/.test(hwval))
-					band.value = '5g';
-				else
-					band.value = '2g';
+				band.value = '5g';
+			else
+				band.value = '2g';
 		}
 		else {
 			this.useBandOption = true;
@@ -544,9 +544,9 @@ var CBIWifiFrequencyValue = form.Value.extend({
 
 	cfgvalue: function(section_id) {
 		return [
-		    uci.get('wireless', section_id, 'htmode'),
-		    uci.get('wireless', section_id, 'hwmode') || uci.get('wireless', section_id, 'band'),
-		    uci.get('wireless', section_id, 'channel')
+			uci.get('wireless', section_id, 'htmode'),
+			uci.get('wireless', section_id, 'hwmode') || uci.get('wireless', section_id, 'band'),
+			uci.get('wireless', section_id, 'channel')
 		];
 	},
 
@@ -554,8 +554,8 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		var node = this.map.findElement('data-field', this.cbid(section_id));
 
 		return [
-		    node.querySelector('.htmode').value,
-		    node.querySelector('.band').value,
+			node.querySelector('.htmode').value,
+			node.querySelector('.band').value,
  			node.querySelector('.channel').value
 		];
 	},

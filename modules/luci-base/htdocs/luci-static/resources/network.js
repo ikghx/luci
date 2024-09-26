@@ -3371,10 +3371,11 @@ WifiDevice = baseclass.extend(/** @lends LuCI.network.WifiDevice.prototype */ {
 	 *  - `n` - IEEE 802.11n mode, 2.4 or 5 GHz, up to 600 Mbit/s
 	 *  - `ac` - IEEE 802.11ac mode, 5 GHz, up to 6770 Mbit/s
 	 *  - `ax` - IEEE 802.11ax mode, 2.4 or 5 GHz
+	 *  - 'be' - IEEE 802.11be mode, 2.4, 5 or 6 GHz
 	 */
 	getHWModes: function() {
 		var hwmodes = this.ubus('dev', 'iwinfo', 'hwmodes');
-		return Array.isArray(hwmodes) ? hwmodes : [ 'b', 'g', 'a', 'ac', 'ax', 'be' ];
+		return Array.isArray(hwmodes) ? hwmodes : [ 'b', 'g' ];
 	},
 
 	/**
