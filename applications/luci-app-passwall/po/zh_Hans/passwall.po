@@ -307,11 +307,11 @@ msgstr "屏蔽列表"
 msgid "Browser access:"
 msgstr "浏览器访问："
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:157
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:160
 msgid "Buffer Size"
 msgstr "缓冲区大小"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:157
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:160
 msgid "Buffer size for every connection (kB)"
 msgstr "每一个连接的缓冲区大小（kB）"
 
@@ -553,19 +553,19 @@ msgstr "自定义接口"
 msgid "Custom Socks"
 msgstr "自定义 Socks"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:170
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:208
 msgid "Custom geoip Path"
 msgstr "自定义 geoip 文件路径"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:174
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:212
 msgid "Custom geoip URL"
 msgstr "自定义 geoip 文件更新链接"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:181
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:219
 msgid "Custom geosite Path"
 msgstr "自定义 geosite 文件路径"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:185
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:223
 msgid "Custom geosite URL"
 msgstr "自定义 geosite 文件更新链接"
 
@@ -619,6 +619,10 @@ msgstr "默认前置代理"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:541
 msgid "Default Proxy Mode"
 msgstr "默认代理模式"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:194
+msgid "Delay (ms)"
+msgstr "延迟（ms）"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:16
 msgid "Delay Settings"
@@ -816,6 +820,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:605
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:627
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:106
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:181
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:19
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:66
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:9
@@ -938,7 +943,7 @@ msgstr "每天"
 msgid "Example:"
 msgstr "示例："
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:150
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:153
 msgid "Excluded Domains"
 msgstr "排除域名"
 
@@ -1343,7 +1348,7 @@ msgid ""
 "connect."
 msgstr "如果是域名，域名将在请求发出之前解析为 IP。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:150
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:153
 msgid ""
 "If the traffic sniffing result is in this list, the destination address will "
 "not be overridden."
@@ -1760,6 +1765,10 @@ msgstr "负载比重"
 msgid "Node num"
 msgstr "节点数量"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:146
+msgid "Noise"
+msgstr "噪声"
+
 #: applications/luci-app-passwall/luasrc/view/passwall/global/proxy.htm:8
 msgid "Not China List"
 msgstr "中国列表以外"
@@ -1897,13 +1906,13 @@ msgstr "原版Trojan只支持'tls'，请选择'tls'。"
 msgid "Other Settings"
 msgstr "高级设置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:146
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:166
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:149
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:204
 msgid "Override the connection destination address"
 msgstr "覆盖连接目标地址"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:146
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:166
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:149
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:204
 msgid "Override the connection destination address with the sniffed domain."
 msgstr "用探测出的域名覆盖连接目标地址。"
 
@@ -1911,6 +1920,10 @@ msgstr "用探测出的域名覆盖连接目标地址。"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:298
 msgid "PQ signature schemes"
 msgstr "后量子对等证书签名方案"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:190
+msgid "Packet"
+msgstr "数据包"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:580
 msgid "Padding"
@@ -2275,7 +2288,7 @@ msgstr ""
 msgid "Remote Port"
 msgstr "远程端口"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:192
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:230
 msgid "Remove resource files"
 msgstr "删除资源文件"
 
@@ -2410,7 +2423,7 @@ msgstr ""
 "则是否使用前置代理。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:123
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:162
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:200
 msgid "Settings"
 msgstr ""
 
@@ -2484,7 +2497,7 @@ msgstr "分流"
 msgid "Shunt Rule"
 msgstr "分流规则"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:193
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:231
 msgid ""
 "Sing-Box will automatically download resource files when starting, you can "
 "use this feature achieve upgrade resource files."
@@ -2829,6 +2842,10 @@ msgstr "超时秒数"
 msgid "To Top"
 msgstr "置顶"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:163
+msgid "To send noise packets, select \"Noise\" in Xray Settings."
+msgstr "在 Xray 设置中勾选 “噪声” 以发送噪声包。"
+
 #: applications/luci-app-passwall/luasrc/view/passwall/global/status.htm:148
 #: applications/luci-app-passwall/luasrc/view/passwall/global/status.htm:160
 #: applications/luci-app-passwall/luasrc/view/passwall/global/status.htm:172
@@ -2863,6 +2880,7 @@ msgstr "如果修改规则后没有生效，请尝试此功能。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:153
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:27
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:185
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:44
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/user.lua:20
 msgid "Type"
@@ -2896,6 +2914,12 @@ msgstr "UDP 转发屏蔽端口"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:76
 msgid "UDP Redir Ports"
 msgstr "UDP 转发端口"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:146
+msgid ""
+"UDP noise. Under some circumstances it can bypass some udp based protocol "
+"restrictions."
+msgstr "UDP噪声。在某些情况下，它可以绕过一些针对UDP协议的限制。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:312
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:244
@@ -3153,6 +3177,10 @@ msgstr "XUDP 最大并发连接数"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:158
 msgid "Xray"
 msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:163
+msgid "Xray Noise Packets"
+msgstr "Xray 噪声数据包"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:83
 msgid "You can forward to Nginx/Caddy/V2ray/Xray WebSocket and more."
