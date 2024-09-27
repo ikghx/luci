@@ -855,7 +855,13 @@ return view.extend({
 
 					o = s.taboption('advanced', form.Value, 'ip_script',
 						_("Script"),
-						_("User defined script to read systems IP-Address"));
+						_("User defined script, command or ash compatible statement to read systems IP-Address.")
+						+ "<br />" +
+						_("Ex. IPv4: `dig -4 +short myip.opendns.com @resolver1.opendns.com`")
+						+ "<br />" +
+						_("Ex. IPv6: `dig -6 +short myip.opendns.com @resolver1.opendns.com`")
+						+ "<br />" +
+						_("to discover public IP w/o web request."));
 					o.modalonly = true;
 					o.depends("ip_source", "script")
 					o.placeholder = "/path/to/script.sh"
