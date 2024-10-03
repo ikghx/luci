@@ -86,5 +86,12 @@ return network.registerProtocol('map', {
 		o.datatype    = 'max(9200)';
 
 		o = s.taboption('advanced', form.Flag, 'legacymap', _('Use legacy MAP'), _('Use legacy MAP interface identifier format (draft-ietf-softwire-map-00) instead of RFC7597'));
+
+		o = s.taboption('advanced', form.Flag, 'isp_fix', _('Enable SNAT fix'), _('Apply SNAT fixes with certain ISPs'));
+
+		o = s.taboption('advanced', form.Value, 'dont_snat_to', _('Exclude SNAT ports'), _('List of ports to exclude from SNAT. Separate ports with spaces'));
+		o.depends('isp_fix', '1');
+		o.datatype = 'string';
+		o.placeholder = '80 443 2938';
 	}
 });
