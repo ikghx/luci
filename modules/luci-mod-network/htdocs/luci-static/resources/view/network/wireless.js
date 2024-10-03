@@ -201,7 +201,9 @@ function format_wifirate(rate) {
 	    mhz = rate.mhz, nss = rate.nss,
 	    mcs = rate.mcs, sgi = rate.short_gi,
 	    he = rate.he, he_gi = rate.he_gi,
-	    he_dcm = rate.he_dcm;
+	    he_dcm = rate.he_dcm,
+	    eht = rate.eht, eht_gi = rate.eht_gi,
+	    eht_dcm = rate.eht_dcm;
 
 	if (ht || vht) {
 		if (vht) s += ', VHT-MCS\xa0%d'.format(mcs);
@@ -215,6 +217,13 @@ function format_wifirate(rate) {
 		if (nss) s += ', HE-NSS\xa0%d'.format(nss);
 		if (he_gi) s += ', HE-GI\xa0%d'.format(he_gi);
 		if (he_dcm) s += ', HE-DCM\xa0%d'.format(he_dcm);
+	}
+
+	if (eht) {
+		s += ', EHT-MCS\xa0%d'.format(mcs);
+		if (nss) s += ', EHT-NSS\xa0%d'.format(nss);
+		if (eht_gi) s += ', EHT-GI\xa0%d'.format(eht_gi);
+		if (eht_dcm) s += ', EHT-DCM\xa0%d'.format(eht_dcm);
 	}
 
 	return s;
@@ -475,9 +484,9 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		if (hwval != null) {
 			this.useBandOption = false;
 
-			if (mode.value === 'be') 
+			if (/be/.test(mode.value))
 				band.value = '6g';
-			else if (/a/.test(hwval))
+			else if (/ax/.test(mode.value))
 				band.value = '5g';
 			else
 				band.value = '2g';
@@ -566,7 +575,7 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		if (this.useBandOption)
 			uci.set('wireless', section_id, 'band', value[1]);
 		else
-			uci.set('wireless', section_id, 'hwmode', (value[1] === '2g') ? '11g' : '11a');
+			uci.set('wireless', section_id, 'hwmode', (value[1] == '2g') ? '11g' : '11a');
 
 		uci.set('wireless', section_id, 'channel', value[2]);
 	}
