@@ -37,6 +37,52 @@ return network.registerProtocol('map', {
 		return (network.getIfnameOf(ifname) == this.getIfname());
 	},
 
+	getGatewayAddr: function () {
+		return this.get('peeraddr');
+	},
+
+	getIPv6Addrs: function () {
+		var d = this._ubus('data');
+		if (L.isObject(d) && typeof (d.ipv6addr) == 'string')
+			return d.ipv6addr;
+		return null;
+	},
+
+	callShowPortsets: function () {
+		var d = this._ubus('data');
+		if (L.isObject(d) && typeof (d.portsets) == 'string') {
+			var portSets = d.portsets;
+			if (portSets) {
+				var portArray = portSets.split(' ');
+				var groupedPorts = [];
+				for (var i = 0; i < portArray.length; i += 2) {
+					groupedPorts.push(portArray.slice(i, i + 2));
+				}
+				portSets = E('table', { style: 'width: 100%; border-collapse: collapse;' },
+					groupedPorts.map(function (portGroup) {
+						return E('tr', {}, [
+							E('td', { style: 'padding: 10px; border: 1px solid #ddd; text-align: center; font-size: 16px;' }, portGroup[0]),
+							portGroup[1] ? E('td', { style: 'padding: 10px; border: 1px solid #ddd; text-align: center; font-size: 16px;' }, portGroup[1]) : E('td', {})
+						]);
+					})
+				);
+			}
+			function showPortsets() {
+				L.ui.showModal(_('Available portsets'), [
+					E('div', { style: 'max-height: 400px; overflow-y: auto; padding: 10px; border: 1px solid #ddd;' }, portSets || _('No data')),
+					E('div', { class: 'right' }, [
+						E('button', {
+							class: 'btn',
+							click: L.ui.hideModal
+						}, _('Close'))
+					])
+				]);
+			}
+			return showPortsets;
+		}
+		return null;
+	},
+
 	renderFormOptions: function(s) {
 		var o;
 
@@ -95,18 +141,15 @@ return network.registerProtocol('map', {
 		o.placeholder = '80 443 8080';
 		o.validate = function (section_id, value) {
 			value = value.trim().replace(/\s+/g, ' ');
-			if (!value) {
-				return true;
-			}
-			var seen = new Set();
-			var ports = value.split(' ');
-			for (var i = 0; i < ports.length; i++) {
-				var port = ports[i];
-				if (!/^\d+$/.test(port) || parseInt(port, 10) < 1 || parseInt(port, 10) > 65535) {
+			if (!value) return true;
+			let seen = new Set();
+			for (let port of value.split(' ')) {
+				let portNum = parseInt(port, 10);
+				if (!/^\d+$/.test(port) || portNum < 1 || portNum > 65535) {
 					return _('Expecting: %s').format(_('valid port value'));
 				}
 				if (seen.has(port)) {
-					return _('Duplicate port found: ') + port;
+					return _('Duplicate port found:') + port;
 				}
 				seen.add(port);
 			}

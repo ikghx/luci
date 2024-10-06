@@ -42,9 +42,11 @@ msgstr "(仅中国数据)"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:56
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:72
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:77
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:83
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:90
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:98
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:82
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:88
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:94
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:101
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:109
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:140
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:141
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:142
@@ -67,10 +69,6 @@ msgstr "(仅中国数据)"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1113
 msgid "(Only Meta Core)"
 msgstr "（仅 Meta 内核）"
-
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:62
-msgid "(Only TUN Core)"
-msgstr "（仅 TUN 内核）"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:426
 msgid "(Priority)"
@@ -446,7 +444,7 @@ msgid "Automatically Expand The Group When Selected"
 msgstr "自动展开嵌套的策略组并进行解锁检测，启用后可能会造成网络不稳定"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:219
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:141
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:152
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/game-rules-file-manage.lua:116
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/game-rules-manage.lua:32
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:141
@@ -874,7 +872,7 @@ msgstr "正在收集数据..."
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:211
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:121
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config.lua:440
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:133
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:144
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:132
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-file-edit.lua:58
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:415
@@ -1320,6 +1318,14 @@ msgstr "删除未启用节点"
 msgid "Developer Settings"
 msgstr "开发者选项"
 
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:86
+msgid "Direct"
+msgstr "直连"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:72
+msgid "Direct Nameserver"
+msgstr "直连域名解析"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:98
 msgid "Direct Proxy Mode"
 msgstr "Direct【全局直连】"
@@ -1344,7 +1350,7 @@ msgstr "Direct【全局直连】"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:175
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config.lua:182
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:67
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:123
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:134
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:73
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:97
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:196
@@ -1536,11 +1542,11 @@ msgstr "文件下载中..."
 msgid "Downloading Rule..."
 msgstr "正在下载规则..."
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:90
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:101
 msgid "ECS Override"
 msgstr "ECS 区域地址覆盖"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:83
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:94
 msgid "ECS Subnet"
 msgstr "ECS 区域地址"
 
@@ -1910,11 +1916,11 @@ msgstr "清理中..."
 msgid "For More Useful Meta Core Functions Go Wiki"
 msgstr "如需要了解更多关于 Meta 内核的功能，请前往 Wiki"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:77
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:82
 msgid "Force HTTP/3"
 msgstr "强制 HTTP/3"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:77
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:82
 msgid "Force HTTP/3 to connect"
 msgstr "强制使用 HTTP/3 进行连接"
 
@@ -2001,6 +2007,10 @@ msgstr "选择配置文件后请点击以获取对应的策略组"
 msgid "Github Address Modify"
 msgstr "Github 地址修改"
 
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:84
+msgid "Global"
+msgstr "全局"
+
 #: applications/luci-app-openclash/luasrc/view/openclash/dlercloud.htm:397
 msgid "Global Acceleration Network"
 msgstr "全球网络基础设施"
@@ -2066,7 +2076,7 @@ msgstr "别名（请勿重名）"
 msgid "Group Type"
 msgstr "策略组类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:98
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:109
 msgid "Group Use For Proxy The DNS"
 msgstr "用于代理此 DNS 的策略组"
 
@@ -2687,7 +2697,7 @@ msgid ""
 "tab!"
 msgstr "未选择编译版本。请在“常规设置”选项卡中进行配置！"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:72
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:77
 msgid "Node Domain Resolve"
 msgstr "节点域名解析"
 
@@ -2965,7 +2975,7 @@ msgstr "正在使用第三方规则时才能更新"
 msgid "Others"
 msgstr "未匹配到规则的流量"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:90
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:101
 msgid "Override the ECS Subnet Address"
 msgstr "强制覆盖 DNS 查询的子网区域地址"
 
@@ -3413,6 +3423,10 @@ msgstr "轮询（轮流使用全部代理）"
 msgid "Router-Self Proxy"
 msgstr "*路由本机代理"
 
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:82
+msgid "Rule"
+msgstr "规则"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-manage.lua:88
 msgid "Rule Author"
 msgstr "规则作者"
@@ -3720,7 +3734,7 @@ msgstr "发生了一些错误，测试失败..."
 msgid "Sort"
 msgstr "排序"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:97
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:108
 msgid "Specific Group (Support Regex)"
 msgstr "指定策略组（支持正则匹配）"
 
@@ -3748,7 +3762,7 @@ msgstr "指定新的订阅信息来源地址失败："
 msgid "Specify subscribe infos sources url successfully!"
 msgstr "指定新的订阅信息来源地址成功！"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:83
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:94
 msgid "Specify the ECS Subnet Address"
 msgstr "指定 ECS 子网区域地址"
 
@@ -4339,6 +4353,10 @@ msgid "Use For All Config File"
 msgstr "添加到所有配置文件"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:72
+msgid "Use For Domain Need Direct"
+msgstr "用于解析直连域名的 IP 地址"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:77
 msgid "Use For Node Domain Resolve"
 msgstr "用于解析节点域名的 IP 地址"
 
@@ -4492,6 +4510,10 @@ msgstr ""
 msgid "all"
 msgstr ""
 
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "allow-lan"
+msgstr "允许局域网"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:642
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:649
 msgid "alpn"
@@ -4609,6 +4631,7 @@ msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:104
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:892
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
 msgid "interface-name"
 msgstr "指定出口网卡"
 
@@ -4719,6 +4742,14 @@ msgstr ""
 msgid "miHoYo"
 msgstr "米哈游"
 
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "mixed-port"
+msgstr "混合端口"
+
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "mode"
+msgstr "模式"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:606
 msgid "mux"
 msgstr ""
@@ -4751,6 +4782,10 @@ msgstr "混淆密码"
 msgid "path"
 msgstr ""
 
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "port"
+msgstr "端口"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:536
 msgid "public-key(reality)"
 msgstr ""
@@ -4775,6 +4810,10 @@ msgstr "Redir-Host（TUN）模式"
 msgid "redir-host-mix(tun mix mode)"
 msgstr "Redir-Host（TUN-混合）模式【UDP-TUN，TCP-转发】"
 
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "redir-port"
+msgstr "重定向端口"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:413
 msgid "restls"
 msgstr ""
@@ -4797,6 +4836,7 @@ msgid "short-id(reality)"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:148
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:88
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:560
 msgid "skip-cert-verify"
 msgstr "跳过证书验证"
@@ -4804,6 +4844,10 @@ msgstr "跳过证书验证"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:614
 msgid "sni"
 msgstr ""
+
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "socks-port"
+msgstr "socks 端口"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:106
 msgid "sub.id9.cc"
@@ -4829,8 +4873,16 @@ msgstr "控制 Diff 显示，按钮"
 msgid "to enter full screen editing mode"
 msgstr "进入全屏编辑模式"
 
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "tproxy-port"
+msgstr "tproxy 端口"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:139
 msgid "trojan"
+msgstr ""
+
+#: applications/luci-app-openclash/root/usr/share/openclash/ui/metacubexd/assets/Config-CcYWVyqe.js:1
+msgid "tun"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:390
@@ -4887,14 +4939,8 @@ msgid ""
 "规则集使用介绍：https://wiki.metacubex.one/config/rule-providers/content/"
 msgstr ""
 
-msgid "Rule"
-msgstr "规则"
-
-msgid "Global"
-msgstr "全局"
-
-msgid "Direct"
-msgstr "直连"
+msgid "(Only TUN Core)"
+msgstr "（仅 TUN 内核）"
 
 msgid "Downloading Fail"
 msgstr "下载失败"
@@ -5913,9 +5959,6 @@ msgstr "启用后将尽可能的覆盖DNS查询到的域名"
 msgid "Only Meta Core"
 msgstr "仅 Meta 内核"
 
-msgid "Warning: Only TUN Core Support Script Mode, Switch To The Rule Mode!"
-msgstr "警告：仅 TUN 内核支持 Script 模式，已切换为 Rule 模式！"
-
 msgid "Douyin"
 msgstr "抖音（Douyin）"
 
@@ -5924,6 +5967,15 @@ msgstr "控制面板"
 
 msgid "Unzip Error!"
 msgstr "解压失败！"
+
+msgid "Tip: Option"
+msgstr "提示：选项"
+
+msgid "as DNS Server Which May Cause DNS Loop, Already Remove It..."
+msgstr "作为 DNS 服务器，这可能造成 DNS 回环错误，已移除该设置..."
+
+msgid "Error: Set direct-nameserver Failed,"
+msgstr "错误：设置 direct-nameserver 错误，"
 
 msgid ""
 "Warning: You May Need to Turn off The Rebinding Protection Option of "
