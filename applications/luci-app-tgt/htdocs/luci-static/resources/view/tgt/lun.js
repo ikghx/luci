@@ -12,6 +12,7 @@ return view.extend({
 		s = m.section(form.GridSection, 'lun');
 		s.anonymous = false;
 		s.addremove = true;
+		s.sortable  = true;
 
 		o = s.option(form.Value, 'device', _('Device'));
 		o.placeholder = '/dev/sda';
@@ -30,7 +31,9 @@ return view.extend({
 		o.depends('type', 'disk');
 		o.depends('type', 'cd');
 
-		o = s.option(form.Flag, 'sense_format', _('Support descriptor format'));
+		o = s.option(form.ListValue, 'sense_format', _('Sense format'));
+		o.value('0', _('Classic sense format'));
+		o.value('1', _('Support descriptor format'));
 
 		o = s.option(form.ListValue, 'rotation_rate', _('Disk rotaion rate'));
 		o.depends('type', 'disk');
@@ -42,11 +45,14 @@ return view.extend({
 		o.value('10000');
 		o.value('15000');
 
+		o = s.option(form.Flag, 'thin_provisioning', _('Thin Provisioning'));
+		o.depends({'type': 'disk', 'bstype': 'rdwr'});
+
 		o = s.option(form.ListValue, 'bstype', _('Backing store type'));
 		o.value('');
 		o.value('aio', _('async IO'));
 		o.value('rdwr', _('read-write'));
-		o.value('sg');
+		o.value('sg', _('sg passthrough'));
 
 		o = s.option(form.Flag, 'sync', _('Sync'));
 		o.depends('bstype', 'rdwr');
