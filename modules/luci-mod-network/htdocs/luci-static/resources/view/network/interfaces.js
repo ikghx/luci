@@ -1244,7 +1244,8 @@ return view.extend({
 
 			proto = s2.option(form.ListValue, 'proto', _('Protocol'));
 			proto.onchange = function(ev, section_id, value) {
-				name.triggerValidation(section_id);
+				var elem = name.getUIElement(section_id);
+				elem.triggerValidation();
 			};
 
 			device = s2.option(widgets.DeviceSelect, 'device', _('Device'));
