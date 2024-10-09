@@ -8,6 +8,7 @@ LUCI_DEPENDS:=@(aarch64||arm||x86_64) \
 	+luci-lib-ip \
 	+docker \
 	+dockerd \
+	+docker-compose \
 	+ttyd \
 	+kmod-crypto-ctr \
 	+kmod-crypto-gcm \
