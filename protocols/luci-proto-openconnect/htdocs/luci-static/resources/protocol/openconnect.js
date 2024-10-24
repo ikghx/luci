@@ -199,5 +199,9 @@ return network.registerProtocol('openconnect', {
 		o.optional = true;
 		o.placeholder = 300;
 		o.datatype = 'min(10)';
+
+		o = s.taboption('advanced', form.Value, 'script', _('Script Path'));
+		o.optional = true;
+		o.placeholder = '/lib/netifd/vpnc-script';
 	}
 });

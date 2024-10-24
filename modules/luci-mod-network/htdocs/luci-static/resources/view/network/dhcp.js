@@ -338,6 +338,36 @@ return view.extend({
 
 		};
 
+		const recordtypes = [
+			'ANY',
+			'A',
+			'AAAA',
+			'ALIAS',
+			'CAA',
+			'CERT',
+			'CNAME',
+			'DS',
+			'HINFO',
+			'HIP',
+			'HTTPS',
+			'KEY',
+			'LOC',
+			'MX',
+			'NAPTR',
+			'NS',
+			'OPENPGPKEY',
+			'PTR',
+			'RP',
+			'SIG',
+			'SOA',
+			'SRV',
+			'SSHFP',
+			'SVCB',
+			'TLSA',
+			'TXT',
+			'URI',
+		]
+
 		function customi18n(template, values) {
 			if (!values)
 				values = noi18nstrings;
@@ -386,6 +416,7 @@ return view.extend({
 
 
 		s.tab('general', _('General'));
+		s.tab('cache', _('Cache'));
 		s.tab('devices', _('Devices &amp; Ports'));
 		s.tab('advanced', _('Advanced'));
     s.tab('dnsrecords', _('DNS Records'));
@@ -464,6 +495,17 @@ return view.extend({
 		o = s.taboption('general', form.Flag, 'sequential_ip',
 			_('Allocate IPs sequentially'),
 			_('Allocate IP addresses sequentially, starting from the lowest available address.'));
+
+		o = s.taboption('cache', form.MultiValue, 'cache_rr',
+			_('Cache arbitrary RR'), _('By default, dnsmasq caches A, AAAA, CNAME and SRV DNS record types.') + '<br/>' +
+			_('This option adds additional record types to the cache.'));
+		o.optional = true;
+		o.create = true;
+		o.multiple = true;
+		o.display_size = 5;
+		recordtypes.forEach(r => {
+			o.value(r);
+		});
 
 		o = s.taboption('devices', widgets.NetworkSelect, 'interface',
 			_('Listen interfaces'),
@@ -597,6 +639,16 @@ return view.extend({
 		o.value('A', _('IPv4 address'));
 		o.value('AAAA', _('IPv6 address'));
 		o.optional = true;
+
+		o = s.taboption('filteropts', form.MultiValue, 'filter_rr',
+			_('Filter arbitrary RR'), _('Removes records of the specified type(s) from answers.'));
+		o.optional = true;
+		o.create = true;
+		o.multiple = true;
+		o.display_size = 5;
+		recordtypes.forEach(r => {
+			o.value(r);
+		});
 
 		o = s.taboption('filteropts', form.Flag, 'boguspriv',
 			_('Filter private'),
@@ -981,7 +1033,8 @@ return view.extend({
 		dnss.tab('srvhosts', _('SRV'));
 		dnss.tab('mxhosts', _('MX'));
 		dnss.tab('cnamehosts', _('CNAME'));
-    dnss.tab('txtrecords', _('TXT'));
+		dnss.tab('dnsrr', _('DNS-RR'));
+		dnss.tab('txtrecords', _('TXT'));
 
 		o = dnss.taboption('srvhosts', form.SectionValue, '__srvhosts__', form.TableSection, 'srvhost', null,
 			_('Bind service records to a domain name: specify the location of services.') + (' <a href="%s">RFC2782</a>.').format('https://datatracker.ietf.org/doc/html/rfc2782')
@@ -1064,6 +1117,69 @@ return view.extend({
 		so.rmempty = false;
 		so.datatype = 'hostname';
 		so.placeholder = 'example.com.';
+
+		o = dnss.taboption('dnsrr', form.SectionValue, '__dnsrr__', form.TableSection, 'dnsrr', null, 
+			_('Set an arbitrary resource record (RR) type.') + '<br/>' + 
+			_('Hexdata is automatically en/decoded on save and load'));
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.anonymous = true;
+		ss.sortable  = true;
+		ss.rowcolors = true;
+		ss.nodescriptions = true;
+
+		function hexdecodeload(section_id) {
+			let arr = uci.get('dhcp', section_id, this.option) || [];
+			// Remove any spaces or colons from the hex string - they're allowed
+			arr = arr.replace(/[\s:]/g, '');
+			// Hex-decode the string before displaying
+			let decodedString = '';
+			for (let i = 0; i < arr.length; i += 2) {
+				decodedString += String.fromCharCode(parseInt(arr.substr(i, 2), 16));
+			}
+			return decodedString;
+		}
+
+		function hexencodesave(section, value) {
+			if (!value || value.length === 0) {
+				uci.unset('dhcp', section, 'hexdata');
+				return;
+			}
+			// Hex-encode the string before saving
+			const encodedArr = value.split('').map(c => c.charCodeAt(0).toString(16).padStart(2, '0')).join('');
+			uci.set('dhcp', section, this.option, encodedArr);
+		}
+
+		so = ss.option(form.Value, 'dnsrr', _('Resource Record Name'));
+		so.rmempty = false;
+		so.datatype = 'hostname';
+		so.placeholder = 'svcb.example.com.';
+
+		so = ss.option(form.Value, 'rrnumber', _('Resource Record Number'));
+		so.rmempty = false;
+		so.datatype = 'uinteger';
+		so.placeholder = '64';
+
+		so = ss.option(form.Value, 'hexdata', _('Raw Data'));
+		so.rmempty = true;
+		so.datatype = 'string';
+		so.placeholder = 'free-form string';
+		so.load = hexdecodeload;
+		so.write = hexencodesave;
+
+		so = ss.option(form.DummyValue, '_hexdata', _('Hex Data'));
+		so.width = '10%';
+		so.rawhtml = true;
+		so.load = function(section_id) {
+			let hexdata = uci.get('dhcp', section_id, 'hexdata') || [];
+			hexdata = hexdata.replace(/[:]/g, '');
+			if (hexdata) {
+				return hexdata.replace(/(.{20})/g, '$1<br/>'); // Inserts <br> after every 2 characters (hex pair)
+			} else {
+				return '';
+			}
+		}
 
 		o = dnss.taboption('txtrecords', form.SectionValue, '__txtrecords__', form.TableSection, 'txtrecord', null,
 			_('Bind TXT records to a domain name.')
