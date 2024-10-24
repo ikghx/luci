@@ -925,7 +925,7 @@
 		 * @hideconstructor
 		 * @classdesc
 		 *
-		 * The `Request.poll` class provides some convince wrappers around
+		 * The `Request.poll` class provides some convenience wrappers around
 		 * {@link LuCI.poll} mainly to simplify registering repeating HTTP
 		 * request calls as polling functions.
 		 */
@@ -979,7 +979,7 @@
 				var ival = interval >>> 0;
 
 				var fn = function() {
-					return Request.request(url, options).then(function(res) {
+					return Request.request(url, opts).then(function(res) {
 						if (!Poll.active())
 							return;
 
