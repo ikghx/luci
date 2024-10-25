@@ -153,7 +153,7 @@
 
 		cbi_set_values(mode, modes);
 
-		if (/EHT20|EHT40|HE80|EHT160|EHT320/.test(<%= luci.http.write_json(self.map:get(section, "htmode")) %>))
+		if (/EHT20|EHT40|EHT80|EHT160|EHT320/.test(<%= luci.http.write_json(self.map:get(section, "htmode")) %>))
 			mode.value = 'be';
 		else if (/HE20|HE40|HE80|HE160/.test(<%= luci.http.write_json(self.map:get(section, "htmode")) %>))
 			mode.value = 'ax';

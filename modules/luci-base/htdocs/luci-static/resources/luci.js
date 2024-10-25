@@ -17,7 +17,7 @@
 	/* Object.assign polyfill for IE */
 	if (typeof Object.assign !== 'function') {
 		Object.defineProperty(Object, 'assign', {
-			value: function assign(target) {
+			value: function assign(target, varArgs) {
 				if (target == null)
 					throw new TypeError('Cannot convert undefined or null to object');
 
@@ -976,7 +976,8 @@
 				if (isNaN(interval) || interval <= 0)
 					throw new TypeError('Invalid poll interval');
 
-				var ival = interval >>> 0;
+				var ival = interval >>> 0,
+				    opts = Object.assign({}, options, { timeout: ival * 1000 - 5 });
 
 				var fn = function() {
 					return Request.request(url, opts).then(function(res) {
@@ -2242,7 +2243,7 @@
 
 			Object.assign(env, setenv);
 
-			var domReady = new Promise(function(resolveFn) {
+			var domReady = new Promise(function(resolveFn, rejectFn) {
 				document.addEventListener('DOMContentLoaded', resolveFn);
 			});
 
@@ -2348,7 +2349,7 @@
 		 * appended to the message and the type set to the given type
 		 * argument or copied from the given error instance.
 		 */
-		error: function() {
+		error: function(type, fmt /*, ...*/) {
 			try {
 				LuCI.prototype.raise.apply(LuCI.prototype,
 					Array.prototype.slice.call(arguments));
@@ -2429,8 +2430,7 @@
 		 * Returns the instantiated class.
 		 */
 		require: function(name, from) {
-			var L = this, url = null;
-			from = from || [];
+			var L = this, url = null, from = from || [];
 
 			/* Class already loaded */
 			if (classes[name] != null) {
@@ -2679,8 +2679,10 @@
 
 		/* private */
 		setupDOM: function(res) {
-			var uiClass = res[1],
+			var domEv = res[0],
+			    uiClass = res[1],
 			    rpcClass = res[2],
+			    formClass = res[3],
 			    rpcBaseURL = res[4];
 
 			rpcClass.setBaseURL(rpcBaseURL);
@@ -2771,14 +2773,13 @@
 		fspath: function(/* ... */) {
 			var path = env.documentroot;
 
-			var i;
-			for (i = 0; i < arguments.length; i++)
+			for (var i = 0; i < arguments.length; i++)
 				path += '/' + arguments[i];
 
 			var p = path.replace(/\/+$/, '').replace(/\/+/g, '/').split(/\//),
 			    res = [];
 
-			for (i = 0; i < p.length; i++)
+			for (var i = 0; i < p.length; i++)
 				if (p[i] == '..')
 					res.pop();
 				else if (p[i] != '.')

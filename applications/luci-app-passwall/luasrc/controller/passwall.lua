@@ -23,9 +23,9 @@ function index()
 	entry({"admin", "vpn", appname, "hide"}, call("hide_menu")).leaf = true
 	local e
 	if uci:get(appname, "@global[0]", "hide_from_luci") ~= "1" then
-		e = entry({"admin", "vpn", appname}, alias("admin", "services", appname, "settings"), _("Pass Wall"), -1)
+		e = entry({"admin", "vpn", appname}, alias("admin", "vpn", appname, "settings"), _("Pass Wall"), -1)
 	else
-		e = entry({"admin", "vpn", appname}, alias("admin", "services", appname, "settings"), nil, -1)
+		e = entry({"admin", "vpn", appname}, alias("admin", "vpn", appname, "settings"), nil, -1)
 	end
 	e.dependent = true
 	e.acl_depends = { "luci-app-passwall" }
