@@ -567,6 +567,11 @@ return view.extend({
 			o.default = o.enabled;
 		}
 
+		o = s.taboption('advanced', form.Value, 'confdir',
+			_('Configuration file directory'),
+			_('Read all the files in the given directory as configuration files.'));
+		o.value('/tmp/dnsmasq.d');
+
 		o = s.taboption('advanced', form.DynamicList, 'addnmount',
 			_('Expose additional filesystem paths'),
 			_('read-only mount path to expose it to dnsmasq.'));
@@ -856,6 +861,10 @@ return view.extend({
 		o.depends('noresolv', '0');
 		o.value('/tmp/resolv.conf.d/resolv.conf.auto');
 		o.optional = true;
+
+		o = s.taboption('files', form.Flag, 'localuse',
+			_('Enforce local system to use dnsmasq'));
+		o.depends('noresolv', '1');
 
 		o = s.taboption('files', form.Flag, 'nohosts',
 			customi18n(_('Ignore {etc_hosts}') )
