@@ -122,7 +122,7 @@ msgstr "（空）"
 msgid "(no interfaces attached)"
 msgstr "（没有接口连接）"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:619
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:620
 msgctxt "Label indicating further amount of allowed ips"
 msgid "+ %d more"
 msgstr "+ 另外 %d"
@@ -611,6 +611,11 @@ msgstr "ARP 链路监控"
 msgid "ARP monitor target IP address"
 msgstr "ARP 监控目标 IP 地址"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:107
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:107
+msgid "ARP proxy"
+msgstr "ARP 代理"
+
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:175
 msgid "ARP retry threshold"
 msgstr "ARP 重试阈值"
@@ -870,6 +875,8 @@ msgstr "添加新接口…"
 msgid "Add new network"
 msgstr "添加新网络"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:185
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:185
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:210
 msgid "Add peer"
 msgstr "添加对端"
@@ -904,6 +911,11 @@ msgstr "添加到黑名单"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:335
 msgid "Add to Whitelist"
 msgstr "添加到白名单"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:175
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:175
+msgid "Additional Peers"
+msgstr "其他 Peers"
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:376
 msgid "Additional configuration settings (in TOML format)."
@@ -943,7 +955,7 @@ msgctxt "nft meta nfproto"
 msgid "Address family"
 msgstr "地址族"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:270
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:271
 msgid "Address setting is invalid"
 msgstr "地址设置无效"
 
@@ -951,7 +963,7 @@ msgstr "地址设置无效"
 msgid "Address to access local relay bridge"
 msgstr "接入本地中继桥的地址"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:793
 msgid "Addresses"
 msgstr "地址"
 
@@ -984,6 +996,11 @@ msgid ""
 "Afer making changes to network using external protocol, network must be "
 "manually restarted."
 msgstr "在对使用外部协议的网络做出更改后，必须手动重启网络。"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:76
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:76
+msgid "Ageing"
+msgstr "老化"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:956
 msgid "Ageing time"
@@ -1104,8 +1121,8 @@ msgstr "允许系统功能探测"
 msgid "Allow the <em>root</em> user to log in with password"
 msgstr "允许 <em>root</em> 用户凭密码登录"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:608
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:781
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:609
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:782
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:56
 msgid "Allowed IPs"
 msgstr "允许的 IP"
@@ -1114,9 +1131,14 @@ msgstr "允许的 IP"
 msgid "Allowed network technology"
 msgstr "允许的网络技术"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:301
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:302
 msgid "AllowedIPs setting is invalid"
 msgstr "AllowedIPs 设置无效"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:42
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:42
+msgid "Alternatively, a multicast address to reach a group of peers."
+msgstr "或者，使用多播地址来联系一组对等点。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:757
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1163
@@ -1382,6 +1404,14 @@ msgstr "自动"
 msgid "Automatic Homenet (HNCP)"
 msgstr "自动家庭网络（HNCP）"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:97
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:97
+msgid ""
+"Automatic mac learning using multicast; inserts unknown source link layer "
+"addresses and IP addresses into the VXLAN device %s"
+msgstr ""
+"使用多播自动进行 mac 学习；将未知的源链路层地址和 IP 地址插入 VXLAN 设备 %s"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:174
 msgid "Automatically check filesystem for errors before mounting"
 msgstr "在挂载前自动检查文件系统错误"
@@ -1475,7 +1505,7 @@ msgstr "BSSID"
 msgid "Back to Overview"
 msgstr "返回至概览"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:850
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:851
 msgid "Back to peer configuration"
 msgstr "返回 peer 配置"
 
@@ -1577,8 +1607,8 @@ msgstr "动态绑定"
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:142
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:57
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:57
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
 msgid "Bind interface"
 msgstr "绑定接口"
 
@@ -1598,8 +1628,8 @@ msgstr "绑定服务记录到域名：指定服务的位置。"
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
 #: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:142
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:57
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:57
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
 msgid "Bind the tunnel to this interface (optional)."
 msgstr "将隧道绑定到此接口（可选）。"
 
@@ -1765,11 +1795,11 @@ msgstr "调用失败"
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:128
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:297
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:209
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:471
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:472
 msgid "Cancel"
 msgstr "取消"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:333
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:334
 msgid "Cannot parse configuration: %s"
 msgstr "无法解析配置：%s"
 
@@ -2058,7 +2088,7 @@ msgstr "配置文件"
 msgid "Configuration"
 msgstr "配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:674
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:675
 msgid "Configuration Export"
 msgstr "配置文件导出"
 
@@ -2153,7 +2183,7 @@ msgstr "尝试连接失败"
 msgid "Connection attempt failed."
 msgstr "尝试连接失败。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:777
 msgid "Connection endpoint"
 msgstr "连接端点"
 
@@ -2374,7 +2404,7 @@ msgstr "DNS 记录"
 msgid "DNS Redirect"
 msgstr "DNS 重定向"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:788
 msgid "DNS Servers"
 msgstr "DNS 服务器"
 
@@ -2394,7 +2424,7 @@ msgstr "DNS 搜索域名"
 msgid "DNS server port"
 msgstr "DNS 服务器端口"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:787
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:788
 msgid ""
 "DNS servers for the remote clients using this tunnel to your openwrt device. "
 "Some wireguard clients require this to be set."
@@ -2402,7 +2432,7 @@ msgstr ""
 "使用此隧道连接到 openwrt 设备的远程客户端的 DNS 服务器。一些 Wireguard 客户端"
 "要求进行此项设置。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:278
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:279
 msgid "DNS setting is invalid"
 msgstr "DNS 设置无效"
 
@@ -2565,7 +2595,9 @@ msgstr "拒绝列表内，允许其他"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/switch.js:342
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:139
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:504
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:193
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:193
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:505
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:53
 msgid "Description"
 msgstr "描述"
@@ -2598,8 +2630,8 @@ msgctxt "nft ip6 daddr"
 msgid "Destination IPv6"
 msgstr "目标 IPv6"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:48
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:48
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:52
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:52
 msgid "Destination port"
 msgstr "目标端口"
 
@@ -2770,11 +2802,11 @@ msgstr "禁用网络"
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:83
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:57
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:70
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:499
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:500
 msgid "Disabled"
 msgstr "已禁用"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:528
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:529
 msgctxt "Label indicating that WireGuard peer is disabled"
 msgid "Disabled"
 msgstr "已禁用"
@@ -2984,7 +3016,7 @@ msgstr "下载 mtdblock"
 msgid "Downstream SNR offset"
 msgstr "下游 SNR 偏移"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:421
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:422
 msgid ""
 "Drag or paste a valid <em>*.conf</em> file below to configure the local "
 "WireGuard interface."
@@ -3178,6 +3210,8 @@ msgstr "编辑配置"
 msgid "Edit network"
 msgstr "编辑网络"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:187
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:187
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:212
 msgid "Edit peer"
 msgstr "编辑对端"
@@ -3233,13 +3267,23 @@ msgstr "未标记的出口"
 msgid "Emergency"
 msgstr "紧急"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:119
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:119
+msgid "Emits netlink IP ADDR miss notifications"
+msgstr "发出 netlink IP ADDR 未命中通知"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:113
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:113
+msgid "Emits netlink LLADDR miss notifications"
+msgstr "发出 netlink LLADDR 未命中通知"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:435
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:951
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:991
 msgid "Enable"
 msgstr "启用"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:499
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:500
 msgid "Enable / Disable peer. Restart wireguard interface to apply changes."
 msgstr "启用/禁用对端。重启 Wireguard 端口应用更改。"
 
@@ -3438,8 +3482,8 @@ msgstr "启用跨 CPU 的数据包控制。可能有助于或阻碍网络速度�
 msgid "Enable promiscuous mode"
 msgstr "启用混杂模式"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:71
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:71
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:166
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:166
 msgid "Enable rx checksum"
 msgstr "启用 Rx 校验"
 
@@ -3460,8 +3504,8 @@ msgstr "启用后报文的 DF（禁止分片）标志。"
 msgid "Enable to minimise the chance of prefix change after a restart."
 msgstr "启用后最大程度减少重启后前缀更改的可能性。"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:75
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:75
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:170
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:170
 msgid "Enable tx checksum"
 msgstr "启用 Tx 校验"
 
@@ -3552,15 +3596,15 @@ msgstr "加密模式"
 msgid "Endpoint"
 msgstr "传输端点"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:646
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:647
 msgid "Endpoint Host"
 msgstr "端点主机"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:662
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:663
 msgid "Endpoint Port"
 msgstr "端点端口"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:311
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:312
 msgid "Endpoint setting is invalid"
 msgstr "端点设置无效"
 
@@ -3587,6 +3631,11 @@ msgstr "强制 MLD 版本 2"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:866
 msgid "Enforce local system to use dnsmasq"
 msgstr "强制本地系统使用 dnsmasq"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:84
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:84
+msgid "Ensure MTU does not exceed that of parent interface"
+msgstr "确保 MTU 不超过父接口的 MTU"
 
 #: modules/luci-compat/luasrc/view/cbi/dropdown.htm:16
 msgid "Enter custom value"
@@ -3654,6 +3703,16 @@ msgstr "现有设备"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:455
 msgid "Expand hosts"
 msgstr "扩展 HOSTS 文件中的主机后缀"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:114
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:114
+msgid "Expect netlink reply to add MAC address into VXLAN FDB"
+msgstr "期望 netlink 回复将 MAC 地址添加到 VXLAN FDB 中"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:120
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:120
+msgid "Expect netlink reply to add destination IP address into Neighbour table"
+msgstr "期望 netlink 回复将目标 IP 地址添加到邻居表中"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:928
 msgid "Expected port number."
@@ -3757,6 +3816,16 @@ msgstr "额外的 pppd 选项"
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:70
 msgid "Extra sstpc options"
 msgstr "额外的 sstpc 选项"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:98
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:98
+msgid "FDB"
+msgstr ""
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:77
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:77
+msgid "FDB entry lifetime"
+msgstr "FDB 条目寿命"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1260
 msgid "FQDN"
@@ -3990,6 +4059,11 @@ msgstr "跟随"
 msgid "Follow IPv4 Lifetime"
 msgstr "遵循 IPv4 租期"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:208
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:208
+msgid "For multicast, an outgoing interface (%s) needs to be specified"
+msgstr "对于多播，需要指定传出接口 (%s)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1021
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1485
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1510
@@ -4094,6 +4168,11 @@ msgstr "转发指定的域名查询到指定的上游服务器。"
 msgid "Forward/reverse DNS"
 msgstr "转发/反向 DNS"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:98
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:98
+msgid "Forwarding DataBase"
+msgstr "转发数据库"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1706
 msgid "Forwarding mode"
 msgstr "转发模式"
@@ -4115,6 +4194,11 @@ msgctxt "nft nat flag fully-random"
 msgid "Full port randomization"
 msgstr "全端口随机化"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:175
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:175
+msgid "Further information about VXLAN interfaces and peers %s."
+msgstr "有关 VXLAN 接口和对等体 %s 的更多信息。"
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:200
 msgid ""
 "Further information about WireGuard interfaces and peers at <a href='http://"
@@ -4122,6 +4206,11 @@ msgid ""
 msgstr ""
 "关于 WireGuard 接口和对端的更多信息请访问 <a href='http://wireguard."
 "com'>wireguard.com</a>。"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:123
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:123
+msgid "GBP"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1306
 msgid "GCMP-256-AES (Strong security)"
@@ -4219,11 +4308,11 @@ msgstr "本地生成 PMK"
 msgid "Generate archive"
 msgstr "生成备份"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:835
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:836
 msgid "Generate configuration"
 msgstr "生成配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:875
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:876
 msgid "Generate configuration…"
 msgstr "生成配置…"
 
@@ -4232,15 +4321,15 @@ msgstr "生成配置…"
 msgid "Generate new key pair"
 msgstr "生成新的密钥对"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:605
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:606
 msgid "Generate preshared key"
 msgstr "生成预共享密钥"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:675
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:676
 msgid "Generates a configuration suitable for import on a WireGuard peer"
 msgstr "生成适合在 WireGuard 对端上导入的配置"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:809
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:810
 msgid "Generating QR code…"
 msgstr "正在生成二维码…"
 
@@ -4393,6 +4482,11 @@ msgstr "授予无线信道状态权限"
 #: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status-index.json:60
 msgid "Grant access to wireless status display"
 msgstr "授予访问无线状态展示的权限"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:124
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:124
+msgid "Group Based Policy (VXLAN-GBP) extension"
+msgstr "基于组的策略 (VXLAN-GBP) 扩展"
 
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:66
 msgid "Group Password"
@@ -4562,8 +4656,8 @@ msgctxt "nft icmpv6 type"
 msgid "ICMPv6 type"
 msgstr "ICMPv6 类型"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:53
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:53
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:128
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:128
 msgid "ID used to uniquely identify the VXLAN"
 msgstr "用于识别 VXLAN 的唯一 ID"
 
@@ -4609,13 +4703,22 @@ msgstr "IP 地址无效"
 msgid "IP address is missing"
 msgstr "IP 地址缺失"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:792
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:207
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:207
+msgid ""
+"IP address of the remote VXLAN tunnel endpoint where the MAC address (Layer "
+"2 Address) resides or a multicast address for a group of peers."
+msgstr ""
+"MAC 地址（第 2 层地址）所在的远程 VXLAN 隧道端点的 IP 地址或一组对等体的多播"
+"地址。"
+
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:793
 msgid ""
 "IP addresses for the peer to use inside the tunnel. Some clients require "
 "this setting."
 msgstr "peer 在隧道内部使用的 IP 地址。某些客户端需要此设置。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:781
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:782
 msgid ""
 "IP addresses that are allowed inside the tunnel. The peer will accept "
 "tunnelled packets with source IP addresses matching this list and route back "
@@ -4946,6 +5049,12 @@ msgstr "如果选中，则添加“+ipv6”至 pppd 选项"
 msgid "If checked, encryption is disabled"
 msgstr "如果选中，则禁用加密"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:104
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:104
+msgid ""
+"If destination MAC refers to router, replace it with destination MAC address"
+msgstr "如果目标 MAC 指的是路由器，则将其替换为目标 MAC 地址"
+
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:267
 msgid ""
 "If empty, all incoming connections will be allowed (default). This does not "
@@ -5049,20 +5158,20 @@ msgstr "镜像"
 msgid "Image check failed:"
 msgstr "镜像检查失败了："
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:462
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:463
 msgid "Import as peer"
 msgstr "导入为 peer"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:174
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:462
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:463
 msgid "Import configuration"
 msgstr "导入配置文件"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:490
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:491
 msgid "Import configuration as peer…"
 msgstr "将配置导入为对端…"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:476
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:477
 msgid "Import settings"
 msgstr "导入设置"
 
@@ -5070,8 +5179,8 @@ msgstr "导入设置"
 msgid "Imported configuration…"
 msgstr "导入配置…"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:362
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:389
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:363
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:390
 msgid "Imported peer configuration"
 msgstr "导入对端配置"
 
@@ -5599,7 +5708,7 @@ msgstr "入站包密钥（可选）。"
 msgid "Key for outgoing packets (optional)."
 msgstr "出站包密钥（可选）。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:536
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:537
 msgctxt "Label indicating that WireGuard peer lacks public key"
 msgid "Key missing"
 msgstr "密钥缺失"
@@ -5616,6 +5725,12 @@ msgstr "KiB"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/processes.js:65
 msgid "Kill"
 msgstr "强制关闭"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:199
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:199
+msgid ""
+"L2 (MAC) address of peer. Uses source-address learning when %s is specified"
+msgstr "对等体的 L2 (MAC) 地址。当指定 %s 时使用源地址学习"
 
 #: modules/luci-compat/luasrc/model/network/proto_ppp.lua:21
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:11
@@ -5696,6 +5811,11 @@ msgstr "上次握手"
 msgid "Layer 2"
 msgstr ""
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:198
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:198
+msgid "Layer 2 Address"
+msgstr "第 2 层地址"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:622
 msgid "Layer 2+3"
 msgstr ""
@@ -5715,6 +5835,11 @@ msgstr "学习"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1004
 msgid "Learn routes"
 msgstr "学习路由"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:96
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:96
+msgid "Learning"
+msgstr "学习"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:731
 msgid "Learning packets Interval"
@@ -5884,7 +6009,7 @@ msgstr "仅监听这些接口和环回接口。"
 msgid "Listen to multicast beacons"
 msgstr "侦听多播信标"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:285
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:286
 msgid "ListenPort setting is invalid"
 msgstr "ListenPort 设置无效"
 
@@ -5951,7 +6076,7 @@ msgstr "要分配的本地 IP 地址"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:48
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:151
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:44
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:44
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:47
 msgid "Local IPv4 address"
 msgstr "本机 IPv4 地址"
 
@@ -5964,7 +6089,7 @@ msgstr "本地 IPV6 DNS 服务器"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:54
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:51
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:52
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:44
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:47
 msgid "Local IPv6 address"
 msgstr "本机 IPv6 地址"
 
@@ -5984,6 +6109,11 @@ msgstr "本地时间"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1099
 msgid "Local ULA"
 msgstr "本地 ULA"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:48
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:48
+msgid "Local VTEP"
+msgstr "本地 VTEP"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:451
 msgid "Local domain"
@@ -6186,6 +6316,8 @@ msgstr "MII 链路监控"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1565
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:88
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:53
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:83
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:83
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:182
 #: protocols/luci-proto-xfrm/htdocs/luci-static/resources/protocol/xfrm.js:46
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:241
@@ -6280,6 +6412,11 @@ msgstr "匹配选项语法：{tag_match_option_syntax}。"
 msgid "Max <abbr title=\"Router Advertisement\">RA</abbr> interval"
 msgstr "最长 <abbr title=\"路由器通告\">RA</abbr> 间隔"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:90
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:90
+msgid "Max FDB size"
+msgstr "最大 FDB 大小"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:765
 msgid "Max cache TTL"
 msgstr "最大缓存 TTL"
@@ -6332,6 +6469,11 @@ msgstr "帧的最大长度（字节），之后将发生碎片。"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1251
 msgid "Maximum listen interval"
 msgstr "最大监听间隔"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:91
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:91
+msgid "Maximum number of FDB entries"
+msgstr "最大 FDB 条目数"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:688
 msgid "Maximum number of leased addresses."
@@ -6684,6 +6826,11 @@ msgstr "多个参数之间用空格分隔。"
 msgid "Must be in %s format."
 msgstr "必须采用 %s 格式。"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:194
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:194
+msgid "My Peer"
+msgstr "我的 Peer"
+
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:36
 msgid "NAS"
 msgstr ""
@@ -6753,6 +6900,12 @@ msgid ""
 "Name for OpenWrt network configuration. (No relation to wireless network "
 "name/SSID)"
 msgstr "OpenWrt 网络配置的名称。（与无线网络名称/SSID无关）"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:226
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:226
+msgid ""
+"Name of the outgoing interface to reach the remote VXLAN tunnel endpoint"
+msgstr "到达远程 VXLAN 隧道端点的出站接口的名称"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1252
 msgid "Name of the set"
@@ -7013,7 +7166,7 @@ msgstr "没有可用的条目"
 msgid "No entries in this directory"
 msgstr "此目录中没有内容"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:857
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:858
 msgid ""
 "No fixed interface listening port defined, peers might not be able to "
 "initiate connections to this WireGuard instance!"
@@ -7060,7 +7213,7 @@ msgstr "未设置密码！"
 msgid "No peers connected"
 msgstr "未连接对端"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:496
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:497
 msgid "No peers defined yet."
 msgstr "尚未定义对端。"
 
@@ -7272,6 +7425,16 @@ msgstr "关闭时间"
 msgid "On"
 msgstr "开"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:112
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:112
+msgid "On a l2miss, send ARP"
+msgstr "在 l2 未命中时，发送 ARP"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:118
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:118
+msgid "On a l3miss, send ARP for IP -> mac resolution"
+msgstr "在 l3 未命中时，发送 ARP 进行 IP -> mac 解析"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/timer.js:12
 msgid "On-State Delay"
 msgstr "通电时间"
@@ -7451,7 +7614,7 @@ msgstr ""
 "权服务器获取到 IPv6 前缀（如“a:b:c:d::”），使用后缀（如 “::1”）合成 IPv6 地址"
 "（“a:b:c:d::1”）分配给此接口。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:586
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:587
 msgid ""
 "Optional. Base64-encoded preshared key. Adds in an additional layer of "
 "symmetric-key cryptography for post-quantum resistance."
@@ -7463,11 +7626,13 @@ msgstr ""
 msgid "Optional. Bind to a specific interface."
 msgstr "可选。绑定到特定接口。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:643
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:644
 msgid "Optional. Create routes for Allowed IPs for this peer."
 msgstr "可选，为此对端创建允许 IP 的路由。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:504
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:193
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:193
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:505
 msgid "Optional. Description of peer."
 msgstr "可选，对端的描述。"
 
@@ -7475,13 +7640,13 @@ msgstr "可选，对端的描述。"
 msgid "Optional. Do not create host routes to peers."
 msgstr "可选，不要创建到对端的主机路由。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:646
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:647
 msgid ""
 "Optional. Host of peer. Names are resolved prior to bringing up the "
 "interface."
 msgstr "可选，对端主机。名称将会预先被解析以启动接口。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:608
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:609
 msgid ""
 "Optional. IP addresses and prefixes that this peer is allowed to use inside "
 "the tunnel. Usually the peer's tunnel IP addresses and the networks the peer "
@@ -7498,11 +7663,11 @@ msgstr "可选。XFRM 接口的最大传输单元。"
 msgid "Optional. Maximum Transmission Unit of tunnel interface."
 msgstr "可选，隧道接口的最大传输单元。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:662
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:663
 msgid "Optional. Port of peer."
 msgstr "可选，对端的端口。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:577
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:578
 msgid ""
 "Optional. Private key of the WireGuard peer. The key is not required for "
 "establishing a connection but allows generating a peer configuration or QR "
@@ -7512,7 +7677,7 @@ msgstr ""
 "可选。WireGuard 对端的私钥。 该密钥不是建立连接所必需的，但允许生成对端配置"
 "或 二维码（如果可用）。 导出配置后可以将其删除。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:667
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:668
 msgid ""
 "Optional. Seconds between keep alive messages. Default is 0 (disabled). "
 "Recommended value if this device is behind a NAT is 25."
@@ -7631,8 +7796,8 @@ msgstr "重设 MTU"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:79
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:63
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:67
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:67
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:142
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:142
 msgid "Override TOS"
 msgstr "重设 TOS"
 
@@ -7641,8 +7806,8 @@ msgstr "重设 TOS"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:79
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:58
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:62
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:62
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:137
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:137
 msgid "Override TTL"
 msgstr "重设 TTL"
 
@@ -7678,7 +7843,7 @@ msgstr "概览"
 msgid "Overwrite existing file \"%s\" ?"
 msgstr "覆盖已存在的文件“%s”吗？"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:341
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:342
 msgid "Overwrite the current settings with the imported configuration?"
 msgstr "用导入的配置覆盖当前设置？"
 
@@ -7801,7 +7966,7 @@ msgstr "PSID-bits 长度"
 msgid "PSK"
 msgstr ""
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:558
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:559
 msgctxt "Label indicating that WireGuard peer uses a PSK"
 msgid "PSK"
 msgstr "PSK"
@@ -7915,11 +8080,11 @@ msgstr "密码 2"
 msgid "Paste or drag SSH key file…"
 msgstr "粘贴或拖动 SSH 密钥文件……"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:430
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:431
 msgid "Paste or drag WireGuard peer configuration (wg0.conf) file…"
 msgstr "粘贴或拖动 WireGuard peer 配置 (wg0.conf) 文件…"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:423
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:424
 msgid ""
 "Paste or drag a WireGuard configuration (commonly <em>wg0.conf</em>) from "
 "another system below to create a matching peer entry allowing that system to "
@@ -7928,7 +8093,7 @@ msgstr ""
 "将来自另一个系统的 WireGuard 配置（通常是 <em>wg0.conf</em>）粘贴或拖动到下方"
 "创建一个匹配的 peer 条目，其允许该系统连接到本地 WireGuard 接口。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:429
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:430
 msgid "Paste or drag supplied WireGuard configuration file…"
 msgstr "粘贴或拖动提供的 WireGuard 配置文件…"
 
@@ -7957,6 +8122,13 @@ msgstr "对端"
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:51
 msgid "Peer Details"
 msgstr "对端详情"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:207
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:238
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:207
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:238
+msgid "Peer IP"
+msgstr ""
 
 #: protocols/luci-proto-pppossh/htdocs/luci-static/resources/protocol/pppossh.js:89
 msgid "Peer IP address to assign"
@@ -8024,7 +8196,7 @@ msgstr "正在执行无线扫描..."
 msgid "Permission denied"
 msgstr "没有权限"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:667
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:668
 msgid "Persistent Keep Alive"
 msgstr "持续 Keep-Alive"
 
@@ -8032,7 +8204,7 @@ msgstr "持续 Keep-Alive"
 msgid "Persistent reconnect interval"
 msgstr "持续重新连接间隔"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:320
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:321
 msgid "PersistentKeepAlive setting is invalid"
 msgstr "PersistentKeepAlive 设置无效"
 
@@ -8082,6 +8254,8 @@ msgstr "轮询间隔（秒）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1071
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/dropbear.js:23
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:220
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:220
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:294
 msgid "Port"
 msgstr "端口"
@@ -8152,15 +8326,15 @@ msgstr ""
 "在 {tagcodestring} 前面添加 {exclamationmark_invert} 来反转其应用域，例如，将"
 "选项发送到缺少 {tagcodestring} 的主机。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:586
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:587
 msgid "Preshared Key"
 msgstr "预共享密钥"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:557
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:558
 msgid "Preshared key in use"
 msgstr "预共享密钥使用中"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:294
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:295
 msgid "PresharedKey setting is invalid"
 msgstr "PresharedKey 设置无效"
 
@@ -8206,7 +8380,7 @@ msgstr "主端口重选策略"
 msgid "Priority"
 msgstr "优先级"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:552
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:553
 msgctxt "Label indicating that WireGuard peer private key is stored"
 msgid "Private"
 msgstr "Private"
@@ -8217,7 +8391,7 @@ msgid "Private (Prevent communication between MAC VLANs)"
 msgstr "私有（阻止 MAC VLAN 间通信）"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:137
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:577
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:578
 msgid "Private Key"
 msgstr "私钥"
 
@@ -8241,11 +8415,11 @@ msgstr "私钥密码"
 msgid "Private key path"
 msgstr "私钥路径"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:551
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:552
 msgid "Private key present"
 msgstr "存在私钥"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:282
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:283
 msgid "PrivateKey setting is missing or invalid"
 msgstr "PrivateKey 设置丢失或无效"
 
@@ -8298,7 +8472,7 @@ msgid "Pseudo ad-hoc (ahdemo)"
 msgstr "伪装 Ad-Hoc（ahdemo）"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:144
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:572
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:573
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:37
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:54
 msgid "Public Key"
@@ -8308,11 +8482,11 @@ msgstr "公钥"
 msgid "Public key"
 msgstr "公钥"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:534
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:535
 msgid "Public key is missing"
 msgstr "缺少公钥"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:543
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:544
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:101
 msgctxt "Tooltip displaying full WireGuard peer public key"
 msgid "Public key: %h"
@@ -8332,7 +8506,7 @@ msgstr ""
 msgid "Public prefix routed to this device for distribution to clients."
 msgstr "分配到此设备的公共前缀，用以分发到客户端。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:291
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:292
 msgid "PublicKey setting is invalid"
 msgstr "公钥设置无效"
 
@@ -8662,7 +8836,7 @@ msgstr "中继目标"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:50
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:49
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:40
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:41
 msgid "Remote IPv4 address"
 msgstr "远程 IPv4 地址"
 
@@ -8673,7 +8847,7 @@ msgstr "远程 IPv4 地址"
 msgid "Remote IPv4 address or FQDN"
 msgstr "远程 IPv4 地址或 FQDN"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:40
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:41
 msgid "Remote IPv6 address"
 msgstr "远程 IPv6 地址"
 
@@ -8682,6 +8856,11 @@ msgstr "远程 IPv6 地址"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:44
 msgid "Remote IPv6 address or FQDN"
 msgstr "远程 IPv6 地址或 FQDN"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:43
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:43
+msgid "Remote VTEP"
+msgstr "远程 VTEP"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:961
 msgid "Remove"
@@ -8738,6 +8917,11 @@ msgstr "从应答中删除指定类型的记录。"
 msgid "Replace wireless configuration"
 msgstr "重置无线配置"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:108
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:108
+msgid "Reply on Neighbour request when mapping found in VXLAN FDB"
+msgstr "在 VXLAN FDB 中找到映射时回复邻居请求"
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:17
 msgid "Request IPv6-address"
 msgstr "请求 IPv6 地址"
@@ -8791,7 +8975,7 @@ msgstr "必须，此接口的 Base64 编码私钥。"
 msgid "Required. Path to the .yml config file for this interface."
 msgstr "必填。 此接口 .yml 配置文件的路径。"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:572
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:573
 msgid "Required. Public key of the WireGuard peer."
 msgstr "必需。WireGuard 对端的公钥。"
 
@@ -9049,13 +9233,18 @@ msgstr "根目录准备"
 msgid "Round robin"
 msgstr "轮循"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:643
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:644
 msgid "Route Allowed IPs"
 msgstr "路由允许的 IP"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js:532
 msgid "Route action chain \"%h\""
 msgstr "路由动作链 \"%h\""
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:103
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:103
+msgid "Route short-circuit (RSC)"
+msgstr "路由短路（RSC）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:46
 msgid "Route type"
@@ -9595,6 +9784,11 @@ msgctxt "nft ip6 saddr"
 msgid "Source IPv6"
 msgstr "源 IPv6"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:248
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:248
+msgid "Source VNI"
+msgstr "源 VNI"
+
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:57
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:57
 msgid "Source interface"
@@ -9604,6 +9798,11 @@ msgstr "源接口"
 msgctxt "nft ip sport"
 msgid "Source port"
 msgstr "源端口"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:57
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:57
+msgid "Source port range"
+msgstr "源端口范围"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:982
 msgid ""
@@ -9753,8 +9952,8 @@ msgstr ""
 "作为网络。"
 
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:63
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:67
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:67
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:142
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:142
 msgid "Specify a TOS (Type of Service)."
 msgstr "指定 TOS（服务类型）。"
 
@@ -9779,8 +9978,8 @@ msgstr "为封装数据包指定TTL（生存时间），而不是默认值（64�
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:58
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:62
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:62
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:137
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:137
 msgid ""
 "Specify a TTL (Time to Live) for the encapsulating packet other than the "
 "default (64)."
@@ -10259,7 +10458,7 @@ msgid ""
 "DHCP request from this host."
 msgstr "用于此主机的 IP 地址，或<em>忽略</em>来自该主机的任何 DHCP 请求。"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:40
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:41
 msgid "The IPv4 address or the fully-qualified domain name of the remote end."
 msgstr "远程终端的 IPv4 地址或全称域名。"
 
@@ -10271,7 +10470,7 @@ msgid ""
 "The IPv4 address or the fully-qualified domain name of the remote tunnel end."
 msgstr "远程隧道端的 IPv4 地址或完整域名。"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:40
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:41
 msgid "The IPv6 address or the fully-qualified domain name of the remote end."
 msgstr "远程终端的 IPv6 地址或全称域名。"
 
@@ -10327,6 +10526,14 @@ msgstr "MTU 不能超过父设备 MTU 的 %d 字节"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1338
 msgid "The VLAN ID must be unique"
 msgstr "VLAN ID 必须是唯一的"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:85
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:85
+msgid ""
+"The VXLAN header adds 50 bytes of IPv4 encapsulation overhead, 74 bytes for "
+"IPv6."
+msgstr ""
+"VXLAN 报头添加了 50 字节的 IPv4 封装开销，添加了 74 字节的 IPv6 封装开销。"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:197
 msgid "The address through which this %s is reachable"
@@ -10438,7 +10645,7 @@ msgstr "频率与 1 分钟平均 CPU 负载直接成正比。"
 msgid "The gateway address must not be a local IP address"
 msgstr "网关地址不能是本地 IP 地址"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:755
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:756
 msgid ""
 "The generated configuration can be imported into a WireGuard client "
 "application to set up a connection towards this device."
@@ -10500,13 +10707,13 @@ msgstr "IPv6 前缀长度（位）"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:46
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:44
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:44
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:44
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:47
 msgid "The local IPv4 address over which the tunnel is created (optional)."
 msgstr "所创建隧道的本地 IPv4 地址（可选）。"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:44
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:47
 msgid "The local IPv6 address over which the tunnel is created (optional)."
 msgstr "建立隧道的本地 IPv6 地址（可选）。"
 
@@ -10566,7 +10773,7 @@ msgstr ""
 msgid "The private key for your Yggdrasil node"
 msgstr "Yggdrasil 节点私钥"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:776
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:777
 msgid ""
 "The public hostname or IP address of this system the peer should connect to. "
 "This usually is a static public IP address, a static hostname or a DDNS "
@@ -10920,7 +11127,7 @@ msgstr "链接丢失拓扑更新前的超时时间 （以秒为单位）"
 msgid "Timezone"
 msgstr "时区"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:424
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:425
 msgid ""
 "To fully configure the local WireGuard interface from an existing (e.g. "
 "provider supplied) configuration file, use the <strong><a class=\"full-"
@@ -11086,6 +11293,13 @@ msgctxt "nft udp dport"
 msgid "UDP destination port"
 msgstr "UDP 目标端口"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:220
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:220
+msgid ""
+"UDP destination port number to use to connect to the remote VXLAN tunnel "
+"endpoint"
+msgstr "用于连接远程 VXLAN 隧道端点的 UDP 目标端口号"
+
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js:55
 msgctxt "nft udp sport"
 msgid "UDP source port"
@@ -11219,6 +11433,11 @@ msgid ""
 "always 1)."
 msgstr "唯一本地地址 (%s) - 前缀 <code>fd00::/8</code>（L 位始终为 1）。"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:78
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:78
+msgid "Units: seconds"
+msgstr "单位：秒"
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:2092
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3894
 #: modules/luci-compat/luasrc/model/network.lua:971
@@ -11295,7 +11514,7 @@ msgctxt "VLAN port state"
 msgid "Untagged"
 msgstr "未打标签"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:519
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:520
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:97
 msgid "Untitled peer"
 msgstr "无标题的对端"
@@ -11604,6 +11823,13 @@ msgstr "VLAN ID"
 msgid "VLANs on %q"
 msgstr "%q 上的 VLAN"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:128
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:243
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:128
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:243
+msgid "VNI"
+msgstr ""
+
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:63
 msgid "VPN"
 msgstr "VPN"
@@ -11648,16 +11874,16 @@ msgstr "VPNC（CISCO 3000 和其他 VPN）"
 msgid "VTI"
 msgstr "VTI"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:10
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:11
 msgid "VXLAN (RFC7348)"
 msgstr "VXLAN (RFC7348)"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:53
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:53
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:127
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:127
 msgid "VXLAN network identifier"
 msgstr "VXLAN 网络标识符"
 
-#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:10
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:11
 msgid "VXLANv6 (RFC7348)"
 msgstr "VXLANv6 (RFC7348)"
 
@@ -11693,6 +11919,16 @@ msgstr "正在验证上传的镜像文件。"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1014
 msgid "Very High"
 msgstr "非常高"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:226
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:226
+msgid "Via"
+msgstr ""
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:238
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:238
+msgid "Via shall be specified when %s is a multicast address"
+msgstr "当 %s 为多播地址时，应指定 Via"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:403
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1524
@@ -11905,7 +12141,7 @@ msgstr "WireGuard 状态"
 msgid "WireGuard VPN"
 msgstr "WireGuard VPN"
 
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:526
+#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:527
 msgid "WireGuard peer is disabled"
 msgstr "WireGuard 对端被禁用"
 
@@ -12287,6 +12523,16 @@ msgstr "known（已知）"
 msgid "known-othernet (on different subnet)"
 msgstr "known-othernet（在不同的子网上）"
 
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:111
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:111
+msgid "l2miss: Layer 2 miss"
+msgstr "l2miss：第 2 层未命中"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:117
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:117
+msgid "l3miss: Layer 3 miss"
+msgstr "l3miss：第 3 层未命中"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:836
 msgid "managed config (M)"
 msgstr "受管配置 (M)"
@@ -12445,6 +12691,22 @@ msgstr "仅包含字符和数字的字符串。"
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:257
 msgid "string with characters, numbers and spaces only."
 msgstr "仅包含字符、数字和空格的字符串。"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:243
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:243
+msgid ""
+"the VXLAN Network Identifier (or VXLAN Segment ID) to use to connect to the "
+"remote VXLAN tunnel endpoint"
+msgstr "用于连接远程 VXLAN 隧道端点的 VXLAN 网络标识符（或 VXLAN 段 ID）"
+
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:248
+#: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:248
+msgid ""
+"the source VNI Network Identifier (or VXLAN Segment ID) this entry belongs "
+"to. Used only when the VXLAN device is in external or collect metadata mode"
+msgstr ""
+"此条目所属的源 VNI 网络标识符（或 VXLAN 段 ID）。仅当 VXLAN 设备处于外部或收"
+"集元数据模式时使用"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:460
 msgid ""
