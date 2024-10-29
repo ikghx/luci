@@ -512,9 +512,7 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		if (hwval != null) {
 			this.useBandOption = false;
 
-			if (/be/.test(mode.value))
-				band.value = '6g';
-			else if (/ax/.test(mode.value))
+			if (/a/.test(hwval))
 				band.value = '5g';
 			else
 				band.value = '2g';
@@ -1004,7 +1002,7 @@ return view.extend({
 					o = ss.taboption('general', CBIWifiTxPowerValue, 'txpower', _('Maximum transmit power'), _('Maximum transmit power that the wireless radio may use. Depending on regulatory requirements and wireless usage, the actual transmit power may be reduced by the driver.'));
 					o.wifiNetwork = radioNet;
 
-					o = ss.taboption('advanced', CBIWifiCountryValue, 'country', _('Country code'), _('Used to help determine the regulatory requirements that apply to the wireless radio.'));
+					o = ss.taboption('general', CBIWifiCountryValue, 'country', _('Country code'), _('Used to help determine the regulatory requirements that apply to the wireless radio.'));
 					o.wifiNetwork = radioNet;
 
 					o = ss.taboption('advanced', form.ListValue, 'cell_density', _('Coverage cell density'), _('Configures data rates based on the coverage cell density. Normal configures basic rates to 6, 12, 24 Mbps if legacy 802.11b rates are not used else to 5.5, 11 Mbps. High configures basic rates to 12, 24 Mbps if legacy 802.11b rates are not used else to the 11 Mbps rate. Very High configures 24 Mbps as the basic rate. Supported rates lower than the minimum basic rate are not offered.'));
