@@ -314,6 +314,21 @@ return view.extend({
 					if (res.vht_operation.channel_width == 80) {
 						chan_width = 8;
 						res.channel_width = "80 MHz";
+						/* If needed, adjust based on the newer interop workaround. */
+						if (res.vht_operation.center_freq_2) {
+							var diff = res.vht_operation.center_freq_2 -
+								res.vht_operation.center_freq_1;
+							diff = diff < 0 ? -diff: diff;
+							if (diff == 8) {
+								chan_width = 16;
+								res.channel_width = "160 MHz";
+								center_channels.push(res.vht_operation.center_freq_2);
+							} else if (diff > 8) {
+								chan_width = 8;
+								res.channel_width = "80+80 MHz";
+								center_channels.push(res.vht_operation.center_freq_2);
+							}
+						}
 					} else if (res.vht_operation.channel_width == 8080) {
 						res.channel_width = "80+80 MHz";
 						chan_width = 8;
