@@ -316,9 +316,8 @@ return view.extend({
 						res.channel_width = "80 MHz";
 						/* If needed, adjust based on the newer interop workaround. */
 						if (res.vht_operation.center_freq_2) {
-							var diff = res.vht_operation.center_freq_2 -
-								res.vht_operation.center_freq_1;
-							diff = diff < 0 ? -diff: diff;
+							var diff = Math.abs(res.vht_operation.center_freq_2 -
+							                    res.vht_operation.center_freq_1);
 							if (diff == 8) {
 								chan_width = 16;
 								res.channel_width = "160 MHz";

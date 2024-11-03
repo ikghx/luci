@@ -474,7 +474,7 @@ msgstr "关闭"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:254
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:528
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:608
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:623
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:682
 msgid "Close(Not use)"
 msgstr "关闭（不使用）"
@@ -839,15 +839,25 @@ msgstr "客户端启用 0-RTT QUIC 连接握手"
 msgid "Enable Load Balancing"
 msgstr "开启负载均衡"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:600
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:615
 msgid ""
 "Enable Multipath TCP, need to be enabled in both server and client "
 "configuration."
 msgstr "启用 Multipath TCP，需在服务端和客户端配置中同时启用。"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:593
+msgid "Enable Mux.Cool"
+msgstr "启用 Mux.Cool"
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:83
 msgid "Enable Remote"
 msgstr "启用转发"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:577
+msgid ""
+"Enable SplitHTTP XMUX. It's not recommended to enable Mux.Cool at the same "
+"time."
+msgstr "启用 SplitHTTP XMUX。不建议与 Mux.Cool 同时启用。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:40
 msgid "Enable auto update rules"
@@ -1486,7 +1496,7 @@ msgstr "密钥"
 msgid "Lan IP List"
 msgstr "局域网 IP 列表"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:606
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:621
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:680
 msgid "Landing node"
 msgstr "落地节点"
@@ -1671,14 +1681,13 @@ msgstr ""
 msgid "Moving..."
 msgstr "移动中"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:578
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:573
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:580
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:358
 msgid "Mux"
 msgstr "多路复用"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:586
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:601
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:586
 msgid "Mux concurrency"
 msgstr "最大并发连接数"
@@ -1883,7 +1892,7 @@ msgstr "仅网页"
 msgid "Only recommend to use with VLESS-TCP-XTLS-Vision."
 msgstr "只推荐与 VLESS-TCP-XTLS-Vision 搭配使用。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:606
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:621
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:680
 msgid "Only support a layer of proxy."
 msgstr "仅支持一层代理。"
@@ -3170,7 +3179,23 @@ msgstr ""
 msgid "Working..."
 msgstr "连接正常"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:595
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:589
+msgid "XMUX Connection Max Lifetime (ms)"
+msgstr "XMUX 连接最大存活时间（ms）"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:586
+msgid "XMUX Connection Max Reuse Times"
+msgstr "XMUX 连接最多复用次数"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:580
+msgid "XMUX Max Concurrency"
+msgstr "XMUX 连接最大复用流数"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:583
+msgid "XMUX Max Connections"
+msgstr "XMUX 最大连接数"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:610
 msgid "XUDP Mux concurrency"
 msgstr "XUDP 最大并发连接数"
 
@@ -3335,8 +3360,4 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:13
 msgid "v2fly/domain-list-community"
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:591
-msgid "xMux"
 msgstr ""
