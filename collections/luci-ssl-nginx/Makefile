@@ -17,7 +17,7 @@ LUCI_DEPENDS:= \
 	+luci \
 	+openssl-util \
 	+nginx-ssl \
-	+nginx-mod-luci-ssl
+	+nginx-mod-luci
 
 PKG_LICENSE:=Apache-2.0
 
