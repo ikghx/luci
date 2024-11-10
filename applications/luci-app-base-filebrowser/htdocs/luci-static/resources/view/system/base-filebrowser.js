@@ -35,7 +35,7 @@ var config = {
     paddingMin: 5,
     paddingMax: 20,
     currentDirectory: '/', // Added currentDirectory setting
-    windowSizes: {          // Добавлено свойство windowSizes
+    windowSizes: { // Added windowSizes setting
         width: 800,
         height: 400
     },
@@ -44,7 +44,6 @@ var config = {
     }
 };
 
-// Подпрограмма для загрузки файла
 function uploadFile(filename, filedata, onProgress) {
     return new Promise(function(resolve, reject) {
         var formData = new FormData();
@@ -89,7 +88,7 @@ function loadConfig() {
                 // Check if the line contains multiple "option" sections and split them
                 var splitLines = line.split("option").filter(Boolean);
                 splitLines.forEach(function(subline) {
-                    subline = "option " + subline.trim();  // Add "option" back to each subline
+                    subline = "option " + subline.trim(); // Add "option" back to each subline
 
                     var parts = subline.match(/^option\s+(\S+)\s+'([^']+)'$/);
                     if (parts && parts.length === 3) {
@@ -126,7 +125,7 @@ function loadConfig() {
             }
         });
     }).catch(function(err) {
-        console.error("Failed to load config: " + err);  // Log error if reading the config file fails
+        console.error("Failed to load config: " + err); // Log error if reading the config file fails
     });
 }
 
@@ -172,7 +171,12 @@ function joinPath(path, name) {
 // Function to convert symbolic permissions to numeric
 function symbolicToNumeric(permissions) {
     var specialPerms = 0;
-    var permMap = { 'r': 4, 'w': 2, 'x': 1, '-': 0 };
+    var permMap = {
+        'r': 4,
+        'w': 2,
+        'x': 1,
+        '-': 0
+    };
     var numeric = '';
 
     for (var i = 0; i < permissions.length; i += 3) {
@@ -215,12 +219,12 @@ function getFileList(path) {
             return Promise.reject(new Error('Failed to list directory: ' + errorMessage));
         }
 
-        // Проверяем, определено ли res.stdout, и устанавливаем пустую строку по умолчанию
+        // Check if  res.stdout id defined and set null string as a default
         var stdout = res.stdout || '';
         var lines = stdout.trim().split('\n');
         var files = [];
 
-        // Если директория пуста, lines будет содержать пустой массив, и мы просто вернем пустой список файлов
+        // If folder is empty, lines would contain an empty array and we simply return an empty file list
         lines.forEach(function(line) {
             if (line.startsWith('total') || !line.trim()) return;
 
@@ -274,6 +278,61 @@ function getFileList(path) {
     });
 }
 
+function insertCss(cssContent) {
+    var styleElement = document.createElement('style');
+    styleElement.type = 'text/css';
+    styleElement.appendChild(document.createTextNode(cssContent));
+    document.head.appendChild(styleElement);
+}
+
+var cssContent = '.cbi-button-apply, .cbi-button-reset, .cbi-button-save:not(.custom-save-button) { display: none !important; }' +
+    '.cbi-page-actions { background: none !important; border: none !important; padding: ' + config.padding + 'px 0 !important; margin: 0 !important; }' +
+    '.cbi-tabmenu { background: none !important; border: none !important; margin: 0 !important; padding: 0 !important; }' +
+    '.cbi-tabmenu li { display: inline-block; margin-right: 10px; }' +
+    '#file-list-container { margin-top: 30px !important; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; padding: 0; min-width: 600px; position: relative; }' +
+    '#content-editor { margin-top: 30px !important; }' +
+    '#editor-container textarea { ' +
+    'min-width: 300px !important; ' +
+    'max-width: 100% !important; ' +
+    'min-height: 200px !important; ' +
+    'max-height: 80vh !important; ' +
+    'resize: both !important; ' +
+    'overflow: auto !important; ' +
+    'font-family: monospace !important; ' +
+    'white-space: pre !important; ' +
+    'overflow-x: auto !important; ' +
+    'word-wrap: normal !important; ' +
+    '}' +
+    'th { text-align: left !important; position: sticky; top: 0; border-right: 1px solid #ddd; box-sizing: border-box; padding-right: 30px; white-space: nowrap; min-width: 100px; background-color: #fff; z-index: 2; }' +
+    'td { text-align: left !important; border-right: 1px solid #ddd; box-sizing: border-box; white-space: nowrap; min-width: 100px; overflow: hidden; text-overflow: ellipsis; }' +
+    'tr:hover { background-color: #f0f0f0 !important; }' +
+    '.download-button { color: green; cursor: pointer; margin-left: 5px; }' +
+    '.delete-button { color: red; cursor: pointer; margin-left: 5px; }' +
+    '.edit-button { color: blue; cursor: pointer; margin-left: 5px; }' +
+    '.symlink { color: green; }' +
+    '.status-link { color: blue; text-decoration: underline; cursor: pointer; }' +
+    '.action-button { margin-right: 10px; cursor: pointer; }' +
+    '.size-cell { text-align: right; font-family: monospace; box-sizing: border-box; white-space: nowrap; display: flex; justify-content: flex-end; align-items: center; }' +
+    '.size-number { display: inline-block; width: 8ch; text-align: right; }' +
+    '.size-unit { display: inline-block; width: 4ch; text-align: right; margin-left: 0.5ch; }' +
+    '.table { table-layout: fixed; border-collapse: collapse; white-space: nowrap; width: 100%; }' +
+    '.table th:nth-child(3), .table td:nth-child(3) { width: 100px; min-width: 100px; max-width: 500px; }' +
+    '.table th:nth-child(3) + th, .table td:nth-child(3) + td { padding-left: 10px; }' +
+    '.resizer { position: absolute; right: 0; top: 0; width: 5px; height: 100%; cursor: col-resize; user-select: none; z-index: 3; }' +
+    '.resizer::after { content: ""; position: absolute; right: 2px; top: 0; width: 1px; height: 100%; background: #aaa; }' +
+    '#file-list-container.resizable { resize: both; overflow: auto; }' +
+    '.sort-button { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; font-size: 12px; }' +
+    '.sort-button:focus { outline: none; }' +
+    '#status-bar { margin-top: 10px; padding: 10px; background-color: #f9f9f9; border: 1px solid #ccc; min-height: 40px; display: flex; align-items: center; justify-content: space-between; }' +
+    '#status-info { font-weight: bold; display: flex; align-items: center; }' +
+    '#status-progress { width: 50%; }' +
+    '.cbi-progressbar { width: 100%; background-color: #e0e0e0; border-radius: 5px; overflow: hidden; height: 10px; }' +
+    '.cbi-progressbar div { height: 100%; background-color: #76c7c0; width: 0%; transition: width 0.2s; }' +
+    '.file-manager-header { display: flex; align-items: center; }' +
+    '.file-manager-header h2 { margin: 0; }' +
+    '.file-manager-header input { margin-left: 10px; width: 100%; max-width: 700px; font-size: 18px; }' +
+    '.file-manager-header button { margin-left: 10px; font-size: 18px; }';
+
 return view.extend({
     load: function() {
         var self = this;
@@ -284,126 +343,195 @@ return view.extend({
     },
     render: function(data) {
         var self = this;
+        // Add CSS styles
+        insertCss(cssContent);
 
-        var viewContainer = E('div', { 'id': 'file-manager-container' }, [
-            E('div', { 'class': 'file-manager-header' }, [
+        var viewContainer = E('div', {
+            'id': 'file-manager-container'
+        }, [
+            E('div', {
+                'class': 'file-manager-header'
+            }, [
                 E('h2', {}, _('File Manager: ')),
-                E('input', { 'type': 'text', 'id': 'path-input', 'value': currentPath, 'style': 'margin-left: 10px; ' }),
-                E('button', { 'id': 'go-button', 'click': this.handleGoButtonClick.bind(this), 'style': 'margin-left: 10px;' }, _('Go'))
+                E('input', {
+                    'type': 'text',
+                    'id': 'path-input',
+                    'value': currentPath,
+                    'style': 'margin-left: 10px;'
+                }),
+                E('button', {
+                    'id': 'go-button',
+                    'click': this.handleGoButtonClick.bind(this),
+                    'style': 'margin-left: 10px;'
+                }, _('Go'))
             ]),
-            E('style', {},
-                '.cbi-button-apply, .cbi-button-reset, .cbi-button-save:not(.custom-save-button) { display: none !important; }' +
-                '.cbi-page-actions { background: none !important; border: none !important; padding: ' + config.padding + 'px 0 !important; margin: 0 !important; }' +
-                '.cbi-tabmenu { background: none !important; border: none !important; margin: 0 !important; padding: 0 !important; }' +
-                '.cbi-tabmenu li { display: inline-block; margin-right: 10px; }' +
-                '#file-list-container { margin-top: 30px !important; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; padding: 0; min-width: 600px; position: relative; }' +
-                '#content-editor { margin-top: 30px !important; }' +
-                '#editor-container textarea { ' +
-                'min-width: 300px !important; ' +
-                'max-width: 100% !important; ' +
-                'min-height: 200px !important; ' +
-                'max-height: 80vh !important; ' +
-                'resize: both !important; ' +
-                'overflow: auto !important; ' +
-                'font-family: monospace !important; ' +
-                'white-space: pre !important; ' +
-                'overflow-x: auto !important; ' +
-                'word-wrap: normal !important; ' +
-                '}' +
-                'th { text-align: left !important; position: sticky; top: 0; border-right: 1px solid #ddd; box-sizing: border-box; padding-right: 30px; white-space: nowrap; min-width: 100px; background-color: #fff; z-index: 2; }' +
-                'td { text-align: left !important; border-right: 1px solid #ddd; box-sizing: border-box; white-space: nowrap; min-width: 100px; overflow: hidden; text-overflow: ellipsis; }' +
-                'tr:hover { background-color: #f0f0f0 !important; }' +
-                '.download-button { color: green; cursor: pointer; margin-left: 5px; }' +
-                '.delete-button { color: red; cursor: pointer; margin-left: 5px; }' +
-                '.edit-button { color: blue; cursor: pointer; margin-left: 5px; }' +
-                '.symlink { color: green; }' +
-                '.status-link { color: blue; text-decoration: underline; cursor: pointer; }' +
-                '.action-button { margin-right: 10px; cursor: pointer; }' +
-                '.size-cell { text-align: right; font-family: monospace; box-sizing: border-box; white-space: nowrap; display: flex; justify-content: flex-end; align-items: center; }' +
-                '.size-number { display: inline-block; width: 8ch; text-align: right; }' +
-                '.size-unit { display: inline-block; width: 4ch; text-align: right; margin-left: 0.5ch; }' +
-                '.table { table-layout: fixed; border-collapse: collapse; white-space: nowrap; width: 100%; }' +
-                '.table th:nth-child(3), .table td:nth-child(3) { width: 100px; min-width: 100px; max-width: 500px; }' +
-                '.table th:nth-child(3) + th, .table td:nth-child(3) + td { padding-left: 10px; }' +
-                '.resizer { position: absolute; right: 0; top: 0; width: 5px; height: 100%; cursor: col-resize; user-select: none; z-index: 3; }' +
-                '.resizer::after { content: ""; position: absolute; right: 2px; top: 0; width: 1px; height: 100%; background: #aaa; }' +
-                '#file-list-container.resizable { resize: both; overflow: auto; }' +
-                '.sort-button { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; font-size: 12px; }' +
-                '.sort-button:focus { outline: none; }' +
-                '#status-bar { margin-top: 10px; padding: 10px; background-color: #f9f9f9; border: 1px solid #ccc; min-height: 40px; display: flex; align-items: center; justify-content: space-between; }' +
-                '#status-info { font-weight: bold; display: flex; align-items: center; }' +
-                '#status-progress { width: 50%; }' +
-                '.cbi-progressbar { width: 100%; background-color: #e0e0e0; border-radius: 5px; overflow: hidden; height: 10px; }' +
-                '.cbi-progressbar div { height: 100%; background-color: #76c7c0; width: 0%; transition: width 0.2s; }'+
-                '.file-manager-header { display: flex; align-items: center; }' +
-                '.file-manager-header h2 { margin: 0; }' +
-                '.file-manager-header input { margin-left: 10px; width: 100%; max-width: 700px; font-size: 18px; }' +
-                '.file-manager-header button { margin-left: 10px; font-size: 18px; }'
-            ),
-            E('div', { 'class': 'cbi-tabcontainer', 'id': 'tab-group' }, [
-                E('ul', { 'class': 'cbi-tabmenu' }, [
-                    E('li', { 'class': 'cbi-tab cbi-tab-active', 'id': 'tab-filemanager' }, [
-                        E('a', { 'href': '#', 'click': this.switchToTab.bind(this, 'filemanager') }, _('File Manager'))
+            E('div', {
+                'class': 'cbi-tabcontainer',
+                'id': 'tab-group'
+            }, [
+                E('ul', {
+                    'class': 'cbi-tabmenu'
+                }, [
+                    E('li', {
+                        'class': 'cbi-tab cbi-tab-active',
+                        'id': 'tab-filemanager'
+                    }, [
+                        E('a', {
+                            'href': '#',
+                            'click': this.switchToTab.bind(this, 'filemanager')
+                        }, _('File Manager'))
                     ]),
-                    E('li', { 'class': 'cbi-tab', 'id': 'tab-editor' }, [
-                        E('a', { 'href': '#', 'click': this.switchToTab.bind(this, 'editor') }, _('Editor'))
+                    E('li', {
+                        'class': 'cbi-tab',
+                        'id': 'tab-editor'
+                    }, [
+                        E('a', {
+                            'href': '#',
+                            'click': this.switchToTab.bind(this, 'editor')
+                        }, _('Editor'))
                     ]),
-                    E('li', { 'class': 'cbi-tab', 'id': 'tab-settings' }, [
-                        E('a', { 'href': '#', 'click': this.switchToTab.bind(this, 'settings') }, _('Settings'))
+                    E('li', {
+                        'class': 'cbi-tab',
+                        'id': 'tab-settings'
+                    }, [
+                        E('a', {
+                            'href': '#',
+                            'click': this.switchToTab.bind(this, 'settings')
+                        }, _('Settings'))
                     ])
                 ])
             ]),
-            E('div', { 'class': 'cbi-tabcontainer-content' }, [
-                E('div', { 'id': 'content-filemanager', 'class': 'cbi-tab', 'style': 'display:block;' }, [
-                    E('div', { 'id': 'file-list-container','class': 'resizable', 'style': 'width: ' + config.windowSizes.width + 'px; height: ' + config.windowSizes.height + 'px;' }, [
-                        E('table', { 'class': 'table', 'id': 'file-table' }, [
+            E('div', {
+                'class': 'cbi-tabcontainer-content'
+            }, [
+                E('div', {
+                    'id': 'content-filemanager',
+                    'class': 'cbi-tab',
+                    'style': 'display:block;'
+                }, [
+                    E('div', {
+                        'id': 'file-list-container',
+                        'class': 'resizable',
+                        'style': 'width: ' + config.windowSizes.width + 'px; height: ' + config.windowSizes.height + 'px;'
+                    }, [
+                        E('table', {
+                            'class': 'table',
+                            'id': 'file-table'
+                        }, [
                             E('thead', {}, [
                                 E('tr', {}, [
-                                    E('th', { 'data-field': 'name' }, [
+                                    E('th', {
+                                        'data-field': 'name'
+                                    }, [
                                         _('Name'),
-                                        E('button', { 'class': 'sort-button', 'data-field': 'name', 'title': 'Sort by Name' }, '↕'),
-                                        E('div', { 'class': 'resizer' })
+                                        E('button', {
+                                            'class': 'sort-button',
+                                            'data-field': 'name',
+                                            'title': _('Sort by Name')
+                                        }, '↕'),
+                                        E('div', {
+                                            'class': 'resizer'
+                                        })
                                     ]),
-                                    E('th', { 'data-field': 'type' }, [
+                                    E('th', {
+                                        'data-field': 'type'
+                                    }, [
                                         _('Type'),
-                                        E('button', { 'class': 'sort-button', 'data-field': 'type', 'title': 'Sort by Type' }, '↕'),
-                                        E('div', { 'class': 'resizer' })
+                                        E('button', {
+                                            'class': 'sort-button',
+                                            'data-field': 'type',
+                                            'title': _('Sort by Type')
+                                        }, '↕'),
+                                        E('div', {
+                                            'class': 'resizer'
+                                        })
                                     ]),
-                                    E('th', { 'data-field': 'size' }, [
+                                    E('th', {
+                                        'data-field': 'size'
+                                    }, [
                                         _('Size'),
-                                        E('button', { 'class': 'sort-button', 'data-field': 'size', 'title': 'Sort by Size' }, '↕'),
-                                        E('div', { 'class': 'resizer' })
+                                        E('button', {
+                                            'class': 'sort-button',
+                                            'data-field': 'size',
+                                            'title': _('Sort by Size')
+                                        }, '↕'),
+                                        E('div', {
+                                            'class': 'resizer'
+                                        })
                                     ]),
-                                    E('th', { 'data-field': 'mtime' }, [
+                                    E('th', {
+                                        'data-field': 'mtime'
+                                    }, [
                                         _('Last Modified'),
-                                        E('button', { 'class': 'sort-button', 'data-field': 'mtime', 'title': 'Sort by Last Modified' }, '↕'),
-                                        E('div', { 'class': 'resizer' })
+                                        E('button', {
+                                            'class': 'sort-button',
+                                            'data-field': 'mtime',
+                                            'title': _('Sort by Last Modified')
+                                        }, '↕'),
+                                        E('div', {
+                                            'class': 'resizer'
+                                        })
                                     ]),
                                     E('th', {}, _('Actions'))
                                 ])
                             ]),
-                            E('tbody', { 'id': 'file-list' })
+                            E('tbody', {
+                                'id': 'file-list'
+                            })
                         ])
                     ]),
-                    E('div', { 'id': 'status-bar' }, [
-                        E('div', { 'id': 'status-info' }, _('No file selected.')),
-                        E('div', { 'id': 'status-progress' })
+                    E('div', {
+                        'id': 'status-bar'
+                    }, [
+                        E('div', {
+                            'id': 'status-info'
+                        }, _('No file selected.')),
+                        E('div', {
+                            'id': 'status-progress'
+                        })
                     ]),
-                    E('div', { 'class': 'cbi-page-actions' }, [
-                        E('button', { 'class': 'btn action-button', 'click': this.handleUploadClick.bind(this) }, _('Upload File')),
-                        E('button', { 'class': 'btn action-button', 'click': this.handleMakeDirectoryClick.bind(this) }, _('Make Directory')),
-                        E('button', { 'class': 'btn action-button', 'click': this.handleCreateFileClick.bind(this) }, _('Create File')) // Новая кнопка
+                    E('div', {
+                        'class': 'cbi-page-actions'
+                    }, [
+                        E('button', {
+                            'class': 'btn action-button',
+                            'click': this.handleUploadClick.bind(this)
+                        }, _('Upload File')),
+                        E('button', {
+                            'class': 'btn action-button',
+                            'click': this.handleMakeDirectoryClick.bind(this)
+                        }, _('Make Directory')),
+                        E('button', {
+                            'class': 'btn action-button',
+                            'click': this.handleCreateFileClick.bind(this)
+                        }, _('Create File'))
                     ])
                 ]),
-                E('div', { 'id': 'content-editor', 'class': 'cbi-tab', 'style': 'display:none;' }, [
+                E('div', {
+                    'id': 'content-editor',
+                    'class': 'cbi-tab',
+                    'style': 'display:none;'
+                }, [
                     E('p', {}, _('Select a file from the list to edit it here.')),
-                    E('div', { 'id': 'editor-container' })
+                    E('div', {
+                        'id': 'editor-container'
+                    })
                 ]),
-                E('div', { 'id': 'content-settings', 'class': 'cbi-tab', 'style': 'display:none;' }, [
-                    E('div', { 'style': 'margin-top: 20px;' }, [
+                E('div', {
+                    'id': 'content-settings',
+                    'class': 'cbi-tab',
+                    'style': 'display:none;'
+                }, [
+                    E('div', {
+                        'style': 'margin-top: 20px;'
+                    }, [
                         E('h3', {}, _('Interface Settings')),
-                        E('div', { 'id': 'settings-container' }, [
-                            E('form', { 'id': 'settings-form' }, [
+                        E('div', {
+                            'id': 'settings-container'
+                        }, [
+                            E('form', {
+                                'id': 'settings-form'
+                            }, [
                                 E('div', {}, [
                                     E('label', {}, _('Window Width:')),
                                     E('input', {
@@ -482,7 +610,7 @@ return view.extend({
                                         'style': 'width:100%; margin-bottom:10px;'
                                     })
                                 ]),
-                                E('div', {}, [ // Added current directory input field
+                                E('div', {}, [
                                     E('label', {}, _('Current Directory:')),
                                     E('input', {
                                         'type': 'text',
@@ -492,7 +620,9 @@ return view.extend({
                                     })
                                 ]),
                                 // Add other settings fields here
-                                E('div', { 'class': 'cbi-page-actions' }, [
+                                E('div', {
+                                    'class': 'cbi-page-actions'
+                                }, [
                                     E('button', {
                                         'class': 'btn cbi-button-save custom-save-button',
                                         'click': this.handleSaveSettings.bind(this)
@@ -518,7 +648,7 @@ return view.extend({
 
         this.loadFileList(currentPath).then(function() {
             self.initResizableColumns();
-            // Добавляем наблюдатель за изменением размера окна
+            // Add resize observer for window resizing
             var fileListContainer = document.getElementById('file-list-container');
             if (fileListContainer && typeof ResizeObserver !== 'undefined') {
                 var resizeObserver = new ResizeObserver(function(entries) {
@@ -534,48 +664,48 @@ return view.extend({
         });
         return viewContainer;
     },
-switchToTab: function(tab) {
-    var fileManagerContent = document.getElementById('content-filemanager');
-    var editorContent = document.getElementById('content-editor');
-    var settingsContent = document.getElementById('content-settings');
-    var tabFileManager = document.getElementById('tab-filemanager');
-    var tabEditor = document.getElementById('tab-editor');
-    var tabSettings = document.getElementById('tab-settings');
+    switchToTab: function(tab) {
+        var fileManagerContent = document.getElementById('content-filemanager');
+        var editorContent = document.getElementById('content-editor');
+        var settingsContent = document.getElementById('content-settings');
+        var tabFileManager = document.getElementById('tab-filemanager');
+        var tabEditor = document.getElementById('tab-editor');
+        var tabSettings = document.getElementById('tab-settings');
 
-    if (fileManagerContent && editorContent && settingsContent && tabFileManager && tabEditor && tabSettings) {
-        fileManagerContent.style.display = (tab === 'filemanager') ? 'block' : 'none';
-        editorContent.style.display = (tab === 'editor') ? 'block' : 'none';
-        settingsContent.style.display = (tab === 'settings') ? 'block' : 'none';
-        tabFileManager.className = (tab === 'filemanager') ? 'cbi-tab cbi-tab-active' : 'cbi-tab';
-        tabEditor.className = (tab === 'editor') ? 'cbi-tab cbi-tab-active' : 'cbi-tab';
-        tabSettings.className = (tab === 'settings') ? 'cbi-tab cbi-tab-active' : 'cbi-tab';
+        if (fileManagerContent && editorContent && settingsContent && tabFileManager && tabEditor && tabSettings) {
+            fileManagerContent.style.display = (tab === 'filemanager') ? 'block' : 'none';
+            editorContent.style.display = (tab === 'editor') ? 'block' : 'none';
+            settingsContent.style.display = (tab === 'settings') ? 'block' : 'none';
+            tabFileManager.className = (tab === 'filemanager') ? 'cbi-tab cbi-tab-active' : 'cbi-tab';
+            tabEditor.className = (tab === 'editor') ? 'cbi-tab cbi-tab-active' : 'cbi-tab';
+            tabSettings.className = (tab === 'settings') ? 'cbi-tab cbi-tab-active' : 'cbi-tab';
 
-        if (tab === 'settings') {
-            this.loadSettings(); // Загружаем настройки при переходе на закладку
-        }
-    }
-},
-handleGoButtonClick: function() {
-    var self = this;
-    var pathInput = document.getElementById('path-input');
-    if (pathInput) {
-        var newPath = pathInput.value.trim() || '/';
-        // Проверяем, существует ли путь и является ли он директорией
-        fs.stat(newPath).then(function(stat) {
-            if (stat.type === 'directory') {
-                currentPath = newPath;
-                pathInput.value = currentPath;
-                self.loadFileList(currentPath).then(function() {
-                    self.initResizableColumns();
-                });
-            } else {
-                ui.addNotification(null, E('p', _('The specified path is not a directory.')), 'error');
+            if (tab === 'settings') {
+                this.loadSettings(); // Load sttings when go to  this tab
             }
-        }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Unable to access the specified path: %s').format(err.message)), 'error');
-        });
-    }
-},
+        }
+    },
+    handleGoButtonClick: function() {
+        var self = this;
+        var pathInput = document.getElementById('path-input');
+        if (pathInput) {
+            var newPath = pathInput.value.trim() || '/';
+            // Check if the path exists and if it is a folder
+            fs.stat(newPath).then(function(stat) {
+                if (stat.type === 'directory') {
+                    currentPath = newPath;
+                    pathInput.value = currentPath;
+                    self.loadFileList(currentPath).then(function() {
+                        self.initResizableColumns();
+                    });
+                } else {
+                    ui.addNotification(null, E('p', _('The specified path does not appear to be a directory.')), 'error');
+                }
+            }).catch(function(err) {
+                ui.addNotification(null, E('p', _('Failed to access the specified path: %s'.format(err.message))), 'error');
+            });
+        }
+    },
     handleUploadClick: function(ev) {
         var self = this;
         var directoryPath = currentPath;
@@ -604,8 +734,13 @@ handleGoButtonClick: function() {
             }
             if (statusProgress) {
                 statusProgress.innerHTML = '';
-                var progressBarContainer = E('div', { 'class': 'cbi-progressbar', 'title': '0%' }, [
-                    E('div', { 'style': 'width:0%' })
+                var progressBarContainer = E('div', {
+                    'class': 'cbi-progressbar',
+                    'title': '0%'
+                }, [
+                    E('div', {
+                        'style': 'width:0%'
+                    })
                 ]);
                 statusProgress.appendChild(progressBarContainer);
             }
@@ -697,27 +832,27 @@ handleGoButtonClick: function() {
             if (statusInfo) statusInfo.textContent = _('No file selected.');
             if (statusProgress) statusProgress.innerHTML = '';
         }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Failed to create directory: %s').format(err.message)), 'error');
+            ui.addNotification(null, E('p', _('Failed to create directory: %s'.format(err.message))), 'error');
         });
     },
-    handleCreateFileClick: function(ev) { // Новый метод
+    handleCreateFileClick: function(ev) {
         var self = this;
         var statusInfo = document.getElementById('status-info');
         var statusProgress = document.getElementById('status-progress');
 
         if (statusInfo && statusProgress) {
-            // Очистка предыдущих уведомлений
+            // Clear old notifications
             statusInfo.innerHTML = '';
             statusProgress.innerHTML = '';
 
-            // Создание поля ввода для имени файла
+            // Creating a field for entering a file name
             var fileNameInput = E('input', {
                 'type': 'text',
                 'placeholder': _('File Name'),
                 'style': 'margin-right: 10px;'
             });
 
-            // Создание кнопки "Создать"
+            // Creatibg button "Create"
             var createButton = E('button', {
                 'class': 'btn',
                 'disabled': true,
@@ -726,7 +861,7 @@ handleGoButtonClick: function() {
                 }
             }, _('Create'));
 
-            // Включение кнопки при вводе имени файла
+            // Switching on the button on entering file name
             fileNameInput.addEventListener('input', function() {
                 if (fileNameInput.value.trim()) {
                     createButton.disabled = false;
@@ -735,13 +870,13 @@ handleGoButtonClick: function() {
                 }
             });
 
-            // Добавление элементов в интерфейс
+            // Adding elements the the interface
             statusInfo.appendChild(E('span', {}, _('Create File: ')));
             statusInfo.appendChild(fileNameInput);
             statusProgress.appendChild(createButton);
         }
     },
-    createFile: function(fileName) { // Новый метод
+    createFile: function(fileName) {
         var self = this;
         var filePath = joinPath(currentPath, fileName.trim());
 
@@ -755,13 +890,12 @@ handleGoButtonClick: function() {
                 self.initResizableColumns();
             });
 
-            // Очистка уведомлений
             var statusInfo = document.getElementById('status-info');
             var statusProgress = document.getElementById('status-progress');
             if (statusInfo) statusInfo.textContent = _('No file selected.');
             if (statusProgress) statusProgress.innerHTML = '';
         }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Failed to create file: %s').format(err.message)), 'error');
+            ui.addNotification(null, E('p', _('Failed to create file: %s'.format(err.message))), 'error');
         });
     },
     loadFileList: function(path) {
@@ -769,7 +903,7 @@ handleGoButtonClick: function() {
         return getFileList(path).then(function(files) {
             var fileList = document.getElementById('file-list');
             if (!fileList) {
-                ui.addNotification(null, E('p', _('Failed to find the file list container.')), 'error');
+                ui.addNotification(null, E('p', _('Failed to display the file list.')), 'error');
                 return;
             }
             fileList.innerHTML = '';
@@ -777,9 +911,19 @@ handleGoButtonClick: function() {
 
             if (path !== '/') {
                 var parentPath = path.substring(0, path.lastIndexOf('/')) || '/';
-                var listItemUp = E('tr', { 'data-file-path': parentPath, 'data-file-type': 'directory' }, [
-                    E('td', { 'colspan': 5 }, [
-                        E('a', { 'href': '#', 'click': function() { self.handleDirectoryClick(parentPath); } }, _('←(Parent Directory)'))
+                var listItemUp = E('tr', {
+                    'data-file-path': parentPath,
+                    'data-file-type': 'directory'
+                }, [
+                    E('td', {
+                        'colspan': 5
+                    }, [
+                        E('a', {
+                            'href': '#',
+                            'click': function() {
+                                self.handleDirectoryClick(parentPath);
+                            }
+                        }, _('←(Parent Directory)')
                     ])
                 ]);
                 fileList.appendChild(listItemUp);
@@ -809,10 +953,17 @@ handleGoButtonClick: function() {
                             }, file.name)
                         ]),
                         E('td', {}, _('Directory')),
-                        E('td', { 'class': 'size-cell' }, [
-                            E('span', { 'class': 'size-number' }, '-'),
-                            E('span', { 'class': 'size-unit' }, '')
+                        E('td', {
+                            'class': 'size-cell'
+                        }, [
+                            E('span', {
+                                'class': 'size-number'
+                            }, '-'),
+                            E('span', {
+                                'class': 'size-unit'
+                            }, '')
                         ]),
+                        // Display the file's last modified time in the user's local timezone
                         E('td', {}, new Date(file.mtime * 1000).toLocaleString()),
                         E('td', {}, [
                             E('span', {
@@ -849,9 +1000,15 @@ handleGoButtonClick: function() {
                             }, file.name)
                         ]),
                         E('td', {}, _('File')),
-                        E('td', { 'class': 'size-cell' }, [
-                            E('span', { 'class': 'size-number' }, self.getFormattedSize(file.size).number),
-                            E('span', { 'class': 'size-unit' }, self.getFormattedSize(file.size).unit)
+                        E('td', {
+                            'class': 'size-cell'
+                        }, [
+                            E('span', {
+                                'class': 'size-number'
+                            }, self.getFormattedSize(file.size).number),
+                            E('span', {
+                                'class': 'size-unit'
+                            }, self.getFormattedSize(file.size).unit)
                         ]),
                         E('td', {}, new Date(file.mtime * 1000).toLocaleString()),
                         E('td', {}, [
@@ -883,13 +1040,21 @@ handleGoButtonClick: function() {
                     if (symlinkSize >= 0) {
                         var formattedSize = self.getFormattedSize(symlinkSize);
                         sizeContent = [
-                            E('span', { 'class': 'size-number' }, formattedSize.number),
-                            E('span', { 'class': 'size-unit' }, formattedSize.unit)
+                            E('span', {
+                                'class': 'size-number'
+                            }, formattedSize.number),
+                            E('span', {
+                                'class': 'size-unit'
+                            }, formattedSize.unit)
                         ];
                     } else {
                         sizeContent = [
-                            E('span', { 'class': 'size-number' }, '-'),
-                            E('span', { 'class': 'size-unit' }, '')
+                            E('span', {
+                                'class': 'size-number'
+                            }, '-'),
+                            E('span', {
+                                'class': 'size-unit'
+                            }, '')
                         ];
                     }
 
@@ -913,7 +1078,9 @@ handleGoButtonClick: function() {
                             }, symlinkName)
                         ]),
                         E('td', {}, _('Symlink')),
-                        E('td', { 'class': 'size-cell' }, sizeContent),
+                        E('td', {
+                            'class': 'size-cell'
+                        }, sizeContent),
                         E('td', {}, new Date(file.mtime * 1000).toLocaleString()),
                         E('td', {}, [
                             E('span', {
@@ -931,12 +1098,21 @@ handleGoButtonClick: function() {
                         ])
                     ]);
                 } else {
-                    listItem = E('tr', { 'data-file-path': joinPath(path, file.name), 'data-file-type': 'unknown' }, [
+                    listItem = E('tr', {
+                        'data-file-path': joinPath(path, file.name),
+                        'data-file-type': 'unknown'
+                    }, [
                         E('td', {}, file.name),
                         E('td', {}, _('Unknown')),
-                        E('td', { 'class': 'size-cell' }, [
-                            E('span', { 'class': 'size-number' }, '-'),
-                            E('span', { 'class': 'size-unit' }, '')
+                        E('td', {
+                            'class': 'size-cell'
+                        }, [
+                            E('span', {
+                                'class': 'size-number'
+                            }, '-'),
+                            E('span', {
+                                'class': 'size-unit'
+                            }, '')
                         ]),
                         E('td', {}, '-'),
                         E('td', {}, '-')
@@ -963,7 +1139,7 @@ handleGoButtonClick: function() {
 
             return Promise.resolve();
         }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Failed to load file list: %s').format(err.message)), 'error');
+            ui.addNotification(null, E('p', _('Failed to load file list: %s'.format(err.message))), 'error');
             return Promise.reject(err);
         });
     },
@@ -1041,83 +1217,91 @@ handleGoButtonClick: function() {
             }
         });
     },
-handleDirectoryClick: function(newPath) {
-    var self = this;
-    currentPath = newPath || '/';
-    var pathInput = document.getElementById('path-input');
-    if (pathInput) {
-        pathInput.value = currentPath;
-    }
-    this.loadFileList(currentPath).then(function() {
-        self.initResizableColumns();
-    });
-},
-handleFileClick: function(filePath) {
-    var self = this;
-    var fileRow = document.querySelector("tr[data-file-path='" + filePath + "']");
-    if (fileRow) {
-        // Получение сохраненных прав доступа
-        var permissions = fileRow.getAttribute('data-numeric-permissions');
-        self.originalFilePermissions = permissions;
-    } else {
-        // По умолчанию 644, если права доступа не найдены
-        self.originalFilePermissions = '644';
-    }
-
-    // Используем fs.exec с командой 'cat' для чтения файла
-    fs.exec('cat', [filePath]).then(function(res) {
-        if (res.code !== 0) {
-            // Если код возврата не 0, проверяем, является ли файл пустым
-            if (res.stderr.trim() === '') {
-                // Файл пустой, продолжаем с пустым содержимым
-                var content = '';
-            } else {
-                // Другие ошибки
-                return Promise.reject(new Error(res.stderr.trim()));
-            }
+    handleDirectoryClick: function(newPath) {
+        var self = this;
+        currentPath = newPath || '/';
+        var pathInput = document.getElementById('path-input');
+        if (pathInput) {
+            pathInput.value = currentPath;
+        }
+        this.loadFileList(currentPath).then(function() {
+            self.initResizableColumns();
+        });
+    },
+    handleFileClick: function(filePath) {
+        var self = this;
+        var fileRow = document.querySelector("tr[data-file-path='" + filePath + "']");
+        if (fileRow) {
+            // Getting saved permissions
+            var permissions = fileRow.getAttribute('data-numeric-permissions');
+            self.originalFilePermissions = permissions;
         } else {
-            var content = res.stdout || '';
+            // 644 by default, if there are no permissions found
+            self.originalFilePermissions = '644';
         }
 
-        var editorContainer = document.getElementById('editor-container');
-        if (!editorContainer) {
-            ui.addNotification(null, E('p', _('Editor container not found.')), 'error');
-            return;
-        }
-        editorContainer.innerHTML = '';
-        var editor = E('div', {}, [
-            E('h3', {}, _('Editing: ') + filePath),
-            E('textarea', {
-                'wrap': 'off',
-                'style': 'width:100%;',
-                'rows': 20
-            }, [content]),
-            E('div', { 'class': 'cbi-page-actions' }, [
-                E('button', {
-                    'class': 'btn cbi-button-save custom-save-button',
-                    'click': function() { self.handleSaveFile(filePath); }
-                }, _('Save'))
-            ])
-        ]);
-        editorContainer.appendChild(editor);
-        self.switchToTab('editor');
+        // Using fs.exec with 'cat' for file reading
+        fs.exec('cat', [filePath]).then(function(res) {
+            if (res.code !== 0) {
+                // Check if the file is empty if result is not 0
+                if (res.stderr.trim() === '') {
+                    // File is empty, continue with an empty contents
+                    var content = '';
+                } else {
+                    // Other errors
+                    return Promise.reject(new Error(res.stderr.trim()));
+                }
+            } else {
+                var content = res.stdout || '';
+            }
 
-        var statusInfo = document.getElementById('status-info');
-        if (statusInfo) {
-            statusInfo.textContent = _('Editing: ') + filePath;
-        }
-        var statusProgress = document.getElementById('status-progress');
-        if (statusProgress) {
-            statusProgress.innerHTML = '';
-        }
-    }).catch(function(err) {
-        ui.addNotification(null, E('p', _('Failed to open file: %s').format(err.message)), 'error');
-    });
-},
+            var editorContainer = document.getElementById('editor-container');
+            if (!editorContainer) {
+                ui.addNotification(null, E('p', _('Editor container not found.')), 'error');
+                return;
+            }
+            editorContainer.innerHTML = '';
+            var editor = E('div', {}, [
+                E('h3', {}, _('Editing: ') + filePath),
+                E('textarea', {
+                    'wrap': 'off',
+                    'style': 'width:100%;',
+                    'rows': 20
+                }, [content]),
+                E('div', {
+                    'class': 'cbi-page-actions'
+                }, [
+                    E('button', {
+                        'class': 'btn cbi-button-save custom-save-button',
+                        'click': function() {
+                            self.handleSaveFile(filePath);
+                        }
+                    }, _('Save'))
+                ])
+            ]);
+            editorContainer.appendChild(editor);
+            self.switchToTab('editor');
+
+            var statusInfo = document.getElementById('status-info');
+            if (statusInfo) {
+                statusInfo.textContent = _('Editing: ') + filePath;
+            }
+            var statusProgress = document.getElementById('status-progress');
+            if (statusProgress) {
+                statusProgress.innerHTML = '';
+            }
+        }).catch(function(err) {
+            ui.addNotification(null, E('p', _('Failed to open file: %s'.format(err.message))), 'error');
+        });
+    },
     handleDownloadFile: function(filePath) {
         var self = this;
-        fs.read(filePath, { binary: true }).then(function(content) {
-            var blob = new Blob([content], { type: 'application/octet-stream' });
+        fs.read(filePath, {
+            binary: true
+        }).then(function(content) {
+            var blob = new Blob([content], {
+                type: 'application/octet-stream'
+            });
             var downloadLink = document.createElement('a');
             downloadLink.href = URL.createObjectURL(blob);
             downloadLink.download = filePath.split('/').pop();
@@ -1130,7 +1314,7 @@ handleFileClick: function(filePath) {
                 statusInfo.textContent = _('Downloaded: ') + filePath.split('/').pop();
             }
         }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Failed to download file: %s').format(err.message)), 'error');
+            ui.addNotification(null, E('p', _('Failed to download file: %s'.format(err.message))), 'error');
         });
     },
     handleDeleteFile: function(filePath) {
@@ -1147,7 +1331,7 @@ handleFileClick: function(filePath) {
                     statusInfo.textContent = _('Deleted: ') + filePath.split('/').pop();
                 }
             }).catch(function(err) {
-                ui.addNotification(null, E('p', _('Failed to delete file or directory: %s').format(err.message)), 'error');
+                ui.addNotification(null, E('p', _('Failed to delete file or directory: %s'.format(err.message))), 'error');
             });
         }
     },
@@ -1160,7 +1344,9 @@ handleFileClick: function(filePath) {
         }
         var content = textarea.value;
 
-        var blob = new Blob([content], { type: 'text/plain' });
+        var blob = new Blob([content], {
+            type: 'text/plain'
+        });
 
         var statusInfo = document.getElementById('status-info');
         var statusProgress = document.getElementById('status-progress');
@@ -1170,8 +1356,13 @@ handleFileClick: function(filePath) {
         }
         if (statusProgress) {
             statusProgress.innerHTML = '';
-            var progressBarContainer = E('div', { 'class': 'cbi-progressbar', 'title': '0%' }, [
-                E('div', { 'style': 'width:0%' })
+            var progressBarContainer = E('div', {
+                'class': 'cbi-progressbar',
+                'title': '0%'
+            }, [
+                E('div', {
+                    'style': 'width:0%'
+                })
             ]);
             statusProgress.appendChild(progressBarContainer);
         }
@@ -1204,7 +1395,7 @@ handleFileClick: function(filePath) {
                     // Reset the stored permissions
                     self.originalFilePermissions = undefined;
                 }).catch(function(err) {
-                    ui.addNotification(null, E('p', _('Failed to restore file permissions: %s').format(err.message)), 'error');
+                    ui.addNotification(null, E('p', _('Failed to restore file permissions: %s'.format(err.message))), 'error');
                 });
             } else {
                 if (statusInfo) {
@@ -1239,7 +1430,7 @@ handleFileClick: function(filePath) {
                 ui.addNotification(null, E('p', _('The symlink points to an unsupported type.')), 'error');
             }
         }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Failed to access symlink target: %s').format(err.message)), 'error');
+            ui.addNotification(null, E('p', _('Failed to access symlink target: %s'.format(err.message))), 'error');
         });
 
         var statusInfo = document.getElementById('status-info');
@@ -1409,163 +1600,145 @@ handleFileClick: function(filePath) {
             if (statusInfo) statusInfo.textContent = _('No file selected.');
             if (statusProgress) statusProgress.innerHTML = '';
         }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Failed to save changes: %s').format(err.message)), 'error');
+            ui.addNotification(null, E('p', _('Failed to save changes: %s'.format(err.message))), 'error');
         });
     },
-handleSaveSettings: function(ev) {
-    ev.preventDefault();
-    var self = this;
 
-    var columnWidthsInput = document.getElementById('column-widths-input');
-    var columnMinWidthsInput = document.getElementById('column-min-widths-input');
-    var columnMaxWidthsInput = document.getElementById('column-max-widths-input');
-    var paddingInput = document.getElementById('padding-input');
-    var paddingMinInput = document.getElementById('padding-min-input');
-    var paddingMaxInput = document.getElementById('padding-max-input');
-    var currentDirectoryInput = document.getElementById('current-directory-input'); // Get the current directory input
-    var windowWidthInput = document.getElementById('window-width-input');
-    var windowHeightInput = document.getElementById('window-height-input');
+    // Refactored 'handleSaveSettings' function:
 
-    if (columnWidthsInput && paddingInput) {
-        var columnWidthsValue = columnWidthsInput.value.trim();
-        var columnMinWidthsValue = columnMinWidthsInput.value.trim();
-        var columnMaxWidthsValue = columnMaxWidthsInput.value.trim();
-        var paddingValue = parseInt(paddingInput.value.trim(), 10);
-        var paddingMinValue = parseInt(paddingMinInput.value.trim(), 10);
-        var paddingMaxValue = parseInt(paddingMaxInput.value.trim(), 10);
+    handleSaveSettings: function(ev) {
+        ev.preventDefault();
+        var self = this;
 
-        if (columnWidthsValue) {
-            var widths = columnWidthsValue.split(',');
-            widths.forEach(function(widthStr) {
+        var inputs = {
+            columnWidths: document.getElementById('column-widths-input'),
+            columnMinWidths: document.getElementById('column-min-widths-input'),
+            columnMaxWidths: document.getElementById('column-max-widths-input'),
+            padding: document.getElementById('padding-input'),
+            paddingMin: document.getElementById('padding-min-input'),
+            paddingMax: document.getElementById('padding-max-input'),
+            currentDirectory: document.getElementById('current-directory-input'),
+            windowWidth: document.getElementById('window-width-input'),
+            windowHeight: document.getElementById('window-height-input')
+        };
+
+        function parseWidthSettings(inputValue, configKey) {
+            if (!inputValue) return;
+            inputValue.split(',').forEach(function(widthStr) {
                 var widthParts = widthStr.split(':');
                 if (widthParts.length === 2) {
                     var field = widthParts[0];
                     var width = parseInt(widthParts[1], 10);
                     if (!isNaN(width)) {
-                        config.columnWidths[field] = width;
+                        config[configKey][field] = width;
                     }
                 }
             });
         }
 
-        if (columnMinWidthsValue) {
-            var minWidths = columnMinWidthsValue.split(',');
-            minWidths.forEach(function(widthStr) {
-                var widthParts = widthStr.split(':');
-                if (widthParts.length === 2) {
-                    var field = widthParts[0];
-                    var minWidth = parseInt(widthParts[1], 10);
-                    if (!isNaN(minWidth)) {
-                        config.columnMinWidths[field] = minWidth;
-                    }
+        if (inputs.columnWidths && inputs.padding) {
+            parseWidthSettings(inputs.columnWidths.value.trim(), 'columnWidths');
+            parseWidthSettings(inputs.columnMinWidths.value.trim(), 'columnMinWidths');
+            parseWidthSettings(inputs.columnMaxWidths.value.trim(), 'columnMaxWidths');
+
+            var paddingValue = parseInt(inputs.padding.value.trim(), 10);
+            var paddingMinValue = parseInt(inputs.paddingMin.value.trim(), 10);
+            var paddingMaxValue = parseInt(inputs.paddingMax.value.trim(), 10);
+
+            if (!isNaN(paddingValue)) {
+                config.padding = paddingValue;
+            }
+            if (!isNaN(paddingMinValue)) {
+                config.paddingMin = paddingMinValue;
+            }
+            if (!isNaN(paddingMaxValue)) {
+                config.paddingMax = paddingMaxValue;
+            }
+
+            if (inputs.currentDirectory) {
+                var currentDirectoryValue = inputs.currentDirectory.value.trim();
+                if (currentDirectoryValue) {
+                    config.currentDirectory = currentDirectoryValue;
                 }
-            });
-        }
+            }
 
-        if (columnMaxWidthsValue) {
-            var maxWidths = columnMaxWidthsValue.split(',');
-            maxWidths.forEach(function(widthStr) {
-                var widthParts = widthStr.split(':');
-                if (widthParts.length === 2) {
-                    var field = widthParts[0];
-                    var maxWidth = parseInt(widthParts[1], 10);
-                    if (!isNaN(maxWidth)) {
-                        config.columnMaxWidths[field] = maxWidth;
-                    }
+            if (inputs.windowWidth && inputs.windowHeight) {
+                var windowWidthValue = parseInt(inputs.windowWidth.value.trim(), 10);
+                var windowHeightValue = parseInt(inputs.windowHeight.value.trim(), 10);
+
+                if (!isNaN(windowWidthValue)) {
+                    config.windowSizes.width = windowWidthValue;
                 }
+                if (!isNaN(windowHeightValue)) {
+                    config.windowSizes.height = windowHeightValue;
+                }
+            }
+
+            saveConfig().then(function() {
+                ui.addNotification(null, E('p', _('Settings saved successfully.')), 'info');
+                self.setInitialColumnWidths();
+                // Update styles that depend on padding
+                var styleElement = document.querySelector('style');
+                if (styleElement) {
+                    styleElement.textContent = styleElement.textContent.replace(/padding: \d+px/g, 'padding: ' + config.padding + 'px');
+                }
+                // Update window sizes
+                var fileListContainer = document.getElementById('file-list-container');
+                if (fileListContainer) {
+                    fileListContainer.style.width = config.windowSizes.width + 'px';
+                    fileListContainer.style.height = config.windowSizes.height + 'px';
+                }
+                // Reload the file list with the new current directory
+                currentPath = config.currentDirectory || '/';
+                var pathInput = document.getElementById('path-input');
+                if (pathInput) {
+                    pathInput.value = currentPath;
+                }
+                self.loadFileList(currentPath).then(function() {
+                    self.initResizableColumns();
+                });
+            }).catch(function(err) {
+                ui.addNotification(null, E('p', _('Failed to save settings: %s'.format(err.message))), 'error');
             });
         }
+    },
 
-        if (!isNaN(paddingValue)) {
-            config.padding = paddingValue;
-        }
-        if (!isNaN(paddingMinValue)) {
-            config.paddingMin = paddingMinValue;
-        }
-        if (!isNaN(paddingMaxValue)) {
-            config.paddingMax = paddingMaxValue;
-        }
+    // Refactored 'loadSettings' function:
 
-        if (currentDirectoryInput) { // Update currentDirectory in config
-            var currentDirectoryValue = currentDirectoryInput.value.trim();
-            if (currentDirectoryValue) {
-                config.currentDirectory = currentDirectoryValue;
+    loadSettings: function() {
+        var inputs = {
+            columnWidths: document.getElementById('column-widths-input'),
+            columnMinWidths: document.getElementById('column-min-widths-input'),
+            columnMaxWidths: document.getElementById('column-max-widths-input'),
+            padding: document.getElementById('padding-input'),
+            paddingMin: document.getElementById('padding-min-input'),
+            paddingMax: document.getElementById('padding-max-input'),
+            currentDirectory: document.getElementById('current-directory-input'),
+            windowWidth: document.getElementById('window-width-input'),
+            windowHeight: document.getElementById('window-height-input')
+        };
+
+        if (inputs.columnWidths && inputs.padding) {
+            inputs.columnWidths.value = Object.keys(config.columnWidths).map(function(field) {
+                return field + ':' + config.columnWidths[field];
+            }).join(',');
+            inputs.columnMinWidths.value = Object.keys(config.columnMinWidths).map(function(field) {
+                return field + ':' + config.columnMinWidths[field];
+            }).join(',');
+            inputs.columnMaxWidths.value = Object.keys(config.columnMaxWidths).map(function(field) {
+                return field + ':' + config.columnMaxWidths[field];
+            }).join(',');
+            inputs.padding.value = config.padding;
+            inputs.paddingMin.value = config.paddingMin;
+            inputs.paddingMax.value = config.paddingMax;
+            if (inputs.currentDirectory) {
+                inputs.currentDirectory.value = currentPath;
             }
-        }
-
-        if (windowWidthInput && windowHeightInput) {
-            var windowWidthValue = parseInt(windowWidthInput.value.trim(), 10);
-            var windowHeightValue = parseInt(windowHeightInput.value.trim(), 10);
-
-            if (!isNaN(windowWidthValue)) {
-                config.windowSizes.width = windowWidthValue;
+            if (inputs.windowWidth && inputs.windowHeight) {
+                inputs.windowWidth.value = config.windowSizes.width;
+                inputs.windowHeight.value = config.windowSizes.height;
             }
-            if (!isNaN(windowHeightValue)) {
-                config.windowSizes.height = windowHeightValue;
-            }
-        }
-
-        saveConfig().then(function() {
-            ui.addNotification(null, E('p', _('Settings saved successfully.')), 'info');
-            self.setInitialColumnWidths();
-            // Update styles that depend on padding
-            var styleElement = document.querySelector('style');
-            if (styleElement) {
-                styleElement.textContent = styleElement.textContent.replace(/padding: \d+px/g, 'padding: ' + config.padding + 'px');
-            }
-            // Update window sizes
-            var fileListContainer = document.getElementById('file-list-container');
-            if (fileListContainer) {
-                fileListContainer.style.width = config.windowSizes.width + 'px';
-                fileListContainer.style.height = config.windowSizes.height + 'px';
-            }
-            // Reload the file list with the new current directory
-            currentPath = config.currentDirectory || '/';
-            var pathInput = document.getElementById('path-input');
-            if (pathInput) {
-                pathInput.value = currentPath;
-            }
-            self.loadFileList(currentPath).then(function() {
-                self.initResizableColumns();
-            });
-        }).catch(function(err) {
-            ui.addNotification(null, E('p', _('Failed to save settings: %s').format(err.message)), 'error');
-        });
-    }
-},
-
-loadSettings: function() {
-    var columnWidthsInput = document.getElementById('column-widths-input');
-    var columnMinWidthsInput = document.getElementById('column-min-widths-input');
-    var columnMaxWidthsInput = document.getElementById('column-max-widths-input');
-    var paddingInput = document.getElementById('padding-input');
-    var paddingMinInput = document.getElementById('padding-min-input');
-    var paddingMaxInput = document.getElementById('padding-max-input');
-    var currentDirectoryInput = document.getElementById('current-directory-input'); // Получаем поле ввода для текущей директории
-    var windowWidthInput = document.getElementById('window-width-input');
-    var windowHeightInput = document.getElementById('window-height-input');
-
-    if (columnWidthsInput && paddingInput) {
-        columnWidthsInput.value = Object.keys(config.columnWidths).map(function(field) {
-            return field + ':' + config.columnWidths[field];
-        }).join(',');
-        columnMinWidthsInput.value = Object.keys(config.columnMinWidths).map(function(field) {
-            return field + ':' + config.columnMinWidths[field];
-        }).join(',');
-        columnMaxWidthsInput.value = Object.keys(config.columnMaxWidths).map(function(field) {
-            return field + ':' + config.columnMaxWidths[field];
-        }).join(',');
-        paddingInput.value = config.padding;
-        paddingMinInput.value = config.paddingMin;
-        paddingMaxInput.value = config.paddingMax;
-        if (currentDirectoryInput) {
-            currentDirectoryInput.value = currentPath; // Устанавливаем значение текущей директории
-        }
-        if (windowWidthInput && windowHeightInput) {
-            windowWidthInput.value = config.windowSizes.width;
-            windowHeightInput.value = config.windowSizes.height;
         }
     }
-}
 
 });
