@@ -31,6 +31,10 @@ function renderbox(ifc, ipv6) {
 	    uptime = ifc.getUptime(),
 	    type = ifc.getOpkgPackage();
 
+	function addEntries(label, array) {
+		return Array.isArray(array) ? array.flatMap((item) => [label, item]) : [label, null];
+	}
+
 	if (type === 'map-t' && typeof ifc.callShowPortsets === 'function') {
 		addrs = ifc.getIPAddrs().concat(ifc.getIPv6Addrs());
 		var showPortsets = ifc.callShowPortsets();
@@ -46,25 +50,10 @@ function renderbox(ifc, ipv6) {
 		E('div', { class: 'ifacebox-body left' }, [
 			L.itemlist(E('span'), [
 				_('Protocol'), ifc.getI18n() || E('em', _('Not connected')),
-				_('Prefix Delegated'), ipv6 ? ifc.getIP6Prefix() : null,
-				(type === 'map-t' || type === 'ds-lite' ? _('IPv4 address') : _('Address')), addrs[0],
-				(type === 'map-t' || type === 'ds-lite' ? _('IPv6 address') : _('Address')), addrs[1],
-				_('Address'), addrs[2],
-				_('Address'), addrs[3],
-				_('Address'), addrs[4],
-				_('Address'), addrs[5],
-				_('Address'), addrs[6],
-				_('Address'), addrs[7],
-				_('Address'), addrs[8],
-				_('Address'), addrs[9],
+				...addEntries(_('Prefix Delegated'), ipv6 ? ifc.getIP6Prefixes?.() : null),
+				...addEntries(_('Address'), addrs),
 				_('Gateway'), ipv6 ? (ifc.getGateway6Addr() || '::') : (ifc.getGatewayAddr() || '0.0.0.0'),
-				_('DNS') + ' 1', dnssrv[0],
-				_('DNS') + ' 2', dnssrv[1],
-				_('DNS') + ' 3', dnssrv[2],
-				_('DNS') + ' 4', dnssrv[3],
-				_('DNS') + ' 5', dnssrv[4],
-				showPortsets ? _('Available portsets') : null,
-				showPortsets ? E('button', { class: 'cbi-button cbi-button-apply', click: showPortsets }, _('Show')) : null,
+				...addEntries(_('DNS'), dnssrv),
 				_('Expires'), (expires != null && expires > -1) ? '%t'.format(expires) : null,
 				_('Connected'), (uptime > 0) ? '%t'.format(uptime) : null
 			]),

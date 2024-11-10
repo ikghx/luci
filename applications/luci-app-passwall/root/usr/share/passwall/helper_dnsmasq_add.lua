@@ -194,11 +194,13 @@ if not fs.access(CACHE_DNS_PATH) then
 	fs.mkdir(CACHE_DNS_PATH)
 
 	--屏蔽列表
-	if USE_BLOCK_LIST == "1" then
-		for line in io.lines("/usr/share/passwall/rules/block_host") do
-			line = api.get_std_domain(line)
-			if line ~= "" and not line:find("#") then
-				set_domain_address(line, "")
+	if USE_DEFAULT_DNS ~= "chinadns_ng" or CHINADNS_DNS == "0" then
+		if USE_BLOCK_LIST == "1" then
+			for line in io.lines("/usr/share/passwall/rules/block_host") do
+				line = api.get_std_domain(line)
+				if line ~= "" and not line:find("#") then
+					set_domain_address(line, "")
+				end
 			end
 		end
 	end
@@ -221,8 +223,8 @@ if not fs.access(CACHE_DNS_PATH) then
 					set_domain_ipset(address, setflag_4 .. "passwall_vpslist," .. setflag_6 .. "passwall_vpslist6")
 				end
 			end)
+			log(string.format("  - 节点列表中的域名(vpslist)：%s", fwd_dns or "默认"))
 		end
-		log(string.format("  - 节点列表中的域名(vpslist)：%s", fwd_dns or "默认"))
 	end
 
 	--直连（白名单）列表
@@ -242,8 +244,8 @@ if not fs.access(CACHE_DNS_PATH) then
 						set_domain_ipset(line, setflag_4 .. "passwall_whitelist," .. setflag_6 .. "passwall_whitelist6")
 					end
 				end
+				log(string.format("  - 域名白名单(whitelist)：%s", fwd_dns or "默认"))
 			end
-			log(string.format("  - 域名白名单(whitelist)：%s", fwd_dns or "默认"))
 		end
 	end
 
@@ -272,8 +274,8 @@ if not fs.access(CACHE_DNS_PATH) then
 						set_domain_ipset(line, ipset_flag)
 					end
 				end
+				log(string.format("  - 代理域名表(blacklist)：%s", fwd_dns or "默认"))
 			end
-			log(string.format("  - 代理域名表(blacklist)：%s", fwd_dns or "默认"))
 		end
 	end
 
@@ -306,8 +308,8 @@ if not fs.access(CACHE_DNS_PATH) then
 						set_domain_ipset(line, ipset_flag)
 					end
 				end
+				log(string.format("  - 防火墙域名表(gfwlist)：%s", fwd_dns or "默认"))
 			end
-			log(string.format("  - 防火墙域名表(gfwlist)：%s", fwd_dns or "默认"))
 		end
 	end
 
@@ -348,13 +350,13 @@ if not fs.access(CACHE_DNS_PATH) then
 						set_domain_ipset(line, ipset_flag)
 					end
 				end
+				log(string.format("  - 中国域名表(chnroute)：%s", fwd_dns or "默认"))
 			end
-			log(string.format("  - 中国域名表(chnroute)：%s", fwd_dns or "默认"))
 		end
 	end
 
 	--分流规则
-	if uci:get(appname, TCP_NODE, "protocol") == "_shunt" then
+	if uci:get(appname, TCP_NODE, "protocol") == "_shunt" and (USE_DEFAULT_DNS ~= "chinadns_ng" or CHINADNS_DNS == "0") then
 		local t = uci:get_all(appname, TCP_NODE)
 		local default_node_id = t["default_node"] or "_direct"
 		uci:foreach(appname, "shunt_rules", function(s)
@@ -391,6 +393,7 @@ if not fs.access(CACHE_DNS_PATH) then
 						if line:find("domain:") or line:find("full:") then
 							line = string.match(line, ":([^:]+)$")
 						end
+						line = api.get_std_domain(line)
 						add_excluded_domain(line)
 
 						if no_ipv6 then
@@ -401,7 +404,7 @@ if not fs.access(CACHE_DNS_PATH) then
 					end
 				end
 				if _node_id ~= "_direct" then
-					log(string.format("  - V2ray/Xray分流规则(%s)：%s", s.remarks, fwd_dns or "默认"))
+					log(string.format("  - Sing-Box/Xray分流规则(%s)：%s", s.remarks, fwd_dns or "默认"))
 				end
 			end
 		end)
@@ -475,7 +478,9 @@ if DNSMASQ_CONF_FILE ~= "nil" then
 		conf_out:write("no-poll\n")
 		conf_out:write("no-resolv\n")
 		conf_out:close()
-		log(string.format("  - 默认：%s", dnsmasq_default_dns))
+		if USE_DEFAULT_DNS ~= "chinadns_ng" or CHINADNS_DNS == "0" then
+			log(string.format("  - 默认：%s", dnsmasq_default_dns))
+		end
 
 		if FLAG == "default" then
 			local f_out = io.open("/tmp/etc/passwall/default_DNS", "a")
@@ -485,4 +490,6 @@ if DNSMASQ_CONF_FILE ~= "nil" then
 	end
 end
 
-log("  - PassWall必须依赖于Dnsmasq，如果你自行配置了错误的DNS流程，将会导致域名(直连/代理域名)分流失效！！！")
+if USE_DEFAULT_DNS ~= "chinadns_ng" or CHINADNS_DNS == "0" then
+	log("  - PassWall必须依赖于Dnsmasq，如果你自行配置了错误的DNS流程，将会导致域名(直连/代理域名)分流失效！！！")
+end
