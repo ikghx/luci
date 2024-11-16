@@ -867,7 +867,7 @@ return view.extend({
 		o.depends('noresolv', '1');
 
 		o = s.taboption('files', form.Flag, 'nohosts',
-			customi18n(_('Ignore {etc_hosts}') )
+			customi18n(_('Ignore {etc_hosts} file') )
 		);
 
 		o = s.taboption('files', form.DynamicList, 'addnhosts',
@@ -876,7 +876,10 @@ return view.extend({
 		o.placeholder = '/etc/dnsmasq.hosts';
 
 		o = s.taboption('files', form.Flag, 'ignore_hosts_dir',
-			_('Ignore hosts directory'));
+			_('Ignore hosts files directory'),
+			_('On: use instance specific hosts file only') + '<br/>' +
+			_('Off: use all files in the directory including the instance specific hosts file')
+		);
 
 		o = s.taboption('relay', form.SectionValue, '__relays__', form.TableSection, 'relay', null,
 			_('Relay DHCP requests elsewhere. OK: v4↔v4, v6↔v6. Not OK: v4↔v6, v6↔v4.')
