@@ -6,6 +6,7 @@
 'require rpc';
 
 var currentPath = '/';
+var selectedItems = new Set(); // Set to store the file paths of selected items
 var sortField = 'name';
 var sortDirection = 'asc';
 var configFilePath = '/etc/config/filemanager';
@@ -285,53 +286,266 @@ function insertCss(cssContent) {
     document.head.appendChild(styleElement);
 }
 
-var cssContent = '.cbi-button-apply, .cbi-button-reset, .cbi-button-save:not(.custom-save-button) { display: none !important; }' +
-    '.cbi-page-actions { background: none !important; border: none !important; padding: ' + config.padding + 'px 0 !important; margin: 0 !important; }' +
-    '.cbi-tabmenu { background: none !important; border: none !important; margin: 0 !important; padding: 0 !important; }' +
-    '.cbi-tabmenu li { display: inline-block; margin-right: 10px; }' +
-    '#file-list-container { margin-top: 30px !important; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; padding: 0; min-width: 600px; position: relative; }' +
-    '#content-editor { margin-top: 30px !important; }' +
-    '#editor-container textarea { ' +
-    'min-width: 300px !important; ' +
-    'max-width: 100% !important; ' +
-    'min-height: 200px !important; ' +
-    'max-height: 80vh !important; ' +
-    'resize: both !important; ' +
-    'overflow: auto !important; ' +
-    'font-family: monospace !important; ' +
-    'white-space: pre !important; ' +
-    'overflow-x: auto !important; ' +
-    'word-wrap: normal !important; ' +
+var cssContent = '' +
+    '.cbi-button-apply, .cbi-button-reset, .cbi-button-save:not(.custom-save-button) {' +
+    '  display: none !important;' +
     '}' +
-    'th { text-align: left !important; position: sticky; top: 0; border-right: 1px solid #ddd; box-sizing: border-box; padding-right: 30px; white-space: nowrap; min-width: 100px; background-color: #fff; z-index: 2; }' +
-    'td { text-align: left !important; border-right: 1px solid #ddd; box-sizing: border-box; white-space: nowrap; min-width: 100px; overflow: hidden; text-overflow: ellipsis; }' +
-    'tr:hover { background-color: #f0f0f0 !important; }' +
-    '.download-button { color: green; cursor: pointer; margin-left: 5px; }' +
-    '.delete-button { color: red; cursor: pointer; margin-left: 5px; }' +
-    '.edit-button { color: blue; cursor: pointer; margin-left: 5px; }' +
-    '.symlink { color: green; }' +
-    '.status-link { color: blue; text-decoration: underline; cursor: pointer; }' +
-    '.action-button { margin-right: 10px; cursor: pointer; }' +
-    '.size-cell { text-align: right; font-family: monospace; box-sizing: border-box; white-space: nowrap; display: flex; justify-content: flex-end; align-items: center; }' +
-    '.size-number { display: inline-block; width: 8ch; text-align: right; }' +
-    '.size-unit { display: inline-block; width: 4ch; text-align: right; margin-left: 0.5ch; }' +
-    '.table { table-layout: fixed; border-collapse: collapse; white-space: nowrap; width: 100%; }' +
-    '.table th:nth-child(3), .table td:nth-child(3) { width: 100px; min-width: 100px; max-width: 500px; }' +
-    '.table th:nth-child(3) + th, .table td:nth-child(3) + td { padding-left: 10px; }' +
-    '.resizer { position: absolute; right: 0; top: 0; width: 5px; height: 100%; cursor: col-resize; user-select: none; z-index: 3; }' +
-    '.resizer::after { content: ""; position: absolute; right: 2px; top: 0; width: 1px; height: 100%; background: #aaa; }' +
-    '#file-list-container.resizable { resize: both; overflow: auto; }' +
-    '.sort-button { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0; font-size: 12px; }' +
-    '.sort-button:focus { outline: none; }' +
-    '#status-bar { margin-top: 10px; padding: 10px; background-color: #f9f9f9; border: 1px solid #ccc; min-height: 40px; display: flex; align-items: center; justify-content: space-between; }' +
-    '#status-info { font-weight: bold; display: flex; align-items: center; }' +
-    '#status-progress { width: 50%; }' +
-    '.cbi-progressbar { width: 100%; background-color: #e0e0e0; border-radius: 5px; overflow: hidden; height: 10px; }' +
-    '.cbi-progressbar div { height: 100%; background-color: #76c7c0; width: 0%; transition: width 0.2s; }' +
-    '.file-manager-header { display: flex; align-items: center; }' +
-    '.file-manager-header h2 { margin: 0; }' +
-    '.file-manager-header input { margin-left: 10px; width: 100%; max-width: 700px; font-size: 18px; }' +
-    '.file-manager-header button { margin-left: 10px; font-size: 18px; }';
+    '.cbi-page-actions {' +
+    '  background: none !important;' +
+    '  border: none !important;' +
+    '  padding: ' + config.padding + 'px 0 !important;' +
+    '  margin: 0 !important;' +
+    '  display: flex;' +
+    '  justify-content: flex-start;' +
+    '  margin-top: 10px;' +
+    '}' +
+    '.cbi-tabmenu {' +
+    '  background: none !important;' +
+    '  border: none !important;' +
+    '  margin: 0 !important;' +
+    '  padding: 0 !important;' +
+    '}' +
+    '.cbi-tabmenu li {' +
+    '  display: inline-block;' +
+    '  margin-right: 10px;' +
+    '}' +
+    '#file-list-container {' +
+    '  margin-top: 30px !important;' +
+    '  overflow: auto;' +
+    '  border: 1px solid #ccc;' +
+    '  padding: 0;' +
+    '  min-width: 600px;' +
+    '  position: relative;' +
+    '  resize: both;' +
+    '}' +
+    '#content-editor {' +
+    '  margin-top: 30px !important;' +
+    '}' +
+    '.editor-container {' +
+    '  display: flex;' +
+    '  flex-direction: column;' +
+    '  resize: both;' +
+    '  overflow: hidden;' +
+    '}' +
+    '.editor-content {' +
+    '  flex: 1;' +
+    '  display: flex;' +
+    '  overflow: hidden;' +
+    '}' +
+    '.line-numbers {' +
+    '  width: 50px;' +
+    '  background-color: #f0f0f0;' +
+    '  text-align: right;' +
+    '  padding-right: 5px;' +
+    '  user-select: none;' +
+    '  border-right: 1px solid #ccc;' +
+    '  overflow: hidden;' +
+    '  flex-shrink: 0;' +
+    '  -ms-overflow-style: none;' /* Скрыть скроллбар в IE и Edge */ +
+    '  scrollbar-width: none;' /* Скрыть скроллбар в Firefox */ +
+    '}' +
+    '.line-numbers::-webkit-scrollbar {' +
+    '  display: none;' /* Скрыть скроллбар в Chrome, Safari и Opera */ +
+    '}' +
+    '.line-numbers div {' +
+    '  font-family: monospace;' +
+    '  font-size: 14px;' +
+    '  line-height: 1.2em;' +
+    '  height: 1.2em;' +
+    '}' +
+    '#editor-textarea {' +
+    '  flex: 1;' +
+    '  resize: none;' +
+    '  border: none;' +
+    '  font-family: monospace;' +
+    '  font-size: 14px;' +
+    '  line-height: 1.2em;' +
+    '  padding: 0;' +
+    '  margin: 0;' +
+    '  overflow: auto;' +
+    '  box-sizing: border-box;' +
+    '}' +
+    '#editor-textarea, .line-numbers {' +
+    '  overflow-y: scroll;' +
+    '}' +
+    'th {' +
+    '  text-align: left !important;' +
+    '  position: sticky;' +
+    '  top: 0;' +
+    '  border-right: 1px solid #ddd;' +
+    '  box-sizing: border-box;' +
+    '  padding-right: 30px;' +
+    '  white-space: nowrap;' +
+    '  min-width: 100px;' +
+    '  background-color: #fff;' +
+    '  z-index: 2;' +
+    '}' +
+    'td {' +
+    '  text-align: left !important;' +
+    '  border-right: 1px solid #ddd;' +
+    '  box-sizing: border-box;' +
+    '  white-space: nowrap;' +
+    '  min-width: 100px;' +
+    '  overflow: hidden;' +
+    '  text-overflow: ellipsis;' +
+    '}' +
+    'tr:hover {' +
+    '  background-color: #f0f0f0 !important;' +
+    '}' +
+    '.download-button {' +
+    '  color: green;' +
+    '  cursor: pointer;' +
+    '  margin-left: 5px;' +
+    '}' +
+    '.delete-button {' +
+    '  color: red;' +
+    '  cursor: pointer;' +
+    '  margin-left: 5px;' +
+    '}' +
+    '.edit-button {' +
+    '  color: blue;' +
+    '  cursor: pointer;' +
+    '  margin-left: 5px;' +
+    '}' +
+    '.duplicate-button {' +
+    '  color: orange;' +
+    '  cursor: pointer;' +
+    '  margin-left: 5px;' +
+    '}' +
+    '.symlink {' +
+    '  color: green;' +
+    '}' +
+    '.status-link {' +
+    '  color: blue;' +
+    '  text-decoration: underline;' +
+    '  cursor: pointer;' +
+    '}' +
+    '.action-button {' +
+    '  margin-right: 10px;' +
+    '  cursor: pointer;' +
+    '}' +
+    '.size-cell {' +
+    '  text-align: right;' +
+    '  font-family: monospace;' +
+    '  box-sizing: border-box;' +
+    '  white-space: nowrap;' +
+    '  display: flex;' +
+    '  justify-content: flex-end;' +
+    '  align-items: center;' +
+    '}' +
+    '.size-number {' +
+    '  display: inline-block;' +
+    '  width: 8ch;' +
+    '  text-align: right;' +
+    '}' +
+    '.size-unit {' +
+    '  display: inline-block;' +
+    '  width: 4ch;' +
+    '  text-align: right;' +
+    '  margin-left: 0.5ch;' +
+    '}' +
+    '.table {' +
+    '  table-layout: fixed;' +
+    '  border-collapse: collapse;' +
+    '  white-space: nowrap;' +
+    '  width: 100%;' +
+    '}' +
+    '.table th:nth-child(3), .table td:nth-child(3) {' +
+    '  width: 100px;' +
+    '  min-width: 100px;' +
+    '  max-width: 500px;' +
+    '}' +
+    '.table th:nth-child(3) + th, .table td:nth-child(3) + td {' +
+    '  padding-left: 10px;' +
+    '}' +
+    '.resizer {' +
+    '  position: absolute;' +
+    '  right: 0;' +
+    '  top: 0;' +
+    '  width: 5px;' +
+    '  height: 100%;' +
+    '  cursor: col-resize;' +
+    '  user-select: none;' +
+    '  z-index: 3;' +
+    '}' +
+    '.resizer::after {' +
+    '  content: "";' +
+    '  position: absolute;' +
+    '  right: 2px;' +
+    '  top: 0;' +
+    '  width: 1px;' +
+    '  height: 100%;' +
+    '  background: #aaa;' +
+    '}' +
+    '#file-list-container.resizable {' +
+    '  resize: both;' +
+    '  overflow: auto;' +
+    '}' +
+    '.sort-button {' +
+    '  position: absolute;' +
+    '  right: 10px;' +
+    '  top: 50%;' +
+    '  transform: translateY(-50%);' +
+    '  background: none;' +
+    '  border: none;' +
+    '  cursor: pointer;' +
+    '  padding: 0;' +
+    '  font-size: 12px;' +
+    '}' +
+    '.sort-button:focus {' +
+    '  outline: none;' +
+    '}' +
+    '#status-bar {' +
+    '  margin-top: 10px;' +
+    '  padding: 10px;' +
+    '  background-color: #f9f9f9;' +
+    '  border: 1px solid #ccc;' +
+    '  min-height: 40px;' +
+    '  display: flex;' +
+    '  align-items: center;' +
+    '  justify-content: space-between;' +
+    '}' +
+    '#status-info {' +
+    '  font-weight: bold;' +
+    '  display: flex;' +
+    '  align-items: center;' +
+    '}' +
+    '#status-progress {' +
+    '  width: 50%;' +
+    '}' +
+    '.cbi-progressbar {' +
+    '  width: 100%;' +
+    '  background-color: #e0e0e0;' +
+    '  border-radius: 5px;' +
+    '  overflow: hidden;' +
+    '  height: 10px;' +
+    '}' +
+    '.cbi-progressbar div {' +
+    '  height: 100%;' +
+    '  background-color: #76c7c0;' +
+    '  width: 0%;' +
+    '  transition: width 0.2s;' +
+    '}' +
+    '.file-manager-header {' +
+    '  display: flex;' +
+    '  align-items: center;' +
+    '}' +
+    '.file-manager-header h2 {' +
+    '  margin: 0;' +
+    '}' +
+    '.file-manager-header input {' +
+    '  margin-left: 10px;' +
+    '  width: 100%;' +
+    '  max-width: 700px;' +
+    '  font-size: 18px;' +
+    '}' +
+    '.file-manager-header button {' +
+    '  margin-left: 10px;' +
+    '  font-size: 18px;' +
+    '}' +
+    '';
+
+
 
 return view.extend({
     load: function() {
@@ -472,7 +686,15 @@ return view.extend({
                                             'class': 'resizer'
                                         })
                                     ]),
-                                    E('th', {}, _('Actions'))
+                                    E('th', {}, [
+                                        E('input', {
+                                            'type': 'checkbox',
+                                            'id': 'select-all-checkbox',
+                                            'style': 'margin-right: 5px;', // Add margin to the checkbox
+                                            'change': this.handleSelectAllChange.bind(this) // Bind the event handler
+                                        }),
+                                        _('Actions')
+                                    ])
                                 ])
                             ]),
                             E('tbody', {
@@ -504,7 +726,13 @@ return view.extend({
                         E('button', {
                             'class': 'btn action-button',
                             'click': this.handleCreateFileClick.bind(this)
-                        }, _('Create File'))
+                        }, _('Create File')),
+                        E('button', {
+                            'id': 'delete-selected-button',
+                            'class': 'btn action-button',
+                            'style': 'display: none;', // Initially hidden
+                            'click': this.handleDeleteSelected.bind(this)
+                        }, _('Delete Selected'))
                     ])
                 ]),
                 E('div', {
@@ -898,17 +1126,137 @@ return view.extend({
             ui.addNotification(null, E('p', _('Failed to create file: %s'.format(err.message))), 'error');
         });
     },
+
+    /**
+     * Handles the change event of individual file checkboxes.
+     * Adds or removes the file path from the selectedItems set.
+     * Updates the visibility of the 'Delete Selected' button and the 'Select All' checkbox state.
+     * @param {Event} ev - The change event of the checkbox.
+     */
+    handleCheckboxChange: function(ev) {
+        var checkbox = ev.target;
+        var filePath = checkbox.getAttribute('data-file-path');
+
+        if (checkbox.checked) {
+            selectedItems.add(filePath);
+        } else {
+            selectedItems.delete(filePath);
+        }
+
+        this.updateDeleteSelectedButton();
+        this.updateSelectAllCheckbox();
+    },
+
+    /**
+     * Updates the visibility of the 'Delete Selected' button based on the number of selected items.
+     */
+    updateDeleteSelectedButton: function() {
+        var deleteSelectedButton = document.getElementById('delete-selected-button');
+        if (deleteSelectedButton) {
+            if (selectedItems.size > 0) {
+                deleteSelectedButton.style.display = '';
+            } else {
+                deleteSelectedButton.style.display = 'none';
+            }
+        }
+    },
+
+    /**
+     * Updates the 'Select All' checkbox state based on whether all individual checkboxes are checked.
+     */
+    updateSelectAllCheckbox: function() {
+        var selectAllCheckbox = document.getElementById('select-all-checkbox');
+        var allCheckboxes = document.querySelectorAll('.select-checkbox');
+        var allChecked = true;
+        allCheckboxes.forEach(function(checkbox) {
+            if (!checkbox.checked) {
+                allChecked = false;
+            }
+        });
+        if (selectAllCheckbox) {
+            selectAllCheckbox.checked = allChecked;
+        }
+    },
+
+    /**
+     * Handles the change event of the 'Select All' checkbox.
+     * Checks or unchecks all individual file checkboxes.
+     * Updates the selectedItems set and the visibility of the 'Delete Selected' button.
+     * @param {Event} ev - The change event of the 'Select All' checkbox.
+     */
+    handleSelectAllChange: function(ev) {
+        var self = this;
+        var selectAllCheckbox = ev.target;
+        var allCheckboxes = document.querySelectorAll('.select-checkbox');
+        selectedItems.clear();
+
+        allCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = selectAllCheckbox.checked;
+            var filePath = checkbox.getAttribute('data-file-path');
+            if (selectAllCheckbox.checked) {
+                selectedItems.add(filePath);
+            }
+        });
+
+        this.updateDeleteSelectedButton();
+    },
+
+    /**
+     * Handles the click event of the 'Delete Selected' button.
+     * Prompts for confirmation and deletes all selected files and directories.
+     * Refreshes the file list after deletion.
+     */
+
+    handleDeleteSelected: function() {
+        var self = this;
+        if (selectedItems.size === 0) {
+            return;
+        }
+
+        if (!confirm(_('Are you sure you want to delete the selected files and directories?'))) {
+            return;
+        }
+
+        var promises = [];
+        selectedItems.forEach(function(filePath) {
+            promises.push(fs.remove(filePath).catch(function(err) {
+                // Handle error for individual file
+                ui.addNotification(null, E('p', _('Failed to delete %s: %s'.format(filePath, err.message))), 'error');
+            }));
+        });
+
+        Promise.all(promises).then(function() {
+            ui.addNotification(null, E('p', _('Selected files and directories deleted successfully.')), 'info');
+            selectedItems.clear();
+            self.updateDeleteSelectedButton();
+            self.loadFileList(currentPath).then(function() {
+                self.initResizableColumns();
+            });
+        }).catch(function(err) {
+            ui.addNotification(null, E('p', _('Failed to delete selected files and directories: %s'.format(err.message))), 'error');
+        });
+    },
+
+    /**
+     * Loads the file list for the given path and renders it in the table.
+     * Adds checkboxes to each item for selection and handles the "Delete Selected" functionality.
+     * @param {string} path - The directory path to load files from.
+     * @returns {Promise} - A promise that resolves when the file list is loaded.
+     */
     loadFileList: function(path) {
         var self = this;
+        selectedItems.clear(); // Clear selected items when loading a new file list
+
         return getFileList(path).then(function(files) {
             var fileList = document.getElementById('file-list');
             if (!fileList) {
                 ui.addNotification(null, E('p', _('Failed to display the file list.')), 'error');
                 return;
             }
-            fileList.innerHTML = '';
-            files.sort(self.compareFiles.bind(self));
+            fileList.innerHTML = ''; // Clear existing file list
+            files.sort(self.compareFiles.bind(self)); // Sort files based on the current sort field and direction
 
+            // Add a row for the parent directory if not at root
             if (path !== '/') {
                 var parentPath = path.substring(0, path.lastIndexOf('/')) || '/';
                 var listItemUp = E('tr', {
@@ -923,16 +1271,69 @@ return view.extend({
                             'click': function() {
                                 self.handleDirectoryClick(parentPath);
                             }
-                        }, _('←(Parent Directory)')
+                        }, _('←(Parent Directory)'))
                     ])
                 ]);
                 fileList.appendChild(listItemUp);
             }
 
+            // Iterate over each file and create table rows
             files.forEach(function(file) {
                 var listItem;
                 var displaySize = (file.type === 'directory' || (file.type === 'symlink' && file.size === -1)) ? -1 : file.size;
 
+                // Create a checkbox for selection
+                var checkbox = E('input', {
+                    'type': 'checkbox',
+                    'class': 'select-checkbox',
+                    'data-file-path': joinPath(path, file.name),
+                    'change': function(ev) {
+                        self.handleCheckboxChange(ev); // Handle checkbox change event
+                    }
+                });
+
+                // Create an array for the action buttons
+                var actionButtons = [
+                    checkbox, // Add the checkbox to the Actions cell
+                    // Edit button
+                    E('span', {
+                        'class': 'edit-button',
+                        'click': function() {
+                            self.handleEditFile(joinPath(path, file.name), file);
+                        }
+                    }, '✏️'),
+                    // Duplicate button
+                    E('span', {
+                        'class': 'duplicate-button',
+                        'click': function() {
+                            self.handleDuplicateFile(joinPath(path, file.name), file);
+                        }
+                    }, '📄'),
+                    // Delete button
+                    E('span', {
+                        'class': 'delete-button',
+                        'click': function() {
+                            self.handleDeleteFile(joinPath(path, file.name));
+                        }
+                    }, '🗑️')
+                ];
+
+                // Add the download button only if the file type is 'file'
+                if (file.type === 'file') {
+                    actionButtons.push(
+                        E('span', {
+                            'class': 'download-button',
+                            'click': function() {
+                                self.handleDownloadFile(joinPath(path, file.name));
+                            }
+                        }, '⬇️')
+                    );
+                }
+
+                // Create the Actions cell with the action buttons
+                var actionTd = E('td', {}, actionButtons);
+
+                // Create the table row based on the file type
                 if (file.type === 'directory') {
                     listItem = E('tr', {
                         'data-file-path': joinPath(path, file.name),
@@ -943,6 +1344,7 @@ return view.extend({
                         'data-group': file.group,
                         'data-size': -1
                     }, [
+                        // Name cell with link to open directory
                         E('td', {}, [
                             E('a', {
                                 'href': '#',
@@ -952,7 +1354,9 @@ return view.extend({
                                 }
                             }, file.name)
                         ]),
+                        // Type cell
                         E('td', {}, _('Directory')),
+                        // Size cell (directories show '-')
                         E('td', {
                             'class': 'size-cell'
                         }, [
@@ -963,22 +1367,10 @@ return view.extend({
                                 'class': 'size-unit'
                             }, '')
                         ]),
-                        // Display the file's last modified time in the user's local timezone
+                        // Last Modified cell
                         E('td', {}, new Date(file.mtime * 1000).toLocaleString()),
-                        E('td', {}, [
-                            E('span', {
-                                'class': 'edit-button',
-                                'click': function() {
-                                    self.handleEditFile(joinPath(path, file.name), file);
-                                }
-                            }, '✏️'),
-                            E('span', {
-                                'class': 'delete-button',
-                                'click': function() {
-                                    self.handleDeleteFile(joinPath(path, file.name));
-                                }
-                            }, '🗑️')
-                        ])
+                        // Actions cell
+                        actionTd
                     ]);
                 } else if (file.type === 'file') {
                     listItem = E('tr', {
@@ -990,6 +1382,7 @@ return view.extend({
                         'data-group': file.group,
                         'data-size': file.size
                     }, [
+                        // Name cell with link to open file
                         E('td', {}, [
                             E('a', {
                                 'href': '#',
@@ -999,7 +1392,9 @@ return view.extend({
                                 }
                             }, file.name)
                         ]),
+                        // Type cell
                         E('td', {}, _('File')),
+                        // Size cell with formatted size
                         E('td', {
                             'class': 'size-cell'
                         }, [
@@ -1010,27 +1405,10 @@ return view.extend({
                                 'class': 'size-unit'
                             }, self.getFormattedSize(file.size).unit)
                         ]),
+                        // Last Modified cell
                         E('td', {}, new Date(file.mtime * 1000).toLocaleString()),
-                        E('td', {}, [
-                            E('span', {
-                                'class': 'edit-button',
-                                'click': function() {
-                                    self.handleEditFile(joinPath(path, file.name), file);
-                                }
-                            }, '✏️'),
-                            E('span', {
-                                'class': 'delete-button',
-                                'click': function() {
-                                    self.handleDeleteFile(joinPath(path, file.name));
-                                }
-                            }, '🗑️'),
-                            E('span', {
-                                'class': 'download-button',
-                                'click': function() {
-                                    self.handleDownloadFile(joinPath(path, file.name));
-                                }
-                            }, '⬇️')
-                        ])
+                        // Actions cell
+                        actionTd
                     ]);
                 } else if (file.type === 'symlink') {
                     var symlinkName = file.name + ' -> ' + file.target;
@@ -1068,6 +1446,7 @@ return view.extend({
                         'data-group': file.group,
                         'data-size': symlinkSize
                     }, [
+                        // Name cell with link to follow symlink
                         E('td', {}, [
                             E('a', {
                                 'href': '#',
@@ -1077,27 +1456,19 @@ return view.extend({
                                 }
                             }, symlinkName)
                         ]),
+                        // Type cell
                         E('td', {}, _('Symlink')),
+                        // Size cell
                         E('td', {
                             'class': 'size-cell'
                         }, sizeContent),
+                        // Last Modified cell
                         E('td', {}, new Date(file.mtime * 1000).toLocaleString()),
-                        E('td', {}, [
-                            E('span', {
-                                'class': 'edit-button',
-                                'click': function() {
-                                    self.handleEditFile(joinPath(path, file.name), file);
-                                }
-                            }, '✏️'),
-                            E('span', {
-                                'class': 'delete-button',
-                                'click': function() {
-                                    self.handleDeleteFile(joinPath(path, file.name));
-                                }
-                            }, '🗑️')
-                        ])
+                        // Actions cell
+                        actionTd
                     ]);
                 } else {
+                    // For unknown types
                     listItem = E('tr', {
                         'data-file-path': joinPath(path, file.name),
                         'data-file-type': 'unknown'
@@ -1115,10 +1486,11 @@ return view.extend({
                             }, '')
                         ]),
                         E('td', {}, '-'),
-                        E('td', {}, '-')
+                        E('td', {}, '-') // No actions for unknown types
                     ]);
                 }
 
+                // Append the list item to the file list
                 if (listItem && listItem instanceof Node) {
                     fileList.appendChild(listItem);
                 } else {
@@ -1126,8 +1498,9 @@ return view.extend({
                 }
             });
 
-            self.setInitialColumnWidths();
+            self.setInitialColumnWidths(); // Set the initial column widths
 
+            // Reset status information
             var statusInfo = document.getElementById('status-info');
             var statusProgress = document.getElementById('status-progress');
             if (statusInfo) {
@@ -1137,12 +1510,17 @@ return view.extend({
                 statusProgress.innerHTML = '';
             }
 
+            // Update the 'Select All' checkbox and 'Delete Selected' button
+            self.updateSelectAllCheckbox();
+            self.updateDeleteSelectedButton();
+
             return Promise.resolve();
         }).catch(function(err) {
             ui.addNotification(null, E('p', _('Failed to load file list: %s'.format(err.message))), 'error');
             return Promise.reject(err);
         });
     },
+
     getFormattedSize: function(size) {
         var units = [' ', 'k', 'M', 'G'];
         var unitIndex = 0;
@@ -1228,27 +1606,22 @@ return view.extend({
             self.initResizableColumns();
         });
     },
+
     handleFileClick: function(filePath) {
         var self = this;
         var fileRow = document.querySelector("tr[data-file-path='" + filePath + "']");
         if (fileRow) {
-            // Getting saved permissions
             var permissions = fileRow.getAttribute('data-numeric-permissions');
             self.originalFilePermissions = permissions;
         } else {
-            // 644 by default, if there are no permissions found
             self.originalFilePermissions = '644';
         }
 
-        // Using fs.exec with 'cat' for file reading
         fs.exec('cat', [filePath]).then(function(res) {
             if (res.code !== 0) {
-                // Check if the file is empty if result is not 0
                 if (res.stderr.trim() === '') {
-                    // File is empty, continue with an empty contents
                     var content = '';
                 } else {
-                    // Other errors
                     return Promise.reject(new Error(res.stderr.trim()));
                 }
             } else {
@@ -1260,14 +1633,29 @@ return view.extend({
                 ui.addNotification(null, E('p', _('Editor container not found.')), 'error');
                 return;
             }
+
             editorContainer.innerHTML = '';
+
             var editor = E('div', {}, [
                 E('h3', {}, _('Editing: ') + filePath),
-                E('textarea', {
-                    'wrap': 'off',
-                    'style': 'width:100%;',
-                    'rows': 20
-                }, [content]),
+                E('div', {
+                    'class': 'editor-container',
+                    'style': 'width: ' + config.windowSizes.width + 'px; height: ' + config.windowSizes.height + 'px;'
+                }, [
+                    E('div', {
+                        'class': 'editor-content'
+                    }, [
+                        E('div', {
+                            'class': 'line-numbers',
+                            'id': 'line-numbers',
+                            'style': 'display: none;'
+                        }, ''),
+                        E('textarea', {
+                            'wrap': 'off',
+                            'id': 'editor-textarea'
+                        }, [content])
+                    ])
+                ]),
                 E('div', {
                     'class': 'cbi-page-actions'
                 }, [
@@ -1276,16 +1664,42 @@ return view.extend({
                         'click': function() {
                             self.handleSaveFile(filePath);
                         }
-                    }, _('Save'))
+                    }, _('Save')),
+                    E('button', {
+                        'class': 'btn',
+                        'id': 'toggle-line-numbers',
+                        'style': 'margin-left: 10px;', // Adding shift
+                        'click': function() {
+                            self.toggleLineNumbers();
+                        }
+                    }, _('Toggle Line Numbers'))
                 ])
             ]);
+
             editorContainer.appendChild(editor);
             self.switchToTab('editor');
+
+            var lineNumbersDiv = document.getElementById('line-numbers');
+            var editorTextarea = document.getElementById('editor-textarea');
+
+            if (lineNumbersDiv && lineNumbersDiv.style.display !== 'none') {
+                self.updateLineNumbers();
+                editorTextarea.addEventListener('input', self.updateLineNumbers.bind(self));
+            }
+
+            // Синхронизируем прокрутку
+            editorTextarea.addEventListener('scroll', self.syncScroll.bind(self));
+            self.syncScroll();
+
+            // Настраиваем нижний отступ для line-numbers
+            self.adjustLineNumbersPadding();
+            window.addEventListener('resize', self.adjustLineNumbersPadding.bind(self));
 
             var statusInfo = document.getElementById('status-info');
             if (statusInfo) {
                 statusInfo.textContent = _('Editing: ') + filePath;
             }
+
             var statusProgress = document.getElementById('status-progress');
             if (statusProgress) {
                 statusProgress.innerHTML = '';
@@ -1294,6 +1708,23 @@ return view.extend({
             ui.addNotification(null, E('p', _('Failed to open file: %s'.format(err.message))), 'error');
         });
     },
+
+    adjustLineNumbersPadding: function() {
+        var lineNumbersDiv = document.getElementById('line-numbers');
+        var editorTextarea = document.getElementById('editor-textarea');
+
+        if (!lineNumbersDiv || !editorTextarea) {
+            return;
+        }
+
+        // Получаем высоту горизонтальной полосы прокрутки
+        var scrollbarHeight = editorTextarea.offsetHeight - editorTextarea.clientHeight;
+
+        // Устанавливаем нижний отступ для line-numbers
+        lineNumbersDiv.style.paddingBottom = scrollbarHeight + 'px';
+    },
+
+
     handleDownloadFile: function(filePath) {
         var self = this;
         fs.read(filePath, {
@@ -1334,6 +1765,119 @@ return view.extend({
                 ui.addNotification(null, E('p', _('Failed to delete file or directory: %s'.format(err.message))), 'error');
             });
         }
+    },
+    updateLineNumbers: function() {
+        var lineNumbersDiv = document.getElementById('line-numbers');
+        var editorTextarea = document.getElementById('editor-textarea');
+
+        if (!lineNumbersDiv || !editorTextarea) {
+            return;
+        }
+
+        var content = editorTextarea.value;
+        var lines = content.split('\n').length;
+        var lineNumbersContent = '';
+        for (var i = 1; i <= lines; i++) {
+            lineNumbersContent += '<div>' + i + '</div>';
+        }
+        lineNumbersDiv.innerHTML = lineNumbersContent;
+    },
+    syncScroll: function() {
+        var lineNumbersDiv = document.getElementById('line-numbers');
+        var editorTextarea = document.getElementById('editor-textarea');
+
+        if (!lineNumbersDiv || !editorTextarea) {
+            return;
+        }
+
+        lineNumbersDiv.scrollTop = editorTextarea.scrollTop;
+    },
+    toggleLineNumbers: function() {
+        var lineNumbersDiv = document.getElementById('line-numbers');
+        var editorTextarea = document.getElementById('editor-textarea');
+
+        if (!lineNumbersDiv || !editorTextarea) {
+            return;
+        }
+
+        if (lineNumbersDiv.style.display === 'none' || !lineNumbersDiv.style.display) {
+            // Отображаем номера строк
+            lineNumbersDiv.style.display = 'block';
+            this.updateLineNumbers();
+            this.adjustLineNumbersPadding();
+            editorTextarea.addEventListener('input', this.updateLineNumbers.bind(this));
+            editorTextarea.addEventListener('scroll', this.syncScroll.bind(this));
+            this.syncScroll();
+        } else {
+            // Скрываем номера строк
+            lineNumbersDiv.style.display = 'none';
+            lineNumbersDiv.innerHTML = '';
+            editorTextarea.removeEventListener('input', this.updateLineNumbers.bind(this));
+            editorTextarea.removeEventListener('scroll', this.syncScroll.bind(this));
+        }
+    },
+
+    getCopyName: function(originalName, existingNames) {
+        var dotIndex = originalName.lastIndexOf('.');
+        var namePart, extension;
+        if (dotIndex > 0 && dotIndex !== originalName.length - 1) {
+            namePart = originalName.substring(0, dotIndex);
+            extension = originalName.substring(dotIndex);
+        } else {
+            namePart = originalName;
+            extension = '';
+        }
+
+        var copyName = namePart + ' (copy)' + extension;
+        var copyIndex = 1;
+
+        while (existingNames.includes(copyName)) {
+            copyIndex++;
+            copyName = namePart + ' (copy ' + copyIndex + ')' + extension;
+        }
+
+        return copyName;
+    },
+
+    handleDuplicateFile: function(filePath, fileInfo) {
+        var self = this;
+
+        // Gitting a list of files in current directory
+        getFileList(currentPath).then(function(files) {
+            var existingNames = files.map(function(f) {
+                return f.name;
+            });
+            var newName = self.getCopyName(fileInfo.name, existingNames);
+            var newPath = joinPath(currentPath, newName);
+
+            var command;
+            var args;
+
+            if (fileInfo.type === 'directory') {
+                command = 'cp';
+                args = ['-r', filePath, newPath];
+            } else if (fileInfo.type === 'symlink') {
+                command = 'cp';
+                args = ['-P', filePath, newPath];
+            } else {
+                command = 'cp';
+                args = [filePath, newPath];
+            }
+
+            fs.exec(command, args).then(function(res) {
+                if (res.code !== 0) {
+                    return Promise.reject(new Error(res.stderr.trim()));
+                }
+                ui.addNotification(null, E('p', _('Duplicate created successfully.')), 'info');
+                self.loadFileList(currentPath).then(function() {
+                    self.initResizableColumns();
+                });
+            }).catch(function(err) {
+                ui.addNotification(null, E('p', _('Failed to create duplicate: %s'.format(err.message))), 'error');
+            });
+        }).catch(function(err) {
+            ui.addNotification(null, E('p', _('Failed to get file list: %s'.format(err.message))), 'error');
+        });
     },
     handleSaveFile: function(filePath) {
         var self = this;
