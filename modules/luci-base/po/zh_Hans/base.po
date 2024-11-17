@@ -612,13 +612,37 @@ msgstr "APN"
 msgid "APN profile index"
 msgstr "APN 配置索引"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:358
+msgid "ARP"
+msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:371
+msgid "ARP IP Targets"
+msgstr "ARP IP 目标"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:363
+msgid "ARP Interval"
+msgstr "ARP 间隔"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:387
+msgid "ARP Validation"
+msgstr "ARP 校验"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:811
 msgid "ARP link monitoring"
 msgstr "ARP 链路监控"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:379
+msgid "ARP mode to consider a slave as being up"
+msgstr "在 ARP 模式下将从属设备视为已启动"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:837
 msgid "ARP monitor target IP address"
 msgstr "ARP 监控目标 IP 地址"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:82
+msgid "ARP monitoring is not supported for the selected policy!"
+msgstr "ARP 监控不被当前策略支持！"
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:107
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:107
@@ -777,6 +801,10 @@ msgstr "主动备份"
 msgid "Active peers"
 msgstr "活跃 Peers"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:210
+msgid "Active-Backup policy (active-backup, 1)"
+msgstr "活动备份策略（active-backup，1）"
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3905
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1049
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
@@ -787,9 +815,17 @@ msgstr "点对点 Ad-Hoc"
 msgid "Adaptive load balancing"
 msgstr "自适应负载平衡"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:215
+msgid "Adaptive load balancing (balance-alb, 6)"
+msgstr "自适应负载均衡（balance-alb，6）"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:566
 msgid "Adaptive transmit load balancing"
 msgstr "自适应传输负载平衡"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:214
+msgid "Adaptive transmit load balancing (balance-tlb, 5)"
+msgstr "自适应传输负载均衡（balance-tlb，5）"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2235
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2238
@@ -1010,6 +1046,10 @@ msgstr "老化时间"
 msgid "Aggregate Originator Messages"
 msgstr "聚合发起者消息"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:265
+msgid "Aggregation Selection Logic"
+msgstr "聚合选择逻辑"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:398
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1498
 msgid "Aggregation device"
@@ -1018,6 +1058,26 @@ msgstr "聚合设备"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:523
 msgid "Aggregation ports"
 msgstr "聚合端口"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:268
+msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
+msgstr ""
+"聚合器：由最大聚合带宽选择，所有从属设备均离线或没有从属设备时重新进行选择"
+"（stable，0）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:270
+msgid ""
+"Aggregator: Chosen by the largest number of ports + slave added/removed or "
+"state changes (count, 2)"
+msgstr ""
+"聚合器：由号码最大的从属设备选择，从属设备新增/删除或其状态变化时重新进行选择"
+"（count，2）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:269
+msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
+msgstr ""
+"聚合器：由最大聚合带宽选择，从属设备新增/删除或其状态变化时重新进行选择"
+"（bandwidth，1）"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:194
 msgid "Alert"
@@ -1643,6 +1703,7 @@ msgid "Bonding Mode"
 msgstr "绑定模式"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:559
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:206
 msgid "Bonding Policy"
 msgstr "绑定策略"
 
@@ -1707,6 +1768,10 @@ msgstr "即使没有接口附加到网桥，也启动它"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1409
 msgid "Broadcast"
 msgstr "广播"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:212
+msgid "Broadcast policy (broadcast, 3)"
+msgstr "广播策略（broadcast，3）"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2884
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4252
@@ -2208,6 +2273,14 @@ msgstr "连接跟踪状况"
 msgctxt "nft ct status"
 msgid "Conntrack status"
 msgstr "连接跟踪状态"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:383
+msgid "Consider the slave up when all ARP IP targets are reachable (all, 1)"
+msgstr "当所有 ARP IP 目标都可达时认为从属设备在线（all，1）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:382
+msgid "Consider the slave up when any ARP IP target is reachable (any, 0)"
+msgstr "当任一 ARP IP 目标可达时认为从属设备在线（any，0）"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/crontab.js:18
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:370
@@ -2987,6 +3060,10 @@ msgstr "禁止分片"
 msgid "Down"
 msgstr "下线"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:408
+msgid "Down Delay"
+msgstr "下线延迟"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2941
 msgid "Download"
 msgstr "下载"
@@ -3021,6 +3098,10 @@ msgstr "拖动以重排"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:662
 msgid "Driver default"
 msgstr "驱动默认"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:347
+msgid "Drop Duplicate Frames"
+msgstr "丢弃重复帧"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1098
 msgid ""
@@ -3327,6 +3408,10 @@ msgstr "启用 DNS 查找"
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:163
 msgid "Enable Debugmode"
 msgstr "启用调试模式"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:299
+msgid "Enable Dynamic Shuffling Of Flows"
+msgstr "启用流的动态调整"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:60
 msgid "Enable HE.net dynamic endpoint update"
@@ -3661,6 +3746,14 @@ msgstr "以太网适配器"
 msgid "Ethernet Switch"
 msgstr "以太网交换机"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:277
+msgid "Every 30 seconds (slow, 0)"
+msgstr "每 30 秒（slow，0）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:278
+msgid "Every second (fast, 1)"
+msgstr "每秒（fast，1）"
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:138
 msgid "Exclude SNAT ports"
 msgstr "排除 SNAT 端口"
@@ -3742,6 +3835,10 @@ msgstr "请输入用冒号分隔的两个优先级"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:149
 msgid "Expecting: %s"
 msgstr "请输入：%s"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:53
+msgid "Expecting: non-empty value"
+msgstr "期望：非空值"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:57
 msgid "Expires"
@@ -3956,6 +4053,18 @@ msgstr "过滤本地包"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:643
 msgid "Filter these addresses from dnsmasq replies."
 msgstr "从 dnsmasq 的应答中过滤掉这些地址。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:394
+msgid "Filtering for all slaves, no validation"
+msgstr "筛选所有从属设备，不进行验证"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:395
+msgid "Filtering for all slaves, validation only for active slave"
+msgstr "筛选所有从属设备，仅验证活跃的从属设备"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:396
+msgid "Filtering for all slaves, validation only for backup slaves"
+msgstr "筛选所有从属设备，仅验证备份的从属设备"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:667
 msgid ""
@@ -4652,6 +4761,10 @@ msgstr "ICMPv6 类型"
 msgid "ID used to uniquely identify the VXLAN"
 msgstr "用于识别 VXLAN 的唯一 ID"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:213
+msgid "IEEE 802.3ad Dynamic link aggregation (802.3ad, 4)"
+msgstr "IEEE 802.3ad 动态链路聚合（802.3ad，4）"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:742
 msgid "IGMP reports"
 msgstr "IGMP 报告"
@@ -4775,6 +4888,7 @@ msgstr "IPv4 上游"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1325
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:88
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:205
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:167
 msgid "IPv4 address"
 msgstr "IPv4 地址"
 
@@ -4792,6 +4906,7 @@ msgid "IPv4 gateway"
 msgstr "IPv4 网关"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:180
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:174
 msgid "IPv4 netmask"
 msgstr "IPv4 子网掩码"
 
@@ -5485,6 +5600,10 @@ msgstr "国际移动台设备识别码"
 msgid "International Mobile Subscriber Identity"
 msgstr "国际移动用户识别码"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:290
+msgid "Interval For Sending Learning Packets"
+msgstr "学习包发送间隔"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:998
 msgid ""
 "Interval in centiseconds between multicast general queries. By varying the "
@@ -5727,6 +5846,10 @@ msgstr "L2TP 服务器"
 msgid "LACP - 802.3ad"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:274
+msgid "LACPDU Packets"
+msgstr "LACPDU 包"
+
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:130
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:102
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:88
@@ -5899,6 +6022,14 @@ msgstr "线路状态"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:26
 msgid "Line Uptime"
 msgstr "线路运行时间"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:128
+msgid "Link Aggregation (Channel Bonding)"
+msgstr "链路聚合（通道绑定）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:354
+msgid "Link Monitoring"
+msgstr "链路监控"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:24
 msgid "Link On"
@@ -6214,6 +6345,10 @@ msgstr "MAC 地址"
 msgid "MAC Address Filter"
 msgstr "MAC 地址过滤"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:258
+msgid "MAC Address For The Actor"
+msgstr "这个 Actor 的 MAC 地址"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:402
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1507
 msgid "MAC VLAN"
@@ -6289,6 +6424,18 @@ msgstr "MD5"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:28
 msgid "MHz"
 msgstr "MHz"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:359
+msgid "MII"
+msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:427
+msgid "MII / ETHTOOL ioctls"
+msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:400
+msgid "MII Interval"
+msgstr "MII 间隔"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:812
 msgid "MII link monitoring"
@@ -6572,6 +6719,14 @@ msgstr "Mesh 身份"
 msgid "Method not found"
 msgstr "方法未找到"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:355
+msgid "Method of link monitoring"
+msgstr "链路监测方式"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:424
+msgid "Method to determine link status"
+msgstr "确定链路状态的方式"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:83
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:216
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:242
@@ -6610,6 +6765,10 @@ msgstr "最小有效值 %s"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1109
 msgid "Minimum ARP validity time"
 msgstr "最小 ARP 有效时间"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:242
+msgid "Minimum Number of Links"
+msgstr "最小链接数"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:720
 msgid "Minimum number of active links"
@@ -7084,6 +7243,8 @@ msgid "Next »"
 msgstr "前进 »"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:303
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:351
 msgid "No"
 msgstr "否"
 
@@ -7195,6 +7356,15 @@ msgstr "无可用信息"
 msgid "No matching prefix delegation"
 msgstr "无匹配的前缀委托"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:145
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:148
+msgid "No more slaves available"
+msgstr "没有更多的从属设备可用"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:194
+msgid "No more slaves available, can not save interface"
+msgstr "没有更多的从属设备可用，无法保存接口"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:671
 msgid "No negative cache"
 msgstr "禁用无效信息缓存"
@@ -7244,6 +7414,10 @@ msgstr "此链中没有规则"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:91
 msgid "No rules in this chain."
 msgstr "本链没有规则。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:390
+msgid "No validation or filtering"
+msgstr "没有验证或过滤"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:139
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1286
@@ -7367,6 +7541,10 @@ msgstr "注意"
 msgid "Nslookup"
 msgstr "Nslookup"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:338
+msgid "Number of IGMP membership reports"
+msgstr "IGMP 成员数量报告"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1230
 msgid ""
 "Number of beacon periods between a <abbr title=\"Delivery Traffic Indication "
@@ -7389,6 +7567,10 @@ msgid ""
 "Slave is chosen at random when 0."
 msgstr ""
 "在移动到下一个从机之前要通过从机传输的数据包数量。为 0 时，从机是随机选择的。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:316
+msgid "Number of peer notifications after failover event"
+msgstr "故障切换事件后的对端通知数"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:732
 msgid "Number of seconds between sent learning packets"
@@ -7415,6 +7597,7 @@ msgstr "获取 IPv6 地址"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:19
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:87
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:357
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:342
 msgid "Off"
 msgstr "关"
@@ -7497,6 +7680,11 @@ msgstr "启用后仅允许与非隔离网桥端口通信"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2279
 msgid "Only connect where the BSSID matches <code>%h</code>."
 msgstr "仅连接到 BSSID 为 <code>%h</code> 的网络。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:236
+msgid ""
+"Only if current active slave fails and the primary slave is up (failure, 2)"
+msgstr "仅在当前活跃从属设备发生故障，且主从属设备在线时（failure，2）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:97
 msgid "Only interfaces using this table (via override) will use this route."
@@ -8034,6 +8222,10 @@ msgstr ""
 msgid "Packets"
 msgstr "数据包"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:282
+msgid "Packets To Transmit Before Moving To Next Slave"
+msgstr "切换到下一个从属设备前要传输的数据包"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:90
 msgid "Packets exceeding this value may be fragmented"
 msgstr "超过此值的数据包可能会被碎片化"
@@ -8397,6 +8589,22 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:610
 msgid "Primary Device"
 msgstr "主设备"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:218
+msgid "Primary Slave"
+msgstr "主从属设备"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:235
+msgid ""
+"Primary becomes active slave when it comes back up if speed and duplex "
+"better than current slave (better, 1)"
+msgstr ""
+"如果主从属设备速度和双工优于当前的从属设备，则当其重新上线时成为活跃的从属设"
+"备（better，1）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:234
+msgid "Primary becomes active slave whenever it comes back up (always, 0)"
+msgstr "只要主从属设备重新上线，它就会成为活跃从属设备（always，0）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:754
 msgid "Primary port reselection policy"
@@ -9092,6 +9300,10 @@ msgstr "需要带 SAE 支持的 wpa-supplicant"
 msgid "Requires wpa-supplicant with WEP support"
 msgstr "需要带 WEP 支持的 wpa-supplicant"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:231
+msgid "Reselection policy for primary slave"
+msgstr "主从属设备的重选策略"
+
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2202
 #: modules/luci-base/ucode/template/sysauth.ut:39
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:17
@@ -9269,6 +9481,10 @@ msgstr "根目录准备"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:562
 msgid "Round robin"
 msgstr "轮循"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:209
+msgid "Round-Robin policy (balance-rr, 0)"
+msgstr "循环策略（balance-rr，0）"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:644
 msgid "Route Allowed IPs"
@@ -9533,6 +9749,10 @@ msgstr ""
 msgid "Select file…"
 msgstr "选择文件…"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:325
+msgid "Selects the transmit hash policy to use for slave selection"
+msgstr "选择用于从属设备选择的传输哈希策略"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:795
 msgid ""
 "Send <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</abbr> "
@@ -9637,6 +9857,10 @@ msgstr ""
 "不论接口的链路状态如何，总是用应用设置（如果勾选，链路状态变更将不再触发热插"
 "拔事件处理）。"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:307
+msgid "Set same MAC Address to all slaves"
+msgstr "为所有从属设备设置相同的 MAC 地址"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:814
 msgid ""
 "Set the autonomous address-configuration flag in the prefix information "
@@ -9655,6 +9879,14 @@ msgid ""
 "Set this interface as master for RA and DHCPv6 relaying as well as NDP "
 "proxying."
 msgstr "将此接口设为 RA 和 DHCPv6 中继及 NDP 代理的主接口。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:311
+msgid "Set to currently active slave (active, 1)"
+msgstr "设置到当前活跃的从属设备（active，1）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:312
+msgid "Set to first slave added to the bond (follow, 2)"
+msgstr "设置到第一个添加到 bond 接口的从属设备（follow，2）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:646
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:662
@@ -9781,6 +10013,10 @@ msgstr "跳到内容"
 msgid "Skip to navigation"
 msgstr "跳转到导航"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:185
+msgid "Slave Interfaces"
+msgstr "从属接口"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:618
 msgid "Slave selection hash policy"
 msgstr "从机选择哈希策略"
@@ -9891,9 +10127,31 @@ msgstr ""
 "指定要匹配的单个 UID 或 UID 范围，例如，1000 用于匹配对应的 UID，1000-1005 用"
 "于匹配对应范围内的所有 UID"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:348
+msgid ""
+"Specifies that duplicate frames (received on inactive ports) should be "
+"dropped or delivered"
+msgstr "指定重复的帧（在非活动端口接收的）应该被丢弃还是交付"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:364
+msgid "Specifies the ARP link monitoring frequency in milliseconds"
+msgstr "指定 ARP 链接监控频率（毫秒）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:372
+msgid "Specifies the IP addresses to use for ARP monitoring"
+msgstr "指定用于 ARP 监控的 IP 地址"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:401
+msgid "Specifies the MII link monitoring frequency in milliseconds"
+msgstr "指定 MII 链接监控频率（毫秒）"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:189
 msgid "Specifies the TOS value to match in IP headers"
 msgstr "指定要在 IP 头中匹配的 TOS 值"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:266
+msgid "Specifies the aggregation selection logic to use"
+msgstr "指定要使用的聚合选择逻辑"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:293
 msgid "Specifies the directory the device is attached to"
@@ -9926,6 +10184,14 @@ msgid ""
 "this route belongs to"
 msgstr "指定该路由所属的父（或主）接口的逻辑接口名"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:259
+msgid ""
+"Specifies the mac-address for the actor in protocol packet exchanges "
+"(LACPDUs). If empty, masters' mac address defaults to system default"
+msgstr ""
+"明确协议包交换 actor 的 MAC 地址(LACPDUs)。如果为空，master 的 mac 地址默认为"
+"系统默认值"
+
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:175
 msgid ""
 "Specifies the maximum amount of failed ARP requests until hosts are presumed "
@@ -9937,6 +10203,16 @@ msgid ""
 "Specifies the maximum amount of seconds after which hosts are presumed to be "
 "dead"
 msgstr "判断主机已下线的超时时间（秒）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:243
+msgid ""
+"Specifies the minimum number of links that must be active before asserting "
+"carrier"
+msgstr "指定 asserting 运营商前必须处于活跃状态的链接的最小数量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:207
+msgid "Specifies the mode to be used for this bonding interface"
+msgstr "指定用于此 bonding 接口的模式"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:79
 msgid ""
@@ -9953,11 +10229,53 @@ msgid ""
 "failover event"
 msgstr "指定故障转移事件后要发出的 IGMP 成员报告的数量"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:339
+msgid ""
+"Specifies the number of IGMP membership reports to be issued after a "
+"failover event in 200ms intervals"
+msgstr "指定发生故障转移事件后在 200 毫秒间隔内发出的 IGMP 成员资格报告的数量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:283
+msgid ""
+"Specifies the number of packets to transmit through a slave before moving to "
+"the next one"
+msgstr "指定在切换到下一个从属设备前要传输的数据包数量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:317
+msgid ""
+"Specifies the number of peer notifications (gratuitous ARPs and unsolicited "
+"IPv6 Neighbor Advertisements) to be issued after a failover event"
+msgstr ""
+"指定一次故障转移事件后要发布的对等通知（无为 ARP 和主动 IPv6 邻居通告）的数目"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:291
+msgid ""
+"Specifies the number of seconds between instances where the bonding driver "
+"sends learning packets to each slaves peer switch"
+msgstr ""
+"指定 bonding 驱动程序向每个从属设备连接的交换机发送学习数据包的间隔秒数"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:105
 msgid ""
 "Specifies the preferred source address when sending to destinations covered "
 "by the target"
 msgstr "指定发送到目标覆盖的目的地时的首选源地址"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:380
+msgid "Specifies the quantity of ARP IP targets that must be reachable"
+msgstr "指定必须可达的 ARP IP 目标数"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:275
+msgid ""
+"Specifies the rate in which the link partner will be asked to transmit "
+"LACPDU packets"
+msgstr "指定链路伙伴被要求传输 LACPDU 包的速率"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:232
+msgid ""
+"Specifies the reselection policy for the primary slave when failure of the "
+"active slave or recovery of the primary slave occurs"
+msgstr "指定当活动从属设备发生故障或主从属设备恢复时，主从属设备的重选策略"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:48
 msgid "Specifies the route type to be created"
@@ -9966,6 +10284,22 @@ msgstr "指定要创建的路由类型"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:142
 msgid "Specifies the rule target routing action"
 msgstr "指定规则目标路由动作"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:251
+msgid "Specifies the system priority"
+msgstr "指定系统优先级"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:409
+msgid ""
+"Specifies the time in milliseconds to wait before disabling a slave after a "
+"link failure detection"
+msgstr "指定在检测到链路故障后，在禁用从属设备之前等待的时间（毫秒）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:417
+msgid ""
+"Specifies the time in milliseconds to wait before enabling a slave after a "
+"link recovery detection"
+msgstr "指定在检测到链路恢复后，在启用从属设备之前等待的时间（毫秒）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:549
 msgid "Specifies the wired ports to attach to this bonding."
@@ -9979,6 +10313,40 @@ msgid ""
 msgstr ""
 "指定要附加到该网桥的有线端口。为了连接无线网络，请在无线设置中选择关联的接口"
 "作为网络。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:388
+msgid ""
+"Specifies whether ARP probes and replies should be validated or non-ARP "
+"traffic should be filtered for link monitoring"
+msgstr "指定是否应验证 ARP 探测和应答，或者应为了链路监控目的过滤非 ARP 流量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:308
+msgid ""
+"Specifies whether active-backup mode should set all slaves to the same MAC "
+"address at enslavement"
+msgstr "指定主备模式是否应在设置从属时，将所有从属设备设置为相同的 MAC 地址"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:425
+msgid ""
+"Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. "
+"netif_carrier_ok()"
+msgstr "指定相较 netif_carrier_ok(), miimon 是否应使用 MII 或 ETHTOOL ioctls"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:300
+msgid ""
+"Specifies whether to shuffle active flows across slaves based on the load"
+msgstr "指定是否根据负载调整从属设备之间的活动数据流"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:186
+msgid ""
+"Specifies which slave interfaces should be attached to this bonding interface"
+msgstr "指定哪些从属接口应连接到该 bonding 接口上"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:219
+msgid ""
+"Specifies which slave is the primary device. It will always be the active "
+"slave while it is available"
+msgstr "指定哪个从属设备是主要设备。当它可用时，它将始终是活跃的从属设备"
 
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:63
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:142
@@ -10267,6 +10635,10 @@ msgstr "系统"
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
 msgstr "系统日志"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:250
+msgid "System Priority"
+msgstr "系统优先级"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:118
 msgid "System Properties"
@@ -10732,6 +11104,10 @@ msgstr "IPv4 前缀长度（位），其余的用在 IPv6 地址。"
 msgid "The length of the IPv6 prefix in bits"
 msgstr "IPv6 前缀长度（位）"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:168
+msgid "The local IPv4 address"
+msgstr "本地 IPv4 地址"
+
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:46
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:44
@@ -10739,6 +11115,10 @@ msgstr "IPv6 前缀长度（位）"
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:47
 msgid "The local IPv4 address over which the tunnel is created (optional)."
 msgstr "所创建隧道的本地 IPv4 地址（可选）。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:175
+msgid "The local IPv4 netmask"
+msgstr "本地 IPv4 网络掩码"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
@@ -11221,6 +11601,10 @@ msgstr ""
 msgid "Transmit"
 msgstr "传送"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:324
+msgid "Transmit Hash Policy"
+msgstr "传输散列策略"
+
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js:248
 msgid "Transmit dropped"
 msgstr "发送丢包"
@@ -11540,6 +11924,10 @@ msgstr "无标题的对端"
 msgid "Up"
 msgstr "在线"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:416
+msgid "Up Delay"
+msgstr "上线延迟"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4303
 msgid "Upload"
 msgstr "上传"
@@ -11653,6 +12041,20 @@ msgstr "隧道接口的 MTU"
 msgid "Use TTL on tunnel interface"
 msgstr "隧道接口的 TTL"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:327
+msgid "Use XOR of hardware MAC addresses (layer2)"
+msgstr "使用硬件 MAC 地址的 XOR （层2）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:328
+msgid "Use XOR of hardware MAC addresses and IP addresses (layer2+3)"
+msgstr "使用硬件 MAC 地址和 IP 地址的 XOR （层2+3）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:330
+msgid ""
+"Use XOR of hardware MAC addresses and IP addresses, rely on skb_flow_dissect "
+"(encap2+3)"
+msgstr "使用硬件 MAC 地址和 IP 地址的 XOR，依靠 skb 流剖析 （encap2+3）"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:295
 msgid "Use as external overlay (/overlay)"
 msgstr "作为外部 overlay 使用（/overlay）"
@@ -11753,6 +12155,15 @@ msgstr ""
 "字段的值将被固定分配给 <em>MAC 地址</em>字段标识的主机，<em>租期</em>是一个可"
 "选字段，可为每个主机单独设定 DHCP 租期的时长，例如：12h、3d、infinite，分别表"
 "示 12 小时、3 天、永久。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:329
+msgid "Use upper layer protocol information (layer3+4)"
+msgstr "使用上层协议信息（层3+4）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:331
+msgid ""
+"Use upper layer protocol information, rely on skb_flow_dissect (encap3+4)"
+msgstr "使用上层协议信息，依靠 skb 流剖析 （encap3+4）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:842
 msgid "Use {etc_ethers}"
@@ -11916,6 +12327,18 @@ msgid ""
 "Validate server certificate using built-in system CA bundle,<br />requires "
 "the \"ca-bundle\" package"
 msgstr "使用系统内置的 CA 包验证服务器证书，<br />需要“ca-bundle”软件包"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:393
+msgid "Validation for all slaves"
+msgstr "验证所有从属设备"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:391
+msgid "Validation only for active slave"
+msgstr "仅验证活跃的从属设备"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:392
+msgid "Validation only for backup slaves"
+msgstr "仅验证备用的从属设备"
 
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:73
 msgid "Vendor"
@@ -12225,9 +12648,19 @@ msgstr "将收到的 DNS 查询写入系统日志。"
 msgid "Write system log to file"
 msgstr "将系统日志写入文件"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:211
+msgid "XOR policy (balance-xor, 2)"
+msgstr "XOR 策略 (balance-xor, 2)"
+
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:302
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:350
 msgid "Yes"
 msgstr "是"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:310
+msgid "Yes (none, 0)"
+msgstr "好（无，0）"
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid "Yggdrasil Network"
@@ -12269,6 +12702,17 @@ msgstr "您可以在同一个“监听地址”上添加多个唯一的“中继
 msgid ""
 "You must enable JavaScript in your browser or LuCI will not work properly."
 msgstr "必须开启浏览器的 JavaScript 支持，否则 LuCI 无法正常工作。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:120
+msgid ""
+"You must select a primary interface which is included in selected slave "
+"interfaces!"
+msgstr "你必须选择一个主接口，该主接口包含在已选从接口中！"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:101
+msgid ""
+"You must select at least one ARP IP target if ARP monitoring is selected!"
+msgstr "若 ARP 监控被选中，你必须选择至少一个 ARP IP 目标！"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:215
 msgid "ZRam Compression Algorithm"
@@ -12566,6 +13010,10 @@ msgstr "分钟"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:826
 msgid "mobile home agent (H)"
 msgstr "移动 home 代理 (H)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:428
+msgid "netif_carrier_ok()"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:47
 msgid "no"

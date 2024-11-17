@@ -596,13 +596,37 @@ msgstr "APN"
 msgid "APN profile index"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:358
+msgid "ARP"
+msgstr "ARP"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:371
+msgid "ARP IP Targets"
+msgstr "ARP IP 目標"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:363
+msgid "ARP Interval"
+msgstr "ARP 間隔"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:387
+msgid "ARP Validation"
+msgstr "ARP 驗證"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:811
 msgid "ARP link monitoring"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:379
+msgid "ARP mode to consider a slave as being up"
+msgstr "ARP 模式將一個實體界面視為已啟動"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:837
 msgid "ARP monitor target IP address"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:82
+msgid "ARP monitoring is not supported for the selected policy!"
+msgstr "ARP 監視尚不支援已選擇的政策！"
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:107
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:107
@@ -761,6 +785,10 @@ msgstr ""
 msgid "Active peers"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:210
+msgid "Active-Backup policy (active-backup, 1)"
+msgstr "啟動-備份規則 (active-backup, 1)"
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3905
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1049
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
@@ -771,9 +799,17 @@ msgstr "無線漫遊(Ad-Hoc)"
 msgid "Adaptive load balancing"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:215
+msgid "Adaptive load balancing (balance-alb, 6)"
+msgstr "自適應負載平衡 (balance-alb, 6)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:566
 msgid "Adaptive transmit load balancing"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:214
+msgid "Adaptive transmit load balancing (balance-tlb, 5)"
+msgstr "自適應發送負載平衡 (balance-tlb, 5)"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2235
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2238
@@ -990,6 +1026,10 @@ msgstr "老化時間"
 msgid "Aggregate Originator Messages"
 msgstr "聚合發起方消息"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:265
+msgid "Aggregation Selection Logic"
+msgstr "彙總邏輯選集"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:398
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1498
 msgid "Aggregation device"
@@ -998,6 +1038,21 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:523
 msgid "Aggregation ports"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:268
+msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
+msgstr "彙總器: 所有實體界面都關閉或沒有實體界面 (穩定, 0)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:270
+msgid ""
+"Aggregator: Chosen by the largest number of ports + slave added/removed or "
+"state changes (count, 2)"
+msgstr ""
+"彙總器: 選擇按 \"最大連接埠數 + 實體界面新增/刪除 或 狀態變更\" (計數,2)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:269
+msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
+msgstr "彙總器: 實體界面已新增/已移除 或 狀態更改(頻寬,1)"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:194
 msgid "Alert"
@@ -1611,6 +1666,7 @@ msgid "Bonding Mode"
 msgstr "綁定模式"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:559
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:206
 msgid "Bonding Policy"
 msgstr "保固政策"
 
@@ -1675,6 +1731,10 @@ msgstr "即使沒有介面附加到橋接，也啟動它"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1409
 msgid "Broadcast"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:212
+msgid "Broadcast policy (broadcast, 3)"
+msgstr "廣播政策（廣播，3）"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2884
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4252
@@ -2171,6 +2231,14 @@ msgstr "連接狀態"
 msgctxt "nft ct status"
 msgid "Conntrack status"
 msgstr "連接狀態"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:383
+msgid "Consider the slave up when all ARP IP targets are reachable (all, 1)"
+msgstr "當所有ARP IP 可到達目標時, 請考慮實體界面啟動(全部,1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:382
+msgid "Consider the slave up when any ARP IP target is reachable (any, 0)"
+msgstr "當任何ARP IP目標可到達時, 啟用實體界面(任一,0)"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/crontab.js:18
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:370
@@ -2947,6 +3015,10 @@ msgstr "不要分段"
 msgid "Down"
 msgstr "下"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:408
+msgid "Down Delay"
+msgstr "下傳延遲"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2941
 msgid "Download"
 msgstr ""
@@ -2981,6 +3053,10 @@ msgstr "拖動來排序"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:662
 msgid "Driver default"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:347
+msgid "Drop Duplicate Frames"
+msgstr "丟棄相同多餘的訊框(Frames)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1098
 msgid ""
@@ -3277,6 +3353,10 @@ msgstr "啟用DNS查詢"
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:163
 msgid "Enable Debugmode"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:299
+msgid "Enable Dynamic Shuffling Of Flows"
+msgstr "啟用動態拖曳(Dynamic Shuffling)流程"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:60
 msgid "Enable HE.net dynamic endpoint update"
@@ -3606,6 +3686,14 @@ msgstr "乙太網路卡"
 msgid "Ethernet Switch"
 msgstr "乙太交換器"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:277
+msgid "Every 30 seconds (slow, 0)"
+msgstr "每 30 秒(慢速,0)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:278
+msgid "Every second (fast, 1)"
+msgstr "每一秒(快,1)"
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:138
 msgid "Exclude SNAT ports"
 msgstr ""
@@ -3685,6 +3773,10 @@ msgstr "請輸入用冒號分隔的兩個優先順序"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:149
 msgid "Expecting: %s"
 msgstr "預期: %s"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:53
+msgid "Expecting: non-empty value"
+msgstr "預期:非空值"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:57
 msgid "Expires"
@@ -3897,6 +3989,18 @@ msgstr "私人過濾器"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:643
 msgid "Filter these addresses from dnsmasq replies."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:394
+msgid "Filtering for all slaves, no validation"
+msgstr "篩選所有實體界面 , 無驗證"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:395
+msgid "Filtering for all slaves, validation only for active slave"
+msgstr "篩選所有實體界面 , 僅驗證有活動的實體界面"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:396
+msgid "Filtering for all slaves, validation only for backup slaves"
+msgstr "篩選所有實體界面 , 僅驗證有備份的實體界面"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:667
 msgid ""
@@ -4590,6 +4694,10 @@ msgstr "ICMPv6型"
 msgid "ID used to uniquely identify the VXLAN"
 msgstr "用於辨識 VXLAN 的唯一 ID"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:213
+msgid "IEEE 802.3ad Dynamic link aggregation (802.3ad, 4)"
+msgstr "IEEE 802.3ad 動態鏈路聚合 (802.3ad, 4)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:742
 msgid "IGMP reports"
 msgstr ""
@@ -4711,6 +4819,7 @@ msgstr "IPv4 上游"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1325
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:88
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:205
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:167
 msgid "IPv4 address"
 msgstr "IPv4 位址"
 
@@ -4728,6 +4837,7 @@ msgid "IPv4 gateway"
 msgstr "IPv4閘道"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:180
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:174
 msgid "IPv4 netmask"
 msgstr "IPv4網路遮罩"
 
@@ -5413,6 +5523,10 @@ msgstr ""
 msgid "International Mobile Subscriber Identity"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:290
+msgid "Interval For Sending Learning Packets"
+msgstr "傳送學習中封包的時間間隔"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:998
 msgid ""
 "Interval in centiseconds between multicast general queries. By varying the "
@@ -5653,6 +5767,10 @@ msgstr "L2TP伺服器"
 msgid "LACP - 802.3ad"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:274
+msgid "LACPDU Packets"
+msgstr "鏈路聚合控制協定 (LACPDU) 封包"
+
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:130
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:102
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:88
@@ -5823,6 +5941,14 @@ msgstr "線路狀態"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:26
 msgid "Line Uptime"
 msgstr "線路正常運行時間"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:128
+msgid "Link Aggregation (Channel Bonding)"
+msgstr "鏈路聚合(通道捆搒)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:354
+msgid "Link Monitoring"
+msgstr "連結監測"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:24
 msgid "Link On"
@@ -6131,6 +6257,10 @@ msgstr "MAC 位址"
 msgid "MAC Address Filter"
 msgstr "MAC 位址過濾"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:258
+msgid "MAC Address For The Actor"
+msgstr "將扮演的MAC位址"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:402
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1507
 msgid "MAC VLAN"
@@ -6204,6 +6334,18 @@ msgstr "MD5"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:28
 msgid "MHz"
 msgstr "MHz"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:359
+msgid "MII"
+msgstr "MII寄存器"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:427
+msgid "MII / ETHTOOL ioctls"
+msgstr "MII 寄存器/ ETHTOOL輸入/輸出操作系統呼叫"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:400
+msgid "MII Interval"
+msgstr "MII寄存器間隔"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:812
 msgid "MII link monitoring"
@@ -6487,6 +6629,14 @@ msgstr ""
 msgid "Method not found"
 msgstr "找不到方式"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:355
+msgid "Method of link monitoring"
+msgstr "連線監視方式"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:424
+msgid "Method to determine link status"
+msgstr "確定連接狀態的方式"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:83
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:216
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:242
@@ -6523,6 +6673,10 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1109
 msgid "Minimum ARP validity time"
 msgstr "最小 ARP 有效時間"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:242
+msgid "Minimum Number of Links"
+msgstr "連線的最小數量"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:720
 msgid "Minimum number of active links"
@@ -6991,6 +7145,8 @@ msgid "Next »"
 msgstr "下一個 »"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:303
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:351
 msgid "No"
 msgstr "不"
 
@@ -7103,6 +7259,15 @@ msgstr "無可用資訊"
 msgid "No matching prefix delegation"
 msgstr "沒有匹配的前綴字首委託"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:145
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:148
+msgid "No more slaves available"
+msgstr "缺乏更多可用的實體界面"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:194
+msgid "No more slaves available, can not save interface"
+msgstr "缺乏更多可用的實體界面, 無法儲存界面"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:671
 msgid "No negative cache"
 msgstr "無負向快取"
@@ -7153,6 +7318,10 @@ msgstr "此鏈中沒有規則"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:91
 msgid "No rules in this chain."
 msgstr "尚無規則在這個連接上。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:390
+msgid "No validation or filtering"
+msgstr "沒有驗證或過濾"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:139
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1286
@@ -7272,6 +7441,10 @@ msgstr "注意"
 msgid "Nslookup"
 msgstr "名稱伺服器查詢"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:338
+msgid "Number of IGMP membership reports"
+msgstr "IGMP成員數量報告"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1230
 msgid ""
 "Number of beacon periods between a <abbr title=\"Delivery Traffic Indication "
@@ -7291,6 +7464,10 @@ msgid ""
 "Number of packets to transmit through a slave before moving to the next one. "
 "Slave is chosen at random when 0."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:316
+msgid "Number of peer notifications after failover event"
+msgstr "故障轉移事件後的對等通知數"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:732
 msgid "Number of seconds between sent learning packets"
@@ -7317,6 +7494,7 @@ msgstr "取得IPv6-位址"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:19
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:87
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:357
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:342
 msgid "Off"
 msgstr "關"
@@ -7399,6 +7577,11 @@ msgstr "啟用後僅允許與非隔離橋接連接埠通信"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2279
 msgid "Only connect where the BSSID matches <code>%h</code>."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:236
+msgid ""
+"Only if current active slave fails and the primary slave is up (failure, 2)"
+msgstr "僅當當前活躍的實體界面發生故障, 並且主要實體界面上線時(失敗,2)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:97
 msgid "Only interfaces using this table (via override) will use this route."
@@ -7931,6 +8114,10 @@ msgstr ""
 msgid "Packets"
 msgstr "封包"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:282
+msgid "Packets To Transmit Before Moving To Next Slave"
+msgstr "在移至下一個實體界面之前要發送的封包"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:90
 msgid "Packets exceeding this value may be fragmented"
 msgstr ""
@@ -8289,6 +8476,22 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:610
 msgid "Primary Device"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:218
+msgid "Primary Slave"
+msgstr "主要的實體界面"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:235
+msgid ""
+"Primary becomes active slave when it comes back up if speed and duplex "
+"better than current slave (better, 1)"
+msgstr ""
+"如果速度和雙工比當前的實體界面好(更好, 1), 則當邏輯主控站恢復時, 它將變為活動"
+"的實體界面"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:234
+msgid "Primary becomes active slave whenever it comes back up (always, 0)"
+msgstr "邏輯主控在恢復後, 始終變為活動的實體界面 (永遠, 0）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:754
 msgid "Primary port reselection policy"
@@ -8979,6 +9182,10 @@ msgstr "要求wpa-supplicant支援SAE"
 msgid "Requires wpa-supplicant with WEP support"
 msgstr "要求wpa-supplicant支援WEP"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:231
+msgid "Reselection policy for primary slave"
+msgstr "實體界面的重選政策"
+
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2202
 #: modules/luci-base/ucode/template/sysauth.ut:39
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:17
@@ -9157,6 +9364,10 @@ msgstr "預備根系統"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:562
 msgid "Round robin"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:209
+msgid "Round-Robin policy (balance-rr, 0)"
+msgstr "循環政策 (balance-rr, 0)"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:644
 msgid "Route Allowed IPs"
@@ -9421,6 +9632,10 @@ msgstr ""
 msgid "Select file…"
 msgstr "選擇檔案…"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:325
+msgid "Selects the transmit hash policy to use for slave selection"
+msgstr "請選擇「傳輸雜湊政策」，以便在選擇從屬介面時使用"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:795
 msgid ""
 "Send <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</abbr> "
@@ -9525,6 +9740,10 @@ msgstr ""
 "無論鏈接載體是什麼, 都設置界面屬性(如果設定, 則載體偵測事件不會調用熱插拔處理"
 "程序)."
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:307
+msgid "Set same MAC Address to all slaves"
+msgstr "對所有實體界面設置相同的MAC硬體地址"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:814
 msgid ""
 "Set the autonomous address-configuration flag in the prefix information "
@@ -9543,6 +9762,14 @@ msgid ""
 "Set this interface as master for RA and DHCPv6 relaying as well as NDP "
 "proxying."
 msgstr "將此介面設為 RA 和 DHCPv6 中繼及 NDP 代理的主介面。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:311
+msgid "Set to currently active slave (active, 1)"
+msgstr "設定為目前使用中的實體介面 (使用中, 1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:312
+msgid "Set to first slave added to the bond (follow, 2)"
+msgstr "設定為第一個實體界面添加到綁定(跟隨,2)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:646
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:662
@@ -9668,6 +9895,10 @@ msgstr "跳到內容"
 msgid "Skip to navigation"
 msgstr "跳到導覽"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:185
+msgid "Slave Interfaces"
+msgstr "從屬介面"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:618
 msgid "Slave selection hash policy"
 msgstr ""
@@ -9776,9 +10007,31 @@ msgstr ""
 "指定要匹配的單個 UID 或 UID 範圍，例如 1000 以匹配相應的 UID 或 1000-1005 以"
 "包含匹配相應範圍內的所有 UID"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:348
+msgid ""
+"Specifies that duplicate frames (received on inactive ports) should be "
+"dropped or delivered"
+msgstr "指定應丟棄或傳送的重複訊號框架（在非活動端口上接收到）"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:364
+msgid "Specifies the ARP link monitoring frequency in milliseconds"
+msgstr "指定ARP連接監視頻率(以毫秒為單位)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:372
+msgid "Specifies the IP addresses to use for ARP monitoring"
+msgstr "指定用於ARP監視的IP地址"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:401
+msgid "Specifies the MII link monitoring frequency in milliseconds"
+msgstr "指定MII連接監視頻率(以毫秒為單位)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:189
 msgid "Specifies the TOS value to match in IP headers"
 msgstr "指定要在IP標頭中匹配的TOS值"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:266
+msgid "Specifies the aggregation selection logic to use"
+msgstr "指定要使用的聚合選擇邏輯"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:293
 msgid "Specifies the directory the device is attached to"
@@ -9811,6 +10064,14 @@ msgid ""
 "this route belongs to"
 msgstr "指定此路由所屬的父（或主）接口的邏輯接口名稱"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:259
+msgid ""
+"Specifies the mac-address for the actor in protocol packet exchanges "
+"(LACPDUs). If empty, masters' mac address defaults to system default"
+msgstr ""
+"指定協定封包交換(LACPDU)中參與者的mac位址. 如果為空, 則主機的mac位址預設為系"
+"統預設"
+
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:175
 msgid ""
 "Specifies the maximum amount of failed ARP requests until hosts are presumed "
@@ -9822,6 +10083,16 @@ msgid ""
 "Specifies the maximum amount of seconds after which hosts are presumed to be "
 "dead"
 msgstr "指定可請求的最大秒數直到駭客主機死亡為止"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:243
+msgid ""
+"Specifies the minimum number of links that must be active before asserting "
+"carrier"
+msgstr "指定宣告載波之前必須處於活動狀態的最小連接數"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:207
+msgid "Specifies the mode to be used for this bonding interface"
+msgstr "指定用於此綁定界面的模式"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:79
 msgid ""
@@ -9838,11 +10109,55 @@ msgid ""
 "failover event"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:339
+msgid ""
+"Specifies the number of IGMP membership reports to be issued after a "
+"failover event in 200ms intervals"
+msgstr "指定故障轉移事件後每200ms間隔發出的IGMP成員資格報告被發布的數量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:283
+msgid ""
+"Specifies the number of packets to transmit through a slave before moving to "
+"the next one"
+msgstr "指定在移動到下一個實體界面之前要通過實體界面傳輸的封包數量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:317
+msgid ""
+"Specifies the number of peer notifications (gratuitous ARPs and unsolicited "
+"IPv6 Neighbor Advertisements) to be issued after a failover event"
+msgstr ""
+"指定故障轉移事件後要發出的對等通知（免費ARP和主動的IPv6鄰居通告）的數量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:291
+msgid ""
+"Specifies the number of seconds between instances where the bonding driver "
+"sends learning packets to each slaves peer switch"
+msgstr ""
+"指定綁定驅動程式, 將學習封包發送到每個實體界面節點交換機的實例之間的秒數"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:105
 msgid ""
 "Specifies the preferred source address when sending to destinations covered "
 "by the target"
 msgstr "指定發送到目標覆蓋的目的地時的首選源地址"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:380
+msgid "Specifies the quantity of ARP IP targets that must be reachable"
+msgstr "指定必須達到的ARP IP目標數量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:275
+msgid ""
+"Specifies the rate in which the link partner will be asked to transmit "
+"LACPDU packets"
+msgstr "指定將要求鏈路夥伴傳輸LACPDU封包的速率"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:232
+msgid ""
+"Specifies the reselection policy for the primary slave when failure of the "
+"active slave or recovery of the primary slave occurs"
+msgstr ""
+"當活躍的實體界面發生故障 或 主要實體界面復原發生故障時, 為主要實體界面指定重"
+"新選擇策略"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:48
 msgid "Specifies the route type to be created"
@@ -9851,6 +10166,22 @@ msgstr "指定要建立的路由類型"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:142
 msgid "Specifies the rule target routing action"
 msgstr "指定規則目標路由操作"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:251
+msgid "Specifies the system priority"
+msgstr "指定系統優先權"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:409
+msgid ""
+"Specifies the time in milliseconds to wait before disabling a slave after a "
+"link failure detection"
+msgstr "指定在偵測到連結故障之後，停用實體介面之前等待的時間(毫秒)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:417
+msgid ""
+"Specifies the time in milliseconds to wait before enabling a slave after a "
+"link recovery detection"
+msgstr "指定在檢測到鏈接恢復後啟用實體界面之前等待的時間(毫秒)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:549
 msgid "Specifies the wired ports to attach to this bonding."
@@ -9864,6 +10195,40 @@ msgid ""
 msgstr ""
 "指定要附加到該橋接的有線連接埠。為了連接無線網路，請在無線設定中選擇關聯的介"
 "面作為網路。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:388
+msgid ""
+"Specifies whether ARP probes and replies should be validated or non-ARP "
+"traffic should be filtered for link monitoring"
+msgstr "指定是否應驗證ARP探測和答復或者應過濾非ARP流量以進行線路監視"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:308
+msgid ""
+"Specifies whether active-backup mode should set all slaves to the same MAC "
+"address at enslavement"
+msgstr "指定活動-備份模式是否應在奴役時將所有實體界面設置為相同的MAC地址"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:425
+msgid ""
+"Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. "
+"netif_carrier_ok()"
+msgstr "指定miimon是否應使用MII或ETHTOOL ioctl與 netif_carrier_ok()"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:300
+msgid ""
+"Specifies whether to shuffle active flows across slaves based on the load"
+msgstr "指定是否根據負載調整實體界面之間的活動流量"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:186
+msgid ""
+"Specifies which slave interfaces should be attached to this bonding interface"
+msgstr "指定應將哪些實體界面附加到此綁定邏輯界面"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:219
+msgid ""
+"Specifies which slave is the primary device. It will always be the active "
+"slave while it is available"
+msgstr "指定哪個實體界面是主要裝置。可用時它將始終是活躍的實體界面"
 
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:63
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:142
@@ -10152,6 +10517,10 @@ msgstr "系統"
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
 msgstr "系統日誌"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:250
+msgid "System Priority"
+msgstr "系統優先權"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:118
 msgid "System Properties"
@@ -10615,6 +10984,10 @@ msgstr "這IPv4開頭以位元計的長度, 剩餘部分將會延用在IPv6位�
 msgid "The length of the IPv6 prefix in bits"
 msgstr "這IPv6開頭以位元計的長度"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:168
+msgid "The local IPv4 address"
+msgstr "本地端IPv4位址"
+
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:46
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:44
@@ -10622,6 +10995,10 @@ msgstr "這IPv6開頭以位元計的長度"
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:47
 msgid "The local IPv4 address over which the tunnel is created (optional)."
 msgstr "從已建立的隧道產生的本地端IPv4位址(選項)."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:175
+msgid "The local IPv4 netmask"
+msgstr "本地端IPv4子網路遮罩"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
@@ -11102,6 +11479,10 @@ msgstr ""
 msgid "Transmit"
 msgstr "射頻"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:324
+msgid "Transmit Hash Policy"
+msgstr "傳輸雜湊政策"
+
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js:248
 msgid "Transmit dropped"
 msgstr ""
@@ -11421,6 +11802,10 @@ msgstr "無標題的同行"
 msgid "Up"
 msgstr "上線"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:416
+msgid "Up Delay"
+msgstr "上線延遲"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4303
 msgid "Upload"
 msgstr "上傳"
@@ -11534,6 +11919,20 @@ msgstr "在通道介面上使用的MTU數值"
 msgid "Use TTL on tunnel interface"
 msgstr "在通道介面上使用的TTL存活時間"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:327
+msgid "Use XOR of hardware MAC addresses (layer2)"
+msgstr "使用位元互斥XOR運算或者MAC硬體位址(HASH第二層)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:328
+msgid "Use XOR of hardware MAC addresses and IP addresses (layer2+3)"
+msgstr "使用位元互斥XOR運算或者MAC硬體位址和IP位址(HASH第二層+第三層)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:330
+msgid ""
+"Use XOR of hardware MAC addresses and IP addresses, rely on skb_flow_dissect "
+"(encap2+3)"
+msgstr "使用位元互斥XOR運算或者MAC硬體位址和IP位址(HASH額外封裝第二層+第三層)"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:295
 msgid "Use as external overlay (/overlay)"
 msgstr "使用當作外部 overlay (/overlay)"
@@ -11633,6 +12032,15 @@ msgstr ""
 "<em>IPv4 位置</em> 指定要使用的固定 IP，<em>主機名稱</em> 為易於辨識的名稱。"
 "選擇性的 <em>租約時間長度</em> 可用來指定特殊裝置的租約時間，例如：12h、3d 或"
 "無限。"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:329
+msgid "Use upper layer protocol information (layer3+4)"
+msgstr "使用上層協定資訊(HASH第三層+第四層)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:331
+msgid ""
+"Use upper layer protocol information, rely on skb_flow_dissect (encap3+4)"
+msgstr "使用上層協定資訊, 依靠skb_flow_dissect(HASH額外封裝第三層+第四層)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:842
 msgid "Use {etc_ethers}"
@@ -11796,6 +12204,18 @@ msgid ""
 "Validate server certificate using built-in system CA bundle,<br />requires "
 "the \"ca-bundle\" package"
 msgstr "使用內建系統 CA 綁定來驗證伺服器憑證，,<br />需要 \"ca-bundle\" 軟體包"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:393
+msgid "Validation for all slaves"
+msgstr "驗證所有實體界面"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:391
+msgid "Validation only for active slave"
+msgstr "只驗證活躍中的實體界面"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:392
+msgid "Validation only for backup slaves"
+msgstr "只驗證備用實體界面群"
 
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:73
 msgid "Vendor"
@@ -12093,9 +12513,19 @@ msgstr "寫入已接收的DNS請求到系統日誌中。"
 msgid "Write system log to file"
 msgstr "將系統日誌寫入檔案"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:211
+msgid "XOR policy (balance-xor, 2)"
+msgstr "位元互斥運算子(XOR)策略(balance-xor, 2)"
+
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:302
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:350
 msgid "Yes"
 msgstr "是"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:310
+msgid "Yes (none, 0)"
+msgstr "是(none, 0)"
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid "Yggdrasil Network"
@@ -12135,6 +12565,17 @@ msgstr ""
 msgid ""
 "You must enable JavaScript in your browser or LuCI will not work properly."
 msgstr "在瀏覽器您必須啟用JavaScript否則LuCI無法正常運作."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:120
+msgid ""
+"You must select a primary interface which is included in selected slave "
+"interfaces!"
+msgstr "您必須選擇包含在所選實體界面群中的主要界面!"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:101
+msgid ""
+"You must select at least one ARP IP target if ARP monitoring is selected!"
+msgstr "假若已選ARP監視, 你起碼至少選擇一個ARP位址!"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:215
 msgid "ZRam Compression Algorithm"
@@ -12432,6 +12873,10 @@ msgstr "分鐘"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:826
 msgid "mobile home agent (H)"
 msgstr "移動 home 代理 (H)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:428
+msgid "netif_carrier_ok()"
+msgstr "netif carrier ok()"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:47
 msgid "no"
@@ -12986,15 +13431,6 @@ msgstr "« 倒退"
 #~ "Enable packet steering across all CPUs. May help or hinder network speed."
 #~ msgstr "啟用所有 CPU 的封包控制。 可能會增加或減少網路速度。"
 
-#~ msgid "Use XOR of hardware MAC addresses (layer2)"
-#~ msgstr "使用位元互斥XOR運算或者MAC硬體位址(HASH第二層)"
-
-#~ msgid "Use XOR of hardware MAC addresses and IP addresses (layer2+3)"
-#~ msgstr "使用位元互斥XOR運算或者MAC硬體位址和IP位址(HASH第二層+第三層)"
-
-#~ msgid "XOR policy (balance-xor, 2)"
-#~ msgstr "位元互斥運算子(XOR)策略(balance-xor, 2)"
-
 #~ msgid ""
 #~ "Unique Local Address - in the range <code>fc00::/7</code>. Typically only "
 #~ "within the &#8216;local&#8217; half <code>fd00::/8</code>. ULA for IPv6 "
@@ -13205,48 +13641,6 @@ msgstr "« 倒退"
 #~ "<abbr title=\"Extended Service Set Identifier\">擴充服務集定識別碼"
 #~ "(ESSID)</abbr>"
 
-#~ msgid "ARP"
-#~ msgstr "ARP"
-
-#~ msgid "ARP IP Targets"
-#~ msgstr "ARP IP 目標"
-
-#~ msgid "ARP Interval"
-#~ msgstr "ARP 間隔"
-
-#~ msgid "ARP Validation"
-#~ msgstr "ARP 驗證"
-
-#~ msgid "ARP mode to consider a slave as being up"
-#~ msgstr "ARP 模式將一個實體界面視為已啟動"
-
-#~ msgid "ARP monitoring is not supported for the selected policy!"
-#~ msgstr "ARP 監視尚不支援已選擇的政策！"
-
-#~ msgid "Active-Backup policy (active-backup, 1)"
-#~ msgstr "啟動-備份規則 (active-backup, 1)"
-
-#~ msgid "Adaptive load balancing (balance-alb, 6)"
-#~ msgstr "自適應負載平衡 (balance-alb, 6)"
-
-#~ msgid "Adaptive transmit load balancing (balance-tlb, 5)"
-#~ msgstr "自適應發送負載平衡 (balance-tlb, 5)"
-
-#~ msgid "Aggregation Selection Logic"
-#~ msgstr "彙總邏輯選集"
-
-#~ msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
-#~ msgstr "彙總器: 所有實體界面都關閉或沒有實體界面 (穩定, 0)"
-
-#~ msgid ""
-#~ "Aggregator: Chosen by the largest number of ports + slave added/removed "
-#~ "or state changes (count, 2)"
-#~ msgstr ""
-#~ "彙總器: 選擇按 \"最大連接埠數 + 實體界面新增/刪除 或 狀態變更\" (計數,2)"
-
-#~ msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
-#~ msgstr "彙總器: 實體界面已新增/已移除 或 狀態更改(頻寬,1)"
-
 #~ msgid "Allow AP mode to disconnect STAs based on low ACK condition"
 #~ msgstr "允許 AP 模式針對低 ACK 情形中斷 STA"
 
@@ -13354,9 +13748,6 @@ msgstr "« 倒退"
 #~ msgid "Both Listen addr and Relay To must be specified."
 #~ msgstr "必須指定偵聽addr和繼電器。"
 
-#~ msgid "Broadcast policy (broadcast, 3)"
-#~ msgstr "廣播政策（廣播，3）"
-
 #~ msgid ""
 #~ "CA certificate (PEM encoded; Use instead of system-wide store to verify "
 #~ "the gateway certificate."
@@ -13417,12 +13808,6 @@ msgstr "« 倒退"
 #~ "攻擊的複雜度。此解決方法可能會導致互操作性問題，並降低金鑰協商的可靠性，特"
 #~ "別是在流量負載較重的環境中。"
 
-#~ msgid "Consider the slave up when all ARP IP targets are reachable (all, 1)"
-#~ msgstr "當所有ARP IP 可到達目標時, 請考慮實體界面啟動(全部,1)"
-
-#~ msgid "Consider the slave up when any ARP IP target is reachable (any, 0)"
-#~ msgstr "當任何ARP IP目標可到達時, 啟用實體界面(任一,0)"
-
 #~ msgid "Country Code"
 #~ msgstr "國別碼"
 
@@ -13465,12 +13850,6 @@ msgstr "« 倒退"
 #~ msgid "Distance to farthest network member in meters."
 #~ msgstr "到最遠的網路距離以米表示."
 
-#~ msgid "Down Delay"
-#~ msgstr "下傳延遲"
-
-#~ msgid "Drop Duplicate Frames"
-#~ msgstr "丟棄相同多餘的訊框(Frames)"
-
 #~ msgid ""
 #~ "Dynamic <abbr title=\"Dynamic Host Configuration Protocol\">DHCP</abbr>"
 #~ msgstr ""
@@ -13493,9 +13872,6 @@ msgstr "« 倒退"
 #~ msgid "Edit this network"
 #~ msgstr "編輯此網路"
 
-#~ msgid "Enable Dynamic Shuffling Of Flows"
-#~ msgstr "啟用動態拖曳(Dynamic Shuffling)流程"
-
 #~ msgid "Enable WPS pushbutton, requires WPA(2)-PSK/WPA3-SAE"
 #~ msgstr "啟用 WPS 按鈕, 這需要 WPA(2)-PSK/WPA3-SAE"
 
@@ -13512,15 +13888,6 @@ msgstr "« 倒退"
 #~ "Enables fast roaming among access points that belong to the same Mobility "
 #~ "Domain"
 #~ msgstr "啟用屬於同一行動網域存取點之間的快速漫遊"
-
-#~ msgid "Every 30 seconds (slow, 0)"
-#~ msgstr "每 30 秒(慢速,0)"
-
-#~ msgid "Every second (fast, 1)"
-#~ msgstr "每一秒(快,1)"
-
-#~ msgid "Expecting: non-empty value"
-#~ msgstr "預期:非空值"
 
 #~ msgid "External R0 Key Holder List"
 #~ msgstr "外部 R0 金鑰持有者清單"
@@ -13543,15 +13910,6 @@ msgstr "« 倒退"
 #~ msgid "Filter IPv6 AAAA records"
 #~ msgstr "篩選 IPv6 AAAA 記錄"
 
-#~ msgid "Filtering for all slaves, no validation"
-#~ msgstr "篩選所有實體界面 , 無驗證"
-
-#~ msgid "Filtering for all slaves, validation only for active slave"
-#~ msgstr "篩選所有實體界面 , 僅驗證有活動的實體界面"
-
-#~ msgid "Filtering for all slaves, validation only for backup slaves"
-#~ msgstr "篩選所有實體界面 , 僅驗證有備份的實體界面"
-
 #~ msgid "Force 40MHz mode"
 #~ msgstr "強制使用 40MHz 模式"
 
@@ -13570,9 +13928,6 @@ msgstr "« 倒退"
 #~ msgid "Hide <abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"
 #~ msgstr "隱藏 <abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"
 
-#~ msgid "IEEE 802.3ad Dynamic link aggregation (802.3ad, 4)"
-#~ msgstr "IEEE 802.3ad 動態鏈路聚合 (802.3ad, 4)"
-
 #~ msgid "IP Sets"
 #~ msgstr "IP 集"
 
@@ -13587,17 +13942,11 @@ msgstr "« 倒退"
 #~ msgid "Interface is disabled"
 #~ msgstr "介面已停用"
 
-#~ msgid "Interval For Sending Learning Packets"
-#~ msgstr "傳送學習中封包的時間間隔"
-
 #~ msgid "Isolate Clients"
 #~ msgstr "隔離用戶端"
 
 #~ msgid "Key"
 #~ msgstr "金鑰"
-
-#~ msgid "LACPDU Packets"
-#~ msgstr "鏈路聚合控制協定 (LACPDU) 封包"
 
 #~ msgid ""
 #~ "Legacy or badly behaving devices may require legacy 802.11b rates to "
@@ -13606,12 +13955,6 @@ msgstr "« 倒退"
 #~ msgstr ""
 #~ "舊版或性能欠佳的設備可能需要舊版802.11b速率才能互操作. 使用這些功能時, 通"
 #~ "話時間效率可能會大大降低. 建議盡可能不允許802.11b速率."
-
-#~ msgid "Link Aggregation (Channel Bonding)"
-#~ msgstr "鏈路聚合(通道捆搒)"
-
-#~ msgid "Link Monitoring"
-#~ msgstr "連結監測"
 
 #~ msgid ""
 #~ "List of R0KHs in the same Mobility Domain. <br />Format: MAC-address,NAS-"
@@ -13641,38 +13984,17 @@ msgstr "« 倒退"
 #~ msgid "Lock to BSSID"
 #~ msgstr "鎖定 BSSID"
 
-#~ msgid "MAC Address For The Actor"
-#~ msgstr "將扮演的MAC位址"
-
 #~ msgid "MAC-Filter"
 #~ msgstr "MAC 過濾"
 
 #~ msgid "MAC-List"
 #~ msgstr "MAC 清單"
 
-#~ msgid "MII"
-#~ msgstr "MII寄存器"
-
-#~ msgid "MII / ETHTOOL ioctls"
-#~ msgstr "MII 寄存器/ ETHTOOL輸入/輸出操作系統呼叫"
-
-#~ msgid "MII Interval"
-#~ msgstr "MII寄存器間隔"
-
 #~ msgid "Maximum allowed Listen Interval"
 #~ msgstr "允許的最大監聽間隔"
 
 #~ msgid "Mesh Id"
 #~ msgstr "蛛狀網路id"
-
-#~ msgid "Method of link monitoring"
-#~ msgstr "連線監視方式"
-
-#~ msgid "Method to determine link status"
-#~ msgstr "確定連接狀態的方式"
-
-#~ msgid "Minimum Number of Links"
-#~ msgstr "連線的最小數量"
 
 #~ msgid "Mobility Domain"
 #~ msgstr "行動網域"
@@ -13689,15 +14011,6 @@ msgstr "« 倒退"
 #~ msgid "No client associated"
 #~ msgstr "沒有已連接客戶端"
 
-#~ msgid "No more slaves available"
-#~ msgstr "缺乏更多可用的實體界面"
-
-#~ msgid "No more slaves available, can not save interface"
-#~ msgstr "缺乏更多可用的實體界面, 無法儲存界面"
-
-#~ msgid "No validation or filtering"
-#~ msgstr "沒有驗證或過濾"
-
 #~ msgid "Non-wildcard"
 #~ msgstr "非-萬用字元"
 
@@ -13706,17 +14019,6 @@ msgstr "« 倒退"
 #~ "may have problems"
 #~ msgstr ""
 #~ "注意：某些無線驅動程式並不完全支援 802.11w。例如：mwlwifi 可能有問題"
-
-#~ msgid "Number of IGMP membership reports"
-#~ msgstr "IGMP成員數量報告"
-
-#~ msgid "Number of peer notifications after failover event"
-#~ msgstr "故障轉移事件後的對等通知數"
-
-#~ msgid ""
-#~ "Only if current active slave fails and the primary slave is up (failure, "
-#~ "2)"
-#~ msgstr "僅當當前活躍的實體界面發生故障, 並且主要實體界面上線時(失敗,2)"
 
 #~ msgid ""
 #~ "Options for the Network-ID. (Note: needs also Network-ID.) E.g. "
@@ -13738,9 +14040,6 @@ msgstr "« 倒退"
 
 #~ msgid "PMK R1 Push"
 #~ msgstr "PMK R1推送"
-
-#~ msgid "Packets To Transmit Before Moving To Next Slave"
-#~ msgstr "在移至下一個實體界面之前要發送的封包"
 
 #~ msgid "Password of Private Key"
 #~ msgstr "私鑰密碼"
@@ -13768,19 +14067,6 @@ msgstr "« 倒退"
 
 #~ msgid "Prevents client-to-client communication"
 #~ msgstr "防止用戶端對用戶端的通訊"
-
-#~ msgid "Primary Slave"
-#~ msgstr "主要的實體界面"
-
-#~ msgid ""
-#~ "Primary becomes active slave when it comes back up if speed and duplex "
-#~ "better than current slave (better, 1)"
-#~ msgstr ""
-#~ "如果速度和雙工比當前的實體界面好(更好, 1), 則當邏輯主控站恢復時, 它將變為"
-#~ "活動的實體界面"
-
-#~ msgid "Primary becomes active slave whenever it comes back up (always, 0)"
-#~ msgstr "邏輯主控在恢復後, 始終變為活動的實體界面 (永遠, 0）"
 
 #~ msgid "Provide new network"
 #~ msgstr "提供新網路"
@@ -13825,9 +14111,6 @@ msgstr "« 倒退"
 #~ msgid "Received Data"
 #~ msgstr "接收"
 
-#~ msgid "Reselection policy for primary slave"
-#~ msgstr "實體界面的重選政策"
-
 #~ msgid "Restart radio interface"
 #~ msgstr "重啟無線介面"
 
@@ -13839,144 +14122,14 @@ msgstr "« 倒退"
 #~ "通過 TFTP 提供的檔的根目錄。<em>啟用 TFTP 伺服器</em>和 <em>TFTP 伺服器根"
 #~ "目錄</em>將打開 TFTP 伺服器並從 <em>TFTP 伺服器根目錄</em>提供檔案。"
 
-#~ msgid "Round-Robin policy (balance-rr, 0)"
-#~ msgstr "循環政策 (balance-rr, 0)"
-
-#~ msgid "Selects the transmit hash policy to use for slave selection"
-#~ msgstr "請選擇「傳輸雜湊政策」，以便在選擇從屬介面時使用"
-
-#~ msgid "Set same MAC Address to all slaves"
-#~ msgstr "對所有實體界面設置相同的MAC硬體地址"
-
-#~ msgid "Set to currently active slave (active, 1)"
-#~ msgstr "設定為目前使用中的實體介面 (使用中, 1)"
-
-#~ msgid "Set to first slave added to the bond (follow, 2)"
-#~ msgstr "設定為第一個實體界面添加到綁定(跟隨,2)"
-
 #~ msgid "Short Preamble"
 #~ msgstr "簡短前序編碼"
-
-#~ msgid "Slave Interfaces"
-#~ msgstr "從屬介面"
-
-#~ msgid ""
-#~ "Specifies that duplicate frames (received on inactive ports) should be "
-#~ "dropped or delivered"
-#~ msgstr "指定應丟棄或傳送的重複訊號框架（在非活動端口上接收到）"
-
-#~ msgid "Specifies the ARP link monitoring frequency in milliseconds"
-#~ msgstr "指定ARP連接監視頻率(以毫秒為單位)"
-
-#~ msgid "Specifies the IP addresses to use for ARP monitoring"
-#~ msgstr "指定用於ARP監視的IP地址"
-
-#~ msgid "Specifies the MII link monitoring frequency in milliseconds"
-#~ msgstr "指定MII連接監視頻率(以毫秒為單位)"
-
-#~ msgid "Specifies the aggregation selection logic to use"
-#~ msgstr "指定要使用的聚合選擇邏輯"
-
-#~ msgid ""
-#~ "Specifies the mac-address for the actor in protocol packet exchanges "
-#~ "(LACPDUs). If empty, masters' mac address defaults to system default"
-#~ msgstr ""
-#~ "指定協定封包交換(LACPDU)中參與者的mac位址. 如果為空, 則主機的mac位址預設為"
-#~ "系統預設"
 
 #~ msgid ""
 #~ "Specifies the maximum transmit power the wireless radio may use. "
 #~ "Depending on regulatory requirements and wireless usage, the actual "
 #~ "transmit power may be reduced by the driver."
 #~ msgstr "設定最大傳輸功率。根據法規和使用狀況，真正的功率可能會被降低。"
-
-#~ msgid ""
-#~ "Specifies the minimum number of links that must be active before "
-#~ "asserting carrier"
-#~ msgstr "指定宣告載波之前必須處於活動狀態的最小連接數"
-
-#~ msgid "Specifies the mode to be used for this bonding interface"
-#~ msgstr "指定用於此綁定界面的模式"
-
-#~ msgid ""
-#~ "Specifies the number of IGMP membership reports to be issued after a "
-#~ "failover event in 200ms intervals"
-#~ msgstr "指定故障轉移事件後每200ms間隔發出的IGMP成員資格報告被發布的數量"
-
-#~ msgid ""
-#~ "Specifies the number of packets to transmit through a slave before moving "
-#~ "to the next one"
-#~ msgstr "指定在移動到下一個實體界面之前要通過實體界面傳輸的封包數量"
-
-#~ msgid ""
-#~ "Specifies the number of peer notifications (gratuitous ARPs and "
-#~ "unsolicited IPv6 Neighbor Advertisements) to be issued after a failover "
-#~ "event"
-#~ msgstr ""
-#~ "指定故障轉移事件後要發出的對等通知（免費ARP和主動的IPv6鄰居通告）的數量"
-
-#~ msgid ""
-#~ "Specifies the number of seconds between instances where the bonding "
-#~ "driver sends learning packets to each slaves peer switch"
-#~ msgstr ""
-#~ "指定綁定驅動程式, 將學習封包發送到每個實體界面節點交換機的實例之間的秒數"
-
-#~ msgid "Specifies the quantity of ARP IP targets that must be reachable"
-#~ msgstr "指定必須達到的ARP IP目標數量"
-
-#~ msgid ""
-#~ "Specifies the rate in which the link partner will be asked to transmit "
-#~ "LACPDU packets"
-#~ msgstr "指定將要求鏈路夥伴傳輸LACPDU封包的速率"
-
-#~ msgid ""
-#~ "Specifies the reselection policy for the primary slave when failure of "
-#~ "the active slave or recovery of the primary slave occurs"
-#~ msgstr ""
-#~ "當活躍的實體界面發生故障 或 主要實體界面復原發生故障時, 為主要實體界面指定"
-#~ "重新選擇策略"
-
-#~ msgid "Specifies the system priority"
-#~ msgstr "指定系統優先權"
-
-#~ msgid ""
-#~ "Specifies the time in milliseconds to wait before disabling a slave after "
-#~ "a link failure detection"
-#~ msgstr "指定在偵測到連結故障之後，停用實體介面之前等待的時間(毫秒)"
-
-#~ msgid ""
-#~ "Specifies the time in milliseconds to wait before enabling a slave after "
-#~ "a link recovery detection"
-#~ msgstr "指定在檢測到鏈接恢復後啟用實體界面之前等待的時間(毫秒)"
-
-#~ msgid ""
-#~ "Specifies whether ARP probes and replies should be validated or non-ARP "
-#~ "traffic should be filtered for link monitoring"
-#~ msgstr "指定是否應驗證ARP探測和答復或者應過濾非ARP流量以進行線路監視"
-
-#~ msgid ""
-#~ "Specifies whether active-backup mode should set all slaves to the same "
-#~ "MAC address at enslavement"
-#~ msgstr "指定活動-備份模式是否應在奴役時將所有實體界面設置為相同的MAC地址"
-
-#~ msgid ""
-#~ "Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. "
-#~ "netif_carrier_ok()"
-#~ msgstr "指定miimon是否應使用MII或ETHTOOL ioctl與 netif_carrier_ok()"
-
-#~ msgid ""
-#~ "Specifies whether to shuffle active flows across slaves based on the load"
-#~ msgstr "指定是否根據負載調整實體界面之間的活動流量"
-
-#~ msgid ""
-#~ "Specifies which slave interfaces should be attached to this bonding "
-#~ "interface"
-#~ msgstr "指定應將哪些實體界面附加到此綁定邏輯界面"
-
-#~ msgid ""
-#~ "Specifies which slave is the primary device. It will always be the active "
-#~ "slave while it is available"
-#~ msgstr "指定哪個實體界面是主要裝置。可用時它將始終是活躍的實體界面"
 
 #~ msgid "Specify the secret encryption key here."
 #~ msgstr "指定加密金鑰在此."
@@ -13986,9 +14139,6 @@ msgstr "« 倒退"
 
 #~ msgid "Station inactivity limit"
 #~ msgstr "非活動站台限制"
-
-#~ msgid "System Priority"
-#~ msgstr "系統優先權"
 
 #~ msgid ""
 #~ "The correct SSID must be manually specified when joining a hidden "
@@ -14005,12 +14155,6 @@ msgstr "« 倒退"
 #~ "發 OGM 的 TQ，從而傳播額外跳的成本（必須接收和重新傳輸數據包，這會花費通話"
 #~ "時間）"
 
-#~ msgid "The local IPv4 address"
-#~ msgstr "本地端IPv4位址"
-
-#~ msgid "The local IPv4 netmask"
-#~ msgstr "本地端IPv4子網路遮罩"
-
 #~ msgid ""
 #~ "This authentication type is not applicable to the selected EAP method."
 #~ msgstr "此身份驗證類型不適用於所選的EAP方法."
@@ -14026,9 +14170,6 @@ msgstr "« 倒退"
 #~ "要從現有 (例如提供者提供的) 組態檔案完全設定本地 WireGuard 介面，請使用"
 #~ "<strong><a class=\"full-import\" href=\"#\">組態匯入</a></strong>。"
 
-#~ msgid "Transmit Hash Policy"
-#~ msgstr "傳輸雜湊政策"
-
 #, fuzzy
 #~ msgid "Transmitted Data"
 #~ msgstr "射頻天線"
@@ -14036,36 +14177,11 @@ msgstr "« 倒退"
 #~ msgid "Tx-Power"
 #~ msgstr "傳送-功率"
 
-#~ msgid "Up Delay"
-#~ msgstr "上線延遲"
-
-#~ msgid ""
-#~ "Use XOR of hardware MAC addresses and IP addresses, rely on "
-#~ "skb_flow_dissect (encap2+3)"
-#~ msgstr ""
-#~ "使用位元互斥XOR運算或者MAC硬體位址和IP位址(HASH額外封裝第二層+第三層)"
-
-#~ msgid "Use upper layer protocol information (layer3+4)"
-#~ msgstr "使用上層協定資訊(HASH第三層+第四層)"
-
-#~ msgid ""
-#~ "Use upper layer protocol information, rely on skb_flow_dissect (encap3+4)"
-#~ msgstr "使用上層協定資訊, 依靠skb_flow_dissect(HASH額外封裝第三層+第四層)"
-
 #~ msgid ""
 #~ "Used for two different purposes: RADIUS NAS ID and 802.11r R0KH-ID. Not "
 #~ "needed with normal WPA(2)-PSK."
 #~ msgstr ""
 #~ "採用不同目的: RADIUS NAS ID與802.11r R0KH-ID. 不需要正常的WPA(2)-PSK."
-
-#~ msgid "Validation for all slaves"
-#~ msgstr "驗證所有實體界面"
-
-#~ msgid "Validation only for active slave"
-#~ msgstr "只驗證活躍中的實體界面"
-
-#~ msgid "Validation only for backup slaves"
-#~ msgstr "只驗證備用實體界面群"
 
 #~ msgid "WMM Mode"
 #~ msgstr "無線多媒體機制"
@@ -14103,18 +14219,6 @@ msgstr "« 倒退"
 #~ msgid "Wireless network is enabled"
 #~ msgstr "無線網路已啟用"
 
-#~ msgid "Yes (none, 0)"
-#~ msgstr "是(none, 0)"
-
-#~ msgid ""
-#~ "You must select a primary interface which is included in selected slave "
-#~ "interfaces!"
-#~ msgstr "您必須選擇包含在所選實體界面群中的主要界面!"
-
-#~ msgid ""
-#~ "You must select at least one ARP IP target if ARP monitoring is selected!"
-#~ msgstr "假若已選ARP監視, 你起碼至少選擇一個ARP位址!"
-
 #~ msgid "disable"
 #~ msgstr "關閉"
 
@@ -14123,9 +14227,6 @@ msgstr "« 倒退"
 
 #~ msgid "medium security"
 #~ msgstr "中等安全"
-
-#~ msgid "netif_carrier_ok()"
-#~ msgstr "netif carrier ok()"
 
 #~ msgid "open network"
 #~ msgstr "開放式網路"

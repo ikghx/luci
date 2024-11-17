@@ -604,13 +604,37 @@ msgstr "APN"
 msgid "APN profile index"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:358
+msgid "ARP"
+msgstr "ARP"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:371
+msgid "ARP IP Targets"
+msgstr "ARP IP-mål"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:363
+msgid "ARP Interval"
+msgstr "ARP-interval"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:387
+msgid "ARP Validation"
+msgstr "ARP-validering"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:811
 msgid "ARP link monitoring"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:379
+msgid "ARP mode to consider a slave as being up"
+msgstr "ARP-tilstand for at betragte en slave som værende oppe"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:837
 msgid "ARP monitor target IP address"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:82
+msgid "ARP monitoring is not supported for the selected policy!"
+msgstr "ARP-overvågning er ikke understøttet for den valgte politik!"
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:107
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:107
@@ -773,6 +797,10 @@ msgstr ""
 msgid "Active peers"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:210
+msgid "Active-Backup policy (active-backup, 1)"
+msgstr "Politik for aktiv sikkerhedskopiering (active-backup, 1)"
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3905
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1049
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
@@ -783,9 +811,17 @@ msgstr "Ad-hoc"
 msgid "Adaptive load balancing"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:215
+msgid "Adaptive load balancing (balance-alb, 6)"
+msgstr "Adaptiv load balancing (balance-alb, 6)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:566
 msgid "Adaptive transmit load balancing"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:214
+msgid "Adaptive transmit load balancing (balance-tlb, 5)"
+msgstr "Adaptiv load balancing af transmission (balance-tlb, 5)"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2235
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2238
@@ -1002,6 +1038,10 @@ msgstr "Aldringstid"
 msgid "Aggregate Originator Messages"
 msgstr "Aggregerede meddelelser fra afsender"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:265
+msgid "Aggregation Selection Logic"
+msgstr "Aggregationsvalgslogik"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:398
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1498
 msgid "Aggregation device"
@@ -1010,6 +1050,23 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:523
 msgid "Aggregation ports"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:268
+msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
+msgstr "Aggregator: Alle slaver er nede eller har ingen slaver (stabil, 0)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:270
+msgid ""
+"Aggregator: Chosen by the largest number of ports + slave added/removed or "
+"state changes (count, 2)"
+msgstr ""
+"Aggregator: Valgt efter det største antal porte + tilføjede/fjernede slaver "
+"eller tilstandsændringer (antal, 2)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:269
+msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
+msgstr ""
+"Aggregator: Slave tilføjet/fjernet eller tilstandsændringer (båndbredde, 1)"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:194
 msgid "Alert"
@@ -1641,6 +1698,7 @@ msgid "Bonding Mode"
 msgstr "Bonding Mode"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:559
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:206
 msgid "Bonding Policy"
 msgstr "Bonding Politik"
 
@@ -1705,6 +1763,10 @@ msgstr "start bro interface op, selv om der ikke er tilsluttet nogen porte"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1409
 msgid "Broadcast"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:212
+msgid "Broadcast policy (broadcast, 3)"
+msgstr "Broadcast politik (broadcast, 3)"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2884
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4252
@@ -2215,6 +2277,17 @@ msgstr "Conntrack tilstand"
 msgctxt "nft ct status"
 msgid "Conntrack status"
 msgstr "Conntrack status"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:383
+msgid "Consider the slave up when all ARP IP targets are reachable (all, 1)"
+msgstr ""
+"Slaven betragtes som værende oppe, når alle ARP-IP-mål kan nås (all, 1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:382
+msgid "Consider the slave up when any ARP IP target is reachable (any, 0)"
+msgstr ""
+"Slaven betragtes som værende oppe, når et hvilket som helst ARP IP-mål kan "
+"nås (any, 0)"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/crontab.js:18
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:370
@@ -2998,6 +3071,10 @@ msgstr "Fragmentér ikke"
 msgid "Down"
 msgstr "Ned"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:408
+msgid "Down Delay"
+msgstr "Ned Forsinkelse"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2941
 msgid "Download"
 msgstr ""
@@ -3034,6 +3111,10 @@ msgstr "Træk for at omarrangere"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:662
 msgid "Driver default"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:347
+msgid "Drop Duplicate Frames"
+msgstr "Drop dublerede Frames"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1098
 msgid ""
@@ -3341,6 +3422,10 @@ msgstr "Aktiver DNS-opslag"
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:163
 msgid "Enable Debugmode"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:299
+msgid "Enable Dynamic Shuffling Of Flows"
+msgstr "Aktiver dynamisk blanding af flows"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:60
 msgid "Enable HE.net dynamic endpoint update"
@@ -3674,6 +3759,14 @@ msgstr "Ethernet adapter"
 msgid "Ethernet Switch"
 msgstr "Ethernet-switch"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:277
+msgid "Every 30 seconds (slow, 0)"
+msgstr "Hvert 30. sekund (langsom, 0)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:278
+msgid "Every second (fast, 1)"
+msgstr "Hvert sekund (hurtigt, 1)"
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:138
 msgid "Exclude SNAT ports"
 msgstr ""
@@ -3755,6 +3848,10 @@ msgstr "Forventer to prioritetsværdier adskilt af et kolon"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:149
 msgid "Expecting: %s"
 msgstr "Forventer: %s"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:53
+msgid "Expecting: non-empty value"
+msgstr "Forventer: ikke-tom værdi"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:57
 msgid "Expires"
@@ -3969,6 +4066,18 @@ msgstr "Filter privat"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:643
 msgid "Filter these addresses from dnsmasq replies."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:394
+msgid "Filtering for all slaves, no validation"
+msgstr "Filtrering for alle slaver, ingen validering"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:395
+msgid "Filtering for all slaves, validation only for active slave"
+msgstr "Filtrering for alle slaver, validering kun for aktiv slave"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:396
+msgid "Filtering for all slaves, validation only for backup slaves"
+msgstr "Filtrering for alle slaver, validering kun for backup-slaver"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:667
 msgid ""
@@ -4675,6 +4784,10 @@ msgstr "ICMPv6 type"
 msgid "ID used to uniquely identify the VXLAN"
 msgstr "ID, der bruges til at identificere VXLAN'et entydigt"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:213
+msgid "IEEE 802.3ad Dynamic link aggregation (802.3ad, 4)"
+msgstr "IEEE 802.3ad Dynamisk link aggregation (802.3ad, 4)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:742
 msgid "IGMP reports"
 msgstr ""
@@ -4797,6 +4910,7 @@ msgstr "IPv4 Upstream"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1325
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:88
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:205
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:167
 msgid "IPv4 address"
 msgstr "IPv4-adresse"
 
@@ -4814,6 +4928,7 @@ msgid "IPv4 gateway"
 msgstr "IPv4-gateway"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:180
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:174
 msgid "IPv4 netmask"
 msgstr "IPv4-netmaske"
 
@@ -5513,6 +5628,10 @@ msgstr ""
 msgid "International Mobile Subscriber Identity"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:290
+msgid "Interval For Sending Learning Packets"
+msgstr "Interval for afsendelse af læringspakker"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:998
 msgid ""
 "Interval in centiseconds between multicast general queries. By varying the "
@@ -5758,6 +5877,10 @@ msgstr "L2TP Server"
 msgid "LACP - 802.3ad"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:274
+msgid "LACPDU Packets"
+msgstr "LACPDU-pakker"
+
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:130
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:102
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:88
@@ -5930,6 +6053,14 @@ msgstr "Linjetilstand"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:26
 msgid "Line Uptime"
 msgstr "Linje oppetid"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:128
+msgid "Link Aggregation (Channel Bonding)"
+msgstr "Link Aggregation (kanalbinding)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:354
+msgid "Link Monitoring"
+msgstr "Overvågning af link"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:24
 msgid "Link On"
@@ -6242,6 +6373,10 @@ msgstr "MAC-adresse"
 msgid "MAC Address Filter"
 msgstr "MAC-adressefilter"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:258
+msgid "MAC Address For The Actor"
+msgstr "MAC-adresse for aktøren"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:402
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1507
 msgid "MAC VLAN"
@@ -6315,6 +6450,18 @@ msgstr "MD5"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:28
 msgid "MHz"
 msgstr "MHz"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:359
+msgid "MII"
+msgstr "MII"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:427
+msgid "MII / ETHTOOL ioctls"
+msgstr "MII / ETHTOOL ioctls"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:400
+msgid "MII Interval"
+msgstr "MII-interval"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:812
 msgid "MII link monitoring"
@@ -6596,6 +6743,14 @@ msgstr ""
 msgid "Method not found"
 msgstr "Metode ikke fundet"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:355
+msgid "Method of link monitoring"
+msgstr "Metode til overvågning af forbindelsen"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:424
+msgid "Method to determine link status"
+msgstr "Metode til bestemmelse af forbindelsesstatus"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:83
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:216
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:242
@@ -6632,6 +6787,10 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1109
 msgid "Minimum ARP validity time"
 msgstr "Minimum ARP gyldighedstid"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:242
+msgid "Minimum Number of Links"
+msgstr "Minimum antal links"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:720
 msgid "Minimum number of active links"
@@ -7105,6 +7264,8 @@ msgid "Next »"
 msgstr "Næste »"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:303
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:351
 msgid "No"
 msgstr "Nej"
 
@@ -7218,6 +7379,15 @@ msgstr "Ingen oplysninger tilgængelige"
 msgid "No matching prefix delegation"
 msgstr "Ingen tilsvarende præfiksdelegation"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:145
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:148
+msgid "No more slaves available"
+msgstr "Der er ikke flere slaver til rådighed"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:194
+msgid "No more slaves available, can not save interface"
+msgstr "Der er ikke flere slaver til rådighed, kan ikke gemme interface"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:671
 msgid "No negative cache"
 msgstr "Ingen negativ cache"
@@ -7267,6 +7437,10 @@ msgstr "Ingen regler i denne kæde"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:91
 msgid "No rules in this chain."
 msgstr "Der er ingen regler i denne kæde."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:390
+msgid "No validation or filtering"
+msgstr "Ingen validering eller filtrering"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:139
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1286
@@ -7386,6 +7560,10 @@ msgstr "Varsel"
 msgid "Nslookup"
 msgstr "Nslookup"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:338
+msgid "Number of IGMP membership reports"
+msgstr "Antal IGMP-medlemskabsrapporter"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1230
 msgid ""
 "Number of beacon periods between a <abbr title=\"Delivery Traffic Indication "
@@ -7405,6 +7583,10 @@ msgid ""
 "Number of packets to transmit through a slave before moving to the next one. "
 "Slave is chosen at random when 0."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:316
+msgid "Number of peer notifications after failover event"
+msgstr "Antal peer-meddelelser efter failover-hændelse"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:732
 msgid "Number of seconds between sent learning packets"
@@ -7431,6 +7613,7 @@ msgstr "Få IPv6-adresse"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:19
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:87
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:357
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:342
 msgid "Off"
 msgstr "Off"
@@ -7514,6 +7697,13 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2279
 msgid "Only connect where the BSSID matches <code>%h</code>."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:236
+msgid ""
+"Only if current active slave fails and the primary slave is up (failure, 2)"
+msgstr ""
+"Kun hvis den aktuelle aktive slave fejler, og den primære slave er oppe "
+"(fejl, 2)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:97
 msgid "Only interfaces using this table (via override) will use this route."
@@ -8060,6 +8250,10 @@ msgstr ""
 msgid "Packets"
 msgstr "Pakker"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:282
+msgid "Packets To Transmit Before Moving To Next Slave"
+msgstr "Pakker, der skal sendes, før der flyttes til næste slave"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:90
 msgid "Packets exceeding this value may be fragmented"
 msgstr ""
@@ -8422,6 +8616,22 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:610
 msgid "Primary Device"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:218
+msgid "Primary Slave"
+msgstr "Primær slave"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:235
+msgid ""
+"Primary becomes active slave when it comes back up if speed and duplex "
+"better than current slave (better, 1)"
+msgstr ""
+"Den primære bliver aktiv slave, når den kommer tilbage, hvis hastighed og "
+"duplex er bedre end den aktuelle slave (bedre, 1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:234
+msgid "Primary becomes active slave whenever it comes back up (always, 0)"
+msgstr "Primær bliver aktiv slave, når den kommer op igen (altid, 0)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:754
 msgid "Primary port reselection policy"
@@ -9125,6 +9335,10 @@ msgstr "Kræver wpa-supplicant med SAE-understøttelse"
 msgid "Requires wpa-supplicant with WEP support"
 msgstr "Kræver wpa-supplicant med WEP-understøttelse"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:231
+msgid "Reselection policy for primary slave"
+msgstr "Politik for genvalg af primærslave"
+
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2202
 #: modules/luci-base/ucode/template/sysauth.ut:39
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:17
@@ -9304,6 +9518,10 @@ msgstr "Rodforberedelse"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:562
 msgid "Round robin"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:209
+msgid "Round-Robin policy (balance-rr, 0)"
+msgstr "Round-Robin politik (balance-rr, 0)"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:644
 msgid "Route Allowed IPs"
@@ -9571,6 +9789,12 @@ msgstr ""
 msgid "Select file…"
 msgstr "Vælg fil…"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:325
+msgid "Selects the transmit hash policy to use for slave selection"
+msgstr ""
+"Vælger den hash-politik for transmission, der skal anvendes til udvælgelse "
+"af slave"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:795
 msgid ""
 "Send <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</abbr> "
@@ -9678,6 +9902,10 @@ msgstr ""
 "Angiv interface egenskaber uanset linkbæreren (Hvis de er indstillet, "
 "aktiverer operatørsanshændelser ikke hotplug-handlere)."
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:307
+msgid "Set same MAC Address to all slaves"
+msgstr "Angiv samme MAC-adresse til alle slaver"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:814
 msgid ""
 "Set the autonomous address-configuration flag in the prefix information "
@@ -9700,6 +9928,14 @@ msgid ""
 msgstr ""
 "Angiv dette interface som master for RA- og DHCPv6-videresendelse samt NDP-"
 "proxying."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:311
+msgid "Set to currently active slave (active, 1)"
+msgstr "Angiv til den aktuelt aktive slave (aktiv, 1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:312
+msgid "Set to first slave added to the bond (follow, 2)"
+msgstr "Angiv til den første slave, der tilføjes til forbindelsen (følg, 2)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:646
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:662
@@ -9825,6 +10061,10 @@ msgstr "Gå til indhold"
 msgid "Skip to navigation"
 msgstr "Gå til navigation"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:185
+msgid "Slave Interfaces"
+msgstr "Slave-Interfaces"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:618
 msgid "Slave selection hash policy"
 msgstr ""
@@ -9937,9 +10177,33 @@ msgstr ""
 "1000 for at matche tilsvarende UID eller 1000-1005 for at matche alle UID'er "
 "inden for det tilsvarende interval"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:348
+msgid ""
+"Specifies that duplicate frames (received on inactive ports) should be "
+"dropped or delivered"
+msgstr ""
+"Angiver, at duplikerede frames (modtaget på inaktive porte) skal droppes "
+"eller leveres"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:364
+msgid "Specifies the ARP link monitoring frequency in milliseconds"
+msgstr "Angiver frekvensen for ARP-linkovervågning i millisekunder"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:372
+msgid "Specifies the IP addresses to use for ARP monitoring"
+msgstr "Angiver de IP-adresser, der skal bruges til ARP-overvågning"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:401
+msgid "Specifies the MII link monitoring frequency in milliseconds"
+msgstr "Angiver MII-forbindelsesovervågningsfrekvensen i millisekunder"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:189
 msgid "Specifies the TOS value to match in IP headers"
 msgstr "Angiver den TOS-værdi, der skal matche i IP headers"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:266
+msgid "Specifies the aggregation selection logic to use"
+msgstr "Angiver den aggregeringsvalglogik, der skal bruges"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:293
 msgid "Specifies the directory the device is attached to"
@@ -9975,6 +10239,15 @@ msgstr ""
 "Angiver det logiske interface navn på den overordnede (eller master) "
 "interface, som denne rute tilhører"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:259
+msgid ""
+"Specifies the mac-address for the actor in protocol packet exchanges "
+"(LACPDUs). If empty, masters' mac address defaults to system default"
+msgstr ""
+"Specificerer mac-adressen for aktøren i udveksling af protokolpakker "
+"(LACPDU'er). Hvis den er tom, er masters' mac-adresse standardiseret til "
+"systemets standardadresse"
+
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:175
 msgid ""
 "Specifies the maximum amount of failed ARP requests until hosts are presumed "
@@ -9990,6 +10263,19 @@ msgid ""
 msgstr ""
 "Specificerer det maksimale antal sekunder, hvorefter værter formodes at være "
 "døde"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:243
+msgid ""
+"Specifies the minimum number of links that must be active before asserting "
+"carrier"
+msgstr ""
+"Specificerer det mindste antal forbindelser, der skal være aktive, før der "
+"kan aktiveres carrier"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:207
+msgid "Specifies the mode to be used for this bonding interface"
+msgstr ""
+"Specificerer den tilstand, der skal anvendes for dette bonding interface"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:79
 msgid ""
@@ -10007,6 +10293,39 @@ msgid ""
 "failover event"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:339
+msgid ""
+"Specifies the number of IGMP membership reports to be issued after a "
+"failover event in 200ms intervals"
+msgstr ""
+"Specificerer antallet af IGMP-medlemskabsrapporter, der skal udstedes efter "
+"en failover-hændelse i intervaller på 200 ms"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:283
+msgid ""
+"Specifies the number of packets to transmit through a slave before moving to "
+"the next one"
+msgstr ""
+"Specificerer antallet af pakker, der skal transmitteres gennem en slave, før "
+"den flyttes til den næste"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:317
+msgid ""
+"Specifies the number of peer notifications (gratuitous ARPs and unsolicited "
+"IPv6 Neighbor Advertisements) to be issued after a failover event"
+msgstr ""
+"Specificerer antallet af peer-notifikationer (vederlagsfri ARP'er og "
+"uopfordrede IPv6 Neighbor Advertisements), der skal udstedes efter en "
+"failover-hændelse"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:291
+msgid ""
+"Specifies the number of seconds between instances where the bonding driver "
+"sends learning packets to each slaves peer switch"
+msgstr ""
+"Specificerer antallet af sekunder mellem de Instanser, hvor bonding-driveren "
+"sender læringspakker til hver slaves peer-switch"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:105
 msgid ""
 "Specifies the preferred source address when sending to destinations covered "
@@ -10015,6 +10334,26 @@ msgstr ""
 "Angiver den foretrukne kildeadresse, når der sendes til destinationer, der "
 "er dækket af målet"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:380
+msgid "Specifies the quantity of ARP IP targets that must be reachable"
+msgstr "Specificerer mængden af ARP IP-mål, der skal kunne nås"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:275
+msgid ""
+"Specifies the rate in which the link partner will be asked to transmit "
+"LACPDU packets"
+msgstr ""
+"Specificerer den hastighed, hvormed linkpartneren vil blive bedt om at sende "
+"LACPDU-pakker"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:232
+msgid ""
+"Specifies the reselection policy for the primary slave when failure of the "
+"active slave or recovery of the primary slave occurs"
+msgstr ""
+"Specificerer genvalgspolitikken for den primære slave, når der opstår fejl i "
+"den aktive slave eller gendannelse af den primære slave"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:48
 msgid "Specifies the route type to be created"
 msgstr "Angiver den rutetype, der skal oprettes"
@@ -10022,6 +10361,26 @@ msgstr "Angiver den rutetype, der skal oprettes"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:142
 msgid "Specifies the rule target routing action"
 msgstr "Angiver handlingen for reglens routing"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:251
+msgid "Specifies the system priority"
+msgstr "Specificerer systemets prioritet"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:409
+msgid ""
+"Specifies the time in milliseconds to wait before disabling a slave after a "
+"link failure detection"
+msgstr ""
+"Specificerer den tid i millisekunder, der skal gå, før en slave deaktiveres "
+"efter registrering af en forbindelsesfejl"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:417
+msgid ""
+"Specifies the time in milliseconds to wait before enabling a slave after a "
+"link recovery detection"
+msgstr ""
+"Specificerer den tid i millisekunder, der skal gå, før en slave aktiveres "
+"efter en registrering af genoprettelse af en forbindelse"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:549
 msgid "Specifies the wired ports to attach to this bonding."
@@ -10036,6 +10395,52 @@ msgstr ""
 "Specificerer de kablede porte, der skal knyttes til denne bro. Hvis du vil "
 "tilslutte trådløse netværk, skal du vælge det tilknyttede interface som "
 "netværk i de trådløse indstillinger."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:388
+msgid ""
+"Specifies whether ARP probes and replies should be validated or non-ARP "
+"traffic should be filtered for link monitoring"
+msgstr ""
+"Specificerer, om ARP-probes og -svar skal valideres, eller om ikke-ARP-"
+"trafik skal filtreres med henblik på linkovervågning"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:308
+msgid ""
+"Specifies whether active-backup mode should set all slaves to the same MAC "
+"address at enslavement"
+msgstr ""
+"Specificerer, om aktiv backup-tilstand skal indstille alle slaver til den "
+"samme MAC-adresse ved slavetilknytningen"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:425
+msgid ""
+"Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. "
+"netif_carrier_ok()"
+msgstr ""
+"Specificerer, om miimon skal bruge MII- eller ETHTOOL-ioctls i forhold til "
+"netif_carrier_ok() eller ej"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:300
+msgid ""
+"Specifies whether to shuffle active flows across slaves based on the load"
+msgstr ""
+"Specificerer, om aktive flows skal blandes på tværs af slaver baseret på "
+"belastningen"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:186
+msgid ""
+"Specifies which slave interfaces should be attached to this bonding interface"
+msgstr ""
+"Specificerer, hvilke slave interfaces der skal knyttes til dette bonding "
+"interface"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:219
+msgid ""
+"Specifies which slave is the primary device. It will always be the active "
+"slave while it is available"
+msgstr ""
+"Specificerer, hvilken slave der er den primære enhed. Den vil altid være den "
+"aktive slave, så længe den er tilgængelig"
 
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:63
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:142
@@ -10337,6 +10742,10 @@ msgstr "System"
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
 msgstr "System Log"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:250
+msgid "System Priority"
+msgstr "Systemprioritet"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:118
 msgid "System Properties"
@@ -10827,6 +11236,10 @@ msgstr "Længden af IPv4-præfikset i bits, resten bruges i IPv6-adresserne."
 msgid "The length of the IPv6 prefix in bits"
 msgstr "Længden af IPv6-præfikset i bits"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:168
+msgid "The local IPv4 address"
+msgstr "Den lokale IPv4-adresse"
+
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:46
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:44
@@ -10834,6 +11247,10 @@ msgstr "Længden af IPv6-præfikset i bits"
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:47
 msgid "The local IPv4 address over which the tunnel is created (optional)."
 msgstr "Den lokale IPv4-adresse, som tunnelen oprettes over (valgfrit)."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:175
+msgid "The local IPv4 netmask"
+msgstr "Den lokale IPv4-netmaske"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
@@ -11350,6 +11767,10 @@ msgstr ""
 msgid "Transmit"
 msgstr "Overførsel"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:324
+msgid "Transmit Hash Policy"
+msgstr "Politik for overførsel af hash"
+
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js:248
 msgid "Transmit dropped"
 msgstr ""
@@ -11669,6 +12090,10 @@ msgstr "Unavngivet peer"
 msgid "Up"
 msgstr "Op"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:416
+msgid "Up Delay"
+msgstr "Forsinkelse op"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4303
 msgid "Upload"
 msgstr "Upload"
@@ -11788,6 +12213,22 @@ msgstr "Brug MTU på tunnel interface"
 msgid "Use TTL on tunnel interface"
 msgstr "Brug TTL på tunnel interface"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:327
+msgid "Use XOR of hardware MAC addresses (layer2)"
+msgstr "Brug XOR af hardware MAC-adresser (lag2)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:328
+msgid "Use XOR of hardware MAC addresses and IP addresses (layer2+3)"
+msgstr "Brug XOR af hardware MAC-adresser og IP-adresser (lag2+3)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:330
+msgid ""
+"Use XOR of hardware MAC addresses and IP addresses, rely on skb_flow_dissect "
+"(encap2+3)"
+msgstr ""
+"Brug XOR af hardware MAC-adresser og IP-adresser, stol på skb_flow_dissect "
+"(encap2+3)"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:295
 msgid "Use as external overlay (/overlay)"
 msgstr "Brug som eksternt overlay (/overlay)"
@@ -11891,6 +12332,17 @@ msgstr ""
 "anmodende vært. Den valgfrie <em>Lease tid</em> kan bruges til at indstille "
 "ikke-standardiserede værtsspecifikke Lease tid, f.eks. 12 timer, 3d eller "
 "uendelig."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:329
+msgid "Use upper layer protocol information (layer3+4)"
+msgstr "Brug protokoloplysninger fra det øverste lag (lag3+4)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:331
+msgid ""
+"Use upper layer protocol information, rely on skb_flow_dissect (encap3+4)"
+msgstr ""
+"Brug protokoloplysninger for det øverste lag, afhængig af skb_flow_dissect "
+"(encap3+4)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:842
 msgid "Use {etc_ethers}"
@@ -12058,6 +12510,18 @@ msgid ""
 msgstr ""
 "Valider servercertifikat ved hjælp af indbygget system CA bundle, <br /> "
 "kræver \"ca-bundle\" pakken"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:393
+msgid "Validation for all slaves"
+msgstr "Validering for alle slaver"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:391
+msgid "Validation only for active slave"
+msgstr "Validering kun for aktiv slave"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:392
+msgid "Validation only for backup slaves"
+msgstr "Validering kun for backup slaver"
 
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:73
 msgid "Vendor"
@@ -12363,9 +12827,19 @@ msgstr "Skriv modtagne DNS-forespørgsler til syslog."
 msgid "Write system log to file"
 msgstr "Skriv systemlog til fil"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:211
+msgid "XOR policy (balance-xor, 2)"
+msgstr "XOR-politik (balance-xor, 2)"
+
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:302
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:350
 msgid "Yes"
 msgstr "Ja"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:310
+msgid "Yes (none, 0)"
+msgstr "Ja (ingen, 0)"
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid "Yggdrasil Network"
@@ -12409,6 +12883,19 @@ msgid ""
 msgstr ""
 "Du skal aktivere JavaScript i din browser, ellers vil LuCI ikke fungere "
 "korrekt."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:120
+msgid ""
+"You must select a primary interface which is included in selected slave "
+"interfaces!"
+msgstr ""
+"Du skal vælge et primært interface, som er inkluderet i de valgte slave "
+"interfaces!"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:101
+msgid ""
+"You must select at least one ARP IP target if ARP monitoring is selected!"
+msgstr "Du skal vælge mindst ét ARP IP-mål, hvis ARP-overvågning er valgt!"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:215
 msgid "ZRam Compression Algorithm"
@@ -12706,6 +13193,10 @@ msgstr "minutter"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:826
 msgid "mobile home agent (H)"
 msgstr "mobile hjem agent (H)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:428
+msgid "netif_carrier_ok()"
+msgstr "netif_carrier_ok()"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:47
 msgid "no"
@@ -13288,15 +13779,6 @@ msgstr "« Tilbage"
 #~ "Aktiver pakkestyring på tværs af alle CPU'er. Kan hjælpe eller hæmme "
 #~ "netværkshastigheden."
 
-#~ msgid "Use XOR of hardware MAC addresses (layer2)"
-#~ msgstr "Brug XOR af hardware MAC-adresser (lag2)"
-
-#~ msgid "Use XOR of hardware MAC addresses and IP addresses (layer2+3)"
-#~ msgstr "Brug XOR af hardware MAC-adresser og IP-adresser (lag2+3)"
-
-#~ msgid "XOR policy (balance-xor, 2)"
-#~ msgstr "XOR-politik (balance-xor, 2)"
-
 #~ msgid ""
 #~ "Unique Local Address - in the range <code>fc00::/7</code>. Typically only "
 #~ "within the &#8216;local&#8217; half <code>fd00::/8</code>. ULA for IPv6 "
@@ -13520,51 +14002,6 @@ msgstr "« Tilbage"
 #~ msgid "<abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"
 #~ msgstr "<abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"
 
-#~ msgid "ARP"
-#~ msgstr "ARP"
-
-#~ msgid "ARP IP Targets"
-#~ msgstr "ARP IP-mål"
-
-#~ msgid "ARP Interval"
-#~ msgstr "ARP-interval"
-
-#~ msgid "ARP Validation"
-#~ msgstr "ARP-validering"
-
-#~ msgid "ARP mode to consider a slave as being up"
-#~ msgstr "ARP-tilstand for at betragte en slave som værende oppe"
-
-#~ msgid "ARP monitoring is not supported for the selected policy!"
-#~ msgstr "ARP-overvågning er ikke understøttet for den valgte politik!"
-
-#~ msgid "Active-Backup policy (active-backup, 1)"
-#~ msgstr "Politik for aktiv sikkerhedskopiering (active-backup, 1)"
-
-#~ msgid "Adaptive load balancing (balance-alb, 6)"
-#~ msgstr "Adaptiv load balancing (balance-alb, 6)"
-
-#~ msgid "Adaptive transmit load balancing (balance-tlb, 5)"
-#~ msgstr "Adaptiv load balancing af transmission (balance-tlb, 5)"
-
-#~ msgid "Aggregation Selection Logic"
-#~ msgstr "Aggregationsvalgslogik"
-
-#~ msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
-#~ msgstr "Aggregator: Alle slaver er nede eller har ingen slaver (stabil, 0)"
-
-#~ msgid ""
-#~ "Aggregator: Chosen by the largest number of ports + slave added/removed "
-#~ "or state changes (count, 2)"
-#~ msgstr ""
-#~ "Aggregator: Valgt efter det største antal porte + tilføjede/fjernede "
-#~ "slaver eller tilstandsændringer (antal, 2)"
-
-#~ msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
-#~ msgstr ""
-#~ "Aggregator: Slave tilføjet/fjernet eller tilstandsændringer (båndbredde, "
-#~ "1)"
-
 #~ msgid "Allow AP mode to disconnect STAs based on low ACK condition"
 #~ msgstr ""
 #~ "Tillad AP-tilstand til at afbryde STA'er baseret på lav ACK-tilstand"
@@ -13678,9 +14115,6 @@ msgstr "« Tilbage"
 #~ msgid "Both Listen addr and Relay To must be specified."
 #~ msgstr "Både Lyt addr og Relæ Til skal angives."
 
-#~ msgid "Broadcast policy (broadcast, 3)"
-#~ msgstr "Broadcast politik (broadcast, 3)"
-
 #~ msgid ""
 #~ "CA certificate (PEM encoded; Use instead of system-wide store to verify "
 #~ "the gateway certificate."
@@ -13755,15 +14189,6 @@ msgstr "« Tilbage"
 #~ "og nedsat robusthed af nøgleforhandlingerne, især i miljøer med stor "
 #~ "trafikbelastning."
 
-#~ msgid "Consider the slave up when all ARP IP targets are reachable (all, 1)"
-#~ msgstr ""
-#~ "Slaven betragtes som værende oppe, når alle ARP-IP-mål kan nås (all, 1)"
-
-#~ msgid "Consider the slave up when any ARP IP target is reachable (any, 0)"
-#~ msgstr ""
-#~ "Slaven betragtes som værende oppe, når et hvilket som helst ARP IP-mål "
-#~ "kan nås (any, 0)"
-
 #~ msgid "Country Code"
 #~ msgstr "Landekode"
 
@@ -13806,12 +14231,6 @@ msgstr "« Tilbage"
 #~ msgid "Distance to farthest network member in meters."
 #~ msgstr "Afstand til det fjerneste netværksmedlem i meter."
 
-#~ msgid "Down Delay"
-#~ msgstr "Ned Forsinkelse"
-
-#~ msgid "Drop Duplicate Frames"
-#~ msgstr "Drop dublerede Frames"
-
 #~ msgid ""
 #~ "Dynamic <abbr title=\"Dynamic Host Configuration Protocol\">DHCP</abbr>"
 #~ msgstr ""
@@ -13836,9 +14255,6 @@ msgstr "« Tilbage"
 #~ msgid "Edit this network"
 #~ msgstr "Rediger dette netværk"
 
-#~ msgid "Enable Dynamic Shuffling Of Flows"
-#~ msgstr "Aktiver dynamisk blanding af flows"
-
 #~ msgid "Enable WPS pushbutton, requires WPA(2)-PSK/WPA3-SAE"
 #~ msgstr "Aktiver WPS-knappen, kræver WPA(2)-PSK/WPA3-SAE"
 
@@ -13857,15 +14273,6 @@ msgstr "« Tilbage"
 #~ msgstr ""
 #~ "Gør det muligt at foretage hurtig roaming mellem adgangspunkter, der "
 #~ "tilhører det samme mobilitetsområde"
-
-#~ msgid "Every 30 seconds (slow, 0)"
-#~ msgstr "Hvert 30. sekund (langsom, 0)"
-
-#~ msgid "Every second (fast, 1)"
-#~ msgstr "Hvert sekund (hurtigt, 1)"
-
-#~ msgid "Expecting: non-empty value"
-#~ msgstr "Forventer: ikke-tom værdi"
 
 #~ msgid "External R0 Key Holder List"
 #~ msgstr "Ekstern R0 Nøgleholderliste"
@@ -13888,15 +14295,6 @@ msgstr "« Tilbage"
 #~ msgid "Filter IPv6 AAAA records"
 #~ msgstr "Filtrere IPv6 AAAA Akter"
 
-#~ msgid "Filtering for all slaves, no validation"
-#~ msgstr "Filtrering for alle slaver, ingen validering"
-
-#~ msgid "Filtering for all slaves, validation only for active slave"
-#~ msgstr "Filtrering for alle slaver, validering kun for aktiv slave"
-
-#~ msgid "Filtering for all slaves, validation only for backup slaves"
-#~ msgstr "Filtrering for alle slaver, validering kun for backup-slaver"
-
 #~ msgid "Force 40MHz mode"
 #~ msgstr "Tvinge 40 MHz-tilstand"
 
@@ -13915,9 +14313,6 @@ msgstr "« Tilbage"
 #~ msgid "Hide <abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"
 #~ msgstr "Skjul <abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"
 
-#~ msgid "IEEE 802.3ad Dynamic link aggregation (802.3ad, 4)"
-#~ msgstr "IEEE 802.3ad Dynamisk link aggregation (802.3ad, 4)"
-
 #~ msgid "IP Sets"
 #~ msgstr "IP-sæt"
 
@@ -13934,17 +14329,11 @@ msgstr "« Tilbage"
 #~ msgid "Interface is disabled"
 #~ msgstr "Interface er deaktiveret"
 
-#~ msgid "Interval For Sending Learning Packets"
-#~ msgstr "Interval for afsendelse af læringspakker"
-
 #~ msgid "Isolate Clients"
 #~ msgstr "Isoler klienter"
 
 #~ msgid "Key"
 #~ msgstr "Nøgle"
-
-#~ msgid "LACPDU Packets"
-#~ msgstr "LACPDU-pakker"
 
 #~ msgid ""
 #~ "Legacy or badly behaving devices may require legacy 802.11b rates to "
@@ -13955,12 +14344,6 @@ msgstr "« Tilbage"
 #~ "hastigheder for at kunne fungere sammen. Lufttidseffektiviteten kan blive "
 #~ "væsentligt reduceret, hvis disse anvendes. Det anbefales, at 802.11b-"
 #~ "hastigheder så vidt muligt ikke tillades."
-
-#~ msgid "Link Aggregation (Channel Bonding)"
-#~ msgstr "Link Aggregation (kanalbinding)"
-
-#~ msgid "Link Monitoring"
-#~ msgstr "Overvågning af link"
 
 #~ msgid ""
 #~ "List of R0KHs in the same Mobility Domain. <br />Format: MAC-address,NAS-"
@@ -13998,38 +14381,17 @@ msgstr "« Tilbage"
 #~ msgid "Lock to BSSID"
 #~ msgstr "Lås til BSSID"
 
-#~ msgid "MAC Address For The Actor"
-#~ msgstr "MAC-adresse for aktøren"
-
 #~ msgid "MAC-Filter"
 #~ msgstr "MAC-Filter"
 
 #~ msgid "MAC-List"
 #~ msgstr "MAC-liste"
 
-#~ msgid "MII"
-#~ msgstr "MII"
-
-#~ msgid "MII / ETHTOOL ioctls"
-#~ msgstr "MII / ETHTOOL ioctls"
-
-#~ msgid "MII Interval"
-#~ msgstr "MII-interval"
-
 #~ msgid "Maximum allowed Listen Interval"
 #~ msgstr "Maksimalt tilladt lytteinterval"
 
 #~ msgid "Mesh Id"
 #~ msgstr "Mesh Id"
-
-#~ msgid "Method of link monitoring"
-#~ msgstr "Metode til overvågning af forbindelsen"
-
-#~ msgid "Method to determine link status"
-#~ msgstr "Metode til bestemmelse af forbindelsesstatus"
-
-#~ msgid "Minimum Number of Links"
-#~ msgstr "Minimum antal links"
 
 #~ msgid "Mobility Domain"
 #~ msgstr "Mobilitetsdomæne"
@@ -14045,15 +14407,6 @@ msgstr "« Tilbage"
 
 #~ msgid "No client associated"
 #~ msgstr "Ingen tilknyttet klient"
-
-#~ msgid "No more slaves available"
-#~ msgstr "Der er ikke flere slaver til rådighed"
-
-#~ msgid "No more slaves available, can not save interface"
-#~ msgstr "Der er ikke flere slaver til rådighed, kan ikke gemme interface"
-
-#~ msgid "No validation or filtering"
-#~ msgstr "Ingen validering eller filtrering"
 
 #~ msgid "Non-wildcard"
 #~ msgstr "Ikke-wildcard"
@@ -14073,25 +14426,12 @@ msgstr "« Tilbage"
 #~ "øjeblikket), når du angiver en ikke-standard relæ til port "
 #~ "(<code>addr#port</code>)."
 
-#~ msgid "Number of IGMP membership reports"
-#~ msgstr "Antal IGMP-medlemskabsrapporter"
-
-#~ msgid "Number of peer notifications after failover event"
-#~ msgstr "Antal peer-meddelelser efter failover-hændelse"
-
 #~ msgid ""
 #~ "Off: <code>vlanXXX</code>, e.g., <code>vlan1</code>. On: "
 #~ "<code>vlan_tagged_interface.XXX</code>, e.g. <code>eth0.1</code>."
 #~ msgstr ""
 #~ "Off: <code>vlanXXX</code>, f.eks., <code>vlan1</code>. On: "
 #~ "<code>vlan_tagged_interface.XXX</code>, f.eks. <code>eth0.1</code>."
-
-#~ msgid ""
-#~ "Only if current active slave fails and the primary slave is up (failure, "
-#~ "2)"
-#~ msgstr ""
-#~ "Kun hvis den aktuelle aktive slave fejler, og den primære slave er oppe "
-#~ "(fejl, 2)"
 
 #~ msgid ""
 #~ "Options for the Network-ID. (Note: needs also Network-ID.) E.g. "
@@ -14116,9 +14456,6 @@ msgstr "« Tilbage"
 
 #~ msgid "PMK R1 Push"
 #~ msgstr "PMK R1 Tryk"
-
-#~ msgid "Packets To Transmit Before Moving To Next Slave"
-#~ msgstr "Pakker, der skal sendes, før der flyttes til næste slave"
 
 #~ msgid "Password of Private Key"
 #~ msgstr "Adgangskode til den private nøgle"
@@ -14146,19 +14483,6 @@ msgstr "« Tilbage"
 
 #~ msgid "Prevents client-to-client communication"
 #~ msgstr "Forhindrer klient-til-klient kommunikation"
-
-#~ msgid "Primary Slave"
-#~ msgstr "Primær slave"
-
-#~ msgid ""
-#~ "Primary becomes active slave when it comes back up if speed and duplex "
-#~ "better than current slave (better, 1)"
-#~ msgstr ""
-#~ "Den primære bliver aktiv slave, når den kommer tilbage, hvis hastighed og "
-#~ "duplex er bedre end den aktuelle slave (bedre, 1)"
-
-#~ msgid "Primary becomes active slave whenever it comes back up (always, 0)"
-#~ msgstr "Primær bliver aktiv slave, når den kommer op igen (altid, 0)"
 
 #~ msgid "Provide new network"
 #~ msgstr "Forsyn nyt netværk"
@@ -14213,9 +14537,6 @@ msgstr "« Tilbage"
 #~ "Remove IPv6 addresses from the results and only return IPv4 addresses."
 #~ msgstr "Fjern IPv6 adresser fra resultaterne og returner kun IPv4 adresser."
 
-#~ msgid "Reselection policy for primary slave"
-#~ msgstr "Politik for genvalg af primærslave"
-
 #~ msgid "Restart radio interface"
 #~ msgstr "Genstart radio interface"
 
@@ -14228,23 +14549,6 @@ msgstr "« Tilbage"
 #~ "<em>TFTP server root</em> tænder TFTP-serveren og serverer filer fra "
 #~ "<em>TFTP server root</em>."
 
-#~ msgid "Round-Robin policy (balance-rr, 0)"
-#~ msgstr "Round-Robin politik (balance-rr, 0)"
-
-#~ msgid "Selects the transmit hash policy to use for slave selection"
-#~ msgstr ""
-#~ "Vælger den hash-politik for transmission, der skal anvendes til "
-#~ "udvælgelse af slave"
-
-#~ msgid "Set same MAC Address to all slaves"
-#~ msgstr "Angiv samme MAC-adresse til alle slaver"
-
-#~ msgid "Set to currently active slave (active, 1)"
-#~ msgstr "Angiv til den aktuelt aktive slave (aktiv, 1)"
-
-#~ msgid "Set to first slave added to the bond (follow, 2)"
-#~ msgstr "Angiv til den første slave, der tilføjes til forbindelsen (følg, 2)"
-
 #~ msgid ""
 #~ "Settings for assisting wireless clients in roaming between multiple APs: "
 #~ "802.11r, 802.11k and 802.11v"
@@ -14255,36 +14559,6 @@ msgstr "« Tilbage"
 #~ msgid "Short Preamble"
 #~ msgstr "Kort præambel"
 
-#~ msgid "Slave Interfaces"
-#~ msgstr "Slave-Interfaces"
-
-#~ msgid ""
-#~ "Specifies that duplicate frames (received on inactive ports) should be "
-#~ "dropped or delivered"
-#~ msgstr ""
-#~ "Angiver, at duplikerede frames (modtaget på inaktive porte) skal droppes "
-#~ "eller leveres"
-
-#~ msgid "Specifies the ARP link monitoring frequency in milliseconds"
-#~ msgstr "Angiver frekvensen for ARP-linkovervågning i millisekunder"
-
-#~ msgid "Specifies the IP addresses to use for ARP monitoring"
-#~ msgstr "Angiver de IP-adresser, der skal bruges til ARP-overvågning"
-
-#~ msgid "Specifies the MII link monitoring frequency in milliseconds"
-#~ msgstr "Angiver MII-forbindelsesovervågningsfrekvensen i millisekunder"
-
-#~ msgid "Specifies the aggregation selection logic to use"
-#~ msgstr "Angiver den aggregeringsvalglogik, der skal bruges"
-
-#~ msgid ""
-#~ "Specifies the mac-address for the actor in protocol packet exchanges "
-#~ "(LACPDUs). If empty, masters' mac address defaults to system default"
-#~ msgstr ""
-#~ "Specificerer mac-adressen for aktøren i udveksling af protokolpakker "
-#~ "(LACPDU'er). Hvis den er tom, er masters' mac-adresse standardiseret til "
-#~ "systemets standardadresse"
-
 #~ msgid ""
 #~ "Specifies the maximum transmit power the wireless radio may use. "
 #~ "Depending on regulatory requirements and wireless usage, the actual "
@@ -14294,122 +14568,6 @@ msgstr "« Tilbage"
 #~ "Afhængigt af lovkrav og trådløs brug kan den faktiske sendestyrke "
 #~ "reduceres af driveren."
 
-#~ msgid ""
-#~ "Specifies the minimum number of links that must be active before "
-#~ "asserting carrier"
-#~ msgstr ""
-#~ "Specificerer det mindste antal forbindelser, der skal være aktive, før "
-#~ "der kan aktiveres carrier"
-
-#~ msgid "Specifies the mode to be used for this bonding interface"
-#~ msgstr ""
-#~ "Specificerer den tilstand, der skal anvendes for dette bonding interface"
-
-#~ msgid ""
-#~ "Specifies the number of IGMP membership reports to be issued after a "
-#~ "failover event in 200ms intervals"
-#~ msgstr ""
-#~ "Specificerer antallet af IGMP-medlemskabsrapporter, der skal udstedes "
-#~ "efter en failover-hændelse i intervaller på 200 ms"
-
-#~ msgid ""
-#~ "Specifies the number of packets to transmit through a slave before moving "
-#~ "to the next one"
-#~ msgstr ""
-#~ "Specificerer antallet af pakker, der skal transmitteres gennem en slave, "
-#~ "før den flyttes til den næste"
-
-#~ msgid ""
-#~ "Specifies the number of peer notifications (gratuitous ARPs and "
-#~ "unsolicited IPv6 Neighbor Advertisements) to be issued after a failover "
-#~ "event"
-#~ msgstr ""
-#~ "Specificerer antallet af peer-notifikationer (vederlagsfri ARP'er og "
-#~ "uopfordrede IPv6 Neighbor Advertisements), der skal udstedes efter en "
-#~ "failover-hændelse"
-
-#~ msgid ""
-#~ "Specifies the number of seconds between instances where the bonding "
-#~ "driver sends learning packets to each slaves peer switch"
-#~ msgstr ""
-#~ "Specificerer antallet af sekunder mellem de Instanser, hvor bonding-"
-#~ "driveren sender læringspakker til hver slaves peer-switch"
-
-#~ msgid "Specifies the quantity of ARP IP targets that must be reachable"
-#~ msgstr "Specificerer mængden af ARP IP-mål, der skal kunne nås"
-
-#~ msgid ""
-#~ "Specifies the rate in which the link partner will be asked to transmit "
-#~ "LACPDU packets"
-#~ msgstr ""
-#~ "Specificerer den hastighed, hvormed linkpartneren vil blive bedt om at "
-#~ "sende LACPDU-pakker"
-
-#~ msgid ""
-#~ "Specifies the reselection policy for the primary slave when failure of "
-#~ "the active slave or recovery of the primary slave occurs"
-#~ msgstr ""
-#~ "Specificerer genvalgspolitikken for den primære slave, når der opstår "
-#~ "fejl i den aktive slave eller gendannelse af den primære slave"
-
-#~ msgid "Specifies the system priority"
-#~ msgstr "Specificerer systemets prioritet"
-
-#~ msgid ""
-#~ "Specifies the time in milliseconds to wait before disabling a slave after "
-#~ "a link failure detection"
-#~ msgstr ""
-#~ "Specificerer den tid i millisekunder, der skal gå, før en slave "
-#~ "deaktiveres efter registrering af en forbindelsesfejl"
-
-#~ msgid ""
-#~ "Specifies the time in milliseconds to wait before enabling a slave after "
-#~ "a link recovery detection"
-#~ msgstr ""
-#~ "Specificerer den tid i millisekunder, der skal gå, før en slave aktiveres "
-#~ "efter en registrering af genoprettelse af en forbindelse"
-
-#~ msgid ""
-#~ "Specifies whether ARP probes and replies should be validated or non-ARP "
-#~ "traffic should be filtered for link monitoring"
-#~ msgstr ""
-#~ "Specificerer, om ARP-probes og -svar skal valideres, eller om ikke-ARP-"
-#~ "trafik skal filtreres med henblik på linkovervågning"
-
-#~ msgid ""
-#~ "Specifies whether active-backup mode should set all slaves to the same "
-#~ "MAC address at enslavement"
-#~ msgstr ""
-#~ "Specificerer, om aktiv backup-tilstand skal indstille alle slaver til den "
-#~ "samme MAC-adresse ved slavetilknytningen"
-
-#~ msgid ""
-#~ "Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. "
-#~ "netif_carrier_ok()"
-#~ msgstr ""
-#~ "Specificerer, om miimon skal bruge MII- eller ETHTOOL-ioctls i forhold "
-#~ "til netif_carrier_ok() eller ej"
-
-#~ msgid ""
-#~ "Specifies whether to shuffle active flows across slaves based on the load"
-#~ msgstr ""
-#~ "Specificerer, om aktive flows skal blandes på tværs af slaver baseret på "
-#~ "belastningen"
-
-#~ msgid ""
-#~ "Specifies which slave interfaces should be attached to this bonding "
-#~ "interface"
-#~ msgstr ""
-#~ "Specificerer, hvilke slave interfaces der skal knyttes til dette bonding "
-#~ "interface"
-
-#~ msgid ""
-#~ "Specifies which slave is the primary device. It will always be the active "
-#~ "slave while it is available"
-#~ msgstr ""
-#~ "Specificerer, hvilken slave der er den primære enhed. Den vil altid være "
-#~ "den aktive slave, så længe den er tilgængelig"
-
 #~ msgid "Specify the secret encryption key here."
 #~ msgstr "Angiv den hemmelige krypteringsnøgle her."
 
@@ -14418,9 +14576,6 @@ msgstr "« Tilbage"
 
 #~ msgid "Station inactivity limit"
 #~ msgstr "Grænse for inaktivitet på stationen"
-
-#~ msgid "System Priority"
-#~ msgstr "Systemprioritet"
 
 #~ msgid ""
 #~ "The correct SSID must be manually specified when joining a hidden "
@@ -14440,12 +14595,6 @@ msgstr "« Tilbage"
 #~ "på TQ'en for hver videresendt OGM, hvorved omkostningerne ved et ekstra "
 #~ "hop (pakken skal modtages og videresendes, hvilket koster sendetid)"
 
-#~ msgid "The local IPv4 address"
-#~ msgstr "Den lokale IPv4-adresse"
-
-#~ msgid "The local IPv4 netmask"
-#~ msgstr "Den lokale IPv4-netmaske"
-
 #~ msgid ""
 #~ "This authentication type is not applicable to the selected EAP method."
 #~ msgstr "Denne godkendelsestype er ikke relevant for den valgte EAP-metode."
@@ -14463,33 +14612,11 @@ msgstr "« Tilbage"
 #~ "stedet bruge <strong><a class=\"full-import\" "
 #~ "href=\"#\">konfigurationsimporten</a></strong>i stedet."
 
-#~ msgid "Transmit Hash Policy"
-#~ msgstr "Politik for overførsel af hash"
-
 #~ msgid "Transmitted Data"
 #~ msgstr "Overførte data"
 
 #~ msgid "Tx-Power"
 #~ msgstr "Tx-Power"
-
-#~ msgid "Up Delay"
-#~ msgstr "Forsinkelse op"
-
-#~ msgid ""
-#~ "Use XOR of hardware MAC addresses and IP addresses, rely on "
-#~ "skb_flow_dissect (encap2+3)"
-#~ msgstr ""
-#~ "Brug XOR af hardware MAC-adresser og IP-adresser, stol på "
-#~ "skb_flow_dissect (encap2+3)"
-
-#~ msgid "Use upper layer protocol information (layer3+4)"
-#~ msgstr "Brug protokoloplysninger fra det øverste lag (lag3+4)"
-
-#~ msgid ""
-#~ "Use upper layer protocol information, rely on skb_flow_dissect (encap3+4)"
-#~ msgstr ""
-#~ "Brug protokoloplysninger for det øverste lag, afhængig af "
-#~ "skb_flow_dissect (encap3+4)"
 
 #~ msgid ""
 #~ "Used for two different purposes: RADIUS NAS ID and 802.11r R0KH-ID. Not "
@@ -14497,15 +14624,6 @@ msgstr "« Tilbage"
 #~ msgstr ""
 #~ "Anvendes til to forskellige formål: RADIUS NAS-ID og 802.11r R0KH-ID. "
 #~ "Ikke nødvendigt med normal WPA(2)-PSK."
-
-#~ msgid "Validation for all slaves"
-#~ msgstr "Validering for alle slaver"
-
-#~ msgid "Validation only for active slave"
-#~ msgstr "Validering kun for aktiv slave"
-
-#~ msgid "Validation only for backup slaves"
-#~ msgstr "Validering kun for backup slaver"
 
 #~ msgid "WMM Mode"
 #~ msgstr "WMM tilstand"
@@ -14546,22 +14664,8 @@ msgstr "« Tilbage"
 #~ msgid "Wireless network is enabled"
 #~ msgstr "Trådløst netværk er aktiveret"
 
-#~ msgid "Yes (none, 0)"
-#~ msgstr "Ja (ingen, 0)"
-
 #~ msgid "You may add multiple unique Relay To on the same Listen addr."
 #~ msgstr "Du kan tilføje flere unikke relæer til den samme lytteadresse."
-
-#~ msgid ""
-#~ "You must select a primary interface which is included in selected slave "
-#~ "interfaces!"
-#~ msgstr ""
-#~ "Du skal vælge et primært interface, som er inkluderet i de valgte slave "
-#~ "interfaces!"
-
-#~ msgid ""
-#~ "You must select at least one ARP IP target if ARP monitoring is selected!"
-#~ msgstr "Du skal vælge mindst ét ARP IP-mål, hvis ARP-overvågning er valgt!"
 
 #~ msgid "_proto: _tcp, _udp, _sctp, _quic, … ."
 #~ msgstr "_proto: _tcp, _udp, _sctp, _quic, … ."
@@ -14581,9 +14685,6 @@ msgstr "« Tilbage"
 
 #~ msgid "medium security"
 #~ msgstr "medium sikkerhed"
-
-#~ msgid "netif_carrier_ok()"
-#~ msgstr "netif_carrier_ok()"
 
 #~ msgid "open network"
 #~ msgstr "åbent netværk"

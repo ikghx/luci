@@ -594,13 +594,37 @@ msgstr "APN"
 msgid "APN profile index"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:358
+msgid "ARP"
+msgstr "ARP"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:371
+msgid "ARP IP Targets"
+msgstr "ARP IP Kohteet"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:363
+msgid "ARP Interval"
+msgstr "ARP-aikaväli"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:387
+msgid "ARP Validation"
+msgstr "ARP-tarkistus"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:811
 msgid "ARP link monitoring"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:379
+msgid "ARP mode to consider a slave as being up"
+msgstr "ARP-tila orjan tilan arviointiin"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:837
 msgid "ARP monitor target IP address"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:82
+msgid "ARP monitoring is not supported for the selected policy!"
+msgstr "ARP-seurantaa ei tueta valitussa käytännössä!"
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:107
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:107
@@ -757,6 +781,10 @@ msgstr ""
 msgid "Active peers"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:210
+msgid "Active-Backup policy (active-backup, 1)"
+msgstr "Aktiivinen varmuuskopiointikäytäntö (aktiivinen varmuuskopiointi, 1)"
+
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3905
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1049
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:23
@@ -767,9 +795,17 @@ msgstr "Ad-hoc"
 msgid "Adaptive load balancing"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:215
+msgid "Adaptive load balancing (balance-alb, 6)"
+msgstr "Mukautuva kuormantasaus (painotettu-alb, 6)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:566
 msgid "Adaptive transmit load balancing"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:214
+msgid "Adaptive transmit load balancing (balance-tlb, 5)"
+msgstr "Mukautuva lähetyskuormantasaus (balance-tlb, 5)"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2235
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2238
@@ -988,6 +1024,10 @@ msgstr "Elinaika"
 msgid "Aggregate Originator Messages"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:265
+msgid "Aggregation Selection Logic"
+msgstr "Yhdistämisen valintalogiikka"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:398
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1498
 msgid "Aggregation device"
@@ -996,6 +1036,23 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:523
 msgid "Aggregation ports"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:268
+msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
+msgstr "Yhdistäminen: Kaikki orjat alas tai ei orjia (vakaa, 0)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:270
+msgid ""
+"Aggregator: Chosen by the largest number of ports + slave added/removed or "
+"state changes (count, 2)"
+msgstr ""
+"Yhdistäjä: valitsee suurimman määrän portteja + lisätty / poistettu orja tai "
+"tila muuttuu (määrä, 2)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:269
+msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
+msgstr ""
+"Yhdistäjä: Orja lisätty / poistettu tai tila muuttuu (kaistanleveys, 1)"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:194
 msgid "Alert"
@@ -1616,6 +1673,7 @@ msgid "Bonding Mode"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:559
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:206
 msgid "Bonding Policy"
 msgstr "Sidoskäytäntö"
 
@@ -1680,6 +1738,10 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1409
 msgid "Broadcast"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:212
+msgid "Broadcast policy (broadcast, 3)"
+msgstr "Lähetyskäytäntö (lähetys, 3)"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2884
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4252
@@ -2175,6 +2237,16 @@ msgstr ""
 msgctxt "nft ct status"
 msgid "Conntrack status"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:383
+msgid "Consider the slave up when all ARP IP targets are reachable (all, 1)"
+msgstr ""
+"Orja ylhäällä, kun kaikki ARP IP -kohteet ovat tavoitettavissa (kaikki, 1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:382
+msgid "Consider the slave up when any ARP IP target is reachable (any, 0)"
+msgstr ""
+"Orja ylhäällä, kun kaikki ARP IP -kohteet ovat tavoitettavissa (kaikki, 1)"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/crontab.js:18
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:370
@@ -2954,6 +3026,10 @@ msgstr "Älä pirstoa"
 msgid "Down"
 msgstr "Alhaalla"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:408
+msgid "Down Delay"
+msgstr "Viivästyminen"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2941
 msgid "Download"
 msgstr ""
@@ -2988,6 +3064,10 @@ msgstr "Vedä järjestääksesi uudelleen"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:662
 msgid "Driver default"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:347
+msgid "Drop Duplicate Frames"
+msgstr "Pudota päällekkäiset kehykset"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1098
 msgid ""
@@ -3288,6 +3368,10 @@ msgstr "Käytä DNS-hakua"
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:163
 msgid "Enable Debugmode"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:299
+msgid "Enable Dynamic Shuffling Of Flows"
+msgstr "Ota käyttöön tietocirtojen dynaaminen sekoittaminen"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:60
 msgid "Enable HE.net dynamic endpoint update"
@@ -3617,6 +3701,14 @@ msgstr "Ethernet-sovitin"
 msgid "Ethernet Switch"
 msgstr "Ethernet-kytkin"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:277
+msgid "Every 30 seconds (slow, 0)"
+msgstr "30 sekunnin välein (hidas, 0)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:278
+msgid "Every second (fast, 1)"
+msgstr "Joka sekunti (nopea, 1)"
+
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:138
 msgid "Exclude SNAT ports"
 msgstr ""
@@ -3696,6 +3788,10 @@ msgstr ""
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:149
 msgid "Expecting: %s"
 msgstr "Odotettiin: %s"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:53
+msgid "Expecting: non-empty value"
+msgstr "Odotus: arvon ei tule ole tyhjä"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:57
 msgid "Expires"
@@ -3916,6 +4012,18 @@ msgstr "Suodata yksityinen"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:643
 msgid "Filter these addresses from dnsmasq replies."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:394
+msgid "Filtering for all slaves, no validation"
+msgstr "Suodatus kaikille orjille, ei tarkistusta"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:395
+msgid "Filtering for all slaves, validation only for active slave"
+msgstr "Suodatus kaikille orjille, tarkistus vain aktiiviselle orjalle"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:396
+msgid "Filtering for all slaves, validation only for backup slaves"
+msgstr "Suodatus kaikille orjille, tarkistus vain vara-orjille"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:667
 msgid ""
@@ -4606,6 +4714,10 @@ msgstr "ICMPv6-tyyppi"
 msgid "ID used to uniquely identify the VXLAN"
 msgstr "Tunnus, jota käytetään yksilöimään VXLAN"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:213
+msgid "IEEE 802.3ad Dynamic link aggregation (802.3ad, 4)"
+msgstr "IEEE 802.3ad - dynaaminen linkin yhdistäminen (802.3ad, 4)"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:742
 msgid "IGMP reports"
 msgstr ""
@@ -4725,6 +4837,7 @@ msgstr "IPv4-ylävirta"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1325
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:88
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:205
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:167
 msgid "IPv4 address"
 msgstr "IPv4-osoite"
 
@@ -4742,6 +4855,7 @@ msgid "IPv4 gateway"
 msgstr "IPv4-yhdyskäytävä"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:180
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:174
 msgid "IPv4 netmask"
 msgstr "IPv4-verkkomaski"
 
@@ -5429,6 +5543,10 @@ msgstr ""
 msgid "International Mobile Subscriber Identity"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:290
+msgid "Interval For Sending Learning Packets"
+msgstr "Oppimispakettien lähetysväli"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:998
 msgid ""
 "Interval in centiseconds between multicast general queries. By varying the "
@@ -5672,6 +5790,10 @@ msgstr "L2TP-palvelin"
 msgid "LACP - 802.3ad"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:274
+msgid "LACPDU Packets"
+msgstr "LACPDU-paketit"
+
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:130
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:102
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoa.js:88
@@ -5842,6 +5964,14 @@ msgstr "Linjatila"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:26
 msgid "Line Uptime"
 msgstr "Linjan käyttöaika"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:128
+msgid "Link Aggregation (Channel Bonding)"
+msgstr "Linkin yhdistäminen (kanavan sidos)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:354
+msgid "Link Monitoring"
+msgstr "Linkin valvonta"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:24
 msgid "Link On"
@@ -6152,6 +6282,10 @@ msgstr "MAC-osoite"
 msgid "MAC Address Filter"
 msgstr "MAC-osoitesuodatin"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:258
+msgid "MAC Address For The Actor"
+msgstr "Toimijan MAC-osoite"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:402
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1507
 msgid "MAC VLAN"
@@ -6225,6 +6359,18 @@ msgstr "MD5"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:28
 msgid "MHz"
 msgstr "Mhz"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:359
+msgid "MII"
+msgstr "MII"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:427
+msgid "MII / ETHTOOL ioctls"
+msgstr "MII / ETHTOOL ioctls"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:400
+msgid "MII Interval"
+msgstr "MII-väli"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:812
 msgid "MII link monitoring"
@@ -6508,6 +6654,14 @@ msgstr ""
 msgid "Method not found"
 msgstr "Menetelmää ei löydy"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:355
+msgid "Method of link monitoring"
+msgstr "Linkkien seurantamenetelmä"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:424
+msgid "Method to determine link status"
+msgstr "Linkin tilan määrittäminen"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:83
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:216
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:242
@@ -6544,6 +6698,10 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1109
 msgid "Minimum ARP validity time"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:242
+msgid "Minimum Number of Links"
+msgstr "Linkkien vähimmäismäärä"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:720
 msgid "Minimum number of active links"
@@ -7014,6 +7172,8 @@ msgid "Next »"
 msgstr "Seuraava »"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:303
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:351
 msgid "No"
 msgstr "Ei"
 
@@ -7123,6 +7283,15 @@ msgstr "Ei tietoja saatavilla"
 msgid "No matching prefix delegation"
 msgstr "Ei vastaavaa etuliitteen delegointia"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:145
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:148
+msgid "No more slaves available"
+msgstr "Enempää orjia ei ole saatavilla"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:194
+msgid "No more slaves available, can not save interface"
+msgstr "Ei enempää orjia saatavilla, sovitinta ei voi tallentaa"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:671
 msgid "No negative cache"
 msgstr "Ei negatiivista välimuistia"
@@ -7173,6 +7342,10 @@ msgstr "Tässä ketjussa ei ole sääntöjä"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:91
 msgid "No rules in this chain."
 msgstr "Tässä ketjussa ei ole sääntöjä."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:390
+msgid "No validation or filtering"
+msgstr "Ei tarkastusta tai suodatusta"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:139
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1286
@@ -7292,6 +7465,10 @@ msgstr "Huomaa"
 msgid "Nslookup"
 msgstr "Nslookup"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:338
+msgid "Number of IGMP membership reports"
+msgstr "IGMP-jäsenraporttien määrä"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1230
 msgid ""
 "Number of beacon periods between a <abbr title=\"Delivery Traffic Indication "
@@ -7313,6 +7490,10 @@ msgid ""
 "Number of packets to transmit through a slave before moving to the next one. "
 "Slave is chosen at random when 0."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:316
+msgid "Number of peer notifications after failover event"
+msgstr "Vertaisilmoitusten määrä virhetapahtuman jälkeen"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:732
 msgid "Number of seconds between sent learning packets"
@@ -7339,6 +7520,7 @@ msgstr "Hae IPv6-osoite"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:19
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:87
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:357
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:342
 msgid "Off"
 msgstr "Pois"
@@ -7421,6 +7603,13 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2279
 msgid "Only connect where the BSSID matches <code>%h</code>."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:236
+msgid ""
+"Only if current active slave fails and the primary slave is up (failure, 2)"
+msgstr ""
+"Vain jos nykyinen aktiivinen orja epäonnistuu ja ensisijainen orja on päällä "
+"(vika, 2)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:97
 msgid "Only interfaces using this table (via override) will use this route."
@@ -7952,6 +8141,10 @@ msgstr ""
 msgid "Packets"
 msgstr "Paketit"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:282
+msgid "Packets To Transmit Before Moving To Next Slave"
+msgstr "Lähetettävät paketit ennen siirtymistä seuraavaan orjaan"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:90
 msgid "Packets exceeding this value may be fragmented"
 msgstr ""
@@ -8309,6 +8502,24 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:610
 msgid "Primary Device"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:218
+msgid "Primary Slave"
+msgstr "Ensisijainen orja"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:235
+msgid ""
+"Primary becomes active slave when it comes back up if speed and duplex "
+"better than current slave (better, 1)"
+msgstr ""
+"Ensisijaisesta orjasta tulee palautuessa aktiivinen, jos sen nopeus ja "
+"kaksipuolisuus ovat parempia kuin nykyinen orja (parempi, 1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:234
+msgid "Primary becomes active slave whenever it comes back up (always, 0)"
+msgstr ""
+"Ensisijainen tulee aktiiviseksi orjaksi heti palautuessaan käyttökelpoiseksi "
+"(aina, 0)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:754
 msgid "Primary port reselection policy"
@@ -9003,6 +9214,10 @@ msgstr "Vaatii wpa-supplicantin SAE-tuella"
 msgid "Requires wpa-supplicant with WEP support"
 msgstr "Vaatii wpa-supplicantin WEP-tuella"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:231
+msgid "Reselection policy for primary slave"
+msgstr "Ensisijaisen orjan uudelleenvalintakäytäntö"
+
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2202
 #: modules/luci-base/ucode/template/sysauth.ut:39
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:17
@@ -9178,6 +9393,10 @@ msgstr "Juuren valmistelu"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:562
 msgid "Round robin"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:209
+msgid "Round-Robin policy (balance-rr, 0)"
+msgstr "Round-Robin -käytäntö (painotettu-rr, 0)"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:644
 msgid "Route Allowed IPs"
@@ -9443,6 +9662,10 @@ msgstr ""
 msgid "Select file…"
 msgstr "Valitse tiedosto…"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:325
+msgid "Selects the transmit hash policy to use for slave selection"
+msgstr "Valitsee orja-valinnassa käytettävän lähetyshajautuskäytännön"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:795
 msgid ""
 "Send <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</abbr> "
@@ -9547,6 +9770,10 @@ msgid ""
 "sense events do not invoke hotplug handlers)."
 msgstr "Määritä sovittimen ominaisuudet linkin tilasta riippumatta."
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:307
+msgid "Set same MAC Address to all slaves"
+msgstr "Aseta sama MAC-osoite kaikille orjille"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:814
 msgid ""
 "Set the autonomous address-configuration flag in the prefix information "
@@ -9563,6 +9790,14 @@ msgid ""
 "Set this interface as master for RA and DHCPv6 relaying as well as NDP "
 "proxying."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:311
+msgid "Set to currently active slave (active, 1)"
+msgstr "Aseta aktiiviseen orjaan (aktiivinen, 1)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:312
+msgid "Set to first slave added to the bond (follow, 2)"
+msgstr "Aseta ensimmäiseen orjaan sidoksessa (seuraa, 2)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:646
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:662
@@ -9688,6 +9923,10 @@ msgstr "Siirry sisältöön"
 msgid "Skip to navigation"
 msgstr "Siirry navigointiin"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:185
+msgid "Slave Interfaces"
+msgstr "Orja-sovittimet"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:618
 msgid "Slave selection hash policy"
 msgstr ""
@@ -9790,9 +10029,33 @@ msgid ""
 "corresponding range"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:348
+msgid ""
+"Specifies that duplicate frames (received on inactive ports) should be "
+"dropped or delivered"
+msgstr ""
+"Määrittää, pitäisikö päällekkäiset kehykset (jotka vastaanotetaan "
+"passiivisilla porteilla) hylätä tai toimittaa"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:364
+msgid "Specifies the ARP link monitoring frequency in milliseconds"
+msgstr "Määrittää ARP-linkin valvontataajuuden millisekunnina"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:372
+msgid "Specifies the IP addresses to use for ARP monitoring"
+msgstr "Määrittää IP-osoitteet, joita käytetään ARP-seurantaan"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:401
+msgid "Specifies the MII link monitoring frequency in milliseconds"
+msgstr "Määrittää ARP-linkin valvontatiheyden millisekunnina"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:189
 msgid "Specifies the TOS value to match in IP headers"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:266
+msgid "Specifies the aggregation selection logic to use"
+msgstr "Määrittää käytettävän yhdistelmän valintalogiikan"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:293
 msgid "Specifies the directory the device is attached to"
@@ -9821,6 +10084,14 @@ msgid ""
 "this route belongs to"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:259
+msgid ""
+"Specifies the mac-address for the actor in protocol packet exchanges "
+"(LACPDUs). If empty, masters' mac address defaults to system default"
+msgstr ""
+"Määrittää käytettävän mac-osoitteen LACPDU:lle. Jos tyhjä, osoitteet ovat "
+"oletusasetuksia"
+
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:175
 msgid ""
 "Specifies the maximum amount of failed ARP requests until hosts are presumed "
@@ -9836,6 +10107,18 @@ msgid ""
 msgstr ""
 "Määrittää ajan sekunteina, joiden jälkeen isäntien oletetaan olevan kuolleita"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:243
+msgid ""
+"Specifies the minimum number of links that must be active before asserting "
+"carrier"
+msgstr ""
+"Määrittää vähimmäismäärän linkkejä, joiden on oltava aktiivisia ennen "
+"yhdistämistä"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:207
+msgid "Specifies the mode to be used for this bonding interface"
+msgstr "Määrittää tilan, jota käytetään tähän sidontasovittimeen"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:79
 msgid ""
 "Specifies the network gateway. If omitted, the gateway from the parent "
@@ -9849,11 +10132,64 @@ msgid ""
 "failover event"
 msgstr ""
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:339
+msgid ""
+"Specifies the number of IGMP membership reports to be issued after a "
+"failover event in 200ms intervals"
+msgstr ""
+"Määrittää IGMP-jäsenraporttien lukumäärän, joka julkaistaan häiriötapahtuman "
+"jälkeen 200 ms: n välein"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:283
+msgid ""
+"Specifies the number of packets to transmit through a slave before moving to "
+"the next one"
+msgstr ""
+"Määrittää orjan kautta lähetettävien pakettien lukumäärän ennen siirtymistä "
+"seuraavaan"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:317
+msgid ""
+"Specifies the number of peer notifications (gratuitous ARPs and unsolicited "
+"IPv6 Neighbor Advertisements) to be issued after a failover event"
+msgstr ""
+"Määrittää vertaisilmoitusten (vastikkeettomat ARP: t ja ei-toivotut IPv6-"
+"naapurimainonnat) lukumäärän, joka annetaan virhetilanteesta palautumisen "
+"jälkeen"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:291
+msgid ""
+"Specifies the number of seconds between instances where the bonding driver "
+"sends learning packets to each slaves peer switch"
+msgstr ""
+"Määrittää sekunteina aikavälin, jolloin yhdistävä ohjain lähettää "
+"oppimispaketit jokaiselle slave-vertaiskytkimelle"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:105
 msgid ""
 "Specifies the preferred source address when sending to destinations covered "
 "by the target"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:380
+msgid "Specifies the quantity of ARP IP targets that must be reachable"
+msgstr "Määrittää ARP IP -kohteiden määrän, jonka on oltava saavutettavissa"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:275
+msgid ""
+"Specifies the rate in which the link partner will be asked to transmit "
+"LACPDU packets"
+msgstr ""
+"Määrittää nopeuden, jolla linkkipartneria pyydetään lähettämään LACPDU-"
+"paketit"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:232
+msgid ""
+"Specifies the reselection policy for the primary slave when failure of the "
+"active slave or recovery of the primary slave occurs"
+msgstr ""
+"Määrittää ensisijaisen orjan uudelleenvalintakäytännön, kun aktiivinen orja "
+"epäonnistuu tai ensisijainen orja palautetaan"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:48
 msgid "Specifies the route type to be created"
@@ -9862,6 +10198,26 @@ msgstr "Määrittää luotavan reitin tyypin"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:142
 msgid "Specifies the rule target routing action"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:251
+msgid "Specifies the system priority"
+msgstr "Määrittää järjestelmän prioriteetin"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:409
+msgid ""
+"Specifies the time in milliseconds to wait before disabling a slave after a "
+"link failure detection"
+msgstr ""
+"Määrittää ajan millisekunnissa ennen orjan poistamista käytöstä linkin vian "
+"havaitsemisen jälkeen"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:417
+msgid ""
+"Specifies the time in milliseconds to wait before enabling a slave after a "
+"link recovery detection"
+msgstr ""
+"Määrittää millisekuntina odotettavan ajan linkin palautumisen havaitsemisen "
+"jälkeen ennen kuin orja otetaan käyttöön"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:549
 msgid "Specifies the wired ports to attach to this bonding."
@@ -9873,6 +10229,49 @@ msgid ""
 "wireless networks, choose the associated interface as network in the "
 "wireless settings."
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:388
+msgid ""
+"Specifies whether ARP probes and replies should be validated or non-ARP "
+"traffic should be filtered for link monitoring"
+msgstr ""
+"Määrittää, tuleeko ARP-koettimet ja vastaukset validoida vai suodatetaanko "
+"muu kuin ARP-liikenne linkin seurantaa varten"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:308
+msgid ""
+"Specifies whether active-backup mode should set all slaves to the same MAC "
+"address at enslavement"
+msgstr ""
+"Määrittää, pitäisikö aktiivisen-varmistus-tilan asettaa kaikki orjat samaan "
+"MAC-osoitteeseen orjuuttamisen yhteydessä"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:425
+msgid ""
+"Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. "
+"netif_carrier_ok()"
+msgstr ""
+"Määrittää, käytetäänkö miimonia MII vai ETHTOOL ioctls vs. netif_carrier_ok "
+"()"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:300
+msgid ""
+"Specifies whether to shuffle active flows across slaves based on the load"
+msgstr "Määrittää, valitaanko aktiiviset orjat kuormituksen perusteella"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:186
+msgid ""
+"Specifies which slave interfaces should be attached to this bonding interface"
+msgstr ""
+"Määrittää, mitkä orja-sovittimet tulisi liittää tähän sidontasovittimeen"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:219
+msgid ""
+"Specifies which slave is the primary device. It will always be the active "
+"slave while it is available"
+msgstr ""
+"Määrittää, mikä orja on ensisijainen laite. Se valitaan aina aktiiviseksi, "
+"jos se on käytettävissä"
 
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:63
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:142
@@ -10169,6 +10568,10 @@ msgstr "Järjestelmä"
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
 msgstr "Järjestelmäloki"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:250
+msgid "System Priority"
+msgstr "Järjestelmän prioriteetti"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:118
 msgid "System Properties"
@@ -10643,6 +11046,10 @@ msgstr "IPv4-etuliitteen pituus bitteissä, loput käytetään IPv6-osoitteissa.
 msgid "The length of the IPv6 prefix in bits"
 msgstr "IPv6-etuliitteen pituus bitteissä"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:168
+msgid "The local IPv4 address"
+msgstr "Paikallinen IPv4-osoite"
+
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:46
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:44
@@ -10650,6 +11057,10 @@ msgstr "IPv6-etuliitteen pituus bitteissä"
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:47
 msgid "The local IPv4 address over which the tunnel is created (optional)."
 msgstr "Paikallinen IPv4-osoite, jolle tunneli luodaan (valinnainen)."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:175
+msgid "The local IPv4 netmask"
+msgstr "Paikallinen IPv4-verkkomaski"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
@@ -11134,6 +11545,10 @@ msgstr ""
 msgid "Transmit"
 msgstr "Lähetä"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:324
+msgid "Transmit Hash Policy"
+msgstr "Lähetyksen hajautuskäytäntö"
+
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/29_ports.js:248
 msgid "Transmit dropped"
 msgstr ""
@@ -11453,6 +11868,10 @@ msgstr ""
 msgid "Up"
 msgstr "Ylhäällä"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:416
+msgid "Up Delay"
+msgstr "Viivästys"
+
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4303
 msgid "Upload"
 msgstr "Lähetys"
@@ -11568,6 +11987,22 @@ msgstr "Käytä MTU:a tunnelisovittimella"
 msgid "Use TTL on tunnel interface"
 msgstr "Käytä TTL:ää tunnelisovittimella"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:327
+msgid "Use XOR of hardware MAC addresses (layer2)"
+msgstr "Käytä laitteiden MAC-osoitteiden XOR-tasoa (kerros2)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:328
+msgid "Use XOR of hardware MAC addresses and IP addresses (layer2+3)"
+msgstr "Käytä XOR-laitteisto-MAC-osoitteita ja IP-osoitteita (kerros2 + 3)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:330
+msgid ""
+"Use XOR of hardware MAC addresses and IP addresses, rely on skb_flow_dissect "
+"(encap2+3)"
+msgstr ""
+"Käytä XOR-laitteisto-MAC-osoitteita ja IP-osoitteita, luota skb_flow_dissect "
+"(encap2 + 3)"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:295
 msgid "Use as external overlay (/overlay)"
 msgstr "Käytä ulkoisena peittokuvana (/overlay)"
@@ -11669,6 +12104,17 @@ msgstr ""
 "asiakkaalle nimeksi. Valinnaista <em>laina-aikaa</em> voidaan käyttää "
 "asettamaan epätyypillinen palvelinkohtainen laina-aika, esimerkiksi 12h, 3d "
 "tai ääretön."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:329
+msgid "Use upper layer protocol information (layer3+4)"
+msgstr "Käytä ylemmän kerroksen protokollatietoja (kerros3 + 4)"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:331
+msgid ""
+"Use upper layer protocol information, rely on skb_flow_dissect (encap3+4)"
+msgstr ""
+"Käytä ylemmän kerroksen protokollatietoja, luota skb_flow_dissect (encap3 + "
+"4)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:842
 msgid "Use {etc_ethers}"
@@ -11836,6 +12282,18 @@ msgid ""
 msgstr ""
 "Vahvista palvelinvarmenne käyttämällä sisäänrakennettua järjestelmän CA-"
 "pakettia, <br /> vaatii \"ca-bundle\" -paketin"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:393
+msgid "Validation for all slaves"
+msgstr "Kaikkien orjien tarkastus"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:391
+msgid "Validation only for active slave"
+msgstr "Tarkastus vain aktiiviselle orjalle"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:392
+msgid "Validation only for backup slaves"
+msgstr "Tarkastus vain varaorjille"
 
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:73
 msgid "Vendor"
@@ -12127,9 +12585,19 @@ msgstr "Kirjoita vastaanotetut DNS-pyynnöt syslogiin."
 msgid "Write system log to file"
 msgstr "Kirjoita järjestelmäloki tiedostoon"
 
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:211
+msgid "XOR policy (balance-xor, 2)"
+msgstr "XOR-käytäntö (tasapaino-xor, 2)"
+
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4181
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:302
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:350
 msgid "Yes"
 msgstr "Kyllä"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:310
+msgid "Yes (none, 0)"
+msgstr "Kyllä (ei, 0)"
 
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:205
 msgid "Yggdrasil Network"
@@ -12172,6 +12640,18 @@ msgid ""
 "You must enable JavaScript in your browser or LuCI will not work properly."
 msgstr ""
 "Sinun on otettava JavaScript käyttöön selaimessasi tai LuCI ei toimi oikein."
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:120
+msgid ""
+"You must select a primary interface which is included in selected slave "
+"interfaces!"
+msgstr ""
+"Valitse ensisijainen sovitin, joka sisältyy valittuihin orjasovittimiin!"
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:101
+msgid ""
+"You must select at least one ARP IP target if ARP monitoring is selected!"
+msgstr "Valitse vähintään yksi ARP IP-kohde, koska ARP-valvonta on valittu!"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:215
 msgid "ZRam Compression Algorithm"
@@ -12469,6 +12949,10 @@ msgstr "minuuttia"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:826
 msgid "mobile home agent (H)"
 msgstr ""
+
+#: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:428
+msgid "netif_carrier_ok()"
+msgstr "netif_carrier_ok()"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:47
 msgid "no"
@@ -12965,15 +13449,6 @@ msgstr "«Takaisin"
 #~ "Ota pakettiohjaus käyttöön kaikilla prosessoreilla. Voi parantaa tai "
 #~ "heikentää verkon nopeutta."
 
-#~ msgid "Use XOR of hardware MAC addresses (layer2)"
-#~ msgstr "Käytä laitteiden MAC-osoitteiden XOR-tasoa (kerros2)"
-
-#~ msgid "Use XOR of hardware MAC addresses and IP addresses (layer2+3)"
-#~ msgstr "Käytä XOR-laitteisto-MAC-osoitteita ja IP-osoitteita (kerros2 + 3)"
-
-#~ msgid "XOR policy (balance-xor, 2)"
-#~ msgstr "XOR-käytäntö (tasapaino-xor, 2)"
-
 #~ msgid "ignore"
 #~ msgstr "ohita"
 
@@ -13131,51 +13606,6 @@ msgstr "«Takaisin"
 #~ msgid "<abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"
 #~ msgstr "<abbr title = \"Laajennettu palvelujoukotunniste\"> ESSID </abbr>"
 
-#~ msgid "ARP"
-#~ msgstr "ARP"
-
-#~ msgid "ARP IP Targets"
-#~ msgstr "ARP IP Kohteet"
-
-#~ msgid "ARP Interval"
-#~ msgstr "ARP-aikaväli"
-
-#~ msgid "ARP Validation"
-#~ msgstr "ARP-tarkistus"
-
-#~ msgid "ARP mode to consider a slave as being up"
-#~ msgstr "ARP-tila orjan tilan arviointiin"
-
-#~ msgid "ARP monitoring is not supported for the selected policy!"
-#~ msgstr "ARP-seurantaa ei tueta valitussa käytännössä!"
-
-#~ msgid "Active-Backup policy (active-backup, 1)"
-#~ msgstr ""
-#~ "Aktiivinen varmuuskopiointikäytäntö (aktiivinen varmuuskopiointi, 1)"
-
-#~ msgid "Adaptive load balancing (balance-alb, 6)"
-#~ msgstr "Mukautuva kuormantasaus (painotettu-alb, 6)"
-
-#~ msgid "Adaptive transmit load balancing (balance-tlb, 5)"
-#~ msgstr "Mukautuva lähetyskuormantasaus (balance-tlb, 5)"
-
-#~ msgid "Aggregation Selection Logic"
-#~ msgstr "Yhdistämisen valintalogiikka"
-
-#~ msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
-#~ msgstr "Yhdistäminen: Kaikki orjat alas tai ei orjia (vakaa, 0)"
-
-#~ msgid ""
-#~ "Aggregator: Chosen by the largest number of ports + slave added/removed "
-#~ "or state changes (count, 2)"
-#~ msgstr ""
-#~ "Yhdistäjä: valitsee suurimman määrän portteja + lisätty / poistettu orja "
-#~ "tai tila muuttuu (määrä, 2)"
-
-#~ msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
-#~ msgstr ""
-#~ "Yhdistäjä: Orja lisätty / poistettu tai tila muuttuu (kaistanleveys, 1)"
-
 #~ msgid "Allow AP mode to disconnect STAs based on low ACK condition"
 #~ msgstr "Salli tukiaseman irrottaa asiakas alhaisen ACK-tilan perusteella"
 
@@ -13255,9 +13685,6 @@ msgstr "«Takaisin"
 #~ "Yhdistä dynaamisesti sovittimiin yleisosoitteen sijasta (suositellaan "
 #~ "linux-oletuksekseksi)"
 
-#~ msgid "Broadcast policy (broadcast, 3)"
-#~ msgstr "Lähetyskäytäntö (lähetys, 3)"
-
 #~ msgid ""
 #~ "Certificate constraint substring - e.g. /CN=wifi.mycompany.com<br />See "
 #~ "`logread -f` during handshake for actual values"
@@ -13312,14 +13739,6 @@ msgstr "«Takaisin"
 #~ "yhteentoimivuusongelmia ja vähentää yhteysneuvottelujen luotettavuutta "
 #~ "erityisesti ympäristöissä, joissa liikennekuormitusta on paljon."
 
-#~ msgid "Consider the slave up when all ARP IP targets are reachable (all, 1)"
-#~ msgstr ""
-#~ "Orja ylhäällä, kun kaikki ARP IP -kohteet ovat tavoitettavissa (kaikki, 1)"
-
-#~ msgid "Consider the slave up when any ARP IP target is reachable (any, 0)"
-#~ msgstr ""
-#~ "Orja ylhäällä, kun kaikki ARP IP -kohteet ovat tavoitettavissa (kaikki, 1)"
-
 #~ msgid "Country Code"
 #~ msgstr "Maatunnus"
 
@@ -13362,12 +13781,6 @@ msgstr "«Takaisin"
 #~ msgid "Distance to farthest network member in meters."
 #~ msgstr "Etäisyys kauimpaan verkon jäseneen metreinä."
 
-#~ msgid "Down Delay"
-#~ msgstr "Viivästyminen"
-
-#~ msgid "Drop Duplicate Frames"
-#~ msgstr "Pudota päällekkäiset kehykset"
-
 #~ msgid ""
 #~ "Dynamic <abbr title=\"Dynamic Host Configuration Protocol\">DHCP</abbr>"
 #~ msgstr ""
@@ -13387,9 +13800,6 @@ msgstr "«Takaisin"
 #~ msgid "Edit this network"
 #~ msgstr "Muokkaa tätä verkkoa"
 
-#~ msgid "Enable Dynamic Shuffling Of Flows"
-#~ msgstr "Ota käyttöön tietocirtojen dynaaminen sekoittaminen"
-
 #~ msgid "Enable WPS pushbutton, requires WPA(2)-PSK/WPA3-SAE"
 #~ msgstr "Ota WPS-painike käyttöön, vaatii WPA(2)-PSK/WPA3-SAE"
 
@@ -13406,15 +13816,6 @@ msgstr "«Takaisin"
 #~ "Mahdollistaa nopean verkkovierailun samaan Mobility Domain -alueeseen "
 #~ "kuuluvien yhteyspisteiden välillä"
 
-#~ msgid "Every 30 seconds (slow, 0)"
-#~ msgstr "30 sekunnin välein (hidas, 0)"
-
-#~ msgid "Every second (fast, 1)"
-#~ msgstr "Joka sekunti (nopea, 1)"
-
-#~ msgid "Expecting: non-empty value"
-#~ msgstr "Odotus: arvon ei tule ole tyhjä"
-
 #~ msgid "External R0 Key Holder List"
 #~ msgstr "Ulkoinen R0-avainhaltijaluettelo"
 
@@ -13429,15 +13830,6 @@ msgstr "«Takaisin"
 
 #~ msgid "FT protocol"
 #~ msgstr "FT-protokolla"
-
-#~ msgid "Filtering for all slaves, no validation"
-#~ msgstr "Suodatus kaikille orjille, ei tarkistusta"
-
-#~ msgid "Filtering for all slaves, validation only for active slave"
-#~ msgstr "Suodatus kaikille orjille, tarkistus vain aktiiviselle orjalle"
-
-#~ msgid "Filtering for all slaves, validation only for backup slaves"
-#~ msgstr "Suodatus kaikille orjille, tarkistus vain vara-orjille"
 
 #~ msgid "Force 40MHz mode"
 #~ msgstr "Pakota 40 MHz-moodi"
@@ -13458,9 +13850,6 @@ msgstr "«Takaisin"
 #~ msgstr ""
 #~ "Piilota <abbr title = \"Extended Service Set Identifier\">ESSID</abbr>"
 
-#~ msgid "IEEE 802.3ad Dynamic link aggregation (802.3ad, 4)"
-#~ msgstr "IEEE 802.3ad - dynaaminen linkin yhdistäminen (802.3ad, 4)"
-
 #~ msgid ""
 #~ "Instead of joining any network with a matching SSID, only connect to the "
 #~ "BSSID <code>%h</code>."
@@ -13471,17 +13860,11 @@ msgstr "«Takaisin"
 #~ msgid "Interface is disabled"
 #~ msgstr "Sovitin on poistettu käytöstä"
 
-#~ msgid "Interval For Sending Learning Packets"
-#~ msgstr "Oppimispakettien lähetysväli"
-
 #~ msgid "Isolate Clients"
 #~ msgstr "Eristä asiakkaat"
 
 #~ msgid "Key"
 #~ msgstr "Avain"
-
-#~ msgid "LACPDU Packets"
-#~ msgstr "LACPDU-paketit"
 
 #~ msgid ""
 #~ "Legacy or badly behaving devices may require legacy 802.11b rates to "
@@ -13492,12 +13875,6 @@ msgstr "«Takaisin"
 #~ "802.11b -protokollan mukaisia siirtonopeuksia toimiakseen. Niiden käyttö "
 #~ "heikentää tiedonsiirtotehoa huomattavasti eikä sitä suositella, jos vain "
 #~ "mahdollista."
-
-#~ msgid "Link Aggregation (Channel Bonding)"
-#~ msgstr "Linkin yhdistäminen (kanavan sidos)"
-
-#~ msgid "Link Monitoring"
-#~ msgstr "Linkin valvonta"
 
 #~ msgid ""
 #~ "List of R0KHs in the same Mobility Domain. <br />Format: MAC-address,NAS-"
@@ -13529,38 +13906,17 @@ msgstr "«Takaisin"
 #~ msgid "Lock to BSSID"
 #~ msgstr "Lukitse BSSID:hen"
 
-#~ msgid "MAC Address For The Actor"
-#~ msgstr "Toimijan MAC-osoite"
-
 #~ msgid "MAC-Filter"
 #~ msgstr "MAC-suodatin"
 
 #~ msgid "MAC-List"
 #~ msgstr "MAC-luettelo"
 
-#~ msgid "MII"
-#~ msgstr "MII"
-
-#~ msgid "MII / ETHTOOL ioctls"
-#~ msgstr "MII / ETHTOOL ioctls"
-
-#~ msgid "MII Interval"
-#~ msgstr "MII-väli"
-
 #~ msgid "Maximum allowed Listen Interval"
 #~ msgstr "Suurin sallittu kuunteluväli"
 
 #~ msgid "Mesh Id"
 #~ msgstr "Mesh ID"
-
-#~ msgid "Method of link monitoring"
-#~ msgstr "Linkkien seurantamenetelmä"
-
-#~ msgid "Method to determine link status"
-#~ msgstr "Linkin tilan määrittäminen"
-
-#~ msgid "Minimum Number of Links"
-#~ msgstr "Linkkien vähimmäismäärä"
 
 #~ msgid "Mobility Domain"
 #~ msgstr "Liikkuvuusalue"
@@ -13577,15 +13933,6 @@ msgstr "«Takaisin"
 #~ msgid "No client associated"
 #~ msgstr "Ei asiakasta"
 
-#~ msgid "No more slaves available"
-#~ msgstr "Enempää orjia ei ole saatavilla"
-
-#~ msgid "No more slaves available, can not save interface"
-#~ msgstr "Ei enempää orjia saatavilla, sovitinta ei voi tallentaa"
-
-#~ msgid "No validation or filtering"
-#~ msgstr "Ei tarkastusta tai suodatusta"
-
 #~ msgid "Non-wildcard"
 #~ msgstr "Ei-yleismerkki"
 
@@ -13596,27 +13943,11 @@ msgstr "«Takaisin"
 #~ "Huomautus: Jotkut langattomien verkkolaitteiden ajurit eivät täysin tue "
 #~ "802.11w -standardia. Esim. mwlwifi -ajureilla voi esiintyä ongelmia"
 
-#~ msgid "Number of IGMP membership reports"
-#~ msgstr "IGMP-jäsenraporttien määrä"
-
-#~ msgid "Number of peer notifications after failover event"
-#~ msgstr "Vertaisilmoitusten määrä virhetapahtuman jälkeen"
-
-#~ msgid ""
-#~ "Only if current active slave fails and the primary slave is up (failure, "
-#~ "2)"
-#~ msgstr ""
-#~ "Vain jos nykyinen aktiivinen orja epäonnistuu ja ensisijainen orja on "
-#~ "päällä (vika, 2)"
-
 #~ msgid "Override default interface name"
 #~ msgstr "Ohita sovittimen oletusnimi"
 
 #~ msgid "PMK R1 Push"
 #~ msgstr "PMK R1 Push"
-
-#~ msgid "Packets To Transmit Before Moving To Next Slave"
-#~ msgstr "Lähetettävät paketit ennen siirtymistä seuraavaan orjaan"
 
 #~ msgid "Password of Private Key"
 #~ msgstr "Yksityisen avaimen salasana"
@@ -13644,21 +13975,6 @@ msgstr "«Takaisin"
 
 #~ msgid "Prevents client-to-client communication"
 #~ msgstr "Estää asiakaiden välisen viestinnän"
-
-#~ msgid "Primary Slave"
-#~ msgstr "Ensisijainen orja"
-
-#~ msgid ""
-#~ "Primary becomes active slave when it comes back up if speed and duplex "
-#~ "better than current slave (better, 1)"
-#~ msgstr ""
-#~ "Ensisijaisesta orjasta tulee palautuessa aktiivinen, jos sen nopeus ja "
-#~ "kaksipuolisuus ovat parempia kuin nykyinen orja (parempi, 1)"
-
-#~ msgid "Primary becomes active slave whenever it comes back up (always, 0)"
-#~ msgstr ""
-#~ "Ensisijainen tulee aktiiviseksi orjaksi heti palautuessaan "
-#~ "käyttökelpoiseksi (aina, 0)"
 
 #~ msgid "Provide new network"
 #~ msgstr "Tarjoa uusi verkko"
@@ -13703,58 +14019,11 @@ msgstr "«Takaisin"
 #~ msgid "Received Data"
 #~ msgstr "Vastaanottaa"
 
-#~ msgid "Reselection policy for primary slave"
-#~ msgstr "Ensisijaisen orjan uudelleenvalintakäytäntö"
-
 #~ msgid "Restart radio interface"
 #~ msgstr "Käynnistä radioliityntä uudelleen"
 
-#~ msgid "Round-Robin policy (balance-rr, 0)"
-#~ msgstr "Round-Robin -käytäntö (painotettu-rr, 0)"
-
-#~ msgid "Selects the transmit hash policy to use for slave selection"
-#~ msgstr "Valitsee orja-valinnassa käytettävän lähetyshajautuskäytännön"
-
-#~ msgid "Set same MAC Address to all slaves"
-#~ msgstr "Aseta sama MAC-osoite kaikille orjille"
-
-#~ msgid "Set to currently active slave (active, 1)"
-#~ msgstr "Aseta aktiiviseen orjaan (aktiivinen, 1)"
-
-#~ msgid "Set to first slave added to the bond (follow, 2)"
-#~ msgstr "Aseta ensimmäiseen orjaan sidoksessa (seuraa, 2)"
-
 #~ msgid "Short Preamble"
 #~ msgstr "Lyhyt johdanto-osa"
-
-#~ msgid "Slave Interfaces"
-#~ msgstr "Orja-sovittimet"
-
-#~ msgid ""
-#~ "Specifies that duplicate frames (received on inactive ports) should be "
-#~ "dropped or delivered"
-#~ msgstr ""
-#~ "Määrittää, pitäisikö päällekkäiset kehykset (jotka vastaanotetaan "
-#~ "passiivisilla porteilla) hylätä tai toimittaa"
-
-#~ msgid "Specifies the ARP link monitoring frequency in milliseconds"
-#~ msgstr "Määrittää ARP-linkin valvontataajuuden millisekunnina"
-
-#~ msgid "Specifies the IP addresses to use for ARP monitoring"
-#~ msgstr "Määrittää IP-osoitteet, joita käytetään ARP-seurantaan"
-
-#~ msgid "Specifies the MII link monitoring frequency in milliseconds"
-#~ msgstr "Määrittää ARP-linkin valvontatiheyden millisekunnina"
-
-#~ msgid "Specifies the aggregation selection logic to use"
-#~ msgstr "Määrittää käytettävän yhdistelmän valintalogiikan"
-
-#~ msgid ""
-#~ "Specifies the mac-address for the actor in protocol packet exchanges "
-#~ "(LACPDUs). If empty, masters' mac address defaults to system default"
-#~ msgstr ""
-#~ "Määrittää käytettävän mac-osoitteen LACPDU:lle. Jos tyhjä, osoitteet ovat "
-#~ "oletusasetuksia"
 
 #~ msgid ""
 #~ "Specifies the maximum transmit power the wireless radio may use. "
@@ -13765,118 +14034,6 @@ msgstr "«Takaisin"
 #~ "vähentää todellista lähetystehoa lakisääteisten vaatimusten ja "
 #~ "langattoman käytön mukaan."
 
-#~ msgid ""
-#~ "Specifies the minimum number of links that must be active before "
-#~ "asserting carrier"
-#~ msgstr ""
-#~ "Määrittää vähimmäismäärän linkkejä, joiden on oltava aktiivisia ennen "
-#~ "yhdistämistä"
-
-#~ msgid "Specifies the mode to be used for this bonding interface"
-#~ msgstr "Määrittää tilan, jota käytetään tähän sidontasovittimeen"
-
-#~ msgid ""
-#~ "Specifies the number of IGMP membership reports to be issued after a "
-#~ "failover event in 200ms intervals"
-#~ msgstr ""
-#~ "Määrittää IGMP-jäsenraporttien lukumäärän, joka julkaistaan "
-#~ "häiriötapahtuman jälkeen 200 ms: n välein"
-
-#~ msgid ""
-#~ "Specifies the number of packets to transmit through a slave before moving "
-#~ "to the next one"
-#~ msgstr ""
-#~ "Määrittää orjan kautta lähetettävien pakettien lukumäärän ennen "
-#~ "siirtymistä seuraavaan"
-
-#~ msgid ""
-#~ "Specifies the number of peer notifications (gratuitous ARPs and "
-#~ "unsolicited IPv6 Neighbor Advertisements) to be issued after a failover "
-#~ "event"
-#~ msgstr ""
-#~ "Määrittää vertaisilmoitusten (vastikkeettomat ARP: t ja ei-toivotut IPv6-"
-#~ "naapurimainonnat) lukumäärän, joka annetaan virhetilanteesta palautumisen "
-#~ "jälkeen"
-
-#~ msgid ""
-#~ "Specifies the number of seconds between instances where the bonding "
-#~ "driver sends learning packets to each slaves peer switch"
-#~ msgstr ""
-#~ "Määrittää sekunteina aikavälin, jolloin yhdistävä ohjain lähettää "
-#~ "oppimispaketit jokaiselle slave-vertaiskytkimelle"
-
-#~ msgid "Specifies the quantity of ARP IP targets that must be reachable"
-#~ msgstr "Määrittää ARP IP -kohteiden määrän, jonka on oltava saavutettavissa"
-
-#~ msgid ""
-#~ "Specifies the rate in which the link partner will be asked to transmit "
-#~ "LACPDU packets"
-#~ msgstr ""
-#~ "Määrittää nopeuden, jolla linkkipartneria pyydetään lähettämään LACPDU-"
-#~ "paketit"
-
-#~ msgid ""
-#~ "Specifies the reselection policy for the primary slave when failure of "
-#~ "the active slave or recovery of the primary slave occurs"
-#~ msgstr ""
-#~ "Määrittää ensisijaisen orjan uudelleenvalintakäytännön, kun aktiivinen "
-#~ "orja epäonnistuu tai ensisijainen orja palautetaan"
-
-#~ msgid "Specifies the system priority"
-#~ msgstr "Määrittää järjestelmän prioriteetin"
-
-#~ msgid ""
-#~ "Specifies the time in milliseconds to wait before disabling a slave after "
-#~ "a link failure detection"
-#~ msgstr ""
-#~ "Määrittää ajan millisekunnissa ennen orjan poistamista käytöstä linkin "
-#~ "vian havaitsemisen jälkeen"
-
-#~ msgid ""
-#~ "Specifies the time in milliseconds to wait before enabling a slave after "
-#~ "a link recovery detection"
-#~ msgstr ""
-#~ "Määrittää millisekuntina odotettavan ajan linkin palautumisen "
-#~ "havaitsemisen jälkeen ennen kuin orja otetaan käyttöön"
-
-#~ msgid ""
-#~ "Specifies whether ARP probes and replies should be validated or non-ARP "
-#~ "traffic should be filtered for link monitoring"
-#~ msgstr ""
-#~ "Määrittää, tuleeko ARP-koettimet ja vastaukset validoida vai "
-#~ "suodatetaanko muu kuin ARP-liikenne linkin seurantaa varten"
-
-#~ msgid ""
-#~ "Specifies whether active-backup mode should set all slaves to the same "
-#~ "MAC address at enslavement"
-#~ msgstr ""
-#~ "Määrittää, pitäisikö aktiivisen-varmistus-tilan asettaa kaikki orjat "
-#~ "samaan MAC-osoitteeseen orjuuttamisen yhteydessä"
-
-#~ msgid ""
-#~ "Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. "
-#~ "netif_carrier_ok()"
-#~ msgstr ""
-#~ "Määrittää, käytetäänkö miimonia MII vai ETHTOOL ioctls vs. "
-#~ "netif_carrier_ok ()"
-
-#~ msgid ""
-#~ "Specifies whether to shuffle active flows across slaves based on the load"
-#~ msgstr "Määrittää, valitaanko aktiiviset orjat kuormituksen perusteella"
-
-#~ msgid ""
-#~ "Specifies which slave interfaces should be attached to this bonding "
-#~ "interface"
-#~ msgstr ""
-#~ "Määrittää, mitkä orja-sovittimet tulisi liittää tähän sidontasovittimeen"
-
-#~ msgid ""
-#~ "Specifies which slave is the primary device. It will always be the active "
-#~ "slave while it is available"
-#~ msgstr ""
-#~ "Määrittää, mikä orja on ensisijainen laite. Se valitaan aina "
-#~ "aktiiviseksi, jos se on käytettävissä"
-
 #~ msgid "Specify the secret encryption key here."
 #~ msgstr "Määritä salainen salausavain tähän."
 
@@ -13886,21 +14043,12 @@ msgstr "«Takaisin"
 #~ msgid "Station inactivity limit"
 #~ msgstr "Aseman käyttämättömyysraja"
 
-#~ msgid "System Priority"
-#~ msgstr "Järjestelmän prioriteetti"
-
 #~ msgid ""
 #~ "The correct SSID must be manually specified when joining a hidden "
 #~ "wireless network"
 #~ msgstr ""
 #~ "Oikea SSID täytyy määritellä käsin, kun liitytään piilotettuun "
 #~ "langattomaan verkkoon"
-
-#~ msgid "The local IPv4 address"
-#~ msgstr "Paikallinen IPv4-osoite"
-
-#~ msgid "The local IPv4 netmask"
-#~ msgstr "Paikallinen IPv4-verkkomaski"
 
 #~ msgid ""
 #~ "This authentication type is not applicable to the selected EAP method."
@@ -13909,9 +14057,6 @@ msgstr "«Takaisin"
 #~ msgid "Time interval for rekeying GTK"
 #~ msgstr "Aikaväli GTK:n uusimiseen"
 
-#~ msgid "Transmit Hash Policy"
-#~ msgstr "Lähetyksen hajautuskäytäntö"
-
 #, fuzzy
 #~ msgid "Transmitted Data"
 #~ msgstr "Dataa lähetetty"
@@ -13919,40 +14064,12 @@ msgstr "«Takaisin"
 #~ msgid "Tx-Power"
 #~ msgstr "Tx-teho"
 
-#~ msgid "Up Delay"
-#~ msgstr "Viivästys"
-
-#~ msgid ""
-#~ "Use XOR of hardware MAC addresses and IP addresses, rely on "
-#~ "skb_flow_dissect (encap2+3)"
-#~ msgstr ""
-#~ "Käytä XOR-laitteisto-MAC-osoitteita ja IP-osoitteita, luota "
-#~ "skb_flow_dissect (encap2 + 3)"
-
-#~ msgid "Use upper layer protocol information (layer3+4)"
-#~ msgstr "Käytä ylemmän kerroksen protokollatietoja (kerros3 + 4)"
-
-#~ msgid ""
-#~ "Use upper layer protocol information, rely on skb_flow_dissect (encap3+4)"
-#~ msgstr ""
-#~ "Käytä ylemmän kerroksen protokollatietoja, luota skb_flow_dissect (encap3 "
-#~ "+ 4)"
-
 #~ msgid ""
 #~ "Used for two different purposes: RADIUS NAS ID and 802.11r R0KH-ID. Not "
 #~ "needed with normal WPA(2)-PSK."
 #~ msgstr ""
 #~ "Käytetään kahteen eri tarkoitukseen: RADIUS NAS ID ja 802.11r R0KH-ID. Ei "
 #~ "tarvita normaalilla WPA(2)-PSK:lla."
-
-#~ msgid "Validation for all slaves"
-#~ msgstr "Kaikkien orjien tarkastus"
-
-#~ msgid "Validation only for active slave"
-#~ msgstr "Tarkastus vain aktiiviselle orjalle"
-
-#~ msgid "Validation only for backup slaves"
-#~ msgstr "Tarkastus vain varaorjille"
 
 #~ msgid "WMM Mode"
 #~ msgstr "WMM-tila"
@@ -13995,19 +14112,6 @@ msgstr "«Takaisin"
 #~ msgid "Wireless network is enabled"
 #~ msgstr "Langaton verkko on käytössä"
 
-#~ msgid "Yes (none, 0)"
-#~ msgstr "Kyllä (ei, 0)"
-
-#~ msgid ""
-#~ "You must select a primary interface which is included in selected slave "
-#~ "interfaces!"
-#~ msgstr ""
-#~ "Valitse ensisijainen sovitin, joka sisältyy valittuihin orjasovittimiin!"
-
-#~ msgid ""
-#~ "You must select at least one ARP IP target if ARP monitoring is selected!"
-#~ msgstr "Valitse vähintään yksi ARP IP-kohde, koska ARP-valvonta on valittu!"
-
 #~ msgid "disable"
 #~ msgstr "Poista käytöstä"
 
@@ -14016,9 +14120,6 @@ msgstr "«Takaisin"
 
 #~ msgid "medium security"
 #~ msgstr "keskitason turvallisuus"
-
-#~ msgid "netif_carrier_ok()"
-#~ msgstr "netif_carrier_ok()"
 
 #~ msgid "open network"
 #~ msgstr "avoin verkko"
