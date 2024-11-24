@@ -24,7 +24,7 @@ return view.extend({
 		if (running) {
 			status = "<span style=\"color:green;font-weight:bold\">" + _("Running") + "</span>";
 		} else {
-			status = "<span style=\"color:red;font-weight:bold\">" + _("Not running") + "</span>";
+			status = "<span style=\"color:red;font-weight:bold\">" + _("Not Running") + "</span>";
 		}
 
 		var m, s, o;

@@ -485,7 +485,7 @@ msgstr ""
 msgid "Ping remote every n seconds over TCP/UDP port"
 msgstr "Выполнять пинг-запрос каждые n секунд, используя порт TCP/UDP"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:32
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:24
 msgid "Please edit this file directly in a terminal session."
 msgstr "Редактируйте данный файл только в терминале."
 
@@ -617,18 +617,18 @@ msgstr "Запустить скрипт командной строки при �
 msgid "Run up/down scripts for all restarts"
 msgstr "Запускать 'up/down' скрипты во время всех перезапусков"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:41
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:33
 msgid "Save"
 msgstr "Сохранить"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:65
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:57
 msgid ""
 "Section to add an optional 'auth-user-pass' file with your credentials (%s)"
 msgstr ""
 "Раздел для добавления дополнительного 'auto-user-pass' файла с вашими "
 "учетными данными (%s)"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:44
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:36
 msgid "Section to modify the OVPN config file (%s)"
 msgstr "Раздел для изменения конфигурационного OVPN файла (%s)"
 
@@ -825,12 +825,6 @@ msgstr "Временный каталог для файла возврата к�
 msgid "The 'Name' field must not be empty!"
 msgstr "Поле \"Имя\" не должно быть пустым!"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:22
-msgid ""
-"The OVPN config file (%s) could not be found, please check your "
-"configuration."
-msgstr "Не удалось найти OPVN-файл (%s), проверьте вашу конфигурацию."
-
 #: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-advanced.lua:761
 msgid "The highest supported TLS version"
 msgstr "Самая высокая поддерживаемая версия протокола TLS"
@@ -844,7 +838,7 @@ msgstr "Изменить направление ключа для парамет
 msgid "The lowest supported TLS version"
 msgstr "Самая низкая поддерживаемая версия протокола TLS"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:31
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:23
 msgid ""
 "The size of the OVPN config file (%s) is too large for online editing in "
 "LuCI (&ge; 100 KB)."
@@ -919,6 +913,11 @@ msgstr "Тайм-аут бездействия tun/tap"
 #: applications/luci-app-openvpn/luasrc/model/cbi/openvpn.lua:112
 msgid "yes (%i)"
 msgstr "да (%i)"
+
+#~ msgid ""
+#~ "The OVPN config file (%s) could not be found, please check your "
+#~ "configuration."
+#~ msgstr "Не удалось найти OPVN-файл (%s), проверьте вашу конфигурацию."
 
 #~ msgid ""
 #~ "Encrypt and authenticate all control channel packets with the key, "

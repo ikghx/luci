@@ -462,7 +462,7 @@ msgstr "حفظ/عدم حفظ ifconfig-pool"
 msgid "Ping remote every n seconds over TCP/UDP port"
 msgstr "پینگ کردن ریموت هر n ثانیه تحت پورت TCP/UDP"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:32
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:24
 msgid "Please edit this file directly in a terminal session."
 msgstr "لطفا این فایل را مستقیما در یک نشست ترمینال ویرایش نمایید."
 
@@ -584,16 +584,16 @@ msgstr "اسکریپت cmd را در قطع ارتباط مشتری اجرا ک�
 msgid "Run up/down scripts for all restarts"
 msgstr "اسکریپت های بالا/پایین را برای همه راه اندازی مجدد اجرا کنید"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:41
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:33
 msgid "Save"
 msgstr "ذخیره"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:65
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:57
 msgid ""
 "Section to add an optional 'auth-user-pass' file with your credentials (%s)"
 msgstr "بخشی برای افزودن یک فایل اختیاری 'auth-user-pass' با اعتبار شما (%s)"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:44
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:36
 msgid "Section to modify the OVPN config file (%s)"
 msgstr "بخشی برای تغییر فایل پیکربندی OVPN (%s)"
 
@@ -778,12 +778,6 @@ msgstr "دایرکتوری موقت برای فایل بازگشتی اتصال 
 msgid "The 'Name' field must not be empty!"
 msgstr "فیلد 'Name' نباید خالی باشد!"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:22
-msgid ""
-"The OVPN config file (%s) could not be found, please check your "
-"configuration."
-msgstr "فایل پیکربندی OVPN (%s) یافت نشد، لطفا پیکربندی خود را بررسی کنید."
-
 #: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-advanced.lua:761
 msgid "The highest supported TLS version"
 msgstr "بالاترین نسخه پشتیبانی شده TLS"
@@ -797,7 +791,7 @@ msgstr "جهت کلیدی برای گزینه های 'tls-auth' و 'secret'"
 msgid "The lowest supported TLS version"
 msgstr "پایین ترین نسخه پشتیبانی شده TLS"
 
-#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:31
+#: applications/luci-app-openvpn/luasrc/model/cbi/openvpn-file.lua:23
 msgid ""
 "The size of the OVPN config file (%s) is too large for online editing in "
 "LuCI (&ge; 100 KB)."
@@ -872,6 +866,11 @@ msgstr "زمان عدم فعالیت tun/tap"
 #: applications/luci-app-openvpn/luasrc/model/cbi/openvpn.lua:112
 msgid "yes (%i)"
 msgstr "بله (%i)"
+
+#~ msgid ""
+#~ "The OVPN config file (%s) could not be found, please check your "
+#~ "configuration."
+#~ msgstr "فایل پیکربندی OVPN (%s) یافت نشد، لطفا پیکربندی خود را بررسی کنید."
 
 #~ msgid ""
 #~ "Encrypt and authenticate all control channel packets with the key, "
