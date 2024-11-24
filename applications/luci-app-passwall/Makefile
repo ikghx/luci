@@ -6,8 +6,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=4.78
-PKG_RELEASE:=9
+PKG_VERSION:=24.11.23
+PKG_RELEASE:=1
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_$(PKG_NAME)_Iptables_Transparent_Proxy \
@@ -22,9 +22,7 @@ PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_tuic_client \
 	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata \
-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin \
-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Xray \
-	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Xray_Plugin
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 
 LUCI_TITLE:=LuCI support for PassWall
 LUCI_PKGARCH:=all
@@ -91,21 +89,11 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata
 	select PACKAGE_v2ray-geosite
 	default n
 
-config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
-	bool "Include V2ray-Plugin (Shadowsocks Plugin)"
-	select PACKAGE_v2ray-plugin
-	default y if aarch64||arm||i386||x86_64
-
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray"
 	select PACKAGE_xray-core
 	select PACKAGE_unzip
 	default y if aarch64||arm||i386||x86_64
-
-config PACKAGE_$(PKG_NAME)_INCLUDE_Xray_Plugin
-	bool "Include Xray-Plugin (Shadowsocks Plugin)"
-	select PACKAGE_xray-plugin
-	default n
 
 endmenu
 endef
