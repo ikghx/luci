@@ -167,10 +167,11 @@ return view.extend({
 	},
 
 	handleToggleDDns: function(m, ev) {
-		return this.callInitAction('ddns', 'enabled')
-			.then(L.bind(function (action) {
-				this.callInitAction('ddns', action ? 'disable' : 'enable')
-				this.callInitAction('ddns', action ? 'stop' : 'start')
+		return this.callDDnsGetStatus()
+			.then(L.bind(function(resp) { return resp['_enabled'] }, this))
+			.then(L.bind(function (is_enabled) {
+				this.callInitAction('ddns', is_enabled ? 'stop' : 'start');
+				return this.callInitAction('ddns', is_enabled ? 'disable' : 'enable');
 			}, this))
 			.then(L.bind(m.render, m))
 			.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
@@ -406,8 +407,6 @@ return view.extend({
 		+ '0/8, 10/8, 100.64/10, 127/8, 169.254/16, 172.16/12, 192.168/16'
 		+ '<br /><strong>IPv6: </strong>'
 		+ '::/32, f000::/4"';
-		o.default = "0";
-		o.optional = true;
 
 		o = s.taboption('global', form.Value, 'ddns_dateformat', _('Date format'));
 		o.description = '<a href="http://www.cplusplus.com/reference/ctime/strftime/" target="_blank">'
@@ -445,9 +444,6 @@ return view.extend({
 
 			o = s.taboption('global', form.Flag, 'use_curl', _('Use cURL'));
 			o.description = _('If Wget and cURL package are installed, Wget is used for communication by default.');
-			o.default = "0";
-			o.optional = true;
-			o.rmempty = true;
 
 		}
 
@@ -770,7 +766,6 @@ return view.extend({
 						o = s.taboption('basic', form.Flag, 'use_https',
 							_("Use HTTP Secure"),
 							_("Enable secure communication with DDNS provider"));
-						o.optional = true;
 						o.modalonly = true;
 
 						o = s.taboption('basic', form.Value, 'cacert',
@@ -907,8 +902,6 @@ return view.extend({
 						o = s.taboption('advanced', form.Flag, 'force_ipversion',
 							_("Force IP Version"),
 							_('OPTIONAL: Force the usage of pure IPv4/IPv6 only communication.'));
-						o.optional = true;
-						o.rmempty = true;
 						o.modalonly = true;
 					}
 
@@ -928,8 +921,6 @@ return view.extend({
 						o = s.taboption("advanced", form.Flag, "force_dnstcp",
 							_("Force TCP on DNS"),
 							_("OPTIONAL: Force the use of TCP instead of default UDP on DNS requests."));
-						o.optional = true;
-						o.rmempty = true;
 						o.modalonly = true;
 					}
 
@@ -969,7 +960,7 @@ return view.extend({
 					o = s.taboption("advanced", form.Flag, "use_logfile",
 						_("Log to file"));
 					o.default = '1';
-					o.optional = true;
+					o.rmempty  = false;
 					o.modalonly = true;
 					o.cfgvalue = function(section_id) {
 						this.description = _("Writes detailed messages to log file. File will be truncated automatically.") + "<br />" +
@@ -1042,7 +1033,7 @@ return view.extend({
 						_("run only once"),
 						_("If no IP address change is detected, the script will stop running."));
 					o.default = '1';
-					o.optional = true;
+					o.rmempty  = false;
 					o.modalonly = true;
 
 					o = s.taboption("timer", form.Value, "retry_max_count",
