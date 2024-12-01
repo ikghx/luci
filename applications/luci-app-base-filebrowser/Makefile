@@ -6,8 +6,6 @@ LUCI_TITLE:=LuCI Base File Browser module
 LUCI_DEPENDS:=+luci-base
 
 PKG_LICENSE:=Apache-2.0
-PKG_VERSION:=1.1.0
-PKG_RELEASE:=1
 PKG_MAINTAINER:=Dmitry R <rdmitry0911@gmail.com>
 
 include ../../luci.mk

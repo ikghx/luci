@@ -1,146 +1,11 @@
-// Enable strict mode for better error checking
 'use strict';
-
-// Require necessary modules from the LuCI framework
-'require view'; // For working with views
-'require fs'; // For filesystem operations
-'require ui'; // For user interface components
-'require dom'; // For DOM manipulation
-'require rpc'; // For remote procedure cajls
-
-/**
- * Parses a limited subset of Markdown and converts it to HTML.
- *
- * Supported Markdown elements:
- * - Headings (#, ##, ###)
- * - Bold text (**text** or __text__)
- * - Unordered lists (- or *)
- * - Ordered lists (1., 2., etc.)
- * - Paragraphs
- *
- * @param {string} markdown - The Markdown-formatted string.
- * @returns {string} - The resulting HTML string.
- */
-function parseMarkdown(markdown) {
-	// Split the input into lines
-	const lines = markdown.split('\n');
-	const html = [];
-	let inList = false;
-	let listType = ''; // 'ul' or 'ol'
-
-	lines.forEach((line) => {
-		let trimmedLine = line.trim();
-
-		if (trimmedLine === '') {
-			// Empty line signifies a new paragraph
-			if (inList) {
-				html.push(`</${listType}>`);
-				inList = false;
-				listType = '';
-			}
-			return; // Skip adding empty lines to HTML
-		}
-
-		// Check for headings
-		if (/^###\s+(.*)/.test(trimmedLine)) {
-			const content = trimmedLine.replace(/^###\s+/, '');
-			html.push(`<h3>${escapeHtml(content)}</h3>`);
-			return;
-		} else if (/^##\s+(.*)/.test(trimmedLine)) {
-			const content = trimmedLine.replace(/^##\s+/, '');
-			html.push(`<h2>${escapeHtml(content)}</h2>`);
-			return;
-		} else if (/^#\s+(.*)/.test(trimmedLine)) {
-			const content = trimmedLine.replace(/^#\s+/, '');
-			html.push(`<h1>${escapeHtml(content)}</h1>`);
-			return;
-		}
-
-		// Check for ordered lists
-		let orderedMatch = trimmedLine.match(/^(\d+)\.\s+(.*)/);
-		if (orderedMatch) {
-			const [, number, content] = orderedMatch;
-			if (!inList || listType !== 'ol') {
-				if (inList) {
-					html.push(`</${listType}>`);
-				}
-				html.push('<ol>');
-				inList = true;
-				listType = 'ol';
-			}
-			html.push(`<li>${parseInlineMarkdown(escapeHtml(content))}</li>`);
-			return;
-		}
-
-		// Check for unordered lists
-		let unorderedMatch = trimmedLine.match(/^[-*]\s+(.*)/);
-		if (unorderedMatch) {
-			const content = unorderedMatch[1];
-			if (!inList || listType !== 'ul') {
-				if (inList) {
-					html.push(`</${listType}>`);
-				}
-				html.push('<ul>');
-				inList = true;
-				listType = 'ul';
-			}
-			html.push(`<li>${parseInlineMarkdown(escapeHtml(content))}</li>`);
-			return;
-		}
-
-		// If currently inside a list but the line doesn't match a list item, close the list
-		if (inList) {
-			html.push(`</${listType}>`);
-			inList = false;
-			listType = '';
-		}
-
-		// Regular paragraph
-		html.push(`<p>${parseInlineMarkdown(escapeHtml(trimmedLine))}</p>`);
-	});
-
-	// Close any open list tags at the end
-	if (inList) {
-		html.push(`</${listType}>`);
-	}
-
-	return html.join('\n');
-}
-
-/**
- * Parses inline Markdown elements like bold text.
- *
- * Supported inline elements:
- * - Bold text (**text** or __text__)
- *
- * @param {string} text - The text to parse.
- * @returns {string} - The text with inline Markdown converted to HTML.
- */
-function parseInlineMarkdown(text) {
-	// Convert **text** and __text__ to <strong>text</strong>
-	return text
-		.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-		.replace(/__(.+?)__/g, '<strong>$1</strong>');
-}
-
-/**
- * Escapes HTML special characters to prevent XSS attacks.
- *
- * @param {string} text - The text to escape.
- * @returns {string} - The escaped text.
- */
-function escapeHtml(text) {
-	const map = {
-		'&': '&amp;',
-		'<': '&lt;',
-		'>': '&gt;',
-		'"': '&quot;',
-		"'": '&#039;',
-	};
-	return text.replace(/[&<>"']/g, function(m) {
-		return map[m];
-	});
-}
+'require view';
+'require fs';
+'require ui';
+'require dom';
+'require rpc';
+'require view.system.md as md';
+'require view.system.md_help as md_help';
 
 function pop(a, message, severity) {
 	ui.addNotification(a, message, severity)
@@ -405,18 +270,21 @@ class HexEditor {
 	 */
 	performSearch(searchType) {
 		let pattern = '';
-		if (searchType === 'ascii') {
-			pattern = document.getElementById('hexedit-search-ascii').value.trim();
-		} else if (searchType === 'hex') {
-			pattern = document.getElementById('hexedit-search-hex').value.trim();
-		} else if (searchType === 'regex') {
-			pattern = document.getElementById('hexedit-search-regex').value.trim();
+		switch (searchType) {
+			case 'ascii':
+				pattern = document.getElementById('hexedit-search-ascii').value.trim();
+				break;
+			case 'hex':
+				pattern = document.getElementById('hexedit-search-hex').value.trim();
+				break;
+			case 'regex':
+				pattern = document.getElementById('hexedit-search-regex').value.trim();
+				break;
+			default:
+				console.warn(`Unknown search type: ${searchType}`);
+				pattern = '';
+				break;
 		}
-
-		console.log('performSearch called with type and pattern:', {
-			searchType,
-			pattern
-		});
 
 		// Reset previous search results
 		this.clearSearchHighlights();
@@ -698,19 +566,13 @@ class HexEditor {
 	 */
 	renderDom() {
 		// Clear existing content
-		this.offsets.innerHTML = '';
-		this.hexview.innerHTML = '';
-		this.textview.innerHTML = '';
-
+		[this.offsets, this.hexview, this.textview].forEach(view => view.innerHTML = '');
 		const lineHeight = 16; // Approximate line height in pixels
 		const totalLines = Math.ceil(this.data.length / this.bytesPerRow);
 
 		// Set the height of the content area to simulate the total height
 		const contentHeight = totalLines * lineHeight;
-		this.offsets.style.height = contentHeight + 'px';
-		this.hexview.style.height = contentHeight + 'px';
-		this.textview.style.height = contentHeight + 'px';
-
+		[this.offsets, this.hexview, this.textview].forEach(view => view.style.height = `${contentHeight}px`);
 		// Create fragments to hold the visible content
 		const offsetsFragment = document.createDocumentFragment();
 		const hexviewFragment = document.createDocumentFragment();
@@ -722,8 +584,6 @@ class HexEditor {
 		const endLine = Math.ceil(endIndex / this.bytesPerRow);
 
 		const paddingTop = startLine * lineHeight;
-
-		console.log(`renderDom: startLine=${startLine}, endLine=${endLine}, paddingTop=${paddingTop}`);
 
 		// Apply padding to offset the content to the correct vertical position
 		this.offsets.style.paddingTop = paddingTop + 'px';
@@ -1454,6 +1314,7 @@ var config = {
 		'mtime': 150,
 		'actions': 100
 	},
+
 	// Minimum column widths
 	columnMinWidths: {
 		'name': 100,
@@ -1462,6 +1323,7 @@ var config = {
 		'mtime': 120,
 		'actions': 80
 	},
+
 	// Maximum column widths
 	columnMaxWidths: {
 		'name': 300,
@@ -1470,6 +1332,7 @@ var config = {
 		'mtime': 300,
 		'actions': 200
 	},
+
 	// Padding and window sizes
 	padding: 10,
 	paddingMin: 5,
@@ -1479,6 +1342,7 @@ var config = {
 		width: 800,
 		height: 400
 	},
+
 	editorContainerSizes: {
 		text: {
 			width: 850,
@@ -1489,6 +1353,7 @@ var config = {
 			height: 550
 		}
 	},
+
 	otherSettings: {} // Additional settings
 };
 
@@ -1805,6 +1670,19 @@ var cssContent = `
     border: 2px dashed #00BFFF;
     background-color: rgba(0, 191, 255, 0.1);
 }
+/* Add extra space to the left of the Name and Type columns */
+.table th:nth-child(1), .table td:nth-child(1),  /* Name column */
+.table th:nth-child(2), .table td:nth-child(2) { /* Type column */
+    padding-left: 5px; /* Adjust this value for the desired spacing */
+}
+/* Add extra space to the right of the Size column */
+.table th:nth-child(3), .table td:nth-child(3) { /* Size column */
+    padding-right: 5px; /* Adjust this value for the desired spacing */
+}
+/* Add extra space to the left of the Size column header */
+.table th:nth-child(3) { /* Size column header */
+    padding-left: 15px; /* Adjust this value for the desired spacing */
+}
 
 #drag-overlay {
     position: absolute;
@@ -2076,133 +1954,6 @@ tr:hover {
 return view.extend({
 	editorMode: 'text',
 	hexEditorInstance: null,
-	// Define the Help content in Markdown format
-	helpContentMarkdown: `
-# LuCI OpenWrt File Manager Application Help
-
-## Introduction
-The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage files, edit content, and customize the application's settings.
-
-## Key Features
-
-1. **Tabbed Interface**
-   - **File Manager Tab**: Primary interface for browsing and managing files and directories.
-   - **Editor Tab**: Advanced tool for editing file contents in both text and hexadecimal formats.
-   - **Settings Tab**: Customize the application's appearance and behavior according to your preferences.
-   - **Help Tab**: Access detailed instructions and information about the application's features and functionalities.
-
-2. **File Management**
-   - **View Files and Directories**: Display a list of files and folders within the current directory.
-   - **Navigate Directories**: Move into subdirectories or return to parent directories.
-   - **Resizable Columns**: Adjust the width of table columns to enhance readability and organization.
-   - **Drag-and-Drop Uploads**: Upload files by simply dragging them into the designated area.
-   - **Upload via File Selector**: Use the "Upload File" button to select and upload files from your local machine.
-   - **Create New Files and Folders**:
-     - **Create Folder**: Instantiate new directories within the current path.
-     - **Create File**: Generate new empty files for content creation or editing.
-   - **File Actions**:
-     - **Edit**: Modify the contents of files directly within the application.
-     - **Duplicate**: Create copies of existing files or directories.
-     - **Delete**: Remove selected files or directories permanently.
-     - **Download**: Save copies of files to your local machine for offline access.
-
-3. **Selection and Bulk Actions**
-   - **Select All**: Quickly select or deselect all files and directories within the current view using the "Select All" checkbox.
-   - **Invert Selection**: Reverse the current selection of files and directories, selecting previously unselected items and vice versa.
-   - **Individual Selection**: Select or deselect individual files and directories using the checkboxes next to each item.
-   - **Bulk Delete**: Remove multiple selected items simultaneously for efficient management.
-
-4. **Advanced Editing**
-   - **Text Editor**:
-     - **Line Numbers**: Toggle the display of line numbers to assist in content navigation.
-     - **Save Changes**: Commit edits directly to the server.
-   - **Hex Editor**:
-     - **Binary Editing**: Modify file contents at the byte level for advanced users.
-     - **ASCII, HEX and RegExp search**: Search for a pattern in the file and navigate to it.
-     - **Switch Between Modes**: Seamlessly toggle between text and hex editing modes.
-     - **Save Changes**: Apply and save binary modifications.
-
-5. **User Notifications and Status Indicators**
-   - **Progress Bars**: Visual indicators for ongoing operations like file uploads and deletions.
-   - **Notifications**: Informational messages alert users about the success or failure of actions performed.
-
-6. **Customizable Settings**
-   - **Interface Customization**:
-     - **Column Widths**: Define the width of each column in the file list for optimal viewing.
-     - **Window Sizes**: Adjust the size of the file list container and editor windows.
-     - **Padding**: Set padding values to control the spacing within the interface.
-   - **Persistent Configuration**: Save your settings to ensure a consistent user experience across sessions.
-
-## How to Use the Application
-
-1. **Accessing the Application**
-   - Navigate to your OpenWrt device's LuCI web interface.
-   - Locate and select the **File Manager** application from **System** menu .
-
-2. **Navigating the Interface**
-   - **Tabs**: Use the top navigation tabs to switch between **File Manager**, **Editor**, **Settings**, and **Help**.
-   - **File Manager Tab**:
-     - Browse through directories by clicking on folder names.
-     - Use the "Go" button or press "Enter" after typing a path in the path input field to navigate to specific directories.
-   - **Editor Tab**:
-     - Select a file from the File Manager to open it in the Editor.
-     - Choose between text or hex editing modes using the toggle buttons.
-   - **Settings Tab**:
-     - Adjust interface settings such as column widths, window sizes, and padding.
-     - Save your configurations to apply changes immediately.
-   - **Help Tab**:
-     - Access detailed instructions and information about the application's features and functionalities.
-
-3. **Managing Files and Directories**
-   - **Uploading Files**:
-     - **Drag and Drop**: Drag files from your local machine and drop them into the **File List Container** to upload.
-     - **File Selector**: Click the "Upload File" button to open a file dialog and select files for uploading.
-   - **Creating Files/Folders**:
-     - Click on "Create File" or "Create Folder" buttons and provide the necessary names to add new items.
-   - **Editing Files**:
-     - Select a file and click the edit icon (✏️) to modify its contents in the Editor tab.
-   - **Duplicating Files/Folders**:
-     - Use the duplicate icon (📑) to create copies of selected items.
-   - **Deleting Items**:
-     - Select one or multiple items using checkboxes and click the delete icon (🗑️) or use the "Delete Selected" button for bulk deletions.
-   - **Downloading Files**:
-     - Click the download icon (⬇️) next to a file to save it to your local machine.
-
-4. **Using Selection Features**
-   - **Select All**:
-     - Use the "Select All" checkbox located in the table header to select or deselect all files and directories in the current view.
-   - **Invert Selection**:
-     - Hold the "Alt" key and click the "Select All" checkbox to invert the current selection, selecting all unselected items and deselecting previously selected ones.
-   - **Individual Selection**:
-     - Click on the checkbox next to each file or directory to select or deselect it individually.
-
-5. **Using the Editor**
-   - **Text Mode**:
-     - Edit the content of text files with features like line numbers and real-time updates.
-     - Save your changes by clicking the "Save" button.
-   - **Hex Mode**:
-     - Perform binary editing on files for advanced modifications.
-     - Perform ASCII, HEX and RegExp pattern search in the file.
-     - Toggle between text and hex modes as needed.
-     - Save changes to apply your edits.
-     - **Quick Access**: Hold the "Alt" key and click on file names or links to open files directly in the hex editor.
-
-
-6. **Customizing Settings**
-   - Navigate to the **Settings Tab** to personalize the application's layout and behavior.
-   - Adjust parameters such as column widths, window sizes, and padding to suit your preferences.
-   - Save settings to ensure they persist across sessions.
-
-## Additional Functionalities
-
-- **Resizable Columns and Windows**: Enhance the interface's flexibility by resizing table columns and editor windows to match your workflow. The Help window starts at **650x600** pixels and can be adjusted as needed.
-- **Responsive Design**: The application adapts to different screen sizes, ensuring usability across various devices.
-- **Error Handling and Notifications**: Receive immediate feedback on actions, helping you stay informed about the status of your file management tasks.
-- **Line Number Toggle**: Easily show or hide line numbers in the text editor to assist with content navigation.
-- **Bulk Operations**: Efficiently manage multiple files or directories through bulk actions like delete and duplicate.
-- **Symlink Handling**: Navigate and manage symbolic links seamlessly within the file structure.
-
-    `,
 	// Method called when the view is loaded
 	load: function() {
 		var self = this;
@@ -2211,6 +1962,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			return getFileList(currentPath); // Load the file list for the current directory
 		});
 	},
+
 	// Method to render the interface
 	render: function(data) {
 		var self = this;
@@ -2645,6 +2397,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		});
 		return viewContainer;
 	},
+
 	// Handler for the "Select All" checkbox click
 	handleSelectAllClick: function(ev) {
 		if (ev.altKey) {
@@ -2654,6 +2407,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			// Proceed with normal click handling; the 'change' event will be triggered
 		}
 	},
+
 	// Function to invert selection
 	handleInvertSelection: function() {
 		var allCheckboxes = document.querySelectorAll('.select-checkbox');
@@ -2734,7 +2488,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		var self = this;
 
 		// Convert Markdown to HTML
-		var helpContentHTML = parseMarkdown(self.helpContentMarkdown);
+		var helpContentHTML = md.parseMarkdown(md_help.helpContentMarkdown);
 
 		// Get the Help content container
 		var helpContent = document.getElementById('content-help');
@@ -2874,6 +2628,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		};
 		fileInput.click();
 	},
+
 	uploadFiles: function(files) {
 		var self = this;
 		var directoryPath = currentPath;
@@ -2935,9 +2690,9 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 				uploadNextFile(index + 1);
 			});
 		}
-
 		uploadNextFile(0);
 	},
+
 	// Handler for creating a directory
 	handleMakeDirectoryClick: function(ev) {
 		// Logic to create a new directory
@@ -2971,6 +2726,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			statusProgress.appendChild(saveButton);
 		}
 	},
+
 	// Function to create a directory
 	createDirectory: function(dirName) {
 		// Execute the 'mkdir' command and update the interface
@@ -2993,6 +2749,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			pop(null, E('p', _('Failed to create directory "%s": %s').format(trimmedDirName, err.message)), 'error');
 		});
 	},
+
 	// Handler for creating a file
 	handleCreateFileClick: function(ev) {
 		// Logic to create a new file
@@ -3026,6 +2783,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			statusProgress.appendChild(createButton);
 		}
 	},
+
 	// Function to create a file
 	createFile: function(fileName) {
 		// Execute the 'touch' command and update the interface
@@ -3048,6 +2806,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			pop(null, E('p', _('Failed to create file "%s": %s').format(trimmedFileName, err.message)), 'error');
 		});
 	},
+
 	// Handler for checkbox state change on a file
 	handleCheckboxChange: function(ev) {
 		// Update the set of selected items
@@ -3061,6 +2820,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		this.updateDeleteSelectedButton();
 		this.updateSelectAllCheckbox();
 	},
+
 	// Update the "Delete Selected" button
 	updateDeleteSelectedButton: function() {
 		// Show or hide the button based on the number of selected items
@@ -3073,6 +2833,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			}
 		}
 	},
+
 	// Update the "Select All" checkbox state
 	updateSelectAllCheckbox: function() {
 		var selectAllCheckbox = document.getElementById('select-all-checkbox');
@@ -3097,6 +2858,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			}
 		}
 	},
+
 	// Handler for the "Select All" checkbox change
 	handleSelectAllChange: function(ev) {
 		// Logic to select or deselect all files
@@ -3113,6 +2875,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		});
 		this.updateDeleteSelectedButton();
 	},
+
 	// Handler for deleting selected items
 	handleDeleteSelected: function() {
 		// Delete selected files and directories
@@ -3140,6 +2903,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			pop(null, E('p', _('Failed to delete selected files and directories: %s').format(err.message)), 'error');
 		});
 	},
+
 	// Function to load the file list
 	loadFileList: function(path) {
 		// Get the list of files and display them in the table
@@ -3329,6 +3093,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			return Promise.reject(err);
 		});
 	},
+
 	// Function to format file size
 	getFormattedSize: function(size) {
 		// Convert the size to a human-readable format (KB, MB, GB)
@@ -3350,6 +3115,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			unit: ' ' + units[unitIndex] + 'B'
 		};
 	},
+
 	// Function to sort files
 	sortBy: function(field) {
 		// Change the sort field and direction, and reload the file list
@@ -3361,6 +3127,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		}
 		this.loadFileList(currentPath);
 	},
+
 	// Function to compare files for sorting
 	compareFiles: function(a, b) {
 		// Compare files based on the selected field and direction
@@ -3375,6 +3142,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		if (aValue > bValue) return 1 * order;
 		return 0;
 	},
+
 	// Set initial column widths in the table
 	setInitialColumnWidths: function() {
 		// Apply column width settings to the file table
@@ -3404,6 +3172,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			}
 		});
 	},
+
 	// Handler for clicking on a directory
 	handleDirectoryClick: function(newPath) {
 		// Navigate to the selected directory and update the file list
@@ -3417,6 +3186,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			self.initResizableColumns();
 		});
 	},
+
 	// Handler for clicking on a file to open it in the editor
 	handleFileClick: function(filePath, mode = 'text') {
 		var self = this;
@@ -3490,7 +3260,6 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		});
 	},
 
-
 	// Adjust padding for line numbers in the editor
 	adjustLineNumbersPadding: function() {
 		// Update padding based on scrollbar size
@@ -3502,6 +3271,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		var scrollbarHeight = editorTextarea.offsetHeight - editorTextarea.clientHeight;
 		lineNumbersDiv.style.paddingBottom = scrollbarHeight + 'px';
 	},
+
 	// Handler for downloading a file
 	handleDownloadFile: function(filePath) {
 		// Download the file to the user's local machine
@@ -3527,6 +3297,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			pop(null, E('p', _('Failed to download file "%s": %s').format(fileName, err.message)), 'error');
 		});
 	},
+
 	// Handler for deleting a file
 	handleDeleteFile: function(filePath, fileInfo) {
 		// Delete the selected file or directory
@@ -3563,6 +3334,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			});
 		}
 	},
+
 	// Update line numbers in the text editor
 	updateLineNumbers: function() {
 		// Update the line numbers display when the text changes
@@ -3579,6 +3351,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		}
 		lineNumbersDiv.innerHTML = lineNumbersContent;
 	},
+
 	// Synchronize scrolling between line numbers and text
 	syncScroll: function() {
 		// Sync scrolling of line numbers with the text area
@@ -3589,6 +3362,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		}
 		lineNumbersDiv.scrollTop = editorTextarea.scrollTop;
 	},
+
 	// Toggle line numbers display in the editor
 	toggleLineNumbers: function() {
 		// Ensure the editor is in Text Mode before toggling line numbers
@@ -3616,6 +3390,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			lineNumbersDiv.innerHTML = '';
 		}
 	},
+
 	// Generate a name for a copy of a file
 	getCopyName: function(originalName, existingNames) {
 		// Create a new unique file name based on the original
@@ -3636,6 +3411,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 		}
 		return copyName;
 	},
+
 	// Handler for duplicating a file
 	handleDuplicateFile: function(filePath, fileInfo) {
 		// Copy the file or directory with a new name
@@ -3673,6 +3449,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			pop(null, E('p', _('Failed to get file list: %s').format(err.message)), 'error');
 		});
 	},
+
 	// Handler for saving a file after editing
 	handleSaveFile: function(filePath) {
 		var self = this;
@@ -3806,6 +3583,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			statusInfo.textContent = _('Symlink: ') + linkPath + ' -> ' + targetPath;
 		}
 	},
+
 	// Initialize resizable columns in the table
 	initResizableColumns: function() {
 		// Add handlers to adjust column widths
@@ -3857,6 +3635,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			}
 		});
 	},
+
 	// Handler for editing a file's properties (name, permissions, etc.)
 	handleEditFile: function(filePath, fileInfo) {
 		// Display a form to edit the file's properties
@@ -3911,6 +3690,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			statusProgress.appendChild(saveButton);
 		}
 	},
+
 	// Save changes to a file's properties
 	saveFileChanges: function(filePath, fileInfo, newName, newPerms, newOwner, newGroup) {
 		// Apply changes and update the interface
@@ -3954,7 +3734,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			});
 		});
 		promise.then(function() {
-			pop(null, E('p', _('Changes to %s "%s"uploaded successfully.').format(_('item'), newItemName)), 'info');
+			pop(null, E('p', _('Changes to %s "%s" uploaded successfully.').format(_('item'), newItemName)), 'info');
 			self.loadFileList(currentPath).then(function() {
 				self.initResizableColumns();
 			});
@@ -4084,6 +3864,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 			});
 		}
 	},
+
 	// Load settings into the settings form
 	// Load settings into the settings form
 	loadSettings: function() {
@@ -4333,17 +4114,14 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 				self.fileData = encoder.encode(content);
 			}
 			self.editorMode = 'hex';
-
 		} else {
 			// Before switching to text mode, update self.fileData from the HexEditor
 			if (self.hexEditorInstance) {
 				self.fileData = self.hexEditorInstance.getData();
 			}
-
 			// Convert self.fileData to string
 			var decoder = new TextDecoder();
 			self.fileContent = decoder.decode(self.fileData);
-
 			self.editorMode = 'text';
 		}
 
