@@ -161,44 +161,44 @@ return view.extend({
 
 		o = s.taboption('general', form.Flag, 'ttylogin', _('TTY login authentication'), _('Require authentication for local users to log in the system. such as keyboard and serial.'));
 
-		o = s.taboption('logging', form.Value, 'log_size', _('System log buffer size'), "kiB")
-		o.optional    = true
-		o.placeholder = 16
-		o.datatype    = 'uinteger'
+		o = s.taboption('logging', form.Value, 'log_size', _('System log buffer size'), "kiB");
+		o.optional    = true;
+		o.placeholder = 128;
+		o.datatype    = 'uinteger';
 
-		o = s.taboption('logging', form.Value, 'log_ip', _('External system log server'))
-		o.optional    = true
-		o.placeholder = '0.0.0.0'
-		o.datatype    = 'host'
+		o = s.taboption('logging', form.Value, 'log_ip', _('External system log server'));
+		o.optional    = true;
+		o.placeholder = '0.0.0.0';
+		o.datatype    = 'host';
 
-		o = s.taboption('logging', form.Value, 'log_port', _('External system log server port'))
-		o.optional    = true
-		o.placeholder = 514
-		o.datatype    = 'port'
+		o = s.taboption('logging', form.Value, 'log_port', _('External system log server port'));
+		o.optional    = true;
+		o.placeholder = 514;
+		o.datatype    = 'port';
 
-		o = s.taboption('logging', form.ListValue, 'log_proto', _('External system log server protocol'))
-		o.value('udp', 'UDP')
-		o.value('tcp', 'TCP')
+		o = s.taboption('logging', form.ListValue, 'log_proto', _('External system log server protocol'));
+		o.value('udp', 'UDP');
+		o.value('tcp', 'TCP');
 
-		o = s.taboption('logging', form.Value, 'log_file', _('Write system log to file'))
-		o.optional    = true
-		o.placeholder = '/tmp/system.log'
+		o = s.taboption('logging', form.Value, 'log_file', _('Write system log to file'));
+		o.optional    = true;
+		o.placeholder = '/tmp/system.log';
 
-		o = s.taboption('logging', form.ListValue, 'conloglevel', _('Log output level'))
-		o.value(8, _('Debug'))
-		o.value(7, _('Info'))
-		o.value(6, _('Notice'))
-		o.value(5, _('Warning'))
-		o.value(4, _('Error'))
-		o.value(3, _('Critical'))
-		o.value(2, _('Alert'))
-		o.value(1, _('Emergency'))
+		o = s.taboption('logging', form.ListValue, 'conloglevel', _('Log output level'), _('Only affects dmesg kernel log'));
+		o.value(8, _('Debug'));
+		o.value(7, _('Info'));
+		o.value(6, _('Notice'));
+		o.value(5, _('Warning'));
+		o.value(4, _('Error'));
+		o.value(3, _('Critical'));
+		o.value(2, _('Alert'));
+		o.value(1, _('Emergency'));
 
-		o = s.taboption('logging', form.ListValue, 'cronloglevel', _('Cron Log Level'))
-		o.default = 8
-		o.value(5, _('Debug'))
-		o.value(8, _('Normal'))
-		o.value(9, _('Warning'))
+		o = s.taboption('logging', form.ListValue, 'cronloglevel', _('Cron Log Level'));
+		o.default = 7;
+		o.value(7, _('Normal'));
+		o.value(9, _('Disabled'));
+		o.value(5, _('Debug'));
 
 		/*
 		 * Zram Properties
@@ -246,19 +246,19 @@ return view.extend({
 			if (k[i].charAt(0) != '.')
 				o.value(uci.get('luci', 'themes', k[i]), k[i]);
 
-		o = s.taboption('language', form.Value, '_pollinterval', _('Polling interval (sec)'), _('The automatic refresh interval for web pages.'))
+		o = s.taboption('language', form.Value, '_pollinterval', _('Polling interval (sec)'), _('The automatic refresh interval for web pages.'));
 		o.uciconfig = 'luci';
 		o.ucisection = 'main';
 		o.ucioption = 'pollinterval';
 		o.datatype = 'uinteger';
 
-		o = s.taboption('language', form.Value, '_rollback', _('rollback timeout (sec)'), _('Automatically roll back recent configuration changes after a web page times out and becomes unresponsive.'))
+		o = s.taboption('language', form.Value, '_rollback', _('rollback timeout (sec)'), _('Automatically roll back recent configuration changes after a web page times out and becomes unresponsive.'));
 		o.uciconfig = 'luci';
 		o.ucisection = 'apply';
 		o.ucioption = 'rollback';
 		o.datatype = 'min(5)';
 
-		o = s.taboption('language', form.Value, '_holdoff', _('holdoff time (sec)'), _('The amount of time the web page waits for a configuration change to be applied. The default value is 4. Lowering this value will invalidate the rollback functionality.'))
+		o = s.taboption('language', form.Value, '_holdoff', _('holdoff time (sec)'), _('The amount of time the web page waits for a configuration change to be applied. The default value is 4. Lowering this value will invalidate the rollback functionality.'));
 		o.uciconfig = 'luci';
 		o.ucisection = 'apply';
 		o.ucioption = 'holdoff';

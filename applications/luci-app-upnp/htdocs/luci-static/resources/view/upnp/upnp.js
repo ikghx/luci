@@ -156,15 +156,11 @@ return view.extend({
 		o = s.taboption('advanced', form.Value, 'stun_host', _('STUN Host'));
 		o.depends('use_stun', '1');
 		o.datatype = 'host';
-		o.value('stunserver.stunprotocol.org');
 		o.value('stun.syncthing.net');
-		o.value('stun.qq.com');
-		o.value('stun.miwifi.com');
 		o.value('stun.ekiga.net');
-		o.value('stun.zoiper.com');
 		o.value('stun.gmx.net');
 		o.value('stun.counterpath.com');
-		o.default  = 'stun.stunprotocol.org';
+		o.default  = 'stun.syncthing.net';
 		o.rmempty  = false;
 
 		o = s.taboption('advanced', form.Value, 'stun_port', _('STUN Port'));
