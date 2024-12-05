@@ -22,31 +22,31 @@ var columns = {
 	thLastSeen: _('Last Seen')
 };
 
-var callLuciDHCPLeases = rpc.declare({
+const callLuciDHCPLeases = rpc.declare({
 	object: 'luci-rpc',
 	method: 'getDHCPLeases',
 	expect: { '': {} }
 });
 
-var callLuciDSLStatus = rpc.declare({
+const callLuciDSLStatus = rpc.declare({
 	object: 'luci-rpc',
 	method: 'getDSLStatus',
 	expect: { '': {} }
 });
 
-var callGetDatabaseRaw = rpc.declare({
+const callGetDatabaseRaw = rpc.declare({
 	object: 'luci.wrtbwmon',
 	method: 'get_db_raw',
 	params: [ 'protocol' ]
 });
 
-var callGetDatabasePath = rpc.declare({
+const callGetDatabasePath = rpc.declare({
 	object: 'luci.wrtbwmon',
 	method: 'get_db_path',
 	params: [ 'protocol' ]
 });
 
-var callRemoveDatabase = rpc.declare({
+const callRemoveDatabase = rpc.declare({
 	object: 'luci.wrtbwmon',
 	method: 'remove_db',
 	params: [ 'protocol' ]

@@ -23,7 +23,7 @@ var CBIStaticList = form.DynamicList.extend({
 	}
 });
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: ['name'],
@@ -79,7 +79,7 @@ return view.extend({
 	},
 
 	render: function(data) {
-		var m, s, o;
+		let m, s, o;
 		var hosts = data[1]?.hosts;
 
 		m = new form.Map('unblockneteasemusic', _('解除网易云音乐播放限制'),

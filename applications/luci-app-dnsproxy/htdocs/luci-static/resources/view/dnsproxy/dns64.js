@@ -6,7 +6,7 @@ return view.extend({
 
 	render: function(res) {
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('dnsproxy', _('DNS Proxy - DNS64'));
 

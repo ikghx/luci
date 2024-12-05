@@ -3,7 +3,7 @@
 'require form';
 'require rpc';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
@@ -27,7 +27,7 @@ return view.extend({
 			status = "<span style=\"color:red;font-weight:bold\">" + _("Not Running") + "</span>";
 		}
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('redis', _('Redis Server') + status, _('Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache, and message broker.'));
 

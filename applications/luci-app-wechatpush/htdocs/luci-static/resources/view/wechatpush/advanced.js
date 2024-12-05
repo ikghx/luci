@@ -64,7 +64,7 @@ return view.extend({
 	render: function (data) {
 		var arpData = data[1],
 			hosts = this.parseArp(arpData),
-			m, s, o,
+			let m, s, o,
 			programPath = '/usr/share/wechatpush/wechatpush';
 
 		m = new form.Map('wechatpush', _(''))

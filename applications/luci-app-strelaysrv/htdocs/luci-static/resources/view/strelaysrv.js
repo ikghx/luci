@@ -5,7 +5,7 @@
 'require rpc';
 'require tools.widgets as widgets';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
@@ -44,7 +44,7 @@ return view.extend({
 
 	render: function(res) {
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('strelaysrv', _('Syncthing Relay Server'),
 		_('Syncthing relies on a network of community-contributed relay servers.')

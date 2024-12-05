@@ -32,12 +32,12 @@ msgstr "%s 节点日志"
 msgid "%s Node Use Type"
 msgstr "%s 节点使用类型"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:959
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1004
 msgid "%s not enough space."
 msgstr "%s 空间不足。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:833
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:888
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:878
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:933
 msgctxt "/tmp"
 msgid "%s not enough space."
 msgstr "%s 空间不足。"
@@ -252,6 +252,7 @@ msgstr "认证类型"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:143
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:109
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:131
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:180
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:663
 msgid "Auto"
 msgstr "自动"
@@ -359,7 +360,7 @@ msgstr ""
 msgid "Camouflage Type"
 msgstr "伪装类型"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:764
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:809
 msgid "Can't determine ARCH, or ARCH not supported."
 msgstr "无法确认ARCH架构，或是不支持。"
 
@@ -374,7 +375,7 @@ msgstr "无法确认ARCH架构，或是不支持。"
 msgid "Can't find this file!"
 msgstr "找不到这个文件！"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:973
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1018
 msgid "Can't move new file to path: %s"
 msgstr "无法移动新文件到：%s"
 
@@ -465,7 +466,7 @@ msgstr "点击更新"
 msgid "Client Proxy"
 msgstr "客户端代理"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:931
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:976
 msgid "Client file is required."
 msgstr "请指定客户端文件。"
 
@@ -691,6 +692,7 @@ msgstr "目标协议"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:203
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:233
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:586
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:181
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:190
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:226
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:118
@@ -796,7 +798,7 @@ msgstr "域名匹配算法"
 msgid "Domestic group name"
 msgstr "国内分组名"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:823
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:868
 msgid "Download url is required."
 msgstr "请指定下载地址。"
 
@@ -991,7 +993,7 @@ msgstr "实验性功能。"
 msgid "Export Of Multi WAN"
 msgstr "多 WAN 指定出口"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:997
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1042
 msgid "Failed"
 msgstr "失败"
 
@@ -1023,11 +1025,11 @@ msgstr "设置选项错误，请帮助调试："
 msgid "Fast Open"
 msgstr "快速打开"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:847
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:892
 msgid "File download failed or timed out: %s"
 msgstr "文件下载失败或超时：%s"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:861
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:906
 msgid "File path required."
 msgstr "请指定文件路径。"
 
@@ -1178,7 +1180,7 @@ msgstr ""
 "GeoIP: 形如'geoip:cn'，必须以geoip:（小写）开头，后面跟双字符国家代码，支持几"
 "乎所有可以上网的国家。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:779
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:824
 msgid "Get remote version info failed."
 msgstr "获取远程版本信息失败。"
 
@@ -1744,7 +1746,7 @@ msgstr ""
 msgid "New Reno"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:802
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:847
 msgid "New version found, but failed to get new version download url."
 msgstr "发现新版本，但未能获得新版本的下载地址。"
 
@@ -1838,7 +1840,7 @@ msgstr "不支持这种样式的："
 msgid "Not enabled log"
 msgstr "未启用日志"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:877
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:922
 msgid "Not installed %s, Can't unzip!"
 msgstr "未安装 %s，无法解压！"
 
@@ -2198,6 +2200,7 @@ msgstr "协议参数"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:587
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:594
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:600
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:182
 msgid "Proxy"
 msgstr "代理"
 
@@ -2644,6 +2647,10 @@ msgstr "订阅备注（机场）"
 msgid "Subscribe URL"
 msgstr "订阅网址"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:178
+msgid "Subscribe URL Access Method"
+msgstr "订阅网址访问方式"
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:651
 msgid "Support regular expression."
 msgstr "支持正则表达式。"
@@ -2751,7 +2758,7 @@ msgstr "测试"
 msgid "The URL used to detect the connection status."
 msgstr "用于检测连接状态的网址。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:939
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:984
 msgid "The client file is not suitable for current device."
 msgstr "客户端文件不适合当前设备。"
 
@@ -2770,7 +2777,7 @@ msgstr ""
 "<code>s</code>，<code>m</code>，<code>h</code>，分别对应纳秒、微秒、毫秒、"
 "秒、分、时。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1017
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1062
 msgid ""
 "The latest version: %s, currently does not support automatic update, if you "
 "need to update, please compile or download the ipk and then manually install."
@@ -3063,7 +3070,7 @@ msgstr "需要代理的分流规则域名使用 FakeDNS。"
 msgid "Use global config"
 msgstr "使用全局配置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:178
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:184
 msgid "User-Agent"
 msgstr "用户代理(User-Agent)"
 
@@ -3244,7 +3251,7 @@ msgstr "您可以转发到 Nginx/Caddy/V2ray/Xray WebSocket 等。"
 msgid "You choose node is:"
 msgstr "你选择的节点是："
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:742
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:787
 msgid ""
 "You did not fill in the %s path. Please save and apply then update manually."
 msgstr "您没有填写 %s 路径。请保存应用后再手动更新。"

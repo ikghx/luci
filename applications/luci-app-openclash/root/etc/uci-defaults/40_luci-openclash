@@ -1,6 +1,12 @@
 #!/bin/bash
 . /lib/functions.sh
 
+[ -e "/etc/config/ucitrack" ] && {
+uci -q delete ucitrack.@openclash[-1]
+uci -q add ucitrack openclash
+uci -q set ucitrack.@openclash[-1].init=openclash
+uci -q commit ucitrack
+}
 uci -q delete firewall.openclash
 uci -q set firewall.openclash=include
 uci -q set firewall.openclash.type=script
@@ -36,7 +42,7 @@ cp -f "/etc/openclash/custom/openclash_custom_overwrite.sh" "/usr/share/openclas
 uci -q set openclash.config.dashboard_password="$(tr -cd 'a-zA-Z0-9' </dev/urandom 2>/dev/null| head -c8 || date +%N| md5sum |head -c8)"
 
 #Set authentication
-uci_name_tmp=$(uci add openclash authentication)
+uci_name_tmp=$(uci -q add openclash authentication)
 uci_set="uci -q set openclash.$uci_name_tmp."
 ${uci_set}enabled="1"
 ${uci_set}username="Clash"
@@ -87,6 +93,8 @@ uci -q commit openclash
 
 #Restore
 if [ -f "/tmp/openclash.bak" ]; then
+	#delete old geosite database first
+	rm -rf "/tmp/openclash/GeoSite.dat" >/dev/null 2>&1
 	mv -f "/tmp/openclash.bak" "/etc/config/openclash" >/dev/null 2>&1
 	cp -rf "/tmp/openclash/." "/etc/openclash/" >/dev/null 2>&1
 	if [ -d "/tmp/openclash_dashboard/" ]; then

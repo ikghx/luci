@@ -23,7 +23,7 @@ return view.extend({
 
 	render: function(res) {
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('vsftpd', _('FTP Server') , _('vsftpd is a fast and secure FTP server.'));
 
@@ -133,11 +133,11 @@ return view.extend({
 
 		o = s.option(form.Flag, 'sslmode', _('Enable SSL mode'), _('Encrypt data transmission using TLS'));
 
-		o = s.option(form.Value, 'cert', _('Certificate'), _('Certificate file path'));
-		o.placeholder = '/etc/cert.pem';
+		o = s.option(form.Value, 'cert', _('DSA certificate'), _('DSA certificate file path'));
+		o.placeholder = '/etc/cert.crt';
 		o.depends('sslmode', '1');
 
-		o = s.option(form.Value, 'key', _('Private Key'), _('Private key file path'));
+		o = s.option(form.Value, 'key', _('DSA private Key'), _('DSA private key file path'));
 		o.placeholder = '/etc/privkey.key';
 		o.depends('sslmode', '1');
 

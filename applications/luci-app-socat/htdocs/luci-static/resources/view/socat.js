@@ -5,7 +5,7 @@
 'require rpc';
 'require tools.widgets as widgets';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: ['name'],
@@ -39,7 +39,7 @@ return view.extend({
 
 	render: function(data) {
 		let isRunning = data[0];
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('socat', _('SoCat (for SOcket CAT)'), _('Establishes two bidirectional byte streams and transfers data between them.'));
 

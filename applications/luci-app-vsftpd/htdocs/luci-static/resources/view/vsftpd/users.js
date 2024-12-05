@@ -8,7 +8,7 @@ return view.extend({
 
 	render: function(res) {
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('vsftpd', _('FTP Server - Virtual User Settings'));
 

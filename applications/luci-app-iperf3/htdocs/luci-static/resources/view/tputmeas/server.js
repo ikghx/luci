@@ -9,14 +9,14 @@
 
 var eventSource;
 
-var callIperf3Start = rpc.declare({
+const callIperf3Start = rpc.declare({
 	object: 'luci.tputmeas',
 	method: 'iperf3Start',
 	params:  [ "mode", "server_address", "interface", "interface_address", "port",
 			   "duration", "bytes", "udp", "bitrate", "reverse", "connections", "interval" ],
 	expect: { '': {} }
 });
-var callIperf3Stop =  rpc.declare({
+const callIperf3Stop =  rpc.declare({
 	object: 'luci.tputmeas',
 	method: 'iperf3Stop',
 	expect: { '': {} }
@@ -108,7 +108,7 @@ return L.view.extend({
 	load: function() {},
 
 	render: function() {
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('luci_tputmeas', _('Throughput Measurements - Iperf3 Server'), _('Iperf3 is a tool for performing network throughput measurements. It can test TCP, UDP, or SCTP throughput. To perform an iperf3 test the user must establish both a server and a client.'));
 		s = m.section(form.TypedSection, 'iperf3');

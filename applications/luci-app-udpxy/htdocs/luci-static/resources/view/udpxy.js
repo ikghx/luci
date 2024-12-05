@@ -185,7 +185,7 @@ return view.extend({
 
 	render: function(data) {
 		let isRunning = data[0];
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('udpxy', _('udpxy'),
 			_('udpxy is an IPTV stream relay, a UDP-to-HTTP multicast traffic relay daemon which forwards multicast UDP streams to HTTP clients.'));

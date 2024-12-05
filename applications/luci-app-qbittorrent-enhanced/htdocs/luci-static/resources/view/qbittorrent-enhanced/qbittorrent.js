@@ -10,7 +10,7 @@
 
 var splitter_html = '<p style="font-size:20px;font-weight:bold;color: DodgerBlue">%s</p>';
 
-var callGetVersion = rpc.declare({
+const callGetVersion = rpc.declare({
 	object: 'luci.qbittorrent-enhanced',
 	method: 'get-version',
 	expect: {}
@@ -163,7 +163,7 @@ return view.extend({
 	},
 
 	render: function(ver) {
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('qbittorrent-enhanced', _('qBittorrent Enhanced'), '%s %s %s<br\><b style="color:red">%s</b>'
 			.format(_('A BT/PT downloader base on Qt.'), _('Refer to the'),

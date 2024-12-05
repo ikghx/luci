@@ -221,7 +221,7 @@ return view.extend({
 			service_status = '<b>' + _('Not Running') + '</b>';
 
 			if (service[section_id]) {
-				stop.disabled = (!service[section_id].pid || (service[section_id].pid && cfg_enabled == '1'));
+				stop.disabled = (!service[section_id].pid);
 				if (service[section_id].ip)
 					ip = service[section_id].ip;
 				if (service[section_id].last_update)
@@ -258,7 +258,7 @@ return view.extend({
 
 		var _this = this;
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('ddns', _('Dynamic DNS'));
 
@@ -311,7 +311,7 @@ return view.extend({
 			o = s.taboption('info', form.DummyValue, '_no_ipv6');
 			o.rawhtml  = true;
 			o.title = '<b>' + _("IPv6 not supported") + '</b>';
-			o.cfgvalue = function() { return _("IPv6 is currently not (fully) supported by this system") + "<br />" +
+			o.cfgvalue = function() { return _("IPv6 is not supported by this system") + "<br />" +
 			_("Please follow the instructions on OpenWrt's homepage to enable IPv6 support") + "<br />" +
 			_("or update your system to the latest OpenWrt Release")};
 		}
@@ -321,7 +321,7 @@ return view.extend({
 			o.titleref = L.url("admin", "system", "opkg")
 			o.rawhtml  = true;
 			o.title = '<b>' + _("HTTPS not supported") + '</b>';
-			o.cfgvalue = function() { return _("Neither GNU Wget with SSL nor cURL installed to support secure updates via HTTPS protocol.") +
+			o.cfgvalue = function() { return _("Neither GNU Wget with SSL nor cURL is installed to support secure updates via HTTPS protocol.") +
 			"<br />- " +
 			_("You should install 'wget' or 'curl' or 'uclient-fetch' with 'libustream-*ssl' package.") +
 			"<br />- " +
@@ -333,7 +333,9 @@ return view.extend({
 			o.titleref = L.url("admin", "system", "opkg")
 			o.rawhtml  = true;
 			o.title = '<b>' + _("Binding to a specific network not supported") + '</b>';
-			o.cfgvalue = function() { return _("Neither GNU Wget with SSL nor cURL installed to select a network to use for communication.") +
+			o.cfgvalue = function() { return _("Neither GNU Wget with SSL nor cURL is installed to select a network to use for communication.") +
+			"<br />- " +
+			_("This is only a problem with multiple WAN interfaces and your DDNS provider is unreachable via one of them.") +
 			"<br />- " +
 			_("You should install 'wget' or 'curl' package.") +
 			"<br />- " +
@@ -354,26 +356,15 @@ return view.extend({
 			_("In some versions cURL/libcurl in OpenWrt is compiled without proxy support.")};
 		}
 
-		if (!env['has_forceip']) {
-			o = s.taboption('info', form.DummyValue, '_no_force_ip');
-			o.titleref = L.url("admin", "system", "opkg")
-			o.rawhtml  = true;
-			o.title = '<b>' + _("Force IP Version not supported") + '</b>';
-			o.cfgvalue = function() { return _("BusyBox's nslookup and Wget do not support to specify " +
-				"the IP version to use for communication with DDNS Provider!") +
-				"<br />- " + _("You should install 'wget' or 'curl' or 'uclient-fetch' package.")
-			};
-		}
-
 		if (!env['has_bindhost']) {
 			o = s.taboption('info', form.DummyValue, '_no_dnstcp');
 			o.titleref = L.url("admin", "system", "opkg")
 			o.rawhtml  = true;
 			o.title = '<b>' + _("DNS requests via TCP not supported") + '</b>';
-			o.cfgvalue = function() { return _("BusyBox's nslookup and hostip do not support to specify to use TCP " +
-				"instead of default UDP when requesting DNS server!") +
+			o.cfgvalue = function() { return _("BusyBox's nslookup and hostip do not support TCP " +
+				"instead of the default UDP when sending requests to the DNS server!") +
 				"<br />- " +
-				_("You should install 'bind-host' or 'knot-host' or 'drill' package for DNS requests.")};
+				_("Install 'bind-host' or 'knot-host' or 'drill' package if you know you need TCP for DNS requests.")};
 		}
 
 		if (!env['has_dnsserver']) {
@@ -383,8 +374,8 @@ return view.extend({
 			o.title = '<b>' + _("Using specific DNS Server not supported") + '</b>';
 			o.cfgvalue = function() { return _("BusyBox's nslookup in the current compiled version " +
 			"does not handle given DNS Servers correctly!") +
-		"<br />- " +
-		_("You should install 'bind-host' or 'knot-host' or 'drill' or 'hostip' package, " +
+			"<br />- " +
+			_("You should install 'bind-host' or 'knot-host' or 'drill' or 'hostip' package, " +
 			"if you need to specify a DNS server to detect your registered IP.")};
 		}
 
@@ -401,12 +392,12 @@ return view.extend({
 
 		// Advanced Configuration Section
 
-		o = s.taboption('global', form.Flag, 'upd_privateip', _("Allow non-public IP's"));
+		o = s.taboption('global', form.Flag, 'upd_privateip', _("Allow non-public IPs"));
 		o.description = _("Non-public and by default blocked IPs") + ':'
 		+ '<br /><strong>IPv4: </strong>'
 		+ '0/8, 10/8, 100.64/10, 127/8, 169.254/16, 172.16/12, 192.168/16'
 		+ '<br /><strong>IPv6: </strong>'
-		+ '::/32, f000::/4"';
+		+ '::/32, f000::/4';
 
 		o = s.taboption('global', form.Value, 'ddns_dateformat', _('Date format'));
 		o.description = '<a href="http://www.cplusplus.com/reference/ctime/strftime/" target="_blank">'
@@ -468,7 +459,7 @@ return view.extend({
 				service_value = service_name.isValid('_new_') ? service_name.formvalue('_new_') : null,
 				ipv6_value = ipv6.isValid('_new_') ? ipv6.formvalue('_new_') : null;
 
-			if (section_id == null || section_id == '' || service_value == null || section_id == '' || ipv6_value == null || ipv6_value == '')
+			if (!section_id || !service_value || !ipv6_value)
 				return;
 
 			return m.save(function() {
@@ -477,6 +468,7 @@ return view.extend({
 					uci.set('ddns', section_id, 'service_name', service_value);
 				}
 				uci.set('ddns', section_id, 'use_ipv6', ipv6_value);
+				ui.hideModal();
 			}).then(L.bind(m.children[1].renderMoreOptionsModal, m.children[1], section_id));
 		};
 
@@ -505,7 +497,7 @@ return view.extend({
 
 			ipv6 = s2.option( form.ListValue, 'use_ipv6',
 				_("IP address version"),
-				_("Defines which IP address 'IPv4/IPv6' is send to the DDNS provider"));
+				_("Which record type to update at the DDNS provider (A/AAAA)"));
 			ipv6.default = '0';
 			ipv6.value("0", _("IPv4 address"))
 			if (env["has_ipv6"]) {
@@ -514,11 +506,10 @@ return view.extend({
 
 			service_name = s2.option(form.ListValue, 'service_name',
 					String.format('%s', _("DDNS Service provider")));
-			service_name.value('-',"-- " + _("custom") + " --");
+			service_name.value('-',"📝 " + _("custom") );
 			Object.keys(_this.services).sort().forEach(name => service_name.value(name));
 			service_name.validate = function(section_id, value) {
 				if (value == '') return _("Select a service");
-				if (s2.service_supported == null) return _("Checking the service support...");
 				if (!s2.service_supported) return _("Service doesn't support this IP type");
 				return true;
 			};
@@ -624,7 +615,7 @@ return view.extend({
 
 				use_ipv6 = s.taboption('basic', form.ListValue, 'use_ipv6',
 					_("IP address version"),
-					_("Defines which IP address 'IPv4/IPv6' is send to the DDNS provider"));
+					_("Which record type to update at the DDNS provider (A/AAAA)"));
 				use_ipv6.default = '0';
 				use_ipv6.modalonly = true;
 				use_ipv6.rmempty  = false;
@@ -636,7 +627,7 @@ return view.extend({
 				service_name = s.taboption('basic', form.ListValue, 'service_name',
 					String.format('%s', _("DDNS Service provider")));
 				service_name.modalonly = true;
-				service_name.value('-',"-- " + _("custom") + " --");
+				service_name.value('-',"📝 " + _("custom") );
 				Object.keys(_this.services).sort().forEach(name => service_name.value(name));
 				service_name.cfgvalue = function(section_id) {
 					return uci.get('ddns', section_id, 'service_name') || '-';
@@ -651,7 +642,6 @@ return view.extend({
 				};
 				service_name.validate = function(section_id, value) {
 					if (value == '') return _("Select a service");
-					if (s.service_available == null) return _("Checking the service support...");
 					if (!s.service_available) return _('Service not installed');
 					if (!s.service_supported) return _("Service doesn't support this IP type");
 					return true;
@@ -703,27 +693,31 @@ return view.extend({
 					o.optional = true;
 					o.depends("service_name","-");
 					o.validate = function(section_id, value) {
-						var other = this.section.children.filter(function(o) { return o.option == 'update_script' })[0].formvalue(section_id);
-
-						if ((value == "" && other == "") || (value != "" && other != "")) {
-							return _("Insert an Update Script OR an Update URL");
+						var other = this.section.formvalue(section_id, 'update_script');
+						if ((!value && !other) || (value && other)) {
+							return _("Provide either an Update Script OR an Update URL");
 						}
 
 						return true;
 					};
 
-					o = s.taboption('basic', form.Value, 'update_script',
+					o = s.taboption('basic', form.FileUpload, 'update_script',
 						_("Custom update-script"),
 						_("Custom update script for updating your DDNS Provider."));
+					o.root_directory = '/usr/lib/ddns/';
+					o.browser = true;
+					o.show_hidden = true;
+					o.enable_upload = true;
+					o.enable_remove = true;
+					o.enable_download = true;
 					o.modalonly = true;
 					o.rmempty = true;
 					o.optional = true;
 					o.depends("service_name","-");
 					o.validate = function(section_id, value) {
-						var other = this.section.children.filter(function(o) { return o.option == 'update_url' })[0].formvalue(section_id);
-
-						if ((value == "" && other == "") || (value != "" && other != "")) {
-							return _("Insert an Update Script OR an Update URL");
+						var other = this.section.formvalue(section_id, 'update_url');
+						if ((!value && !other) || (value && other)) {
+							return _("Provide either an Update Script OR an Update URL");
 						}
 
 						return true;
@@ -786,7 +780,7 @@ return view.extend({
 
 					o = s.taboption('advanced', form.ListValue, 'ip_source',
 						_("IP address source"),
-						_("Defines the source to read systems IP-Address from, that will be send to the DDNS provider"));
+						_("Method used to determine the system IP-Address to send in updates"));
 					o.modalonly = true;
 					o.default = "network";
 					o.value("network", _("Network"));
@@ -796,24 +790,24 @@ return view.extend({
 					o.write = function(section_id, formvalue) {
 						switch(formvalue) {
 							case 'network':
-								uci.set('ddns', section_id, "ip_url",null);
-								uci.set('ddns', section_id, "ip_interface",null);
-								uci.set('ddns', section_id, "ip_script",null);
+								uci.unset('ddns', section_id, "ip_url");
+								uci.unset('ddns', section_id, "ip_interface");
+								uci.unset('ddns', section_id, "ip_script");
 								break;
 							case 'web':
-								uci.set('ddns', section_id, "ip_network",null);
-								uci.set('ddns', section_id, "ip_interface",null);
-								uci.set('ddns', section_id, "ip_script",null);
+								uci.unset('ddns', section_id, "ip_network");
+								uci.unset('ddns', section_id, "ip_interface");
+								uci.unset('ddns', section_id, "ip_script");
 								break;
 							case 'interface':
-								uci.set('ddns', section_id, "ip_network",null);
-								uci.set('ddns', section_id, "ip_url",null);
-								uci.set('ddns', section_id, "ip_script",null);
+								uci.unset('ddns', section_id, "ip_network");
+								uci.unset('ddns', section_id, "ip_url");
+								uci.unset('ddns', section_id, "ip_script");
 								break;
 							case 'script':
-								uci.set('ddns', section_id, "ip_network",null);
-								uci.set('ddns', section_id, "ip_url",null);
-								uci.set('ddns', section_id, "ip_interface",null);
+								uci.unset('ddns', section_id, "ip_network");
+								uci.unset('ddns', section_id, "ip_url");
+								uci.unset('ddns', section_id, "ip_interface");
 								break;
 							default:
 								break;
@@ -881,8 +875,8 @@ return view.extend({
 						return uci.get('ddns', section_id, 'interface') || _('This will be autoset to the selected interface');
 					};
 					o.write = function(section_id) {
-						var opt = this.section.children.filter(function(o) { return o.option == 'ip_source' })[0].formvalue(section_id);
-						var val = this.section.children.filter(function(o) { return o.option == 'ip_'+opt })[0].formvalue(section_id);
+						var opt = this.section.formvalue(section_id, 'ip_source');
+						var val = this.section.formvalue(section_id, 'ip_'+opt);
 						return uci.set('ddns', section_id, 'interface', val);
 					};
 
@@ -971,11 +965,11 @@ return view.extend({
 
 					o = s.taboption("timer", form.Value, "check_interval",
 						_("Check Interval"));
-					o.placeholder = "30";
+					o.placeholder = "10";
 					o.modalonly = true;
 					o.datatype = 'uinteger';
 					o.validate = function(section_id, formvalue) {
-						var unit = this.section.children.filter(function(o) { return o.option == 'check_unit' })[0].formvalue(section_id),
+						var unit = this.section.formvalue(section_id, 'check_unit'),
 							time_to_sec = _this.time_res[unit || 'minutes'] * formvalue;
 
 						if (formvalue && time_to_sec < 300)
@@ -988,14 +982,14 @@ return view.extend({
 						_('Check Unit'),
 						_("Interval unit to check for changed IP"));
 					o.modalonly = true;
-					o.default  = "minutes"
+					o.optional = true;
 					o.value("seconds", _("seconds"));
 					o.value("minutes", _("minutes"));
 					o.value("hours", _("hours"));
 
 					o = s.taboption("timer", form.Value, "force_interval",
 						_("Force Interval"),
-						_("Interval to force updates send to DDNS Provider")
+						_("Interval to force an update at the DDNS Provider")
 						+ "<br />" +
 						_("Setting this parameter to 0 will force the script to only run once"));
 					o.placeholder = "72";
@@ -1007,9 +1001,9 @@ return view.extend({
 						if (!formvalue)
 							return true;
 
-						var check_unit = this.section.children.filter(function(o) { return o.option == 'check_unit' })[0].formvalue(section_id),
-							check_val = this.section.children.filter(function(o) { return o.option == 'check_interval' })[0].formvalue(section_id),
-							force_unit = this.section.children.filter(function(o) { return o.option == 'force_unit' })[0].formvalue(section_id),
+						var check_unit = this.section.formvalue(section_id, 'check_unit'),
+							check_val = this.section.formvalue(section_id, 'check_interval'),
+							force_unit = this.section.formvalue(section_id, 'force_unit'),
 							check_to_sec = _this.time_res[check_unit || 'minutes'] * ( check_val || '30'),
 							force_to_sec = _this.time_res[force_unit || 'minutes'] * formvalue;
 
@@ -1024,7 +1018,6 @@ return view.extend({
 						_("Interval unit for forced updates sent to DDNS Provider."));
 					o.modalonly = true;
 					o.optional = true;
-					o.default  = "minutes"
 					o.value("minutes", _("minutes"));
 					o.value("hours", _("hours"));
 					o.value("days", _("days"));
@@ -1059,7 +1052,6 @@ return view.extend({
 						_("Which time units to use for retry counters."));
 					o.modalonly = true;
 					o.optional = true;
-					o.default  = "seconds"
 					o.value("seconds", _("seconds"));
 					o.value("minutes", _("minutes"));
 
@@ -1078,13 +1070,13 @@ return view.extend({
 					log_box.modalonly = true;
 
 					log_box.update_log = L.bind(function(view, log_data) {
-						return document.getElementById('log_area').textContent = log_data.result;
+						return document.getElementById('syslog').textContent = log_data.result;
 					}, o, this);
 
 					log_box.render = L.bind(function() {
 						return E([
 							E('p', {}, _('This is the current content of the log file in %h for this service.').format(logdir)),
-							E('p', {}, E('textarea', { 'style': 'width:100%', 'rows': 20, 'readonly' : 'readonly', 'id' : 'log_area' }, _('Please press [Read] button') ))
+							E('p', {}, E('textarea', { 'style': 'width:100%; font-size: 10px', 'rows': 20, 'readonly' : 'readonly', 'id' : 'syslog' }, _('Please press [Read] button') ))
 						]);
 					}, o, this);
 				}
@@ -1118,14 +1110,10 @@ return view.extend({
 
 		o = s.option(form.DummyValue, '_cfg_status', _('Status'));
 		o.modalonly = false;
-		o.textvalue = function(section_id) {
-			var text = '<b>' + _('Not Running') + '</b>';
+		o.textvalue = section_id => resolved[section_id]?.pid 
+			? `<b>${_('Running')}</b> : ${resolved[section_id].pid}` 
+			: `<b>${_('Not Running')}</b>`;
 
-			if (resolved[section_id] && resolved[section_id].pid)
-				text = '<b>' + _('Running') + '</b> : ' + resolved[section_id].pid;
-
-			return text;
-		};
 
 		o = s.option(form.DummyValue, '_cfg_name', _('Name'));
 		o.modalonly = false;

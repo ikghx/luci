@@ -3,7 +3,7 @@
 'require rpc';
 'require view';
 
-var callChangeDatabasePath = rpc.declare({
+const callChangeDatabasePath = rpc.declare({
 	object: 'luci.wrtbwmon',
 	method: 'change_db_path',
 	params: [ 'state' ]
@@ -11,7 +11,7 @@ var callChangeDatabasePath = rpc.declare({
 
 return view.extend({
 	render: function() {
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('wrtbwmon', _('Usage - Configuration'));
 

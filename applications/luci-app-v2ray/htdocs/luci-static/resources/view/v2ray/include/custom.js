@@ -4,7 +4,7 @@
 "require rpc";
 "require uci";
 "require ui";
-var callRunningStatus = rpc.declare({
+const callRunningStatus = rpc.declare({
     object: "luci.v2ray",
     method: "runningStatus",
     params: [],

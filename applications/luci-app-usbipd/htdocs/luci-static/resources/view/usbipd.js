@@ -4,7 +4,7 @@
 'require poll';
 'require rpc';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: ['name'],
@@ -38,7 +38,7 @@ return view.extend({
 
 	render: function(data) {
 		let isRunning = data[0];
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('usbipd', _('USB over IP'), _('The USB/IP Project aims to develop a general USB device sharing system over IP network.'));
 

@@ -10,7 +10,7 @@
 'require tools.widgets as widgets';
 'require tools.firewall as fwtool';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: ['name'],
@@ -95,7 +95,7 @@ return view.extend({
 
 	renderForwards: function (data) {
 		var hosts = data[0],
-			m, s, o,
+			let m, s, o,
 			programPath = '/usr/share/wechatpush/wechatpush';
 
 		m = new form.Map('wechatpush', _('WeChat push'), _('A tool that can push device messages from OpenWrt to a mobile phone via WeChat or Telegram.<br /><br />If you encounter any issues while using it, please submit them here:') + '<a href="https://github.com/tty228/luci-app-wechatpush" target="_blank">' + _('GitHub Project Address') + '</a>');

@@ -6,19 +6,19 @@
 'require ui';
 'require view';
 
-var callSystemInfo = rpc.declare({
+const callSystemInfo = rpc.declare({
 	object: 'system',
 	method: 'info'
 });
 
-var callRemoveArgon = rpc.declare({
+const callRemoveArgon = rpc.declare({
 	object: 'luci.argon',
 	method: 'remove',
 	params: ['filename'],
 	expect: { '': {} }
 });
 
-var callRenameArgon = rpc.declare({
+const callRenameArgon = rpc.declare({
 	object: 'luci.argon',
 	method: 'rename',
 	params: ['newname'],
@@ -40,7 +40,7 @@ return view.extend({
 	},
 
 	render: function(data) {
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('argon', _('Argon theme configuration'),
 			_('Here you can set the blur and transparency of the login page of argon theme, and manage the background pictures and videos. Chrome is recommended.'));

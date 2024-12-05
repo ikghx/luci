@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-openclash
-PKG_VERSION:=0.46.055
+PKG_VERSION:=0.46.057
 PKG_RELEASE:=1
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
@@ -33,7 +33,7 @@ endef
 
 define Package/$(PKG_NAME)/postinst
 #!/bin/sh
-	sed -i "s/v0.00.00-beta/v$(PKG_VERSION)-beta/g" /www/luci-static/resources/openclash/img/version.svg >/dev/null 2>&1
+	sed -i "s/v0.00.00/v$(PKG_VERSION)/g" /www/luci-static/resources/openclash/img/version.svg >/dev/null 2>&1
 	exit 0
 endef
 
@@ -41,6 +41,7 @@ define Package/$(PKG_NAME)/prerm
 #!/bin/sh
 	uci -q set openclash.config.enable=0
 	uci -q commit openclash
+	[ -n "$(pidof clash)" ] && /etc/init.d/openclash stop 2>/dev/null
 	cp -f "/etc/config/openclash" "/tmp/openclash.bak" >/dev/null 2>&1
 	cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
 	cp -rf "/usr/share/openclash/ui/yacd" "/tmp/openclash_yacd" >/dev/null 2>&1
@@ -50,9 +51,12 @@ endef
 
 define Package/$(PKG_NAME)/postrm
 #!/bin/sh
-	dnsmasqconfdir="$(uci -q get dhcp.@dnsmasq[0].confdir || echo '/tmp/dnsmasq.d')"
-	dnsmasqconfdir="${dnsmasqconfdir%*/}"
+	DEFAULT_DNSMASQ_CFGID=$(uci show dhcp.@dnsmasq[0] | awk -F '.' '{print $2}' | awk -F '=' '{print $1}' | head -1)
+	DNSMASQ_CONF_PATH=$(grep -l "^conf-dir=" "/tmp/etc/dnsmasq.conf.${DEFAULT_DNSMASQ_CFGID}")
+	DNSMASQ_CONF_DIR=$(grep '^conf-dir=' "$DNSMASQ_CONF_PATH" | cut -d'=' -f2 | head -n 1)
+	DNSMASQ_CONF_DIR=${DNSMASQ_CONF_DIR%*/}
 	rm -rf /etc/openclash >/dev/null 2>&1
+	rm -rf /etc/config/openclash >/dev/null 2>&1
 	rm -rf /tmp/openclash.log >/dev/null 2>&1
 	rm -rf /tmp/openclash_start.log >/dev/null 2>&1
 	rm -rf /tmp/openclash_last_version >/dev/null 2>&1
@@ -63,9 +67,9 @@ define Package/$(PKG_NAME)/postrm
 	rm -rf /tmp/rule_providers_name >/dev/null 2>&1
 	rm -rf /tmp/clash_last_version >/dev/null 2>&1
 	rm -rf /usr/share/openclash/backup >/dev/null 2>&1
-	rm -rf ${dnsmasqconfdir}/dnsmasq_openclash_custom_domain.conf >/dev/null 2>&1
-	rm -rf ${dnsmasqconfdir}/dnsmasq_openclash_chnroute_pass.conf >/dev/null 2>&1
-	rm -rf ${dnsmasqconfdir}/dnsmasq_openclash_chnroute6_pass.conf >/dev/null 2>&1
+	rm -rf ${DNSMASQ_CONF_DIR}/dnsmasq_openclash_custom_domain.conf >/dev/null 2>&1
+	rm -rf ${DNSMASQ_CONF_DIR}/dnsmasq_openclash_chnroute_pass.conf >/dev/null 2>&1
+	rm -rf ${DNSMASQ_CONF_DIR}/dnsmasq_openclash_chnroute6_pass.conf >/dev/null 2>&1
 	rm -rf /tmp/dler* >/dev/null 2>&1
 	rm -rf /tmp/etc/openclash >/dev/null 2>&1
 	rm -rf /tmp/openclash_edit_file_name >/dev/null 2>&1

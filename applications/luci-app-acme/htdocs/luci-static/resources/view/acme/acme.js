@@ -30,7 +30,7 @@ return view.extend({
 		let ddnsDomains = _collectDdnsDomains();
 		let wikiUrl = 'https://github.com/acmesh-official/acme.sh/wiki/';
 		var wikiInstructionUrl = wikiUrl + 'dnsapi';
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map("acme", _('ACME certificates'),
 			_('This configures ACME automatic certificate installation. ' +

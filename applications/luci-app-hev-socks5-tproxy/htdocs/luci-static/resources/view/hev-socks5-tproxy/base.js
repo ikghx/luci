@@ -4,7 +4,7 @@
 'require poll';
 'require rpc';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: ['name'],
@@ -38,7 +38,7 @@ return view.extend({
 
 	render: function(data) {
 		let isRunning = data[0];
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('hev-socks5-tproxy', _('Hev Socks5 TProxy'), _('HevSocks5TProxy is a simple, lightweight transparent proxy for Linux.'));
 

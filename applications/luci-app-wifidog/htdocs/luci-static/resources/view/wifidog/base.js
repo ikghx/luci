@@ -3,7 +3,7 @@
 'require form';
 'require rpc';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
@@ -26,7 +26,7 @@ return view.extend({
 			status = "<span style=\"color:red;font-weight:bold\">" + _("Not running") + "</span>";
 		}
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('wifidog', _('WifiDog') + status, _('The WiFi Guard Dog project is a complete and embeddable captive portal solution.'));
 

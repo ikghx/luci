@@ -5,7 +5,7 @@
 'require rpc';
 'require uci';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
@@ -29,7 +29,7 @@ return view.extend({
 			status = "<span style=\"color:red;font-weight:bold\">" + _("Not running") + "</span>";
 		}
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('haproxy', _('HAProxy') + status, _('The Reliable, High Performance TCP/HTTP Load Balancer.'));
 

@@ -4,7 +4,7 @@
 'require poll';
 'require rpc';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
@@ -43,7 +43,7 @@ return view.extend({
 
 	render: function(res) {
 
-		var m, s, o;
+		let m, s, o;
 
 		m = new form.Map('rclone', _('Rclone'), _('Rclone is a command line program to sync files and directories to and from different cloud storage providers.'));
 

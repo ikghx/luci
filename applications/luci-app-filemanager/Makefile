@@ -2,7 +2,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Base File Browser module
+LUCI_TITLE:=LuCI File Manager module
 LUCI_DEPENDS:=+luci-base
 
 PKG_LICENSE:=Apache-2.0
