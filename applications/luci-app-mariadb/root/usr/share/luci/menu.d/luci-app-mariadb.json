@@ -1,0 +1,40 @@
+{
+	"admin/services/mariadb": {
+		"title": "Mariadb",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/mariadb/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-mariadb" ],
+			"uci": { "mysqld": true }
+		}
+	},
+
+	"admin/services/mariadb/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "mariadb/base"
+		}
+	},
+
+	"admin/services/mariadb/conf1": {
+		"title": "Server configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "mariadb/conf1"
+		}
+	},
+
+	"admin/services/mariadb/conf2": {
+		"title": "Client configuration",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "mariadb/conf2"
+		}
+	}
+}

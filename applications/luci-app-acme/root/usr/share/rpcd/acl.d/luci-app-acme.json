@@ -1,0 +1,18 @@
+{
+        "luci-app-acme": {
+                "description": "Grant UCI access for luci-app-acme",
+                "read": {
+                        "cgi-io": [ "exec" ],
+                        "file": {
+                                "/proc/sys/kernel/hostname": [ "read" ],
+                                "/etc/ssl/acme": [ "list" ],
+                                "/sbin/logread -e acme": [ "exec" ],
+                                "/usr/sbin/logread -e acme": [ "exec" ]
+                        },
+                        "uci": [ "acme" ]
+                },
+                "write": {
+                        "uci": [ "acme" ]
+                }
+        }
+}

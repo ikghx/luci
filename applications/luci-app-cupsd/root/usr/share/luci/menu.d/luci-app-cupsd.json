@@ -1,0 +1,31 @@
+{
+	"admin/services/cupsd": {
+		"title": "CUPS print server",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/cupsd/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-cupsd" ],
+			"uci": { "cupsd": true }
+		}
+	},
+
+	"admin/services/cupsd/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "cupsd/base"
+		}
+	},
+
+	"admin/services/cupsd/conf": {
+		"title": "Advanced Settings",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "cupsd/conf"
+		}
+	}
+}

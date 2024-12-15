@@ -1,0 +1,17 @@
+{
+	"luci-app-memcached": {
+		"description": "Grant UCI access for luci-app-memcached",
+		"read": {
+			"file": {
+				"/etc/passwd": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "memcached" ]
+		},
+		"write": {
+			"uci": [ "memcached" ]
+		}
+	}
+}

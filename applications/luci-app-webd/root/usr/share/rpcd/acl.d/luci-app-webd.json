@@ -1,0 +1,21 @@
+{
+	"luci-app-webd": {
+		"description": "Grant UCI access for luci-app-webd",
+		"read": {
+			"file": {
+				"/etc/webd.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "webd" ]
+		},
+		"write": {
+			"file": {
+				"/etc/webd.conf": [ "write" ],
+				"/etc/init.d/webd restart": [ "exec" ]
+			},
+			"uci": [ "webd" ]
+		}
+	}
+}

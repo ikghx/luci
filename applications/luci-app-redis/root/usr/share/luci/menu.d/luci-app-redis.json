@@ -1,0 +1,31 @@
+{
+	"admin/services/redis": {
+		"title": "Redis Server",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/redis/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-redis" ],
+			"uci": { "redis": true }
+		}
+	},
+
+	"admin/services/redis/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "redis/base"
+		}
+	},
+
+	"admin/services/redis/conf": {
+		"title": "Server configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "redis/conf"
+		}
+	}
+}

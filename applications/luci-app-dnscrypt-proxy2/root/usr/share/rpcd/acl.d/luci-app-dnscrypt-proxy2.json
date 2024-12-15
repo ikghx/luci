@@ -1,0 +1,23 @@
+{
+	"luci-app-dnscrypt-proxy2": {
+		"description": "Grant UCI access for luci-app-dnscrypt-proxy2",
+		"read": {
+			"file": {
+				"/etc/dnscrypt-proxy2/dnscrypt-proxy.toml": [ "read" ],
+				"/etc/dnscrypt-proxy2/blocked-names.txt": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "dnscrypt-proxy2" ]
+		},
+		"write": {
+			"file": {
+				"/etc/dnscrypt-proxy2/dnscrypt-proxy.toml": [ "write" ],
+				"/etc/dnscrypt-proxy2/blocked-names.txt": [ "write" ],
+				"/etc/init.d/dnscrypt-proxy restart": [ "exec" ]
+			},
+			"uci": [ "dnscrypt-proxy2" ]
+		}
+	}
+}

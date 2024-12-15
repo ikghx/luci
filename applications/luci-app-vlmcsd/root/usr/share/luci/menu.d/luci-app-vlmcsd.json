@@ -1,0 +1,31 @@
+{
+	"admin/services/vlmcsd": {
+		"title": "KMS Server",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/vlmcsd/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-vlmcsd" ],
+			"uci": { "vlmcsd": true }
+		}
+	},
+
+	"admin/services/vlmcsd/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "vlmcsd/base"
+		}
+	},
+
+	"admin/services/vlmcsd/conf": {
+		"title": "Configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "vlmcsd/conf"
+		}
+	}
+}

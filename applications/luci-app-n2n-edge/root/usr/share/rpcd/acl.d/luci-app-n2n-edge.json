@@ -1,0 +1,21 @@
+{
+	"luci-app-n2n-edge": {
+		"description": "Grant UCI access for luci-app-n2n-edge",
+		"read": {
+			"file": {
+				"/etc/n2n/edge.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "n2n-edge" ]
+		},
+		"write": {
+			"file": {
+				"/etc/n2n/edge.conf": [ "write" ],
+				"/etc/init.d/edge restart": [ "exec" ]
+			},
+			"uci": [ "n2n-edge" ]
+		}
+	}
+}

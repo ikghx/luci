@@ -1,0 +1,14 @@
+{
+	"luci-app-usbipd": {
+		"description": "Grant UCI access for luci-app-usbipd",
+		"read": {
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "usbipd" ]
+		},
+		"write": {
+			"uci": [ "usbipd" ]
+		}
+	}
+}

@@ -1,0 +1,100 @@
+{
+  "admin/vpn/v2ray": {
+    "title": "V2ray",
+    "action": {
+      "type": "alias",
+      "path": "admin/vpn/v2ray/main"
+    },
+    "depends": {
+      "acl": [ "luci-app-v2ray" ],
+      "uci": { "v2ray": true }
+    }
+  },
+  "admin/vpn/v2ray/main": {
+    "title": "Global Settings",
+    "order": 10,
+    "action": {
+      "type": "view",
+      "path": "v2ray/main"
+    }
+  },
+  "admin/vpn/v2ray/inbound": {
+    "title": "Inbound Rule",
+    "order": 20,
+    "action": {
+      "type": "view",
+      "path": "v2ray/inbound"
+    }
+  },
+  "admin/vpn/v2ray/outbound": {
+    "title": "Outbound Rule",
+    "order": 30,
+    "action": {
+      "type": "view",
+      "path": "v2ray/outbound"
+    }
+  },
+  "admin/vpn/v2ray/dns": {
+    "title": "DNS",
+    "order": 40,
+    "action": {
+      "type": "view",
+      "path": "v2ray/dns"
+    }
+  },
+  "admin/vpn/v2ray/routing": {
+    "title": "Routing Rule",
+    "order": 50,
+    "action": {
+      "type": "view",
+      "path": "v2ray/routing"
+    }
+  },
+  "admin/vpn/v2ray/observatory": {
+    "title": "Observatory",
+    "order": 60,
+    "action": {
+      "type": "view",
+      "path": "v2ray/observatory"
+    }
+  },
+  "admin/vpn/v2ray/policy": {
+    "title": "Policy",
+    "order": 70,
+    "action": {
+      "type": "view",
+      "path": "v2ray/policy"
+    }
+  },
+  "admin/vpn/v2ray/reverse": {
+    "title": "Reverse",
+    "order": 80,
+    "action": {
+      "type": "view",
+      "path": "v2ray/reverse"
+    }
+  },
+  "admin/vpn/v2ray/transparent-proxy": {
+    "title": "Transparent Proxy",
+    "order": 90,
+    "action": {
+      "type": "view",
+      "path": "v2ray/transparent-proxy"
+    }
+  },
+  "admin/vpn/v2ray/about": {
+    "title": "About",
+    "order": 100,
+    "action": {
+      "type": "view",
+      "path": "v2ray/about"
+    }
+  },
+  "admin/vpn/v2ray/request": {
+    "action": {
+      "type": "call",
+      "module": "luci.controller.v2ray",
+      "function": "action_request"
+    }
+  }
+}

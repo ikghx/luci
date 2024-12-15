@@ -1,0 +1,12 @@
+#!/bin/sh
+# by KGHX on https://iyzm.net/
+
+. /lib/functions.sh
+
+[ "$ACTION" = ifup ] || exit 0
+[ "$INTERFACE" = lan ] || exit 0
+LAN="$(uci_get network.lan.ipaddr)"
+sed -i "s@option presentation_url 'http://.*'@option presentation_url 'http://$LAN/'@" /etc/config/upnpd
+/etc/init.d/miniupnpd restart
+
+exit 0

@@ -1,0 +1,49 @@
+{
+	"admin/nas/rsyncd": {
+		"title": "Rsync server",
+		"action": {
+			"type": "alias",
+			"path": "admin/nas/rsyncd/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-rsyncd" ],
+			"uci": { "rsyncd": true }
+		}
+	},
+
+	"admin/nas/rsyncd/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "rsyncd/base"
+		}
+	},
+
+	"admin/nas/rsyncd/conf1": {
+		"title": "Server configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "rsyncd/conf1"
+		}
+	},
+
+	"admin/nas/rsyncd/conf2": {
+		"title": "Account list",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "rsyncd/conf2"
+		}
+	},
+
+	"admin/nas/rsyncd/conf3": {
+		"title": "Password file",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "rsyncd/conf3"
+		}
+	}
+}

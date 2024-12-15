@@ -1,0 +1,26 @@
+{
+	"luci-app-mosdns": {
+		"description": "Grant UCI access for luci-app-mosdns",
+		"read": {
+			"file": {
+				"/etc/mosdns/config.yaml": [ "read" ],
+				"/etc/mosdns/rule/blocklist.txt": [ "read" ],
+				"/etc/mosdns/rule/whitelist.txt": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "mosdns" ]
+		},
+		"write": {
+			"file": {
+				"/etc/mosdns/config.yaml": [ "write" ],
+				"/etc/init.d/mosdns restart": [ "exec" ],
+				"/etc/mosdns/rule/blocklist.txt": [ "write" ],
+				"/etc/mosdns/rule/whitelist.txt": [ "write" ],
+				"/etc/mosdns/up_data.sh": [ "exec" ]
+			},
+			"uci": [ "mosdns" ]
+		}
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"luci-app-n2n-supernode": {
+		"description": "Grant UCI access for luci-app-n2n-supernode",
+		"read": {
+			"file": {
+				"/etc/n2n/supernode.conf": [ "read" ],
+				"/etc/n2n/communities.list": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "n2n-supernode" ]
+		},
+		"write": {
+			"file": {
+				"/etc/n2n/supernode.conf": [ "write" ],
+				"/etc/n2n/communities.list": [ "write" ],
+				"/etc/init.d/supernode restart": [ "exec" ]
+			},
+			"uci": [ "n2n-supernode" ]
+		}
+	}
+}

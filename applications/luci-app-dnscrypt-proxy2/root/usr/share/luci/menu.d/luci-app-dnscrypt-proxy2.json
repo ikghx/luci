@@ -1,0 +1,40 @@
+{
+	"admin/services/dnscrypt-proxy2": {
+		"title": "DNSCrypt v2",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/dnscrypt-proxy2/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-dnscrypt-proxy2" ],
+			"uci": { "dnscrypt-proxy2": true }
+		}
+	},
+
+	"admin/services/dnscrypt-proxy2/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "dnscrypt-proxy2/base"
+		}
+	},
+
+	"admin/services/dnscrypt-proxy2/conf1": {
+		"title": "Basic configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "dnscrypt-proxy2/conf1"
+		}
+	},
+
+	"admin/services/dnscrypt-proxy2/conf2": {
+		"title": "Blacklist",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "dnscrypt-proxy2/conf2"
+		}
+	}
+}

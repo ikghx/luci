@@ -1,0 +1,17 @@
+{
+	"luci-app-stdiscosrv": {
+		"description": "Grant UCI access for luci-app-stdiscosrv",
+		"read": {
+			"file": {
+				"/etc/passwd": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "stdiscosrv" ]
+		},
+		"write": {
+			"uci": [ "stdiscosrv" ]
+		}
+	}
+}

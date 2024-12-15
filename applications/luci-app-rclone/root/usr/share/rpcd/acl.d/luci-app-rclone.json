@@ -1,0 +1,14 @@
+{
+	"luci-app-rclone": {
+		"description": "Grant UCI access for luci-app-rclone",
+		"read": {
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "rclone" ]
+		},
+		"write": {
+			"uci": [ "rclone" ]
+		}
+	}
+}

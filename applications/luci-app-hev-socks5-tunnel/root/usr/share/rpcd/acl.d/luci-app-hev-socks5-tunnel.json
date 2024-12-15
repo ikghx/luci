@@ -1,0 +1,21 @@
+{
+	"luci-app-hev-socks5-tunnel": {
+		"description": "Grant UCI access for luci-app-hev-socks5-tunnel",
+		"read": {
+			"file": {
+				"/etc/hev-socks5-tunnel/main.yml": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "hev-socks5-tunnel" ]
+		},
+		"write": {
+			"file": {
+				"/etc/hev-socks5-tunnel/main.yml": [ "write" ],
+				"/etc/init.d/hev-socks5-tunnel restart": [ "exec" ]
+			},
+			"uci": [ "hev-socks5-tunnel" ]
+		}
+	}
+}
