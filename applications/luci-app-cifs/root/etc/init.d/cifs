@@ -9,6 +9,7 @@ IOCHARSET=0
 DELAY=0
 GUEST=""
 USERS=""
+SEC=""
 AGM=""
 VERS=""
 
@@ -43,6 +44,7 @@ mount_natshare() {
 	local guest
 	local users
 	local pwd
+	local sec
 	local agm
 	local vers
 	
@@ -55,6 +57,7 @@ mount_natshare() {
 	config_get guest $1 guest
 	config_get users $1 users
 	config_get pwd $1 pwd
+	config_get sec $1 sec
 	config_get agm $1 agm
 	config_get vers $1 vers
 
@@ -75,6 +78,13 @@ mount_natshare() {
 			}
 		fi
 	fi
+
+	if [ $sec ]
+	then
+		SEC=",sec=$sec"
+	else
+		SEC=""
+	fi
 	
 	if [ $agm ]
 	then
@@ -92,7 +102,7 @@ mount_natshare() {
 
 	#append _mount_path "$MOUNTAREA/${server}-$name"
 	append _mount_path "$MOUNTAREA/$name"
-	append _agm "-o ${USERS}${GUEST}domain=$WORKGROUPD,iocharset=$IOCHARSET$AGM$VERS"
+	append _agm "-o ${USERS}${GUEST}domain=$WORKGROUPD,iocharset=$IOCHARSET$SEC$AGM$VERS"
 	
 	sleep 1
 	mkdir -p $_mount_path

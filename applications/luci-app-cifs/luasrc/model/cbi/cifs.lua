@@ -20,12 +20,10 @@ switch = s:taboption("general", Flag, "enabled", translate("Enable"))
 switch.rmempty = false
 
 workgroup = s:taboption("general", Value, "workgroup", translate("Workgroup"))
-workgroup.default = "WORKGROUP"
-workgroup.placeholder = "WORKGROUP"
+workgroup:value("WORKGROUP")
 
 mountarea = s:taboption("general", Value, "mountarea", translate("Mount Area"), translate("All the Mounted NAT Drives will be centralized into this folder."))
-mountarea.default = "/tmp/mnt"
-mountarea.placeholder = "/tmp/mnt"
+mountarea.placeholder = "/mnt"
 mountarea.rmempty = false
 
 delay = s:taboption("general", Value, "delay", translate("Delay"), translate("Delay command runing for wait till your drivers online. Only work in start mode(/etc/init.d/cifs start)"))
@@ -36,7 +34,6 @@ delay:value("7")
 delay:value("10")
 delay.default = "5"
 
-
 iocharset = s:taboption("general", Value, "iocharset", translate("Character Encoding"))
 iocharset:value("utf8")
 iocharset:value("cp437")
@@ -44,8 +41,6 @@ iocharset:value("cp936")
 iocharset:value("cp850")
 iocharset:value("iso8859-1")
 iocharset:value("iso8859-15")
-iocharset.default = "utf8"
-
 
 s = m:section(TypedSection, "natshare", translate("NAT Drivers"))
 s.anonymous = true
@@ -64,6 +59,17 @@ pth = s:option(Value, "natpath", translate("NAT Path"))
 pth.placeholder = "//192.168.9.1/Data"
 pth.rmempty = false
 
+sec = s:option(Value, "sec", translate("Choose Safety Mode"))
+sec:value("none")
+sec:value("krb5")
+sec:value("krb5i")
+sec:value("ntlm")
+sec:value("ntlmi")
+sec:value("ntlmv2")
+sec:value("ntlmv2i")
+sec.rmempty = true
+sec.size = 7
+
 agm = s:option(Value, "agm", translate("Arguments"))
 agm:value("ro", translate("Read Only"))
 agm:value("rw", translate("Read and Write"))
@@ -74,6 +80,7 @@ agm:value("directio", translate("directIO"))
 agm:value("file_mode=0777,dir_mode=0777", translate("file and folder umask=0777"))
 agm:value("nounix", translate("Disable Unix Extensions"))
 agm:value("noserverino", translate("Disable Server inode"))
+vers.default = "rw"
 agm.rmempty = true
 agm.size = 8
 
@@ -86,8 +93,6 @@ vers.rmempty = false
 
 guest = s:option(Flag, "guest", translate("Guest"))
 guest.rmempty = false
-guest.enabled = "1"
-guest.disabled = "0"
 
 users = s:option(Value, "users", translate("Username"))
 users.size = 3
@@ -102,6 +107,5 @@ local apply = luci.http.formvalue("cbi.apply")
 if apply then
 	luci.util.exec("/etc/init.d/cifs restart >/dev/null 2>&1")
 end
-
 
 return m

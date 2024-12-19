@@ -17,16 +17,44 @@ s = m:section(TypedSection, "global_delay", translate("Delay Settings"))
 s.anonymous = true
 s.addremove = false
 
+---- Open and close Daemon
+o = s:option(Flag, "start_daemon", translate("Open and close Daemon"))
+o.default = 1
+o.rmempty = false
+
 ---- Delay Start
-o = s:option(Value, "start_delay", translate("Delay Start"),
-			 translate("Units:seconds"))
+o = s:option(Value, "start_delay", translate("Delay Start"), translate("Units:seconds"))
 o.default = "1"
 o.rmempty = true
 
----- Open and close Daemon
-o = s:option(Flag, "start_daemon", translate("Open and close Daemon"))
-o.default = "1"
-o.rmempty = false
+for index, value in ipairs({"stop", "start", "restart"}) do
+	o = s:option(ListValue, value .. "_week_mode", translate(value .. " automatically mode"))
+	o:value("", translate("Disable"))
+	o:value(8, translate("Loop Mode"))
+	o:value(7, translate("Every day"))
+	o:value(1, translate("Every Monday"))
+	o:value(2, translate("Every Tuesday"))
+	o:value(3, translate("Every Wednesday"))
+	o:value(4, translate("Every Thursday"))
+	o:value(5, translate("Every Friday"))
+	o:value(6, translate("Every Saturday"))
+	o:value(0, translate("Every Sunday"))
+	o = s:option(ListValue, value .. "_time_mode", translate(value .. " Time(Every day)"))
+	for t = 0, 23 do o:value(t, t .. ":00") end
+	o.default = 0
+	o:depends(value .. "_week_mode", "0")
+	o:depends(value .. "_week_mode", "1")
+	o:depends(value .. "_week_mode", "2")
+	o:depends(value .. "_week_mode", "3")
+	o:depends(value .. "_week_mode", "4")
+	o:depends(value .. "_week_mode", "5")
+	o:depends(value .. "_week_mode", "6")
+	o:depends(value .. "_week_mode", "7")
+	o = s:option(ListValue, value .. "_interval_mode", translate(value .. " Interval(Hour)"))
+	for t = 1, 24 do o:value(t, t .. " " .. translate("Hour")) end
+	o.default = 2
+	o:depends(value .. "_week_mode", "8")
+end
 
 -- [[ Forwarding Settings ]]--
 s = m:section(TypedSection, "global_forwarding",
@@ -92,13 +120,13 @@ end
 if (os.execute("lsmod | grep -i REDIRECT >/dev/null") == 0 and os.execute("lsmod | grep -i TPROXY >/dev/null") == 0) or (os.execute("lsmod | grep -i nft_redir >/dev/null") == 0 and os.execute("lsmod | grep -i nft_tproxy >/dev/null") == 0) then
 	o = s:option(ListValue, "tcp_proxy_way", translate("TCP Proxy Way"))
 	o.default = "redirect"
-	o:value("redirect", translate("REDIRECT"))
-	o:value("tproxy", translate("TPROXY"))
+	o:value("redirect", "REDIRECT")
+	o:value("tproxy", "TPROXY")
 	o:depends("ipv6_tproxy", false)
 
 	o = s:option(ListValue, "_tcp_proxy_way", translate("TCP Proxy Way"))
 	o.default = "tproxy"
-	o:value("tproxy", translate("TPROXY"))
+	o:value("tproxy", "TPROXY")
 	o:depends("ipv6_tproxy", true)
 	o.write = function(self, section, value)
 		return self.map:set(section, "tcp_proxy_way", value)
