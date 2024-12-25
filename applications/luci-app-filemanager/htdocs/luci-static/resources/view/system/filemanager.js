@@ -1915,7 +1915,7 @@ return view.extend({
 		var editorMessage = document.getElementById('editor-message');
 		var editorContainer = document.getElementById('editor-container');
 
-		// Set default permissions if file row is not found
+		// Set default permissions if the file row is not found
 		if (fileRow) {
 			var permissions = fileRow.getAttribute('data-numeric-permissions');
 			self.originalFilePermissions = permissions;
@@ -1923,62 +1923,49 @@ return view.extend({
 			self.originalFilePermissions = '644';
 		}
 
-		// Update message to indicate loading
+		// Update the message to indicate that the file is loading
 		if (editorMessage) {
 			editorMessage.textContent = _('Loading file...');
 		}
 
-		// Execute 'cat' to read the file content
-		fs.exec('cat', [filePath]).then(function(res) {
-			var content = '';
-			if (res.code !== 0) {
-				if (res.stderr.trim() !== '') {
-					return Promise.reject(new Error(res.stderr.trim()));
+		// Determine the response type based on the desired mode
+		var responseType = (mode === 'bin') ? 'blob' : 'text';
+
+		// Use read_direct to retrieve the file content
+		fs.read_direct(filePath, responseType)
+			.then(function(response) {
+				if (mode === 'bin') {
+					// If binary data is required, convert Blob to ArrayBuffer
+					return response.arrayBuffer().then(function(arrayBuffer) {
+						// Store binary data as Uint8Array
+						self.fileData = new Uint8Array(arrayBuffer);
+						self.fileContent = ''; // Optional: Can be left empty or used for display purposes
+					});
+				} else {
+					// If text data is required, use it directly
+					self.fileContent = response;
+					// Optionally, convert text to Uint8Array if needed
+					var encoder = new TextEncoder();
+					self.fileData = encoder.encode(response);
 				}
-			} else {
-				content = res.stdout || '';
-			}
+			})
+			.then(function() {
+				// Set the editor mode (e.g., 'text' or 'bin')
+				self.editorMode = mode;
 
-			// Store the content as a string
-			self.fileContent = content;
+				// Render the editor with the file content
+				self.renderEditor(filePath);
 
-			// Convert content to Uint8Array in chunks not exceeding 8KB
-			var CHUNK_SIZE = 8 * 1024; // 8KB
-			var totalLength = content.length;
-			var chunks = [];
-			for (var i = 0; i < totalLength; i += CHUNK_SIZE) {
-				var chunkStr = content.slice(i, i + CHUNK_SIZE);
-				var chunkBytes = new TextEncoder().encode(chunkStr);
-				chunks.push(chunkBytes);
-			}
-			// Concatenate chunks into a single Uint8Array
-			var totalBytes = chunks.reduce(function(prev, curr) {
-				return prev + curr.length;
-			}, 0);
-			var dataArray = new Uint8Array(totalBytes);
-			var offset = 0;
-			chunks.forEach(function(chunk) {
-				dataArray.set(chunk, offset);
-				offset += chunk.length;
+				// Switch to the editor tab to display the editor interface
+				self.switchToTab('editor');
+			})
+			.catch(function(err) {
+				// Handle errors that occur during file reading
+				pop(null, E('p', _('Failed to open file: %s').format(err.message)), 'error');
+				if (editorMessage) {
+					editorMessage.textContent = _('Failed to open file: %s').format(err.message);
+				}
 			});
-
-			self.fileData = dataArray; // Store binary data as Uint8Array
-
-			self.editorMode = mode; // Set the initial editor mode to 'text'
-
-			// Render the editor
-			self.renderEditor(filePath);
-
-			// Switch to the editor tab
-			self.switchToTab('editor');
-
-		}).catch(function(err) {
-			// Handle file read errors
-			pop(null, E('p', _('Failed to open file: %s').format(err.message)), 'error');
-			if (editorMessage) {
-				editorMessage.textContent = _('Failed to open file: %s').format(err.message);
-			}
-		});
 	},
 
 	// Adjust padding for line numbers in the editor
