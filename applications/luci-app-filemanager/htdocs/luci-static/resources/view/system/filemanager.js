@@ -1908,7 +1908,22 @@ return view.extend({
 		});
 	},
 
-	// Handler for clicking on a file to open it in the editor
+	// Function to check if the content is textual
+	isText: function(content) {
+		// Check for null bytes, which are uncommon in text files
+		for (let i = 0; i < content.length; i++) {
+			if (content.charCodeAt(i) === 0) {
+				return false;
+			}
+		}
+		// Check the ratio of printable characters
+		// Allowing for common whitespace characters
+		var printable = content.replace(/[^\r\n\t\f\v\x20-\x7E]/g, '').length;
+		var ratio = printable / content.length;
+		return ratio > 0.95; // For example, more than 95% of characters are printable
+	},
+
+	// Function to handle clicking on a file to open it in the editor
 	handleFileClick: function(filePath, mode = 'text') {
 		var self = this;
 		var fileRow = document.querySelector("tr[data-file-path='" + filePath + "']");
@@ -1929,12 +1944,12 @@ return view.extend({
 		}
 
 		// Determine the response type based on the desired mode
-		var responseType = (mode === 'bin') ? 'blob' : 'text';
+		var responseType = (mode === 'hex') ? 'blob' : 'text';
 
 		// Use read_direct to retrieve the file content
 		fs.read_direct(filePath, responseType)
 			.then(function(response) {
-				if (mode === 'bin') {
+				if (mode === 'hex') {
 					// If binary data is required, convert Blob to ArrayBuffer
 					return response.arrayBuffer().then(function(arrayBuffer) {
 						// Store binary data as Uint8Array
@@ -1944,13 +1959,19 @@ return view.extend({
 				} else {
 					// If text data is required, use it directly
 					self.fileContent = response;
+
+					// Check if the content is textual
+					if (!self.isText(self.fileContent)) {
+						throw new Error(_('The file does not contain valid text data.'));
+					}
+
 					// Optionally, convert text to Uint8Array if needed
 					var encoder = new TextEncoder();
 					self.fileData = encoder.encode(response);
 				}
 			})
 			.then(function() {
-				// Set the editor mode (e.g., 'text' or 'bin')
+				// Set the editor mode (e.g., 'text' or 'hex')
 				self.editorMode = mode;
 
 				// Render the editor with the file content
@@ -1962,9 +1983,6 @@ return view.extend({
 			.catch(function(err) {
 				// Handle errors that occur during file reading
 				pop(null, E('p', _('Failed to open file: %s').format(err.message)), 'error');
-				if (editorMessage) {
-					editorMessage.textContent = _('Failed to open file: %s').format(err.message);
-				}
 			});
 	},
 
@@ -2806,6 +2824,7 @@ return view.extend({
 		}
 	},
 
+	// Function to toggle between text and hex modes
 	toggleHexMode: function(filePath) {
 		var self = this;
 
@@ -2822,10 +2841,17 @@ return view.extend({
 			}
 			self.editorMode = 'hex';
 		} else {
-			// Before switching to text mode, update self.fileData from the HexEditor
+			// Before switching to text mode, check if the file is textual
+			if (!self.isText(self.fileContent)) {
+				pop(null, E('p', _('This file is not a text file and cannot be edited in text mode.')), 'error');
+				return; // Abort the toggle
+			}
+
+			// Before switching to text mode, update self.fileData from HexEditor
 			if (self.hexEditorInstance) {
 				self.fileData = self.hexEditorInstance.getData();
 			}
+
 			// Convert self.fileData to string
 			var decoder = new TextDecoder();
 			self.fileContent = decoder.decode(self.fileData);
@@ -2835,6 +2861,5 @@ return view.extend({
 		// Re-render the editor
 		self.renderEditor(filePath);
 	}
-
 
 });

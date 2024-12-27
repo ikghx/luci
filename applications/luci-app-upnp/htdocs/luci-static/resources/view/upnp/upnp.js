@@ -142,7 +142,7 @@ return view.extend({
 		o.default = '1';
 
 		o = s.taboption('setup', form.Flag, 'enable_pcp_pmp', _('Enable PCP/NAT-PMP protocols'));
-    o.default = '1';
+		o.default = '1';
 
 		s.taboption('setup', form.Flag, 'allow_third_party_maps', _('Allow third-party maps'),
 			_('Non-secure mode.'));
