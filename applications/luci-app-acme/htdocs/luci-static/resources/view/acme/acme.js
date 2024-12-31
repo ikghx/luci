@@ -5,29 +5,19 @@
 'require view';
 
 return view.extend({
-	load: function () {
-		return Promise.all([
-			L.resolveDefault(fs.list('/etc/ssl/acme/'), []).then(function (entries) {
-				var certs = [];
-				for (var i = 0; i < entries.length; i++) {
-					if (entries[i].type == 'file' && entries[i].name.match(/\.key$/)) {
-						certs.push(entries[i]);
-					}
+	load: function() {
+		return L.resolveDefault(fs.list('/etc/ssl/acme/'), []).then(function(entries) {
+			var certs = [];
+			for (var i = 0; i < entries.length; i++) {
+				if (entries[i].type == 'file' && entries[i].name.match(/\.key$/)) {
+					certs.push(entries[i]);
 				}
-				return certs;
-			}),
-			L.resolveDefault(fs.stat('/usr/lib/acme/client/dnsapi'), null),
-			L.resolveDefault(fs.lines('/proc/sys/kernel/hostname'), ''),
-			L.resolveDefault(uci.load('ddns')),
-		]);
+			}
+			return certs;
+		});
 	},
 
-	render: function (data) {
-		let certs = data[0];
-		let hasDnsApi = data[1] != null;
-		let hostname = data[2];
-		let systemDomain = _guessDomain(hostname);
-		let ddnsDomains = _collectDdnsDomains();
+	render: function (certs) {
 		let wikiUrl = 'https://github.com/acmesh-official/acme.sh/wiki/';
 		var wikiInstructionUrl = wikiUrl + 'dnsapi';
 		let m, s, o;
@@ -57,20 +47,6 @@ return view.extend({
 		o = s.option(form.Flag, "debug", _('Enable debug logging'));
 		o.rmempty = false;
 
-		if (ddnsDomains) {
-			let ddnsDomainsList = [];
-			for (let ddnsDomain of ddnsDomains) {
-				ddnsDomainsList.push(ddnsDomain.domains[0]);
-			}
-			o = s.option(form.Button, '_import_ddns');
-			o.title = _('Found DDNS domains');
-			o.inputtitle = _('Import') + ': ' + ddnsDomainsList.join();
-			o.inputstyle = 'apply';
-			o.onclick = function () {
-				_importDdns(ddnsDomains);
-			};
-		}
-
 		s = m.section(form.GridSection, "cert", _('Certificate config'))
 		s.anonymous = false;
 		s.addremove = true;
@@ -93,42 +69,11 @@ return view.extend({
 		o.value('standalone', _('Standalone'));
 		o.value('webroot', _('Webroot'));
 
-		if (!hasDnsApi) {
-			let opkgPackage = 'acme-acmesh-dnsapi';
-			o = s.taboption('general', form.Button, '_install');
-			o.depends('validation_method', 'dns');
-			o.title = _('Package is not installed');
-			o.inputtitle = _('Install package %s').format(opkgPackage);
-			o.inputstyle = 'apply';
-			o.onclick = function () {
-				window.open(L.url('admin/system/opkg') +
-					'?query=' + opkgPackage, '_blank', 'noopener');
-			};
-		}
-
 		o = s.taboption('general', form.DynamicList, "domains", _('Domain names'),
 			_('Domain names to include in the certificate. ' +
 				'The first name will be the subject name, subsequent names will be alt names. ' +
 				'Note that all domain names must point at the router in the global DNS.'));
 		o.datatype = "list(string)";
-		if (systemDomain) {
-			o.default = [systemDomain];
-		}
-		o.validate = function (section_id, value) {
-			if (!value) {
-				return true;
-			}
-			if (!/^[*a-z0-9][a-z0-9.-]*$/.test(value)) {
-				return _('Invalid domain. Allowed lowercase a-z, numbers and hyphen -');
-			}
-			if (value.startsWith('*')) {
-				let method = this.section.children.filter(function (o) { return o.option == 'validation_method'; })[0].formvalue(section_id);
-				if (method && method !== 'dns') {
-					return _('wildcards * require Validation method: DNS');
-				}
-			}
-			return true;
-		};
 
 		o = s.taboption('challenge_webroot', form.Value, 'webroot', _('Webroot directory'),
 			_('Webserver root directory. Set this to the webserver ' +
@@ -533,7 +478,6 @@ return view.extend({
 		o.depends('validation_method', 'dns');
 		o.modalonly = true;
 
-
 		o = s.taboption('advanced', form.ListValue, 'key_type', _('Key type'),
 			_('Key size (and type) for the generated certificate.')
 		);
@@ -579,99 +523,9 @@ return view.extend({
 	}
 })
 
-function _isFqdn(domain) {
-	// Is not an IP i.e. starts from alphanumeric and has least one dot
-	return /[a-z0-9-]\..*$/.test(domain) && !/[0-9-]\..*$/.test(domain);
-}
-
-function _guessDomain(hostname) {
-	return _isFqdn(hostname) ? hostname : (_isFqdn(window.location.hostname) ? window.location.hostname : '');
-}
-
-function _collectDdnsDomains() {
-	let ddnsDomains = [];
-	let ddnsServices = uci.sections('ddns', 'service');
-	for (let ddnsService of ddnsServices) {
-		let dnsApi = '';
-		let credentials = [];
-		switch (ddnsService.service_name) {
-			case 'duckdns.org':
-				dnsApi = 'dns_duckdns';
-				credentials = [
-					'DuckDNS_Token=' + ddnsService['password'],
-				];
-				break;
-			case 'dynv6.com':
-				dnsApi = 'dns_dynv6';
-				credentials = [
-					'DYNV6_TOKEN=' + ddnsService['password'],
-				];
-				break;
-			case 'afraid.org-v2-basic':
-				dnsApi = 'dns_freedns';
-				credentials = [
-					'FREEDNS_User=' + ddnsService['username'],
-					'FREEDNS_Password=' + ddnsService['password'],
-				];
-				break;
-			case 'cloudflare.com-v4':
-				dnsApi = 'dns_cf';
-				credentials = [
-					'CF_Token=' + ddnsService['password'],
-				];
-				break;
-		}
-		if (credentials.length > 0) {
-			ddnsDomains.push({
-				sectionId: ddnsService['.name'],
-				domains: [ddnsService['domain'], '*.' + ddnsService['domain']],
-				dnsApi: dnsApi,
-				credentials: credentials,
-			});
-		}
-	}
-	return ddnsDomains;
-}
-
-function _importDdns(ddnsDomains) {
-	alert(_('After import check the added domain certificate configurations.'));
-	let certSections = uci.sections('acme', 'cert');
-	let certSectionNames = new Map();
-	let certSectionDomains = new Map();
-	for (let s of certSections) {
-		certSectionNames.set(s['.name'], null);
-		if (s.domains) {
-			for (let d of s.domains) {
-				certSectionDomains.set(d, s['.name']);
-			}
-		}
-	}
-	for (let ddnsDomain of ddnsDomains) {
-		let sectionId = ddnsDomain.sectionId;
-		// ensure unique sectionId
-		if (certSectionNames.has(sectionId)) {
-			sectionId += '_' + new Date().getTime();
-		}
-		if (ddnsDomain.domains) {
-			for (let d of ddnsDomain.domains) {
-				let dupDomainSection = certSectionDomains.get(d);
-				if (dupDomainSection) {
-					alert(_('The domain %s in DDNS %s already was configured in %s. Please check it after the import.').format(d, sectionId, dupDomainSection));
-				}
-			}
-		}
-		uci.add('acme', 'cert', sectionId);
-		uci.set('acme', sectionId, 'domains', ddnsDomain.domains);
-		uci.set('acme', sectionId, 'validation_method', 'dns');
-		uci.set('acme', sectionId, 'dns', ddnsDomain.dnsApi);
-		uci.set('acme', sectionId, 'credentials', ddnsDomain.credentials);
-	}
-	uci.save();
-	window.location.reload();
-}
 
 function _addDnsProviderField(s, provider, env, title, desc) {
-	let o = s.taboption('challenge_dns', form.Value, '_' + env, _(title),
+	let o = s.taboption('challenge_dns', form.Value, '_credentials_' + env, _(title),
 		_(desc));
 	o.depends('dns', provider);
 	o.modalonly = true;
@@ -679,10 +533,27 @@ function _addDnsProviderField(s, provider, env, title, desc) {
 		var creds = this.map.data.get(this.map.config, section_id, 'credentials');
 		return _extractParamValue(creds, env);
 	};
-	o.write = function (section_id, value) {
-		this.map.data.set('acme', section_id, 'credentials', [env + '="' + value + '"']);
-	};
+	o.write = function (section_id, value) { };
+	o.onchange = _handleEditChange;
 	return o;
+}
+
+function _handleEditChange(event, section_id, newVal) {
+	// Add the provider field value directly to the credentials DynList
+	let credentialsDynList = this.map.lookupOption('credentials', section_id)[0].getUIElement(section_id);
+	let creds = credentialsDynList.getValue();
+	let credsMap = _parseKeyValueListToMap(creds);
+	let optName = this.option.substring('_credentials_'.length);
+	if (newVal) {
+		credsMap.set(optName, newVal);
+	} else {
+		credsMap.delete(optName);
+	}
+	let newCreds = [];
+	for (let [key, val] of credsMap) {
+		newCreds.push(key + '="' + val + '"');
+	}
+	credentialsDynList.setValue(newCreds);
 }
 
 /**
@@ -691,23 +562,29 @@ function _addDnsProviderField(s, provider, env, title, desc) {
  * @returns {string}
  */
 function _extractParamValue(paramsKeyVals, paramName) {
+	let map = _parseKeyValueListToMap(paramsKeyVals)
+	return map.get(paramName) || '';
+}
+
+/**
+ * @param {string[]} paramsKeyVals
+ * @returns {Map}
+ */
+function _parseKeyValueListToMap(paramsKeyVals) {
+	let map = new Map();
 	if (!paramsKeyVals) {
-		return '';
+		return map;
 	}
-	for (let i = 0; i < paramsKeyVals.length; i++) {
-		var paramKeyVal = paramsKeyVals[i];
-		var parts = paramKeyVal.split('=');
-		if (parts.length < 2) {
+	for (let paramKeyVal of paramsKeyVals) {
+		let pos = paramKeyVal.indexOf("=");
+		if (pos < 0) {
 			continue;
 		}
-		var name = parts[0];
-		var val = parts[1];
-		if (name == paramName) {
-			// unquote
-			return val.substring(0, val.length-1).substring(1);
-		}
+		let name = paramKeyVal.slice(0, pos);
+		let unquotedVal = paramKeyVal.slice(pos + 2, paramKeyVal.length - 1);
+		map.set(name, unquotedVal);
 	}
-	return '';
+	return map;
 }
 
 function _handleCheckService(c, event, curVal, newVal) {
