@@ -27,6 +27,7 @@ function index()
 	entry({"admin", "vpn", "openclash", "opupdate"},call("action_opupdate"))
 	entry({"admin", "vpn", "openclash", "coreupdate"},call("action_coreupdate"))
 	entry({"admin", "vpn", "openclash", "flush_fakeip_cache"}, call("action_flush_fakeip_cache"))
+	entry({"admin", "vpn", "openclash", "update_config"}, call("action_update_config"))
 	entry({"admin", "vpn", "openclash", "download_rule"}, call("action_download_rule"))
 	entry({"admin", "vpn", "openclash", "restore"}, call("action_restore_config"))
 	entry({"admin", "vpn", "openclash", "backup"}, call("action_backup"))
@@ -343,12 +344,17 @@ function action_flush_fakeip_cache()
 		local dase = dase() or ""
 		local cn_port = cn_port()
 		if not daip or not cn_port then return end
-  	state = luci.sys.exec(string.format('curl -sL -m 3 -H "Content-Type: application/json" -H "Authorization: Bearer %s" -XPOST http://"%s":"%s"/cache/fakeip/flush', dase, daip, cn_port))
-  end
-  luci.http.prepare_content("application/json")
+		state = luci.sys.exec(string.format('curl -sL -m 3 -H "Content-Type: application/json" -H "Authorization: Bearer %s" -XPOST http://"%s":"%s"/cache/fakeip/flush', dase, daip, cn_port))
+	end
+	luci.http.prepare_content("application/json")
 	luci.http.write_json({
 		flush_status = state;
 	})
+end
+
+function action_update_config()
+	local filename = luci.http.formvalue("filename") or "config"
+	luci.sys.exec(string.format("/usr/share/openclash/openclash.sh '%s' >/dev/null 2>&1 &", filename))
 end
 
 function action_restore_config()
