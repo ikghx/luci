@@ -34,6 +34,10 @@ msgstr "(大文件)"
 msgid "(Maybe Incompatible For Your Firmware)"
 msgstr "（部分固件可能不兼容）"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:78
+msgid "(Not Support mrs Format)"
+msgstr "(不支持 mrs 格式)"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:792
 msgid "(Only CN)"
 msgstr "(仅中国数据)"
@@ -79,7 +83,7 @@ msgstr "（优先匹配）"
 msgid "(Support Vless By Pinyun)"
 msgstr "(由品云提供，支持 Vless)"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:70
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:64
 msgid "(TUN&Meta Core)"
 msgstr "（TUN&Meta 内核）"
 
@@ -267,7 +271,7 @@ msgid "Alecthw-lite-Version"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:115
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:153
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:163
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:943
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:46
 msgid "All Groups"
@@ -305,7 +309,7 @@ msgstr "追加默认 DNS"
 msgid "Append Node Type"
 msgstr "插入节点类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:108
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:111
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:201
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:239
 msgid "Append Position"
@@ -455,9 +459,9 @@ msgstr "自动展开嵌套的策略组并进行解锁检测，启用后可能会
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:141
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-file-edit.lua:65
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:434
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:175
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:185
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-file-manage.lua:116
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:154
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:187
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-file-manage.lua:116
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-manage.lua:33
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:965
@@ -739,11 +743,11 @@ msgstr "设置策略组挑选服务器节点的工作方式"
 msgid "Choose The Provider Type"
 msgstr "选择代理集的类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:65
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:75
 msgid "Choose The Rule Behavior"
 msgstr "选择规则类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:72
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:66
 msgid "Choose The Rule File Format, For More Info:"
 msgstr "选择规则格式, 了解使用方式请前往："
 
@@ -888,8 +892,8 @@ msgstr ""
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:132
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-file-edit.lua:58
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:426
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:167
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:145
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:177
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:178
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:271
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:957
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:262
@@ -1353,7 +1357,7 @@ msgstr "Direct【全局直连】"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:67
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:134
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:73
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:97
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:98
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:194
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:114
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:284
@@ -1593,7 +1597,8 @@ msgstr "编辑规则集配置"
 msgid "Edit Server"
 msgstr "编辑服务器配置"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:116
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:117
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:147
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:906
 msgid "Edit Your Other Parameters Here"
 msgstr "请在此编辑您的附加配置"
@@ -1613,7 +1618,7 @@ msgstr "添加Emoji"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:177
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:78
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:74
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:98
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:99
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:53
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:129
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:222
@@ -1792,7 +1797,7 @@ msgstr "已下载"
 msgid "Expand Group"
 msgstr "展开策略组"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:111
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:114
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:204
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:242
 msgid "Extended Match"
@@ -2134,11 +2139,11 @@ msgstr ""
 msgid "Headers"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:107
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:108
 msgid "Health Check Interval(s)"
 msgstr "状态检查间隔（s）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:101
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:102
 msgid "Health Check URL"
 msgstr "状态检查URL"
 
@@ -2689,7 +2694,7 @@ msgid ""
 "No Compiled Version is Selected, Please Select on The Top and Try Again!"
 msgstr "未选择编译版本，请到上方标签选择后重试！"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:151
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:161
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:941
 msgid "No Need Set when Config Create, The added Proxy Groups Must Exist"
 msgstr ""
@@ -2953,7 +2958,8 @@ msgstr "模式设置"
 msgid "Other Group (Support Regex)"
 msgstr "包含其他策略组（请勿重复添加，支持正则匹配）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:112
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:113
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:143
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:902
 msgid "Other Parameters"
 msgstr "其他附加配置"
@@ -3131,7 +3137,7 @@ msgstr ""
 msgid "Prevent YouTube and Others To Use QUIC Transmission"
 msgstr "防止 YouTube 等使用 QUIC 导致速度不佳"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:110
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:113
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:203
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:241
 msgid "Priority Match"
@@ -3161,24 +3167,24 @@ msgid "Provider File Manage"
 msgstr "代理（规则）集文件管理"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:99
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:87
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:88
 msgid "Provider Filter"
 msgstr "代理集节点筛选"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:96
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:97
 msgid "Provider Health Check"
 msgstr "代理集状态检查"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:91
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:92
 msgid "Provider Interval(s)"
 msgstr "代理集更新间隔（s）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:63
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:64
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:129
 msgid "Provider Name"
 msgstr "代理集别名（请勿重名）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:67
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:68
 msgid "Provider Path"
 msgstr "代理集路径（Path）"
 
@@ -3187,7 +3193,7 @@ msgstr "代理集路径（Path）"
 msgid "Provider Type"
 msgstr "代理集类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:83
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:84
 msgid "Provider URL"
 msgstr "代理集URL"
 
@@ -3199,7 +3205,7 @@ msgstr "服务器节点配置"
 msgid "Proxy"
 msgstr "必须代理的流量"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:150
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:160
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:940
 msgid "Proxy Group (Support Regex)"
 msgstr "添加到策略组（请勿重复添加，支持正则匹配）"
@@ -3456,11 +3462,11 @@ msgstr "规则"
 msgid "Rule Author"
 msgstr "规则作者"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:63
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:73
 msgid "Rule Behavior"
 msgstr "规则类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:70
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:64
 msgid "Rule Format"
 msgstr "规则格式"
 
@@ -3501,7 +3507,7 @@ msgstr "规则附加"
 msgid "Rule Providers File List"
 msgstr "规则集文件列表"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:103
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:106
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:196
 msgid "Rule Providers Interval(s)"
 msgstr "规则集更新时间（秒）"
@@ -3511,7 +3517,7 @@ msgstr "规则集更新时间（秒）"
 msgid "Rule Providers Name"
 msgstr "别名（请勿重名）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:77
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:80
 msgid "Rule Providers Path"
 msgstr "规则集路径"
 
@@ -3519,7 +3525,7 @@ msgstr "规则集路径"
 msgid "Rule Providers Type"
 msgstr "规则集类型"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:99
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:102
 msgid "Rule Providers URL"
 msgstr "规则集地址"
 
@@ -3678,7 +3684,7 @@ msgstr "设置日志文件大小（KB）"
 msgid "Set OpenClash Upstream DNS Resolve Server"
 msgstr "启用将覆盖配置文件内的设置，请先在下方配置好服务器"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:113
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:116
 msgid "Set Proxy Group"
 msgstr "指定策略组"
 
@@ -4012,7 +4018,7 @@ msgid "Testing..."
 msgstr "检测中..."
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:114
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:114
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:117
 msgid "The Added Proxy Groups Must Exist Except 'DIRECT' & 'REJECT'"
 msgstr "注意：除'DIRECT'和'REJECT'外，修改配置文件前添加的其他策略组必须已创建"
 
@@ -4330,11 +4336,11 @@ msgstr "更新时间"
 msgid "Update Time (Every Week)"
 msgstr "更新时间(每周)"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:68
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:69
 msgid "Update Your Proxy Provider File From Config Luci Page"
 msgstr "请先在配置文件管理页面上传您的代理集文件"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:78
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:81
 msgid "Update Your Rule Providers File From Config Luci Page"
 msgstr "请先在配置文件管理页面上传您的规则集文件"
 
@@ -4555,6 +4561,10 @@ msgstr ""
 msgid "ca_str"
 msgstr ""
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:78
+msgid "classical"
+msgstr ""
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:41
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:88
 msgid "config"
@@ -4597,10 +4607,6 @@ msgstr "Fake-IP（TUN）模式"
 msgid "fake-ip-mix(tun mix mode)"
 msgstr "Fake-IP（TUN-混合）模式【UDP-TUN，TCP-转发】"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:61
-msgid "file"
-msgstr ""
-
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:518
 msgid "flow"
 msgstr ""
@@ -4632,7 +4638,6 @@ msgstr ""
 msgid "host"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:60
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:437
 msgid "http"
 msgstr ""

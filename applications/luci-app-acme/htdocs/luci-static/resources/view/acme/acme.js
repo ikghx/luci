@@ -5,21 +5,24 @@
 'require view';
 
 return view.extend({
-	load: function() {
-		return L.resolveDefault(fs.list('/etc/ssl/acme/'), []).then(function(entries) {
-			var certs = [];
-			for (var i = 0; i < entries.length; i++) {
-				if (entries[i].type == 'file' && entries[i].name.match(/\.key$/)) {
-					certs.push(entries[i]);
+	load() {
+		return Promise.all([
+			L.resolveDefault(fs.list('/etc/ssl/acme/'), []).then(files => {
+				let certs = [];
+				for (let f of files) {
+					if (f.type == 'file' && f.name.match(/\.key$/)) {
+						certs.push(f);
+					}
 				}
-			}
-			return certs;
-		});
+				return certs;
+			}),
+		]);
 	},
 
-	render: function (certs) {
+	render(data) {
+		let certs = data[0];
 		let wikiUrl = 'https://github.com/acmesh-official/acme.sh/wiki/';
-		var wikiInstructionUrl = wikiUrl + 'dnsapi';
+		let wikiInstructionUrl = wikiUrl + 'dnsapi';
 		let m, s, o;
 
 		m = new form.Map("acme", _('ACME certificates'),
@@ -40,14 +43,14 @@ return view.extend({
 		o = s.option(form.Value, "account_email", _('Account email'),
 			_('Email address to associate with account key.') + '<br />' +
 			_('If a certificate wasn\'t renewed in time then you\'ll receive a notice at 20 days before expiry.')
-		)
+		);
 		o.rmempty = false;
 		o.datatype = "minlength(1)";
 
 		o = s.option(form.Flag, "debug", _('Enable debug logging'));
 		o.rmempty = false;
 
-		s = m.section(form.GridSection, "cert", _('Certificate config'))
+		s = m.section(form.GridSection, "cert", _('Certificate config'));
 		s.anonymous = false;
 		s.addremove = true;
 		s.nodescriptions = true;
@@ -63,8 +66,7 @@ return view.extend({
 		o = s.taboption('general', form.ListValue, 'validation_method', _('Validation method'),
 			_('Standalone mode will use the built-in webserver of acme.sh to issue a certificate. ' +
 				'Webroot mode will use an existing webserver to issue a certificate. ' +
-				'DNS mode will allow you to use the DNS API of your DNS provider to issue a certificate.')
-		);
+				'DNS mode will allow you to use the DNS API of your DNS provider to issue a certificate.'));
 		o.value('dns', _('DNS'));
 		o.value('standalone', _('Standalone'));
 		o.value('webroot', _('Webroot'));
@@ -233,7 +235,7 @@ return view.extend({
 		o.value('dns_zone', 'Zone.ee');
 		o.value('dns_zonomi', 'Zonomi.com');
 		o.modalonly = true;
-		o.onchange = L.bind(_handleCheckService, o, s);
+		o.onchange = _handleCheckService;
 
 		o = s.taboption('challenge_dns', form.DummyValue, '_wiki_url', _('See instructions'), '');
 		o.rawhtml = true;
@@ -521,7 +523,7 @@ return view.extend({
 
 		return m.render();
 	}
-})
+});
 
 
 function _addDnsProviderField(s, provider, env, title, desc) {
@@ -529,8 +531,8 @@ function _addDnsProviderField(s, provider, env, title, desc) {
 		_(desc));
 	o.depends('dns', provider);
 	o.modalonly = true;
-	o.cfgvalue = function (section_id, stored_val) {
-		var creds = this.map.data.get(this.map.config, section_id, 'credentials');
+	o.cfgvalue = function (section_id) {
+		let creds = this.map.data.get(this.map.config, section_id, 'credentials');
 		return _extractParamValue(creds, env);
 	};
 	o.write = function (section_id, value) { };
@@ -587,12 +589,12 @@ function _parseKeyValueListToMap(paramsKeyVals) {
 	return map;
 }
 
-function _handleCheckService(c, event, curVal, newVal) {
+function _handleCheckService(event, section_id, newVal) {
 	document.getElementById('wikiInstructionUrl').href = 'https://github.com/acmesh-official/acme.sh/wiki/dnsapi#' + newVal;
 }
 
 function _renderCerts(certs) {
-	var table = E('table', {'class': 'table cbi-section-table', 'id': 'certificates_table'}, [
+	let table = E('table', {'class': 'table cbi-section-table', 'id': 'certificates_table'}, [
 		E('tr', {'class': 'tr table-titles'}, [
 			E('th', {'class': 'th'}, _('Main Domain')),
 			E('th', {'class': 'th'}, _('Private Key')),
@@ -601,7 +603,7 @@ function _renderCerts(certs) {
 		])
 	]);
 
-	var rows = certs.map(function (cert) {
+	let rows = certs.map(function (cert) {
 		let domain = cert.name.substring(0, cert.name.length - 4);
 		let issueDate = new Date(cert.mtime * 1000).toLocaleDateString();
 		return [
