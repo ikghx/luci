@@ -2955,7 +2955,7 @@ const UIFileUpload = UIElement.extend(/** @lends LuCI.ui.FileUpload.prototype */
 		ev.preventDefault();
 
 		if (fileStat.type == 'directory')
-			msg = _('Do you really want to recursively delete the directory "%s" ?').format(name);
+			msg = _('Do you really want to delete the "%s" directory recursively?').format(name);
 		else
 			msg = _('Do you really want to delete "%s" ?').format(name);
 
@@ -5021,8 +5021,8 @@ const UI = baseclass.extend(/** @lends LuCI.ui.prototype */ {
 	 * default.
 	 *
 	 * @returns {function}
-	 * Returns the compiled validator function which can be used to manually
-	 * trigger field validation or to bind it to further events.
+	 * Returns the compiled validator function which can be used to trigger
+	 * field validation manually or to bind it to further events.
 	 *
 	 * @see LuCI.validation
 	 */
