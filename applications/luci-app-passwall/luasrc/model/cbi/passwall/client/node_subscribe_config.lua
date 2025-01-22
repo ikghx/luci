@@ -1,5 +1,5 @@
 local api = require "luci.passwall.api"
-local uci = require "luci.model.uci".cursor()
+local uci = api.uci
 local appname = "passwall"
 
 m = Map(appname)
@@ -18,13 +18,7 @@ if api.is_js_luci() then
 	m.on_after_apply = function(self)
 		uci:delete(appname, arg[1], "md5")
 		uci:commit(appname)
-		luci.http.write([[
-			<script type="text/javascript">
-				setTimeout(function() {
-					window.location.href = ']] .. self.redirect .. [[';
-				}, 1000);
-			</script>
-		]])
+		api.showMsg_Redirect(self.redirect, 3000)
 	end
 end
 

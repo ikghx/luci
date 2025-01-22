@@ -675,6 +675,17 @@ return view.extend({
 						so = ss.taboption('general', form.Value, 'leasetime', _('Lease time'), _('Expiry time of leased addresses, minimum is 2 minutes (<code>2m</code>).'));
 						so.optional = true;
 						so.default = '12h';
+						so.validate = function (section_id, value) {
+							if (value === "infinite" || value === "deprecated") {
+								return true;
+							}
+
+							const regex = new RegExp("^[0-9]+[smhdw]?$", "i");
+							if (regex.test(value)) {
+								return true;
+							}
+							return _("Invalid DHCP lease time format. Use integer values optionally followed by s, m, h, d, or w.");
+						}
 
 						so = ss.taboption('advanced', form.Flag, 'dynamicdhcpv4', _('Dynamic <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>v4'), _('Dynamically allocate DHCPv4 addresses for clients. If disabled, only clients having static leases will be served.'));
 						so.default = so.enabled;
@@ -1567,9 +1578,10 @@ return view.extend({
 		o.datatype = 'cidr6';
 
 		o = s.option(form.ListValue, 'packet_steering', _('Packet Steering'), _('Enable packet steering across CPUs. May help or hinder network speed.'));
-		o.value('', _('Disabled'));
+		o.value('0', _('Disabled'));
 		o.value('1',_('Enabled'));
 		o.value('2',_('Enabled (all CPUs)'));
+		o.default = '1';
 		o.optional = true;
 
 		var steer_flow = uci.get('network', 'globals', 'steering_flows');	

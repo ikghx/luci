@@ -45,17 +45,58 @@ function set_apply_on_parse(map)
 	if is_js_luci() then
 		map.apply_on_parse = false
 		map.on_after_apply = function(self)
-			if self.redirect then
-				luci.http.write([[
-					<script type="text/javascript">
-						setTimeout(function() {
-							window.location.href = ']] .. self.redirect .. [[';
-						}, 1000);
-					</script>
-				]])
-			end
+			showMsg_Redirect(self.redirect, 3000)
 		end
 	end
+end
+
+function showMsg_Redirect(redirectUrl, delay)
+	local message = "PassWall " .. i18n.translate("Settings have been successfully saved and applied!")
+	luci.http.write([[
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				// 创建遮罩层
+				var overlay = document.createElement('div');
+				overlay.style.position = 'fixed';
+				overlay.style.top = '0';
+				overlay.style.left = '0';
+				overlay.style.width = '100%';
+				overlay.style.height = '100%';
+				overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+				overlay.style.zIndex = '9999';
+				// 创建提示条
+				var messageDiv = document.createElement('div');
+				messageDiv.style.position = 'fixed';
+				messageDiv.style.top = '0';
+				messageDiv.style.left = '0';
+				messageDiv.style.width = '100%';
+				messageDiv.style.background = '#4caf50';
+				messageDiv.style.color = '#fff';
+				messageDiv.style.textAlign = 'center';
+				messageDiv.style.padding = '10px';
+				messageDiv.style.zIndex = '10000';
+				messageDiv.textContent = ']] .. message .. [[';
+				// 将遮罩层和提示条添加到页面
+				document.body.appendChild(overlay);
+				document.body.appendChild(messageDiv);
+				// 重定向或隐藏提示条和遮罩层
+				var redirectUrl = ']] .. (redirectUrl or "") .. [[';
+				var delay = ]] .. (delay or 3000) .. [[;
+				setTimeout(function() {
+					if (redirectUrl) {
+						window.location.href = redirectUrl;
+					} else {
+						if (messageDiv && messageDiv.parentNode) {
+							messageDiv.parentNode.removeChild(messageDiv);
+						}
+						if (overlay && overlay.parentNode) {
+							overlay.parentNode.removeChild(overlay);
+						}
+					}
+				}, delay);
+			});
+		</script>
+	]])
 end
 
 function uci_save(cursor, config, commit, apply)
