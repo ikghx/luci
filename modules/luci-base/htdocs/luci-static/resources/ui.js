@@ -2431,7 +2431,7 @@ const UIDynamicList = UIElement.extend(/** @lends LuCI.ui.DynamicList.prototype 
 				exists = true;
 		});
 
-		if (!exists) {
+		if (this.options.allowduplicates || !exists) {
 			const ai = dl.querySelector('.add-item');
 			ai.parentNode.insertBefore(new_item, ai);
 		}
@@ -2512,7 +2512,8 @@ const UIDynamicList = UIElement.extend(/** @lends LuCI.ui.DynamicList.prototype 
 			return;
 
 		sbIn.setValues(sbEl, null);
-		sbVal.element.setAttribute('unselectable', '');
+		if (!this.options.allowduplicates)
+			sbVal.element.setAttribute('unselectable', '');
 
 		if (sbVal.element.hasAttribute('created')) {
 			sbVal.element.removeAttribute('created');
