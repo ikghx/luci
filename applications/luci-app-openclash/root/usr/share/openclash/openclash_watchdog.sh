@@ -16,7 +16,6 @@ log_size=$(uci -q get openclash.config.log_size || echo 1024)
 router_self_proxy=$(uci -q get openclash.config.router_self_proxy || echo 1)
 stream_auto_select_interval=$(uci -q get openclash.config.stream_auto_select_interval || echo 30)
 skip_proxy_address=$(uci -q get openclash.config.skip_proxy_address || echo 0)
-CRASH_NUM=0
 CFG_UPDATE_INT=1
 SKIP_PROXY_ADDRESS=1
 SKIP_PROXY_ADDRESS_INTERVAL=30
@@ -170,34 +169,6 @@ do
    stream_auto_select_google_not_cn=$(uci -q get openclash.config.stream_auto_select_google_not_cn || echo 0)
    stream_auto_select_openai=$(uci -q get openclash.config.stream_auto_select_openai || echo 0)
    upnp_lease_file=$(uci -q get upnpd.config.upnp_lease_file)
-   enable=$(uci -q get openclash.config.enable)
-
-if [ "$enable" -eq 1 ]; then
-   clash_pids=$(pidof clash |sed 's/$//g' |wc -l)
-   if [ "$clash_pids" -gt 1 ]; then
-         LOG_OUT "Watchdog: Multiple Clash Processes, Kill All..."
-         clash_pids=$(pidof clash |sed 's/$//g')
-         for clash_pid in $clash_pids; do
-            kill -9 "$clash_pid" 2>/dev/null
-         done >/dev/null 2>&1
-         sleep 1
-   fi 2>/dev/null
-   if ! pidof clash >/dev/null; then
-	   CRASH_NUM=$(expr "$CRASH_NUM" + 1)
-      if [ "$CRASH_NUM" -le 3 ]; then
-         LOG_OUT "Watchdog: Clash Core Problem, Restart..."
-         /etc/init.d/openclash reload "core"
-         sleep 10
-         continue
-      else
-         LOG_OUT "Watchdog: Already Restart 3 Times With Clash Core Problem, Auto-Exit..."
-         /etc/init.d/openclash stop
-         exit 0
-      fi
-   else
-      CRASH_NUM=0
-   fi
-fi
 
 ## Porxy history
    /usr/share/openclash/openclash_history_get.sh
@@ -234,10 +205,17 @@ fi
 ## Localnetwork 刷新
    wan_ip4s=$(/usr/share/openclash/openclash_get_network.lua "wanip" 2>/dev/null)
    wan_ip6s=$(ifconfig | grep 'inet6 addr' | awk '{print $3}' 2>/dev/null)
+   lan_ip4s=$(/usr/share/openclash/openclash_get_network.lua "lan_cidr" 2>/dev/null)
+   lan_ip6s=$(/usr/share/openclash/openclash_get_network.lua "lan_cidr6" 2>/dev/null)
    if [ -n "$FW4" ]; then
       if [ -n "$wan_ip4s" ]; then
          for wan_ip4 in $wan_ip4s; do
             nft add element inet fw4 localnetwork { "$wan_ip4" } 2>/dev/null
+         done
+      fi
+      if [ -n "$lan_ip4s" ]; then
+         for lan_ip4 in $lan_ip4s; do
+            nft add element inet fw4 localnetwork { "$lan_ip4" } 2>/dev/null
          done
       fi
 
@@ -247,6 +225,11 @@ fi
                nft add element inet fw4 localnetwork6 { "$wan_ip6" } 2>/dev/null
             done
          fi
+         if [ -n "$lan_ip6s" ]; then
+            for lan_ip6 in $lan_ip6s; do
+               nft add element inet fw4 localnetwork6 { "$lan_ip6" } 2>/dev/null
+            done
+         fi
       fi
    else
       if [ -n "$wan_ip4s" ]; then
@@ -254,10 +237,20 @@ fi
             ipset add localnetwork "$wan_ip4" 2>/dev/null
          done
       fi
+      if [ -n "$lan_ip4s" ]; then
+         for lan_ip4 in $lan_ip4s; do
+            ipset add localnetwork "$lan_ip4" 2>/dev/null
+         done
+      fi
       if [ "$ipv6_enable" -eq 1 ]; then
          if [ -n "$wan_ip6s" ]; then
             for wan_ip6 in $wan_ip6s; do
                ipset add localnetwork6 "$wan_ip6" 2>/dev/null
+            done
+         fi
+         if [ -n "$lan_ip6s" ]; then
+            for lan_ip6 in $lan_ip6s; do
+               ipset add localnetwork6 "$lan_ip6" 2>/dev/null
             done
          fi
       fi

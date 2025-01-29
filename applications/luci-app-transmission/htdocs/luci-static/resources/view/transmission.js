@@ -12,7 +12,7 @@ const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: [ 'name' ],
-	expect: { 'transmission': {} }
+	expect: { '': {} }
 });
 
 function getServiceStatus() {
@@ -242,8 +242,6 @@ return view.extend({
 		s.anonymous = true;
 
 		o = s.option(form.Value, 'bind_address_ipv4', _('Binding address IPv4'));
-
-		o = s.option(form.Value, 'bind_address_ipv6', _('Binding address IPv6'));
 
 		o = s.option(form.Value, 'peer_congestion_algorithm', _('Peer congestion algorithm'),
 			_('This is documented on <a href="https://www.irif.fr/~jch/software/bittorrent/tcp-congestion-control.html" target="_blank" rel="noreferrer noopener">tcp-congestion-control</a>.'));

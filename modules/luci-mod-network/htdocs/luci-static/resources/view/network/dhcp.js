@@ -1375,6 +1375,10 @@ return view.extend({
 			so.value(duid, '%s (%s)'.format(duid, duids[duid].hostname || duids[duid].macaddr || duids[duid].ip6addr || '?'));
 		});
 
+		so = ss.option(form.Value, 'client_id',
+			_('Client ID'),
+			_('Client identifier.'));
+
 		so = ss.option(form.Value, 'hostid',
 			_('IPv6-Suffix (hex)'),
 			_('The IPv6 interface identifier (address suffix) as hexadecimal number (max. 16 chars).'));

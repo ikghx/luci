@@ -13,7 +13,7 @@
 function handleAction(ev) {
 	if (ev === 'timer') {
 		L.ui.showModal(_('Refresh Timer'), [
-			E('p', _('To keep your adblock lists up-to-date, you should setup an automatic update job for these lists.')),
+			E('p', _('To keep your adblock lists up-to-date, you should set up an automatic update job for these lists.')),
 			E('div', { 'class': 'left', 'style': 'display:flex; flex-direction:column' }, [
 				E('h5', _('Existing job(s)')),
 				E('textarea', {
@@ -421,6 +421,7 @@ return view.extend({
 		o.value('dnsmasq', _('dnsmasq (/tmp/dnsmasq.d)'));
 		o.value('unbound', _('unbound (/var/lib/unbound)'));
 		o.value('named', _('bind (/var/lib/bind)'));
+		o.value('smartdns', _('smartdns (/tmp/smartdns)'));
 		o.value('kresd', _('kresd (/etc/kresd)'));
 		o.value('raw', _('raw (/tmp)'));
 		o.optional = true;
