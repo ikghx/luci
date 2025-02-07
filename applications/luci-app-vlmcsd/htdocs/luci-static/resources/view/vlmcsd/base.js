@@ -61,10 +61,10 @@ return view.extend({
 		}
 
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
-		o.rmempty = false;
 
-		o = s.option(form.Flag, 'autoactivate', _('Auto activate'), _('Automatically activate Windows and Office on the LAN.'));
-		o.rmempty = false;
+		o = s.option(form.Flag, 'auto_activate', _('Allow automatic activation'), _('Automatically activate Windows and Office on the LAN.'));
+
+		o = s.option(form.Flag, 'internet_access', _('Allow connection from Internet'));
 
 		return m.render();
 	}
