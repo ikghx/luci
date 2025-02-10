@@ -112,7 +112,7 @@ return view.extend({
 		o.datatype = 'uinteger';
 		o.depends('regtype', '_raop._tcp');
 
-		o = s.option(form.Value, 'drift', _('Drift tolerance'), _('seconds'));
+		o = s.option(form.Value, 'drift_tolerance_in_seconds', _('Drift tolerance'), _('seconds'));
 		o.placeholder = '0.002';
 
 		o = s.option(form.Value, 'resync_threshold', _('Resync threshold'), _('seconds'));
@@ -201,6 +201,10 @@ return view.extend({
 
 		o = s.option(form.Value, 'alsa_mixer_control_name', _('alsa mixer control name'));
 		o.value('PCM');
+		o.depends('output_backend', 'alsa');
+
+		o = s.option(form.Value, 'alsa_mixer_control_index', _('alsa mixer control index'));
+		o.datatype = 'uinteger';
 		o.depends('output_backend', 'alsa');
 
 		o = s.option(form.Value, 'alsa_mixer_device', _('alsa mixer device'));
