@@ -864,7 +864,6 @@ return view.extend({
 
 		o = s.taboption('files', form.Flag, 'localuse',
 			_('Enforce local system to use dnsmasq'));
-		o.depends('noresolv', '1');
 
 		o = s.taboption('files', form.Flag, 'nohosts',
 			customi18n(_('Ignore {etc_hosts} file') )

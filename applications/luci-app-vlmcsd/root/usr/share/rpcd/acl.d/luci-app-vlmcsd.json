@@ -3,7 +3,7 @@
 		"description": "Grant UCI access for luci-app-vlmcsd",
 		"read": {
 			"file": {
-				"/etc/vlmcsd.ini": [ "read" ]
+				"/etc/vlmcsd/vlmcsd.ini": [ "read" ]
 			},
 			"ubus": {
 				"service": [ "list" ]
@@ -12,7 +12,7 @@
 		},
 		"write": {
 			"file": {
-				"/etc/vlmcsd.ini": [ "write" ],
+				"/etc/vlmcsd/vlmcsd.ini": [ "write" ],
 				"/etc/init.d/vlmcsd restart": [ "exec" ]
 			},
 			"uci": [ "vlmcsd" ]

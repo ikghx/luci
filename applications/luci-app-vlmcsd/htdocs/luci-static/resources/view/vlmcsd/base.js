@@ -40,7 +40,7 @@ return view.extend({
 		let isRunning = data[0];
 		let m, s, o;
 
-		m = new form.Map('vlmcsd', _('KMS Server'), _('A KMS Server Emulator to active your Windows or Office.'));
+		m = new form.Map('vlmcsd', _('Vlmcsd KMS Server'), _('A KMS Server Emulator to active your Windows or Office.'));
 
 		s = m.section(form.TypedSection, 'vlmcsd');
 		s.anonymous = true;
@@ -63,8 +63,6 @@ return view.extend({
 		o = s.option(form.Flag, 'enabled', _('Enabled'));
 
 		o = s.option(form.Flag, 'auto_activate', _('Allow automatic activation'), _('Automatically activate Windows and Office on the LAN.'));
-
-		o = s.option(form.Flag, 'internet_access', _('Allow connection from Internet'));
 
 		return m.render();
 	}
