@@ -154,7 +154,7 @@ msgstr "PRIIMTI – išjungti adreso perrašymą"
 msgid "Action"
 msgstr "Veiksmas"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -164,7 +164,7 @@ msgstr ""
 "zonos paskirties srautą, pvz. „<code>-p tcp --dport 443</code>“, kad "
 "atitiktų tik išsiunčiamą „HTTPS“ srautą."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -196,11 +196,11 @@ msgstr "Pažangūs nustatymai"
 msgid "Allow \"invalid\" traffic"
 msgstr "Leisti „techniškai neveikiančiai“ veiklai"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:378
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:390
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "Leisti perleidimą iš <em>išteklio zonų</em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:337
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:349
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "Leisti perleidimą į <em>paskirties zonas</em>:"
 
@@ -365,12 +365,9 @@ msgstr "Įjungti/Įgalinti „SYN-flood“ apsauga"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
 msgid "Enable logging"
 msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
-msgid "Enable logging on this zone"
-msgstr "Įjungti/Įgalinti žurnalinima šitoje zonoje"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:161
 msgid ""
@@ -420,7 +417,7 @@ msgstr "Išorinis prievadas"
 msgid "Extra arguments"
 msgstr "Papildomi argumentai"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid "Extra destination arguments"
 msgstr "Papildomi paskirties/kelionės tikslo argumentai"
 
@@ -428,7 +425,7 @@ msgstr "Papildomi paskirties/kelionės tikslo argumentai"
 msgid "Extra iptables arguments"
 msgstr "Papildomi „iptables“ argumentai"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid "Extra source arguments"
 msgstr "Papildomi išteklio argumentai"
 
@@ -698,7 +695,7 @@ msgstr "Apriboti pliūpsnius"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:351
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:472
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:292
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
 msgid "Limit log messages"
 msgstr "Riboti žurnalo pranešimus"
 
@@ -725,10 +722,14 @@ msgstr "Įjungtas ribotas privataus IP į viešojo IP konvertavimas"
 msgid "Limits traffic matching to the specified rate."
 msgstr "Apriboja srauto atitikimą iki nurodytos spartos."
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
+msgid "Log matched packets on the selected tables to syslog."
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
-msgid "Logs matched packets to syslog."
+msgid "Log matched packets to syslog."
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
@@ -941,7 +942,7 @@ msgstr ""
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "Perduoda papildomus argumentus į „iptables“. Naudokite atsargiai!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:302
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -1164,7 +1165,7 @@ msgid ""
 msgstr "Užkarda sukuria zonas tinklo sąsajose, kad valdytų tinklo srautą."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:333
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:345
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1617,7 +1618,7 @@ msgstr "šis įrenginys"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:344
 msgid "this new zone"
 msgstr "ši nauja zona"
 
@@ -1637,6 +1638,9 @@ msgstr "iki 65536 įrašų."
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:339
 msgid "valid firewall mark"
 msgstr "tinkamą užkardos žymę"
+
+#~ msgid "Enable logging on this zone"
+#~ msgstr "Įjungti/Įgalinti žurnalinima šitoje zonoje"
 
 #~ msgid "Zone ⇒ Forwardings"
 #~ msgstr "Zona ⇒ Perleidimai"

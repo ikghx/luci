@@ -153,7 +153,7 @@ msgstr "ACCEPTER - Désactiver la réécriture d'adresses"
 msgid "Action"
 msgstr "Action"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -163,7 +163,7 @@ msgstr ""
 "destination de la zone, par exemple <code>-p tcp --dport 443</code> pour "
 "correspondre uniquement au trafic HTTPS sortant."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -195,11 +195,11 @@ msgstr "Paramètres avancés"
 msgid "Allow \"invalid\" traffic"
 msgstr "Autoriser le trafic \"invalide\""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:378
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:390
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "Permettre la transmission des <em>zones source</em> :"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:337
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:349
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "Permettre la transmission vers les <em>zones destination</em> :"
 
@@ -366,12 +366,9 @@ msgstr "Activer la protection contre le SYN-flood"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
 msgid "Enable logging"
 msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
-msgid "Enable logging on this zone"
-msgstr "Activer les traces (logs) sur cette zone"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:161
 msgid ""
@@ -423,7 +420,7 @@ msgstr "Port externe"
 msgid "Extra arguments"
 msgstr "Arguments supplémentaires"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid "Extra destination arguments"
 msgstr "Arguments de destination supplémentaires"
 
@@ -431,7 +428,7 @@ msgstr "Arguments de destination supplémentaires"
 msgid "Extra iptables arguments"
 msgstr "Arguments supplémentaires iptables"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid "Extra source arguments"
 msgstr "Arguments sources supplémentaires"
 
@@ -698,7 +695,7 @@ msgstr "Rafale limite"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:351
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:472
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:292
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
 msgid "Limit log messages"
 msgstr "Limiter les messages de journalisation"
 
@@ -725,10 +722,14 @@ msgstr "Autorise un masquage limité"
 msgid "Limits traffic matching to the specified rate."
 msgstr "Limite le trafic correspondant au débit spécifié."
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
+msgid "Log matched packets on the selected tables to syslog."
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
-msgid "Logs matched packets to syslog."
+msgid "Log matched packets to syslog."
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
@@ -952,7 +953,7 @@ msgstr ""
 "Passe des arguments supplémentaires aux tables d'adresses IP. A utiliser "
 "avec précaution !"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:302
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -1177,7 +1178,7 @@ msgstr ""
 "du trafic réseau."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:333
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:345
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1633,7 +1634,7 @@ msgstr "cet appareil"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:344
 msgid "this new zone"
 msgstr "cette nouvelle zone"
 
@@ -1653,6 +1654,9 @@ msgstr "jusqu'à 65536 entrées."
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:339
 msgid "valid firewall mark"
 msgstr "marque de pare-feu valide"
+
+#~ msgid "Enable logging on this zone"
+#~ msgstr "Activer les traces (logs) sur cette zone"
 
 #~ msgid "Zone ⇒ Forwardings"
 #~ msgstr "Zone ⇒ Transferts"

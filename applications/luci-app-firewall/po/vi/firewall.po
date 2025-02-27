@@ -151,7 +151,7 @@ msgstr "ACCEPT - Vô hiệu hóa viết lại địa chỉ"
 msgid "Action"
 msgstr "Hành động"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -160,7 +160,7 @@ msgstr ""
 "Các đối số thô <em>iptables</em> bổ sung để phân loại lưu lượng đích vùng, "
 "ví dụ: <code>-p tcp --dport 443</code> để chỉ khớp lưu lượng HTTPS đi ra."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -189,11 +189,11 @@ msgstr "Cài đặt Nâng cao"
 msgid "Allow \"invalid\" traffic"
 msgstr "Cho phép lưu lượng \"không hợp lệ\""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:378
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:390
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "Cho phép tiến về từ <em>vùng nguồn</em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:337
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:349
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "Cho phép tiến về đến <em>vùng đích</em>:"
 
@@ -355,12 +355,9 @@ msgstr "Kích hoạt bảo vệ SYN-flood"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
 msgid "Enable logging"
 msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
-msgid "Enable logging on this zone"
-msgstr "Bật ghi nhật ký trên vùng này"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:161
 msgid ""
@@ -411,7 +408,7 @@ msgstr "External port"
 msgid "Extra arguments"
 msgstr "Các tham số bổ sung"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid "Extra destination arguments"
 msgstr "Các tham số đích bổ sung"
 
@@ -419,7 +416,7 @@ msgstr "Các tham số đích bổ sung"
 msgid "Extra iptables arguments"
 msgstr "Các tham số iptables bổ sung"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid "Extra source arguments"
 msgstr "Các tham số nguồn bổ sung"
 
@@ -687,7 +684,7 @@ msgstr "Số lượng tắt đột ngột"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:351
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:472
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:292
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
 msgid "Limit log messages"
 msgstr "Giới hạn tin nhắn nhật ký"
 
@@ -714,10 +711,14 @@ msgstr "Bật masquerading có giới hạn"
 msgid "Limits traffic matching to the specified rate."
 msgstr "Giới hạn khớp lưu lượng với tốc độ được chỉ định."
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
+msgid "Log matched packets on the selected tables to syslog."
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
-msgid "Logs matched packets to syslog."
+msgid "Log matched packets to syslog."
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
@@ -924,7 +925,7 @@ msgstr ""
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "Truyền các đối số bổ sung cho iptables. Sử dụng cẩn thận!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:302
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -1137,7 +1138,7 @@ msgstr ""
 "thông của mạng."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:333
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:345
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1587,7 +1588,7 @@ msgstr "thiết bị này"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:344
 msgid "this new zone"
 msgstr "vùng mới này"
 
@@ -1607,6 +1608,9 @@ msgstr "lên đến 65536 mục."
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:339
 msgid "valid firewall mark"
 msgstr "dấu tường lửa hợp lệ"
+
+#~ msgid "Enable logging on this zone"
+#~ msgstr "Bật ghi nhật ký trên vùng này"
 
 #~ msgid "Zone ⇒ Forwardings"
 #~ msgstr "Vùng ⇒ Chuyển tiếp"

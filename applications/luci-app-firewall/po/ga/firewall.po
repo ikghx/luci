@@ -154,7 +154,7 @@ msgstr "GLACADH - Díchumasaigh athscríobh seoltaí"
 msgid "Action"
 msgstr "Gníomhaíocht"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -164,7 +164,7 @@ msgstr ""
 "rangú, m.sh. <code> -p tcp --dport 443</code> chun trácht HTTPS amach a "
 "mheaitseáil amháin."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -196,11 +196,11 @@ msgstr "Socruithe chun cinn"
 msgid "Allow \"invalid\" traffic"
 msgstr "Ceadaigh trácht “neamhbhailí”"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:378
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:390
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "Ceadaigh ar aghaidh ó <em>criosanna foinse</em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:337
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:349
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "Ceadaigh ar aghaidh chuig <em>criosanna</em>:"
 
@@ -364,12 +364,9 @@ msgstr "Cumasaigh cosaint tuilte Sync"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
 msgid "Enable logging"
 msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
-msgid "Enable logging on this zone"
-msgstr "Cumasaigh logáil ar an gcrios seo"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:161
 msgid ""
@@ -420,7 +417,7 @@ msgstr "Calafort seachtrach"
 msgid "Extra arguments"
 msgstr "Argóintí breise"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid "Extra destination arguments"
 msgstr "Argóintí scríbe breise"
 
@@ -428,7 +425,7 @@ msgstr "Argóintí scríbe breise"
 msgid "Extra iptables arguments"
 msgstr "Argóintí breise iptables"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid "Extra source arguments"
 msgstr "Argóintí foinse breise"
 
@@ -697,7 +694,7 @@ msgstr "Pléascadh teorainn"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:351
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:472
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:292
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
 msgid "Limit log messages"
 msgstr "Teachtaireachtaí logála teorainn"
 
@@ -724,10 +721,14 @@ msgstr "Cumasaithe masquerading teoranta"
 msgid "Limits traffic matching to the specified rate."
 msgstr "Teoraíonn sé meaitseáil tráchta leis an ráta sonraithe."
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
+msgid "Log matched packets on the selected tables to syslog."
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
-msgid "Logs matched packets to syslog."
+msgid "Log matched packets to syslog."
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
@@ -943,7 +944,7 @@ msgstr ""
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "Cuireann argóintí breise chuig iptables. Úsáid go cúramach!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:302
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -1161,7 +1162,7 @@ msgstr ""
 "sreabhadh tráchta líonra a rialú."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:333
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:345
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1616,7 +1617,7 @@ msgstr "an gléas seo"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:344
 msgid "this new zone"
 msgstr "an crios nua seo"
 
@@ -1636,6 +1637,9 @@ msgstr "suas go dtí 65536 iontráil."
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:339
 msgid "valid firewall mark"
 msgstr "marc balla dóiteáin bailí"
+
+#~ msgid "Enable logging on this zone"
+#~ msgstr "Cumasaigh logáil ar an gcrios seo"
 
 #~ msgid "Zone ⇒ Forwardings"
 #~ msgstr "Crios ⇒ Seoladh"

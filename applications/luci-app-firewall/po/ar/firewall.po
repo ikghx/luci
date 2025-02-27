@@ -150,7 +150,7 @@ msgstr "قبول - تعطيل إعادة كتابة العنوان"
 msgid "Action"
 msgstr "إجراء"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -160,7 +160,7 @@ msgstr ""
 "سبيل المثال <code> -p tcp --dport 443 </code> لمطابقة حركة مرور HTTPS "
 "الصادرة فقط."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -191,11 +191,11 @@ msgstr "إعدادات متقدمة"
 msgid "Allow \"invalid\" traffic"
 msgstr "السماح بحركة المرور \"الغير الصالحة\""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:378
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:390
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "السماح بإعادة التوجيه من <em> مناطق المصدر </em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:337
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:349
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "السماح بإعادة التوجيه إلى <em> مناطق الوجهة </em>:"
 
@@ -356,12 +356,9 @@ msgstr "تفعيل الحماية من الفيضانات SYN"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
 msgid "Enable logging"
 msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
-msgid "Enable logging on this zone"
-msgstr "قم بتمكين تسجيل الدخول إلى هذه المنطقة"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:161
 msgid ""
@@ -406,7 +403,7 @@ msgstr "منفذ خارجي"
 msgid "Extra arguments"
 msgstr "حجج اضافية"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid "Extra destination arguments"
 msgstr "وسيطات الوجهة الإضافية"
 
@@ -414,7 +411,7 @@ msgstr "وسيطات الوجهة الإضافية"
 msgid "Extra iptables arguments"
 msgstr "حجج iptables الإضافية"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid "Extra source arguments"
 msgstr "حجج مصدر إضافي"
 
@@ -665,7 +662,7 @@ msgstr "حد الطلقات"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:351
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:472
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:292
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
 msgid "Limit log messages"
 msgstr "تقييد رسائل السجل"
 
@@ -692,10 +689,14 @@ msgstr "تمكين التنكر المحدود"
 msgid "Limits traffic matching to the specified rate."
 msgstr "يحد من مطابقة حركة المرور إلى المعدل المحدد."
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
+msgid "Log matched packets on the selected tables to syslog."
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
-msgid "Logs matched packets to syslog."
+msgid "Log matched packets to syslog."
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
@@ -899,7 +900,7 @@ msgstr ""
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "يمرر الحجج الإضافية إلى iptables. استخدم بعناية!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:302
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -1110,7 +1111,7 @@ msgstr ""
 "الشبكة."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:333
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:345
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1545,7 +1546,7 @@ msgstr "هذا الجهاز"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:344
 msgid "this new zone"
 msgstr "هذه المنطقة الجديدة"
 
@@ -1565,6 +1566,9 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:339
 msgid "valid firewall mark"
 msgstr "علامة جدار حماية صالحة"
+
+#~ msgid "Enable logging on this zone"
+#~ msgstr "قم بتمكين تسجيل الدخول إلى هذه المنطقة"
 
 #~ msgid "Zone ⇒ Forwardings"
 #~ msgstr "المنطقة=> تَوجِيه"

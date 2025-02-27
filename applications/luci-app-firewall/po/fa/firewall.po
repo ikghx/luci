@@ -150,7 +150,7 @@ msgstr "تایید - بازنویسی آدرس غیر فعال شد"
 msgid "Action"
 msgstr "اجرا"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -160,7 +160,7 @@ msgstr ""
 "عنوان مثال. <code>-p tcp --dport 443</code> فقط برای مطابقت با ترافیک خروجی "
 "HTTPS."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -191,11 +191,11 @@ msgstr "تنظیمات پیشرفته"
 msgid "Allow \"invalid\" traffic"
 msgstr "پذیرش ترافیک \"نامعتبر\""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:378
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:390
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "اجازه به جلو از <em>مناطق منبع</em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:337
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:349
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "اجازه به جلو به<em>مناطق مقصد</em>:"
 
@@ -358,12 +358,9 @@ msgstr "محافظت SYN-flood را فعال کردن"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
 msgid "Enable logging"
 msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
-msgid "Enable logging on this zone"
-msgstr "فعال کردن ورود به سیستم در این منطقه"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:161
 msgid ""
@@ -413,7 +410,7 @@ msgstr "پورت خارجی"
 msgid "Extra arguments"
 msgstr "استدلال های اضافی"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:315
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:327
 msgid "Extra destination arguments"
 msgstr "استدلال های اضافی مقصد"
 
@@ -421,7 +418,7 @@ msgstr "استدلال های اضافی مقصد"
 msgid "Extra iptables arguments"
 msgstr "استدلال های اضافی iptables"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:305
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:317
 msgid "Extra source arguments"
 msgstr "استدلال های اضافی منبع"
 
@@ -687,7 +684,7 @@ msgstr "ترکیدگی را محدود کنید"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:351
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:472
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:292
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:304
 msgid "Limit log messages"
 msgstr "محدود کردن پیام های گزارش"
 
@@ -714,10 +711,14 @@ msgstr "مخفی کاری محدود فعال شد"
 msgid "Limits traffic matching to the specified rate."
 msgstr "تطابق ترافیک را با نرخ مشخص شده محدود می کند."
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:289
+msgid "Log matched packets on the selected tables to syslog."
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:348
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:469
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:341
-msgid "Logs matched packets to syslog."
+msgid "Log matched packets to syslog."
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
@@ -926,7 +927,7 @@ msgstr ""
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "آرگومان های اضافی را به iptables ارسال می کند. با احتیاط استفاده کنید!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:302
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -1139,7 +1140,7 @@ msgstr ""
 "کنترل کند."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:333
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:345
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1590,7 +1591,7 @@ msgstr "این دستگاه"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:344
 msgid "this new zone"
 msgstr "این منطقه جدید"
 
@@ -1610,6 +1611,9 @@ msgstr "تا ۶۵۵۳۶ ورودی."
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:339
 msgid "valid firewall mark"
 msgstr "علامت فایروال معتبر"
+
+#~ msgid "Enable logging on this zone"
+#~ msgstr "فعال کردن ورود به سیستم در این منطقه"
 
 #~ msgid "Zone ⇒ Forwardings"
 #~ msgstr "فوروارد ⇒منطقه"
