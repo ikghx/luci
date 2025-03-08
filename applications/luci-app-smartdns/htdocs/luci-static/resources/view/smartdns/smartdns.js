@@ -1,6 +1,6 @@
 /*************************************************************************
  *
- * Copyright (C) 2018-2023 Ruilin Peng (Nick) <pymumu@gmail.com>.
+ * Copyright (C) 2018-2025 Ruilin Peng (Nick) <pymumu@gmail.com>.
  *
  * smartdns is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -802,16 +802,20 @@ return view.extend({
 		o.placeholder = "/var/log/smartdns/smartdns-audit.log"
 		o.depends({"enable_audit_log":"1", "audit_log_output_mode":"file"});
 
-		o = s.taboption("log", form.DummyValue, "_view_log", _("View Log"));
+		o = s.taboption("log", form.DummyValue, "view_log", _("View Log"));
 		o.renderWidget = function () {
 			return E('button', {
 				'class': 'btn cbi-button',
 				'id': 'btn_view_log',
 				'click': ui.createHandlerFn(this, function () {
-					window.location.href = "smartdns/log";
+					window.location.href = "/cgi-bin/luci/admin/services/smartdns/log";
 				})
 			}, [_("View Log")]);
 		}
+		var log_levels = ["debug", "info", "notice", "warn", "error", "fatal"];
+		log_levels.forEach(function(level) {
+			o.depends({ log_output_mode: "file", log_level: level });
+		});
 
 		////////////////
 		// Upstream servers;
