@@ -342,6 +342,30 @@ return view.extend({
 					}
 				}
 
+				if (res.he_operation != null) {
+					center_channels[0] = res.he_operation.center_freq_1;
+					if (res.he_operation.channel_width == 40) {
+						chan_width = 4;
+						res.channel_width = "40 MHz";
+					} else if (res.he_operation.channel_width == 80) {
+						chan_width = 8;
+						res.channel_width = "80 MHz";
+					} else if (res.he_operation.channel_width == 160) {
+						res.channel_width = "160 MHz";
+						chan_width = 16;
+						center_channels.push(res.he_operation.center_freq_2);
+					}
+				}
+
+				if (res.eht_operation != null && res.eht_operation.channel_width > 160) {
+					center_channels[0] = res.eht_operation.center_freq_1;
+					if (res.eht_operation.channel_width == 320) {
+						chan_width = 32;
+						res.channel_width = "320 MHz";
+						center_channels.push(res.eht_operation.center_freq_2);
+					}
+				}
+
 				this.add_wifi_to_graph(chan_analysis, res, scanCache, center_channels, chan_width);
 
 				rows.push([
