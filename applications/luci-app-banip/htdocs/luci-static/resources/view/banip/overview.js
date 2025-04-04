@@ -43,7 +43,7 @@ return view.extend({
 		/*
 			poll runtime information
 		*/
-		let buttons, rtRes, infStat, infVer, infElements, infFeeds, infDevices, infUplink, infSystem, nftInfos, runInfos, infFlags, last_run
+		let buttons, rtRes, infStat, infVer, infElements, infFeeds, infDevices, infUplink, infSys, infNft, infRun, infFlags, infLast
 
 		pollData: poll.add(function () {
 			return L.resolveDefault(fs.stat('/var/run/banip.lock')).then(function (stat) {
@@ -90,7 +90,7 @@ return view.extend({
 								} else if (rtRes[i].match(/^\s+\+\slast_run\s+\:\s+(.*)$/)) {
 									rtRes.lastRun = rtRes[i].match(/^\s+\+\slast_run\s+\:\s+(.*)$/)[1];
 								} else if (rtRes[i].match(/^\s+\+\ssystem_info\s+\:\s+(.*)$/)) {
-									rtRes.systemInfo = rtRes[i].match(/^\s+\+\ssystem_info\s+\:\s+(.*)$/)[1];
+									rtRes.sysInfo = rtRes[i].match(/^\s+\+\ssystem_info\s+\:\s+(.*)$/)[1];
 								}
 							}
 						}
@@ -119,21 +119,25 @@ return view.extend({
 							if (infUplink) {
 								infUplink.textContent = rtRes.activeUplink || '-';
 							}
-							nftInfos = document.getElementById('nft');
-							if (nftInfos) {
-								nftInfos.textContent = rtRes.nftInfo || '-';
+							infNft = document.getElementById('nft');
+							if (infNft) {
+								infNft.textContent = rtRes.nftInfo || '-';
 							}
-							runInfos = document.getElementById('run');
-							if (runInfos) {
-								runInfos.textContent = rtRes.runInfo || '-';
+							infRun = document.getElementById('run');
+							if (infRun) {
+								infRun.textContent = rtRes.runInfo || '-';
 							}
 							infFlags = document.getElementById('flags');
 							if (infFlags) {
 								infFlags.textContent = rtRes.runFlags || '-';
 							}
-							last_run = document.getElementById('last');
-							if (last_run) {
-								last_run.textContent = rtRes.lastRun || '-';
+							infLast = document.getElementById('last');
+							if (infLast) {
+								infLast.textContent = rtRes.lastRun || '-';
+							}
+							infSys = document.getElementById('sys');
+							if (infSys) {
+								infSys.textContent = rtRes.sysInfo || '-';
 							}
 						}
 					} else {
@@ -197,6 +201,10 @@ return view.extend({
 					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('Last Run')),
 					E('div', { 'class': 'cbi-value-field', 'id': 'last', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
 				]),
+				E('div', { 'class': 'cbi-value' }, [
+					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('System Info')),
+					E('div', { 'class': 'cbi-value-field', 'id': 'sys', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
+				])
 			]);
 		}, o, this);
 		this.pollData;
@@ -267,7 +275,6 @@ return view.extend({
 		o.value('uclient-fetch');
 		o.value('wget');
 		o.value('curl');
-		o.value('aria2c');
 		o.optional = true;
 		o.retain = true;
 
@@ -477,6 +484,11 @@ return view.extend({
 		o.rmempty = true;
 
 		o = s.taboption('adv_set', form.Flag, 'ban_nftcount', _('Set Element Counter'), _('Enable nft counter for every Set element.'));
+		o.rmempty = true;
+
+		o = s.taboption('adv_set', form.Flag, 'ban_map', _('Enable GeoIP Map'), _('Enable a GeoIP Map with suspicious Set elements. This requires external requests to get the map tiles and geolocation data.'));
+		o.depends('ban_nftcount', '1');
+		o.optional = true;
 		o.rmempty = true;
 
 		o = s.taboption('adv_set', form.ListValue, 'ban_blockpolicy', _('Inbound Block Policy'), _('Drop packets silently or actively reject Inbound traffic.'));
