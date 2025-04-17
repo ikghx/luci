@@ -3,36 +3,36 @@
 'require fs';
 'require ui';
 
-let localFile = '/etc/banip/banip.allowlist';
+let localFile = '/etc/adblock/adblock.blocklist';
 let notMsg, errMsg;
 
 return view.extend({
 	load: function () {
 		return L.resolveDefault(fs.stat(localFile), "")
 			.then(function (stat) {
-				if (!stat) {
-					return fs.write(localFile, "");
-				}
-				return Promise.all([
-					L.resolveDefault(fs.stat(localFile), ""),
-					L.resolveDefault(fs.read_direct(localFile), "")
-				]);
-			});
+			if (!stat) {
+				return fs.write(localFile, "");
+			}
+			return Promise.all([
+				L.resolveDefault(fs.stat(localFile), ""),
+				L.resolveDefault(fs.read_direct(localFile), "")
+			]);
+		});
 	},
-	render: function (allowlist) {
-		if (allowlist[0].size >= 100000) {
+	render: function (blocklist) {
+		if (blocklist[0] && blocklist[0].size >= 100000) {
 			document.body.scrollTop = document.documentElement.scrollTop = 0;
-			ui.addNotification(null, E('p', _('The allowlist is too big, unable to save modifications.')), 'error');
+			ui.addNotification(null, E('p', _('The blocklist is too big, unable to save modifications.')), 'error');
 		}
 		return E('div', { 'class': 'cbi-section cbi-section-descr' }, [
-			E('p', _('This is the local banIP allowlist that will permit certain MAC-, IP-addresses or domain names.<br /> \
-				<em><b>Please note:</b></em> add only exactly one MAC/IPv4/IPv6 address or domain name per line. Ranges in CIDR notation and MAC/IP-bindings are allowed.')),
+			E('p', _('This is the local adblock blocklist to always-block certain domains.<br /> \
+				<em><b>Please note:</b></em> add only one domain per line. Comments introduced with \'#\' are allowed - ip addresses, wildcards and regex are not.')),
 			E('textarea', {
 				'style': 'width: 100% !important; padding: 5px; font-family: monospace; margin-top: .4em',
 				'spellcheck': 'false',
 				'wrap': 'off',
 				'rows': 25
-			}, [allowlist[1] != null ? allowlist[1] : ''])
+			}, [blocklist[1] != null ? blocklist[1] : ''])
 		]);
 	},
 	handleSave: function (ev) {
@@ -42,7 +42,7 @@ return view.extend({
 				document.querySelector('textarea').value = value;
 				document.body.scrollTop = document.documentElement.scrollTop = 0;
 				if (!notMsg) {
-					ui.addNotification(null, E('p', _('Allowlist modifications have been saved, reload banIP that changes take effect.')), 'info');
+					ui.addNotification(null, E('p', _('Blocklist modifications have been saved, reload adblock that changes take effect.')), 'info');
 					notMsg = true;
 				}
 			}).catch(function (e) {

@@ -654,7 +654,7 @@ if (!isEmpty(main_node)) {
 		urltest_nodes = [...urltest_nodes, ...filter(main_udp_urltest_nodes, (l) => !~index(urltest_nodes, l))];
 	} else if (dedicated_udp_node) {
 		const main_udp_node_cfg = uci.get_all(uciconfig, main_udp_node) || {};
-		if (main_node_cfg.type === 'wireguard') {
+		if (main_udp_node_cfg.type === 'wireguard') {
 			push(config.endpoints, generate_endpoint(main_udp_node_cfg));
 			config.endpoints[length(config.endpoints)-1].tag = 'main-udp-out';
 		} else {
@@ -792,21 +792,21 @@ if (!isEmpty(main_node)) {
 			type: 'remote',
 			tag: 'geoip-cn',
 			format: 'binary',
-			url: 'https://github.com/1715173329/IPCIDR-CHINA/raw/rule-set/cn.srs',
+			url: 'https://fastly.jsdelivr.net/gh/1715173329/IPCIDR-CHINA@rule-set/cn.srs',
 			download_detour: 'main-out'
 		});
 		push(config.route.rule_set, {
 			type: 'remote',
 			tag: 'geosite-cn',
 			format: 'binary',
-			url: 'https://github.com/1715173329/sing-geosite/raw/rule-set-unstable/geosite-geolocation-cn.srs',
+			url: 'https://fastly.jsdelivr.net/gh/1715173329/sing-geosite@rule-set-unstable/geosite-geolocation-cn.srs',
 			download_detour: 'main-out'
 		});
 		push(config.route.rule_set, {
 			type: 'remote',
 			tag: 'geosite-noncn',
 			format: 'binary',
-			url: 'https://github.com/1715173329/sing-geosite/raw/rule-set-unstable/geosite-geolocation-!cn.srs',
+			url: 'https://fastly.jsdelivr.net/gh/1715173329/sing-geosite@rule-set-unstable/geosite-geolocation-!cn.srs',
 			download_detour: 'main-out'
 		});
 	}
