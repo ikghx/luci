@@ -70,6 +70,7 @@ function index()
 	entry({"admin", "vpn", "openclash", "set_subinfo_url"}, call("set_subinfo_url"))
 	entry({"admin", "vpn", "openclash", "check_core"}, call("action_check_core"))
 	entry({"admin", "vpn", "openclash", "core_download"}, call("core_download"))
+	entry({"admin", "vpn", "openclash", "announcement"}, call("action_announcement"))
 	entry({"admin", "vpn", "openclash", "settings"},cbi("openclash/settings"),_("Plugin Settings"), 30).leaf = true
 	entry({"admin", "vpn", "openclash", "config-overwrite"},cbi("openclash/config-overwrite"),_("Overwrite Settings"), 40).leaf = true
 	entry({"admin", "vpn", "openclash", "servers"},cbi("openclash/servers"),_("Onekey Create"), 50).leaf = true
@@ -1775,4 +1776,15 @@ function process_status(name)
 	else
 		return luci.sys.call(string.format("ps -w |grep '%s' |grep -v grep >/dev/null", name)) == 0
 	end
+end
+
+function action_announcement()
+	if not fs.access("/tmp/openclash_announcement") or fs.mtime("/tmp/openclash_announcement") < (os.time() - 86400) then
+		luci.sys.exec("curl -SsL -m 5 -o /tmp/openclash_announcement https://raw.githubusercontent.com/vernesong/OpenClash/dev/announcement 2>/dev/null")	
+	end
+	local info = luci.sys.exec("cat /tmp/openclash_announcement 2>/dev/null") or ""
+	luci.http.prepare_content("application/json")
+	luci.http.write_json({
+		content = info;
+	})
 end

@@ -1,12 +1,11 @@
-# This is free software, licensed under the Apache License, Version 2.0 .
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Copyright (C) 2024 asvow
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI support for tailscale
+LUCI_TITLE:=LuCI for Tailscale
 LUCI_DEPENDS:=+tailscale
-
-PKG_LICENSE:=Apache-2.0
-PKG_MAINTAINER:=KGHX <openwrt.ikghx.com>
 
 include ../../luci.mk
 

@@ -154,8 +154,8 @@ return view.extend({
 
 		s.taboption('setup', form.Flag, 'ipv6_disable', _('Disable IPv6')).default = '1';
 
-		s.taboption('setup', form.Flag, 'force_forwarding', _('Forced forwarding'),
-			_('This make the port forwarding force to work even when the router is behind NAT.')).default = '0';
+		s.taboption('setup', form.Flag, 'ext_allow_private_ipv4', _('Allow private IPv4'),
+			_('Allow private IP address on external interface.')).default = '0';
 
 		o = s.taboption('setup', form.Value, 'download_kbps', _('Download speed'),
 			_('Value in kbit/s, informational only'));

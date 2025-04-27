@@ -1156,8 +1156,7 @@ a.menu:after {
 	top: 40px;
 	left: -9999px;
 	z-index: 900;
-	min-width: 160px;
-	max-width: 220px;
+	min-width: max-content;
 	margin-left: 0;
 	margin-right: 0;
 	padding: 6px 0;
@@ -2621,4 +2620,8 @@ div.cbi-value var.cbi-tooltip-container,
 [data-darkmode="true"] [data-page="admin-status-realtime-wireless"] #view > div > div > div > div > svg > line[style],
 [data-darkmode="true"] [data-page="admin-status-realtime-connections"] #view > div > div > div > svg > line[style] {
 	stroke: #fff!important;
+}
+
+[data-darkmode="true"] .cbi-input-textarea {
+  background-color: var(--background-color-high);
 }

@@ -1,7 +1,12 @@
 {
 	"luci-app-tailscale": {
-		"description": "Grant UCI access for luci-app-tailscale",
+		"description": "Grant access to Tailscale configuration",
 		"read": {
+			"file": {
+				"/sbin/ip -s -j ad": [ "exec" ],
+				"/sbin/logread": [ "exec" ],
+				"/usr/sbin/tailscale": [ "exec" ]
+			},
 			"ubus": {
 				"service": [ "list" ]
 			},

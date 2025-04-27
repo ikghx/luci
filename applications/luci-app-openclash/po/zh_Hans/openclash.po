@@ -16,8 +16,9 @@ msgstr "(默认，全部国家且仅写入iso_code和geoname_id)"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe-edit.lua:105
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:833
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:876
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:918
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:928
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:919
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:961
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:971
 msgid "(Default)"
 msgstr "(默认)"
 
@@ -25,10 +26,8 @@ msgstr "(默认)"
 msgid "(Extended)"
 msgstr "（候补匹配）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:920
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:921
-msgid "(Large Size)"
-msgstr "(大文件)"
+msgid "Custom Geo ASN Data URL, Click Button Below To Refresh After Edit"
+msgstr "自定义 Geo ASN 数据库的更新来源，编辑后点击下方按钮生效"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:78
 msgid "(Not Support mrs Format)"
@@ -70,9 +69,9 @@ msgstr "(仅中国数据)"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:960
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:985
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:79
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1019
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1020
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1032
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1062
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1063
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1075
 msgid "(Only Meta Core)"
 msgstr "（仅 Meta 内核）"
 
@@ -196,6 +195,10 @@ msgstr "禁用后将无法使用流媒体增强标签中的所有功能"
 msgid "API By tindy X & lhie1"
 msgstr ""
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:924
+msgid "ASN Update"
+msgstr ""
+
 #: applications/luci-app-openclash/luasrc/view/openclash/myip.htm:355
 #: applications/luci-app-openclash/luasrc/view/openclash/select_git_cdn.htm:188
 msgid "Access Denied"
@@ -214,7 +217,7 @@ msgstr "连接超时"
 msgid "Account Balances"
 msgstr "账户余额"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1123
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1166
 msgid "Account Email Address"
 msgstr "账号地址"
 
@@ -222,23 +225,23 @@ msgstr "账号地址"
 msgid "Account Integral"
 msgstr "账户积分"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1161
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1204
 msgid "Account Login"
 msgstr "账号登录"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1127
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1170
 msgid "Account Password"
 msgstr "账号密码"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1164
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1207
 msgid "Account logged in"
 msgstr "账号已登录"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1166
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1209
 msgid "Account not logged in"
 msgstr "账号未登录"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:454
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:469
 msgid "AdBlock"
 msgstr "广告（AdBlock）"
 
@@ -343,7 +346,7 @@ msgstr ""
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config.lua:453
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:284
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:270
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1183
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1226
 msgid "Apply Settings"
 msgstr "应用配置"
 
@@ -359,7 +362,7 @@ msgstr "确定要删除所有内核文件吗？"
 msgid "Are you sure want to restore the default config?"
 msgstr "确定要还原默认配置吗？"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:524
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:674
 msgid "Are you sure want to switch the running mode?"
 msgstr "确认要切换运行模式吗?"
 
@@ -385,11 +388,11 @@ msgid "Authenticated-Length"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:45
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:942
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:985
 msgid "Auto Restart"
 msgstr "定时重启"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:943
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:986
 msgid "Auto Restart OpenClash"
 msgstr "定时重启插件"
 
@@ -413,13 +416,17 @@ msgstr "*自动选择解锁节点"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:24
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:730
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:893
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:936
 msgid "Auto Update"
 msgstr "自动更新"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:894
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:937
 msgid "Auto Update Chnroute Lists"
 msgstr "自动更新大陆白名单"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:893
+msgid "Auto Update Geo ASN"
+msgstr "自动更新 Geo ASN 数据库"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:807
 msgid "Auto Update GeoIP Dat"
@@ -459,7 +466,7 @@ msgstr "自动展开嵌套的策略组并进行解锁检测，启用后可能会
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/game-rules-manage.lua:32
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:134
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-file-edit.lua:65
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:527
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:542
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:185
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-file-manage.lua:116
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:190
@@ -560,17 +567,17 @@ msgid "Bypass Gateway Compatible"
 msgstr "旁路网关（旁路由）兼容"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:296
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1049
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1092
 msgid "Bypass Mainland China"
 msgstr "绕过中国大陆"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:297
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1050
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1093
 msgid "Bypass Overseas"
 msgstr "海外用户回国模式"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:293
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1046
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1089
 msgid ""
 "Bypass Specified Regions Network Flows, Improve Performance, If "
 "Inaccessibility on Bypass Gateway, Try to Enable Bypass Gateway Compatible "
@@ -591,7 +598,7 @@ msgstr "大陆流媒体"
 msgid "CPU Architecture"
 msgstr "处理器架构"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:146
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:197
 msgid "CPU:"
 msgstr "CPU占用:"
 
@@ -614,8 +621,8 @@ msgid ""
 "Handshaking"
 msgstr "更换延迟计算方式，通过去除握手等额外开销来降低延迟数值"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:261
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:700
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:312
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:850
 msgid "Check All Components Update"
 msgstr "插件和内核检查更新"
 
@@ -623,7 +630,8 @@ msgstr "插件和内核检查更新"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:798
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:840
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:883
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:933
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:926
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:976
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:154
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:155
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:302
@@ -631,9 +639,9 @@ msgstr "插件和内核检查更新"
 msgid "Check And Update"
 msgstr "检查并更新"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:262
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:812
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:816
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:313
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:962
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:966
 msgid "Check Config Update"
 msgstr "配置文件检查更新"
 
@@ -641,54 +649,54 @@ msgstr "配置文件检查更新"
 msgid "Check Failed"
 msgstr "查询更新失败"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:264
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:750
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:754
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:315
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:900
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:904
 msgid "Check GEOIP Data Update"
 msgstr "GEOIP 数据库检查更新"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:265
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:767
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:771
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:316
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:917
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:921
 msgid "Check GeoSite Data Update"
 msgstr "GeoSite 数据库检查更新"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:263
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:733
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:737
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:314
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:883
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:887
 msgid "Check Third Party Rules Update"
 msgstr "第三方规则检查更新"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:702
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:852
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:463
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:497
 msgid "Check and Update all Cores and OpenClash?"
 msgstr "确定要一键检查并更新所有内核及插件吗？"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:709
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:718
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:859
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:868
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:470
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:479
 msgid "Check failed, Please try again later!"
 msgstr "一键检查更新失败,请稍后再试！"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1133
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1176
 #: applications/luci-app-openclash/luasrc/view/openclash/dlercloud.htm:298
 msgid "Checkin"
 msgstr "试试手气"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1139
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1182
 msgid "Checkin Interval (hour)"
 msgstr "签到间隔（小时）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1145
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1188
 msgid "Checkin Multiple"
 msgstr "签到倍数"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:729
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:746
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:763
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:808
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:879
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:896
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:913
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:958
 msgid "Checking..."
 msgstr "正在检查更新..."
 
@@ -696,7 +704,7 @@ msgstr "正在检查更新..."
 msgid "China IP Route"
 msgstr "实验性：绕过指定区域 IP"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1045
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1088
 msgid "China IPv6 Route"
 msgstr "实验性：绕过指定区域 IPv6"
 
@@ -708,7 +716,7 @@ msgstr "大陆限定"
 msgid "Chnroute Bypassed List"
 msgstr "绕过指定区域 IPv4 黑名单"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:931
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:974
 msgid "Chnroute Lists Update"
 msgstr "Chnroute 列表更新"
 
@@ -716,7 +724,7 @@ msgstr "Chnroute 列表更新"
 msgid "Chnroute Update"
 msgstr "大陆白名单订阅"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1073
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1116
 msgid "Chnroute6 Bypassed List"
 msgstr "绕过指定区域 IPv6 黑名单"
 
@@ -724,7 +732,7 @@ msgstr "绕过指定区域 IPv6 黑名单"
 msgid "Choose CDN For Downloading:"
 msgstr "请在下方选择一个 CDN 地址进行加速下载："
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:499
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:514
 msgid "Choose Proxy Groups, Base On Your Config File"
 msgstr "指定流量(策略)的代理方式，只支持选择（策略组），信息来源于您的配置文件"
 
@@ -760,15 +768,15 @@ msgstr "选择规则集类型"
 msgid "Chrome"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:918
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:961
 msgid "Clang-CN"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:919
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:962
 msgid "Clang-CN-CIDR"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:928
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:971
 msgid "Clang-CN-IPV6"
 msgstr ""
 
@@ -802,12 +810,12 @@ msgstr "客户端指纹"
 msgid "Client Update"
 msgstr "客户端版本更新"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:258
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:846
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:309
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:996
 msgid "Close All Connections"
 msgstr "重置所有链接"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:850
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:1000
 msgid "Close All Connections Failed"
 msgstr "关闭所有连接失败"
 
@@ -843,23 +851,23 @@ msgstr "关闭旧链接"
 #: applications/luci-app-openclash/luasrc/view/openclash/dlercloud.htm:293
 #: applications/luci-app-openclash/luasrc/view/openclash/other_stream_option.htm:79
 #: applications/luci-app-openclash/luasrc/view/openclash/other_stream_option.htm:84
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:71
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:72
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:79
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:80
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:87
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:88
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:165
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:166
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:167
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:168
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:171
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:172
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:173
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:174
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:185
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:186
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:187
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:122
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:123
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:130
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:131
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:138
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:139
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:216
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:217
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:218
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:219
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:222
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:223
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:224
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:225
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:236
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:237
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:238
 #: applications/luci-app-openclash/luasrc/view/openclash/switch_dashboard.htm:3
 #: applications/luci-app-openclash/luasrc/view/openclash/switch_mode.htm:6
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:37
@@ -892,13 +900,13 @@ msgstr ""
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/custom-dns-edit.lua:144
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/groups-config.lua:125
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-file-edit.lua:58
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:519
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:534
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/proxy-provider-config.lua:177
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-config.lua:181
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:277
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:1138
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers.lua:262
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1176
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1219
 msgid "Commit Settings"
 msgstr "保存配置"
 
@@ -910,8 +918,8 @@ msgstr "*仅允许常用端口流量"
 msgid "Communication protocol"
 msgstr "通讯协议"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:74
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:510
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:125
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:660
 msgid "Compat"
 msgstr "兼容"
 
@@ -958,7 +966,7 @@ msgstr "OpenClash 修改后用于启动的配置文件"
 msgid "Config File List"
 msgstr "配置文件列表"
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:91
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:92
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config.lua:63
 msgid "Config Manage"
 msgstr "配置管理"
@@ -967,7 +975,7 @@ msgstr "配置管理"
 msgid "Config Normal"
 msgstr "检查通过"
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:85
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:86
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/client.lua:119
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-subscribe.lua:17
 msgid "Config Subscribe"
@@ -986,7 +994,7 @@ msgstr "拥塞控制器"
 msgid "Connection Test (Current Browser)"
 msgstr "连接测试（当前浏览器）"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:128
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:179
 msgid "Connections:"
 msgstr "活动连接:"
 
@@ -994,15 +1002,15 @@ msgstr "活动连接:"
 msgid "Consistent-hashing"
 msgstr "哈希匹配（访问相同网站时使用同一个代理）"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:71
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:122
 msgid "Control Panel Login IP"
 msgstr "控制面板登录 IP"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:79
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:130
 msgid "Control Panel Login Port"
 msgstr "控制面板登录端口"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:87
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:138
 msgid "Control Panel Login Secret"
 msgstr "控制面板登录密钥"
 
@@ -1065,7 +1073,7 @@ msgstr "技术支持"
 msgid "Cross-platform Support"
 msgstr "丰富的第三方应用兼容性"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:412
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:427
 msgid "Crypto"
 msgstr ""
 
@@ -1081,19 +1089,19 @@ msgstr "当前配置文件"
 msgid "Current Core"
 msgstr "当前内核版本"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:915
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:958
 msgid "Custom Chnroute Lists URL"
 msgstr "大陆IP段更新 URL"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:917
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:960
 msgid "Custom Chnroute Lists URL, Click Button Below To Refresh After Edit"
 msgstr "自定义大陆 IP 段的更新来源，编辑后点击下方按钮生效"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:925
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:968
 msgid "Custom Chnroute6 Lists URL"
 msgstr "大陆IPv6段更新 URL"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:927
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:970
 msgid "Custom Chnroute6 Lists URL, Click Button Below To Refresh After Edit"
 msgstr "自定义大陆 IPv6 段的更新来源，编辑后点击下方按钮生效"
 
@@ -1113,11 +1121,15 @@ msgstr ""
 msgid "Custom DNS Setting"
 msgstr "*自定义上游 DNS 服务器"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1100
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1143
 msgid ""
 "Custom Firewall Rules, Support IPv4 and IPv6, All Rules Will Be Added After "
 "Plugin Own Completely"
 msgstr "自定义防火墙规则，支持 IPv4 和 IPv6，此脚本将在插件内置规则完成后执行"
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:918
+msgid "Custom Geo ASN Data URL, Click Button Below To Refresh After Edit"
+msgstr "自定义地理 ASN 数据 URL，编辑后点击下方按钮刷新"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:830
 msgid "Custom GeoIP Dat URL"
@@ -1140,6 +1152,7 @@ msgid "Custom GeoSite Data URL, Click Button Below To Refresh After Edit"
 msgstr "自定义 GeoSite 数据库的更新来源，编辑后点击下方按钮生效"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:873
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:916
 msgid "Custom GeoSite URL"
 msgstr "GeoSite 数据库更新 URL"
 
@@ -1242,24 +1255,24 @@ msgstr "DNS 测试（Clash 查询结果）"
 msgid "DROP"
 msgstr "丢弃"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:252
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:303
 msgid "Daemons"
 msgstr "守护程序"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:970
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1013
 msgid "Dashboard Address Example:"
 msgstr "管理页面地址示例:"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:255
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:921
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:306
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:1071
 msgid "Dashboard Control Panel"
 msgstr "Dashboard 面板"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:966
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1009
 msgid "Dashboard Port"
 msgstr "管理页面端口"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:973
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1016
 msgid "Dashboard Secret"
 msgstr "管理页面登录密钥"
 
@@ -1336,7 +1349,7 @@ msgstr "删除未启用节点"
 msgid "Developer Settings"
 msgstr "开发者选项"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:86
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:137
 msgid "Direct"
 msgstr "直连"
 
@@ -1373,7 +1386,7 @@ msgstr "Direct【全局直连】"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:284
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:295
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:313
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1048
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1091
 msgid "Disable"
 msgstr ""
 
@@ -1402,7 +1415,7 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:426
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:441
 msgid "Discord"
 msgstr ""
 
@@ -1459,7 +1472,7 @@ msgstr "使用 Dnsmasq 转发"
 msgid "Do Not Add Type Ahead"
 msgstr "请勿添加类型前缀"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:982
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1025
 msgid "Domain Name For Dashboard Login From Public Network"
 msgstr "设置公网域名，便于从公网访问时自动登录"
 
@@ -1484,22 +1497,22 @@ msgstr ""
 "下仍将返回保留地址"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:340
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1075
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1118
 msgid ""
 "Domains or IPs in The List Will Not be Affected by The China IP Route "
 "Option, Depend on Dnsmasq"
 msgstr ""
 "列表中的域名或 IP 将不会受到绕过指定区域 IP 选项的影响，此功能依赖于 Dnsmasq"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:482
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:497
 msgid "Domestic"
 msgstr "国内流量"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:119
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:170
 msgid "Down Total:"
 msgstr "下载总量:"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:101
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:152
 msgid "Down:"
 msgstr "下载:"
 
@@ -1681,7 +1694,7 @@ msgstr "启用传输协议设置"
 msgid "Enable Unified Delay"
 msgstr "*启用统一延迟"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1042
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1085
 msgid "Enable to Resolve IPv6 DNS Requests"
 msgstr "允许解析 IPv6 类型的 DNS 请求"
 
@@ -1697,7 +1710,7 @@ msgstr ""
 msgid "Encrypt Method"
 msgstr "加密方式"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:505
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:655
 msgid "Enhance"
 msgstr "增强"
 
@@ -1714,8 +1727,9 @@ msgstr "Error【错误】"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:770
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:811
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:854
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:898
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:947
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:897
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:941
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:990
 msgid "Every Day"
 msgstr "每天"
 
@@ -1724,8 +1738,9 @@ msgstr "每天"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:775
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:816
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:859
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:903
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:952
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:902
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:946
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:995
 msgid "Every Friday"
 msgstr "每周五"
 
@@ -1734,8 +1749,9 @@ msgstr "每周五"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:771
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:812
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:855
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:899
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:948
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:898
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:942
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:991
 msgid "Every Monday"
 msgstr "每周一"
 
@@ -1744,8 +1760,9 @@ msgstr "每周一"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:776
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:817
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:860
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:904
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:953
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:903
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:947
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:996
 msgid "Every Saturday"
 msgstr "每周六"
 
@@ -1754,8 +1771,9 @@ msgstr "每周六"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:777
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:818
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:861
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:905
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:954
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:904
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:948
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:997
 msgid "Every Sunday"
 msgstr "每周日"
 
@@ -1764,8 +1782,9 @@ msgstr "每周日"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:774
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:815
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:858
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:902
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:951
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:901
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:945
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:994
 msgid "Every Thursday"
 msgstr "每周四"
 
@@ -1774,8 +1793,9 @@ msgstr "每周四"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:772
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:813
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:856
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:900
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:949
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:899
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:943
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:992
 msgid "Every Tuesday"
 msgstr "每周二"
 
@@ -1784,8 +1804,9 @@ msgstr "每周二"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:773
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:814
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:857
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:901
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:950
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:900
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:944
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:993
 msgid "Every Wednesday"
 msgstr "每周三"
 
@@ -1817,7 +1838,7 @@ msgstr "扩展（补充）"
 msgid "Failed to get the latest version. Please try again later!"
 msgstr "最新版本获取失败，请稍后再试！"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:504
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:654
 msgid "Fake-IP"
 msgstr ""
 
@@ -1874,11 +1895,11 @@ msgstr "文件编辑"
 msgid "File Name"
 msgstr "文件名"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:541
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:542
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:543
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:544
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:545
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:691
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:692
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:693
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:694
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:695
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:203
 msgid "File Not Exist"
 msgstr "文件不存在"
@@ -1902,7 +1923,7 @@ msgstr ""
 msgid "Firewall Redirect"
 msgstr "使用防火墙转发"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:833
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:983
 msgid "Firewall Rules Reset Failed"
 msgstr "防火墙规则重置失败"
 
@@ -1915,22 +1936,22 @@ msgid "Flush Cache"
 msgstr "清理缓存"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/flush_fakeip_cache.htm:16
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:788
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:938
 msgid "Flush Failed"
 msgstr "清理失败"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:123
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:260
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:311
 msgid "Flush Fake-IP Cache"
 msgstr "Fake-IP 持久化缓存清理"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/flush_fakeip_cache.htm:21
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:793
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:943
 msgid "Flush Successful"
 msgstr "清理成功"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/flush_fakeip_cache.htm:25
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:797
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:947
 msgid "Flush Timeout"
 msgstr "清理超时"
 
@@ -1940,7 +1961,7 @@ msgid "Flush Unlock Test Cache"
 msgstr "清理解锁检测缓存"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/flush_fakeip_cache.htm:8
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:780
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:930
 msgid "Flushing..."
 msgstr "清理中..."
 
@@ -2010,11 +2031,11 @@ msgstr ""
 msgid "Generate Logs"
 msgstr "生成日志"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:187
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:238
 msgid "GeoIP Data Update"
 msgstr "GeoIP 数据库日期"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:187
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:238
 msgid "GeoSite Data Update"
 msgstr "GeoSite 数据库日期"
 
@@ -2045,7 +2066,7 @@ msgstr "最新版本获取中..."
 msgid "Github Address Modify"
 msgstr "Github 地址修改"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:84
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:135
 msgid "Global"
 msgstr "全局"
 
@@ -2129,7 +2150,7 @@ msgstr ""
 msgid "HTTP(S) Port"
 msgstr "HTTP(S) 代理端口"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:468
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:483
 msgid "HTTPDNS"
 msgstr ""
 
@@ -2138,11 +2159,11 @@ msgstr ""
 msgid "HTTPS"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:920
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:963
 msgid "Hackl0us-CN-CIDR-fastly-jsdelivr"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:921
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:964
 msgid "Hackl0us-CN-CIDR-testingcf-jsdelivr"
 msgstr ""
 
@@ -2230,11 +2251,11 @@ msgstr ""
 msgid "IPv6"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1041
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1084
 msgid "IPv6 DNS Resolve"
 msgstr "允许 IPv6 类型 DNS 解析"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1016
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1059
 msgid "IPv6 Proxy Mode"
 msgstr "IPv6 代理模式"
 
@@ -2243,7 +2264,7 @@ msgid "IPv6 Settings"
 msgstr "IPv6 设置"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:66
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1036
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1079
 msgid "If Docker is Installed, UDP May Not Forward Normally"
 msgstr ""
 "安装了 Docker 的固件请使用 TUN 模式，否则可能无法正常转发 UDP，造成游戏异常"
@@ -2343,7 +2364,7 @@ msgstr ""
 msgid "Invalid format."
 msgstr "无效的格式。"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:993
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1036
 msgid "Is SSL enabled For Dashboard Login From Public Network"
 msgstr "设置公网协议是否开启了SSL，便于从公网访问时自动登录"
 
@@ -2455,7 +2476,7 @@ msgstr "正在加载"
 msgid "Local IPv4 Network Bypassed List"
 msgstr "本地 IPv4 绕过地址"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1053
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1096
 msgid "Local IPv6 Network Bypassed List"
 msgstr "本地 IPv6 绕过地址"
 
@@ -2491,7 +2512,7 @@ msgstr "退出账号"
 msgid "Logout..."
 msgstr "退出中..."
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:702
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:703
 msgid "Long-term"
 msgstr ""
 
@@ -2513,15 +2534,15 @@ msgstr ""
 msgid "MTU"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:71
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:122
 msgid "Main Program"
 msgstr "主程序"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:186
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:237
 msgid "Mainland IP Update"
 msgstr "大陆 IP 白名单 更新日期"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:186
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:237
 msgid "Mainland IPv6 Update"
 msgstr "大陆 IPv6 白名单 更新日期"
 
@@ -2575,8 +2596,8 @@ msgstr "小内存模式"
 msgid "Meta Settings"
 msgstr "Meta 设置"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:256
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:881
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:307
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:1031
 msgid "Metacubexd Control Panel"
 msgstr "Metacubexd 面板"
 
@@ -2592,11 +2613,11 @@ msgstr ""
 msgid "Min-streams"
 msgstr "最小数据流"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:78
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:129
 msgid "Mix"
 msgstr "混合"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1020
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1063
 msgid "Mix Mode"
 msgstr "Mix 混合模式【UDP-TUN，TCP-转发】"
 
@@ -2609,7 +2630,7 @@ msgid "Mix This Page's Proxies"
 msgstr "一键生成配置文件时合并本页下方的所有代理服务器信息（不区分配置文件）"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:79
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1032
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1075
 msgid "Mixed"
 msgstr ""
 
@@ -2659,7 +2680,7 @@ msgstr ""
 msgid "Move up"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1150
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1193
 #: applications/luci-app-openclash/luasrc/view/openclash/dler_login.htm:24
 #: applications/luci-app-openclash/luasrc/view/openclash/dler_login.htm:30
 #: applications/luci-app-openclash/luasrc/view/openclash/dler_login.htm:36
@@ -2715,7 +2736,7 @@ msgstr "测试过程中可能会造成网络不稳定,确定要开始测试吗�
 msgid "New Servers Group (Support Regex)"
 msgstr "新节点默认策略组（请勿重复添加，支持正则匹配）"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:550
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:700
 msgid "No Backup"
 msgstr "暂未备份"
 
@@ -2745,7 +2766,7 @@ msgstr "未选择上传文件"
 msgid "No Sub Info Found"
 msgstr "无订阅信息"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:714
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:864
 msgid ""
 "No compiled version is selected. Please configure it in the General Settings "
 "tab!"
@@ -2755,7 +2776,7 @@ msgstr "未选择编译版本。请在“常规设置”选项卡中进行配置
 msgid "Node Domain Resolve"
 msgstr "节点域名解析"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:185
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:236
 msgid "Node Select Backup"
 msgstr "策略组节点选择 备份日期"
 
@@ -2792,18 +2813,18 @@ msgstr "未下载"
 msgid "Not Null"
 msgstr "空值无效"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:251
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:252
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:254
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:255
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:256
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:257
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:258
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:259
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:260
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:290
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:504
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:509
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:302
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:303
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:305
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:306
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:307
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:308
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:309
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:310
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:311
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:341
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:654
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:659
 msgid "Not Running"
 msgstr "未运行"
 
@@ -2812,13 +2833,13 @@ msgid "Not Select"
 msgstr "未选择"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/select_git_cdn.htm:88
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:253
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:267
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:268
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:273
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:274
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:278
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:279
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:304
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:318
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:319
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:324
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:325
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:329
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:330
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:28
 msgid "Not Set"
 msgstr "未设置"
@@ -2846,7 +2867,7 @@ msgstr ""
 "注意: Fake-IP 模式下如需要进行客户端访问控制，请将DNS劫持模式改为防火墙转发"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:23
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:429
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:480
 msgid ""
 "Note: It is not recommended to enable IPv6 and related services for routing. "
 "Most of the network connection problems reported so far are related to it"
@@ -2864,14 +2885,14 @@ msgid ""
 msgstr "注意：请根据文件类型上传文件，文件将会被保存到提示路径"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:25
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:437
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:488
 msgid ""
 "Note: Some software will modify the device HOSTS, which will cause abnormal "
 "shunt, please pay attention to check"
 msgstr "注意: 部分软件会修改设备 HOSTS，会导致分流异常，请注意检查"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:28
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:441
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:492
 msgid ""
 "Note: The default proxy routes local traffic, BT, PT download, etc., please "
 "use Redir-Host mode as much as possible and pay attention to traffic "
@@ -2890,7 +2911,7 @@ msgid "Note: To restore the default configuration, try accessing:"
 msgstr "注意: 如遇到配置丢失或者需要还原默认配置，请尝试访问地址:"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:24
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:433
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:484
 msgid ""
 "Note: Turning on secure DNS in the browser will cause abnormal shunting, "
 "please be careful to turn it off"
@@ -2933,7 +2954,7 @@ msgstr "一键检查更新"
 msgid "One Click Check Update With CDN"
 msgstr "使用CDN一键检查更新"
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:75
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:76
 msgid "Onekey Create"
 msgstr "一键生成"
 
@@ -2979,8 +3000,8 @@ msgstr ""
 msgid "OpenClash Log"
 msgstr "OpenClash 日志"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:349
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:352
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:400
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:403
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:269
 #: applications/luci-app-openclash/luasrc/view/openclash/update.htm:272
 msgid "OpenClash Start Failed"
@@ -3030,7 +3051,7 @@ msgstr "其他规则更新"
 msgid "Other Rules Update(Only in Use)"
 msgstr "正在使用第三方规则时才能更新"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:496
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:511
 msgid "Others"
 msgstr "未匹配到规则的流量"
 
@@ -3042,7 +3063,7 @@ msgstr "强制覆盖 DNS 查询的子网区域地址"
 msgid "Overviews"
 msgstr "运行状态"
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:74
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:75
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/config-overwrite.lua:21
 msgid "Overwrite Settings"
 msgstr "覆写设置"
@@ -3096,7 +3117,7 @@ msgstr "在此处粘贴并指定订阅信息来源的新地址："
 msgid "Path"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:440
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:455
 msgid "PayPal"
 msgstr ""
 
@@ -3133,7 +3154,7 @@ msgstr "本月已用"
 msgid "Please Make Sure Ports Available"
 msgstr "请确保端口可用"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:182
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:233
 msgid ""
 "Please ensure that all items are displayed normally before running. If you "
 "need to update, please go to the global settings page"
@@ -3144,7 +3165,7 @@ msgstr ""
 msgid "Please enter a valid URL!"
 msgstr "请参考示例输入正确的链接地址！"
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:73
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:74
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:20
 msgid "Plugin Settings"
 msgstr "插件设置"
@@ -3153,7 +3174,7 @@ msgstr "插件设置"
 msgid "Pornhub"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:988
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1031
 msgid "Port For Dashboard Login From Public Network"
 msgstr "设置映射端口，便于从公网访问时自动登录"
 
@@ -3251,14 +3272,14 @@ msgstr "添加到策略组（请勿重复添加，支持正则匹配）"
 msgid "Proxy Groups(No Need Set when Config Create)"
 msgstr "策略组配置（使用一键生成配置文件功能时无需设置）"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1012
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1055
 msgid "Proxy IPv6 Traffic"
 msgstr "IPv6 流量代理"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:82
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:80
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:489
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:493
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:131
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:639
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:643
 msgid "Proxy Mode"
 msgstr "代理模式"
 
@@ -3272,7 +3293,7 @@ msgid "Proxy Provider File List"
 msgstr "代理集文件列表"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:65
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1035
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1078
 msgid "Proxy UDP Traffics"
 msgstr "UDP 流量转发"
 
@@ -3284,15 +3305,15 @@ msgstr "代理集配置"
 msgid "Psk"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:978
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1021
 msgid "Public Dashboard Address"
 msgstr "管理页面公网域名"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:985
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1028
 msgid "Public Dashboard Port"
 msgstr "管理页面映射端口"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:991
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1034
 msgid "Public Dashboard SSL enabled"
 msgstr "管理页面公网SSL访问"
 
@@ -3340,7 +3361,7 @@ msgstr ""
 msgid "Querying..."
 msgstr "查询中..."
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:163
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:214
 msgid "Quick Operation"
 msgstr "常用操作快捷按钮"
 
@@ -3356,7 +3377,7 @@ msgstr ""
 msgid "RETURN"
 msgstr "返回"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:137
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:188
 msgid "Ram:"
 msgstr "内存占用:"
 
@@ -3373,7 +3394,7 @@ msgstr "读取配置"
 msgid "Redir Port"
 msgstr "流量转发端口"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:509
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:659
 msgid "Redir-Host"
 msgstr ""
 
@@ -3381,7 +3402,7 @@ msgstr ""
 msgid "Redirect Local DNS Setting"
 msgstr "*本地 DNS 劫持"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1018
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1061
 msgid "Redirect Mode"
 msgstr "Redirect 模式"
 
@@ -3412,13 +3433,13 @@ msgid ""
 "Release Branch Selected (Auto-save when you click to update or download)"
 msgstr "已选择更新分支（点击更新或下载时自动保存）"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:259
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:829
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:310
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:979
 msgid "Reload Firewall Rules"
 msgstr "重置防火墙规则"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:825
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:842
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:975
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:992
 msgid "Reloading..."
 msgstr "正在重置..."
 
@@ -3474,11 +3495,11 @@ msgstr ""
 msgid "Respect Rules"
 msgstr "遵循规则"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:946
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:989
 msgid "Restart Time (Every Week)"
 msgstr "重启时间(每周)"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:957
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1000
 msgid "Restart time (every day)"
 msgstr "重启时间(每天)"
 
@@ -3503,7 +3524,7 @@ msgstr "轮询（轮流使用全部代理）"
 msgid "Router-Self Proxy"
 msgstr "*路由本机代理"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:82
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:133
 msgid "Rule"
 msgstr "规则"
 
@@ -3546,7 +3567,7 @@ msgstr "规则集文件"
 msgid "Rule Provider's Name"
 msgstr "选择规则集（请勿重复添加）"
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:79
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:80
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/rule-providers-settings.lua:12
 msgid "Rule Providers Append"
 msgstr "规则附加"
@@ -3594,12 +3615,12 @@ msgstr "规则设置"
 msgid "Rules Update"
 msgstr "第三方规则订阅"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:251
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:252
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:302
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:303
 msgid "Running"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:72
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:123
 msgid "Running Mode"
 msgstr "运行模式"
 
@@ -3654,12 +3675,12 @@ msgid "Select Proxy Mode"
 msgstr "选择默认代理模式"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:71
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1024
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1067
 msgid "Select Stack Type"
 msgstr "网络栈类型"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:72
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1025
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1068
 msgid ""
 "Select Stack Type For TUN Mode, According To The Running Speed on Your "
 "Machine"
@@ -3693,7 +3714,7 @@ msgstr "别名（请勿重名）"
 msgid "Server IP"
 msgstr "服务器 IP"
 
-#: applications/luci-app-openclash/luasrc/controller/openclash.lua:92
+#: applications/luci-app-openclash/luasrc/controller/openclash.lua:93
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/log.lua:6
 msgid "Server Logs"
 msgstr "运行日志"
@@ -3715,7 +3736,7 @@ msgstr ""
 msgid "Set Authentication of SOCKS5/HTTP(S)"
 msgstr "设置 SOCKS5/HTTP(S) 认证信息"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:975
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1018
 msgid "Set Dashboard Secret"
 msgstr "设置您的管理页面登录密钥"
 
@@ -3850,7 +3871,7 @@ msgstr "指定新的订阅信息来源地址成功！"
 msgid "Specify the ECS Subnet Address"
 msgstr "指定 ECS 子网区域地址"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:384
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:399
 msgid "Speedtest"
 msgstr "测速流量（Speedtest）"
 
@@ -3985,16 +4006,16 @@ msgstr "切换页面到 Fake-IP 模式"
 msgid "Switch page to Redir-Host mode"
 msgstr "切换页面到 Redir-Host 模式"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:995
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1038
 msgid "Switch(Update) Dashboard Version"
 msgstr "切换（更新） Dashboard 版本"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:999
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1042
 msgid "Switch(Update) Yacd Version"
 msgstr "切换（更新） Yacd 版本"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:77
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1030
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1073
 msgid "System"
 msgstr ""
 
@@ -4018,7 +4039,7 @@ msgstr ""
 msgid "TLS"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1017
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1060
 msgid "TProxy Mode"
 msgstr "TProxy 模式"
 
@@ -4026,11 +4047,11 @@ msgstr "TProxy 模式"
 msgid "TProxy Port"
 msgstr "TProxy 端口"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:76
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:127
 msgid "TUN"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1019
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1062
 msgid "TUN Mode"
 msgstr ""
 
@@ -4052,7 +4073,7 @@ msgstr ""
 msgid "Target"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:398
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:413
 msgid "Telegram"
 msgstr ""
 
@@ -4085,7 +4106,7 @@ msgstr ""
 "注意：除'DIRECT'、'REJECT'、'REJECT-DROP'、'PASS'、'GLOBAL'外，修改配置文件前"
 "添加的其他策略组必须已创建"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1013
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1056
 msgid ""
 "The Gateway and DNS of The Connected Device Must be The Router IP, Disable "
 "IPv6 DHCP To Avoid Abnormal Connection If You Do Not Use"
@@ -4094,7 +4115,7 @@ msgstr ""
 "连接异常"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:66
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1036
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1079
 msgid "The Servers Must Support UDP forwarding"
 msgstr "启用时服务器必须支持 UDP 转发"
 
@@ -4106,7 +4127,7 @@ msgstr ""
 "来自本地指定端口的流量不会通过核心，在旁路网关（旁路由）下转发失败时尝试设置"
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:321
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1055
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1098
 msgid ""
 "The Traffic of The Destination For The Specified Address Will Not Pass The "
 "Core"
@@ -4123,35 +4144,39 @@ msgstr "游戏代理为测试功能，不保证规则可用性"
 msgid "This section contains no values yet"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:381
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:370
+msgid "TikTok"
+msgstr ""
+
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:432
 msgid ""
 "Tip: You can modify the profile on the profile page (for content that is not "
 "taken over)"
 msgstr "Tip: 您可以在配置文件页面直接修改配置文件（适用于没被接管的内容）"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:68
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:417
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:119
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:468
 msgid ""
 "Tip: after started, please wait patiently until the connection is normal"
 msgstr "Tip: OpenClash 成功启动后请耐心等待下方网站访问检查连接正常后再使用"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:385
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:436
 msgid "Tip: click the version icon above to jump to the client publishing page"
 msgstr "Tip: 点击上方版本图标可跳转到客户端发布页面"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:389
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:440
 msgid ""
 "Tip: do not write configuration files? Try to create one click on the server "
 "page"
 msgstr "Tip: 不会编写配置文件？试试在【服务器与策略组管理】页面一键创建"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:421
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:472
 msgid ""
 "Tip: if you don not use IPv6, please turn off the DHCP service of IPv6, "
 "otherwise the connection will be abnormal"
 msgstr "Tip: 如果不使用IPv6，请关闭IPv6的DHCP服务，否则会造成连接异常"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:405
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:456
 msgid ""
 "Tip: openlash will check the configuration file parameters to ensure that it "
 "works properly"
@@ -4159,34 +4184,34 @@ msgstr ""
 "Tip: OpenClash 启动时会检查配置文件参数【服务器（策略）组、规则、DNS设置】以"
 "确保能够正常工作"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:401
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:452
 msgid ""
 "Tip: query DNS by TLS & TCP & HTTPS can get better anti pollution effect"
 msgstr "Tip: 使用 TLS & TCP & HTTPS 方式查询DNS可以获得更好的抗污染效果"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:393
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:444
 msgid ""
 "Tip: some website are abnormal? Try switching modes or using third-party "
 "rules"
 msgstr "Tip: 某些网站链接出现异常? 试试切换模式或者使用第三方规则"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:409
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:460
 msgid ""
 "Tip: the nameserver group must have at least one server set when using "
 "custom DNS"
 msgstr "Tip: 使用自定义DNS上游服务器时NameServer组必须设置至少一个服务器"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:413
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:464
 msgid ""
 "Tip: the website access check shows the connection of the device currently "
 "logged in to the Luci page"
 msgstr "Tip: 网站访问检查展示的是当前登录LUCI页面设备的连接情况"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:397
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:448
 msgid "Tip: using the fake IP mode can get a faster access experience"
 msgstr "Tip: 使用 Fake-IP 模式可以获得更加快速的访问体验"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:425
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:476
 msgid "Tip: you can update the version in the global settings page"
 msgstr "Tip: 您可以在全局设置页面进行版本更新操作"
 
@@ -4315,11 +4340,11 @@ msgstr "解锁检测(选择)"
 msgid "Unzip Error"
 msgstr "解压失败"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:110
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:161
 msgid "Up Total:"
 msgstr "上传总量:"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:92
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:143
 msgid "Up:"
 msgstr "上传:"
 
@@ -4333,7 +4358,7 @@ msgstr "更新"
 msgid "Update"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:932
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:975
 msgid "Update Chnroute Lists"
 msgstr "更新大陆白名单"
 
@@ -4353,6 +4378,10 @@ msgstr "更新内核"
 msgid "Update Failed"
 msgstr "更新失败"
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:925
+msgid "Update Geo ASN Database"
+msgstr "更新 Geo ASN 数据库"
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:839
 msgid "Update GeoIP Dat"
 msgstr "更新 GeoIP Dat 数据库"
@@ -4369,7 +4398,7 @@ msgstr "更新 GeoSite 数据库"
 msgid "Update Interval(min)"
 msgstr "更新间隔(分钟)"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1003
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1046
 #: applications/luci-app-openclash/luasrc/view/openclash/switch_dashboard.htm:28
 #: applications/luci-app-openclash/luasrc/view/openclash/switch_dashboard.htm:61
 msgid "Update Metacubexd Version"
@@ -4403,7 +4432,8 @@ msgstr "更新时间"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:769
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:810
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:853
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:897
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:896
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:940
 msgid "Update Time (Every Week)"
 msgstr "更新时间(每周)"
 
@@ -4421,10 +4451,11 @@ msgstr "请先在配置文件管理页面上传您的规则集文件"
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:822
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:865
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:908
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:951
 msgid "Update time (every day)"
 msgstr "更新时间(每天)"
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1007
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1050
 #: applications/luci-app-openclash/luasrc/view/openclash/switch_dashboard.htm:31
 #: applications/luci-app-openclash/luasrc/view/openclash/switch_dashboard.htm:63
 msgid "Update zashboard Version"
@@ -4587,12 +4618,12 @@ msgstr ""
 msgid "XUDP Enable"
 msgstr "XUDP 支持"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:254
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:901
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:305
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:1051
 msgid "Yacd Control Panel"
 msgstr "Yacd 面板"
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:1024
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:1174
 msgid ""
 "You have not installed the core yet, do you want to download and install it "
 "now?"
@@ -4694,7 +4725,7 @@ msgid "flow"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:78
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1031
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:1074
 msgid "gVisor"
 msgstr ""
 
@@ -4761,7 +4792,7 @@ msgstr "指定出口网卡"
 msgid "keep-alive"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:185
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:236
 msgid "lhie1 Rule Update"
 msgstr "lhie1 规则更新日期"
 
@@ -4868,7 +4899,7 @@ msgstr ""
 msgid "max_stream_receive_window"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:370
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/other-rules-edit.lua:385
 msgid "miHoYo"
 msgstr "米哈游"
 
@@ -4974,13 +5005,13 @@ msgid "sub.id9.cc"
 msgstr ""
 
 #: applications/luci-app-openclash/luasrc/view/openclash/log.htm:171
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:493
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:643
 #: applications/luci-app-openclash/luasrc/view/openclash/toolbar_show.htm:138
 msgid "switching failed!"
 msgstr "切换失败！"
 
 #: applications/luci-app-openclash/luasrc/view/openclash/log.htm:167
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:489
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:639
 #: applications/luci-app-openclash/luasrc/view/openclash/toolbar_show.htm:134
 msgid "switching succeeded!"
 msgstr "切换成功！"
@@ -5028,6 +5059,14 @@ msgstr ""
 msgid "ws-opts-path"
 msgstr ""
 
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:920
+msgid "xishang0128-fastly-jsdelivr-Version"
+msgstr ""
+
+#: applications/luci-app-openclash/luasrc/model/cbi/openclash/settings.lua:919
+msgid "xishang0128-testingcf-jsdelivr-Version"
+msgstr ""
+
 #: applications/luci-app-openclash/luasrc/model/cbi/openclash/servers-config.lua:327
 msgid "your_ipv6"
 msgstr ""
@@ -5036,8 +5075,8 @@ msgstr ""
 msgid "yourpassword"
 msgstr ""
 
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:257
-#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:861
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:308
+#: applications/luci-app-openclash/luasrc/view/openclash/status.htm:1011
 msgid "zashboard Control Panel"
 msgstr "zashboard 面板"
 
@@ -5688,6 +5727,25 @@ msgstr "第七步: 添加计划任务,启动进程守护程序..."
 
 msgid "OpenClash Start Successful!"
 msgstr "OpenClash 启动成功，请等待服务器上线！"
+
+msgid "Start Downloading Geo ASN Database..."
+msgstr "开始下载 GEO ASN 数据库..."
+
+msgid "Geo ASN Database Download Success, Check Updated..."
+msgstr "GEO ASN 数据库下载成功，检查数据库版本是否更新..."
+
+msgid ""
+"Geo ASN Database Has Been Updated, Starting To Replace The Old Version..."
+msgstr "GEO ASN 数据库版本有更新，开始替换数据库版本..."
+
+msgid "Geo ASN Database Update Successful!"
+msgstr "GEO ASN 数据库更新成功！"
+
+msgid "Updated Geo ASN Database No Change, Do Nothing..."
+msgstr "GEO ASN 数据库版本没有更新，停止继续操作..."
+
+msgid "Geo ASN Database Update Error, Please Try Again Later..."
+msgstr "GEO ASN 数据库下载失败，请检查网络或稍后再试..."
 
 msgid ""
 "Warning: OpenClash Start Successful, Please Note That Network May "
