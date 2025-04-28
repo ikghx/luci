@@ -135,7 +135,7 @@ return view.extend({
 			});
 
 			return E('div', { class: 'cbi-section', id: 'status_bar' }, [
-				E('p', { id: 'service_status' }, _('Collecting data ...'))
+				E('p', { id: 'service_status' }, _('Collecting data...'))
 			]);
 		}
 
@@ -149,7 +149,7 @@ return view.extend({
 		o = s.taboption('basic', form.DummyValue, 'login_status', _('Login Status'));
 		o.depends('enabled', '1');
 		o.renderWidget = function(section_id, option_id) {
-			return E('div', { 'id': 'login_status_div' }, _('Collecting data ...'));
+			return E('div', { 'id': 'login_status_div' }, _('Collecting data...'));
 		};
 
 		o = s.taboption('basic', form.Value, 'port', _('Port'), _('Set the Tailscale port number.'));
