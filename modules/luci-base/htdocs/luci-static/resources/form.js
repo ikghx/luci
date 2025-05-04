@@ -2732,7 +2732,7 @@ const CBITableSection = CBITypedSection.extend(/** @lends LuCI.form.TableSection
 					'class': 'btn cbi-button cbi-button-neutral',
 					'click': ui.createHandlerFn(this, 'handleClone', section_id, true),
 					'disabled': this.map.readonly || null
-				}, [ btn_title || _('Clone')' ])
+				}, [ btn_title || _('Clone') ])
 			);
 		}
 

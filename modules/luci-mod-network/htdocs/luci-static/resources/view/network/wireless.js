@@ -784,7 +784,7 @@ return view.extend({
 		const status = document.querySelector('.cbi-modal [data-name="_wifistat_modal"] .ifacebadge.large');
 
 		if (status)
-			render_modal_status(status, data[2].filter(function(n) { return n.getName() == status.getAttribute('data-network') })[0]);
+			render_modal_status(status, data[2].filter(function(n) { return n.getName() == status.getAttribute('data-network'); })[0]);
 
 		return network.flushCache();
 	},
@@ -1526,7 +1526,7 @@ return view.extend({
 				};
 
 				const req_attr_syntax = _('Format:') + '<code>&lt;attr_id&gt;[:&lt;syntax:value&gt;]</code>' + '<br />' +
-					'<code>syntax: s = %s; '.format(_('string (UTF-8)')) + 'd = %s; '.format(_('integer')) + 'x = %s</code>'.format(_('octet string'))
+					'<code>syntax: s = %s; '.format(_('string (UTF-8)')) + 'd = %s; '.format(_('integer')) + 'x = %s</code>'.format(_('octet string'));
 
 				/* https://w1.fi/cgit/hostap/commit/?id=af35e7af7f8bb1ca9f0905b4074fb56a264aa12b */
 				o = ss.taboption('encryption', form.DynamicList, 'radius_auth_req_attr', _('RADIUS Access-Request attributes'),
