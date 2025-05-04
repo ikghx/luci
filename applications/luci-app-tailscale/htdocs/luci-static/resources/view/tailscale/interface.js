@@ -50,15 +50,14 @@ return view.extend({
 	},
 
 	pollData(container) {
-		poll.add(L.bind(function () {
-			return this.load().then(L.bind(function (data) {
-				dom.content(container, this.renderContent(data));
-			}, this));
-		}, this));
+		poll.add(async () => {
+			const data = await this.load();
+			dom.content(container, this.renderContent(data));
+		});
 	},
 
 	renderContent(data) {
-		if (!Array.isArray(data)) {
+		if (!Array.isArray(data) || data.length === 0) {
 			return E('div', {}, _('No interface online.'));
 		}
 		const rows = [

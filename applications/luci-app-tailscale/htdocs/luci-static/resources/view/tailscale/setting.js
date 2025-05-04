@@ -19,22 +19,21 @@ const callServiceList = rpc.declare({
 	expect: { '': {} }
 });
 
-function getInterfaceSubnets(interfaces = ['lan', 'wan']) {
-	return network.getNetworks().then(networks => {
-		return [...new Set(
-			networks
-				.filter(ifc => interfaces.includes(ifc.getName()))
-				.flatMap(ifc => ifc.getIPAddrs())
-				.filter(addr => addr.includes('/'))
-				.map(addr => {
-					const [ip, cidr] = addr.split('/');
-					const ipParts = ip.split('.').map(Number);
-					const mask = ~((1 << (32 - parseInt(cidr))) - 1);
-					const subnetParts = ipParts.map((part, i) => (part & (mask >> (24 - i * 8))) & 255);
-					return `${subnetParts.join('.')}/${cidr}`;
-				})
-		)];
-	});
+async function getInterfaceSubnets(interfaces = ['lan', 'wan']) {
+	const networks = await network.getNetworks();
+	return [...new Set(
+		networks
+			.filter(ifc => interfaces.includes(ifc.getName()))
+			.flatMap(ifc => ifc.getIPAddrs())
+			.filter(addr => addr.includes('/'))
+			.map(addr => {
+				const [ip, cidr] = addr.split('/');
+				const ipParts = ip.split('.').map(Number);
+				const mask = ~((1 << (32 - parseInt(cidr))) - 1);
+				const subnetParts = ipParts.map((part, i) => (part & (mask >> (24 - i * 8))) & 255);
+				return `${subnetParts.join('.')}/${cidr}`;
+			})
+	)];
 }
 
 async function getStatus() {
@@ -60,10 +59,12 @@ async function getStatus() {
 	status.backendState = tailscaleStatus.BackendState;
 	status.authURL = tailscaleStatus.AuthURL;
 	status.displayName = (status.backendState === "Running") ? tailscaleStatus.User[tailscaleStatus.Self.UserID].DisplayName : undefined;
-	status.onlineExitNodes = Object.values(tailscaleStatus.Peer)
-		.flatMap(peer => (peer.ExitNodeOption && peer.Online) ? [peer.HostName] : []);
-	status.subnetRoutes = Object.values(tailscaleStatus.Peer)
-		.flatMap(peer => peer.PrimaryRoutes || []);
+	if (tailscaleStatus.Peer) {
+		status.onlineExitNodes = Object.values(tailscaleStatus.Peer)
+			.flatMap(peer => (peer.ExitNodeOption && peer.Online) ? [peer.HostName] : []);
+		status.subnetRoutes = Object.values(tailscaleStatus.Peer)
+			.flatMap(peer => peer.PrimaryRoutes || []);
+	}
 	return status;
 }
 
