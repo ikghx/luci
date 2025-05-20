@@ -154,7 +154,7 @@ return view.extend({
 
 		s.taboption('setup', form.Flag, 'ipv6_disable', _('Disable IPv6')).default = '1';
 
-		s.taboption('setup', form.Flag, 'ext_allow_private_ipv4', _('Allow private IPv4'),
+		s.taboption('setup', form.Flag, 'force', _('Allow private IPv4'),
 			_('Allow private IP address on external interface.')).default = '0';
 
 		o = s.taboption('setup', form.Value, 'download_kbps', _('Download speed'),
@@ -174,11 +174,10 @@ return view.extend({
 		o = s.taboption('advanced', form.Value, 'stun_host', _('STUN host'));
 		o.depends('use_stun', '1');
 		o.datatype = 'host';
-		o.value('stun.syncthing.net');
 		o.value('stun.ekiga.net');
 		o.value('stun.gmx.net');
 		o.value('stun.counterpath.com');
-		o.default  = 'stun.syncthing.net';
+		o.default  = 'stun.ekiga.net';
 		o.rmempty  = false;
 
 		o = s.taboption('advanced', form.Value, 'stun_port', _('STUN port'));
@@ -233,8 +232,6 @@ return view.extend({
 
 		o = s.taboption('advanced', form.Value, 'upnp_lease_file', _('Service lease file'));
 		o.placeholder = '/var/run/miniupnpd.leases';
-
-		s.taboption('advanced', form.Flag, 'use_stun', _('Use STUN'), _('Useful for unrestricted full-cone 1:1 NATs to get the public IPv4 address'));
 
 		s = m.section(form.GridSection, 'perm_rule', _('Service Access Control List'),
 			_('ACL specify which client addresses and ports can be mapped, IPv6 always allowed.'));
