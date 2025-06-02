@@ -132,8 +132,8 @@ msgid "-- Additional Field --"
 msgstr "-- Papildomas Laukas --"
 
 #: modules/luci-base/htdocs/luci-static/resources/cbi.js:284
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3803
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4313
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3806
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4316
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:804
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:1042
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2062
@@ -878,6 +878,8 @@ msgstr "Pridėti įrenginio konfigūravimą…"
 msgid "Add instance"
 msgstr "Pridėti egzempliorių"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:126
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:192
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:171
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:177
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:274
@@ -1136,7 +1138,7 @@ msgstr ""
 msgid "Allow localhost"
 msgstr "Leisti „localhost“"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:178
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:194
 msgid "Allow rebooting the device"
 msgstr "Leisti iš naujo paleisti įrenginį"
 
@@ -1582,7 +1584,7 @@ msgstr "Atgal į lygiarangio konfigūracija"
 msgid "Backup"
 msgstr "Atkūrimas/Sukurti atsarginę kopiją"
 
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:128
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:139
 msgid "Backup / Flash Firmware"
 msgstr "Atsarginė kopija / Programinės įrangos įrašymas"
 
@@ -1874,6 +1876,7 @@ msgstr "Skambinimas nepavyko"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2301
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:128
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:297
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:98
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:209
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:472
 msgid "Cancel"
@@ -2714,6 +2717,8 @@ msgstr "Ištrinti"
 msgid "Delete and replace existing wireless networks on the radio."
 msgstr ""
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:94
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:108
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:205
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:211
 msgid "Delete key"
@@ -3323,6 +3328,17 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1556
 msgid "Each STA is assigned its own AP_VLAN interface."
 msgstr "Kiekvienas „STA“ yra priskirtas savo „AP_VLAN“ sąsają ir/arba sietuvą."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:205
+msgid "Each key is stored as a file in <code>%s</code>."
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:203
+msgid ""
+"Each software repository public key (from official or third party "
+"repositories) allows packages in lists signed by it to be installed by the "
+"package manager."
+msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2709
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2712
@@ -4626,6 +4642,10 @@ msgstr "Duoti prieigą prie „LuCI openfortivpn procedures“"
 msgid "Grant access to SSH configuration"
 msgstr "Duoti prieigą prie „SSH“ konfigūracijos"
 
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:45
+msgid "Grant access to Software Repository Public Key management"
+msgstr ""
+
 #: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status-index.json:23
 msgid "Grant access to Storage and Mount status display"
 msgstr "Suteikti prieigą prie saugyklos ir įrengimo būsenos ekrano"
@@ -4634,7 +4654,7 @@ msgstr "Suteikti prieigą prie saugyklos ir įrengimo būsenos ekrano"
 msgid "Grant access to basic LuCI procedures"
 msgstr "Duoti prieigą prie paprastų „LuCI procedures“"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:78
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:94
 msgid "Grant access to crontab configuration"
 msgstr "Duoti prieigą prie „crontab“ konfigūracijos"
 
@@ -4642,7 +4662,7 @@ msgstr "Duoti prieigą prie „crontab“ konfigūracijos"
 msgid "Grant access to firewall status"
 msgstr "Duoti prieigą prie užkardos būsenos"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:131
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:147
 msgid "Grant access to flash operations"
 msgstr "Suteikti prieigą prie mirginimo operacijų"
 
@@ -4654,7 +4674,7 @@ msgstr "Duoti/Suteikti prieigą pagrindiniui statuso rodymui"
 msgid "Grant access to mmcli"
 msgstr "Duoti prieigą prie „mmcli“"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:99
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:115
 msgid "Grant access to mount configuration"
 msgstr "Suteikti prieigą prie įrengimo konfigūracijos"
 
@@ -4686,7 +4706,7 @@ msgstr "Duoti prieigą prie realaus laiko statistikos"
 msgid "Grant access to routing status"
 msgstr "Duoti prieigą prie kelvados būklės ir būsenos"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:56
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:72
 msgid "Grant access to startup configuration"
 msgstr "Duoti prieigą prie paleidimo konfigūracijos"
 
@@ -4698,7 +4718,7 @@ msgstr "Duoti prieigą prie sistemos konfigūracijos"
 msgid "Grant access to system logs"
 msgstr "Duoti prieigą prie sistemos žurnalų"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:45
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:61
 msgid "Grant access to uHTTPd configuration"
 msgstr "Duoti prieigą prie „uHTTPd“ konfigūracijos"
 
@@ -6048,7 +6068,7 @@ msgstr "Nesėkmingas „LCP echo“ slenkstis"
 msgid "LCP echo interval"
 msgstr "„LCP echo“ intervalas"
 
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:115
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:126
 msgid "LED Configuration"
 msgstr "„LED“ (Lemputės) Konfigūracija"
 
@@ -7164,7 +7184,7 @@ msgstr "Įrengimo taškas"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:144
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:228
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:102
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:113
 msgid "Mount Points"
 msgstr "Įrengimo taškai"
 
@@ -7519,7 +7539,7 @@ msgstr ""
 msgid "Next »"
 msgstr "Tolyn »"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4249
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4252
 msgid "No"
 msgstr "Ne"
 
@@ -7684,6 +7704,10 @@ msgstr "Nėra taisyklių šioje grandinėje"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:91
 msgid "No rules in this chain."
 msgstr "Nėra taisyklių šioje grandinėje."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:79
+msgid "No software repository public keys present yet."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:139
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1290
@@ -8028,7 +8052,7 @@ msgid "Operator Name"
 msgstr "Operatorio pavadinimas"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2014
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4262
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4265
 msgid "Option \"%s\" contains an invalid input value."
 msgstr "Parinktį – „%s“ yra negaliojanti įvesties reikšmė."
 
@@ -8595,9 +8619,17 @@ msgstr ""
 "lygiarangį programos įrašą, leidžiantį tai sistemai prisijungti prie "
 "vietinės „WireGuard“ sąsajos."
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:181
+msgid "Paste or drag repository public key"
+msgstr ""
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:430
 msgid "Paste or drag supplied WireGuard configuration file…"
 msgstr "Įklijuokite arba nukelkite pateiktą „WireGuard“ konfigūracijos failą…"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:184
+msgid "Paste or drag to upload a software repository public key…"
+msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2670
 msgid "Paused"
@@ -9199,6 +9231,10 @@ msgstr ""
 msgid "Read {etc_ethers} to configure the DHCP server."
 msgstr "Skaityti „{etc_ethers}“, kad sukonfigūruotumėte „DHCP“ serverį."
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:95
+msgid "Really delete the following software repository public key?"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:548
 msgid "Really switch protocol?"
 msgstr "Tikrai perjungtį protokolą?"
@@ -9220,7 +9256,7 @@ msgid "Rebind protection"
 msgstr "Perrišti apsaugą"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/reboot.js:20
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:140
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:151
 msgid "Reboot"
 msgstr "Paleisti iš naujo"
 
@@ -9473,6 +9509,14 @@ msgstr "Pakeisti belaidžio/bevielio konfigūravimą"
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:108
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:108
 msgid "Reply on Neighbour request when mapping found in VXLAN FDB"
+msgstr ""
+
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:77
+msgid "Repo Public Keys"
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:201
+msgid "Repository Public Keys"
 msgstr ""
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:17
@@ -10018,7 +10062,7 @@ msgid "Scan"
 msgstr "Skenuoti"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/crontab.js:28
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:90
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:101
 msgid "Scheduled Tasks"
 msgstr "Suplanuotos užduotys"
 
@@ -10683,7 +10727,7 @@ msgid "Starting configuration apply…"
 msgstr "Pradėdamas konfigūracijos taikymas…"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:109
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:78
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:89
 msgid "Startup"
 msgstr "Paleidimas"
 
@@ -11347,6 +11391,10 @@ msgid ""
 msgstr ""
 "Duotas „SSH viešasis raktas“ yra negalimas. Prašome pateikti tinkamą "
 "„viešajį RSA, ED25519 arba ECDSA raktą/-us“."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:127
+msgid "The given software repository public key is already present."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1306
 msgid "The hardware address(es) of this entry/host."
@@ -12222,6 +12270,7 @@ msgctxt "Dnsmasq instance"
 msgid "Unnamed instance #%d"
 msgstr "Nepavadintas „#%d“ egzempliorius"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:65
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:121
 msgid "Unnamed key"
 msgstr "Nepavadintas raktas"
@@ -12983,7 +13032,7 @@ msgstr "Įrašyti gautas „DNS“ užklausas į „syslog“."
 msgid "Write system log to file"
 msgstr "Įrašyti sistemos žurnalą į failą"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4249
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4252
 msgid "Yes"
 msgstr "Taip"
 
@@ -13549,7 +13598,7 @@ msgstr "nežinoma versija"
 msgid "unlimited"
 msgstr "neribotas"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3803
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3806
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:85
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:147
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:386

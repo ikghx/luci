@@ -133,8 +133,8 @@ msgid "-- Additional Field --"
 msgstr "-- 更多选项 --"
 
 #: modules/luci-base/htdocs/luci-static/resources/cbi.js:284
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3803
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4313
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3806
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4316
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:804
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:1042
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2062
@@ -853,6 +853,8 @@ msgstr "添加设备配置…"
 msgid "Add instance"
 msgstr "添加实例"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:126
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:192
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:171
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:177
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:274
@@ -1100,7 +1102,7 @@ msgstr "允许列表内，拒绝其他"
 msgid "Allow localhost"
 msgstr "允许本机"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:178
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:194
 msgid "Allow rebooting the device"
 msgstr "允许重启设备"
 
@@ -1532,7 +1534,7 @@ msgstr "返回对端配置"
 msgid "Backup"
 msgstr "备份"
 
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:128
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:139
 msgid "Backup / Flash Firmware"
 msgstr "备份与升级"
 
@@ -1812,6 +1814,7 @@ msgstr "调用失败"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2301
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:128
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:297
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:98
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:209
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:472
 msgid "Cancel"
@@ -2619,6 +2622,8 @@ msgstr "删除"
 msgid "Delete and replace existing wireless networks on the radio."
 msgstr "删除并替换无线网卡上现有的无线网络。"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:94
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:108
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:205
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:211
 msgid "Delete key"
@@ -3212,6 +3217,19 @@ msgstr "EAP 类型"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1556
 msgid "Each STA is assigned its own AP_VLAN interface."
 msgstr "每个 STA 被分配了自己的 AP_VLAN 接口。"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:205
+msgid "Each key is stored as a file in <code>%s</code>."
+msgstr "每个密钥都作为文件存储在 <code>%s</code> 中。"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:203
+msgid ""
+"Each software repository public key (from official or third party "
+"repositories) allows packages in lists signed by it to be installed by the "
+"package manager."
+msgstr ""
+"每个软件存储库公钥（来自官方或第三方存储库）允许包管理器安装其签名的列表中的"
+"包。"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2709
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2712
@@ -4473,6 +4491,10 @@ msgstr "授予对 LuCI openfortivpn 手续的访问权限"
 msgid "Grant access to SSH configuration"
 msgstr "授予访问 SSH 配置的权限"
 
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:45
+msgid "Grant access to Software Repository Public Key management"
+msgstr "授予对软件存储库公钥管理的访问权限"
+
 #: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status-index.json:23
 msgid "Grant access to Storage and Mount status display"
 msgstr "授予访问“存储和装载”状态展示的权限"
@@ -4481,7 +4503,7 @@ msgstr "授予访问“存储和装载”状态展示的权限"
 msgid "Grant access to basic LuCI procedures"
 msgstr "授予访问基础 LuCI 程序的权限"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:78
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:94
 msgid "Grant access to crontab configuration"
 msgstr "授予访问 crontab 配置的权限"
 
@@ -4489,7 +4511,7 @@ msgstr "授予访问 crontab 配置的权限"
 msgid "Grant access to firewall status"
 msgstr "授予访问防火墙状态的权限"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:131
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:147
 msgid "Grant access to flash operations"
 msgstr "授予访问闪存操作的权限"
 
@@ -4501,7 +4523,7 @@ msgstr "授予访问主状态展示的权限"
 msgid "Grant access to mmcli"
 msgstr "授予访问 mmcli 的权限"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:99
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:115
 msgid "Grant access to mount configuration"
 msgstr "授予访问挂载配置的权限"
 
@@ -4533,7 +4555,7 @@ msgstr "授予查看实时统计数据的权限"
 msgid "Grant access to routing status"
 msgstr "授予路由状态权限"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:56
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:72
 msgid "Grant access to startup configuration"
 msgstr "授予访问启动项配置的权限"
 
@@ -4545,7 +4567,7 @@ msgstr "授予访问系统配置的权限"
 msgid "Grant access to system logs"
 msgstr "授予查看系统日志的权限"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:45
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:61
 msgid "Grant access to uHTTPd configuration"
 msgstr "授予对 uHTTPd 配置的访问权限"
 
@@ -5852,7 +5874,7 @@ msgstr "LCP 响应故障阈值"
 msgid "LCP echo interval"
 msgstr "LCP 响应间隔"
 
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:115
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:126
 msgid "LED Configuration"
 msgstr "LED 配置"
 
@@ -6946,7 +6968,7 @@ msgstr "挂载点"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:144
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:228
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:102
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:113
 msgid "Mount Points"
 msgstr "挂载点"
 
@@ -7294,7 +7316,7 @@ msgstr ""
 msgid "Next »"
 msgstr "前进 »"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4249
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4252
 msgid "No"
 msgstr "否"
 
@@ -7455,6 +7477,10 @@ msgstr "此链中没有规则"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:91
 msgid "No rules in this chain."
 msgstr "本链没有规则。"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:79
+msgid "No software repository public keys present yet."
+msgstr "尚无软件存储库公钥。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:139
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1290
@@ -7793,7 +7819,7 @@ msgid "Operator Name"
 msgstr "运营商名"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2014
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4262
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4265
 msgid "Option \"%s\" contains an invalid input value."
 msgstr "选项“%s”包含无效的输入值。"
 
@@ -8336,9 +8362,17 @@ msgstr ""
 "将来自另一个系统的 WireGuard 配置（通常是 <em>wg0.conf</em>）粘贴或拖动到下方"
 "创建一个匹配的对端条目，其允许该系统连接到本地 WireGuard 接口。"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:181
+msgid "Paste or drag repository public key"
+msgstr "粘贴或拖动存储库公钥"
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:430
 msgid "Paste or drag supplied WireGuard configuration file…"
 msgstr "粘贴或拖动提供的 WireGuard 配置文件…"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:184
+msgid "Paste or drag to upload a software repository public key…"
+msgstr "粘贴或拖动以上传软件存储库公钥..."
 
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2670
 msgid "Paused"
@@ -8921,6 +8955,10 @@ msgstr "将指定目录中的所有文件读取为配置文件。"
 msgid "Read {etc_ethers} to configure the DHCP server."
 msgstr "读取 {etc_ethers} 来配置 DHCP 服务器。"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:95
+msgid "Really delete the following software repository public key?"
+msgstr "确实删除以下软件存储库公钥吗？"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:548
 msgid "Really switch protocol?"
 msgstr "确定要切换协议？"
@@ -8942,7 +8980,7 @@ msgid "Rebind protection"
 msgstr "重绑定保护"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/reboot.js:20
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:140
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:151
 msgid "Reboot"
 msgstr "重启"
 
@@ -9188,6 +9226,14 @@ msgstr "重置无线配置"
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:108
 msgid "Reply on Neighbour request when mapping found in VXLAN FDB"
 msgstr "在 VXLAN FDB 中找到映射时响应邻居请求"
+
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:77
+msgid "Repo Public Keys"
+msgstr "存储库公钥"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:201
+msgid "Repository Public Keys"
+msgstr "存储库公钥"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:17
 msgid "Request IPv6-address"
@@ -9715,7 +9761,7 @@ msgid "Scan"
 msgstr "扫描"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/crontab.js:28
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:90
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:101
 msgid "Scheduled Tasks"
 msgstr "计划任务"
 
@@ -10341,7 +10387,7 @@ msgid "Starting configuration apply…"
 msgstr "开始应用配置…"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:109
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:78
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:89
 msgid "Startup"
 msgstr "启动项"
 
@@ -10959,6 +11005,10 @@ msgid ""
 "The given SSH public key is invalid. Please supply proper public RSA, "
 "ED25519 or ECDSA keys."
 msgstr "给定的 SSH 公钥无效。请提供适当的公共 RSA 或 ECDSA 密钥。"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:127
+msgid "The given software repository public key is already present."
+msgstr "给定的软件存储库公钥已经存在。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1306
 msgid "The hardware address(es) of this entry/host."
@@ -11766,6 +11816,7 @@ msgctxt "Dnsmasq instance"
 msgid "Unnamed instance #%d"
 msgstr "未命名实例 #%d"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:65
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:121
 msgid "Unnamed key"
 msgstr "未命名的密钥"
@@ -12503,7 +12554,7 @@ msgstr "将收到的 DNS 查询写入系统日志。"
 msgid "Write system log to file"
 msgstr "将系统日志写入文件"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4249
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4252
 msgid "Yes"
 msgstr "是"
 
@@ -13059,7 +13110,7 @@ msgstr "未知版本"
 msgid "unlimited"
 msgstr "无限制"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3803
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3806
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:85
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:147
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:386

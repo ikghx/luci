@@ -125,8 +125,8 @@ msgid "-- Additional Field --"
 msgstr "-- Extra Veld --"
 
 #: modules/luci-base/htdocs/luci-static/resources/cbi.js:284
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3803
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4313
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3806
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4316
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:804
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:1042
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2062
@@ -844,6 +844,8 @@ msgstr "Voeg apparaat configuratie toe…"
 msgid "Add instance"
 msgstr "Instantie toevoegen"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:126
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:192
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:171
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:177
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:274
@@ -1090,7 +1092,7 @@ msgstr ""
 msgid "Allow localhost"
 msgstr "Localhost toestaan"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:178
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:194
 msgid "Allow rebooting the device"
 msgstr "Herstarten van apparaat toestaan"
 
@@ -1531,7 +1533,7 @@ msgstr "Terug naar peer-configuratie"
 msgid "Backup"
 msgstr "Backup"
 
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:128
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:139
 msgid "Backup / Flash Firmware"
 msgstr "Backup / Flash Firmware"
 
@@ -1816,6 +1818,7 @@ msgstr "Oproep mislukt"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2301
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:128
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:297
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:98
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:209
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:472
 msgid "Cancel"
@@ -2632,6 +2635,8 @@ msgstr "Verwijderen"
 msgid "Delete and replace existing wireless networks on the radio."
 msgstr ""
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:94
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:108
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:205
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:211
 msgid "Delete key"
@@ -3225,6 +3230,17 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1556
 msgid "Each STA is assigned its own AP_VLAN interface."
 msgstr "Elke STA krijgt een eigen AP_VLAN interface toegewezen."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:205
+msgid "Each key is stored as a file in <code>%s</code>."
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:203
+msgid ""
+"Each software repository public key (from official or third party "
+"repositories) allows packages in lists signed by it to be installed by the "
+"package manager."
+msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2709
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2712
@@ -4495,6 +4511,10 @@ msgstr "Toegang verlenen tot LuCI openfortivpn procedures"
 msgid "Grant access to SSH configuration"
 msgstr "Toegang verlenen tot SSH-configuratie"
 
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:45
+msgid "Grant access to Software Repository Public Key management"
+msgstr ""
+
 #: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status-index.json:23
 msgid "Grant access to Storage and Mount status display"
 msgstr ""
@@ -4503,7 +4523,7 @@ msgstr ""
 msgid "Grant access to basic LuCI procedures"
 msgstr "Toegang verlenen tot basis LuCI-procedures"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:78
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:94
 msgid "Grant access to crontab configuration"
 msgstr "Toegang verlenen tot crontab-configuratie"
 
@@ -4511,7 +4531,7 @@ msgstr "Toegang verlenen tot crontab-configuratie"
 msgid "Grant access to firewall status"
 msgstr "Toegang verlenen tot de firewallstatus"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:131
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:147
 msgid "Grant access to flash operations"
 msgstr "Toegang verlenen tot flashoperaties"
 
@@ -4523,7 +4543,7 @@ msgstr "Toegang verlenen tot hoofdstatusweergave"
 msgid "Grant access to mmcli"
 msgstr "Toegang verlenen tot mmcli"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:99
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:115
 msgid "Grant access to mount configuration"
 msgstr "Toegang verlenen tot mount-configuratie"
 
@@ -4555,7 +4575,7 @@ msgstr "Toegang verlenen tot realtime statistieken"
 msgid "Grant access to routing status"
 msgstr "Toegang verlenen tot routeringsstatus"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:56
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:72
 msgid "Grant access to startup configuration"
 msgstr "Toegang verlenen tot opstartconfiguratie"
 
@@ -4567,7 +4587,7 @@ msgstr "Toegang verlenen tot systeemconfiguratie"
 msgid "Grant access to system logs"
 msgstr "Toegang verlenen tot systeemlogboeken"
 
-#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:45
+#: modules/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json:61
 msgid "Grant access to uHTTPd configuration"
 msgstr "Toegang verlenen tot uHTTPd-configuratie"
 
@@ -5885,7 +5905,7 @@ msgstr "LCP-echofoutdrempel"
 msgid "LCP echo interval"
 msgstr "LCP echo interval"
 
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:115
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:126
 msgid "LED Configuration"
 msgstr "LED-configuratie"
 
@@ -6977,7 +6997,7 @@ msgstr "Koppelen punt"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:144
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:228
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:102
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:113
 msgid "Mount Points"
 msgstr "Mount punten"
 
@@ -7320,7 +7340,7 @@ msgstr ""
 msgid "Next »"
 msgstr "Volgende »"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4249
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4252
 msgid "No"
 msgstr "Nee"
 
@@ -7484,6 +7504,10 @@ msgstr "Geen regels in deze reeksen"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:91
 msgid "No rules in this chain."
 msgstr "Geen regels in deze reeksen."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:79
+msgid "No software repository public keys present yet."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:139
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1290
@@ -7820,7 +7844,7 @@ msgid "Operator Name"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2014
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4262
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4265
 msgid "Option \"%s\" contains an invalid input value."
 msgstr "Optie \"%s\" bevat een ongeldige invoerwaarde."
 
@@ -8372,9 +8396,17 @@ msgstr ""
 "een ander systeem hieronder om een overeenkomende peer-invoer te maken, "
 "zodat dat systeem verbinding kan maken met de lokale WireGuard-interface."
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:181
+msgid "Paste or drag repository public key"
+msgstr ""
+
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:430
 msgid "Paste or drag supplied WireGuard configuration file…"
 msgstr "Plak of sleep het meegeleverde WireGuard-configuratiebestand…"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:184
+msgid "Paste or drag to upload a software repository public key…"
+msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/luci.js:2670
 msgid "Paused"
@@ -8961,6 +8993,10 @@ msgstr ""
 msgid "Read {etc_ethers} to configure the DHCP server."
 msgstr "Lees {etc_ethers} om de DHCP-server te configureren."
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:95
+msgid "Really delete the following software repository public key?"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:548
 msgid "Really switch protocol?"
 msgstr "Echt van protocol wisselen?"
@@ -8982,7 +9018,7 @@ msgid "Rebind protection"
 msgstr "Herbind bescherming"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/reboot.js:20
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:140
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:151
 msgid "Reboot"
 msgstr "Opnieuw opstarten"
 
@@ -9228,6 +9264,14 @@ msgstr "Draadloze configuratie vervangen"
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:108
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:108
 msgid "Reply on Neighbour request when mapping found in VXLAN FDB"
+msgstr ""
+
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:77
+msgid "Repo Public Keys"
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:201
+msgid "Repository Public Keys"
 msgstr ""
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:17
@@ -9763,7 +9807,7 @@ msgid "Scan"
 msgstr "Scan"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/crontab.js:28
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:90
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:101
 msgid "Scheduled Tasks"
 msgstr "Geplande taken"
 
@@ -10421,7 +10465,7 @@ msgid "Starting configuration apply…"
 msgstr "Configuratie starten is van toepassing…"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:109
-#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:78
+#: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:89
 msgid "Startup"
 msgstr "Opstarten"
 
@@ -11072,6 +11116,10 @@ msgid ""
 msgstr ""
 "De opgegeven openbare SSH-sleutel is ongeldig. Geef de juiste openbare RSA-, "
 "ED25519- of ECDSA-sleutels op."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:127
+msgid "The given software repository public key is already present."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1306
 msgid "The hardware address(es) of this entry/host."
@@ -11921,6 +11969,7 @@ msgctxt "Dnsmasq instance"
 msgid "Unnamed instance #%d"
 msgstr ""
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:65
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:121
 msgid "Unnamed key"
 msgstr "Naamloze sleutel"
@@ -12677,7 +12726,7 @@ msgstr "Schrijf ontvangen DNS-query's naar syslog."
 msgid "Write system log to file"
 msgstr "Systeemlogboek naar bestand schrijven"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:4249
+#: modules/luci-base/htdocs/luci-static/resources/form.js:4252
 msgid "Yes"
 msgstr "Ja"
 
@@ -13238,7 +13287,7 @@ msgstr "onbekende versie"
 msgid "unlimited"
 msgstr "onbeperkt"
 
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3803
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3806
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:85
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:147
 #: modules/luci-base/htdocs/luci-static/resources/tools/widgets.js:386

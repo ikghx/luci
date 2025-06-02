@@ -197,12 +197,12 @@ return view.extend({
 
 			o = s.taboption('advanced', form.Value, 'sport', _('Source port'), _('Match traffic from this source port'));
 			o.modalonly = true;
-			o.datatype = 'string';
+			o.datatype = 'portrange';
 			o.placeholder = '0-65535';
 
 			o = s.taboption('advanced', form.Value, 'dport', _('Destination port'), _('Match traffic from this destination port'));
 			o.modalonly = true;
-			o.datatype = 'string';
+			o.datatype = 'portrange';
 			o.placeholder = '0-65535';
 
 			o = s.taboption('advanced', form.Value, 'tos', _('Type of service'), _('Specifies the TOS value to match in IP headers'));
