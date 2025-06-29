@@ -7,6 +7,7 @@ local UTIL = require "luci.util"
 local fs = require "luci.openclash"
 local uci = require "luci.model.uci".cursor()
 local json = require "luci.jsonc"
+local datatypes = require "luci.cbi.datatypes"
 
 font_green = [[<b style=color:green>]]
 font_red = [[<b style=color:red>]]
@@ -76,7 +77,7 @@ o:depends("en_mode", "redir-host-mix")
 o:depends("en_mode", "fake-ip-mix")
 o:value("system", translate("System"))
 o:value("gvisor", translate("gVisor"))
-o:value("mixed", translate("Mixed")..translate("(Only Meta Core)"))
+o:value("mixed", translate("Mixed"))
 o.default = "system"
 
 o = s:taboption("op_mode", ListValue, "proxy_mode", translate("Proxy Mode"))
@@ -101,10 +102,6 @@ o.default = 0
 
 o = s:taboption("op_mode", Flag, "disable_quic_go_gso", translate("Disable quic-go GSO Support"))
 o.description = font_red..bold_on..translate("Suggestion: If Encountering Issues With QUIC UDP on The Linux Kernel Version Above 6.6, Please Try to Enable.")..bold_off..font_off
-o.default = 0
-
-o = s:taboption("op_mode", Flag, "skip_safe_path_check", translate("Skip Safe Path Check"))
-o.description = font_red..bold_on..translate("Enable If You Want Using Files Not in /etc/openclash in You Config")..bold_off..font_off
 o.default = 0
 
 o = s:taboption("op_mode", Flag, "small_flash_memory", translate("Small Flash Memory"))
@@ -248,26 +245,86 @@ o:value("accept", translate("ACCEPT"))
 o:value("drop", translate("DROP"))
 o.rmempty = false
 
+local function ip_compare(a, b)
+    local function ipv4_to_number(ip)
+        local p1, p2, p3, p4 = ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)$")
+        if p1 and p2 and p3 and p4 then
+            local n1, n2, n3, n4 = tonumber(p1), tonumber(p2), tonumber(p3), tonumber(p4)
+            if n1 <= 255 and n2 <= 255 and n3 <= 255 and n4 <= 255 then
+                return n1 * 16777216 + n2 * 65536 + n3 * 256 + n4
+            end
+        end
+        return 0
+    end
+    
+    local a_is_ipv4 = datatypes.ip4addr(a.dest)
+    local b_is_ipv4 = datatypes.ip4addr(b.dest)
+    
+    if a_is_ipv4 and not b_is_ipv4 then
+        return true
+    elseif not a_is_ipv4 and b_is_ipv4 then
+        return false
+    elseif a_is_ipv4 and b_is_ipv4 then
+        return ipv4_to_number(a.dest) < ipv4_to_number(b.dest)
+    else
+        return a.dest < b.dest
+    end
+end
+
+local all_neighbors = {}
+
 luci.ip.neighbors({ family = 4 }, function(n)
-	if n.mac and n.dest then
-		ip_b:value(n.dest:string())
-		ip_w:value(n.dest:string())
-		ip_ac:value(n.dest:string())
-		mac_b:value(n.mac, "%s (%s)" %{ n.mac, n.dest:string() })
-		mac_w:value(n.mac, "%s (%s)" %{ n.mac, n.dest:string() })
-	end
+    if n.mac and n.dest then
+        table.insert(all_neighbors, {dest = n.dest:string(), mac = n.mac, family = 4})
+    end
 end)
 
 if string.len(SYS.exec("/usr/share/openclash/openclash_get_network.lua 'gateway6'")) ~= 0 then
-luci.ip.neighbors({ family = 6 }, function(n)
-	if n.mac and n.dest then
-		ip_b:value(n.dest:string())
-		ip_w:value(n.dest:string())
-		ip_ac:value(n.dest:string())
-		mac_b:value(n.mac, "%s (%s)" %{ n.mac, n.dest:string() })
-		mac_w:value(n.mac, "%s (%s)" %{ n.mac, n.dest:string() })
-	end
-end)
+    luci.ip.neighbors({ family = 6 }, function(n)
+        if n.mac and n.dest then
+            table.insert(all_neighbors, {dest = n.dest:string(), mac = n.mac, family = 6})
+        end
+    end)
+end
+
+table.sort(all_neighbors, ip_compare)
+
+local mac_ip_map = {}
+local mac_order = {}
+
+for _, item in ipairs(all_neighbors) do
+    ip_b:value(item.dest)
+    ip_w:value(item.dest)
+    ip_ac:value(item.dest)
+    if not mac_ip_map[item.mac] then
+        mac_ip_map[item.mac] = {}
+        table.insert(mac_order, item.mac)
+    end
+    table.insert(mac_ip_map[item.mac], item.dest)
+end
+
+for _, mac in ipairs(mac_order) do
+    local ips = mac_ip_map[mac]
+    table.sort(ips, function(a, b)
+        local a_is_ipv4 = datatypes.ip4addr(a)
+        local b_is_ipv4 = datatypes.ip4addr(b)
+        if a_is_ipv4 and not b_is_ipv4 then
+            return true
+        elseif not a_is_ipv4 and b_is_ipv4 then
+            return false
+        elseif a_is_ipv4 and b_is_ipv4 then
+            local function ipv4_to_number(ip)
+                local p1, p2, p3, p4 = ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)$")
+                return p1 and p2 and p3 and p4 and (tonumber(p1)*16777216+tonumber(p2)*65536+tonumber(p3)*256+tonumber(p4)) or 0
+            end
+            return ipv4_to_number(a) < ipv4_to_number(b)
+        else
+            return a < b
+        end
+    end)
+    local ip_str = table.concat(ips, "|")
+    mac_b:value(mac, "%s (%s)" %{ mac, ip_str })
+    mac_w:value(mac, "%s (%s)" %{ mac, ip_str })
 end
 
 ---- Traffic Control
@@ -780,12 +837,14 @@ o:value("5", translate("Every Friday"))
 o:value("6", translate("Every Saturday"))
 o:value("0", translate("Every Sunday"))
 o.default = "1"
+o:depends("geo_auto_update", "1")
 
 o = s:taboption("geo_update", ListValue, "geo_update_day_time", translate("Update time (every day)"))
 for t = 0,23 do
 o:value(t, t..":00")
 end
 o.default = "0"
+o:depends("geo_auto_update", "1")
 
 o = s:taboption("geo_update", Value, "geo_custom_url")
 o.title = translate("Custom GeoIP MMDB URL")
@@ -795,6 +854,7 @@ o:value("https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/li
 o:value("https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/Country.mmdb", translate("Alecthw-Version")..translate("(All Info mmdb)"))
 o:value("https://testingcf.jsdelivr.net/gh/Hackl0us/GeoIP2-CN@release/Country.mmdb", translate("Hackl0us-Version")..translate("(Only CN)"))
 o.default = "https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb"
+o:depends("geo_auto_update", "1")
 
 o = s:taboption("geo_update", Button, translate("GEOIP Update")) 
 o.title = translate("Update GeoIP MMDB")
@@ -806,6 +866,7 @@ o.write = function()
   SYS.call("/usr/share/openclash/openclash_ipdb.sh >/dev/null 2>&1 &")
   HTTP.redirect(DISP.build_url("admin", "vpn", "openclash"))
 end
+o:depends("geo_auto_update", "1")
 
 o = s:taboption("geo_update", Flag, "geoip_auto_update", font_red..bold_on..translate("Auto Update GeoIP Dat")..bold_off..font_off)
 o.default = 0
@@ -1062,8 +1123,8 @@ o.default = 0
 o = s:taboption("ipv6", ListValue, "ipv6_mode", translate("IPv6 Proxy Mode"))
 o:value("0", translate("TProxy Mode"))
 o:value("1", translate("Redirect Mode"))
-o:value("2", translate("TUN Mode")..translate("(Only Meta Core)"))
-o:value("3", translate("Mix Mode")..translate("(Only Meta Core)"))
+o:value("2", translate("TUN Mode"))
+o:value("3", translate("Mix Mode"))
 o.default = "0"
 o:depends("ipv6_enable", "1")
 
@@ -1075,7 +1136,7 @@ o:depends({ipv6_mode= "3", en_mode = "redir-host"})
 o:depends({ipv6_mode= "3", en_mode = "fake-ip"})
 o:value("system", translate("System"))
 o:value("gvisor", translate("gVisor"))
-o:value("mixed", translate("Mixed")..translate("(Only Meta Core)"))
+o:value("mixed", translate("Mixed"))
 o.default = "system"
 
 o = s:taboption("ipv6", Flag, "enable_v6_udp_proxy", translate("Proxy UDP Traffics"))

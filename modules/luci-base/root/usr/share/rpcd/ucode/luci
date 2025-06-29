@@ -18,6 +18,34 @@ function shellquote(s) {
 	return `'${replace(s, "'", "'\\''")}'`;
 }
 
+function callPackageVersionCheck(pkg) {
+	let version = "";
+
+	if ( access('/bin/opkg') ) {
+		// <= v24.10
+		let fd = popen('opkg list-installed ' + pkg + ' 2>/dev/null');
+		if (fd) {
+			const re = regexp('^' + pkg + ' - (.+)$', 's');
+			const m = match(fd.read('all'), re);
+			version = m?.[1];
+
+			fd.close();
+		}
+	}
+	else if ( access('/usr/bin/apk') ) {
+		// > v24.10
+		let fd = popen('apk list -I ' + pkg + ' 2>/dev/null');
+		if (fd) {
+			const re = regexp('^' + pkg + '-(.+)$', 's');
+			const m = match(fd.read('all'), re);
+			version = m?.[1];
+
+			fd.close();
+		}
+	}
+	return version;
+}
+
 const methods = {
 	getVersion: {
 		call: function(request) {
@@ -213,6 +241,8 @@ const methods = {
 				relayd:     access('/usr/sbin/relayd') == true,
 				apk:        access('/usr/bin/apk') == true,
 				wifi:       access('/sbin/wifi') == true,
+				vrf:        access('/sys/module/vrf/refcnt') == true, // vrf.ko is loaded
+				netifd_vrf: false,
 			};
 
 			const wifi_features = [ 'eap', '11ac', '11ax', '11be', '11r', 'acs', 'sae', 'owe', 'suiteb192', 'wep', 'wps', 'ocv' ];
@@ -245,6 +275,9 @@ const methods = {
 
 				fd.close();
 			}
+
+			// This check can be removed after v25 release
+			result.netifd_vrf = match(callPackageVersionCheck('netifd'), /^20[0-9][0-9]/s)?.[0] >= 2025;
 
 			fd = popen('ipset --help 2>/dev/null');
 
@@ -549,40 +582,56 @@ const methods = {
 
 	getBuiltinEthernetPorts: {
 		call: function() {
-			const ubus = connect();
-			const sysboard = ubus.call('system', 'board');
+			let fd = open('/etc/board.json', 'r');
+			let board = fd ? json(fd) : {};
 			let ports = [];
 
-			if (
-				(type(sysboard) !== 'object') ||
-				match(sysboard.release.target, /^(armsr|bcm27xx|mvebu|rockchip|sifiveu|sunxi|x86)/)
-			) {
-				const stat = ubus.call('network.device', 'status') || {};
-				map(keys(stat), (ifname) => {
-					if (
-						ifname &&
-						stat[ifname]?.devtype in ['ethernet', 'dsa'] &&
-						length(stat[ifname]['link-advertising'])
-					)
-						push(ports, { role: 'unknown', device: ifname });
-				});
-			} else {
-				const fd = open('/etc/board.json', 'r');
-				const board = fd ? json(fd) : {};
-				for (let k in [ 'lan', 'wan' ]) {
-					if (!board?.network?.[k])
+			for (let k in [ 'lan', 'wan' ]) {
+				if (!board?.network?.[k])
+					continue;
+
+				if (type(board.network[k].ports) == 'array') {
+					for (let ifname in board.network[k].ports) {
+						push(ports, { role: k, device: ifname });
+					}
+				}
+				else if (type(board.network[k].device) == 'string') {
+					push(ports, { role: k, device: board.network[k].device });
+				}
+			}
+
+			/* Workaround for targets that do not enumerate  all netdevs in board.json */
+			if (uname().machine in [ 'x86_64' ] &&
+			    match(ports[0]?.device, /^eth\d+$/)) {
+				let bus = readlink(`/sys/class/net/${ports[0].device}/device/subsystem`);
+
+				for (let netdev in lsdir('/sys/class/net')) {
+					if (!match(netdev, /^eth\d+$/))
 						continue;
 
-					if (type(board.network[k].ports) == 'array') {
-						for (let ifname in board.network[k].ports)
-							push(ports, { role: k, device: ifname });
-					} else if (type(board.network[k].device) == 'string') {
-						push(ports, { role: k, device: board.network[k].device });
-					}
+					if (length(filter(ports, port => port.device == netdev)))
+						continue;
+
+					if (readlink(`/sys/class/net/${netdev}/device/subsystem`) != bus)
+						continue;
+
+					push(ports, { role: 'unknown', device: netdev });
 				}
 			}
 
 			return { result: ports };
+		}
+	},
+
+	packageVersionCheck: {
+		args: { name: 'netifd' },
+		call: function(request) {
+			let version = "";
+			const pkg = request?.args?.name;
+
+			version = callPackageVersionCheck(pkg);
+
+			return { result: version };
 		}
 	},
 

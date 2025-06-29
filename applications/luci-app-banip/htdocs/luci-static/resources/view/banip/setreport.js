@@ -23,11 +23,10 @@ function handleAction(report, ev) {
 				])
 			]),
 			E('div', { 'class': 'left', 'style': 'display:flex; flex-direction:column' }, [
-				'\xa0',
 				E('h5', _('Result')),
 				E('textarea', {
 					'id': 'result',
-					'style': 'width: 100% !important; padding: 5px; font-family: monospace',
+					'style': 'width: 100% !important; margin-top:.5em; padding: 5px; font-family: monospace',
 					'readonly': 'readonly',
 					'wrap': 'off',
 					'rows': 20
@@ -36,6 +35,7 @@ function handleAction(report, ev) {
 			E('div', { 'class': 'right' }, [
 				E('button', {
 					'class': 'btn cbi-button',
+					'style': 'float:none; margin-right:.4em;',
 					'click': ui.hideModal
 				}, _('Cancel')),
 				' ',
@@ -93,11 +93,23 @@ function handleAction(report, ev) {
 				]),
 			]),
 			E('div', { 'class': 'left', 'style': 'display:flex; flex-direction:column' }, [
-				'\xa0',
+				E('label', { 'class': 'cbi-checkbox', 'style': 'padding-top:.5em' }, [
+					E('input', {
+						'class': 'cbi-checkbox',
+						'data-update': 'click change',
+						'type': 'checkbox',
+						'id': 'chkFilter',
+						'disabled': 'disabled',
+						'value': 'true'
+					}),
+					E('span', { 'style': 'margin-left: .5em;' }, _('Show only Set elements with hits'))
+				]),
+			]),
+			E('div', { 'class': 'left', 'style': 'display:flex; flex-direction:column' }, [
 				E('h5', _('Result')),
 				E('textarea', {
 					'id': 'result',
-					'style': 'width: 100% !important; padding: 5px; font-family: monospace',
+					'style': 'width: 100% !important; margin-top:.5em; padding: 5px; font-family: monospace',
 					'readonly': 'readonly',
 					'wrap': 'off',
 					'rows': 20
@@ -106,16 +118,19 @@ function handleAction(report, ev) {
 			E('div', { 'class': 'right' }, [
 				E('button', {
 					'class': 'btn cbi-button',
+					'style': 'float:none; margin-right:.4em;',
 					'click': ui.hideModal
 				}, _('Cancel')),
 				' ',
 				E('button', {
 					'class': 'btn cbi-button-action',
 					'click': ui.createHandlerFn(this, function (ev) {
+						const checkbox = document.getElementById('chkFilter');
+						const isChecked = checkbox.checked;
 						let set = document.getElementById('set').value;
 						if (set) {
 							document.getElementById('result').textContent = 'Collecting Set content, please wait...';
-							return L.resolveDefault(fs.exec_direct('/etc/init.d/banip', ['content', set])).then(function (res) {
+							return L.resolveDefault(fs.exec_direct('/etc/init.d/banip', ['content', set, isChecked])).then(function (res) {
 								let result = document.getElementById('result');
 								result.textContent = res.trim();
 								document.getElementById('set').value = '';
@@ -126,10 +141,16 @@ function handleAction(report, ev) {
 				}, _('Show Content'))
 			])
 		]);
+		if (uci.get('banip', 'global', 'ban_nftcount') === '1') {
+			const chk = document.querySelector('#chkFilter');
+			if (chk) {
+				chk.removeAttribute('disabled');
+			}
+		}
 		document.getElementById('set').focus();
 	}
 	if (ev === 'map') {
-		let md = ui.showModal(null, [
+		const modal = ui.showModal(null, [
 			E('div', { id: 'mapModal',
 						style: 'position: relative;' }, [
 				E('iframe', {
@@ -157,7 +178,7 @@ function handleAction(report, ev) {
 				}, _('Map Reset'))
 			])
 		]);
-		md.style.maxWidth = '90%';
+		modal.style.maxWidth = '90%';
 		document.getElementById('mapModal').focus();
 	}
 }
@@ -191,7 +212,7 @@ return view.extend({
 				E('th', { 'class': 'th' }, _('Inbound&#160;(packets)')),
 				E('th', { 'class': 'th' }, _('Outbound&#160;(packets)')),
 				E('th', { 'class': 'th' }, _('Port&#160;/&#160;Protocol')),
-				E('th', { 'class': 'th' }, _('Elements'))
+				E('th', { 'class': 'th' }, _('Elements (max. 50)'))
 			])
 		]);
 
@@ -221,11 +242,11 @@ return view.extend({
 		}
 		cbi_update_table(tblSets, rowSets);
 
-		return E('div', { 'class': 'cbi-map', 'id': 'cbimap' }, [
+		const page = E('div', { 'class': 'cbi-map', 'id': 'cbimap' }, [
 			E('div', { 'class': 'cbi-section' }, [
-				E('p', _('This report shows the latest NFT Set statistics, press the \'Refresh\' button to get a new one. \
+				E('p', { 'style': 'margin-bottom:1em;' },
+					_('This report shows the latest NFT Set statistics, press the \'Refresh\' button to get a new one. \
 					You can also display the specific content of Sets, search for suspicious IPs and finally, these IPs can also be displayed on a map.')),
-				E('p', '\xa0'),
 				E('div', { 'class': 'cbi-value' }, [
 					E('div', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;width:230px;font-weight:bold;' }, _('Timestamp')),
 					E('div', { 'class': 'cbi-value-title', 'id': 'start', 'style': 'margin-bottom:-5px;color:#37c;font-weight:bold;' }, content?.[0]?.timestamp || '-')
@@ -272,13 +293,9 @@ return view.extend({
 				E('button', {
 					'class': 'btn cbi-button cbi-button-apply',
 					'style': 'float:none;margin-right:.4em;',
+					'id': 'btnMap',
+					'disabled': 'disabled',
 					'click': ui.createHandlerFn(this, function () {
-						if (uci.get('banip', 'global', 'ban_nftcount') !== '1' || uci.get('banip', 'global', 'ban_map') !== '1') {
-							if (!notMsg) {
-								notMsg = true;
-								return ui.addNotification(null, E('p', _('GeoIP Map is not enabled!')), 'info');
-							}
-						}
 						if (content[1] && content[1].length > 1) {
 							sessionStorage.setItem('mapData', JSON.stringify(content[1]));
 							return handleAction(report, 'map');
@@ -319,9 +336,20 @@ return view.extend({
 								location.reload();
 							})
 					}
-				}, [_('Refresh')]),
+				}, [_('Refresh')])
 			])
 		]);
+		if (uci.get('banip', 'global', 'ban_nftcount') === '1'
+			&& uci.get('banip', 'global', 'ban_map') === '1'
+			&& (uci.get('banip', 'global', 'ban_allowlistonly') !== '1'
+				|| (uci.get('banip', 'global', 'ban_feedin') || "").includes("allowlist")
+				|| (uci.get('banip', 'global', 'ban_feedout') || "").includes("allowlist"))) {
+			const btn = page.querySelector('#btnMap');
+			if (btn) {
+				btn.removeAttribute('disabled');
+			}
+		}
+		return page;
 	},
 	handleSaveApply: null,
 	handleSave: null,

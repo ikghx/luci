@@ -176,10 +176,10 @@ get_last_dns() {
 }
 
 check_port_exists() {
-	port=$1
-	protocol=$2
+	local port=$1
+	local protocol=$2
 	[ -n "$protocol" ] || protocol="tcp,udp"
-	result=
+	local result=
 	if [ "$protocol" = "tcp" ]; then
 		result=$(netstat -tln | grep -c ":$port ")
 	elif [ "$protocol" = "udp" ]; then
@@ -188,6 +188,24 @@ check_port_exists() {
 		result=$(netstat -tuln | grep -c ":$port ")
 	fi
 	echo "${result}"
+}
+
+get_new_port() {
+	local port=$1
+	[ "$port" == "auto" ] && port=2082
+	local protocol=$(echo $2 | tr 'A-Z' 'a-z')
+	local result=$(check_port_exists $port $protocol)
+	if [ "$result" != 0 ]; then
+		local temp=
+		if [ "$port" -lt 65535 ]; then
+			temp=$(expr $port + 1)
+		elif [ "$port" -gt 1 ]; then
+			temp=$(expr $port - 1)
+		fi
+		get_new_port $temp $protocol
+	else
+		echo $port
+	fi
 }
 
 check_depends() {
@@ -231,27 +249,11 @@ check_ver() {
 	echo 255
 }
 
-get_new_port() {
-	port=$1
-	[ "$port" == "auto" ] && port=2082
-	protocol=$(echo $2 | tr 'A-Z' 'a-z')
-	result=$(check_port_exists $port $protocol)
-	if [ "$result" != 0 ]; then
-		temp=
-		if [ "$port" -lt 65535 ]; then
-			temp=$(expr $port + 1)
-		elif [ "$port" -gt 1 ]; then
-			temp=$(expr $port - 1)
-		fi
-		get_new_port $temp $protocol
-	else
-		echo $port
-	fi
-}
-
 first_type() {
-	local path_name=${1}
-	type -t -p "/bin/${path_name}" -p "${TMP_BIN_PATH}/${path_name}" -p "${path_name}" "$@" | head -n1
+	for p in "/bin/$1" "${TMP_BIN_PATH:-/tmp}/$1" "$1"; do
+		[ -x "$p" ] && echo "$p" && return
+	done
+	command -v "$1" 2>/dev/null || command -v "$2" 2>/dev/null
 }
 
 eval_set_val() {
@@ -421,7 +423,7 @@ run_singbox() {
 	[ -z "$type" ] && {
 		local type=$(echo $(config_n_get $node type) | tr 'A-Z' 'a-z')
 		if [ "$type" != "sing-box" ]; then
-			bin=$(first_type $(config_t_get global_app singbox_file) sing-box)
+			bin=$(first_type $(config_t_get global_app sing_box_file) sing-box)
 			[ -n "$bin" ] && type="sing-box"
 		fi
 	}
@@ -436,8 +438,6 @@ run_singbox() {
 	[ -z "$loglevel" ] && local loglevel=$(config_t_get global loglevel "warn")
 	[ "$loglevel" = "warning" ] && loglevel="warn"
 	_extra_param="${_extra_param} -loglevel $loglevel"
-
-	_extra_param="${_extra_param} -tags $($(first_type $(config_t_get global_app singbox_file) sing-box) version | grep 'Tags:' | awk '{print $2}')"
 
 	[ -n "$flag" ] && _extra_param="${_extra_param} -flag $flag"
 	[ -n "$node" ] && _extra_param="${_extra_param} -node $node"
@@ -493,7 +493,7 @@ run_singbox() {
 	[ "$remote_fakedns" = "1" ] && _extra_param="${_extra_param} -remote_dns_fake 1"
 	[ -n "$no_run" ] && _extra_param="${_extra_param} -no_run 1"
 	lua $UTIL_SINGBOX gen_config ${_extra_param} > $config_file
-	[ -n "$no_run" ] || ln_run "$(first_type $(config_t_get global_app singbox_file) sing-box)" "sing-box" $log_file run -c "$config_file"
+	[ -n "$no_run" ] || ln_run "$(first_type $(config_t_get global_app sing_box_file) sing-box)" "sing-box" $log_file run -c "$config_file"
 }
 
 run_xray() {
@@ -658,7 +658,7 @@ run_socks() {
 			config_file=$(echo $config_file | sed "s/SOCKS/HTTP_SOCKS/g")
 			local _extra_param="-local_http_address $bind -local_http_port $http_port"
 		}
-		local bin=$(first_type $(config_t_get global_app singbox_file) sing-box)
+		local bin=$(first_type $(config_t_get global_app sing_box_file) sing-box)
 		if [ -n "$bin" ]; then
 			type="sing-box"
 			lua $UTIL_SINGBOX gen_proto_config -local_socks_address $bind -local_socks_port $socks_port ${_extra_param} -server_proto socks -server_address ${_socks_address} -server_port ${_socks_port} -server_username ${_socks_username} -server_password ${_socks_password} > $config_file
@@ -736,7 +736,7 @@ run_socks() {
 
 	# http to socks
 	[ -z "$http_flag" ] && [ "$http_port" != "0" ] && [ -n "$http_config_file" ] && [ "$type" != "sing-box" ] && [ "$type" != "xray" ] && [ "$type" != "socks" ] && {
-		local bin=$(first_type $(config_t_get global_app singbox_file) sing-box)
+		local bin=$(first_type $(config_t_get global_app sing_box_file) sing-box)
 		if [ -n "$bin" ]; then
 			type="sing-box"
 			lua $UTIL_SINGBOX gen_proto_config -local_http_address $bind -local_http_port $http_port -server_proto socks -server_address "127.0.0.1" -server_port $socks_port -server_username $_username -server_password $_password > $http_config_file
@@ -1170,7 +1170,7 @@ start_redir() {
 		local log_file="${proto}.log"
 		eval current_port=\$${proto}_REDIR_PORT
 		local port=$(echo $(get_new_port $current_port $proto))
-		eval ${proto}_REDIR=$port
+		eval ${proto}_REDIR_PORT=$port
 		run_redir node=$node proto=${proto} bind=0.0.0.0 local_port=$port config_file=$config_file log_file=$log_file
 		set_cache_var "ACL_GLOBAL_${proto}_node" "${node}"
 		set_cache_var "ACL_GLOBAL_${proto}_redir_port" "${port}"
@@ -1386,7 +1386,7 @@ stop_crontab() {
 start_dns() {
 	echolog "DNS域名解析："
 
-	local chinadns_tls=$(chinadns-ng -V | grep -i wolfssl)
+	local chinadns_tls=$($(first_type chinadns-ng) -V | grep -i wolfssl)
 	local china_ng_local_dns=$(IFS=','; set -- $LOCAL_DNS; [ "${1%%[#:]*}" = "127.0.0.1" ] && echo "$1" || ([ -n "$2" ] && echo "$1,$2" || echo "$1"))
 	local sing_box_local_dns=
 	local direct_dns_mode=$(config_t_get global direct_dns_mode "auto")
@@ -1610,12 +1610,13 @@ start_dns() {
 			else
 				smartdns_remote_dns="tcp://1.1.1.1"
 			fi
+			local subnet_ip=$(config_t_get global remote_dns_client_ip)
 			lua $APP_PATH/helper_smartdns_add.lua -FLAG "default" -SMARTDNS_CONF "/tmp/etc/smartdns/$CONFIG.conf" \
 				-LOCAL_GROUP ${group_domestic:-nil} -REMOTE_GROUP "passwall_proxy" -REMOTE_PROXY_SERVER ${TCP_SOCKS_server} -USE_DEFAULT_DNS "${USE_DEFAULT_DNS:-direct}" \
 				-REMOTE_DNS ${smartdns_remote_dns} -DNS_MODE ${DNS_MODE:-socks} -TUN_DNS ${TUN_DNS} -REMOTE_FAKEDNS ${fakedns:-0} \
 				-USE_DIRECT_LIST "${USE_DIRECT_LIST}" -USE_PROXY_LIST "${USE_PROXY_LIST}" -USE_BLOCK_LIST "${USE_BLOCK_LIST}" -USE_GFW_LIST "${USE_GFW_LIST}" -CHN_LIST "${CHN_LIST}" \
 				-TCP_NODE ${TCP_NODE} -DEFAULT_PROXY_MODE "${TCP_PROXY_MODE}" -NO_PROXY_IPV6 ${FILTER_PROXY_IPV6:-0} -NFTFLAG ${nftflag:-0} \
-				-NO_LOGIC_LOG ${NO_LOGIC_LOG:-0}
+				-SUBNET ${subnet_ip:-0} -NO_LOGIC_LOG ${NO_LOGIC_LOG:-0}
 			source $APP_PATH/helper_smartdns.sh restart
 			echolog "  - 域名解析：使用SmartDNS，请确保配置正常。"
 			return
@@ -1627,7 +1628,7 @@ start_dns() {
 
 	[ "$DNS_SHUNT" = "chinadns-ng" ] && [ -n "$(first_type chinadns-ng)" ] && {
 		chinadns_ng_min=2024.04.13
-		chinadns_ng_now=$(chinadns-ng -V | grep -i "ChinaDNS-NG " | awk '{print $2}')
+		chinadns_ng_now=$($(first_type chinadns-ng) -V | grep -i "ChinaDNS-NG " | awk '{print $2}')
 		if [ $(check_ver "$chinadns_ng_now" "$chinadns_ng_min") = 1 ]; then
 			echolog "  * 注意：当前 ChinaDNS-NG 版本为[ $chinadns_ng_now ]，请更新到[ $chinadns_ng_min ]或以上版本，否则 DNS 有可能无法正常工作！"
 		fi
@@ -1877,7 +1878,7 @@ acl_app() {
 
 								[ "$dns_shunt" = "chinadns-ng" ] && [ -n "$(first_type chinadns-ng)" ] && {
 									chinadns_ng_min=2024.04.13
-									chinadns_ng_now=$(chinadns-ng -V | grep -i "ChinaDNS-NG " | awk '{print $2}')
+									chinadns_ng_now=$($(first_type chinadns-ng) -V | grep -i "ChinaDNS-NG " | awk '{print $2}')
 									if [ $(check_ver "$chinadns_ng_now" "$chinadns_ng_min") = 1 ]; then
 										echolog "  * 注意：当前 ChinaDNS-NG 版本为[ $chinadns_ng_now ]，请更新到[ $chinadns_ng_min ]或以上版本，否则 DNS 有可能无法正常工作！"
 									fi
@@ -1896,7 +1897,7 @@ acl_app() {
 											_chinadns_local_dns="tcp://$(config_t_get global direct_dns_tcp 223.5.5.5 | sed 's/:/#/g')"
 										;;
 										dot)
-											if [ "$(chinadns-ng -V | grep -i wolfssl)" != "nil" ]; then
+											if [ "$($(first_type chinadns-ng) -V | grep -i wolfssl)" != "nil" ]; then
 												_chinadns_local_dns=$(config_t_get global direct_dns_dot "tls://dot.pub@1.12.12.12")
 											fi
 										;;
@@ -2137,7 +2138,7 @@ stop() {
 	eval_cache_var
 	[ -n "$USE_TABLES" ] && source $APP_PATH/${USE_TABLES}.sh stop
 	delete_ip2route
-	kill_all v2ray-plugin obfs-local
+	kill_all xray-plugin v2ray-plugin obfs-local shadow-tls
 	pgrep -f "sleep.*(6s|9s|58s)" | xargs kill -9 >/dev/null 2>&1
 	pgrep -af "${CONFIG}/" | awk '! /app\.sh|subscribe\.lua|rule_update\.lua|tasks\.sh|ujail/{print $1}' | xargs kill -9 >/dev/null 2>&1
 	stop_crontab

@@ -63,6 +63,7 @@ o.rewrite_option = o.option
 o = s:option(Value, _n("recv_window_conn"), translate("QUIC connection receive window"))
 o.rewrite_option = o.option
 
+
 o = s:option(Value, _n("idle_timeout"), translate("Idle Timeout"), translate("Example:") .. "30s (4s-120s)")
 o.rewrite_option = o.option
 

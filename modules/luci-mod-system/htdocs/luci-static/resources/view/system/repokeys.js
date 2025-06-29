@@ -41,7 +41,7 @@ function determineKeyEnv() {
 }
 
 function listKeyFiles() {
-	return fs.list(dir).then(entries =>
+	return fs.list(KEYDIR).then(entries =>
 		Promise.all(entries.map(entry =>
 			fs.read(KEYDIR + entry.name).then(content => ({
 				filename: entry.name,
@@ -110,6 +110,22 @@ function removeKey(ev) {
 	]);
 }
 
+function isPemFormat(content) {
+	return /-BEGIN ([A-Z ]+)?PUBLIC KEY-/.test(content);
+}
+
+function keyEnvironmentCheck(key) {
+	const isPem = isPemFormat(key);
+
+	// Reject PEM in OPKG; reject non-PEM in APK
+	if (KEYDIR === OPKG_DIR && isPem)
+		return _('This key appears to be in PEM format, which is not supported in an opkg environment.');
+	if (KEYDIR === APK_DIR && !isPem)
+		return _('This key does not appear to be in PEM format, which is required in an apk environment.');
+
+	return null;
+}
+
 function addKey(ev, file, fileContent) {
 	const list = findParent(ev.target, '.cbi-dynlist');
 	const input = list.querySelector('textarea[type="text"]');
@@ -117,6 +133,14 @@ function addKey(ev, file, fileContent) {
 
 	if (!key.length)
 		return;
+
+	const formatError = keyEnvironmentCheck(key);
+	if (formatError) {
+		ui.addTimeLimitedNotification(_('Invalid key format'), [
+			E('p', formatError)
+		], 7000, 'warning');
+		return;
+	}
 
 	// Prevent duplicates
 	const exists = Array.from(list.querySelectorAll('.item')).some(
