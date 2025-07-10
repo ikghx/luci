@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-openclash
-PKG_VERSION:=0.46.101
+PKG_VERSION:=0.46.126
 PKG_RELEASE:=1
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
@@ -27,13 +27,13 @@ define Package/$(PKG_NAME)/preinst
 		cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
 		cp -rf "/usr/share/openclash/ui/yacd" "/tmp/openclash_yacd" >/dev/null 2>&1
 		cp -rf "/usr/share/openclash/ui/dashboard" "/tmp/openclash_dashboard" >/dev/null 2>&1
+		cp -rf "/www/luci-static/resources/openclash/pac" "/tmp/pac" >/dev/null 2>&1
 	fi
 	exit 0
 endef
 
 define Package/$(PKG_NAME)/postinst
 #!/bin/sh
-	sed -i "s/v0.00.00/v$(PKG_VERSION)/g" /www/luci-static/resources/openclash/img/version.svg >/dev/null 2>&1
 	exit 0
 endef
 
@@ -46,6 +46,7 @@ define Package/$(PKG_NAME)/prerm
 	cp -rf "/etc/openclash" "/tmp/openclash" >/dev/null 2>&1
 	cp -rf "/usr/share/openclash/ui/yacd" "/tmp/openclash_yacd" >/dev/null 2>&1
 	cp -rf "/usr/share/openclash/ui/dashboard" "/tmp/openclash_dashboard" >/dev/null 2>&1
+	cp -rf "/www/luci-static/resources/openclash/pac" "/tmp/pac" >/dev/null 2>&1
 	exit 0
 endef
 

@@ -2,7 +2,6 @@
 'require view';
 'require fs';
 'require poll';
-'require uci';
 'require ui';
 
 return view.extend({
@@ -111,30 +110,36 @@ return view.extend({
 				'class': 'cbi-button cbi-button-neutral'
 			}, _('Scroll to tail', 'scroll to bottom (the tail) of the log file')
 		);
-		scrollDownButton.addEventListener('click', () => scrollUpButton.scrollIntoView());
+		scrollDownButton.addEventListener('click', () => {
+			scrollUpButton.scrollIntoView();
+			scrollDownButton.blur();
+		});
 
 		const scrollUpButton = E('button', {
 				'id' : 'scrollUpButton',
 				'class': 'cbi-button cbi-button-neutral'
 			}, _('Scroll to head', 'scroll to top (the head) of the log file')
 		);
-		scrollUpButton.addEventListener('click', () => scrollDownButton.scrollIntoView());
+		scrollUpButton.addEventListener('click', () => {
+			scrollDownButton.scrollIntoView();
+			scrollUpButton.blur();		
+		});
 
 		const self = this;
-		const log_file = uci.get_first('system', 'system', 'log_file');
 
 		// Create facility invert checkbox
 		const facilityInvert = E('input', {
 			'id': 'invertLogFacilitySearch',
 			'type': 'checkbox',
 			'class': 'cbi-input-checkbox',
+			'title': 'Invert facility search',
 		});
 
 		// Create facility select-dropdown from facilities map
 		const facilitySelect = E('select', {
 			'id': 'logFacilitySelect',
 			'class': 'cbi-input-select',
-			'style': 'margin-bottom:10px',
+			'style': 'margin:0 5px; width:150px',
 		},
 		this.facilities.map(([_, val, label]) =>
 			E('option', { value: val }, label)
@@ -145,12 +150,14 @@ return view.extend({
 			'id': 'invertLogSeveritySearch',
 			'type': 'checkbox',
 			'class': 'cbi-input-checkbox',
+			'title': 'Invert severity search',
 		});
 
 		// Create severity select-dropdown from facilities map
 		const severitySelect = E('select', {
 			'id': 'logSeveritySelect',
 			'class': 'cbi-input-select',
+			'style': 'margin:0 5px; width:120px',
 		},
 		this.severity.map(([_, val, label]) =>
 			E('option', { value: val }, label)
@@ -161,12 +168,14 @@ return view.extend({
 			'id': 'invertLogTextSearch',
 			'type': 'checkbox',
 			'class': 'cbi-input-checkbox',
+			'title': 'Invert text search',
 		});
 
 		// Create raw text search text input
 		const filterTextInput = E('input', {
 			'id': 'logTextFilter',
 			'class': 'cbi-input-text',
+			'style': 'margin:0 5px',
 		});
 
 		function handleLogFilterChange() {
@@ -176,13 +185,7 @@ return view.extend({
 			self.invertLogSeveritySearch = severityInvert.checked;
 			self.logTextFilter = filterTextInput.value;
 			self.invertLogTextSearch = filterTextInvert.checked;
-			self.retrieveLog().then(log => {
-				const element = document.getElementById('syslog');
-				if (element) {
-					element.value = log.value;
-					element.rows = log.rows;
-				}
-			});
+			self.pollLog();
 		}
 
 		facilitySelect.addEventListener('change', handleLogFilterChange);
@@ -195,23 +198,24 @@ return view.extend({
 		return E([], [
 			E('h2', {}, [ _('System Log') ]),
 			E('div', { 'id': 'content_syslog' }, [
-				E('div', { 'style': 'margin-bottom:10px' }, [
-					E('label', { 'for': 'invertLogFacilitySearch', 'style': 'margin-right:5px' }, _('Not')),
-					facilityInvert,
-					E('label', { 'for': 'logFacilitySelect', 'style': 'margin: 0 5px' }, _('facility:')),
-					facilitySelect,
-					E('label', { 'for': 'invertLogSeveritySearch', 'style': 'margin: 0 5px' }, _('Not')),
-					severityInvert,
-					E('label', { 'for': 'logSeveritySelect', 'style': 'margin: 0 5px' }, _('severity:')),
-					severitySelect,
+				E('div', { 'style': 'margin-bottom:16px; display:flex; flex-wrap:wrap; gap:16px 32px' }, [
+					scrollDownButton,
+               E('div', {}, [
+                  E('label', { 'for': 'logFacilitySelect', 'style': 'margin: 0 5px' }, _('Facility:')),
+                  facilitySelect,
+                  facilityInvert
+               ]),
+               E('div', {}, [
+                  E('label', { 'for': 'logSeveritySelect', 'style': 'margin: 0 5px' }, _('Severity:')),
+                  severitySelect,
+                  severityInvert
+               ]),
+               E('div', {}, [
+                  E('label', { 'for': 'logTextFilter', 'style': 'margin: 0 5px' }, _('Including:')),
+                  filterTextInput,
+                  filterTextInvert,
+               ])
 				]),
-				E('div', { 'style': 'margin-bottom:10px' }, [
-					E('label', { 'for': 'invertLogTextSearch', 'style': 'margin-right:5px' }, _('Not')),
-					filterTextInvert,
-					E('label', { 'for': 'logTextFilter', 'style': 'margin: 0 5px' }, _('including:')),
-					filterTextInput,
-				]),
-				E('div', {'style': 'padding-bottom: 20px'}, [scrollDownButton]),
 				E('textarea', {
 					'id': 'syslog',
 					'style': 'font-size:12px',

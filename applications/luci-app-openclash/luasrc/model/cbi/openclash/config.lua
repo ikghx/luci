@@ -46,20 +46,6 @@ function default_config_set(f)
 	end
 end
 
-function config_check(CONFIG_FILE)
-	local yaml = fs.isfile(CONFIG_FILE)
-	if yaml then
-		yaml = SYS.exec(string.format('ruby -ryaml -rYAML -I "/usr/share/openclash" -E UTF-8 -e "puts YAML.load_file(\'%s\')" 2>/dev/null',CONFIG_FILE))
-		if yaml ~= "false\n" and yaml ~= "" then
-			return "Config Normal"
-		else
-			return "Config Abnormal"
-		end
-	elseif (yaml ~= 0) then
-	   return "File Not Exist"
-	end
-end
-
 ful = SimpleForm("upload", translate("Config Manage"), nil)
 ful.reset = false
 ful.submit = false
@@ -133,26 +119,30 @@ HTTP.setfilehandler(
 			elseif fp == "rule-provider" then
 				um.value = translate("File saved to") .. ' "/etc/openclash/rule_provider/"'
 			elseif fp == "clash_meta" then
+				local archive_path = core_dir .. meta.file
 				if string.lower(string.sub(meta.file, -7, -1)) == ".tar.gz" then
 					-- tar.gz
-					os.execute(string.format("tar -C '/etc/openclash/core/core' -xzf '%s' >/dev/null 2>&1", (core_dir .. meta.file)))
-					local first_file_cmd = "find /etc/openclash/core/core -type f 2>/dev/null | head -1"
+					os.execute(string.format("tar -C '/etc/openclash/core/core' -xzf '%s' >/dev/null 2>&1", archive_path))
+					os.execute(string.format("rm -f '%s' >/dev/null 2>&1", archive_path))
+					local first_file_cmd = "find /etc/openclash/core/core -type f ! -name '*.tar.gz' ! -name '*.tar' ! -name '*.gz' 2>/dev/null | head -1"
 					local first_file = io.popen(first_file_cmd):read("*line")
 					if first_file and first_file ~= "" then
 						os.execute(string.format("mv '%s' '/etc/openclash/core/%s' >/dev/null 2>&1", first_file, fp))
 					end
 				elseif string.lower(string.sub(meta.file, -4, -1)) == ".tar" then
 					-- tar
-					os.execute(string.format("tar -C '/etc/openclash/core/core' -xf '%s' >/dev/null 2>&1", (core_dir .. meta.file)))
-					local first_file_cmd = "find /etc/openclash/core/core -type f 2>/dev/null | head -1"
+					os.execute(string.format("tar -C '/etc/openclash/core/core' -xf '%s' >/dev/null 2>&1", archive_path))
+					os.execute(string.format("rm -f '%s' >/dev/null 2>&1", archive_path))
+					local first_file_cmd = "find /etc/openclash/core/core -type f ! -name '*.tar' ! -name '*.gz' 2>/dev/null | head -1"
 					local first_file = io.popen(first_file_cmd):read("*line")
 					if first_file and first_file ~= "" then
 						os.execute(string.format("mv '%s' '/etc/openclash/core/%s' >/dev/null 2>&1", first_file, fp))
 					end
 				elseif string.lower(string.sub(meta.file, -3, -1)) == ".gz" then
 					-- gz
-					os.execute(string.format("gzip -fd '%s' >/dev/null 2>&1", (core_dir .. meta.file)))
-					local first_file_cmd = "find /etc/openclash/core/core -type f 2>/dev/null | head -1"
+					os.execute(string.format("gzip -fd '%s' >/dev/null 2>&1", archive_path))
+					os.execute(string.format("rm -f '%s' >/dev/null 2>&1", archive_path))
+					local first_file_cmd = "find /etc/openclash/core/core -type f ! -name '*.gz' 2>/dev/null | head -1"
 					local first_file = io.popen(first_file_cmd):read("*line")
 					if first_file and first_file ~= "" then
 						os.execute(string.format("mv '%s' '/etc/openclash/core/%s' >/dev/null 2>&1", first_file, fp))
@@ -199,7 +189,6 @@ else
    e[t].state=translate("Disabled")
 end
 e[t].size=fs.filesize(a.size)
-e[t].check=translate(config_check(o))
 e[t].remove=0
 end
 end
@@ -213,9 +202,7 @@ nm=tb:option(DummyValue,"name",translate("Config Alias"))
 sb=tb:option(DummyValue,"name",translate("Subscription Info"))
 mt=tb:option(DummyValue,"mtime",translate("Update Time"))
 sz=tb:option(DummyValue,"size",translate("Size"))
-ck=tb:option(DummyValue,"check",translate("Grammar Check"))
 st.template="openclash/cfg_check"
-ck.template="openclash/cfg_check"
 sb.template="openclash/sub_info_show"
 
 btnis=tb:option(Button,"switch",translate("SwiTch"))

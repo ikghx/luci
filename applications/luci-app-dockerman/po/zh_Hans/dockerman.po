@@ -10,15 +10,15 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.3.2-dev\n"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:612
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:617
 msgid "A list of kernel capabilities to add to the container"
 msgstr "要添加到容器的内核功能列表"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:208
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:222
 msgid "Add"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:588
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:593
 msgid "Add host device to the container"
 msgstr "将主机设备添加到容器"
 
@@ -26,11 +26,11 @@ msgstr "将主机设备添加到容器"
 msgid "Additional iptables parameters"
 msgstr "附加 iptables 参数"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:564
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:569
 msgid "Advance"
 msgstr "高级选项"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:579
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:584
 msgid "Allocates an ephemeral host port for all of a container's exposed ports"
 msgstr "为容器的所有暴露端口分配临时主机端口"
 
@@ -44,7 +44,7 @@ msgid "Allow Docker to create iptables rules"
 msgstr ""
 "允许 Docker 创建 iptables 规则，容器的暴露端口将绕过防火墙公开至所有接口。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:491
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:496
 msgid "Always pull image first"
 msgstr "总是先拉取镜像"
 
@@ -70,21 +70,21 @@ msgstr ""
 msgid "Base device"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:546
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:551
 msgid "Bind Mount(-v)"
 msgstr "绑定挂载（-v）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:547
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:552
 msgid "Bind mount a volume"
 msgstr "绑定挂载卷"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:605
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:645
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:614
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:650
 msgid "Block IO Weight"
 msgstr "块 IO 权重"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:606
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:646
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:615
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:651
 msgid ""
 "Block IO weight (relative weight) accepts a weight value between 10 and 1000."
 msgstr "块 IO 权重（相对权重）接受10到1000之间的数值。"
@@ -107,28 +107,28 @@ msgid ""
 "image can be downloaded from the configured registry."
 msgstr "通过输入具有相应版本的有效映像名称，可以从配置的源下载docker映像。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:611
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:616
 msgid "CAP-ADD(--cap-add)"
 msgstr "权限控制（--cap-add）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:590
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:628
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:599
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:633
 msgid "CPU Shares Weight"
 msgstr "CPU 共享权重"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:796
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:805
 msgid "CPU Usage"
 msgstr "CPU 使用率"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:591
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:629
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:600
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:634
 msgid ""
 "CPU shares relative weight, if 0 is set, the system will ignore the value "
 "and use the default of 1024."
 msgstr "CPU 共享相对权重，如果设置为 0，则系统将忽略该值并使用默认值 1024。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:582
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:619
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:591
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:624
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:25
 msgid "CPUs"
 msgstr "线程数量"
@@ -145,9 +145,9 @@ msgstr ""
 msgid "Client connection"
 msgstr "客户端连接"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:356
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:696
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:167
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:365
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:705
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:181
 msgid "Command"
 msgstr ""
 
@@ -163,14 +163,14 @@ msgstr "命令行错误"
 msgid "Configure the default bridge network"
 msgstr "配置默认桥接网络"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:414
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:716
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:423
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:725
 msgid "Connect"
 msgstr "连接"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:412
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:446
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:482
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:421
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:455
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:491
 msgid "Connect Network"
 msgstr "连接网络"
 
@@ -182,30 +182,30 @@ msgstr "连接到远程docker"
 msgid "Console"
 msgstr "控制台"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:148
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:162
 msgid "Container Info"
 msgstr "容器信息"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:659
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:668
 msgid "Container Inspect"
 msgstr "检查容器"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:680
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:689
 msgid "Container Logs"
 msgstr "容器日志"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:466
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:471
 msgid "Container Name"
 msgstr "容器名称"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:83
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:97
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/images.lua:54
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/volumes.lua:29
 msgid "Container detail"
 msgstr "容器详情"
 
 #: applications/luci-app-dockerman/luasrc/controller/dockerman.lua:18
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:135
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:149
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/images.lua:144
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/volumes.lua:86
 #: applications/luci-app-dockerman/luasrc/view/dockerman/overview.htm:133
@@ -216,7 +216,7 @@ msgstr "容器"
 msgid "Create macvlan interface"
 msgstr "创建 macvlan 接口"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:458
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:463
 msgid "Create new docker container"
 msgstr "创建新的Docker容器"
 
@@ -224,7 +224,7 @@ msgstr "创建新的Docker容器"
 msgid "Create new docker network"
 msgstr "创建新的Docker网络"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:321
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:330
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/images.lua:149
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/volumes.lua:91
 msgid "Created"
@@ -242,7 +242,7 @@ msgstr "自定义 DNS"
 msgid "DELETING"
 msgstr "删除中"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:380
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:389
 msgid "DNS"
 msgstr ""
 
@@ -258,15 +258,15 @@ msgstr "绑定容器端口时的默认 IP（默认 0.0.0.0）"
 msgid "Default bridge"
 msgstr "默认桥接"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:372
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:381
 msgid "Device"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:587
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:592
 msgid "Device(--device)"
 msgstr "设备（--device）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:405
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:414
 msgid "Disconnect"
 msgstr ""
 
@@ -274,12 +274,12 @@ msgstr ""
 msgid "Docker"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:201
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:210
 msgid "Docker - Container (<font color='%s'>%s</font>)"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:121
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:443
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:135
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:448
 msgid "Docker - Containers"
 msgstr "Docker-容器"
 
@@ -311,7 +311,7 @@ msgstr "Docker-卷"
 msgid "Docker Hub"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:482
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:487
 msgid "Docker Image"
 msgstr "Docker 镜像"
 
@@ -342,7 +342,7 @@ msgstr "下载"
 msgid "Driver"
 msgstr "驱动"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:274
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:283
 msgid "Duplicate/Edit"
 msgstr "复制/编辑"
 
@@ -363,11 +363,11 @@ msgstr "启用 ip6tables"
 msgid "Enable iptables"
 msgstr "启用 iptables"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:360
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:369
 msgid "Env"
 msgstr "环境变量"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:539
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:544
 msgid "Environmental Variable(-e)"
 msgstr "环境变量（-e）"
 
@@ -384,15 +384,15 @@ msgstr "事件"
 msgid "Exclude IPs"
 msgstr "排除 IP"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:256
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:265
 msgid "Export"
 msgstr "导出"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:578
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:583
 msgid "Exposed All Ports(-P)"
 msgstr "暴露所有端口（-P）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:553
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:558
 msgid "Exposed Ports(-p)"
 msgstr "暴露端口（-p）"
 
@@ -400,7 +400,7 @@ msgstr "暴露端口（-p）"
 msgid "File"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:333
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:342
 msgid "Finish Time"
 msgstr "完成时间"
 
@@ -437,15 +437,15 @@ msgstr ""
 msgid "Grant UCI access for luci-app-dockerman"
 msgstr "授予 UCI 访问 luci-app-dockerman 的权限"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:339
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:348
 msgid "Healthy"
 msgstr "健康"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:571
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:576
 msgid "Host Name"
 msgstr "主机名"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:309
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:318
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/images.lua:138
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/networks.lua:78
 msgid "ID"
@@ -463,7 +463,7 @@ msgstr ""
 msgid "IP range"
 msgstr "IP 范围"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:515
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:520
 msgid "IPv4 Address"
 msgstr "IPv4 地址"
 
@@ -483,7 +483,7 @@ msgstr "IPv6 子网"
 msgid "IPv6 subnet for fixed IPs."
 msgstr "固定 IP 的 IPv6 子网。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:313
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:322
 #: applications/luci-app-dockerman/luasrc/view/dockerman/images_import.htm:54
 msgid "Image"
 msgstr ""
@@ -509,7 +509,7 @@ msgstr "导入镜像文件"
 msgid "Index Server Address"
 msgstr "索引服务器地址"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:423
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:432
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:32
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/overview.lua:197
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container.htm:3
@@ -529,7 +529,7 @@ msgstr "入口网络是以群模式提供路由网格的网络"
 msgid "Inspect"
 msgstr "检查"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:470
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:475
 msgid "Interactive (-i)"
 msgstr "交互（-i）"
 
@@ -541,8 +541,8 @@ msgstr ""
 msgid "Ipvlan Mode"
 msgstr "Ipvlan 模式"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:247
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:249
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:256
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:263
 msgid "Kill"
 msgstr ""
 
@@ -554,11 +554,11 @@ msgstr "L2 桥接"
 msgid "L3 bridge"
 msgstr "L3 桥接"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:368
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:377
 msgid "Links"
 msgstr "链接"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:520
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:525
 msgid "Links with other containers"
 msgstr "与其他容器的链接"
 
@@ -574,11 +574,11 @@ msgstr "日志等级"
 msgid "Log driver"
 msgstr "日志驱动程序"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:662
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:667
 msgid "Log driver options"
 msgstr "日志驱动选项"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:654
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:659
 msgid "Logging driver"
 msgstr "日志驱动"
 
@@ -590,17 +590,17 @@ msgstr "日志"
 msgid "MAC VLAN"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:598
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:637
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:607
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:642
 msgid "Memory"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:800
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:809
 msgid "Memory Usage"
 msgstr "内存使用率"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:599
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:638
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:608
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:643
 msgid ""
 "Memory limit (format: <number>[<unit>]). Number is a positive integer. Unit "
 "can be one of b, k, m, or g. Minimum is 4M."
@@ -612,21 +612,21 @@ msgstr ""
 msgid "Mode"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:163
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:177
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/volumes.lua:88
 msgid "Mount Point"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:596
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:601
 msgid "Mount tmpfs directory"
 msgstr "挂载 tmpfs 目录"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:352
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:361
 msgid "Mount/Volume"
 msgstr "挂载/卷"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:304
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:428
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:313
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:437
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/volumes.lua:84
 msgid "Name"
 msgstr ""
@@ -635,9 +635,9 @@ msgstr ""
 msgid "Name of the network that can be selected during container creation"
 msgstr "在容器创建时可以选择网络的名称"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:403
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:537
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:156
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:412
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:546
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:170
 msgid "Network"
 msgstr ""
 
@@ -647,7 +647,7 @@ msgid "Network Name"
 msgstr "网络名称"
 
 #: applications/luci-app-dockerman/luasrc/controller/dockerman.lua:20
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:511
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:516
 #: applications/luci-app-dockerman/luasrc/view/dockerman/overview.htm:169
 msgid "Networks"
 msgstr "网络"
@@ -665,8 +665,8 @@ msgstr "新建"
 msgid "New tag"
 msgstr "新建标签"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:583
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:620
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:592
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:625
 msgid "Number of CPUs. Number is a fractional number. 0.000 means no limit."
 msgstr "CPU 数量。数字是小数。0.000 表示没有限制。"
 
@@ -676,7 +676,7 @@ msgid ""
 "with which a container can be created."
 msgstr "在此页面上，显示系统上可用的所有镜像文件，并可以用它们来创建容器。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:202
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:211
 msgid "On this page, the selected container can be managed."
 msgstr "在此页面可以管理所选的容器。"
 
@@ -720,8 +720,8 @@ msgstr "请输入路径并选择文件！"
 msgid "Plese input <docker create/run> command line:"
 msgstr "请输入 <docker create/run> 的命令行："
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:364
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:159
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:373
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:173
 msgid "Ports"
 msgstr "端口"
 
@@ -733,11 +733,11 @@ msgstr "阻止外部网络直接连接到 Docker 主机。"
 msgid "Private (Prevent communication between MAC VLANs)"
 msgstr "专用（阻止 MAC VLAN 之间的通信）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:497
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:502
 msgid "Privileged"
 msgstr "特权模式"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:554
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:559
 msgid "Publish container's port(s) to the host"
 msgstr "将容器的端口发布到主机"
 
@@ -766,8 +766,8 @@ msgstr "远程主机"
 msgid "Remote Port"
 msgstr "远程端口"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:283
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:259
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:292
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:273
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/images.lua:206
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/networks.lua:115
 #: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/volumes.lua:107
@@ -788,7 +788,7 @@ msgstr "重命名"
 msgid "RepoTags"
 msgstr "仓库标签"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:462
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:467
 msgid "Resolve CLI"
 msgstr "解析 CLI"
 
@@ -796,14 +796,14 @@ msgstr "解析 CLI"
 msgid "Resources"
 msgstr "资源"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:229
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:229
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:238
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:243
 msgid "Restart"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:343
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:436
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:503
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:352
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:445
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:508
 msgid "Restart Policy"
 msgstr "重启策略"
 
@@ -815,7 +815,7 @@ msgstr "限制外部网络访问"
 msgid "Reveal/hide password"
 msgstr "显示/隐藏 密码"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:559
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:564
 msgid "Run command"
 msgstr "运行命令"
 
@@ -823,11 +823,11 @@ msgstr "运行命令"
 msgid "Save"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:526
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:531
 msgid "Set custom DNS servers"
 msgstr "设置自定义 DNS 服务器"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:540
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:545
 msgid "Set environment variables to inside the container"
 msgstr "在容器内部设置环境变量"
 
@@ -848,28 +848,28 @@ msgstr ""
 msgid "Specifies where the Docker daemon will listen for client connections"
 msgstr "指定Docker守护程序将在何处侦听客户端连接"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:220
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:219
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:229
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:233
 msgid "Start"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:328
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:337
 msgid "Start Time"
 msgstr "开始时间"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:804
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:805
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:813
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:814
 #: applications/luci-app-dockerman/luasrc/view/dockerman/container.htm:5
 msgid "Stats"
 msgstr "状态"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:317
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:152
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:326
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:166
 msgid "Status"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:238
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:239
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:247
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:253
 msgid "Stop"
 msgstr ""
 
@@ -882,23 +882,23 @@ msgstr ""
 msgid "Subnet"
 msgstr "子网"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:384
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:393
 msgid "Sysctl"
 msgstr "系统控制"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:603
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:608
 msgid "Sysctl(--sysctl)"
 msgstr "系统控制（--sysctl）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:604
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:609
 msgid "Sysctls (kernel parameters) options"
 msgstr "系统控制（内核参数）选项"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:814
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:823
 msgid "TOP"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:476
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:481
 msgid "TTY (-t)"
 msgstr ""
 
@@ -906,25 +906,25 @@ msgstr ""
 msgid "TX/RX"
 msgstr "发送/接收"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:572
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:577
 msgid "The hostname to use for the container"
 msgstr "容器使用的主机名"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:663
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:668
 msgid "The logging configuration for this container"
 msgstr "该容器的日志记录配置"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:655
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:660
 msgid "The logging driver for the container"
 msgstr "容器的日志驱动程序"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:533
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:538
 msgid ""
 "The user that commands are run as inside the container.(format: name|uid[:"
 "group|gid])"
 msgstr "在容器中以用户运行命令。（格式:name|uid[:group|gid]）"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:122
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/containers.lua:136
 msgid ""
 "This page displays all containers that have been created on the connected "
 "docker host."
@@ -936,11 +936,11 @@ msgid ""
 "connected docker host."
 msgstr "此页面显示在已连接的Docker主机上创建的所有Docker网络。"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:376
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:385
 msgid "Tmpfs"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:595
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:600
 msgid "Tmpfs(--tmpfs)"
 msgstr ""
 
@@ -948,16 +948,16 @@ msgstr ""
 msgid "Total Memory"
 msgstr "总内存"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:706
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:715
 msgid "UID"
 msgstr ""
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:306
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:345
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:315
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:354
 msgid "Update"
 msgstr "更新"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:265
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:274
 msgid "Upgrade"
 msgstr "升级"
 
@@ -981,11 +981,11 @@ msgstr "上传/下载"
 msgid "Use the hosts dnsmasq by default."
 msgstr "默认使用主机的 dnsmasq"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:348
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/container.lua:357
 msgid "User"
 msgstr "用户"
 
-#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:532
+#: applications/luci-app-dockerman/luasrc/model/cbi/dockerman/newcontainer.lua:537
 msgid "User(-u)"
 msgstr "用户（-u）"
 
