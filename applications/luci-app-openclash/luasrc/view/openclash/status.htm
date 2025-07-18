@@ -127,16 +127,6 @@
     border-left-color: var(--primary-color);
 }
 
-.oc[data-darkmode="true"] .dashboard-btn {
-    background: var(--primary-color) !important;
-    color: rgb(236, 234, 234) !important;
-}
-
-.oc[data-darkmode="true"] .dashboard-btn:hover {
-    background: var(--primary-color) !important;
-    color: white !important;
-}
-
 .oc[data-darkmode="true"] .dashboard-btn:disabled {
     background: #4b5563 !important;
     color: #9ca3af !important;
@@ -203,12 +193,12 @@
     background: var(--bg-white);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
-    padding: 16px;
+    padding: 12px;
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-fast);
     display: grid;
     grid-template-rows: var(--row-1-height) var(--row-2-height) var(--row-3-height) var(--row-4-height);
-    gap: 12px;
+    gap: 8px;
     overflow: visible;
     grid-row: 2;
     max-width: 100%;
@@ -231,6 +221,7 @@
     height: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    min-width: 250px;
 }
 
 .oc .card-row:nth-child(1) {
@@ -257,15 +248,16 @@
 .oc .card-row.dual-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 8px;
     max-width: 100%;
 }
 
 .oc .card-row.stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 2fr);
-    gap: 6px;
+    gap: 8px;
     max-width: 100%;
+    min-width: auto;
 }
 
 .oc .sub-card {
@@ -341,7 +333,6 @@
     flex-direction: column;
     gap: 10px;
     flex: 1;
-    justify-content: space-between;
     min-height: 0;
 }
 
@@ -369,6 +360,7 @@
     flex-direction: column;
     gap: 10px;
     justify-content: center;
+    width: 100%;
 }
 
 .oc .card-actions {
@@ -398,6 +390,13 @@
     gap: 10px;
     flex: 0 0 auto;
     min-height: var(--control-height);
+    overflow: hidden;
+    min-width: 0; 
+}
+
+.oc .core-status-toggle,
+.oc .core-control-buttons {
+    min-width: 0;
 }
 
 .oc .core-status-toggle {
@@ -498,7 +497,7 @@
     border-radius: 50%;
     background: var(--error-color);
     flex-shrink: 0;
-    animation: gentlePulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: gentlePulse 4s cubic-bezier(.17,.67,.83,.67) infinite;
 }
 
 @keyframes gentlePulse {
@@ -530,12 +529,13 @@
     border-radius: var(--radius-sm);
     background: var(--bg-white);
     color: var(--text-primary);
-    font-size: 13px;
+    font-size: 15px;
     appearance: none;
     cursor: pointer;
     transition: all var(--transition-fast);
     box-sizing: border-box;
     min-width: 0;
+    margin: 0 auto;
 }
 
 .oc .config-select:hover {
@@ -551,7 +551,7 @@
 .oc .config-select option {
     width: 100%;
     padding: 8px 12px;
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.4;
     white-space: nowrap;
     overflow: hidden;
@@ -586,7 +586,7 @@
 }
 
 .oc .cbi-button-group {
-    display: inline-flex;
+    display: flex;
     background: var(--bg-white);
     border-radius: var(--radius-sm);
     padding: 2px;
@@ -597,7 +597,7 @@
     height: var(--control-height);
     align-items: center;
     white-space: nowrap;
-    width: fit-content;
+    width: 100%;
 }
 
 .oc .cbi-button-group input[type="radio"] {
@@ -608,6 +608,7 @@
 }
 
 .oc .cbi-button-option {
+    flex: 1 1 0;
     padding: 5px 5px;
     font-size: 12px;
     font-weight: 500;
@@ -617,7 +618,7 @@
     transition: all var(--transition-fast);
     user-select: none;
     text-align: center;
-    min-width: 35px;
+    min-width: 0;
     height: calc(var(--control-height) - 6px);
     display: flex;
     align-items: center;
@@ -651,8 +652,8 @@
     min-width: 90px;
     white-space: nowrap;
     line-height: 1.2;
-    max-width: 300px;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .oc .value-indicator b {
@@ -701,7 +702,8 @@
     cursor: pointer !important;
     border-radius: var(--radius-md) !important;
     border: none !important;
-    background: var(--primary-color) !important;
+    background: #1473e6;
+    background-color: var(--primary-color) !important;
     transition: all var(--transition-fast) !important;
     white-space: normal !important;
     text-align: center !important;
@@ -823,6 +825,9 @@
     font-size: 11px;
     color: var(--text-secondary);
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .oc #logo_btn .mihomo-link {
@@ -870,6 +875,8 @@
     flex-direction: row;
     align-items: center;
     min-height: 24px;
+    min-width: 0;
+    gap: 8px;
 }
 
 .oc .subscription-info-details {
@@ -915,7 +922,7 @@
 }
 
 .oc .subscription-info-text {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-secondary);
     line-height: 1.4;
     text-overflow: ellipsis;
@@ -990,10 +997,11 @@
     font-size: 20px;
     font-weight: 600;
     color: var(--text-secondary);
-    flex: 1;
+    flex: 1 1 0%;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: calc(100% - 200px);
+    min-width: 0;
+    max-width: 100%;
     padding-left: 20px;
     overflow: hidden;
 }
@@ -1060,9 +1068,12 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    gap: 16px;
+    gap: 8px;
     font-size: 13px;
     color: var(--text-secondary);
+    min-width: 0;
+    max-width: 30vw;
+    overflow: hidden;
 }
 
 .oc .file-info-item {
@@ -1070,9 +1081,10 @@
     align-items: center;
     white-space: nowrap;
     padding-right: 20px;
-    font-size: 12px;
+    font-size: 13px;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 240px;
 }
 
 .oc .announcement-banner {
@@ -1182,7 +1194,6 @@
         margin-bottom: 14px;
         max-width: 100%;
         width: 100%;
-        padding: 16px;
     }
 
     .oc .main-card:first-of-type {
@@ -1197,12 +1208,10 @@
 
     .oc .card-row.dual-cards {
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
     }
 
     .oc .card-row.stats-grid {
         grid-template-columns: repeat(4, 2fr);
-        gap: 8px;
     }
 
     .oc .config-selector {
@@ -1212,11 +1221,11 @@
     
     .oc .config-select {
         min-width: 200px;
-        font-size: 12px;
+        font-size: 14px;
     }
     
     .oc .config-select option {
-        font-size: 12px;
+        font-size: 14px;
         max-width: 100%;
     }
     
@@ -1236,7 +1245,6 @@
     }
 
     .oc .main-card {
-        padding: 12px;
         grid-template-rows: auto auto auto auto;
     }
 
@@ -1249,13 +1257,8 @@
         gap: 12px;
     }
 
-    .oc .card-row.dual-cards {
-        gap: 8px;
-    }
-
     .oc .card-row.stats-grid {
         grid-template-columns: repeat(2, 2fr);
-        gap: 6px;
     }
 
     .oc .announcement-banner {
@@ -1301,12 +1304,12 @@
 
     .oc .config-select {
         min-width: 150px;
-        font-size: 11px;
+        font-size: 13px;
         padding: 4px 10px;
     }
     
     .oc .config-select option {
-        font-size: 11px;
+        font-size: 13px;
         padding: 6px 10px;
     }
     
@@ -1331,7 +1334,7 @@
 
     .oc .config-file-name {
         max-width: 100%;
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .oc .config-file-bottom {
@@ -1350,7 +1353,7 @@
     }
 
     .oc .file-info {
-        font-size: 9px;
+        font-size: 10px;
     }
 
     .oc .file-info-item {
@@ -1386,12 +1389,10 @@
 
     .oc .card-row.dual-cards {
         grid-template-columns: 1fr;
-        gap: 6px;
     }
 
     .oc .card-row.stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 5px;
     }
 
     .oc .announcement-banner {
@@ -1428,7 +1429,7 @@
     }
 
     .oc input[type="radio"]:checked + .cbi-button-option {
-        height: 24px;
+        height: 22px;
     }
 
     .oc .cbi-button-option {
@@ -1476,12 +1477,12 @@
     
     .oc .config-select {
         min-width: 110px;
-        font-size: 10px;
+        font-size: 12px;
         padding: 4px 8px;
     }
     
     .oc .config-select option {
-        font-size: 10px;
+        font-size: 12px;
         padding: 5px 8px;
     }
     
@@ -1513,12 +1514,11 @@
     }
 
     .oc .subscription-info-text {
-        font-size: 8px;
-        max-width: 190px;
+        font-size: 10px;
     }
 
     .oc .config-file-name {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .oc .sub-card {
@@ -1563,7 +1563,6 @@
 
     .oc .file-info-item {
         font-size: 10px;
-        max-width: 130px;
     }
 
     .oc .config-upload-btn-large {
@@ -1630,6 +1629,11 @@
                                         <button type="button" class="icon-btn action-btn" id="restart_core" title="<%:Restart%>" onclick="return restartCore()">
                                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                                         </button>
+                                        <button type="button" class="icon-btn action-btn" id="edit_overwrite" title="<%:Overwrite%>" onclick="return editOverwrite()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+                                            <path d="M12,111l112,64a8,8,0,0,0,7.94,0l112-64a8,8,0,0,0,0-13.9l-112-64a8,8,0,0,0-7.94,0l-112,64A8,8,0,0,0,12,111ZM128,49.21,223.87,104,128,158.79,32.13,104ZM246.94,140A8,8,0,0,1,244,151L132,215a8,8,0,0,1-7.94,0L12,151A8,8,0,0,1,20,137.05l108,61.74,108-61.74A8,8,0,0,1,246.94,140Z"></path>
+                                        </svg>
+                                    </button>
                                     </div>
                                 </div>
                                 <div class="card-actions">
@@ -1652,7 +1656,7 @@
                                 <div class="card-title"><%:Running Mode%></div>
                                 <div class="card-content">
                                     <div class="card-value"><span id="_mode" class="value-indicator"><%:Collecting data...%></span></div>
-                                    <div class="running-mode-controls">
+                                    <div class="card-controls">
                                         <div id="radio-ru-mode" class="cbi-button-group" style="display: inline-flex;">
                                             <input type="radio" id="normal" name="radios-ru" value="" checked onclick="return switch_run_mode(this.value)"/><label for="normal" id="run_normal" class="cbi-button-option"><%:Compat%></label>
                                             <input type="radio" id="tun" name="radios-ru" value="-tun" onclick="return switch_run_mode(this.value)"/><label for="tun" class="cbi-button-option"><%:TUN%></label>
@@ -1754,8 +1758,9 @@
                                                         </svg>
                                                     </button>
                                                     <button type="button" class="icon-btn action-btn" id="config-subscription-url" title="<%:Specify URL%>" onclick="return setSubscriptionUrl()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                                        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M18.2838 43.1713C14.9327 42.1736 11.9498 40.3213 9.58787 37.867C10.469 36.8227 11 35.4734 11 34.0001C11 30.6864 8.31371 28.0001 5 28.0001C4.79955 28.0001 4.60139 28.01 4.40599 28.0292C4.13979 26.7277 4 25.3803 4 24.0001C4 21.9095 4.32077 19.8938 4.91579 17.9995C4.94381 17.9999 4.97188 18.0001 5 18.0001C8.31371 18.0001 11 15.3138 11 12.0001C11 11.0488 10.7786 10.1493 10.3846 9.35011C12.6975 7.1995 15.5205 5.59002 18.6521 4.72314C19.6444 6.66819 21.6667 8.00013 24 8.00013C26.3333 8.00013 28.3556 6.66819 29.3479 4.72314C32.4795 5.59002 35.3025 7.1995 37.6154 9.35011C37.2214 10.1493 37 11.0488 37 12.0001C37 15.3138 39.6863 18.0001 43 18.0001C43.0281 18.0001 43.0562 17.9999 43.0842 17.9995C43.6792 19.8938 44 21.9095 44 24.0001C44 25.3803 43.8602 26.7277 43.594 28.0292C43.3986 28.01 43.2005 28.0001 43 28.0001C39.6863 28.0001 37 30.6864 37 34.0001C37 35.4734 37.531 36.8227 38.4121 37.867C36.0502 40.3213 33.0673 42.1736 29.7162 43.1713C28.9428 40.752 26.676 39.0001 24 39.0001C21.324 39.0001 19.0572 40.752 18.2838 43.1713Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+                                                            <path d="M24 31C27.866 31 31 27.866 31 24C31 20.134 27.866 17 24 17C20.134 17 17 20.134 17 24C17 27.866 20.134 31 24 31Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
                                                         </svg>
                                                     </button>
                                                 </div>
@@ -3412,94 +3417,70 @@
         
         updateUIState: function(setting, value) {
             setTimeout(() => {
+                function setCheckedAndDisabled(elements, checkedIndex) {
+                    for (let i = 0; i < elements.length; i++) {
+                        elements[i].checked = (i === checkedIndex);
+                        elements[i].disabled = true;
+                    }
+                }
                 switch(setting) {
                     case 'meta_sniffer':
                         var metaSnifferOn = document.getElementById('meta_sniffer_on');
                         var metaSnifferOff = document.getElementById('meta_sniffer_off');
                         if (metaSnifferOn && metaSnifferOff) {
-                            metaSnifferOn.checked = value === '1';
-                            metaSnifferOff.checked = value !== '1';
-                            
+                            setCheckedAndDisabled([metaSnifferOn, metaSnifferOff], value === '1' ? 0 : 1);
                             var changeEvent = new Event('change', { bubbles: true });
-                            if (value === '1') {
-                                metaSnifferOn.dispatchEvent(changeEvent);
-                            } else {
-                                metaSnifferOff.dispatchEvent(changeEvent);
-                            }
+                            (value === '1' ? metaSnifferOn : metaSnifferOff).dispatchEvent(changeEvent);
                         }
                         break;
-                        
                     case 'respect_rules':
                         var respectRulesOn = document.getElementById('respect_rules_on');
                         var respectRulesOff = document.getElementById('respect_rules_off');
                         if (respectRulesOn && respectRulesOff) {
-                            respectRulesOn.checked = value === '1';
-                            respectRulesOff.checked = value !== '1';
-                            
+                            setCheckedAndDisabled([respectRulesOn, respectRulesOff], value === '1' ? 0 : 1);
                             var changeEvent = new Event('change', { bubbles: true });
-                            if (value === '1') {
-                                respectRulesOn.dispatchEvent(changeEvent);
-                            } else {
-                                respectRulesOff.dispatchEvent(changeEvent);
-                            }
+                            (value === '1' ? respectRulesOn : respectRulesOff).dispatchEvent(changeEvent);
                         }
                         break;
-                        
                     case 'oversea':
                         var oversea0 = document.getElementById('oc_setting_oversea_0');
                         var oversea1 = document.getElementById('oc_setting_oversea_1');
                         var oversea2 = document.getElementById('oc_setting_oversea_2');
                         if (oversea0 && oversea1 && oversea2) {
-                            oversea0.checked = value === '0';
-                            oversea1.checked = value === '1';
-                            oversea2.checked = value === '2';
-                            
+                            setCheckedAndDisabled([oversea0, oversea1, oversea2], value === '0' ? 0 : (value === '1' ? 1 : 2));
                             var changeEvent = new Event('change', { bubbles: true });
-                            var selectedElement = value === '0' ? oversea0 : (value === '1' ? oversea1 : oversea2);
-                            if (selectedElement) {
-                                selectedElement.dispatchEvent(changeEvent);
-                            }
+                            [oversea0, oversea1, oversea2][value === '0' ? 0 : (value === '1' ? 1 : 2)].dispatchEvent(changeEvent);
                         }
                         break;
-
                     case 'stream_unlock':
                         var streamUnlockOn = document.getElementById('stream_unlock_on');
                         var streamUnlockOff = document.getElementById('stream_unlock_off');
                         if (streamUnlockOn && streamUnlockOff) {
-                            streamUnlockOn.checked = value === '1';
-                            streamUnlockOff.checked = value !== '1';
-                            
+                            setCheckedAndDisabled([streamUnlockOn, streamUnlockOff], value === '1' ? 0 : 1);
                             var changeEvent = new Event('change', { bubbles: true });
-                            if (value === '1') {
-                                streamUnlockOn.dispatchEvent(changeEvent);
-                            } else {
-                                streamUnlockOff.dispatchEvent(changeEvent);
-                            }
+                            (value === '1' ? streamUnlockOn : streamUnlockOff).dispatchEvent(changeEvent);
                         }
                         break;
-                        
                     case 'rule_mode':
                         var radioElements = document.getElementsByName("radios");
                         if (radioElements && radioElements.length > 0) {
                             for (var i = 0; i < radioElements.length; i++) {
-                                var isChecked = radioElements[i].value === value;
-                                radioElements[i].checked = isChecked;
-                                
-                                if (isChecked) {
+                                radioElements[i].checked = radioElements[i].value === value;
+                                radioElements[i].disabled = true;
+                                if (radioElements[i].checked) {
                                     var changeEvent = new Event('change', { bubbles: true });
                                     radioElements[i].dispatchEvent(changeEvent);
                                 }
                             }
                         }
                         break;
-                        
                     case 'run_mode':
                         var radioRuElements = document.getElementsByName("radios-ru");
                         if (radioRuElements && radioRuElements.length > 0) {
                             for (var i = 0; i < radioRuElements.length; i++) {
-                                var isChecked = radioRuElements[i].value === value;
-                                radioRuElements[i].checked = isChecked;
-                                if (isChecked) {
+                                radioRuElements[i].checked = radioRuElements[i].value === value;
+                                radioRuElements[i].disabled = true;
+                                if (radioRuElements[i].checked) {
                                     var changeEvent = new Event('change', { bubbles: true });
                                     radioRuElements[i].dispatchEvent(changeEvent);
                                 }
@@ -3508,6 +3489,53 @@
                         break;
                 }
             }, 10);
+
+            setTimeout(() => {
+                switch(setting) {
+                    case 'meta_sniffer':
+                        var metaSnifferOn = document.getElementById('meta_sniffer_on');
+                        var metaSnifferOff = document.getElementById('meta_sniffer_off');
+                        if (metaSnifferOn) metaSnifferOn.disabled = false;
+                        if (metaSnifferOff) metaSnifferOff.disabled = false;
+                        break;
+                    case 'respect_rules':
+                        var respectRulesOn = document.getElementById('respect_rules_on');
+                        var respectRulesOff = document.getElementById('respect_rules_off');
+                        if (respectRulesOn) respectRulesOn.disabled = false;
+                        if (respectRulesOff) respectRulesOff.disabled = false;
+                        break;
+                    case 'oversea':
+                        var oversea0 = document.getElementById('oc_setting_oversea_0');
+                        var oversea1 = document.getElementById('oc_setting_oversea_1');
+                        var oversea2 = document.getElementById('oc_setting_oversea_2');
+                        if (oversea0) oversea0.disabled = false;
+                        if (oversea1) oversea1.disabled = false;
+                        if (oversea2) oversea2.disabled = false;
+                        break;
+                    case 'stream_unlock':
+                        var streamUnlockOn = document.getElementById('stream_unlock_on');
+                        var streamUnlockOff = document.getElementById('stream_unlock_off');
+                        if (streamUnlockOn) streamUnlockOn.disabled = false;
+                        if (streamUnlockOff) streamUnlockOff.disabled = false;
+                        break;
+                    case 'rule_mode':
+                        var radioElements = document.getElementsByName("radios");
+                        if (radioElements && radioElements.length > 0) {
+                            for (var i = 0; i < radioElements.length; i++) {
+                                radioElements[i].disabled = false;
+                            }
+                        }
+                        break;
+                    case 'run_mode':
+                        var radioRuElements = document.getElementsByName("radios-ru");
+                        if (radioRuElements && radioRuElements.length > 0) {
+                            for (var i = 0; i < radioRuElements.length; i++) {
+                                radioRuElements[i].disabled = false;
+                            }
+                        }
+                        break;
+                }
+            }, 3000);
         },
         
         switchSetting: function(setting, value, endpoint, additionalParams) {
@@ -3601,7 +3629,7 @@
             if (!pluginToggleUserAction) {
                 updates.push({
                     element: DOMCache.clash,
-                    content: status.clash ? '<b style=color:var(--success-color)>' + status.core_type +'&nbsp;&nbsp;&nbsp;<%:Running%></b>' : '<b style=color:var(--error-color)><%:Not Running%></b>'
+                    content: status.clash ? '<b style=color:var(--success-color)>' + status.core_type +'&nbsp;<%:Running%></b>' : '<b style=color:var(--error-color)><%:Not Running%></b>'
                 });
                 
                 updatePluginToggleState(status.clash);
@@ -3740,7 +3768,7 @@
     });
 
     function initializeWebSocketConnections(status) {
-        if (!status || !status.clash || !status.daip || !status.dase) {
+        if (!status || !status.clash || !status.daip) {
             return false;
         }
         
@@ -3766,7 +3794,7 @@
         ];
         
         connections.forEach(function(conn) {
-            var url = protocol + conn.endpoint + '?token=' + token;
+            var url = protocol + conn.endpoint + (token ? '?token=' + token : '');
             WSManager.createConnection(conn.type, url, conn.handler);
         });
         
@@ -4004,7 +4032,7 @@
 
     function get_rule_mode() {
         if (SettingsManager.isPollPaused('rule_mode')) {
-            s = setTimeout("get_rule_mode()", 1000);
+            s = setTimeout("get_rule_mode()", 5000);
             return;
         }
         
@@ -4361,6 +4389,11 @@
                     }
                     
                     DOMCache.core_version_text.textContent = coreVersionText;
+                    if (DOMCache.core_version_text.scrollWidth > DOMCache.core_version_text.clientWidth) {
+                        DOMCache.core_version_text.title = coreVersionText;
+                    } else {
+                        DOMCache.core_version_text.title = '';
+                    }
                     DOMCache.core_version_display.style.display = 'flex';
                     
                     var existingDot = DOMCache.core_version_display.querySelector('.update-dot');
@@ -4393,6 +4426,11 @@
                     }
                     
                     DOMCache.plugin_version_text.textContent = pluginVersionText;
+                    if (DOMCache.plugin_version_text.scrollWidth > DOMCache.plugin_version_text.clientWidth) {
+                        DOMCache.plugin_version_text.title = pluginVersionText;
+                    } else {
+                        DOMCache.plugin_version_text.title = '';
+                    }
                     DOMCache.plugin_version_display.style.display = 'flex';
                     
                     var existingDot = DOMCache.plugin_version_display.querySelector('.update-dot');
@@ -4458,10 +4496,10 @@
         var address;
         
         if (status.daip && window.location.hostname == status.daip) {
-            address = 'http://' + status.daip + ':' + (status.cn_port || '9090') + '/ui/zashboard/#/setup?hostname=' + status.daip + '&port=' + (status.cn_port || '9090') + '&secret=' + (status.dase || '');
+            address = 'http://' + status.daip + ':' + (status.cn_port || '9090') + '/ui/zashboard/#/setup?hostname=' + status.daip + '&port=' + (status.cn_port || '9090') + (status.dase ? '&secret=' + status.dase : '');
         } else if (status.daip && window.location.hostname != status.daip && status.db_foward_domain && status.db_foward_port) {
             var ui_proto = status.db_forward_ssl == 0 ? 'http://' : 'https://';
-            address = ui_proto + status.db_foward_domain + ':' + status.db_foward_port + '/ui/zashboard/#/setup?hostname=' + status.db_foward_domain + '&port=' + status.db_foward_port + '&secret=' + (status.dase || '');
+            address = ui_proto + status.db_foward_domain + ':' + status.db_foward_port + '/ui/zashboard/#/setup?hostname=' + status.db_foward_domain + '&port=' + status.db_foward_port + (status.dase ? '&secret=' + status.dase : '');
         } else {
             address = 'http://' + (status.daip || 'unknown') + ':' + (status.cn_port || '9090') + '/ui/zashboard/#/';
         }
@@ -4934,6 +4972,22 @@
             setTimeout(function() {
                 if (typeof ConfigEditor !== 'undefined' && ConfigEditor.show) {
                     ConfigEditor.show(currentConfig);
+                } else {
+                    alert('<%:Config editor not ready, please try again%>');
+                }
+            }, 500);
+        }
+        
+        return false;
+    }
+
+    function editOverwrite() {
+        if (typeof ConfigEditor !== 'undefined' && ConfigEditor.showOverwrite) {
+            ConfigEditor.showOverwrite();
+        } else {
+            setTimeout(function() {
+                if (typeof ConfigEditor !== 'undefined' && ConfigEditor.showOverwrite) {
+                    ConfigEditor.showOverwrite();
                 } else {
                     alert('<%:Config editor not ready, please try again%>');
                 }

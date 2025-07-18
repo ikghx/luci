@@ -178,12 +178,9 @@ return view.extend({
 	},
 
 	handleToggleDDns: function(m, ev) {
-		return this.callDDnsGetStatus()
-			.then(L.bind(function(resp) { return resp['_enabled'] }, this))
-			.then(L.bind(function (is_enabled) {
-				this.callInitAction('ddns', is_enabled ? 'stop' : 'start');
-				return this.callInitAction('ddns', is_enabled ? 'disable' : 'enable');
-			}, this))
+		return this.callInitAction('ddns', 'enable')
+			.then(L.bind(function (action) { return this.callInitAction('ddns', action ? 'disable' : 'enable')}, this))
+			.then(L.bind(function (action) { return this.callInitAction('ddns', action ? 'stop' : 'start')}, this))
 			.then(L.bind(m.render, m))
 			.catch(function(e) { ui.addNotification(null, E('p', e.message)) });
 	},
