@@ -69,4 +69,6 @@ o.cfgvalue = function(t, n)
 	return v
 end
 
+m:append(Template(appname .. "/acl/js"))
+
 return m
