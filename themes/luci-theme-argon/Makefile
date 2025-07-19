@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=Argon Theme
 LUCI_DEPENDS:=+curl +jsonfilter +luci-app-argon-config
 
-CONFIG_LUCI_CSSTIDY:=
+LUCI_MINIFY_CSS:=0
 
 define Package/luci-theme-argon/postrm
 #!/bin/sh
