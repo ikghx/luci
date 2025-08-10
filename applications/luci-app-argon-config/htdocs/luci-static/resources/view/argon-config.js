@@ -25,13 +25,13 @@ const callRenameArgon = rpc.declare({
 	expect: { '': {} }
 });
 
-var bg_path = '/www/luci-static/argon/background/';
+const bg_path = '/www/luci-static/argon/background/';
 
-var trans_set = [0, 0.1, 0.2, 0.3, 0.4,
+const trans_set = [0, 0.1, 0.2, 0.3, 0.4,
 	0.5, 0.6, 0.7, 0.8, 0.9, 1 ];
 
 return view.extend({
-	load: function() {
+	load() {
 		return Promise.all([
 			uci.load('argon'),
 			L.resolveDefault(callSystemInfo(), {}),
@@ -39,7 +39,7 @@ return view.extend({
 		]);
 	},
 
-	render: function(data) {
+	render(data) {
 		let m, s, o;
 
 		m = new form.Map('argon', _('Argon theme configuration'),
@@ -57,6 +57,10 @@ return view.extend({
 		o.value('wallhaven', _('Wallhaven'));
 		o.default = 'bing';
 		o.rmempty = false;
+
+		o = s.option(form.Value, 'use_api_key', _('API key'), _('Specify API key for Unsplash or Wallhaven.'));
+		o.depends('online_wallpaper', 'unsplash');
+		o.depends('online_wallpaper', 'wallhaven');
 
 		o = s.option(form.ListValue, 'mode', _('Theme mode'));
 		o.value('normal', _('Follow system'));
@@ -77,7 +81,7 @@ return view.extend({
 
 		o = s.option(form.ListValue, 'transparency', _('[Light mode] Transparency'),
 			_('0 transparent - 1 opaque (suggest: transparent: 0 or translucent preset: 0.5).'));
-		for (var i of trans_set)
+		for (let i of trans_set)
 			o.value(i);
 		o.default = '0.5';
 		o.rmempty = false;
@@ -101,7 +105,7 @@ return view.extend({
 
 		o = s.option(form.ListValue, 'transparency_dark', _('[Dark mode] Transparency'),
 			_('0 transparent - 1 opaque (suggest: black translucent preset: 0.5).'));
-		for (var i of trans_set)
+		for (let i of trans_set)
 			o.value(i);
 		o.default = '0.5';
 		o.rmempty = false;
@@ -131,7 +135,7 @@ return view.extend({
 		o.inputstyle = 'action';
 		o.inputtitle = _('Upload...');
 		o.onclick = function(ev, section_id) {
-			var file = '/tmp/argon_background.tmp';
+			let file = '/tmp/argon_background.tmp';
 			return ui.uploadFile(file, ev.target).then(function(res) {
 				return L.resolveDefault(callRenameArgon(res.name), {}).then(function(ret) {
 					if (ret.result === 0)
@@ -148,7 +152,7 @@ return view.extend({
 
 		s = m.section(form.TableSection);
 		s.render = function() {
-			var tbl = E('table', { 'class': 'table cbi-section-table' },
+			let tbl = E('table', { 'class': 'table cbi-section-table' },
 				E('tr', { 'class': 'tr table-titles' }, [
 					E('th', { 'class': 'th' }, [ _('Filename') ]),
 					E('th', { 'class': 'th' }, [ _('Modified date') ]),
