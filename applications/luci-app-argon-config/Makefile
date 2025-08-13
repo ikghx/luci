@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI for Argon theme configuration
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+luci-theme-argon
+LUCI_DEPENDS:=
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/argon
