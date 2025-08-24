@@ -8,7 +8,7 @@
 
 /*
 	Copyright 2021-2024 Rafał Wabik - IceG - From eko.one.pl forum
-	
+
 	Licensed to the GNU General Public License v3.0.
 */
 
@@ -22,7 +22,7 @@ return view.extend({
 	},
 
 	render: function(devs) {
-		let m, s, o;
+		var m, s, o;
 		m = new form.Map('3ginfo', _('Configuration 3ginfo-lite'), _('Configuration panel for the 3ginfo-lite application.'));
 
 		s = m.section(form.TypedSection, '3ginfo', '', null);
@@ -36,7 +36,7 @@ return view.extend({
 		o.default = 'wan';
 		o.rmempty = false;
 */
-		
+
 		o = s.option(widgets.NetworkSelect, 'network', _('Interface'),
 		_('Network interface for Internet access.')
 		);
@@ -45,8 +45,8 @@ return view.extend({
 		o.rmempty = false;
 		o.default = 'wan';
 
-		o = s.option(form.Value, 'device', 
-			_('IP adress / Port for communication with the modem'), 
+		o = s.option(form.Value, 'device',
+			_('IP adress / Port for communication with the modem'),
 			_("Select the appropriate settings. <br /> \
 				<br />Traditional modem. <br /> \
 				Select one of the available ttyUSBX ports.<br /> \
