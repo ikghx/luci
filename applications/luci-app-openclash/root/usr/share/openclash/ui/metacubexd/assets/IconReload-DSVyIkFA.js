@@ -1,4 +1,4 @@
-import{P as o}from"./index-DdEpW1wR.js";/**
+import{P as o}from"./index-BPVK8l7-.js";/**
  * @license @tabler/icons-solidjs v3.34.1 - MIT
  *
  * This source code is licensed under the MIT license.

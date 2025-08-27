@@ -119,7 +119,7 @@ else
 	opkg = nil
 end
 
-local core_path_mode = uci:get("openclash", "config", "small_flash_memory")
+local core_path_mode = fs.uci_get("config", "small_flash_memory")
 if core_path_mode ~= "1" then
 	meta_core_path="/etc/openclash/core/clash_meta"
 else
@@ -136,7 +136,7 @@ end
 
 local function cn_port()
     if is_running() then
-        local config_path = uci:get("openclash", "config", "config_path")
+        local config_path = fs.uci_get("config", "config_path")
         if config_path then
             local config_filename = fs.basename(config_path)
             local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -162,11 +162,11 @@ local function cn_port()
             end
         end
     end
-    return uci:get("openclash", "config", "cn_port") or "9090"
+    return fs.uci_get("config", "cn_port") or "9090"
 end
 
 local function mode()
-	return uci:get("openclash", "config", "en_mode")
+	return fs.uci_get("config", "en_mode")
 end
 
 local function daip()
@@ -175,7 +175,7 @@ end
 
 local function dase()
     if is_running() then
-        local config_path = uci:get("openclash", "config", "config_path")
+        local config_path = fs.uci_get("config", "config_path")
         if config_path then
             local config_filename = fs.basename(config_path)
             local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -195,19 +195,19 @@ local function dase()
             end
         end
     end
-    return uci:get("openclash", "config", "dashboard_password")
+    return fs.uci_get("config", "dashboard_password")
 end
 
 local function db_foward_domain()
-	return uci:get("openclash", "config", "dashboard_forward_domain")
+	return fs.uci_get("config", "dashboard_forward_domain")
 end
 
 local function db_foward_port()
-	return uci:get("openclash", "config", "dashboard_forward_port")
+	return fs.uci_get("config", "dashboard_forward_port")
 end
 
 local function db_foward_ssl()
-	return uci:get("openclash", "config", "dashboard_forward_ssl") or 0
+	return fs.uci_get("config", "dashboard_forward_ssl") or 0
 end
 
 local function check_lastversion()
@@ -276,7 +276,7 @@ end
 local function corelv()
 	local status = process_status("/usr/share/openclash/clash_version.sh")
     local core_meta_lv = ""
-	local core_smart_enable = uci:get("openclash", "config", "smart_enable") or "0"
+	local core_smart_enable = fs.uci_get("config", "smart_enable") or "0"
     if not status then
 		if fs.access("/tmp/clash_last_version") and tonumber(os.time() - fs.mtime("/tmp/clash_last_version")) < 1800 then
 			if core_smart_enable == "1" then
@@ -343,15 +343,15 @@ local function coreup()
 end
 
 local function corever()
-	return uci:get("openclash", "config", "core_version") or "0"
+	return fs.uci_get("config", "core_version") or "0"
 end
 
 local function release_branch()
-	return uci:get("openclash", "config", "release_branch") or "master"
+	return fs.uci_get("config", "release_branch") or "master"
 end
 
 local function smart_enable()
-	return uci:get("openclash", "config", "smart_enable") or "0"
+	return fs.uci_get("config", "smart_enable") or "0"
 end
 
 local function save_corever_branch()
@@ -515,8 +515,8 @@ end
 local function dler_login()
 	local info, token, get_sub, sub_info, sub_key, sub_match
 	local sub_path = "/tmp/dler_sub"
-	local email = uci:get("openclash", "config", "dler_email")
-	local passwd = uci:get("openclash", "config", "dler_passwd")
+	local email = fs.uci_get("config", "dler_email")
+	local passwd = fs.uci_get("config", "dler_passwd")
 	if email and passwd then
 		info = luci.sys.exec(string.format("curl -sL -H 'Content-Type: application/json' -d '{\"email\":\"%s\", \"passwd\":\"%s\"}' -X POST https://dler.cloud/api/v1/login", email, passwd))
 		if info then
@@ -576,7 +576,7 @@ end
 
 local function dler_logout()
 	local info, token
-	local token = uci:get("openclash", "config", "dler_token")
+	local token = fs.uci_get("config", "dler_token")
 	if token then
 		info = luci.sys.exec(string.format("curl -sL -H 'Content-Type: application/json' -d '{\"access_token\":\"%s\"}' -X POST https://dler.cloud/api/v1/logout", token))
 		if info then
@@ -606,9 +606,9 @@ end
 
 local function dler_info()
 	local info, path, get_info
-	local token = uci:get("openclash", "config", "dler_token")
-	local email = uci:get("openclash", "config", "dler_email")
-	local passwd = uci:get("openclash", "config", "dler_passwd")
+	local token = fs.uci_get("config", "dler_token")
+	local email = fs.uci_get("config", "dler_email")
+	local passwd = fs.uci_get("config", "dler_passwd")
 	path = "/tmp/dler_info"
 	if token and email and passwd then
 		get_info = string.format("curl -sL -H 'Content-Type: application/json' -d '{\"email\":\"%s\", \"passwd\":\"%s\"}' -X POST https://dler.cloud/api/v1/information -o %s", email, passwd, path)
@@ -648,10 +648,10 @@ end
 local function dler_checkin()
 	local info
 	local path = "/tmp/dler_checkin"
-	local token = uci:get("openclash", "config", "dler_token")
-	local email = uci:get("openclash", "config", "dler_email")
-	local passwd = uci:get("openclash", "config", "dler_passwd")
-	local multiple = uci:get("openclash", "config", "dler_checkin_multiple") or 1
+	local token = fs.uci_get("config", "dler_token")
+	local email = fs.uci_get("config", "dler_email")
+	local passwd = fs.uci_get("config", "dler_passwd")
+	local multiple = fs.uci_get("config", "dler_checkin_multiple") or 1
 	if token and email and passwd then
 		info = luci.sys.exec(string.format("curl -sL -H 'Content-Type: application/json' -d '{\"email\":\"%s\", \"passwd\":\"%s\", \"multiple\":\"%s\"}' -X POST https://dler.cloud/api/v1/checkin", email, passwd, multiple))
 		if info then
@@ -688,8 +688,8 @@ local function config_name()
 end
 
 local function config_path()
-	if uci:get("openclash", "config", "config_path") then
-		return string.sub(uci:get("openclash", "config", "config_path"), 23, -1)
+	if fs.uci_get("config", "config_path") then
+		return string.sub(fs.uci_get("config", "config_path"), 23, -1)
 	else
 		 return ""
 	end
@@ -917,10 +917,10 @@ function action_rule_mode()
 		if info then
 			mode = info["mode"]
 		else
-			mode = uci:get("openclash", "config", "proxy_mode") or "rule"
+			mode = fs.uci_get("config", "proxy_mode") or "rule"
 		end
     else
-        mode = uci:get("openclash", "config", "proxy_mode") or "rule"
+        mode = fs.uci_get("config", "proxy_mode") or "rule"
 	end
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
@@ -969,7 +969,7 @@ end
 function action_switch_run_mode()
 	local mode, operation_mode
     mode = luci.http.formvalue("run_mode")
-    operation_mode = uci:get("openclash", "config", "operation_mode")
+    operation_mode = fs.uci_get("config", "operation_mode")
     if operation_mode == "redir-host" then
         uci:set("openclash", "config", "en_mode", "redir-host"..mode)
     elseif operation_mode == "fake-ip" then
@@ -992,10 +992,10 @@ function action_log_level()
 		if info then
 			level = info["log-level"]
 		else
-			level = uci:get("openclash", "config", "log_level") or "info"
+			level = fs.uci_get("config", "log_level") or "info"
 		end
 	else
-		level = uci:get("openclash", "config", "log_level") or "info"
+		level = fs.uci_get("config", "log_level") or "info"
 	end
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
@@ -1201,8 +1201,8 @@ function action_one_key_update_check()
 end
 
 function action_dashboard_type()
-	local dashboard_type = uci:get("openclash", "config", "dashboard_type") or "Official"
-	local yacd_type = uci:get("openclash", "config", "yacd_type") or "Official"
+	local dashboard_type = fs.uci_get("config", "dashboard_type") or "Official"
+	local yacd_type = fs.uci_get("config", "yacd_type") or "Official"
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
 		dashboard_type = dashboard_type,
@@ -1238,7 +1238,7 @@ function action_switch_dashboard()
 end
 
 function action_op_mode()
-	local op_mode = uci:get("openclash", "config", "operation_mode")
+	local op_mode = fs.uci_get("config", "operation_mode")
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
 	    op_mode = op_mode;
@@ -1246,7 +1246,7 @@ function action_op_mode()
 end
 
 function action_switch_mode()
-	local switch_mode = uci:get("openclash", "config", "operation_mode")
+	local switch_mode = fs.uci_get("config", "operation_mode")
 	if switch_mode == "redir-host" then
 		uci:set("openclash", "config", "operation_mode", "fake-ip")
 		uci:commit("openclash")
@@ -1270,7 +1270,7 @@ function action_status()
 		db_foward_domain = db_foward_domain(),
 		db_forward_ssl = db_foward_ssl(),
 		cn_port = cn_port(),
-		core_type = uci:get("openclash", "config", "core_type") or "Meta";
+		core_type = fs.uci_get("config", "core_type") or "Meta";
 	})
 end
 
@@ -1674,7 +1674,7 @@ function rename_file()
 	local new_backup_file_path = "/etc/openclash/backup/" .. new_file_name
 	if fs.rename(old_file_path, new_file_path) then
 		if file_path == "/etc/openclash/config/" then
-			if uci:get("openclash", "config", "config_path") == old_file_path then
+			if fs.uci_get("config", "config_path") == old_file_path then
 				uci:set("openclash", "config", "config_path", new_file_path)
 			end
 			
@@ -2305,7 +2305,7 @@ function action_proxy_info()
     }
     
     local function get_info_from_uci()
-        local mixed_port = uci:get("openclash", "config", "mixed_port")
+        local mixed_port = fs.uci_get("config", "mixed_port")
         if mixed_port and mixed_port ~= "" then
             result.mixed_port = mixed_port
         else
@@ -2325,7 +2325,7 @@ function action_proxy_info()
         end)
     end
 
-    local config_path = uci:get("openclash", "config", "config_path")
+    local config_path = fs.uci_get("config", "config_path")
     if config_path then
         local config_filename = fs.basename(config_path)
         local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -2367,7 +2367,7 @@ function action_proxy_info()
                 if runtime_mixed_port and runtime_mixed_port ~= "" then
                     result.mixed_port = runtime_mixed_port
                 else
-                    local uci_mixed_port = uci:get("openclash", "config", "mixed_port")
+                    local uci_mixed_port = fs.uci_get("config", "mixed_port")
                     if uci_mixed_port and uci_mixed_port ~= "" then
                         result.mixed_port = uci_mixed_port
                     else
@@ -2413,19 +2413,19 @@ function action_oc_settings()
     }
 
     local function get_uci_settings()
-        local meta_sniffer = uci:get("openclash", "config", "enable_meta_sniffer")
+        local meta_sniffer = fs.uci_get("config", "enable_meta_sniffer")
         if meta_sniffer == "1" then
             result.meta_sniffer = "1"
         end
         
-        local respect_rules = uci:get("openclash", "config", "enable_respect_rules")
+        local respect_rules = fs.uci_get("config", "enable_respect_rules")
         if respect_rules == "1" then
             result.respect_rules = "1"
         end
     end
 
     if is_running() then
-        local config_path = uci:get("openclash", "config", "config_path")
+        local config_path = fs.uci_get("config", "config_path")
         if config_path then
             local config_filename = fs.basename(config_path)
             local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -2469,7 +2469,7 @@ function action_oc_settings()
         get_uci_settings()
     end
 
-    local oversea = uci:get("openclash", "config", "china_ip_route")
+    local oversea = fs.uci_get("config", "china_ip_route")
     if oversea == "1" then
         result.oversea = "1"
     elseif oversea == "2" then
@@ -2478,7 +2478,7 @@ function action_oc_settings()
         result.oversea = "0"
     end
 
-    local stream_unlock = uci:get("openclash", "config", "stream_auto_select")
+    local stream_unlock = fs.uci_get("config", "stream_auto_select")
     if stream_unlock == "1" then
         result.stream_unlock = "1"
     end
@@ -2497,7 +2497,7 @@ function action_switch_oc_setting()
     end
     
     local function get_runtime_config_path()
-        local config_path = uci:get("openclash", "config", "config_path")
+        local config_path = fs.uci_get("config", "config_path")
         if not config_path then
             return nil
         end
@@ -2699,28 +2699,28 @@ function action_switch_oc_setting()
         end
     elseif setting == "stream_unlock" then
         uci:set("openclash", "config", "stream_auto_select", value)
-        if not uci:get("openclash", "config", "stream_auto_select_interval") then
+        if not fs.uci_get("config", "stream_auto_select_interval") then
             uci:set("openclash", "config", "stream_auto_select_interval", "10")
         end
-        if not uci:get("openclash", "config", "stream_auto_select_logic") then
+        if not fs.uci_get("config", "stream_auto_select_logic") then
             uci:set("openclash", "config", "stream_auto_select_logic", "Urltest")
         end
-        if not uci:get("openclash", "config", "stream_auto_select_expand_group") then
+        if not fs.uci_get("config", "stream_auto_select_expand_group") then
             uci:set("openclash", "config", "stream_auto_select_expand_group", "0")
         end
 
         uci:set("openclash", "config", "stream_auto_select_netflix", "1")
-        if not uci:get("openclash", "config", "stream_auto_select_group_key_netflix") then
+        if not fs.uci_get("config", "stream_auto_select_group_key_netflix") then
             uci:set("openclash", "config", "stream_auto_select_group_key_netflix", "Netflix|奈飞")
         end
 
         uci:set("openclash", "config", "stream_auto_select_disney", "1")
-        if not uci:get("openclash", "config", "stream_auto_select_group_key_disney") then
+        if not fs.uci_get("config", "stream_auto_select_group_key_disney") then
             uci:set("openclash", "config", "stream_auto_select_group_key_disney", "Disney|迪士尼")
         end
 
         uci:set("openclash", "config", "stream_auto_select_hbo_max", "1")
-        if not uci:get("openclash", "config", "stream_auto_select_group_key_hbo_max") then
+        if not fs.uci_get("config", "stream_auto_select_group_key_hbo_max") then
             uci:set("openclash", "config", "stream_auto_select_group_key_hbo_max", "HBO|HBO Max")
         end
         uci:commit("openclash")
@@ -2759,7 +2759,7 @@ function action_generate_pac()
         end)
     end
 
-    local config_path = uci:get("openclash", "config", "config_path")
+    local config_path = fs.uci_get("config", "config_path")
     if config_path then
         local config_filename = fs.basename(config_path)
         local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -2802,7 +2802,7 @@ function action_generate_pac()
     end
     
     local proxy_ip = daip()
-    local mixed_port = uci:get("openclash", "config", "mixed_port") or "7893"
+    local mixed_port = fs.uci_get("config", "mixed_port") or "7893"
     
     if not proxy_ip then
         result.error = "Unable to get proxy IP"
@@ -3235,7 +3235,7 @@ function action_config_file_list()
     local config_files = {}
     local current_config = ""
     
-    local config_path = uci:get("openclash", "config", "config_path")
+    local config_path = fs.uci_get("config", "config_path")
     if config_path then
         current_config = config_path
     end
@@ -3809,6 +3809,7 @@ function action_upload_overwrite()
     local upload = luci.http.formvalue("config_file")
     local filename = luci.http.formvalue("filename")
     local enable = luci.http.formvalue("enable")
+    local order = luci.http.formvalue("order")
     luci.http.prepare_content("application/json")
     if not upload or upload == "" then
         luci.http.write_json({status = "error", message = "No file uploaded"})
@@ -3848,14 +3849,28 @@ function action_upload_overwrite()
 
         local section_name = filename
         local found = false
-        if enable == nil or enable == "" then
-            enable = 0
-        end
+
         uci:foreach("openclash", "config_overwrite", function(s)
             if s.name == section_name then
                 found = true
-                if enable ~= nil then
+                if s.enable == nil or (s.enable ~= nil and enable ~= nil) then
+                    if enable == nil then
+                        enable = 0
+                    end
                     uci:set("openclash", s[".name"], "enable", tostring(enable))
+                end
+                if s.order == nil or (s.order ~= nil and s.order ~= order and order ~= nil) then
+                    if order == nil then
+                        local max_order = -1
+                        uci:foreach("openclash", "config_overwrite", function(s)
+                            local o = tonumber(s.order)
+                            if o and o > max_order then max_order = o end
+                        end)
+                        order = tostring(max_order + 1)
+                    end
+                    uci:set("openclash", s[".name"], "order", order)
+                else
+                    uci:set("openclash", s[".name"], "order", tonumber(order))
                 end
             end
         end)
@@ -3865,11 +3880,22 @@ function action_upload_overwrite()
             uci:set("openclash", sid, "type", "file")
             if enable ~= nil then
                 uci:set("openclash", sid, "enable", tostring(enable))
+            else
+                uci:set("openclash", sid, "enable", 0)
             end
-            uci:commit("openclash")
-        else
-            uci:commit("openclash")
+            if order ~= nil then
+                uci:set("openclash", sid, "order", tostring(order))
+            else
+                local max_order = -1
+                uci:foreach("openclash", "config_overwrite", function(s)
+                    local o = tonumber(s.order)
+                    if o and o > max_order then max_order = o end
+                end)
+                uci:set("openclash", sid, "order", tostring(max_order + 1))
+            end
         end
+
+        uci:commit("openclash")
 
         luci.http.write_json({
             status = "success",
@@ -3931,7 +3957,7 @@ function action_overwrite_subscribe_info()
         local url = luci.http.formvalue("url") or ""
         local update_days = luci.http.formvalue("update_days") or ""
         local update_hour = luci.http.formvalue("update_hour") or ""
-        local order = luci.http.formvalue("order") or ""
+        local order = luci.http.formvalue("order")
         local param = luci.http.formvalue("param") or ""
         typ = luci.http.formvalue("type") or typ or "file"
         local enable = luci.http.formvalue("enable")
@@ -3969,8 +3995,8 @@ function action_overwrite_subscribe_info()
                     uci:set("openclash", s[".name"], "update_hour", update_hour)
                     uci:set("openclash", s[".name"], "type", typ)
                     uci:set("openclash", s[".name"], "param", param)
-                    if s.order == nil or (s.order ~= "" and s.order ~= order and order ~= "") then
-                        if order == "" then
+                    if s.order == nil or (s.order ~= nil and s.order ~= order and order ~= nil) then
+                        if order == nil then
                             local max_order = -1
                             uci:foreach("openclash", "config_overwrite", function(s)
                                 local o = tonumber(s.order)
@@ -3979,6 +4005,8 @@ function action_overwrite_subscribe_info()
                             order = tostring(max_order + 1)
                         end
                         uci:set("openclash", s[".name"], "order", order)
+                    else
+                        uci:set("openclash", s[".name"], "order", tonumber(order))
                     end
                     if s.enable == nil or (s.enable ~= nil and enable ~= nil) then
                         if enable == nil then
@@ -4008,8 +4036,8 @@ function action_overwrite_subscribe_info()
                     uci:set("openclash", s[".name"], "update_hour", update_hour)
                     uci:set("openclash", s[".name"], "type", typ)
                     uci:set("openclash", s[".name"], "param", param)
-                    if s.order == nil or (s.order ~= "" and s.order ~= order and order ~= "") then
-                        if order == "" then
+                    if s.order == nil or (s.order ~= nil and s.order ~= order and order ~= nil) then
+                        if order == nil then
                             local max_order = -1
                             uci:foreach("openclash", "config_overwrite", function(s)
                                 local o = tonumber(s.order)
@@ -4018,6 +4046,8 @@ function action_overwrite_subscribe_info()
                             order = tostring(max_order + 1)
                         end
                         uci:set("openclash", s[".name"], "order", order)
+                    else
+                        uci:set("openclash", s[".name"], "order", tonumber(order))
                     end
                     if s.enable == nil or (s.enable ~= nil and enable ~= nil) then
                         if enable == nil then
@@ -4037,15 +4067,18 @@ function action_overwrite_subscribe_info()
             uci:set("openclash", sid, "update_hour", update_hour)
             uci:set("openclash", sid, "type", typ)
             uci:set("openclash", sid, "param", param)
-            if order == "" then
+            if order == nil then
                 local max_order = -1
                 uci:foreach("openclash", "config_overwrite", function(s)
                     local o = tonumber(s.order)
                     if o and o > max_order then max_order = o end
                 end)
                 order = tostring(max_order + 1)
+            else
+                order = tostring(order)
             end
-            uci:set("openclash", sid, "enable", 1)
+            uci:set("openclash", sid, "order", order)
+            uci:set("openclash", sid, "enable", 0)
         end
         uci:commit("openclash")
 
@@ -4144,13 +4177,23 @@ function delete_overwrite_file()
         fs.unlink(file_path)
     end
 
-    local uci = require("luci.model.uci").cursor()
     uci:foreach("openclash", "config_overwrite", function(s)
         if s.name == filename then
             uci:delete("openclash", s[".name"])
         end
     end)
     uci:commit("openclash")
+
+    local order_list = {}
+    uci:foreach("openclash", "config_overwrite", function(s)
+        table.insert(order_list, { section = s[".name"], order = tonumber(s.order) or 0 })
+    end)
+    table.sort(order_list, function(a, b) return a.order < b.order end)
+    for idx, item in ipairs(order_list) do
+        uci:set("openclash", item.section, "order", tostring(idx - 1))
+    end
+    uci:commit("openclash")
+
     luci.http.prepare_content("application/json")
     luci.http.write_json({status="success"})
 end

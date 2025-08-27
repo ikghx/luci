@@ -1,4 +1,4 @@
-import{P as U,w as L,ap as Fe,aq as $e,f as Me}from"./index-DdEpW1wR.js";/**
+import{P as U,w as L,ar as Fe,as as $e,f as Me}from"./index-BPVK8l7-.js";/**
  * @license @tabler/icons-solidjs v3.34.1 - MIT
  *
  * This source code is licensed under the MIT license.
