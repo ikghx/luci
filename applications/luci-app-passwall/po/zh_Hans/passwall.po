@@ -32,12 +32,12 @@ msgstr "%s 节点日志"
 msgid "%s Node Use Type"
 msgstr "%s 节点使用类型"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1170
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1186
 msgid "%s not enough space."
 msgstr "%s 空间不足。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1044
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1099
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1060
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1115
 msgctxt "/tmp"
 msgid "%s not enough space."
 msgstr "%s 空间不足。"
@@ -47,11 +47,11 @@ msgstr "%s 空间不足。"
 msgid "%s request address"
 msgstr "%s 请求地址"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:263
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:271
 msgid "'AsIs': Only use domain for routing. Default value."
 msgstr "AsIs：只使用域名进行路由选择。默认值。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:264
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:272
 msgid ""
 "'IPIfNonMatch': When no rule matches current domain, resolves it into IP "
 "addresses (A or AAAA records) and try all rules again."
@@ -59,7 +59,7 @@ msgstr ""
 "IPIfNonMatch：当域名没有匹配任何规则时，将域名解析成 IP（A 记录或 AAAA 记录）"
 "再次进行匹配。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:265
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:273
 msgid ""
 "'IPOnDemand': As long as there is a IP-based rule, resolves the domain into "
 "IP immediately."
@@ -70,7 +70,7 @@ msgstr ""
 msgid "0 is not use"
 msgstr "0 为不使用"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:500
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:505
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:317
 msgid ""
 "<br />none: default, no masquerade, data sent is packets with no "
@@ -88,11 +88,6 @@ msgstr ""
 "WireGuard 数据包。(并不是真正的 WireGuard 协议)<br />dns：把流量伪装成 DNS 请"
 "求。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:550
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:356
-msgid "A legal file path. This file must not exist before running."
-msgstr "一个合法的文件路径。在运行之前，这个文件必须不存在。"
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:333
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:459
 msgid "A/AAAA type"
@@ -107,12 +102,12 @@ msgstr "访问控制"
 msgid "ACLs is a tools which used to designate specific IP proxy mode."
 msgstr "访问控制列表是用于指定特殊 IP 代理模式的工具。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:408
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:389
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:391
 msgid "Accept LAN Access"
 msgstr "接受局域网访问"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:427
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:446
 msgid "Accept any if empty."
 msgstr "留空则不校验。"
 
@@ -128,8 +123,8 @@ msgstr ""
 msgid "Access control"
 msgstr "访问控制"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:96
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:105
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:93
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:102
 msgid "Add"
 msgstr ""
 
@@ -148,22 +143,22 @@ msgstr ""
 msgid "Add nodes to the standby node list by keywords"
 msgstr "通过关键字添加节点到备用节点列表"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:90
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:106
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:87
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:103
 msgid "Add the node via the link"
 msgstr "通过链接添加节点"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:38
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:24
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/naive.lua:25
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:276
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:235
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:284
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:255
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:31
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:32
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ssr.lua:44
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/trojan-plus.lua:25
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:25
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:430
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:411
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:413
 msgid "Address (Support Domain Name)"
 msgstr "地址（支持域名）"
@@ -185,7 +180,7 @@ msgstr "高级日志功能"
 msgid "All"
 msgstr "所有"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:623
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:610
 msgid "An XHttpObject in JSON format, used for sharing."
 msgstr "JSON 格式的 XHttpObject，用来实现分享。"
 
@@ -209,7 +204,7 @@ msgstr "组件更新"
 msgid "Are you sure set to"
 msgstr "你确定要设为"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:72
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:69
 msgid "Are you sure to clear all nodes?"
 msgstr "你确定要清空所有节点吗？"
 
@@ -225,7 +220,7 @@ msgstr "你确定要隐藏吗？"
 msgid "Are you sure you want to delete all subscribed nodes?"
 msgstr "您确定要删除所有已订阅的节点吗？"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:133
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:135
 msgid "Are you sure you want to restore the client to default settings?"
 msgstr "是否真的要恢复客户端默认配置？"
 
@@ -236,15 +231,15 @@ msgid "Auth"
 msgstr "身份认证"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:41
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:324
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:414
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:343
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:433
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:33
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:111
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:173
 msgid "Auth Password"
 msgstr "认证密码"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:318
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:337
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:105
 msgid "Auth Type"
 msgstr "认证类型"
@@ -254,7 +249,7 @@ msgstr "认证类型"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:135
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:173
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:222
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:744
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:763
 msgid "Auto"
 msgstr "自动"
 
@@ -266,12 +261,12 @@ msgstr "自动切换"
 msgid "Automatic detection delay"
 msgstr "自动检测延迟"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:321
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:340
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:108
 msgid "BASE64"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:353
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:372
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:68
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:136
 msgid "BBR"
@@ -290,11 +285,11 @@ msgid "Baidu Connection"
 msgstr "百度连接"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:156
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:43
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:44
 msgid "Balancing"
 msgstr "负载均衡"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:103
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:125
 msgid "Balancing Strategy"
 msgstr "负载均衡策略"
 
@@ -306,17 +301,17 @@ msgstr "基本设置"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:306
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:52
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:49
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:404
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:385
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:387
 msgid "Bind Local"
 msgstr "本机监听"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:222
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:256
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:202
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:237
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:177
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:212
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:210
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:245
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:197
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:232
 msgid "Blackhole"
 msgstr "黑洞"
 
@@ -331,19 +326,19 @@ msgstr "屏蔽列表"
 msgid "Browser access:"
 msgstr "浏览器访问："
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:200
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:204
 msgid "Buffer Size"
 msgstr "缓冲区大小"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:200
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:204
 msgid "Buffer size for every connection (kB)"
 msgstr "每一个连接的缓冲区大小（kB）"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1633
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1643
 msgid "Build Share URL"
 msgstr "导出分享URL"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:136
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:153
 msgid ""
 "By default the built-in probe URL will be used, enable this option to use a "
 "custom probe URL."
@@ -363,40 +358,38 @@ msgstr "可以通过输入域名/IP，查询它们所在的 Geo 规则列表。"
 msgid "CIDR: such as '127.0.0.0/8'."
 msgstr "CIDR: 形如'10.0.0.0/8'."
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:46
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:45
 msgid "CLOSE WIN"
 msgstr "关闭窗口"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:354
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:373
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:69
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:137
 msgid "CUBIC"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:504
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:509
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:321
 msgid "Camouflage Domain"
 msgstr "伪装域名"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:484
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:500
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:563
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:577
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:489
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:505
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:596
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:302
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:317
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:369
 msgid "Camouflage Type"
 msgstr "伪装类型"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:975
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:991
 msgid "Can't determine ARCH, or ARCH not supported."
 msgstr "无法确认ARCH架构，或是不支持。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:64
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:62
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:77
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:216
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:231
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:218
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:233
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:277
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:296
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:56
@@ -404,7 +397,7 @@ msgstr "无法确认ARCH架构，或是不支持。"
 msgid "Can't find this file!"
 msgstr "找不到这个文件！"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1184
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1200
 msgid "Can't move new file to path: %s"
 msgstr "无法移动新文件到：%s"
 
@@ -422,8 +415,8 @@ msgid "Certificate fingerprint"
 msgstr "证书指纹"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:234
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:683
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:761
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:666
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:780
 msgid "Chain Proxy"
 msgstr "链式代理"
 
@@ -484,7 +477,7 @@ msgstr "清空 IPSET"
 msgid "Clear NFTSET"
 msgstr "清空 NFTSET"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:107
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:104
 msgid "Clear all nodes"
 msgstr "清空所有节点"
 
@@ -501,11 +494,11 @@ msgstr "点击更新"
 msgid "Client Proxy"
 msgstr "客户端代理"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:433
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:452
 msgid "Client Version"
 msgstr "客户端版本"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1142
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1158
 msgid "Client file is required."
 msgstr "请指定客户端文件。"
 
@@ -518,15 +511,15 @@ msgstr "请指定客户端文件。"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:14
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:79
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:108
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:199
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:216
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:250
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:174
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:191
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:225
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:423
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:207
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:224
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:258
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:194
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:211
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:245
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:404
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:406
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:97
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:94
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:467
 msgid "Close"
 msgstr "关闭"
@@ -534,8 +527,9 @@ msgstr "关闭"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:280
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:652
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:235
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:684
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:762
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:135
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:667
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:781
 msgid "Close(Not use)"
 msgstr "关闭（不使用）"
 
@@ -557,7 +551,7 @@ msgid ""
 "please don't change the content."
 msgstr "配置路由 etc/hosts 文件，如果你不知道自己在做什么，请不要改动内容。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:351
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:370
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:67
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:134
 msgid "Congestion control algorithm"
@@ -588,7 +582,7 @@ msgstr "控制台端口"
 msgid "Console Username"
 msgstr "控制台账号"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:391
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:398
 msgid ""
 "Controls the policy used when performing DNS queries for ECH configuration."
 msgstr "控制使用 DNS 查询 ECH 配置时的策略。"
@@ -615,7 +609,7 @@ msgstr "当前节点：%s"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:72
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:86
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:452
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:433
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:435
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ss-rust.lua:50
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ss.lua:53
@@ -623,19 +617,19 @@ msgstr "当前节点：%s"
 msgid "Custom Config"
 msgstr "自定义配置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:425
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:406
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:408
 msgid "Custom HTTP"
 msgstr "自定义 HTTP"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:45
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:47
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:65
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:426
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:407
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:409
 msgid "Custom Interface"
 msgstr "自定义接口"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:424
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:405
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:407
 msgid "Custom Socks"
 msgstr "自定义 Socks"
@@ -664,20 +658,20 @@ msgstr "全不选"
 msgid "Debug"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:473
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:572
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:478
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:591
 msgid "Decimal numbers separated by \",\" or Base64-encoded strings."
 msgstr "用“,”隔开的十进制数字或 Base64 编码字符串。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:220
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:250
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:200
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:234
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:357
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:175
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:209
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:380
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:448
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:208
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:242
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:364
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:195
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:229
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:399
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:467
 msgid "Default"
 msgstr "默认"
 
@@ -689,8 +683,8 @@ msgid "Default DNS"
 msgstr "默认 DNS"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:274
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:249
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:224
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:257
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:244
 msgid "Default Preproxy"
 msgstr "默认前置代理"
 
@@ -699,7 +693,7 @@ msgstr "默认前置代理"
 msgid "Default Proxy Mode"
 msgstr "默认代理模式"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:235
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:239
 msgid "Delay (ms)"
 msgstr "延迟（ms）"
 
@@ -720,7 +714,7 @@ msgstr "删除所有订阅节点"
 msgid "Delete nodes in the standby node list by keywords"
 msgstr "通过关键字删除备用节点列表的节点"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:108
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:105
 msgid "Delete select nodes"
 msgstr "删除选择的节点"
 
@@ -730,7 +724,7 @@ msgstr "删除选择的节点"
 msgid "Delete the subscribed node"
 msgstr "删除已订阅的节点"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:154
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:156
 msgid "Dest"
 msgstr ""
 
@@ -754,10 +748,10 @@ msgstr "目标协议"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:255
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:653
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:223
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:201
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:236
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:176
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:211
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:209
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:244
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:196
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:231
 msgid "Direct Connection"
 msgstr "直连"
 
@@ -787,11 +781,11 @@ msgid "Direct List"
 msgstr "直连列表"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:33
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:332
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:300
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:319
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:407
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:116
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:340
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:320
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:338
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:426
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:117
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:106
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:166
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:211
@@ -799,12 +793,12 @@ msgid "Disable"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:72
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:343
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:362
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:126
 msgid "Disable MTU detection"
 msgstr "禁用 MTU 检测"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:457
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:476
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:123
 msgid "Disable SNI"
 msgstr "关闭 SNI 服务器名称指示"
@@ -830,11 +824,11 @@ msgstr "执行重置"
 msgid "Do not accept: Wait and use Remote DNS Reply."
 msgstr "不接受：等待并使用远程 DNS 的响应。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:457
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:476
 msgid "Do not send server name in ClientHello."
 msgstr "不要在 ClientHello 中发送服务器名称。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:131
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:133
 msgid "Do you want to restore the client to default settings?"
 msgstr "是否要恢复客户端默认配置？"
 
@@ -850,21 +844,21 @@ msgstr "DoT 证书验证"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:303
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:118
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:48
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:371
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:465
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:705
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:378
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:484
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:724
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/trojan-plus.lua:53
 msgid "Domain"
 msgstr "域名"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:133
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:170
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:258
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:742
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:266
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:761
 msgid "Domain Strategy"
 msgstr "域名解析策略"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:269
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:277
 msgid "Domain matcher"
 msgstr "域名匹配算法"
 
@@ -876,7 +870,7 @@ msgstr "域名/IP 查询"
 msgid "Domestic group name"
 msgstr "国内分组名"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1034
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1050
 msgid "Download url is required."
 msgstr "请指定下载地址。"
 
@@ -884,24 +878,24 @@ msgstr "请指定下载地址。"
 msgid "Downloading..."
 msgstr "下载中"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:378
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:480
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:239
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:385
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:499
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:241
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:304
 msgid "ECH"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:382
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:487
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:389
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:506
 msgid "ECH Config"
 msgstr "ECH 配置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:243
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:245
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:312
 msgid "ECH Key"
 msgstr "ECH 密钥"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:391
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:398
 msgid "ECH Query Policy"
 msgstr "ECH 查询策略"
 
@@ -910,11 +904,11 @@ msgstr "ECH 查询策略"
 msgid "EDNS Client Subnet"
 msgstr "EDNS 客户端子网"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:623
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:642
 msgid "Early data header name"
 msgstr "前置数据 HTTP 头名"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:619
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:638
 msgid "Early data length"
 msgstr "前置数据最大长度"
 
@@ -933,7 +927,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:742
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:764
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:111
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:221
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:225
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:25
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:71
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:10
@@ -942,7 +936,7 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:369
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:388
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:128
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:141
 msgid "Enable 0-RTT QUIC handshake"
@@ -956,13 +950,13 @@ msgstr "开启 Geo 数据解析"
 msgid "Enable Load Balancing"
 msgstr "开启负载均衡"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:677
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:663
 msgid ""
 "Enable Multipath TCP, need to be enabled in both server and client "
 "configuration."
 msgstr "启用 Multipath TCP，需在服务端和客户端配置中同时启用。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:655
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:643
 msgid "Enable Mux.Cool"
 msgstr "启用 Mux.Cool"
 
@@ -978,31 +972,27 @@ msgstr "开启自动更新规则"
 msgid "Enable auto update subscribe"
 msgstr "开启自动更新订阅"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:616
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:635
 msgid "Enable early data"
 msgstr "启用前置数据"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:302
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:306
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:311
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:554
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:560
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:265
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:269
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:310
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:314
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:319
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:285
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:289
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:39
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:40
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ssr.lua:52
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:82
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:86
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:360
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:366
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:87
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:191
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:195
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ss-rust.lua:37
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ss.lua:40
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ssr.lua:50
 msgid "Encrypt Method"
-msgstr "加密"
+msgstr "加密方式"
 
 #: applications/luci-app-passwall/luasrc/view/passwall/rule_list/geoview.htm:46
 msgid ""
@@ -1019,17 +1009,17 @@ msgstr "输入域名/IP，查询它们所在的 Geo 规则列表。"
 msgid "Enter interface"
 msgstr "进入界面"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:93
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:90
 msgid "Enter share links, one per line. Subscription links are not supported!"
 msgstr "输入分享链接，支持多个节点，每行一个。请勿输入订阅链接！"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:701
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:708
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:35
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:79
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:22
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:76
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:184
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:279
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:34
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:112
 msgid "Error"
 msgstr ""
 
@@ -1085,12 +1075,12 @@ msgstr "每天"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:45
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:33
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:69
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:310
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:395
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:329
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:414
 msgid "Example:"
 msgstr "示例："
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:193
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:197
 msgid "Excluded Domains"
 msgstr "排除域名"
 
@@ -1100,7 +1090,7 @@ msgstr "排除域名"
 msgid "Experimental feature."
 msgstr "实验性功能。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1635
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1645
 msgid "Export Config File"
 msgstr "导出配置文件"
 
@@ -1108,7 +1098,7 @@ msgstr "导出配置文件"
 msgid "Export Of Multi WAN"
 msgstr "多 WAN 指定出口"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1208
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1224
 msgid "Failed"
 msgstr "失败"
 
@@ -1117,20 +1107,20 @@ msgstr "失败"
 msgid "Failed to delete."
 msgstr "删除失败。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:382
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:363
 msgid "Fallback"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:113
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:134
 msgid "Fallback Node"
 msgstr "后备节点"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:127
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:145
 msgid "Faltal on get option, please help in debug:"
 msgstr "获取选项错误，请帮助调试："
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:737
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:769
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:752
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:784
 msgid "Faltal on set option, please help in debug:"
 msgstr "设置选项错误，请帮助调试："
 
@@ -1145,15 +1135,15 @@ msgstr "设置选项错误，请帮助调试："
 msgid "Fast Open"
 msgstr "快速打开"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1058
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1074
 msgid "File download failed or timed out: %s"
 msgstr "文件下载失败或超时：%s"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1072
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1088
 msgid "File path required."
 msgstr "请指定文件路径。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:160
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:162
 msgid "File size exceeds 10MB limit."
 msgstr "文件大小超过 10MB 限制。"
 
@@ -1180,9 +1170,9 @@ msgstr "过滤代理域名 IPv6"
 msgid "Filter keyword Mode"
 msgstr "过滤关键字模式"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:413
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:506
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:713
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:420
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:525
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:732
 msgid "Finger Print"
 msgstr "指纹伪造"
 
@@ -1232,8 +1222,8 @@ msgid "Force update"
 msgstr "强制更新"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:30
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:307
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:392
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:326
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:411
 msgid ""
 "Format as 1000:2000 or 1000-2000 Multiple groups are separated by commas (,)."
 msgstr "格式为：1000:2000 或 1000-2000 多组时用逗号(,)隔开。"
@@ -1249,8 +1239,8 @@ msgid "Forwarding Settings"
 msgstr "转发配置"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:165
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:254
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:258
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:263
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:267
 msgid "Fragment"
 msgstr "分片"
 
@@ -1274,7 +1264,7 @@ msgstr "分片间隔（ms）"
 msgid "Fragmented packet length (byte)"
 msgstr "分片包长 (byte)"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1632
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1642
 msgid "From Share URL"
 msgstr "导入分享URL"
 
@@ -1306,7 +1296,7 @@ msgstr "UDP 数据包片残片清理间隔（单位：秒）"
 msgid "Garbage collection lifetime(second)"
 msgstr "UDP 数据包残片在服务器的保留时间（单位：秒）"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1634
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1644
 msgid "Generate QRCode"
 msgstr "生成二维码"
 
@@ -1348,7 +1338,7 @@ msgstr ""
 msgid "Geosite Update URL"
 msgstr "Geosite 更新URL"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:990
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1006
 msgid "Get remote version info failed."
 msgstr "获取远程版本信息失败。"
 
@@ -1372,17 +1362,17 @@ msgstr ""
 msgid "HTTP"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:490
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:582
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:590
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:495
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:601
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:609
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:308
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:340
 msgid "HTTP Host"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:494
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:585
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:593
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:499
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:604
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:612
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:312
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:343
 msgid "HTTP Path"
@@ -1392,12 +1382,12 @@ msgstr ""
 msgid "HTTPS"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:627
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:646
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:356
 msgid "HTTPUpgrade Host"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:630
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:649
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:359
 msgid "HTTPUpgrade Path"
 msgstr ""
@@ -1427,25 +1417,25 @@ msgstr "健康检查节点间隔时间"
 msgid "Health Check Type"
 msgstr "健康检查类型"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:576
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:597
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:638
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:563
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:616
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:657
 msgid "Health check"
 msgstr "健康检查"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:583
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:604
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:645
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:570
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:623
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:664
 msgid "Health check timeout"
 msgstr "检查超时时间"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:373
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:392
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:75
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:145
 msgid "Heartbeat interval(second)"
 msgstr "保活心跳包发送间隔（单位：秒）"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:545
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:550
 msgid "HeartbeatPeriod(second)"
 msgstr "心跳周期（单位：秒）"
 
@@ -1462,16 +1452,16 @@ msgid "Hijacking ICMPv6 (IPv6 PING)"
 msgstr "劫持ICMPv6 (IPv6 PING)"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:33
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:310
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:395
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:329
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:414
 msgid "Hop Interval"
 msgstr "端口跳跃时间 "
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:427
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:446
 msgid "Host Key"
 msgstr "主机密钥"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:430
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:449
 msgid "Host Key Algorithms"
 msgstr "主机密钥算法"
 
@@ -1483,20 +1473,20 @@ msgstr "小时"
 msgid "How often to test"
 msgstr "多久检测一次"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:596
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:583
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:276
 msgid "HttpUpgrade Host"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:599
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:586
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:279
 msgid "HttpUpgrade Path"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:325
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:279
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:333
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:299
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:30
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:106
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:107
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:200
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:26
 msgid "ID"
@@ -1512,6 +1502,10 @@ msgstr ""
 msgid "IP CIDR"
 msgstr ""
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:243
+msgid "IP Type"
+msgstr "IP 类型"
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:95
 msgid "IP range"
 msgstr "IP 范围"
@@ -1526,13 +1520,13 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:138
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:176
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:747
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:766
 msgid "IPv4 Only"
 msgstr "仅 IPv4"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:139
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:177
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:748
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:767
 msgid "IPv6 Only"
 msgstr "仅 IPv6"
 
@@ -1540,8 +1534,8 @@ msgstr "仅 IPv6"
 msgid "IPv6 TProxy"
 msgstr "IPv6 透明代理(TProxy)"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:316
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:91
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:324
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:92
 msgid "IV Check"
 msgstr "IV 检查"
 
@@ -1549,14 +1543,14 @@ msgstr "IV 检查"
 msgid "Idle Timeout"
 msgstr "空闲超时 "
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:579
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:138
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:600
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:641
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:566
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:158
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:619
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:660
 msgid "Idle timeout"
 msgstr "闲置时间"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:742
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:761
 msgid ""
 "If is domain name, The requested domain name will be resolved to IP before "
 "connect."
@@ -1570,7 +1564,7 @@ msgid ""
 "Sing-Box)."
 msgstr "当节点使用 Xray/Sing-Box 分流时，过滤模式需对应选择 Xray/Sing-Box 。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:193
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:197
 msgid ""
 "If the traffic sniffing result is in this list, the destination address will "
 "not be overridden."
@@ -1585,7 +1579,7 @@ msgstr ""
 "如果在重启后无法上网，请尝试清除终端设备的缓存（先关闭所有正在使用的浏览器应"
 "用程序，这一步尤其重要）："
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1623
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1633
 msgid "Import Finished"
 msgstr "导入完成："
 
@@ -1608,7 +1602,7 @@ msgstr "入站标签"
 msgid "Info"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:591
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:578
 msgid "Initial Windows Size"
 msgstr "初始窗口大小"
 
@@ -1620,18 +1614,18 @@ msgstr "内置实现"
 msgid "Instagram Connection"
 msgstr "Instagram 连接"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:47
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:49
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:67
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:448
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:429
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:431
 msgid "Interface"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:146
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:166
 msgid "Interrupt existing connections"
 msgstr "中断现有连接"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:149
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:169
 msgid "Interrupt existing connections when the selected outbound has changed."
 msgstr ""
 
@@ -1639,16 +1633,16 @@ msgstr ""
 msgid "Interval(Hour)"
 msgstr "间隔(小时)"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:806
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1116
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1323
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1465
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1562
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1620
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:821
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1130
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1336
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1475
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1572
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:1630
 msgid "Invalid Share URL Format"
 msgstr "无效的分享URL信息"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:154
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:156
 msgid "Invalid file type. Please upload a .tar.gz file."
 msgstr "文件类型无效，请上传一个 .tar.gz 文件。"
 
@@ -1666,47 +1660,47 @@ msgstr "已是最新版本"
 msgid "Join the direct hosts list of domain names will not proxy."
 msgstr "加入的域名不走代理，对所有模式有效。且优先级最高。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:523
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:528
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:340
 msgid "KCP Congestion"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:507
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:512
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:324
 msgid "KCP MTU"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:534
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:539
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:351
 msgid "KCP Seed"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:511
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:516
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:328
 msgid "KCP TTI"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:519
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:524
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:336
 msgid "KCP downlinkCapacity"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:526
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:531
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:343
 msgid "KCP readBufferSize"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:515
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:520
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:332
 msgid "KCP uplinkCapacity"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:530
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:535
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:347
 msgid "KCP writeBufferSize"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:477
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:482
 msgid "Keep Alive"
 msgstr ""
 
@@ -1722,27 +1716,26 @@ msgstr "保留列表"
 msgid "Keep List,But Discard List First"
 msgstr "保留列表，但丢弃列表优先"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:560
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:366
-msgid "Key"
-msgstr "密钥"
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:35
 msgid "Lan IP List"
 msgstr "局域网 IP 列表"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:237
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:248
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:686
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:696
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:764
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:774
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:669
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:679
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:783
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:793
 msgid "Landing Node"
 msgstr "落地节点"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:76
 msgid "Lazy Start"
 msgstr "延迟启动"
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:185
+msgid "Limit the maximum number of splits."
+msgstr "限制分片的最大数量。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:94
 msgid "List of backup nodes"
@@ -1779,11 +1772,11 @@ msgstr ""
 msgid "Load Balancing"
 msgstr "负载均衡"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:99
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:101
 msgid "Load balancing node list"
 msgstr "负载均衡节点列表"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:99
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:101
 msgid ""
 "Load balancing node list, <a target='_blank' href='https://xtls.github.io/"
 "config/routing.html#balancerobject'>document</a>"
@@ -1791,8 +1784,8 @@ msgstr ""
 "负载均衡节点列表，<a target='_blank' href='https://xtls.github.io/config/"
 "routing.html#balancerobject'>文档原理</a>"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:465
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:565
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:470
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:584
 msgid "Local Address"
 msgstr "本地地址"
 
@@ -1809,7 +1802,7 @@ msgstr "Geo 规则文件目录"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:71
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:84
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:107
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:473
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:454
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:456
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/socks.lua:43
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ss-rust.lua:71
@@ -1830,15 +1823,11 @@ msgstr "日志事件过滤器"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:696
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:703
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:477
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:458
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:460
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:101
 msgid "Log Level"
 msgstr "日志等级"
-
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:53
-msgid "Log Maint"
-msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:713
 msgid "Logging to system log"
@@ -1902,13 +1891,13 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:428
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:189
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:435
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:191
 msgid "ML-DSA-65"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:468
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:568
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:473
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:587
 msgid "MTU"
 msgstr ""
 
@@ -1934,16 +1923,19 @@ msgstr "手动订阅"
 msgid "Manual subscription All"
 msgstr "手动订阅全部"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:36
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:45
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:73
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:46
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:114
 msgid "Manually update"
 msgstr "手动更新"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:185
+msgid "Max Split"
+msgstr "最大分片数"
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:59
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:333
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:403
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:684
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:352
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:422
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:703
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:47
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:98
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:162
@@ -1952,9 +1944,9 @@ msgid "Max download Mbps"
 msgstr "最大下行(Mbps)"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:56
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:329
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:400
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:680
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:348
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:419
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:699
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:43
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:94
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:159
@@ -1984,15 +1976,15 @@ msgstr "配置不当"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:634
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:155
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:604
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:591
 msgid "Mode"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1364
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1380
 msgid "Move down"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1361
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1377
 msgid "Move up"
 msgstr ""
 
@@ -2001,7 +1993,7 @@ msgid "Moving..."
 msgstr "移动中"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:94
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:460
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:441
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:443
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ss-rust.lua:58
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ss.lua:61
@@ -2009,14 +2001,14 @@ msgstr "移动中"
 msgid "Must be JSON text!"
 msgstr "必须是 JSON 文本内容！"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:654
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:661
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:673
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:680
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:367
 msgid "Mux"
 msgstr "多路复用"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:663
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:667
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:654
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:686
 msgid "Mux concurrency"
 msgstr "最大并发连接数"
 
@@ -2035,13 +2027,17 @@ msgstr "需要节点支持"
 msgid "Network"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:355
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:27
+msgid "Network Error"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:374
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:70
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:138
 msgid "New Reno"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1013
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1029
 msgid "New version found, but failed to get new version download url."
 msgstr "发现新版本，但未能获得新版本的下载地址。"
 
@@ -2067,8 +2063,8 @@ msgstr "不使用"
 msgid "No results were found!"
 msgstr "未找到任何结果！"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:230
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:205
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:238
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:225
 msgid "No shunt rules? Click me to go to add."
 msgstr "没有分流规则？点我前往去添加。"
 
@@ -2106,7 +2102,7 @@ msgstr "负载比重"
 msgid "Node num"
 msgstr "节点数量"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:185
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:189
 msgid "Noise"
 msgstr "噪声"
 
@@ -2125,7 +2121,7 @@ msgstr "中国列表以外"
 msgid "Not Running"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:644
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:654
 msgid "Not a supported scheme:"
 msgstr "不支持这种样式的："
 
@@ -2136,7 +2132,7 @@ msgstr "不支持这种样式的："
 msgid "Not enabled log"
 msgstr "未启用日志"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1088
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1104
 msgid "Not installed %s, Can't unzip!"
 msgstr "未安装 %s，无法解压！"
 
@@ -2207,15 +2203,15 @@ msgid "Obfs"
 msgstr "混淆"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:38
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:315
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:411
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:334
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:430
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:29
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:102
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:170
 msgid "Obfs Password"
 msgstr "混淆密码"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:406
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:425
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:165
 msgid "Obfs Type"
 msgstr "混淆类型"
@@ -2233,15 +2229,15 @@ msgstr "启用后，规则列表可以支持 GeoIP/Geosite 规则。"
 msgid "Only Web"
 msgstr "仅网页"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:346
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:354
 msgid "Only recommend to use with VLESS-TCP-XTLS-Vision."
 msgstr "只推荐与 VLESS-TCP-XTLS-Vision 搭配使用。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:242
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:693
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:696
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:771
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:774
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:676
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:679
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:790
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:793
 msgid "Only support a layer of proxy."
 msgstr "仅支持一层代理。"
 
@@ -2263,12 +2259,12 @@ msgstr "原版Trojan只支持'tls'，请选择'tls'。"
 msgid "Other Settings"
 msgstr "高级设置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:188
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:248
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:192
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:257
 msgid "Override the connection destination address"
 msgstr "覆盖连接目标地址"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:190
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:194
 msgid ""
 "Override the connection destination address with the sniffed domain.<br /"
 ">Otherwise use sniffed domain for routing only.<br />If using shunt nodes, "
@@ -2277,7 +2273,7 @@ msgstr ""
 "用探测出的域名覆盖连接目标地址。<br />否则仅将探测得到的域名用于路由。<br />"
 "如使用分流节点，请正确设置域名分流规则。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:251
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:260
 msgid ""
 "Override the connection destination address with the sniffed domain.<br /"
 ">When enabled, traffic will match only by domain, ignoring IP rules.<br />If "
@@ -2286,11 +2282,11 @@ msgstr ""
 "用探测出的域名覆盖连接目标地址。<br />启用后仅使用域名进行流量匹配，将忽略IP"
 "规则。<br />如使用分流节点，请正确设置域名分流规则。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:231
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:235
 msgid "Packet"
 msgstr "数据包"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:671
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:690
 msgid "Padding"
 msgstr "填充"
 
@@ -2300,16 +2296,16 @@ msgstr "PassWall"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:45
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/naive.lua:32
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:295
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:255
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:700
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:303
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:275
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:719
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:36
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:37
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ssr.lua:49
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/trojan-plus.lua:30
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:64
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:106
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:443
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:107
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:424
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:85
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:200
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:426
@@ -2321,12 +2317,12 @@ msgstr "PassWall"
 msgid "Password"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:781
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:796
 msgid "Paste Share URL Here"
 msgstr "在此处粘贴分享信息"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:587
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:649
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:574
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:668
 msgid "Permit without stream"
 msgstr "无子连接时的健康检查"
 
@@ -2352,7 +2348,7 @@ msgstr ""
 msgid "Please enter query content!"
 msgstr "请输入查询内容！"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:63
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:60
 msgid "Please enter the correct link."
 msgstr "请输入正确的链接。"
 
@@ -2372,7 +2368,7 @@ msgstr ""
 "请确认您设备的网络设置，客户端 DNS 服务器和默认网关应均指向本路由器，以确保 "
 "DNS 查询正确路由。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:130
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:140
 msgid ""
 "Please note attention to the priority, the higher the order, the higher the "
 "priority."
@@ -2383,7 +2379,7 @@ msgstr "请注意优先级问题，排序越上面优先级越高。"
 msgid "Please save and apply before manually subscribing."
 msgstr "请先保存并应用后再手动订阅。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:150
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:152
 msgid "Please select a file first."
 msgstr "请先选择一个文件。"
 
@@ -2392,29 +2388,29 @@ msgstr "请先选择一个文件。"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:116
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:26
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/naive.lua:27
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:93
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:278
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:95
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:286
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:102
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:237
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:257
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:33
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:34
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ssr.lua:46
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/trojan-plus.lua:27
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:27
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:82
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:434
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:415
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:417
 msgid "Port"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:29
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:306
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:391
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:325
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:410
 msgid "Port hopping range"
 msgstr "端口跳跃范围"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:462
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:562
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:467
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:581
 msgid "Pre shared key"
 msgstr "额外的对称加密密钥"
 
@@ -2428,26 +2424,26 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:136
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:174
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:745
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:764
 msgid "Prefer IPv4"
 msgstr "IPv4 优先"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:137
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:175
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:746
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:765
 msgid "Prefer IPv6"
 msgstr "IPv6 优先"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:169
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:176
 msgid "Preferred Node Count"
 msgstr "优选节点数量"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:178
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:224
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:178
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:215
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:153
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:190
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:186
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:223
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:173
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:210
 msgid "Preproxy"
 msgstr "前置代理"
 
@@ -2456,16 +2452,16 @@ msgstr "前置代理"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:279
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:236
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:244
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:181
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:217
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:251
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:685
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:693
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:156
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:192
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:226
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:763
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:771
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:189
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:225
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:259
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:668
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:676
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:176
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:212
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:246
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:782
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:790
 msgid "Preproxy Node"
 msgstr "前置代理节点"
 
@@ -2473,34 +2469,34 @@ msgstr "前置代理节点"
 msgid "Primary"
 msgstr "主要"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:459
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:420
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:559
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:148
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:193
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:464
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:439
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:578
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:150
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:195
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:248
 msgid "Private Key"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:423
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:442
 msgid "Private Key Passphrase"
 msgstr "私钥指纹"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:71
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:224
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:226
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:285
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:64
 msgid "Private key absolute path"
 msgstr "私钥文件绝对路径"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:152
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:168
 msgid "Probe Interval"
 msgstr "探测间隔"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:64
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:118
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:140
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:112
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:156
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:132
 msgid "Probe URL"
 msgstr "探测网址"
 
@@ -2520,11 +2516,11 @@ msgstr "连接失败"
 msgid "Protocol"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:294
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:314
 msgid "Protocol parameter. Enable length block encryption."
 msgstr "协议参数。启用长度块加密。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:290
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:310
 msgid "Protocol parameter. Will waste traffic randomly if enabled."
 msgstr "协议参数。如果启用会随机浪费流量。"
 
@@ -2554,25 +2550,25 @@ msgstr "代理列表"
 msgid "Proxy Mode"
 msgstr "代理模式"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:399
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:456
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:530
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:556
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:406
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:461
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:549
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:575
 msgid "Public Key"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:432
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:439
 msgid "Public key"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:56
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:209
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:211
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:266
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:50
 msgid "Public key absolute path"
 msgstr "公钥文件绝对路径"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:130
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:132
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:225
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:43
 msgid "Public key and Private key path can not be empty!"
@@ -2581,13 +2577,13 @@ msgstr "公钥和私钥文件路径不能为空！"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:226
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:92
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/naive.lua:23
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:361
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:380
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:62
 msgid "QUIC"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:346
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:378
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:365
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:397
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:129
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:150
 msgid "QUIC TLS ALPN"
@@ -2598,13 +2594,13 @@ msgid "QUIC concurrent bidirectional streams"
 msgstr "QUIC 并发双向流的最大数量"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:65
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:340
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:359
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:119
 msgid "QUIC connection receive window"
 msgstr "QUIC 连接接收窗口"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:62
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:337
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:356
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:116
 msgid "QUIC stream receive window"
 msgstr "QUIC 流接收窗口"
@@ -2619,9 +2615,9 @@ msgstr "查询"
 msgid "Querying"
 msgstr "查询中"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:346
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:521
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:144
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:354
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:540
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:146
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:240
 msgid "REALITY"
 msgstr ""
@@ -2630,7 +2626,7 @@ msgstr ""
 msgid "RST Backup"
 msgstr "恢复备份"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:433
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:452
 msgid "Random version will be used if empty."
 msgstr "如留空，则使用随机版本。"
 
@@ -2640,7 +2636,7 @@ msgstr "如留空，则使用随机版本。"
 msgid "Read List"
 msgstr "读取列表"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:623
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:642
 msgid "Recommended value: Sec-WebSocket-Protocol"
 msgstr "推荐值：Sec-WebSocket-Protocol"
 
@@ -2660,7 +2656,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:22
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:144
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:170
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:149
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:159
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:26
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:41
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/user.lua:21
@@ -2721,12 +2717,12 @@ msgstr "通过 %s 请求 DNS"
 msgid "Request protocol"
 msgstr "请求协议"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:473
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:572
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:478
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:591
 msgid "Reserved"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:112
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:109
 msgid "Reset"
 msgstr ""
 
@@ -2774,7 +2770,7 @@ msgstr ""
 msgid "Running Status"
 msgstr "运行状态"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:320
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:339
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:107
 msgid "STRING"
 msgstr ""
@@ -2784,15 +2780,15 @@ msgstr ""
 msgid "Same as the tcp node"
 msgstr "与 TCP 节点相同"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:111
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:108
 msgid "Save"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:110
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:107
 msgid "Save & Apply"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:109
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:106
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:154
 msgid "Select all"
 msgstr "全选"
@@ -2829,8 +2825,8 @@ msgid "Set the default domain resolution strategy for the sing-box node."
 msgstr "为 sing-box 节点设置默认的域名解析策略。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:184
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:181
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:156
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:189
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:176
 msgid ""
 "Set the node to be used as a pre-proxy. Each rule (including <code>Default</"
 "code>) has a separate switch that controls whether this rule uses the pre-"
@@ -2840,7 +2836,7 @@ msgstr ""
 "则是否使用前置代理。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:161
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:244
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:253
 msgid "Settings"
 msgstr ""
 
@@ -2870,11 +2866,11 @@ msgstr ""
 msgid "ShadowsocksR Libev"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:664
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:674
 msgid "Share URL to clipboard successfully."
 msgstr "成功复制分享URL到剪贴板。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:666
+#: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_share_man.htm:676
 msgid "Share URL to clipboard unable."
 msgstr "无法分享URL到剪贴板。"
 
@@ -2886,9 +2882,9 @@ msgstr "Shell 命令"
 msgid "Shell command to execute, replace log content with %s."
 msgstr "要执行的 Shell 命令，用 %s 代替日志内容。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:402
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:533
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:151
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:409
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:552
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:153
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:251
 msgid "Short Id"
 msgstr ""
@@ -2904,12 +2900,12 @@ msgstr "显示服务器地址和端口"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:302
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:312
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:160
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:44
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:46
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:64
 msgid "Shunt"
 msgstr "分流"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:130
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:140
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:5
 msgid "Shunt Rule"
 msgstr "分流规则"
@@ -2942,7 +2938,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:66
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:745
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:20
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:93
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:95
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:102
 msgid "Socks Config"
 msgstr "Socks 配置"
@@ -2971,18 +2967,18 @@ msgstr "源接口"
 msgid "Source port"
 msgstr "源端口"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:405
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:412
 msgid "Spider X"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:255
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:264
 msgid ""
 "Split handshake data into multiple TLS records for better censorship "
 "evasion. Low overhead. Recommended to enable first."
 msgstr ""
 "将握手数据拆分为多个 TLS 记录，提升抗封锁能力，几乎不增加延迟，建议优先启用。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:259
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:268
 msgid ""
 "Split handshake into multiple TCP segments. Enhances obfuscation. May "
 "increase delay. Use only if needed."
@@ -3044,7 +3040,7 @@ msgstr "支持自定义 SIP003 插件，请确保插件已安装。"
 msgid "Switch Mode"
 msgstr "切换模式"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:676
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:695
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:375
 msgid "TCP Brutal"
 msgstr ""
@@ -3091,10 +3087,10 @@ msgstr "TCP 分片，在某些情况下可以欺骗审查系统，比如绕过 S
 msgid "TCP node must be '%s' type to use FakeDNS."
 msgstr "TCP 节点必须是 '%s' 类型才能使用 FakeDNS。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:337
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:437
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:345
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:456
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/trojan-plus.lua:37
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:120
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:122
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:215
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:31
 msgid "TLS"
@@ -3126,45 +3122,45 @@ msgstr "接收窗口（无需确认即可接收的最大字节数：默认8Mb）
 msgid "TUIC send window"
 msgstr "发送窗口（无需确认即可发送的最大字节数：默认8Mb*2）"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:209
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:223
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:234
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:210
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:224
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:235
 msgid "Test"
 msgstr "测试"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:123
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:143
 msgid "Test interval"
 msgstr "测试间隔"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:130
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:150
 msgid "Test interval must be less or equal than idle timeout."
 msgstr "测试间隔时间必须小于或等于空闲超时时间。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:132
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:152
 msgid "Test tolerance"
 msgstr "测试容差"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:72
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:118
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:149
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:121
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:165
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:141
 msgid "The URL used to detect the connection status."
 msgstr "用于检测连接状态的网址。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1150
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1166
 msgid "The client file is not suitable for current device."
 msgstr "客户端文件不适合当前设备。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:142
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:162
 msgid "The idle timeout."
 msgstr "空闲超时时间。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:157
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:127
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:172
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:147
 msgid "The interval between initiating probes."
 msgstr "发起探测的间隔。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1228
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1244
 msgid ""
 "The latest version: %s, currently does not support automatic update, if you "
 "need to update, please compile or download the ipk and then manually install."
@@ -3192,7 +3188,7 @@ msgstr ""
 "网 IP，请将其在该列表中清除，并将其添加到代理列表中。默认情况下不要修改这个列"
 "表。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:173
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:181
 msgid ""
 "The load balancer selects the optimal number of nodes, and traffic is "
 "randomly distributed among them."
@@ -3214,13 +3210,13 @@ msgstr ""
 "以上端口设置支持单端口和端口范围。<br>多个端口用英文逗号(,)隔开。<br>例："
 "21,80,443,1000:2000。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:132
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:152
 msgid "The test tolerance in milliseconds."
 msgstr "测试容差时间（单位：毫秒）。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:158
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:128
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:143
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:173
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:148
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:163
 msgid ""
 "The time format is numbers + units, such as '10s', '2h45m', and the "
 "supported time units are <code>s</code>, <code>m</code>, <code>h</code>, "
@@ -3319,7 +3315,7 @@ msgstr "小贴士："
 msgid "To Top"
 msgstr "置顶"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:203
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:207
 msgid "To send noise packets, select \"Noise\" in Xray Settings."
 msgstr "在 Xray 设置中勾选 “噪声” 以发送噪声包。"
 
@@ -3334,7 +3330,7 @@ msgstr "总行数"
 msgid "Touch Check"
 msgstr "点我检测"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:571
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:558
 msgid "Transfer mode"
 msgstr "传输模式"
 
@@ -3342,10 +3338,10 @@ msgstr "传输模式"
 msgid "Transparent proxy"
 msgstr "透明代理"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:441
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:537
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:94
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:252
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:448
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:556
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:95
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:254
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:326
 msgid "Transport"
 msgstr "传输方式"
@@ -3361,7 +3357,7 @@ msgstr "如果修改规则后没有生效，请尝试此功能。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:167
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:25
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:225
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:229
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:44
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/user.lua:25
 msgid "Type"
@@ -3371,7 +3367,7 @@ msgstr ""
 msgid "UDP"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:101
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:102
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ssr.lua:98
 msgid "UDP Forward"
 msgstr "UDP 转发"
@@ -3396,31 +3392,31 @@ msgstr "UDP 转发屏蔽端口"
 msgid "UDP Redir Ports"
 msgstr "UDP 转发端口"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:185
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:189
 msgid ""
 "UDP noise, Under some circumstances it can bypass some UDP based protocol "
 "restrictions."
 msgstr "UDP噪声，在某些情况下，它可以绕过一些针对UDP协议的限制。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:322
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:275
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:330
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:295
 msgid "UDP over TCP"
 msgstr "TCP 封装 UDP"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:358
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:377
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:60
 msgid "UDP relay mode"
 msgstr "UDP 中继模式"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:45
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:197
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:201
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:213
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:44
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:199
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:203
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:215
 msgid "UL Restore"
 msgstr "上传恢复"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:60
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:230
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_list.lua:231
 msgid "URL Test"
 msgstr "URL 测试"
 
@@ -3461,6 +3457,10 @@ msgstr "更新间隔(小时)"
 msgid "Update Mode"
 msgstr "更新模式"
 
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:18
+msgid "Update Options"
+msgstr "更新选项"
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:200
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:107
 msgid "Update Time(every day)"
@@ -3475,7 +3475,7 @@ msgid "Updating, are you sure to close?"
 msgstr "正在更新，你确认要关闭吗？"
 
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:18
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:16
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:94
 msgid "Updating..."
 msgstr "更新中"
 
@@ -3503,7 +3503,7 @@ msgstr "使用 %s"
 msgid "Use Custom Config"
 msgstr "使用自定义配置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:136
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:153
 msgid "Use Custom Probe URL"
 msgstr "使用自定义探测网址"
 
@@ -3528,7 +3528,7 @@ msgstr "需要代理的分流规则域名使用 FakeDNS。"
 msgid "Use global config"
 msgstr "使用全局配置"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:504
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:509
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:321
 msgid ""
 "Use it together with the DNS disguised type. You can fill in any domain."
@@ -3546,10 +3546,10 @@ msgstr "用户代理(User-Agent)"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:43
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/naive.lua:30
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:291
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:250
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:299
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:270
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:61
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:439
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:420
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:80
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:422
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/socks.lua:36
@@ -3574,7 +3574,7 @@ msgstr ""
 msgid "Verify DoT SSL cert. (May fail on some platforms!)"
 msgstr "验证 DoT SSL 证书。（在某些平台可能无法验证，谨慎开启！）"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:693
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:712
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:181
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:197
 msgid "Version"
@@ -3595,15 +3595,19 @@ msgstr "希望不同设备使用不同的代理模式/端口/节点？请使用�
 msgid "Warning"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:538
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:609
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:53
+msgid "Watch Logs"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:543
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:628
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:269
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:348
 msgid "WebSocket Host"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:541
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:612
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:546
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:631
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:272
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:351
 msgid "WebSocket Path"
@@ -3636,7 +3640,7 @@ msgstr ""
 "当勾选时，局域网内的设备可以透明代理。否则，将不代理。但您仍然可以使用访问控"
 "制允许指定的设备代理。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:408
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:389
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:391
 msgid "When selected, it can accessed lan , this will not be safe!"
 msgstr "当勾选时，可以直接访问局域网，这将不安全！（非特殊情况不建议开启）"
@@ -3644,7 +3648,7 @@ msgstr "当勾选时，可以直接访问局域网，这将不安全！（非特
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:306
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:52
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:49
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:404
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:385
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:387
 msgid "When selected, it can only be accessed localhost."
 msgstr "当勾选时，只能本机访问。"
@@ -3662,21 +3666,21 @@ msgstr ""
 "当使用 URL 测试时，负载均衡节点将转换成 Socks 节点。下面的节点列表自定义时必"
 "须为 Socks 节点，否则健康检查将无效。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:159
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:129
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:144
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:174
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:149
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:164
 msgid "When the unit is not filled in, it defaults to seconds."
 msgstr "未填写单位时，默认为秒。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:274
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:249
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:224
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:257
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:244
 msgid ""
 "When using, localhost will connect this node first and then use this node to "
 "connect the default node."
 msgstr "当使用时，本机将首先连接到此节点，然后再使用此节点连接到默认节点落地。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:377
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:358
 msgid ""
 "Whether to receive PROXY protocol, when this node want to be fallback or "
 "forwarded by proxy, it must be enable, otherwise it cannot be used."
@@ -3686,8 +3690,8 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:102
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:50
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:374
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:472
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:381
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:491
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/trojan-plus.lua:49
 msgid ""
 "Whether unsafe connections are allowed. When checked, Certificate validation "
@@ -3702,21 +3706,21 @@ msgstr ""
 msgid "Working..."
 msgstr "连接正常"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:619
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:606
 msgid "XHTTP Extra"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:612
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:599
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:284
 msgid "XHTTP Host"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:615
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:602
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:287
 msgid "XHTTP Path"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:672
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:658
 msgid "XUDP Mux concurrency"
 msgstr "XUDP 最大并发连接数"
 
@@ -3724,7 +3728,7 @@ msgstr "XUDP 最大并发连接数"
 msgid "Xray"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:203
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:207
 msgid "Xray Noise Packets"
 msgstr "Xray 噪声数据包"
 
@@ -3736,7 +3740,7 @@ msgstr "您可以转发到 Nginx/Caddy/V2ray/Xray WebSocket 等。"
 msgid "You choose node is:"
 msgstr "你选择的节点是："
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:953
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:969
 msgid ""
 "You did not fill in the %s path. Please save and apply then update manually."
 msgstr "您没有填写 %s 路径。请保存应用后再手动更新。"
@@ -3754,28 +3758,28 @@ msgstr ""
 "您只需要在SmartDNS配置好国内DNS分组，并设置重定向或作为Dnsmasq上游，此处填入"
 "国内DNS分组名。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:377
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:358
 msgid "acceptProxyProtocol"
 msgstr "接受代理协议"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:102
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:50
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:374
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:472
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:381
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:491
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/trojan-plus.lua:49
 msgid "allowInsecure"
 msgstr "允许不安全连接"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:355
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:446
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:179
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:362
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:465
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:181
 msgid "alpn"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:56
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:71
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:209
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:224
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:211
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:226
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:266
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:285
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:50
@@ -3799,14 +3803,14 @@ msgstr ""
 msgid "felixonmars/google.china"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:330
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:298
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:114
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:338
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:318
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:115
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:209
 msgid "flow"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:401
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:382
 msgid "format: dest,path,xver"
 msgstr ""
 
@@ -3858,7 +3862,7 @@ msgstr ""
 msgid "maxUploadSize"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:360
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:379
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/tuic.lua:61
 msgid "native"
 msgstr ""
@@ -3868,7 +3872,7 @@ msgstr ""
 msgid "none"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:739
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:758
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:72
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:62
 msgid "opts"
@@ -3882,13 +3886,13 @@ msgstr "及以下"
 msgid "or more"
 msgstr "及以上"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:422
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:403
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:405
 msgid "outbound node"
 msgstr "出站节点"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:729
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:733
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:748
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:752
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:50
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:53
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:51
@@ -3896,7 +3900,7 @@ msgstr "出站节点"
 msgid "plugin"
 msgstr "插件"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:158
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:160
 msgid "serverNames"
 msgstr ""
 
@@ -3908,9 +3912,9 @@ msgstr ""
 msgid "the server?"
 msgstr "服务器吗？"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:409
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:502
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:709
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:416
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:521
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:728
 msgid "uTLS"
 msgstr ""
 

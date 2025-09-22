@@ -4,7 +4,7 @@
 'require poll';
 'require rpc';
 
-var callServiceList = rpc.declare({
+const callServiceList = rpc.declare({
 	object: 'service',
 	method: 'list',
 	params: ['name'],
@@ -79,6 +79,12 @@ return view.extend({
 
 		o = s.option(form.Value, 'dir', _('Root directory'), _('The root directory used by the File Browser.'));
 		o.datatype = 'directory';
+		o.rmempty = false;
+
+		o = s.option(form.Flag, 'disable_exec', _('Disable Command Runner feature'));
+		o.default = o.enabled;
+		o.enabled = 'true';
+		o.disabled = 'false';
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'cert', _('Certificate'), _('Optional'));

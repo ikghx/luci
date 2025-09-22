@@ -1,18 +1,16 @@
-# Copyright (C) 2018-2019 Lienol
 #
-# This is free software, licensed under the Apache License, Version 2.0 .
+# Copyright (C) 2010 OpenWrt.org
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
 #
 
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for adguardhome
-LUCI_DEPENDS:=+luci-compat +wget-ssl +adguardhome
-LUCI_PKGARCH:=all
-PKG_VERSION:=1.8
-PKG_RELEASE:=16
+LUCI_DEPENDS:=+luci-base +adguardhome
 
-PKG_LICENSE:=MIT
-PKG_MAINTAINER:=<https://github.com/rufengsuixing/luci-app-adguardhome>
+PKG_LICENSE:=GPL-3.0-or-later
 
 include $(TOPDIR)/feeds/luci/luci.mk
 

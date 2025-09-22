@@ -3782,6 +3782,9 @@ const CBIValue = CBIAbstractValue.extend(/** @lends LuCI.form.Value.prototype */
 			if (in_table)
 				optionEl.firstChild.classList.add('hidden');
 			else
+				if (in_table)
+				optionEl.firstChild.classList.add('hidden');
+			else
 				optionEl.classList.add('hidden');
 
 		optionEl.addEventListener('widget-change',

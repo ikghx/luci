@@ -71,6 +71,7 @@ CBILease6Status = form.DummyValue.extend({
 					E('th', { 'class': 'th' }, _('Hostname')),
 					E('th', { 'class': 'th' }, _('IPv6 address')),
 					E('th', { 'class': 'th' }, _('DUID')),
+					E('th', { 'class': 'th' }, _('IAID')),
 					E('th', { 'class': 'th' }, _('Lease time remaining'))
 				]),
 				E('tr', { 'class': 'tr placeholder' }, [
@@ -573,6 +574,11 @@ return view.extend({
 			_('Read all the files in the given directory as configuration files.'));
 		o.value('/tmp/dnsmasq.d');
 
+		o = s.taboption('advanced', form.DynamicList, 'conf_file',
+			_('Configuration file'),
+			_('Additional configuration files.'));
+		o.placeholder = '/etc/custom/dnsmasq.conf';
+
 		o = s.taboption('advanced', form.DynamicList, 'addnmount',
 			_('Expose additional filesystem paths'),
 			_('read-only mount path to expose it to dnsmasq.'));
@@ -752,7 +758,7 @@ return view.extend({
 			_('Number of cached DNS entries, 10000 is maximum, 0 is no caching.'));
 		o.optional = true;
 		o.datatype = 'range(0,10000)';
-		o.placeholder = 1000;
+		o.placeholder = 150;
 
 		o = s.taboption('limits', form.Value, 'min_cache_ttl',
 			_('Min cache TTL'),
@@ -1697,6 +1703,7 @@ return view.extend({
 									host || '-',
 									lease.ip6addrs ? lease.ip6addrs.join('<br />') : lease.ip6addr,
 									lease.duid,
+									lease.iaid,
 									exp
 								];
 							}),

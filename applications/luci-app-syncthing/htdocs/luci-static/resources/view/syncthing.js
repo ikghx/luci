@@ -70,6 +70,14 @@ return view.extend({
 		o.placeholder = 'http://0.0.0.0:8384';
 		o.rmempty = false;
 
+		o = s.option(form.Value, 'gui_apikey', _('GUI API key'), _('Override the API key needed to access the GUI / REST API.'));
+
+		o = s.option(form.Value, 'db_delete_retention_interval', _('Database deleted item retention interval'), _('deleted items are forgotten from the database after this interval.'));
+		o.placeholder = '1h';
+
+		o = s.option(form.Value, 'db_maintenance_interval', _('Database maintenance interval'), _('internal database maintenance routines run this often.'));
+		o.placeholder = '1h';
+
 		o = s.option(form.Value, 'home', _('Configuration directory'));
 		o.placeholder = '/etc/syncthing/';
 		o.rmempty = false;
@@ -84,8 +92,15 @@ return view.extend({
 		o.default = '0';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'logfile', _('log file path'));
+		o = s.option(form.Value, 'log_file', _('log file path'));
 		o.placeholder = '/etc/syncthing/syncthing.log';
+		o.rmempty = false;
+
+		o = s.option(form.ListValue, 'log_level', _('Log level'));
+		o.value('INFO', _('Info'));
+		o.value('WARN', _('Warn'));
+		o.value('ERROR', _('Error'));
+		o.value('DEBUG', _('Debug'));
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'log_max_size', _('log file size, in bytes.'));
@@ -95,12 +110,6 @@ return view.extend({
 		o = s.option(form.Value, 'log_max_old_files', _('Maximum number of log files to keep'));
 		o.placeholder = '7';
 		o.rmempty = false;
-
-		o = s.option(form.Flag, '_no_browser', _('Do not start a browser'));
-
-		o = s.option(form.Flag, '_no_default_folder', _('Don’t create a default folder when generating an initial configuration / starting for the first time'));
-
-		o = s.option(form.DynamicList, '_', _('Extra settings'));
 
 		return m.render();
 	}

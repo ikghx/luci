@@ -119,7 +119,7 @@ else
 	opkg = nil
 end
 
-local core_path_mode = fs.uci_get("config", "small_flash_memory")
+local core_path_mode = fs.uci_get_config("config", "small_flash_memory")
 if core_path_mode ~= "1" then
 	meta_core_path="/etc/openclash/core/clash_meta"
 else
@@ -136,7 +136,7 @@ end
 
 local function cn_port()
     if is_running() then
-        local config_path = fs.uci_get("config", "config_path")
+        local config_path = fs.uci_get_config("config", "config_path")
         if config_path then
             local config_filename = fs.basename(config_path)
             local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -162,11 +162,11 @@ local function cn_port()
             end
         end
     end
-    return fs.uci_get("config", "cn_port") or "9090"
+    return fs.uci_get_config("config", "cn_port") or "9090"
 end
 
 local function mode()
-	return fs.uci_get("config", "en_mode")
+	return fs.uci_get_config("config", "en_mode")
 end
 
 local function daip()
@@ -175,7 +175,7 @@ end
 
 local function dase()
     if is_running() then
-        local config_path = fs.uci_get("config", "config_path")
+        local config_path = fs.uci_get_config("config", "config_path")
         if config_path then
             local config_filename = fs.basename(config_path)
             local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -195,19 +195,19 @@ local function dase()
             end
         end
     end
-    return fs.uci_get("config", "dashboard_password")
+    return fs.uci_get_config("config", "dashboard_password")
 end
 
 local function db_foward_domain()
-	return fs.uci_get("config", "dashboard_forward_domain")
+	return fs.uci_get_config("config", "dashboard_forward_domain")
 end
 
 local function db_foward_port()
-	return fs.uci_get("config", "dashboard_forward_port")
+	return fs.uci_get_config("config", "dashboard_forward_port")
 end
 
 local function db_foward_ssl()
-	return fs.uci_get("config", "dashboard_forward_ssl") or 0
+	return fs.uci_get_config("config", "dashboard_forward_ssl") or 0
 end
 
 local function check_lastversion()
@@ -276,7 +276,7 @@ end
 local function corelv()
 	local status = process_status("/usr/share/openclash/clash_version.sh")
     local core_meta_lv = ""
-	local core_smart_enable = fs.uci_get("config", "smart_enable") or "0"
+	local core_smart_enable = fs.uci_get_config("config", "smart_enable") or "0"
     if not status then
 		if fs.access("/tmp/clash_last_version") and tonumber(os.time() - fs.mtime("/tmp/clash_last_version")) < 1800 then
 			if core_smart_enable == "1" then
@@ -297,7 +297,7 @@ end
 local function opcv()
     local v
     local info = opkg and opkg.info("luci-app-openclash")
-    if info and info["luci-app-openclash"] and info["luci-app-openclash"]["Version"] then
+    if info and info["luci-app-openclash"] and info["luci-app-openclash"]["Version"] and info["luci-app-openclash"]["Installed-Time"] then
         v = info["luci-app-openclash"]["Version"]
     else
         if pkg_type() == "opkg" then
@@ -343,15 +343,15 @@ local function coreup()
 end
 
 local function corever()
-	return fs.uci_get("config", "core_version") or "0"
+	return fs.uci_get_config("config", "core_version") or "0"
 end
 
 local function release_branch()
-	return fs.uci_get("config", "release_branch") or "master"
+	return fs.uci_get_config("config", "release_branch") or "master"
 end
 
 local function smart_enable()
-	return fs.uci_get("config", "smart_enable") or "0"
+	return fs.uci_get_config("config", "smart_enable") or "0"
 end
 
 local function save_corever_branch()
@@ -515,8 +515,8 @@ end
 local function dler_login()
 	local info, token, get_sub, sub_info, sub_key, sub_match
 	local sub_path = "/tmp/dler_sub"
-	local email = fs.uci_get("config", "dler_email")
-	local passwd = fs.uci_get("config", "dler_passwd")
+	local email = fs.uci_get_config("config", "dler_email")
+	local passwd = fs.uci_get_config("config", "dler_passwd")
 	if email and passwd then
 		info = luci.sys.exec(string.format("curl -sL -H 'Content-Type: application/json' -d '{\"email\":\"%s\", \"passwd\":\"%s\"}' -X POST https://dler.cloud/api/v1/login", email, passwd))
 		if info then
@@ -576,7 +576,7 @@ end
 
 local function dler_logout()
 	local info, token
-	local token = fs.uci_get("config", "dler_token")
+	local token = fs.uci_get_config("config", "dler_token")
 	if token then
 		info = luci.sys.exec(string.format("curl -sL -H 'Content-Type: application/json' -d '{\"access_token\":\"%s\"}' -X POST https://dler.cloud/api/v1/logout", token))
 		if info then
@@ -606,9 +606,9 @@ end
 
 local function dler_info()
 	local info, path, get_info
-	local token = fs.uci_get("config", "dler_token")
-	local email = fs.uci_get("config", "dler_email")
-	local passwd = fs.uci_get("config", "dler_passwd")
+	local token = fs.uci_get_config("config", "dler_token")
+	local email = fs.uci_get_config("config", "dler_email")
+	local passwd = fs.uci_get_config("config", "dler_passwd")
 	path = "/tmp/dler_info"
 	if token and email and passwd then
 		get_info = string.format("curl -sL -H 'Content-Type: application/json' -d '{\"email\":\"%s\", \"passwd\":\"%s\"}' -X POST https://dler.cloud/api/v1/information -o %s", email, passwd, path)
@@ -648,10 +648,10 @@ end
 local function dler_checkin()
 	local info
 	local path = "/tmp/dler_checkin"
-	local token = fs.uci_get("config", "dler_token")
-	local email = fs.uci_get("config", "dler_email")
-	local passwd = fs.uci_get("config", "dler_passwd")
-	local multiple = fs.uci_get("config", "dler_checkin_multiple") or 1
+	local token = fs.uci_get_config("config", "dler_token")
+	local email = fs.uci_get_config("config", "dler_email")
+	local passwd = fs.uci_get_config("config", "dler_passwd")
+	local multiple = fs.uci_get_config("config", "dler_checkin_multiple") or 1
 	if token and email and passwd then
 		info = luci.sys.exec(string.format("curl -sL -H 'Content-Type: application/json' -d '{\"email\":\"%s\", \"passwd\":\"%s\", \"multiple\":\"%s\"}' -X POST https://dler.cloud/api/v1/checkin", email, passwd, multiple))
 		if info then
@@ -688,8 +688,8 @@ local function config_name()
 end
 
 local function config_path()
-	if fs.uci_get("config", "config_path") then
-		return string.sub(fs.uci_get("config", "config_path"), 23, -1)
+	if fs.uci_get_config("config", "config_path") then
+		return string.sub(fs.uci_get_config("config", "config_path"), 23, -1)
 	else
 		 return ""
 	end
@@ -917,10 +917,10 @@ function action_rule_mode()
 		if info then
 			mode = info["mode"]
 		else
-			mode = fs.uci_get("config", "proxy_mode") or "rule"
+			mode = fs.uci_get_config("config", "proxy_mode") or "rule"
 		end
     else
-        mode = fs.uci_get("config", "proxy_mode") or "rule"
+        mode = fs.uci_get_config("config", "proxy_mode") or "rule"
 	end
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
@@ -969,7 +969,7 @@ end
 function action_switch_run_mode()
 	local mode, operation_mode
     mode = luci.http.formvalue("run_mode")
-    operation_mode = fs.uci_get("config", "operation_mode")
+    operation_mode = fs.uci_get_config("config", "operation_mode")
     if operation_mode == "redir-host" then
         uci:set("openclash", "config", "en_mode", "redir-host"..mode)
     elseif operation_mode == "fake-ip" then
@@ -992,10 +992,10 @@ function action_log_level()
 		if info then
 			level = info["log-level"]
 		else
-			level = fs.uci_get("config", "log_level") or "info"
+			level = fs.uci_get_config("config", "log_level") or "info"
 		end
 	else
-		level = fs.uci_get("config", "log_level") or "info"
+		level = fs.uci_get_config("config", "log_level") or "info"
 	end
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
@@ -1041,6 +1041,7 @@ end
 function action_toolbar_show_sys()
     local cpu = "0"
     local load_avg = "0"
+    local cpu_count = luci.sys.exec("grep -c ^processor /proc/cpuinfo 2>/dev/null"):gsub("\n", "") or 1
     
     local pid = luci.sys.exec("pgrep -f '^[^ ]*clash' | head -1 | tr -d '\n' 2>/dev/null")
     
@@ -1071,13 +1072,13 @@ function action_toolbar_show_sys()
     luci.http.prepare_content("application/json")
     luci.http.write_json({
         cpu = cpu,
-        load_avg = load_avg
+        load_avg = tostring(math.floor(tonumber(load_avg) / tonumber(cpu_count) * 100));
     })
 end
 
 function action_toolbar_show()
     local pid = luci.sys.exec("pgrep -f '^[^ ]*clash' | head -1 | tr -d '\n' 2>/dev/null")
-    local traffic, connections, connection, up, down, up_total, down_total, mem, cpu, load_avg
+    local traffic, connections, connection, up, down, up_total, down_total, mem, cpu, load_avg, cpu_count
     if pid and pid ~= "" then
         local daip = daip()
         local dase = dase() or ""
@@ -1122,7 +1123,8 @@ function action_toolbar_show()
         end
 
         load_avg = luci.sys.exec("awk '{print $2; exit}' /proc/loadavg 2>/dev/null"):gsub("\n", "") or "0"
-        
+        cpu_count = luci.sys.exec("grep -c ^processor /proc/cpuinfo 2>/dev/null"):gsub("\n", "") or 1
+
         if not string.match(load_avg, "^[0-9]*%.?[0-9]*$") then
             load_avg = "0"
         end
@@ -1139,7 +1141,7 @@ function action_toolbar_show()
         down_total = down_total,
         mem = mem,
         cpu = cpu,
-        load_avg = load_avg
+        load_avg = tostring(math.floor(tonumber(load_avg) / tonumber(cpu_count) * 100));
     })
 end
 
@@ -1201,8 +1203,8 @@ function action_one_key_update_check()
 end
 
 function action_dashboard_type()
-	local dashboard_type = fs.uci_get("config", "dashboard_type") or "Official"
-	local yacd_type = fs.uci_get("config", "yacd_type") or "Official"
+	local dashboard_type = fs.uci_get_config("config", "dashboard_type") or "Official"
+	local yacd_type = fs.uci_get_config("config", "yacd_type") or "Official"
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
 		dashboard_type = dashboard_type,
@@ -1238,7 +1240,7 @@ function action_switch_dashboard()
 end
 
 function action_op_mode()
-	local op_mode = fs.uci_get("config", "operation_mode")
+	local op_mode = fs.uci_get_config("config", "operation_mode")
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
 	    op_mode = op_mode;
@@ -1246,7 +1248,7 @@ function action_op_mode()
 end
 
 function action_switch_mode()
-	local switch_mode = fs.uci_get("config", "operation_mode")
+	local switch_mode = fs.uci_get_config("config", "operation_mode")
 	if switch_mode == "redir-host" then
 		uci:set("openclash", "config", "operation_mode", "fake-ip")
 		uci:commit("openclash")
@@ -1270,7 +1272,7 @@ function action_status()
 		db_foward_domain = db_foward_domain(),
 		db_forward_ssl = db_foward_ssl(),
 		cn_port = cn_port(),
-		core_type = fs.uci_get("config", "core_type") or "Meta";
+		core_type = fs.uci_get_config("config", "core_type") or "Meta";
 	})
 end
 
@@ -1674,7 +1676,7 @@ function rename_file()
 	local new_backup_file_path = "/etc/openclash/backup/" .. new_file_name
 	if fs.rename(old_file_path, new_file_path) then
 		if file_path == "/etc/openclash/config/" then
-			if fs.uci_get("config", "config_path") == old_file_path then
+			if fs.uci_get_config("config", "config_path") == old_file_path then
 				uci:set("openclash", "config", "config_path", new_file_path)
 			end
 			
@@ -2064,7 +2066,7 @@ function action_myip_check()
             fdo:close()
             
             local cmd = string.format(
-                'curl -sL -m 10 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "%s" 2>/dev/null',
+                'curl -SsL -m 5 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "%s" 2>/dev/null',
                 service.url
             )
             nixio.exec("/bin/sh", "-c", cmd)
@@ -2096,7 +2098,7 @@ function action_myip_check()
         return
     end
     
-    local max_iterations = 150
+    local max_iterations = 140
     local iteration = 0
     local completed = {}
     
@@ -2148,11 +2150,12 @@ function action_myip_check()
             break
         end
         
-        nixio.nanosleep(0, 100000000)
+        nixio.nanosleep(0, 50000000)
     end
     
     for name, info in pairs(queries) do
         if not completed[name] then
+            result[name] = { ip = "", geo = "", error = "timeout" }
             pcall(nixio.kill, info.query.pid, nixio.const.SIGTERM)
             pcall(nixio.waitpid, info.query.pid, 0)
             pcall(info.query.close)
@@ -2161,7 +2164,7 @@ function action_myip_check()
     
     if result.ipify and result.ipify.ip then
         local geo_cmd = string.format(
-            'curl -sL -m 8 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "https://api-ipv4.ip.sb/geoip/%s" 2>/dev/null',
+            'curl -sL -m 5 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "https://api-ipv4.ip.sb/geoip/%s" 2>/dev/null',
             result.ipify.ip
         )
         local geo_data = luci.sys.exec(geo_cmd)
@@ -2305,7 +2308,7 @@ function action_proxy_info()
     }
     
     local function get_info_from_uci()
-        local mixed_port = fs.uci_get("config", "mixed_port")
+        local mixed_port = fs.uci_get_config("config", "mixed_port")
         if mixed_port and mixed_port ~= "" then
             result.mixed_port = mixed_port
         else
@@ -2325,7 +2328,7 @@ function action_proxy_info()
         end)
     end
 
-    local config_path = fs.uci_get("config", "config_path")
+    local config_path = fs.uci_get_config("config", "config_path")
     if config_path then
         local config_filename = fs.basename(config_path)
         local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -2367,7 +2370,7 @@ function action_proxy_info()
                 if runtime_mixed_port and runtime_mixed_port ~= "" then
                     result.mixed_port = runtime_mixed_port
                 else
-                    local uci_mixed_port = fs.uci_get("config", "mixed_port")
+                    local uci_mixed_port = fs.uci_get_config("config", "mixed_port")
                     if uci_mixed_port and uci_mixed_port ~= "" then
                         result.mixed_port = uci_mixed_port
                     else
@@ -2413,19 +2416,19 @@ function action_oc_settings()
     }
 
     local function get_uci_settings()
-        local meta_sniffer = fs.uci_get("config", "enable_meta_sniffer")
+        local meta_sniffer = fs.uci_get_config("config", "enable_meta_sniffer")
         if meta_sniffer == "1" then
             result.meta_sniffer = "1"
         end
         
-        local respect_rules = fs.uci_get("config", "enable_respect_rules")
+        local respect_rules = fs.uci_get_config("config", "enable_respect_rules")
         if respect_rules == "1" then
             result.respect_rules = "1"
         end
     end
 
     if is_running() then
-        local config_path = fs.uci_get("config", "config_path")
+        local config_path = fs.uci_get_config("config", "config_path")
         if config_path then
             local config_filename = fs.basename(config_path)
             local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -2469,7 +2472,7 @@ function action_oc_settings()
         get_uci_settings()
     end
 
-    local oversea = fs.uci_get("config", "china_ip_route")
+    local oversea = fs.uci_get_config("config", "china_ip_route")
     if oversea == "1" then
         result.oversea = "1"
     elseif oversea == "2" then
@@ -2478,7 +2481,7 @@ function action_oc_settings()
         result.oversea = "0"
     end
 
-    local stream_unlock = fs.uci_get("config", "stream_auto_select")
+    local stream_unlock = fs.uci_get_config("config", "stream_auto_select")
     if stream_unlock == "1" then
         result.stream_unlock = "1"
     end
@@ -2497,7 +2500,7 @@ function action_switch_oc_setting()
     end
     
     local function get_runtime_config_path()
-        local config_path = fs.uci_get("config", "config_path")
+        local config_path = fs.uci_get_config("config", "config_path")
         if not config_path then
             return nil
         end
@@ -2537,10 +2540,6 @@ function action_switch_oc_setting()
     end
     
     if setting == "meta_sniffer" then
-        uci:set("openclash", "config", "enable_meta_sniffer", value)
-        uci:set("openclash", "config", "enable_meta_sniffer_pure_ip", value)
-        uci:commit("openclash")
-        
         if is_running() then
             local runtime_config_path = get_runtime_config_path()
             local ruby_cmd
@@ -2636,12 +2635,13 @@ function action_switch_oc_setting()
             if not update_runtime_config(ruby_cmd) then
                 return
             end
+        else
+            uci:set("openclash", "config", "enable_meta_sniffer", value)
+            uci:set("openclash", "config", "enable_meta_sniffer_pure_ip", value)
+            uci:commit("openclash")
         end
         
     elseif setting == "respect_rules" then
-        uci:set("openclash", "config", "enable_respect_rules", value)
-        uci:commit("openclash")
-        
         if is_running() then
             local runtime_config_path = get_runtime_config_path()
             local target_value = (value == "1") and "true" or "false"
@@ -2688,39 +2688,43 @@ function action_switch_oc_setting()
             if not update_runtime_config(ruby_cmd) then
                 return
             end
+        else
+            uci:set("openclash", "config", "enable_respect_rules", value)
+            uci:commit("openclash")
         end
         
     elseif setting == "oversea" then
         uci:set("openclash", "config", "china_ip_route", value)
         uci:commit("openclash")
-        
         if is_running() then
+            uci:set("openclash", "@overwrite[0]", "china_ip_route", value)
+            uci:commit("openclash")
             luci.sys.exec("/etc/init.d/openclash restart >/dev/null 2>&1 &")
         end
     elseif setting == "stream_unlock" then
         uci:set("openclash", "config", "stream_auto_select", value)
-        if not fs.uci_get("config", "stream_auto_select_interval") then
+        if not fs.uci_get_config("config", "stream_auto_select_interval") then
             uci:set("openclash", "config", "stream_auto_select_interval", "10")
         end
-        if not fs.uci_get("config", "stream_auto_select_logic") then
+        if not fs.uci_get_config("config", "stream_auto_select_logic") then
             uci:set("openclash", "config", "stream_auto_select_logic", "Urltest")
         end
-        if not fs.uci_get("config", "stream_auto_select_expand_group") then
+        if not fs.uci_get_config("config", "stream_auto_select_expand_group") then
             uci:set("openclash", "config", "stream_auto_select_expand_group", "0")
         end
 
         uci:set("openclash", "config", "stream_auto_select_netflix", "1")
-        if not fs.uci_get("config", "stream_auto_select_group_key_netflix") then
+        if not fs.uci_get_config("config", "stream_auto_select_group_key_netflix") then
             uci:set("openclash", "config", "stream_auto_select_group_key_netflix", "Netflix|奈飞")
         end
 
         uci:set("openclash", "config", "stream_auto_select_disney", "1")
-        if not fs.uci_get("config", "stream_auto_select_group_key_disney") then
+        if not fs.uci_get_config("config", "stream_auto_select_group_key_disney") then
             uci:set("openclash", "config", "stream_auto_select_group_key_disney", "Disney|迪士尼")
         end
 
         uci:set("openclash", "config", "stream_auto_select_hbo_max", "1")
-        if not fs.uci_get("config", "stream_auto_select_group_key_hbo_max") then
+        if not fs.uci_get_config("config", "stream_auto_select_group_key_hbo_max") then
             uci:set("openclash", "config", "stream_auto_select_group_key_hbo_max", "HBO|HBO Max")
         end
         uci:commit("openclash")
@@ -2759,7 +2763,7 @@ function action_generate_pac()
         end)
     end
 
-    local config_path = fs.uci_get("config", "config_path")
+    local config_path = fs.uci_get_config("config", "config_path")
     if config_path then
         local config_filename = fs.basename(config_path)
         local runtime_config_path = "/etc/openclash/" .. config_filename
@@ -2802,7 +2806,7 @@ function action_generate_pac()
     end
     
     local proxy_ip = daip()
-    local mixed_port = fs.uci_get("config", "mixed_port") or "7893"
+    local mixed_port = fs.uci_get_config("config", "mixed_port") or "7893"
     
     if not proxy_ip then
         result.error = "Unable to get proxy IP"
@@ -3235,7 +3239,7 @@ function action_config_file_list()
     local config_files = {}
     local current_config = ""
     
-    local config_path = fs.uci_get("config", "config_path")
+    local config_path = fs.uci_get_config("config", "config_path")
     if config_path then
         current_config = config_path
     end

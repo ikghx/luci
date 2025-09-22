@@ -1,0 +1,31 @@
+{
+	"admin/services/adguardhome": {
+		"title": "AdGuard Home",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/adguardhome/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-adguardhome" ],
+			"uci": { "adguardhome": true }
+		}
+	},
+
+	"admin/services/adguardhome/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "adguardhome/base"
+		}
+	},
+
+	"admin/services/adguardhome/conf1": {
+		"title": "Basic configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "adguardhome/conf1"
+		}
+	}
+}

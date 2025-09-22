@@ -74,9 +74,9 @@ return view.extend({
 		o = s.option(form.Value, 'log_file', _('Enable log file'), _('Log file path'));
 
 		o = s.option(form.ListValue, 'upstream_mode', _('Upstreams logic mode'));
-		o.value("load_balance", _("Load Balancing"));
-		o.value("parallel", _("Parallel"));
-		o.value("fastest_addr", _("Fastest address"));
+		o.value('load_balance', _('Load Balancing'));
+		o.value('parallel', _('Parallel'));
+		o.value('fastest_addr', _('Fastest address'));
 
 		o = s.option(form.Flag, 'http3', _('Use http3'));
 

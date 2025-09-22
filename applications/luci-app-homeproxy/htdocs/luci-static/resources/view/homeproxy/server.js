@@ -46,7 +46,7 @@ function renderStatus(isRunning, version) {
 function handleGenKey(option) {
 	let section_id = this.section.section;
 	let type = this.section.getOption('type')?.formvalue(section_id);
-	let widget = L.bind(function(option) {
+	let widget = L.bind((option) => {
 		return this.map.findElement('id', 'widget.' + this.cbid(section_id).replace(/\.[^\.]+$/, '.') + option);
 	}, this);
 
@@ -85,10 +85,10 @@ function handleGenKey(option) {
 				break;
 		}
 		/* AEAD */
-		(function(length) {
+		((length) => {
 			if (length && length > 0)
 				password = hp.generateRand('base64', length);
-		}(hp.shadowsocks_encrypt_length[required_method]));
+		})(hp.shadowsocks_encrypt_length[required_method]);
 
 		return widget(option).value = password;
 	}
@@ -110,8 +110,8 @@ return view.extend({
 			_('The modern ImmortalWrt proxy platform for ARM64/AMD64.'));
 
 		s = m.section(form.TypedSection);
-		s.render = function () {
-			poll.add(function () {
+		s.render = function() {
+			poll.add(() => {
 				return L.resolveDefault(getServiceStatus()).then((res) => {
 					let view = document.getElementById('service_status');
 					view.innerHTML = renderStatus(res, features.version);
@@ -711,39 +711,37 @@ return view.extend({
 			o.modalonly = true;
 		}
 
-		if (features.with_reality_server) {
-			o = s.option(form.Flag, 'tls_reality', _('REALITY'));
-			o.depends({'tls': '1', 'tls_acme': '0', 'type': 'vless'});
-			o.depends({'tls': '1', 'tls_acme': null, 'type': 'vless'});
-			o.modalonly = true;
+		o = s.option(form.Flag, 'tls_reality', _('REALITY'));
+		o.depends({'tls': '1', 'tls_acme': '0', 'type': /^(anytls|vless)$/});
+		o.depends({'tls': '1', 'tls_acme': null, 'type': /^(anytls|vless)$/});
+		o.modalonly = true;
 
-			o = s.option(form.Value, 'tls_reality_private_key', _('REALITY private key'));
-			o.depends('tls_reality', '1');
-			o.rmempty = false;
-			o.modalonly = true;
+		o = s.option(form.Value, 'tls_reality_private_key', _('REALITY private key'));
+		o.depends('tls_reality', '1');
+		o.rmempty = false;
+		o.modalonly = true;
 
-			o = s.option(form.DynamicList, 'tls_reality_short_id', _('REALITY short ID'));
-			o.depends('tls_reality', '1');
-			o.rmempty = false;
-			o.modalonly = true;
+		o = s.option(form.DynamicList, 'tls_reality_short_id', _('REALITY short ID'));
+		o.depends('tls_reality', '1');
+		o.rmempty = false;
+		o.modalonly = true;
 
-			o = s.option(form.Value, 'tls_reality_max_time_difference', _('Max time difference'),
-				_('The maximum time difference between the server and the client.'));
-			o.depends('tls_reality', '1');
-			o.modalonly = true;
+		o = s.option(form.Value, 'tls_reality_max_time_difference', _('Max time difference'),
+			_('The maximum time difference between the server and the client.'));
+		o.depends('tls_reality', '1');
+		o.modalonly = true;
 
-			o = s.option(form.Value, 'tls_reality_server_addr', _('Handshake server address'));
-			o.datatype = 'hostname';
-			o.depends('tls_reality', '1');
-			o.rmempty = false;
-			o.modalonly = true;
+		o = s.option(form.Value, 'tls_reality_server_addr', _('Handshake server address'));
+		o.datatype = 'hostname';
+		o.depends('tls_reality', '1');
+		o.rmempty = false;
+		o.modalonly = true;
 
-			o = s.option(form.Value, 'tls_reality_server_port', _('Handshake server port'));
-			o.datatype = 'port';
-			o.depends('tls_reality', '1');
-			o.rmempty = false;
-			o.modalonly = true;
-		}
+		o = s.option(form.Value, 'tls_reality_server_port', _('Handshake server port'));
+		o.datatype = 'port';
+		o.depends('tls_reality', '1');
+		o.rmempty = false;
+		o.modalonly = true;
 
 		o = s.option(form.Value, 'tls_cert_path', _('Certificate path'),
 			_('The server public key, in PEM format.'));
@@ -809,7 +807,7 @@ return view.extend({
 				}),
 				E('button', {
 					class: 'cbi-button cbi-button-add',
-					click: ui.createHandlerFn(this, function() {
+					click: ui.createHandlerFn(this, () => {
 						this.hp_options.params = document.getElementById(cbid).value;
 
 						return handleGenKey.call(this, this.hp_options);

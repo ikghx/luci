@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=25.8.26
+PKG_VERSION:=25.9.19
 PKG_RELEASE:=1
 
 PKG_CONFIG_DEPENDS:= \
@@ -46,7 +46,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Hysteria
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy
 	bool "Include NaiveProxy"
-	depends on !(arc||(arm&&TARGET_gemini)||armeb||mips||mips64||powerpc)
+	depends on !(arc||armeb||loongarch64||mips||mips64||powerpc||TARGET_gemini)
 	select PACKAGE_naiveproxy
 	default n
 
@@ -82,7 +82,6 @@ define Package/$(PKG_NAME)/conffiles
 /usr/share/passwall/rules/lanlist_ipv4
 /usr/share/passwall/rules/lanlist_ipv6
 /usr/share/passwall/rules/domains_excluded
-/www/luci-static/resources/qrcode.min.js
 endef
 
 define Package/$(PKG_NAME)/postrm
