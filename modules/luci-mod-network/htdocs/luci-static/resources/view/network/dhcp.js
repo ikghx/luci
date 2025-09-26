@@ -299,12 +299,8 @@ return view.extend({
 		]);
 	},
 
-	render: function(hosts_duids_pools) {
+	render: function([hosts, duids, pools, networks, macdata]) {
 		var has_dhcpv6 = L.hasSystemFeature('dnsmasq', 'dhcpv6') || L.hasSystemFeature('odhcpd'),
-		    hosts = hosts_duids_pools[0],
-		    duids = hosts_duids_pools[1],
-		    pools = hosts_duids_pools[2],
-		    networks = hosts_duids_pools[3],
 		    m, s, o, ss, so, dnss, tagstab;
 
 		var devices  = Object.keys(L.toArray(hosts_duids_pools[4])[0]);
@@ -497,6 +493,10 @@ return view.extend({
 		o = s.taboption('general', form.Flag, 'sequential_ip',
 			_('Allocate IPs sequentially'),
 			_('Allocate IP addresses sequentially, starting from the lowest available address.'));
+
+		o = s.taboption('general', form.Flag, 'address_as_local',
+			_('Resolve addresses locally'),
+			_('Never send queries for FQDNs in the Address option to an upstream resolver.'));
 
 		o = s.taboption('cache', form.MultiValue, 'cache_rr',
 			_('Cache arbitrary RR'), _('By default, dnsmasq caches A, AAAA, CNAME and SRV DNS record types.') + '<br/>' +

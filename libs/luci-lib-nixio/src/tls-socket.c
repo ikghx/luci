@@ -45,8 +45,13 @@ static SSL* nixio__checktlssock(lua_State *L) {
 	return sock->socket;
 }
 
+#define nixio_tls__check_connected(L) ;
+
+#define nixio_tls__set_connected(L, val) ;
+
 static int nixio_tls_sock_recv(lua_State *L) {
 	SSL *sock = nixio__checktlssock(L);
+	nixio_tls__check_connected(L);
 	uint req = luaL_checkinteger(L, 2);
 
 	luaL_argcheck(L, req >= 0, 2, "out of range");
@@ -67,6 +72,7 @@ static int nixio_tls_sock_recv(lua_State *L) {
 
 static int nixio_tls_sock_send(lua_State *L) {
 	SSL *sock = nixio__checktlssock(L);
+	nixio_tls__check_connected(L);
 	size_t len;
 	ssize_t sent;
 	const char *data = luaL_checklstring(L, 2, &len);
@@ -100,17 +106,20 @@ static int nixio_tls_sock_send(lua_State *L) {
 static int nixio_tls_sock_accept(lua_State *L) {
 	SSL *sock = nixio__checktlssock(L);
 	const int stat = SSL_accept(sock);
+	nixio_tls__set_connected(L, stat == 1);
 	return nixio__tls_sock_pstatus(L, sock, stat);
 }
 
 static int nixio_tls_sock_connect(lua_State *L) {
 	SSL *sock = nixio__checktlssock(L);
 	const int stat = SSL_connect(sock);
+	nixio_tls__set_connected(L, stat == 1);
 	return nixio__tls_sock_pstatus(L, sock, stat);
 }
 
 static int nixio_tls_sock_shutdown(lua_State *L) {
 	SSL *sock = nixio__checktlssock(L);
+	nixio_tls__set_connected(L, 0);
 	return nixio__tls_sock_pstatus(L, sock, SSL_shutdown(sock));
 }
 

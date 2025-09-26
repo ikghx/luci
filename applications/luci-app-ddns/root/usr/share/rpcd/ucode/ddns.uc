@@ -12,6 +12,10 @@ const ddns_log_path = '/var/log/ddns';
 const ddns_package_path = '/usr/share/ddns';
 const ddns_run_path = '/var/run/ddns';
 const luci_helper = '/usr/lib/ddns/dynamic_dns_lucihelper.sh';
+const ddns_version_file = '/usr/share/ddns/version';
+
+
+
 
 function get_dateformat() {
 	return uci.get('ddns', 'global', 'ddns_dateformat') || '%F %R';
@@ -101,7 +105,7 @@ const methods = {
 			uci.foreach('ddns', 'service', function(s) {
 				/* uci.foreach danger zone: if you inadvertently call uci.unload('ddns')
 				anywhere in this foreach loop, you will produce some spectacular undefined behaviour */
-				let ip, lastUpdate, nextUpdate;
+				let ip, lastUpdate, nextUpdate, nextCheck;
 				const section = s['.name'];
 				if (section == '.anonymous')
 					return;
@@ -131,6 +135,7 @@ const methods = {
 				}
 
 				lastUpdate = int(readfile(`${rundir}/${section}.update`) || 0);
+				nextCheck = int(readfile(`${rundir}/${section}.nextcheck`) || 0);
 
 				let pid = int(readfile(`${rundir}/${section}.pid`) || 0);
 
@@ -151,24 +156,23 @@ const methods = {
 					s['check_unit'] || 'minutes'
 				);
 
-				let convertedLastUpdate, timegap;
+				let convertedLastUpdate;
 				if (lastUpdate > 0) {
 					const epoch = time() - _uptime + lastUpdate;
 					convertedLastUpdate = epoch2date(epoch);
-					if (forcedUpdateInterval <= checkInterval) {
-						timegap = checkInterval;
-					} else {
-						timegap = forcedUpdateInterval - checkInterval;
-						while (timegap > checkInterval)
-							timegap = timegap - checkInterval;
-					}
-					nextUpdate = epoch2date(epoch + forcedUpdateInterval + checkInterval - timegap);
+					nextUpdate = epoch2date(epoch + forcedUpdateInterval);
 				}
 
-				if (forcedUpdateInterval === 0) {
-					nextUpdate = 'Run once';
-				} else if (pid > 0 && (lastUpdate + forcedUpdateInterval + checkInterval - timegap - _uptime) <= 0) {
+				let convertedNextCheck;
+				if (nextCheck > 0) {
+					const epoch = time() - _uptime + nextCheck;
+					convertedNextCheck = epoch2date(epoch);
+				}
+
+				if (pid > 0 && (lastUpdate + forcedUpdateInterval - _uptime) <= 0) {
 					nextUpdate = 'Verify';
+				} else if (forcedUpdateInterval === 0) {
+					nextUpdate = 'Run once';
 				} else if (pid == 0 && s['enabled'] == '0') {
 					nextUpdate = 'Disabled';
 				} else if (pid == 0 && s['enabled'] != '0') {
@@ -179,6 +183,7 @@ const methods = {
 					ip: ip ? replace(trim(ip), '\n', '<br/>') : null,
 					last_update: lastUpdate !== 0 ? convertedLastUpdate : null,
 					next_update: nextUpdate || null,
+					next_check : nextCheck !== 0 ? convertedNextCheck : null,
 					pid: pid || null,
 				};
 			});
@@ -190,10 +195,16 @@ const methods = {
 
 	get_ddns_state: {
 		call: function() {
+
 			const services_mtime = stat(ddns_package_path + '/list')?.mtime;
 			let res = {};
+			let ver, control;
 
-			res['_version'] = trimnonewline( popen(`${luci_helper} -V | awk {'print $2'}`, 'r')?.read?.('line') );
+			if (stat(ddns_version_file)?.type == 'file') {
+				ver = readfile(ddns_version_file);
+			}
+
+			res['_version'] = ver;
 			res['_enabled'] = init_enabled('ddns');
 			res['_curr_dateformat'] = epoch2date(time());
 			res['_services_list'] = (services_mtime && epoch2date(services_mtime)) || 'NO_LIST';
