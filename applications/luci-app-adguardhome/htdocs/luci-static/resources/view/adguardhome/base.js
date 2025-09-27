@@ -3,6 +3,7 @@
 'require form';
 'require poll';
 'require rpc';
+'require tools.widgets as widgets';
 
 const callServiceList = rpc.declare({
 	object: 'service',
@@ -65,13 +66,13 @@ return view.extend({
 
 		o = s.option(widgets.UserSelect, 'user', _('Run daemon as user'));
 
-		o = s.option(form.Value, 'pid_file', _('PID file'));
+		o = s.option(form.Value, 'pidfile', _('PID file'));
 		o.value('/run/adguardhome.pid');
 
-		o = s.option(form.Value, 'config_file', _('Config file'));
+		o = s.option(form.Value, 'config', _('Config file'));
 		o.value('/etc/adguardhome/adguardhome.yaml');
 
-		o = s.option(form.Value, 'work_dir', _('Work dir'));
+		o = s.option(form.Value, 'workdir', _('Work dir'));
 		o.value('/var/lib/adguardhome');
 
 		o = s.option(form.DynamicList, 'jail_mount', _('read-only mount'), _('Files and directories that AdGuard Home has read-only access to'));

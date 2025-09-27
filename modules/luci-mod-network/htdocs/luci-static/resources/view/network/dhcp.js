@@ -303,9 +303,6 @@ return view.extend({
 		var has_dhcpv6 = L.hasSystemFeature('dnsmasq', 'dhcpv6') || L.hasSystemFeature('odhcpd'),
 		    m, s, o, ss, so, dnss, tagstab;
 
-		var devices  = Object.keys(L.toArray(hosts_duids_pools[4])[0]);
-		var services = Object.keys(L.toArray(hosts_duids_pools[5])[0]);
-
 		let noi18nstrings = {
 			etc_hosts: '<code>/etc/hosts</code>',
 			etc_ethers: '<code>/etc/ethers</code>',
@@ -1534,17 +1531,6 @@ return view.extend({
 		so.rmempty = false;
 		so.optional = false;
 		so.placeholder = 'specialgateways';
-		so.validate = function(section, value) {
-			for (var i = 0, l = devices.length; i < l; i++) {
-				if (devices[i] == value)
-					return _('Tag name %s must not match any active device name').format(value);
-			}
-			for (var i = 0, l = services.length; i < l; i++) {
-				if (services[i] == value)
-					return _('Tag name %s must not match any service name').format(value);
-			}
-			return true;
-		};
 
 		so = ss.option(form.Flag, 'force',
 			_('Force'),
