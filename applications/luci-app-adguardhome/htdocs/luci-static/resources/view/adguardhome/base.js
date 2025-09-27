@@ -73,7 +73,7 @@ return view.extend({
 		o.value('/etc/adguardhome/adguardhome.yaml');
 
 		o = s.option(form.Value, 'workdir', _('Work dir'));
-		o.value('/var/lib/adguardhome');
+		o.value('/etc/adguardhome');
 
 		o = s.option(form.DynamicList, 'jail_mount', _('read-only mount'), _('Files and directories that AdGuard Home has read-only access to'));
 		o.value('/etc/ssl/adguardhome.crt');
