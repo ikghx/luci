@@ -219,7 +219,7 @@ o.datatype = "ipmask"
 o.description = translate("In The Fake-IP Mode, Only Pure IP Requests Are Supported")
 
 s2 = m:section(TypedSection, "lan_ac_traffic", translate("Lan Traffic Access List"),
-	"1."..translate("The Traffic From The Local Specified Port Will Not Pass The Core, Try To Set When The Bypass Gateway Forwarding Fails").."; ".."2."..translate("In The Fake-IP Mode, Only Pure IP Requests Are Supported"))
+	"1. "..translate("The Traffic From The Local Specified Port Will Not Pass The Core, Try To Set When The Bypass Gateway Forwarding Fails").."; ".."2. "..translate("In The Fake-IP Mode, Only Pure IP Requests Are Supported, Please Setting Fake-IP-Filter First If You Need Domain Type Requests"))
 
 s2.template  = "cbi/tblsection"
 s2.sortable  = true
@@ -267,6 +267,20 @@ o:value("ipv6", translate("IPv6"))
 o:value("both", translate("Both"))
 o.default = "tcp"
 o.rmempty = false
+
+o = s2:option(Value, "dscp", translate("DSCP"))
+o.datatype = "range(0,63)"
+o.rmempty = true
+function o.validate(self, value)
+    if value == "" or value == nil then
+        return value
+    end
+    local num = tonumber(value)
+    if not num or num < 0 or num > 63 then
+        return nil, "DSCP must be between 0 and 63"
+    end
+    return value
+end
 
 o = s2:option(ListValue, "target", translate("Target"))
 o:value("return", translate("RETURN"))
