@@ -170,7 +170,13 @@ function gen_outbound(flag, node, tag, proxy_table)
 					header = {
 						type = node.tcp_guise,
 						request = (node.tcp_guise == "http") and {
-							path = node.tcp_guise_http_path or {"/"},
+							path = node.tcp_guise_http_path and (function()
+									local t, r = node.tcp_guise_http_path, {}
+									for _, v in ipairs(t) do
+										r[#r + 1] = (v == "" and "/" or v)
+									end
+									return r
+								end)() or {"/"},
 							headers = {
 								Host = node.tcp_guise_http_host or {}
 							}
@@ -216,7 +222,7 @@ function gen_outbound(flag, node, tag, proxy_table)
 					host = node.xhttp_host,
 					-- 如果包含 "extra" 节，取 "extra" 内的内容，否则直接赋值给 extra
 					extra = node.xhttp_extra and (function()
-						local success, parsed = pcall(jsonc.parse, node.xhttp_extra)
+							local success, parsed = pcall(jsonc.parse, node.xhttp_extra)
 							if success then
 								return parsed.extra or parsed
 							else
@@ -235,9 +241,12 @@ function gen_outbound(flag, node, tag, proxy_table)
 								id = node.uuid,
 								level = 0,
 								security = (node.protocol == "vmess") and node.security or nil,
-								encryption = node.encryption or "none",
-								flow = (node.protocol == "vless" and node.tls == "1" and (node.transport == "raw" or node.transport == "tcp" or node.transport == "xhttp") and node.flow and node.flow ~= "") and node.flow or nil
-
+								encryption = (node.encryption and node.encryption ~= "") and node.encryption or "none",
+								flow = (node.protocol == "vless"
+									and (node.tls == "1" or (node.encryption and node.encryption ~= "" and node.encryption ~= "none"))
+									and (node.transport == "raw" or node.transport == "tcp" or node.transport == "xhttp")
+									and node.flow and node.flow ~= ""
+								) and node.flow or nil
 							}
 						}
 					}
@@ -463,7 +472,13 @@ function gen_config_server(node)
 						header = {
 							type = node.tcp_guise,
 							request = (node.tcp_guise == "http") and {
-								path = node.tcp_guise_http_path or {"/"},
+								path = node.tcp_guise_http_path and (function()
+										local t, r = node.tcp_guise_http_path, {}
+										for _, v in ipairs(t) do
+											r[#r + 1] = (v == "" and "/" or v)
+										end
+										return r
+									end)() or {"/"},
 								headers = {
 									Host = node.tcp_guise_http_host or {}
 								}

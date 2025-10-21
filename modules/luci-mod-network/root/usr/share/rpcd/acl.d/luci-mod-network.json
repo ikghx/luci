@@ -36,6 +36,19 @@
 		}
 	},
 
+	"luci-mod-network-dns": {
+		"description": "Grant access to DNS configuration",
+		"read": {
+			"ubus": {
+				"luci-rpc": [ "getHostHints" ]
+			},
+			"uci": [ "dhcp" ]
+		},
+		"write": {
+			"uci": [ "dhcp" ]
+		}
+	},
+
 	"luci-mod-network-dhcp": {
 		"description": "Grant access to DHCP configuration",
 		"read": {
@@ -43,9 +56,8 @@
 				"/etc/dnsmasq.conf": [ "read" ]
 			},
 			"ubus": {
-				"luci-rpc": [ "getDHCPLeases", "getDUIDHints", "getHostHints", "getNetworkDevices" ],
-				"service": [ "list" ],
-				"file": [ "read" ]
+				"luci-rpc": [ "getDHCPLeases", "getDUIDHints", "getHostHints" ],
+				"fingerprint": [ "fingerprint" ]
 			},
 			"uci": [ "dhcp" ]
 		},
@@ -53,9 +65,6 @@
 			"file": {
 				"/etc/dnsmasq.conf": [ "write" ],
 				"/etc/init.d/dnsmasq": [ "exec" ]
-			},
-			"ubus": {
-				"file": [ "write" ]
 			},
 			"uci": [ "dhcp" ]
 		}
