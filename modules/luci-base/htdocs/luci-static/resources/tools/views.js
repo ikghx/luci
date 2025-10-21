@@ -72,12 +72,13 @@ var CBILogreadBox = function(logtag, name) {
 		async retrieveLog() {
 			try {
 				const tz = uci.get('system', '@system[0]', 'zonename')?.replaceAll(' ', '_');
-				const hc = uci.get('system', '@system[0]', 'clock_hourcycle') || 'h23';
+				const ts = uci.get('system', '@system[0]', 'clock_timestyle') || 0;
+				const hc = uci.get('system', '@system[0]', 'clock_hourcycle') || 0;
 				const logEntries = await callLogRead(this.fetchMaxRows, false, true);
 				const dateObj = new Intl.DateTimeFormat(undefined, {
 						dateStyle: 'medium',
-						timeStyle: 'long',
-						hourCycle: hc,
+						timeStyle: (ts == 0) ? 'long' : 'full',
+						hourCycle: (hc == 0) ? undefined : hc,
 						timeZone: tz
 				});
 

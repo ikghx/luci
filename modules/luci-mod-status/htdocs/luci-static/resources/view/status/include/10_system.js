@@ -70,7 +70,7 @@ return baseclass.extend({
 		    cpuusage    = data[4],
 		    tempinfo    = data[5],
 		    luciversion = data[6],
-        unixtime    = data[7];
+		    unixtime    = data[7];
 
 		luciversion = luciversion.branch + ' ' + luciversion.revision;
 
@@ -79,13 +79,13 @@ return baseclass.extend({
 		if (unixtime) {
 			var date = new Date(unixtime * 1000),
 				zn = uci.get('system', '@system[0]', 'zonename')?.replaceAll(' ', '_') || 'UTC',
-				ts = uci.get('system', '@system[0]', 'clock_timestyle'),
-				hc = uci.get('system', '@system[0]', 'clock_hourcycle');
+				ts = uci.get('system', '@system[0]', 'clock_timestyle') || 0,
+				hc = uci.get('system', '@system[0]', 'clock_hourcycle') || 0;
 
 			datestr = new Intl.DateTimeFormat(undefined, {
 				dateStyle: 'medium',
 				timeStyle: (ts == 0) ? 'long' : 'full',
-				hourCycle: hc,
+				hourCycle: (hc == 0) ? undefined : hc,
 				timeZone: zn
 			}).format(date);
 		}
