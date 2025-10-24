@@ -164,9 +164,6 @@ return view.extend({
 		o.depends('enabled_protocols', 'all');
 		o.retain = true;
 
-		s.taboption('setup', form.Flag, 'force', _('Allow private IPv4'),
-			_('Allow private IP address on external interface.')).default = '0';
-
 		o = s.taboption('advanced', form.RichListValue, 'allow_cgnat_use', _('Allow %s/%s', 'Allow %s/%s (%s = CGNATs, %s = STUN)')
 			.format('<a href="https://en.wikipedia.org/wiki/Carrier-grade_NAT" target="_blank" rel="noreferrer"><abbr title="Carrier-Grade NAT">CGNATs</abbr></a>',
 				'<a href="https://en.wikipedia.org/wiki/STUN" target="_blank" rel="noreferrer"><abbr title="Session Traversal Utilities for NAT">STUN</abbr></a>'),

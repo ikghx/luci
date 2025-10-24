@@ -686,7 +686,7 @@ return view.extend({
 			_('DNS Forwards'),
 			_('Forward specific domain queries to specific upstream servers.'));
 		o.optional = true;
-		o.placeholder = '/*.example.org/10.1.2.3';
+		o.placeholder = '192.168.9.1#5335';
 		o.validate = validateServerSpec;
 
 		o = s.taboption('forward', form.Value, 'serversfile',
@@ -696,12 +696,13 @@ return view.extend({
 		o.placeholder = '/etc/dnsmasq.servers';
 
 		o = s.taboption('forward', form.Value, 'addmac',
-			_('Add requestor MAC'),
+			_('Add MAC address'),
 			_('Add the MAC address of the requestor to DNS queries which are forwarded upstream.') + ' ' + '<br />' +
 			_('%s uses the default MAC address format encoding').format('<code>enabled</code>') + ' ' + '<br />' +
 			_('%s uses an alternative encoding of the MAC as base64').format('<code>base64</code>') + ' ' + '<br />' +
 			_('%s uses a human-readable encoding of hex-and-colons').format('<code>text</code>'));
 		o.optional = true;
+		o.depends('stripmac', '0');
 		o.value('', _('off'));
 		o.value('1', _('enabled (default)'));
 		o.value('base64');
@@ -721,6 +722,8 @@ return view.extend({
 			_('%s adds 1.2.3.0/24 for IPv4 requestors and ::/0 for IPv6 requestors.').format('<code>1.2.3.4/24</code>') + ' ' + '<br />' +
 			_('%s adds 1.2.3.0/24 for both IPv4 and IPv6 requestors.').format('<code>1.2.3.4/24,1.2.3.4/24</code>'));
 		o.optional = true;
+		o.depends('stripsubnet', '0');
+		o.placeholder = '32,128 or 192.168.9.0/24';
 
 		s.taboption('forward', form.Flag, 'stripsubnet',
 			_('Remove subnet address'),
@@ -740,6 +743,7 @@ return view.extend({
 			_('Maximum allowed number of concurrent DNS queries.'));
 		o.optional = true;
 		o.datatype = 'uinteger';
+		o.datatype = 'range(0,65535)';
 		o.placeholder = 150;
 
 		o = s.taboption('limits', form.Value, 'cachesize',
@@ -754,12 +758,14 @@ return view.extend({
 			_('Extend short TTL values to the seconds value given when caching them. Use with caution.') +
 			_(' (Max 1h == 3600)'));
 		o.optional = true;
+		o.datatype = 'range(0,3600)';
 		o.placeholder = 60;
 
 		o = s.taboption('limits', form.Value, 'max_cache_ttl',
 			_('Max cache TTL'),
 			_('Set a maximum seconds TTL value for entries in the cache.'));
 		o.optional = true;
+		o.datatype = 'range(0,3600)';
 		o.placeholder = 3600;
 
 		o = s.taboption('limits', form.Value, 'max_ttl',
