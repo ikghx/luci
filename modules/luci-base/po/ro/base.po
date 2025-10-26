@@ -1016,8 +1016,8 @@ msgstr "Adăugați configurația dispozitivului…"
 msgid "Add instance"
 msgstr "Adăugați o instanță"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:156
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:222
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:195
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:262
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:171
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:177
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:274
@@ -3482,11 +3482,11 @@ msgstr ""
 msgid "Each STA is assigned its own AP_VLAN interface."
 msgstr "Fiecărui STA i se atribuie propria interfață AP_VLAN."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:235
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:275
 msgid "Each key is stored as a file in <code>%s</code>."
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:233
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:273
 msgid ""
 "Each software repository public key (from official or third party "
 "repositories) allows packages in lists signed by it to be installed by the "
@@ -4213,6 +4213,11 @@ msgstr "Nu s-a reușit deconectarea"
 msgid "Failed to execute \"/etc/init.d/%s %s\" action: %s"
 msgstr "Nu a reușit să execute acțiunea \"/etc/init.d/%s %s\": %s"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:149
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:173
+msgid "Failed to fetch key"
+msgstr ""
+
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:25
 msgid "Failed to get modem information"
 msgstr "Nu a reușit să obțină informații despre modem"
@@ -4239,6 +4244,18 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1678
 msgid "Fast transition method"
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:165
+msgid "Fetched content seems empty or too short."
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:158
+msgid "Fetched content seems too long. Maximum 8192 bytes."
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:145
+msgid "Fetching key from URL…"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3032
@@ -4902,6 +4919,10 @@ msgstr "Parola HE.net"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:73
 msgid "HE.net username"
 msgstr "HE.net nume de utilizator HE.net"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:150
+msgid "HTTP error %d"
+msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/uhttpd.js:9
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:64
@@ -6021,8 +6042,12 @@ msgstr "Valoare hexazecimală invalidă"
 msgid "Invalid hostname or IPv4 address"
 msgstr "Nume de gazdă sau adresă IPv4 invalidă"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:145
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:184
 msgid "Invalid key format"
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:164
+msgid "Invalid or empty key file"
 msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:136
@@ -6147,6 +6172,10 @@ msgstr "Versiunea Kernel-ului"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1636
 msgid "Key #%d"
 msgstr "Cheia #%d"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:157
+msgid "Key file too large"
+msgstr ""
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:92
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:97
@@ -8727,6 +8756,12 @@ msgstr "Puterea parolei"
 msgid "Password2"
 msgstr "Parola2"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:254
+msgid ""
+"Paste content of a file, or a URL to a key file, or drag and drop here to "
+"upload a software repository public key…"
+msgstr ""
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:266
 msgid "Paste or drag SSH key file…"
 msgstr "Lipiți sau trageți fișierul cu cheia SSH…"
@@ -8746,17 +8781,13 @@ msgstr ""
 "care să permită sistemului respectiv să se conecteze la interfața WireGuard "
 "locală."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:211
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:250
 msgid "Paste or drag repository public key"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:432
 msgid "Paste or drag supplied WireGuard configuration file…"
 msgstr "Lipiți sau trageți fișierul de configurare WireGuard furnizat…"
-
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:214
-msgid "Paste or drag to upload a software repository public key…"
-msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:675
 msgid "Path to a script to run each time the lease file changes."
@@ -9641,7 +9672,7 @@ msgstr ""
 msgid "Repo Public Keys"
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:231
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:271
 msgid "Repository Public Keys"
 msgstr ""
 
@@ -11575,7 +11606,7 @@ msgstr ""
 "Cheia publică SSH furnizată nu este valabilă. Vă rugăm să furnizați chei "
 "publice RSA sau ECDSA corespunzătoare."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:157
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:196
 msgid "The given software repository public key is already present."
 msgstr ""
 

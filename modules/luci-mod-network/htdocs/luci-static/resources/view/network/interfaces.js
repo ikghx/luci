@@ -692,8 +692,8 @@ return view.extend({
 											uci.set('dhcp', section_id, 'start', 1);
 											uci.set('dhcp', section_id, 'limit', 254);
 											uci.set('dhcp', section_id, 'leasetime', '12h');
-										}
-										else {
+											uci.set('dhcp', section_id, 'dhcpv4', 'server');
+										} else {
 											uci.set('dhcp', section_id, 'ignore', 1);
 										}
 									});

@@ -1020,8 +1020,8 @@ msgstr "添加设备配置…"
 msgid "Add instance"
 msgstr "添加实例"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:156
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:222
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:195
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:262
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:171
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:177
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:274
@@ -3471,11 +3471,11 @@ msgstr "EAP 类型"
 msgid "Each STA is assigned its own AP_VLAN interface."
 msgstr "每个 STA 被分配了自己的 AP_VLAN 接口。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:235
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:275
 msgid "Each key is stored as a file in <code>%s</code>."
 msgstr "每个密钥都作为文件存储在 <code>%s</code> 中。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:233
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:273
 msgid ""
 "Each software repository public key (from official or third party "
 "repositories) allows packages in lists signed by it to be installed by the "
@@ -4205,6 +4205,11 @@ msgstr "断开连接失败"
 msgid "Failed to execute \"/etc/init.d/%s %s\" action: %s"
 msgstr "执行“/etc/init.d/%s %s”失败：%s"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:149
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:173
+msgid "Failed to fetch key"
+msgstr "无法获取密钥"
+
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:25
 msgid "Failed to get modem information"
 msgstr "获取调制解调器信息失败"
@@ -4232,6 +4237,18 @@ msgstr "快速 DNS 重试"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1678
 msgid "Fast transition method"
 msgstr "快速过渡方式"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:165
+msgid "Fetched content seems empty or too short."
+msgstr "获取的内容似乎为空或太短。"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:158
+msgid "Fetched content seems too long. Maximum 8192 bytes."
+msgstr "获取的内容似乎太长。最大长度为 8192 字节。"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:145
+msgid "Fetching key from URL…"
+msgstr "正在从 URL 获取密钥..."
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3032
 msgid "File"
@@ -4884,6 +4901,10 @@ msgstr "HE.net 密码"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:73
 msgid "HE.net username"
 msgstr "HE.net 用户名"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:150
+msgid "HTTP error %d"
+msgstr "HTTP 错误 %d"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/uhttpd.js:9
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:64
@@ -5990,9 +6011,13 @@ msgstr "无效 16 进制值"
 msgid "Invalid hostname or IPv4 address"
 msgstr "无效的主机名或 IPv4 地址"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:145
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:184
 msgid "Invalid key format"
 msgstr "密钥格式无效"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:164
+msgid "Invalid or empty key file"
+msgstr "密钥文件无效或为空"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:136
 msgid "Invalid port"
@@ -6115,6 +6140,10 @@ msgstr "内核版本"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1636
 msgid "Key #%d"
 msgstr "密钥 #%d"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:157
+msgid "Key file too large"
+msgstr "密钥文件太大"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:92
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:97
@@ -8693,6 +8722,12 @@ msgstr "密码强度"
 msgid "Password2"
 msgstr "密码 2"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:254
+msgid ""
+"Paste content of a file, or a URL to a key file, or drag and drop here to "
+"upload a software repository public key…"
+msgstr "粘贴文件内容或密钥文件的 URL，或拖放至此处以上传软件存储库公钥……"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:266
 msgid "Paste or drag SSH key file…"
 msgstr "粘贴或拖动 SSH 密钥文件……"
@@ -8710,17 +8745,13 @@ msgstr ""
 "将来自另一个系统的 WireGuard 配置（通常是 <em>wg0.conf</em>）粘贴或拖动到下方"
 "创建一个匹配的对端条目，其允许该系统连接到本地 WireGuard 接口。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:211
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:250
 msgid "Paste or drag repository public key"
 msgstr "粘贴或拖动存储库公钥"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:432
 msgid "Paste or drag supplied WireGuard configuration file…"
 msgstr "粘贴或拖动提供的 WireGuard 配置文件…"
-
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:214
-msgid "Paste or drag to upload a software repository public key…"
-msgstr "粘贴或拖动以上传软件存储库公钥..."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:675
 msgid "Path to a script to run each time the lease file changes."
@@ -9598,7 +9629,7 @@ msgstr "在 VXLAN FDB 中找到映射时响应邻居请求"
 msgid "Repo Public Keys"
 msgstr "存储库公钥"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:231
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:271
 msgid "Repository Public Keys"
 msgstr "存储库公钥"
 
@@ -11458,7 +11489,7 @@ msgid ""
 "ED25519 or ECDSA keys."
 msgstr "给定的 SSH 公钥无效。请提供适当的公共 RSA 或 ECDSA 密钥。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:157
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:196
 msgid "The given software repository public key is already present."
 msgstr "给定的软件存储库公钥已经存在。"
 

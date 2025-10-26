@@ -999,8 +999,8 @@ msgstr "新增裝置設定…"
 msgid "Add instance"
 msgstr "新增實體"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:156
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:222
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:195
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:262
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:171
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:177
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:274
@@ -3418,11 +3418,11 @@ msgstr ""
 msgid "Each STA is assigned its own AP_VLAN interface."
 msgstr "每個 STA 都分配有其自己的AP_VLAN介面。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:235
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:275
 msgid "Each key is stored as a file in <code>%s</code>."
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:233
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:273
 msgid ""
 "Each software repository public key (from official or third party "
 "repositories) allows packages in lists signed by it to be installed by the "
@@ -4138,6 +4138,11 @@ msgstr "中斷連線失敗"
 msgid "Failed to execute \"/etc/init.d/%s %s\" action: %s"
 msgstr "執行失敗 \"/etc/init.d/%s %s\" 動作: %s"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:149
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:173
+msgid "Failed to fetch key"
+msgstr ""
+
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:25
 msgid "Failed to get modem information"
 msgstr "取得數據機資訊失敗"
@@ -4164,6 +4169,18 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1678
 msgid "Fast transition method"
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:165
+msgid "Fetched content seems empty or too short."
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:158
+msgid "Fetched content seems too long. Maximum 8192 bytes."
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:145
+msgid "Fetching key from URL…"
 msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3032
@@ -4815,6 +4832,10 @@ msgstr "HE.net密碼"
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:73
 msgid "HE.net username"
 msgstr "HE.net使用者名稱"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:150
+msgid "HTTP error %d"
+msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/uhttpd.js:9
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:64
@@ -5920,8 +5941,12 @@ msgstr "錯誤的十六進位數值"
 msgid "Invalid hostname or IPv4 address"
 msgstr "無效的主機名或IPv4位址"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:145
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:184
 msgid "Invalid key format"
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:164
+msgid "Invalid or empty key file"
 msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:136
@@ -6045,6 +6070,10 @@ msgstr "核心版本"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1636
 msgid "Key #%d"
 msgstr "金鑰 #%d"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:157
+msgid "Key file too large"
+msgstr ""
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:92
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:97
@@ -8591,6 +8620,12 @@ msgstr "密碼強度"
 msgid "Password2"
 msgstr "密碼2"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:254
+msgid ""
+"Paste content of a file, or a URL to a key file, or drag and drop here to "
+"upload a software repository public key…"
+msgstr ""
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:266
 msgid "Paste or drag SSH key file…"
 msgstr "貼上或拖曳 SSH 金鑰至此…"
@@ -8608,17 +8643,13 @@ msgstr ""
 "從下面的另一個系統中貼上或拖曳 WireGuard 設定(通常為 <em>wg0.conf</em>)，以建"
 "立相符的對等項目，允許該系統連接到本地 WireGuard 介面。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:211
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:250
 msgid "Paste or drag repository public key"
 msgstr ""
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:432
 msgid "Paste or drag supplied WireGuard configuration file…"
 msgstr "貼上或拖動提供的 WireGuard 設定檔…"
-
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:214
-msgid "Paste or drag to upload a software repository public key…"
-msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:675
 msgid "Path to a script to run each time the lease file changes."
@@ -9490,7 +9521,7 @@ msgstr "在VXLAN FDB中找到映射時應答鄰居請求"
 msgid "Repo Public Keys"
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:231
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:271
 msgid "Repository Public Keys"
 msgstr ""
 
@@ -11331,7 +11362,7 @@ msgid ""
 "ED25519 or ECDSA keys."
 msgstr "輸入的 SSH 公鑰無效。請提供正確的 RSA 公鑰或 ECDSA Keys。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:157
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/repokeys.js:196
 msgid "The given software repository public key is already present."
 msgstr ""
 
