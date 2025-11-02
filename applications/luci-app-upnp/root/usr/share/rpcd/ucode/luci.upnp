@@ -25,9 +25,9 @@ const methods = {
 					if (length(record) == 6) {
 						let desc = trim(record[5]);
 						let m = match(desc, /^PCP.*([0-9a-f]{24})$/);
-						if (m) desc='PCP (nonce ' + m[1] + ')';
-						else if (match(desc, /^NAT-PMP/)) desc='NAT-PMP';
-						else if (!match(desc, /^UPnP IGD/)) desc='UPnP IGD / ' + desc;
+						if (m) desc = 'PCP (nonce ' + m[1] + ')';
+						else if (match(desc, /^NAT-PMP/)) desc = 'NAT-PMP';
+						else if (!match(desc, /^UPnP IGD/)) desc = 'UPnP IGD / ' + desc;
 						push(leases, {
 							proto: uc(record[0]),
 							extport: +record[1],
@@ -84,8 +84,7 @@ const methods = {
 						if (lease.proto == rule.proto &&
 							lease.intaddr == rule.intaddr &&
 							lease.intport == rule.intport &&
-							lease.extport == rule.extport)
-						{
+							lease.extport == rule.extport) {
 							rule.descr = lease.description;
 							rule.expires = lease.expires;
 							break;

@@ -7,14 +7,14 @@
 const callUpnpGetStatus = rpc.declare({
 	object: 'luci.upnp',
 	method: 'get_status',
-	expect: {  }
+	expect: {}
 });
 
 const callUpnpDeleteRule = rpc.declare({
 	object: 'luci.upnp',
 	method: 'delete_rule',
-	params: [ 'token' ],
-	expect: { result : "OK" },
+	params: ['token'],
+	expect: { result: "OK" },
 });
 
 function handleDelRule(num, ev) {
@@ -74,7 +74,7 @@ return baseclass.extend({
 					'class': 'btn cbi-button-remove',
 					'click': L.bind(handleDelRule, this, rule.num),
 					'title': _('Delete')
-				}, [ _('Delete') ])
+				}, [_('Delete')])
 			];
 		});
 

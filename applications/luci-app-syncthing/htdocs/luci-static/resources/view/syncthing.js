@@ -88,7 +88,7 @@ return view.extend({
 		o.default = '0';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'macprocs', _('Concurrent threads'), _('0 to match the number of CPUs (default)'));
+		o = s.option(form.Value, 'maxprocs', _('Concurrent threads'), _('0 to match the number of CPUs (default)'));
 		o.default = '0';
 		o.rmempty = false;
 

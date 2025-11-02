@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=25.9.23
+PKG_VERSION:=25.11.1
 PKG_RELEASE:=1
 
 PKG_CONFIG_DEPENDS:= \
@@ -21,7 +21,7 @@ PKG_CONFIG_DEPENDS:= \
 LUCI_TITLE:=LuCI support for PassWall
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
-	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
+	+dns2socks +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
 	+microsocks +resolveip +tcping +ipt2socks +nftables \
 	+kmod-nft-socket +kmod-nft-tproxy +kmod-nft-nat
 
