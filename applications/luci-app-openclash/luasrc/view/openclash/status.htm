@@ -542,7 +542,8 @@
     width: 100%;
     height: var(--control-height);
     padding: 5px 12px;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-light) !important;
+    background-color: var(--bg-white) !important;
     border-radius: var(--radius-sm);
     background: var(--bg-white);
     color: var(--text-primary);
@@ -713,7 +714,7 @@
 }
 
 .oc .dashboard-btn {
-    font-size: 11px !important;
+    font-size: 12px !important;
     font-weight: 500 !important;
     color: white !important;
     cursor: pointer !important;
@@ -1200,6 +1201,10 @@
     transform: scaleX(-1);
 }
 
+.oc .hidden {
+    display: none !important;
+}
+
 @media screen and (max-width: 1200px) {
     .oc .main-cards-container {
         grid-template-columns: 1fr;
@@ -1449,7 +1454,7 @@
     }
 
     .oc .dashboard-btn {
-        font-size: 8px !important;
+        font-size: 9px !important;
         height: 25px !important;
     }
 
@@ -2091,7 +2096,6 @@
         },
         
         batchUpdateDOM: function(updates) {
-            var fragment = document.createDocumentFragment();
             for (var i = 0; i < updates.length; i++) {
                 var update = updates[i];
                 if (update.element && update.content !== undefined) {
@@ -3090,7 +3094,7 @@
     var LogManager = {
         isPolling: false,
         pollTimer: null,
-        maxPollTime: 15000,
+        maxPollTime: 60000,
         pollInterval: 1000,
         startTime: 0,
         lastLogContent: '',
@@ -3678,7 +3682,7 @@
 			get_run_mode();
             get_rule_mode();
             get_oc_settings();
-            
+
             var webContent = status.clash ? '<input type="button" class="dashboard-btn" value="<%:Yacd%>" onclick="return ycad_dashboard(this)"/>' : '<input type="button" class="dashboard-btn" value="<%:Yacd%>" onclick="event.preventDefault(); event.stopPropagation(); return false;"/>';
             updates.push({element: DOMCache.web, content: webContent});
 
@@ -3698,13 +3702,21 @@
             var reloadFwContent = status.clash ? '<input type="button" class="dashboard-btn" value="<%:Reload Firewall%>" onclick="return b_reload_firewall(this)"/>' : '<input type="button" class="dashboard-btn" value="<%:Reload Firewall%>" onclick="event.preventDefault(); event.stopPropagation(); return false;"/>';
             updates.push({element: document.getElementById('_reload_firewall_btn'), content: reloadFwContent});
 
-            var flushCacheContent = status.clash ? '<input type="button" class="dashboard-btn" value="<%:Flush DNS Cache%>" onclick="return b_flush_dns_cache(this)"/>' : '<input type="button" class="dashboard-btn" value="<%:Flush DNS Cache%>" onclick="event.preventDefault(); event.stopPropagation(); return false;"/>';
+            var flushCacheContent = status.clash ? '<input type="button" class="dashboard-btn" value="<%:Flush DNS%>" onclick="return b_flush_dns_cache(this)"/>' : '<input type="button" class="dashboard-btn" value="<%:Flush DNS Cache%>" onclick="event.preventDefault(); event.stopPropagation(); return false;"/>';
             updates.push({element: document.getElementById('_flush_dns_cache_btn'), content: flushCacheContent});
 
             var oneKeyUpdateContent = '<input type="button" class="dashboard-btn" value="<%:Check Update%>" onclick="return all_one_key_update(this)"/>';
             updates.push({element: document.getElementById('_one_key_update_btn'), content: oneKeyUpdateContent});
 
             StateManager.batchUpdateDOM(updates);
+
+            if (!status.yacd) {
+                DOMCache.web.classList.add('hidden');
+            }
+
+            if (!status.dashboard) {
+                DOMCache.webo.classList.add('hidden');
+            }
 
             StateManager.current_status = status;
             
