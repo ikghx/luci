@@ -700,6 +700,20 @@ return view.extend({
 		);
 		o.placeholder = '/etc/dnsmasq.servers';
 
+		s.taboption('forward', form.Flag, 'fast_dns_retry',
+			_('Fast DNS retry'),
+			_('Have dnsmasq actively issue round-robin DNS queries to the upstream DNS.'));
+
+		o = s.taboption('forward', form.Value, 'fast_dns_retry_params',
+			_('Fast retry time setting'),
+			_('Set initial retry dalay and time to continue retries in milliseconds') + '<br />' +
+			_('Syntax:') + ' ' + '&lt;initial retry dalay&gt;[,&lt;time to continue retries&gt;]' + '<br />' +
+			_('Examples:') + ' ' + '<code>500</code>' + ' / ' + '<code>500,5000</code>' + '<br />' +
+			_('Default values:') + ' ' + '<code>1000,10000</code>'
+			);
+		o.optional = true;
+		o.depends('fast_dns_retry', '1');
+
 		o = s.taboption('forward', form.Value, 'addmac',
 			_('Add MAC address'),
 			_('Add the MAC address of the requestor to DNS queries which are forwarded upstream.') + ' ' + '<br />' +
@@ -787,18 +801,16 @@ return view.extend({
 		o.datatype = 'range(0,3600)';
 		o.placeholder = 600;
 
-		o = s.taboption('limits', form.Value, 'use_stale_cache',
+		o = s.taboption('limits', form.Flag, 'use_stale_cache',
 			_('use stale cache (TTL)'),
 			_('if a DNS name exists in the cache, but its time-to-live has expired, dnsmasq will return the data anyway.'));
-		o.optional = true;
-		o.datatype = 'range(0,3600)';
-		o.placeholder = 600;
 
-		o = s.taboption('limits', form.Value, 'fast_dns_retry',
-			_('Fast DNS retry'),
-			_('Have dnsmasq actively issue round-robin DNS queries to the upstream DNS.(Unit: ms)'));
+		o = s.taboption('cache', form.Value, 'stale_cache_params',
+			_('Maximum expiration time'),
+			_('The maximum overaging of cached records in seconds, default to not serve anything older than one day. Setting to zero will serve stale cache data regardless how long it has expired.'));
 		o.optional = true;
-		o.placeholder = 1000;
+		o.placeholder = 86400;
+		o.depends('use_stale_cache', '1');
 		// End limits
 
 		// Being logging

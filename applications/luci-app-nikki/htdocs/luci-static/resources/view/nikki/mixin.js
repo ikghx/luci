@@ -249,6 +249,10 @@ return view.extend({
         o.datatype = 'cidr4';
         o.placeholder = _('Unmodified');
 
+        o = s.taboption('dns', form.Value, 'fake_ip6_range', _('Fake-IP6 Range'));
+        o.datatype = 'cidr6';
+        o.placeholder = _('Unmodified');
+
         o = s.taboption('dns', form.Flag, 'fake_ip_filter', _('Overwrite Fake-IP Filter'));
         o.rmempty = false;
 
@@ -526,6 +530,7 @@ return view.extend({
         so = o.subsection.option(form.Flag, 'no_resolve', _('No Resolve'));
         so.rmempty = false;
         so.depends('type', /IP-CIDR6?/i);
+        so.depends('type', /IP-ASN/i);
         so.depends('type', /GEOIP/i);
 
         s.tab('geox', _('GeoX Config'));

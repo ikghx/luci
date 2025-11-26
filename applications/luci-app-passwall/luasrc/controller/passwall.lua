@@ -77,15 +77,19 @@ function index()
 	entry({"admin", "vpn", appname, "connect_status"}, call("connect_status")).leaf = true
 	entry({"admin", "vpn", appname, "ping_node"}, call("ping_node")).leaf = true
 	entry({"admin", "vpn", appname, "urltest_node"}, call("urltest_node")).leaf = true
+	entry({"admin", "vpn", appname, "add_node"}, call("add_node")).leaf = true
 	entry({"admin", "vpn", appname, "set_node"}, call("set_node")).leaf = true
 	entry({"admin", "vpn", appname, "copy_node"}, call("copy_node")).leaf = true
 	entry({"admin", "vpn", appname, "clear_all_nodes"}, call("clear_all_nodes")).leaf = true
 	entry({"admin", "vpn", appname, "delete_select_nodes"}, call("delete_select_nodes")).leaf = true
+	entry({"admin", "vpn", appname, "get_node"}, call("get_node")).leaf = true
+	entry({"admin", "vpn", appname, "save_node_order"}, call("save_node_order")).leaf = true
 	entry({"admin", "vpn", appname, "update_rules"}, call("update_rules")).leaf = true
 	entry({"admin", "vpn", appname, "subscribe_del_node"}, call("subscribe_del_node")).leaf = true
 	entry({"admin", "vpn", appname, "subscribe_del_all"}, call("subscribe_del_all")).leaf = true
 	entry({"admin", "vpn", appname, "subscribe_manual"}, call("subscribe_manual")).leaf = true
 	entry({"admin", "vpn", appname, "subscribe_manual_all"}, call("subscribe_manual_all")).leaf = true
+	entry({"admin", "vpn", appname, "flush_set"}, call("flush_set")).leaf = true
 
 	--[[rule_list]]
 	entry({"admin", "vpn", appname, "read_rulelist"}, call("read_rulelist")).leaf = true
@@ -138,6 +142,7 @@ function link_add_node()
 	local chunk = http.formvalue("chunk")
 	local chunk_index = tonumber(http.formvalue("chunk_index"))
 	local total_chunks = tonumber(http.formvalue("total_chunks"))
+	local group = http.formvalue("group") or "default"
 
 	if chunk and chunk_index ~= nil and total_chunks ~= nil then
 		-- 按顺序拼接到文件
@@ -152,7 +157,7 @@ function link_add_node()
 		end
 		-- 如果是最后一片，才执行
 		if chunk_index + 1 == total_chunks then
-			luci.sys.call("lua /usr/share/passwall/subscribe.lua add log")
+			luci.sys.call("lua /usr/share/passwall/subscribe.lua add " .. group)
 		end
 	end
 end
@@ -297,7 +302,8 @@ function index_status()
 end
 
 function haproxy_status()
-	local e = luci.sys.call(string.format("/bin/busybox top -bn1 | grep -v grep | grep '%s/bin/' | grep haproxy >/dev/null", appname)) == 0
+	local e = {}
+	e["status"] = luci.sys.call(string.format("/bin/busybox top -bn1 | grep -v grep | grep '%s/bin/' | grep haproxy >/dev/null", appname)) == 0
 	http_write_json(e)
 end
 
@@ -397,10 +403,44 @@ function urltest_node()
 	http_write_json(e)
 end
 
+function add_node()
+	local redirect = http.formvalue("redirect")
+
+	local uuid = api.gen_short_uuid()
+	uci:section(appname, "nodes", uuid)
+
+	local group = http.formvalue("group")
+	if group and group ~= "default" then
+		uci:set(appname, uuid, "group", group)
+	end
+
+	if redirect == "1" then
+		api.uci_save(uci, appname)
+		http.redirect(api.url("node_config", uuid))
+	else
+		api.uci_save(uci, appname, true, true)
+		http_write_json({result = uuid})
+	end
+end
+
 function set_node()
 	local protocol = http.formvalue("protocol")
 	local section = http.formvalue("section")
 	uci:set(appname, "@global[0]", protocol .. "_node", section)
+	if protocol == "tcp" then
+		local node_protocol = uci:get(appname, section, "protocol")
+		if node_protocol == "_shunt" then
+			local type = uci:get(appname, section, "type")
+			local dns_shunt = uci:get(appname, "@global[0]", "dns_shunt")
+			local dns_key = (dns_shunt == "smartdns") and "smartdns_dns_mode" or "dns_mode"
+			local dns_mode = uci:get(appname, "@global[0]", dns_key)
+			local new_dns_mode = (type == "Xray") and "xray" or "sing-box"
+			if dns_mode ~= new_dns_mode then
+				uci:set(appname, "@global[0]", dns_key, new_dns_mode)
+				uci:set(appname, "@global[0]", "v2ray_dns_mode", "tcp")
+			end
+		end
+	end
 	api.uci_save(uci, appname, true, true)
 	http.redirect(api.url("log"))
 end
@@ -420,7 +460,7 @@ function copy_node()
 			end)
 		end
 	end
-	uci:delete(appname, uuid, "add_from")
+	uci:delete(appname, uuid, "group")
 	uci:set(appname, uuid, "add_mode", 1)
 	api.uci_save(uci, appname)
 	http.redirect(api.url("node_config", uuid))
@@ -458,6 +498,7 @@ end
 
 function delete_select_nodes()
 	local ids = http.formvalue("ids")
+	local redirect = http.formvalue("redirect")
 	string.gsub(ids, '[^' .. "," .. ']+', function(w)
 		if (uci:get(appname, "@global[0]", "tcp_node") or "") == w then
 			uci:delete(appname, '@global[0]', "tcp_node")
@@ -532,10 +573,10 @@ function delete_select_nodes()
 			end
 		end)
 		if (uci:get(appname, w, "add_mode") or "0") == "2" then
-			local add_from = uci:get(appname, w, "add_from") or ""
-			if add_from ~= "" then
+			local group = uci:get(appname, w, "group") or ""
+			if group ~= "" then
 				uci:foreach(appname, "subscribe_list", function(t)
-					if t["remark"] == add_from then
+					if t["remark"] == group then
 						uci:delete(appname, t[".name"], "md5")
 					end
 				end)
@@ -543,7 +584,60 @@ function delete_select_nodes()
 		end
 		uci:delete(appname, w)
 	end)
-	api.uci_save(uci, appname, true, true)
+	if redirect == "1" then
+		api.uci_save(uci, appname)
+		http.redirect(api.url("node_list"))
+	else
+		api.uci_save(uci, appname, true, true)
+	end
+end
+
+function get_node()
+	local id = http.formvalue("id")
+	local result = {}
+	local show_node_info = api.uci_get_type("global_other", "show_node_info", "0")
+
+	local function add_is_ipv6_key(o)
+		if o and o.address and show_node_info == "1" then
+			local f = api.get_ipv6_full(o.address)
+			if f ~= "" then
+				o.ipv6 = true
+				o.full_address = f
+			end
+		end
+	end
+
+	if id then
+		result = uci:get_all(appname, id)
+		add_is_ipv6_key(result)
+	else
+		local default_nodes = {}
+		local other_nodes = {}
+		uci:foreach(appname, "nodes", function(t)
+			add_is_ipv6_key(t)
+			if not t.group or t.group == "" then
+				default_nodes[#default_nodes + 1] = t
+			else
+				other_nodes[#other_nodes + 1] = t
+			end
+		end)
+		for i = 1, #default_nodes do result[#result + 1] = default_nodes[i] end
+		for i = 1, #other_nodes do result[#result + 1] = other_nodes[i] end
+	end
+	http_write_json(result)
+end
+
+function save_node_order()
+	local ids = http.formvalue("ids") or ""
+	local new_order = {}
+	for id in ids:gmatch("([^,]+)") do
+		new_order[#new_order + 1] = id
+	end
+	for idx, name in ipairs(new_order) do
+		luci.sys.call(string.format("uci -q reorder %s.%s=%d", appname, name, idx - 1))
+	end
+	api.sh_uci_commit(appname)
+	http_write_json({ status = "ok" })
 end
 
 function update_rules()
@@ -815,4 +909,18 @@ function subscribe_manual_all()
 	end
 	luci.sys.call("lua /usr/share/" .. appname .. "/subscribe.lua start all manual >/dev/null 2>&1 &")
 	http_write_json({ success = true, msg = "Subscribe triggered." })
+end
+
+function flush_set()
+	local redirect = http.formvalue("redirect") or "0"
+	local reload = http.formvalue("reload") or "0"
+	if reload == "1" then
+		uci:set(appname, '@global[0]', "flush_set", "1")
+		api.uci_save(uci, appname, true, true)
+	else
+		api.sh_uci_set(appname, "@global[0]", "flush_set", "1", true)
+	end
+	if redirect == "1" then
+		http.redirect(api.url("log"))
+	end
 end

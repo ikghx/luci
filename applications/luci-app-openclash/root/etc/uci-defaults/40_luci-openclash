@@ -1,5 +1,6 @@
 #!/bin/bash
 . /lib/functions.sh
+. /usr/share/openclash/uci.sh
 
 [ -e "/etc/config/ucitrack" ] && {
 uci -q delete ucitrack.@openclash[-1]

@@ -14,7 +14,7 @@ const callUpnpDeleteRule = rpc.declare({
 	object: 'luci.upnp',
 	method: 'delete_rule',
 	params: ['token'],
-	expect: { result: "OK" },
+	expect: { result: 'OK' },
 });
 
 function handleDelRule(num, ev) {
@@ -35,7 +35,7 @@ return baseclass.extend({
 	},
 
 	render: function(data) {
-		var table = E('table', { 'class': 'table', 'id': 'upnp_status_table' }, [
+		const table = E('table', { 'class': 'table', 'id': 'upnp_status_table' }, [
 			E('tr', { 'class': 'tr table-titles' }, [
 				E('th', { 'class': 'th' }, _('Hostname')),
 				E('th', { 'class': 'th' }, _('IP address')),
@@ -48,10 +48,10 @@ return baseclass.extend({
 			])
 		]);
 
-		var rules = Array.isArray(data[0].rules) ? data[0].rules : [];
+		const rules = Array.isArray(data[0].rules) ? data[0].rules : [];
 
-		var rows = rules.map(function(rule) {
-			const padnum = (num, length) => num.toString().padStart(length, "0");
+		const rows = rules.map(function(rule) {
+			const padnum = (num, length) => num.toString().padStart(length, '0');
 			const expires_sec = rule?.expires || 0;
 			const hour = Math.floor(expires_sec / 3600);
 			const minute = Math.floor((expires_sec % 3600) / 60);
