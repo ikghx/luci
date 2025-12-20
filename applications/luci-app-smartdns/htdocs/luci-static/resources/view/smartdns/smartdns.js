@@ -225,6 +225,8 @@ return view.extend({
 		o.value("ping,tcp:443,tcp:80");
 		o.value("tcp:80,tcp:443,ping");
 		o.value("tcp:443,tcp:80,ping");
+		o.value("tcp-syn:80,tcp-syn:443,ping");
+		o.value("tcp-syn:443,tcp-syn:80,ping");
 		o.value("none", _("None"));
 		o.validate = function (section_id, value) {
 			if (value == "") {
@@ -235,18 +237,27 @@ return view.extend({
 				return true;
 			}
 
-			var check_mode = value.split(",")
+			var check_mode = value.split(",");
 			for (var i = 0; i < check_mode.length; i++) {
-				if (check_mode[i] == "ping") {
+				var mode = check_mode[i];
+
+				if (mode == "ping") {
 					continue;
 				}
 
-				if (check_mode[i].indexOf("tcp:") == 0) {
-					var port = check_mode[i].split(":")[1];
-					if (port == "") {
-						return _("TCP port is empty");
-					}
+				if (mode.indexOf("tcp:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP port is empty");
+				    }
+					continue;
+				}
 
+				if (mode.indexOf("tcp-syn:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP SYN port is empty");
+				    }
 					continue;
 				}
 
@@ -1128,6 +1139,8 @@ return view.extend({
 		o.value("ping,tcp:443,tcp:80");
 		o.value("tcp:80,tcp:443,ping");
 		o.value("tcp:443,tcp:80,ping");
+		o.value("tcp-syn:80,tcp-syn:443,ping");
+		o.value("tcp-syn:443,tcp-syn:80,ping");
 		o.value("none", _("None"));
 		o.validate = function (section_id, value) {
 			if (value == "") {
@@ -1138,18 +1151,27 @@ return view.extend({
 				return true;
 			}
 
-			var check_mode = value.split(",")
+			var check_mode = value.split(",");
 			for (var i = 0; i < check_mode.length; i++) {
-				if (check_mode[i] == "ping") {
+				var mode = check_mode[i];
+
+				if (mode == "ping") {
 					continue;
 				}
 
-				if (check_mode[i].indexOf("tcp:") == 0) {
-					var port = check_mode[i].split(":")[1];
-					if (port == "") {
-						return _("TCP port is empty");
-					}
+				if (mode.indexOf("tcp:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP port is empty");
+				    }
+					continue;
+				}
 
+				if (mode.indexOf("tcp-syn:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP SYN port is empty");
+				    }
 					continue;
 				}
 
@@ -1287,6 +1309,8 @@ return view.extend({
 		o.value("ping,tcp:443,tcp:80");
 		o.value("tcp:80,tcp:443,ping");
 		o.value("tcp:443,tcp:80,ping");
+		o.value("tcp-syn:80,tcp-syn:443,ping");
+		o.value("tcp-syn:443,tcp-syn:80,ping");
 		o.value("none", _("None"));
 		o.validate = function (section_id, value) {
 			if (value == "") {
@@ -1297,18 +1321,27 @@ return view.extend({
 				return true;
 			}
 
-			var check_mode = value.split(",")
+			var check_mode = value.split(",");
 			for (var i = 0; i < check_mode.length; i++) {
-				if (check_mode[i] == "ping") {
+				var mode = check_mode[i];
+
+				if (mode == "ping") {
 					continue;
 				}
 
-				if (check_mode[i].indexOf("tcp:") == 0) {
-					var port = check_mode[i].split(":")[1];
-					if (port == "") {
-						return _("TCP port is empty");
-					}
+				if (mode.indexOf("tcp:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP port is empty");
+				    }
+					continue;
+				}
 
+				if (mode.indexOf("tcp-syn:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP SYN port is empty");
+				    }
 					continue;
 				}
 
@@ -1513,6 +1546,8 @@ return view.extend({
 		so.value("ping,tcp:443,tcp:80");
 		so.value("tcp:80,tcp:443,ping");
 		so.value("tcp:443,tcp:80,ping");
+		so.value("tcp-syn:80,tcp-syn:443,ping");
+		so.value("tcp-syn:443,tcp-syn:80,ping");
 		so.value("none", _("None"));
 		so.validate = function (section_id, value) {
 			if (value == "") {
@@ -1523,18 +1558,27 @@ return view.extend({
 				return true;
 			}
 
-			var check_mode = value.split(",")
+			var check_mode = value.split(",");
 			for (var i = 0; i < check_mode.length; i++) {
-				if (check_mode[i] == "ping") {
+				var mode = check_mode[i];
+
+				if (mode == "ping") {
 					continue;
 				}
 
-				if (check_mode[i].indexOf("tcp:") == 0) {
-					var port = check_mode[i].split(":")[1];
-					if (port == "") {
-						return _("TCP port is empty");
-					}
+				if (mode.indexOf("tcp:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP port is empty");
+				    }
+					continue;
+				}
 
+				if (mode.indexOf("tcp-syn:") == 0) {
+				    var port = mode.split(":")[1];
+				    if (port == "") {
+				        return _("TCP SYN port is empty");
+				    }
 					continue;
 				}
 

@@ -1276,7 +1276,7 @@ end
 function action_status()
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({
-		clash = is_running(),
+		clash = uci:get("openclash", "config", "enable") == "1",
 		daip = daip(),
 		dase = dase(),
 		db_foward_port = db_foward_port(),
@@ -3225,6 +3225,7 @@ function action_oc_action()
 		uci:set("openclash", "config", "enable", "1")
 		uci:commit("openclash")
         if not is_running() then
+            luci.sys.call("ps | grep openclash | grep -v grep | awk '{print $1}' | xargs -r kill -9 >/dev/null 2>&1")
             luci.sys.call("/etc/init.d/openclash start >/dev/null 2>&1")
         else
             luci.sys.call("/etc/init.d/openclash restart >/dev/null 2>&1")
@@ -3235,8 +3236,11 @@ function action_oc_action()
 		luci.sys.call("ps | grep openclash | grep -v grep | awk '{print $1}' | xargs -r kill -9 >/dev/null 2>&1")
 		luci.sys.call("/etc/init.d/openclash stop >/dev/null 2>&1")
 	elseif action == "restart" then
-		uci:set("openclash", "config", "enable", "1")
-		uci:commit("openclash")
+        if uci:get("openclash", "config", "enable") ~= "1" then
+            uci:set("openclash", "config", "enable", "1")
+            uci:commit("openclash")
+        end
+        luci.sys.call("ps | grep openclash | grep -v grep | awk '{print $1}' | xargs -r kill -9 >/dev/null 2>&1")
 		luci.sys.call("/etc/init.d/openclash restart >/dev/null 2>&1")
 	else
 		luci.http.status(400, "Invalid action parameter")
@@ -3405,11 +3409,11 @@ function action_config_file_read()
     local allow = false
     if config_file == "/etc/openclash/custom/openclash_custom_overwrite.sh" then
         allow = true
-    elseif config_file:match("^/etc/openclash/overwrite/[^/]+$") then
+    elseif config_file:match("^/etc/openclash/overwrite/[^/]+$") and not string.find(config_file, "%.%.") then
         allow = true
     elseif config_file:match("^/etc/openclash/[^/]+%.ya?ml$") then
         allow = true
-    elseif config_file:match("^/etc/openclash/config/[^/]+%.ya?ml$") then
+    elseif config_file:match("^/etc/openclash/config/[^/]+%.ya?ml$") and not string.find(config_file, "%.%.") then
         allow = true
     end
 
@@ -3501,8 +3505,7 @@ function action_config_file_save()
     local is_overwrite = (config_file == "/etc/openclash/custom/openclash_custom_overwrite.sh" or config_file:match("^/etc/openclash/overwrite/[^/]+$"))
 
     if not is_overwrite then
-        if not string.match(config_file, "^/etc/openclash/config/[^/%.]+%.ya?ml$") then
-            luci.http.prepare_content("application/json")
+        if not string.match(config_file, "^/etc/openclash/config/[^/]+%.ya?ml$") or string.find(config_file, "%.%.") then
             luci.http.write_json({
                 status = "error",
                 message = "Invalid config file path"
@@ -3510,7 +3513,7 @@ function action_config_file_save()
             return
         end
     else
-        if not (config_file == "/etc/openclash/custom/openclash_custom_overwrite.sh" or config_file:match("^/etc/openclash/overwrite/[^/]+$")) then
+        if not (config_file == "/etc/openclash/custom/openclash_custom_overwrite.sh" or (config_file:match("^/etc/openclash/overwrite/[^/]+$") and not string.find(config_file, "%.%."))) then
             luci.http.prepare_content("application/json")
             luci.http.write_json({
                 status = "error",

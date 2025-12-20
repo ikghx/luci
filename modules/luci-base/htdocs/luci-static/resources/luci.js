@@ -634,6 +634,10 @@
 		 * @property {function} [progress]
 		 * An optional request callback function which receives ProgressEvent
 		 * instances as sole argument during the HTTP request transfer.
+		 *
+		 * @property {function} [responseProgress]
+		 * An optional request callback function which receives ProgressEvent
+		 * instances as sole argument during the HTTP response transfer.
 		 */
 
 		/**

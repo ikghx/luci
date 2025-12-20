@@ -248,6 +248,7 @@ function has_sourcefilter(proto) {
 	case 'pppoe':
 	case 'pptp':
 	case 'qmi':
+	case 'quectel':
 		return true;
 	}
 
@@ -749,6 +750,13 @@ return view.extend({
 								 _('Do not provide DHCPv4 services on this interface.'));
 							so.value('server', _('enabled'),
 								 _('Provide DHCPv4 services on this interface.'));
+
+							so = ss.taboption('ipv4', form.Value, 'ipv6_only_preferred', _('IPv6-Only Preferred'),
+								_('Specifies how often (in seconds) clients should check whether IPv6-only mode is still preferred (see %s, odhcpd only).')
+								.format('<a href="%s" target="_blank">RFC8925</a>').format('https://www.rfc-editor.org/rfc/rfc8925'));
+							so.optional = true;
+							so.datatype = 'or(0, range(300,86400))';
+							so.default = '0';
 						}
 
 						so = ss.taboption('ipv4', form.Value, 'start', _('Start', 'DHCP IP range start address'), _('Lowest leased address as offset from the network address.'));
@@ -884,6 +892,14 @@ return view.extend({
 					so.default = so.enabled;
 					so.depends('ra', 'server');
 					so.depends({ ra: 'hybrid', master: '0' });
+
+					so = ss.taboption('ipv6-ra', form.ListValue, 'ra_preference', _('Router Priority'),
+						_('A tie-breaker for clients and their routes when multiple routers exist on the same network.'));
+					so.default = 'medium';
+					so.value('low', _('Low'));
+					so.value('medium', _('Medium'));
+					so.value('high', _('High'));
+					so.depends('ra', 'server');
 
 					so = ss.taboption('ipv6-ra', form.RichListValue, 'ra_flags', _('<abbr title="Router Advertisement">RA</abbr> Flags'),
 						_('Specifies the flags sent in <abbr title="Router Advertisement">RA</abbr> messages, for example to instruct clients to request further information via stateful DHCPv6.'));
@@ -1033,7 +1049,8 @@ return view.extend({
 
 					so = ss.taboption('ipv6', form.Value, 'dhcpv6_pd_min_len', _('<abbr title="Prefix Delegation">PD</abbr> minimum length'),
 						_('Configures the minimum delegated prefix length assigned to a requesting downstream router, potentially overriding a requested prefix length. If left unspecified, the device will assign the smallest available prefix greater than or equal to the requested prefix.'));
-					so.datatype = 'range(1,62)';
+					so.placeholder = '62';
+					so.datatype = 'range(1,64)';
 					so.depends('dhcpv6', 'server');
 
 					/* This option is used by odhcpd. It can take IPv4/6 entries, although IPv4 DNS servers don't

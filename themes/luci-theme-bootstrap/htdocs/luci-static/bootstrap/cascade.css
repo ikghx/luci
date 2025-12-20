@@ -116,9 +116,8 @@
 
 	color-scheme: light;
 
-	--font-sans: ui-sans-serif, system-ui, sans-serif;
-	--font-serif: ui-serif, serif;
-	--font-mono: ui-monospace, monospace;
+	--font-sans: Helvetica Neue, Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+	--font-mono: Monaco, Andale Mono, Courier New, ui-monospace, monospace;
 }
 
 :root[data-darkmode="true"] {
@@ -256,7 +255,7 @@ input[type="search"]::-webkit-search-decoration {
 textarea {
 	overflow: auto;
 	vertical-align: top;
-	font-family: var(--font-mono);
+	font-family: monospace;
 }
 
 .control-group {
@@ -277,7 +276,7 @@ textarea {
  * ------------------------------------------------------------------------------------------- */
 body {
 	background-color: var(--background-color-high);
-	font-family: var(-font-sans);
+	font-family: var(--font-sans);
 	font-size: 13px;
 	font-weight: normal;
 	line-height: 18px;
@@ -318,7 +317,7 @@ a:hover {
 }
 
 .nowrap:not(span) {
-/*	Sometimes you need to wrap: badges on narrow screens look weird
+/*	Sometimes you need to wrap: badges on narrow screens look weird 
 	and nowrap defeats other width constraints, so exclude span */
 	white-space: nowrap;
 }
@@ -653,7 +652,7 @@ select,
 }
 
 /* indication line for drag-and-drop in UIDynamicList*/
-.cbi-dynlist > .item.drag-over {
+.cbi-dynlist > .item.drag-over { 
 	border-top: 1px solid var(--text-color-highest);
 }
 
@@ -2021,7 +2020,7 @@ form.inline { display: inline; margin-bottom: 0; }
 	width: 100%;
 	color: var(--text-color-highest);
 	margin-bottom: 18px;
-	font-family: var(--font-mono);
+	font-family: monospace;
 }
 
 .cbi-section-table .tr:hover .td,
@@ -2395,7 +2394,7 @@ div.cbi-value var.cbi-tooltip-container,
 .uci-dialog ins,
 .uci-dialog var {
 	text-decoration: none;
-	font-family: var(--font-mono);
+	font-family: monospace;
 	font-style: normal;
 	color: var(--text-color-high);
 	display: block;

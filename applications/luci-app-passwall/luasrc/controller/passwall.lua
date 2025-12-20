@@ -82,8 +82,10 @@ function index()
 	entry({"admin", "vpn", appname, "copy_node"}, call("copy_node")).leaf = true
 	entry({"admin", "vpn", appname, "clear_all_nodes"}, call("clear_all_nodes")).leaf = true
 	entry({"admin", "vpn", appname, "delete_select_nodes"}, call("delete_select_nodes")).leaf = true
+	entry({"admin", "vpn", appname, "reassign_group"}, call("reassign_group")).leaf = true
 	entry({"admin", "vpn", appname, "get_node"}, call("get_node")).leaf = true
 	entry({"admin", "vpn", appname, "save_node_order"}, call("save_node_order")).leaf = true
+	entry({"admin", "vpn", appname, "save_node_list_opt"}, call("save_node_list_opt")).leaf = true
 	entry({"admin", "vpn", appname, "update_rules"}, call("update_rules")).leaf = true
 	entry({"admin", "vpn", appname, "subscribe_del_node"}, call("subscribe_del_node")).leaf = true
 	entry({"admin", "vpn", appname, "subscribe_del_all"}, call("subscribe_del_all")).leaf = true
@@ -500,15 +502,11 @@ function delete_select_nodes()
 	local ids = http.formvalue("ids")
 	local redirect = http.formvalue("redirect")
 	string.gsub(ids, '[^' .. "," .. ']+', function(w)
-		if (uci:get(appname, "@global[0]", "tcp_node") or "") == w then
-			uci:delete(appname, '@global[0]', "tcp_node")
-		end
-		if (uci:get(appname, "@global[0]", "udp_node") or "") == w then
-			uci:delete(appname, '@global[0]', "udp_node")
-		end
+		local socks
 		uci:foreach(appname, "socks", function(t)
 			if t["node"] == w then
 				uci:delete(appname, t[".name"])
+				socks = "Socks_" .. t[".name"]
 			end
 			local auto_switch_node_list = uci:get(appname, t[".name"], "autoswitch_backup_node") or {}
 			for i = #auto_switch_node_list, 1, -1 do
@@ -518,16 +516,24 @@ function delete_select_nodes()
 			end
 			uci:set_list(appname, t[".name"], "autoswitch_backup_node", auto_switch_node_list)
 		end)
+		local tcp_node = uci:get(appname, "@global[0]", "tcp_node") or ""
+		if tcp_node == w or tcp_node == socks then
+			uci:delete(appname, '@global[0]', "tcp_node")
+		end
+		local udp_node = uci:get(appname, "@global[0]", "udp_node") or ""
+		if udp_node == w or udp_node == socks then
+			uci:delete(appname, '@global[0]', "udp_node")
+		end
 		uci:foreach(appname, "haproxy_config", function(t)
 			if t["lbss"] == w then
 				uci:delete(appname, t[".name"])
 			end
 		end)
 		uci:foreach(appname, "acl_rule", function(t)
-			if t["tcp_node"] == w then
+			if t["tcp_node"] == w or t["tcp_node"] == socks then
 				uci:delete(appname, t[".name"], "tcp_node")
 			end
-			if t["udp_node"] == w then
+			if t["udp_node"] == w or t["udp_node"] == socks then
 				uci:delete(appname, t[".name"], "udp_node")
 			end
 		end)
@@ -547,7 +553,7 @@ function delete_select_nodes()
 					local changed = false
 					local new_nodes = {}
 					for _, node in ipairs(nodes) do
-						if node ~= w then
+						if node ~= w and node ~= socks then
 							table.insert(new_nodes, node)
 						else
 							changed = true
@@ -558,7 +564,7 @@ function delete_select_nodes()
 					end
 				end
 			end
-			if t["fallback_node"] == w then
+			if t["fallback_node"] == w or t["fallback_node"] == socks then
 				uci:delete(appname, t[".name"], "fallback_node")
 			end
 		end)
@@ -637,6 +643,29 @@ function save_node_order()
 		luci.sys.call(string.format("uci -q reorder %s.%s=%d", appname, name, idx - 1))
 	end
 	api.sh_uci_commit(appname)
+	http_write_json({ status = "ok" })
+end
+
+function reassign_group()
+	local ids = http.formvalue("ids") or ""
+	local group = http.formvalue("group") or "default"
+	for id in ids:gmatch("([^,]+)") do
+		if group ~="" and group ~= "default" then
+			api.sh_uci_set(appname, id, "group", group)
+		else
+			api.sh_uci_del(appname, id, "group")
+		end
+	end
+	api.sh_uci_commit(appname)
+	http_write_json({ status = "ok" })
+end
+
+function save_node_list_opt()
+	local option = http.formvalue("option") or ""
+	local value = http.formvalue("value") or ""
+	if option ~= "" then
+		api.sh_uci_set(appname, "@global_other[0]", option, value, true)
+	end
 	http_write_json({ status = "ok" })
 end
 

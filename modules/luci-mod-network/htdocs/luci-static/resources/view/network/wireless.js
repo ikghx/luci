@@ -1888,7 +1888,7 @@ return view.extend({
 
 					o = ss.taboption('roaming', form.Value, 'reassociation_deadline', _('Reassociation deadline'), _('Reassociation deadline in time units (TUs / 1.024 ms) [1000-65535].'));
 					o.depends({ ieee80211r: '1' });
-					o.placeholder = '1000';
+					o.placeholder = '20000';
 					o.datatype = 'range(1000,65535)';
 					o.rmempty = true;
 
