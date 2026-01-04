@@ -166,13 +166,13 @@ end
 function ipnet4(val)
 	local ip, mask = val:match("^([^/]+)/([^/]+)$")
 
-	return ip4addr(ip) and ip4prefix(mask)
+	return ip4addr(ip) and ip4addr(mask)
 end
 
 function ipnet6(val)
 	local ip, mask = val:match("^([^/]+)/([^/]+)$")
 
-	return ip6addr(ip) and ip6prefix(mask)
+	return ip6addr(ip) and ip6addr(mask)
 end
 
 function ipmask(val)

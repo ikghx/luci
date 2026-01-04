@@ -56,8 +56,9 @@
 				"/etc/dnsmasq.conf": [ "read" ]
 			},
 			"ubus": {
-				"luci-rpc": [ "getDHCPLeases", "getDUIDHints", "getHostHints" ],
-				"fingerprint": [ "fingerprint" ]
+				"luci-rpc": [ "getDHCPLeases", "getDUIDHints", "getHostHints", "getNetworkDevices" ],
+				"fingerprint": [ "fingerprint" ],
+				"service": [ "list" ]
 			},
 			"uci": [ "dhcp" ]
 		},

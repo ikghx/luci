@@ -268,6 +268,7 @@ function gen_outbound(flag, node, tag, proxy_table)
 								id = node.uuid,
 								level = 0,
 								security = (node.protocol == "vmess") and node.security or nil,
+								testpre = (node.protocol == "vless") and tonumber(node.preconns) or nil,
 								encryption = (node.protocol == "vless") and ((node.encryption and node.encryption ~= "") and node.encryption or "none") or nil,
 								flow = (node.protocol == "vless"
 									and (node.tls == "1" or (node.encryption and node.encryption ~= "" and node.encryption ~= "none"))
@@ -627,6 +628,7 @@ function gen_config(var)
 	local dns = nil
 	local fakedns = nil
 	local routing = nil
+	local observatory = nil
 	local burstObservatory = nil
 	local strategy = nil
 	local inbounds = {}
@@ -868,16 +870,27 @@ function gen_config(var)
 				strategy = strategy
 			})
 			if _node.balancingStrategy == "leastPing" or _node.balancingStrategy == "leastLoad" or fallback_node_tag then
-				if not burstObservatory then
-					burstObservatory = {
-						subjectSelector = { "blc-" },
-						pingConfig = {
-							destination = _node.useCustomProbeUrl and _node.probeUrl or nil,
-							interval = (api.format_go_time(_node.probeInterval) ~= "0s") and api.format_go_time(_node.probeInterval) or "1m",
-							sampling = 3,
-							timeout = "5s"
+				if _node.balancingStrategy == "leastLoad" then
+					if not burstObservatory then
+						burstObservatory = {
+							subjectSelector = { "blc-" },
+							pingConfig = {
+								destination = _node.useCustomProbeUrl and _node.probeUrl or nil,
+								interval = (api.format_go_time(_node.probeInterval) ~= "0s") and api.format_go_time(_node.probeInterval) or "1m",
+								sampling = 3,
+								timeout = "5s"
+							}
 						}
-					}
+					end
+				else
+					if not observatory then
+						observatory = {
+							subjectSelector = { "blc-" },
+							probeUrl = _node.useCustomProbeUrl and _node.probeUrl or nil,
+							probeInterval = (api.format_go_time(_node.probeInterval) ~= "0s") and api.format_go_time(_node.probeInterval) or "1m",
+							enableConcurrency = true
+						}
+					end
 				end
 			end
 			local inbound_tag = gen_loopback(loopback_tag, loopback_dst)
@@ -1397,7 +1410,7 @@ function gen_config(var)
 					address = remote_dns_udp_server or remote_dns_tcp_server,
 					port = tonumber(remote_dns_udp_port) or tonumber(remote_dns_tcp_port),
 					network = remote_dns_udp_server and "udp" or "tcp",
-					nonIPQuery = "drop"
+					nonIPQuery = "reject"
 				}
 			})
 
@@ -1514,6 +1527,7 @@ function gen_config(var)
 			-- 传出连接
 			outbounds = outbounds,
 			-- 连接观测
+			observatory = (not burstObservatory) and observatory or nil,
 			burstObservatory = burstObservatory,
 			-- 路由
 			routing = routing,
