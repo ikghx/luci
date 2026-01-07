@@ -17,6 +17,9 @@ china_ip_route=$(uci_get_config "china_ip_route" || echo 0)
 china_ip6_route=$(uci_get_config "china_ip6_route" || echo 0)
 enable_redirect_dns=$(uci_get_config "enable_redirect_dns" || echo 1)
 fake_ip_filter_mode=${34}
+default_dashboard=$(uci_get_config "default_dashboard" || echo "metacubexd")
+yacd_type=$(uci_get_config "yacd_type" || echo "Official")
+dashboard_type=$(uci_get_config "dashboard_type" || echo "Official")
 
 [ "$china_ip_route" -ne 0 ] && [ "$china_ip_route" -ne 1 ] && [ "$china_ip_route" -ne 2 ] && china_ip_route=0
 [ "$china_ip6_route" -ne 0 ] && [ "$china_ip6_route" -ne 1 ] && [ "$china_ip6_route" -ne 2 ] && china_ip6_route=0
@@ -170,10 +173,18 @@ PROXY_GROUPS=$(ruby -ryaml -rYAML -I "/usr/share/openclash" -E UTF-8 -e "
    end
 " 2>/dev/null)
 
+set_disable_qtype()
+{
+   if [ -z "$1" ]; then
+      return
+   fi
+   [ -z "$disable_qtype_param" ] && disable_qtype_param="disable-qtype-$1=true" || disable_qtype_param="$disable_qtype_param&disable-qtype-$1=true"
+}
+
 yml_dns_get()
 {
    local section="$1" regex='^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$'
-   local enabled port type ip group dns_type dns_address interface specific_group node_resolve http3 ecs_subnet ecs_override
+   local enabled port type ip group dns_type dns_address interface specific_group node_resolve http3 ecs_subnet ecs_override disable_qtype_param
 
    config_get_bool "enabled" "$section" "enabled" "1"
    [ "$enabled" = "0" ] && return
@@ -192,8 +203,9 @@ yml_dns_get()
    config_get_bool "skip_cert_verify" "$section" "skip_cert_verify" "0"
    config_get_bool "ecs_override" "$section" "ecs_override" "0"
    config_get "ecs_subnet" "$section" "ecs_subnet" ""
-   config_get "disable_ipv4" "$section" "disable_ipv4" "0"
-   config_get "disable_ipv6" "$section" "disable_ipv6" "0"
+   config_get_bool "disable_ipv4" "$section" "disable_ipv4" "0"
+   config_get_bool "disable_ipv6" "$section" "disable_ipv6" "0"
+   config_list_foreach "$section" "disable_qtype" set_disable_qtype
 
    if [[ "$ip" =~ "$regex" ]] || [ -n "$(echo "${ip}" | grep -Eo "${regex}")" ]; then
       ip="[${ip}]"
@@ -249,6 +261,7 @@ yml_dns_get()
    append_param "$ecs_override_param"
    append_param "$disable_ipv4_param"
    append_param "$disable_ipv6_param"
+   append_param "$disable_qtype_param"
 
    full_dns_address="$dns_type$dns_address$params"
 
@@ -361,6 +374,9 @@ lgbm_update_interval = '${44}'
 smart_collect = '${45}' == '1'
 smart_collect_size = '${46}'
 fake_ip_range6 = '${47}'
+default_dashboard = '$default_dashboard'
+yacd_type = '$yacd_type'
+dashboard_type = '$dashboard_type'
 
 enable_custom_dns = '$enable_custom_dns' == '1'
 append_wan_dns = '$append_wan_dns' == '1'
@@ -388,8 +404,25 @@ threads << Thread.new do
       Value['secret'] = secret
       Value['bind-address'] = '*'
       Value['external-ui'] = '/usr/share/openclash/ui'
-      Value['external-ui-name'] = 'metacubexd'
-      Value.delete('external-ui-url')
+      Value['external-ui-name'] = default_dashboard
+      case default_dashboard
+      when 'dashboard'
+        if dashboard_type == 'Official'
+          Value['external-ui-url'] = 'https://codeload.github.com/ayanamist/clash-dashboard/zip/refs/heads/gh-pages'
+        else
+          Value['external-ui-url'] = 'https://codeload.github.com/MetaCubeX/Razord-meta/zip/refs/heads/gh-pages'
+        end
+      when 'yacd'
+        if yacd_type == 'Official'
+          Value['external-ui-url'] = 'https://codeload.github.com/haishanh/yacd/zip/refs/heads/gh-pages'
+        else
+          Value['external-ui-url'] = 'https://codeload.github.com/MetaCubeX/Yacd-meta/zip/refs/heads/gh-pages'
+        end
+      when 'metacubexd'
+        Value['external-ui-url'] = 'https://codeload.github.com/MetaCubeX/metacubexd/zip/refs/heads/gh-pages'
+      when 'zashboard'
+        Value['external-ui-url'] = 'https://codeload.github.com/Zephyruso/zashboard/zip/refs/heads/gh-pages-cdn-fonts'
+      end
       if !Value.key?('keep-alive-interval') && !Value.key?('keep-alive-idle')
          Value['keep-alive-interval'] = 15
          Value['keep-alive-idle'] = 600
@@ -448,7 +481,7 @@ threads << Thread.new do
          end
       end
       Value['dns']['listen'] = '0.0.0.0:' + dns_listen_port
-      Value['dns']['respect-rules'] = true if respect_rules
+      Value['dns']['respect-rules'] = respect_rules
 
       if enable_sniffer
          sniffer_config = {
@@ -463,6 +496,8 @@ threads << Thread.new do
          if append_sniffer_config && (custom_sniffer = safe_load_yaml('/etc/openclash/custom/openclash_custom_sniffer.yaml'))
             Value['sniffer'].merge!(custom_sniffer['sniffer']) if custom_sniffer && custom_sniffer['sniffer']
          end
+      else
+         Value['sniffer']['enable'] = false if Value.key?('sniffer')
       end
 
       if en_mode_tun != '0' || ['2', '3'].include?(tun_device_setting)

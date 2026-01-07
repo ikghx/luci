@@ -24,10 +24,10 @@ const methods = {
 					const record = split(line, ':', 6);
 					if (length(record) == 6) {
 						let descr = trim(record[5]);
-						let m = match(descr, /^PCP .*([0-9a-f]{24})$/);
+						let m = match(descr, /^PCP [A-Z]+ ([0-9a-f]{24})$/);
 						if (m) descr = 'PCP (nonce ' + m[1] + ')';
 						else if (match(descr, /^NAT-PMP \d+ \w+$/)) descr = 'NAT-PMP';
-						else if (match(descr, /^IGD2 pinhole$/)) descr = 'UPnP IGD IPv6';
+						else if (match(descr, /^IGD2 pinhole$/)) descr = 'UPnP IGDv2 IPv6';
 						else if (!match(descr, /^UPnP IGD/)) descr = 'UPnP IGD / ' + descr;
 						push(leases, {
 							proto: uc(record[0]),
