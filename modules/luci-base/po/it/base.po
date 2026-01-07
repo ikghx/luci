@@ -23,6 +23,12 @@ msgctxt "Yet unknown nftables table family (\"family\" table \"name\")"
 msgid "\"%h\" table \"%h\""
 msgstr "\"%h\" tabella \"%h\""
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:675
+msgid ""
+"${tagcodestring}s do not do anything by themselves. They are labels that "
+"other directives test against."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1790
 msgid "%.1f dB"
 msgstr "%.1f dB"
@@ -585,6 +591,10 @@ msgstr ""
 msgid "<abbr title=\"Router Advertisement\">RA</abbr>-Service"
 msgstr "Servizio <abbr title=\"Router Advertisement\">RA</abbr>"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:678
+msgid "<em>${addtag}</em>"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:731
 msgid "<em>Add</em>"
 msgstr ""
@@ -642,6 +652,10 @@ msgstr "<var>%s</var> non nel set <strong>%s</strong>"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1770
 msgid "<vlan_tagged_interface>.<XXX>"
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:672
+msgid "A ${tagcodestring} is an alphanumeric label."
 msgstr ""
 
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/protocol/batadv.js:86
@@ -3393,7 +3407,6 @@ msgstr "Vuoi davvero eliminare la seguente chiave SSH?"
 msgid "Do you really want to erase all settings?"
 msgstr "Vuoi davvero cancellare tutte le impostazioni?"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:119
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:408
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:434
 msgid "Domain"
@@ -4035,6 +4048,13 @@ msgstr "Limite di incapsulamento"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1834
 msgid "Encapsulation mode"
 msgstr "Modalità di incapsulamento"
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:723
+msgid ""
+"Encountering chosen DHCP ${dhcp_option_code}s (or also its "
+"${dhcp_value_code}) from clients triggers dnsmasq to set alphanumeric "
+"${tagcodestring}s."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:167
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:193
@@ -5876,6 +5896,18 @@ msgstr ""
 msgid "In order to set this Tag"
 msgstr ""
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:724
+msgid ""
+"In other words: \"${tag_match_code_name} these ${dhcp_option_code}s to set "
+"this ${tagcodestring}\" or \"These ${dhcp_option_code}s set this "
+"${tagcodestring}\"."
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:674
+msgid ""
+"In other words: \"This ${tagcodestring} gets these ${tag_named_ov_string}\"."
+msgstr ""
+
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:162
 msgid "In seconds"
 msgstr "In secondi"
@@ -6158,6 +6190,11 @@ msgstr "Interfacce"
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:20
 msgid "Internal"
 msgstr "Interno"
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:725
+msgid ""
+"Internally, these configuration entries are called ${tag_match_code_name}."
+msgstr ""
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:85
 msgid "International Mobile Station Equipment Identity"
@@ -6800,7 +6837,6 @@ msgid "Loading view…"
 msgstr "Caricamento pagina…"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1421
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:120
 msgid "Local"
 msgstr "Locale"
 
@@ -7170,6 +7206,12 @@ msgstr "costruttore"
 msgid "Master (VLAN)"
 msgstr "Master (VLAN)"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:729
+msgid ""
+"Match ${dhcp_option_client_arch}, Tag ${tag_name_efi_ia32}, sets tag "
+"${tag_name_efi_ia32}"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1119
 msgid "Match Tag"
 msgstr "Tag corrispondente"
@@ -7236,6 +7278,10 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:183
 msgid "Matched traffic re-targets to an interface using this table."
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:726
+msgid "Matching option syntax: ${tag_match_option_syntax}."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:942
@@ -7757,7 +7803,6 @@ msgstr ""
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2620
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4573
 #: modules/luci-compat/luasrc/view/cbi/tblsection.htm:27
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:118
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1312
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:68
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:45
@@ -8255,6 +8300,12 @@ msgid ""
 msgstr ""
 "Nota: la modalità espediente consente a una STA che dichiara capacità di OCV "
 "di connettersi anche se la STA non invia OCI o non negozia PMF."
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:676
+msgid ""
+"Note: invalid ${tag_named_ov_string} combinations may cause dnsmasq to crash "
+"silently."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1083
 msgid ""
@@ -9297,9 +9348,20 @@ msgstr "Tecnologia di rete preferita"
 msgid "Prefix Delegated"
 msgstr "Prefisso delegato"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:727
+msgid "Prefix named (IPv6) options with ${dhcp_optioncolon_code}."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:218
 msgid "Prefix suppressor"
 msgstr "Soppressore prefisso"
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:677
+msgid ""
+"Prepend a ${tagcodestring} with ${exclamationmark_invert} to invert their "
+"domain of application, e.g. to send options to a host lacking a "
+"${tagcodestring}."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:86
 msgid "Present"
@@ -13172,6 +13234,14 @@ msgstr "Usa i certificati di sistema"
 msgid "Use system certificates for inner-tunnel"
 msgstr "Usa i certificati di sistema per il tunnel interno"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:731
+msgid "Use the %s Button to add a new ${tag_match_code_name}."
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:678
+msgid "Use the %s button to add a new ${tagcodestring}."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:798
 msgid "Use the <em>Add</em> Button to add a new UC."
 msgstr ""
@@ -13610,6 +13680,10 @@ msgstr "Che è usato per accedere a questo %s"
 msgid "Width"
 msgstr "Larghezza"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:728
+msgid "Wildcards (${wildcard_code}) allowed."
+msgstr ""
+
 #: protocols/luci-proto-wireguard/root/usr/share/luci/menu.d/luci-proto-wireguard.json:3
 msgid "WireGuard"
 msgstr "WireGuard"
@@ -13914,6 +13988,12 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:351
 msgid "dnsmasq"
+msgstr ""
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:673
+msgid ""
+"dnsmasq conditionally applies chosen DHCP options when a specific "
+"${tagcodestring} is encountered."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:406

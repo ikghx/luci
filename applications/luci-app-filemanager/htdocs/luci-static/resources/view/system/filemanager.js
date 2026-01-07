@@ -1564,7 +1564,7 @@ return view.extend({
 								E('a', {
 									href: '#',
 									click: () => self.handleDirectoryClick(parentPath)
-								}, _('←(Parent Directory)')')
+								}, _('←(Parent Directory)'))
 							])
 						);
 						break;
