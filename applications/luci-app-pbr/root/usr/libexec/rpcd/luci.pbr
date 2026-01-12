@@ -12,8 +12,8 @@
 # ubus -S call luci.pbr getGateways '{"name": "pbr" }'
 # ubus -S call luci.pbr getInterfaces '{"name": "pbr" }'
 
-readonly rpcdCompat='14'
-readonly pbrFunctionsFile='/etc/init.d/pbr'
+readonly rpcdCompat='20'
+readonly pbrFunctionsFile="${IPKG_INSTROOT}/etc/init.d/pbr"
 if [ -s "$pbrFunctionsFile" ]; then
 # shellcheck source=../../../../../pbr/files/etc/init.d/pbr
 	. "$pbrFunctionsFile"
@@ -24,7 +24,7 @@ fi
 
 # compatibility with old luci app versions
 is_running_iptables() { iptables -t mangle -n -L | grep -q PBR_PREROUTING >/dev/null 2>&1; }
-is_running() { is_running_iptables || is_running_nft; }
+is_running() { exists_lockfile && { is_running_iptables || is_running_nft; }; }
 check_ipset() { { [ -n "$ipset" ] && "$ipset" help hash:net; } >/dev/null 2>&1; }
 check_agh_ipset() {
 	check_ipset || return 1
@@ -113,7 +113,6 @@ get_init_status() {
 		json_add_boolean 'running_nft_file' '0'
 	fi
 	json_add_string 'version' "$PKG_VERSION"
-	json_add_string 'gateways' "$gateways"
 	json_add_int		'packageCompat'	"${packageCompat:-0}"
 	json_add_int		'rpcdCompat'		"${rpcdCompat:-0}"
 	json_close_object
@@ -192,11 +191,11 @@ get_supported_interfaces() {
 	config_get_bool webui_show_ignore_target 'config' 'webui_show_ignore_target' '0'
 	config_get ignored_interface             'config' 'ignored_interface'
 	config_get supported_interface           'config' 'supported_interface'
-	config_get procd_wan_interface           'config' 'procd_wan_interface'  'wan'
-	config_get procd_wan6_interface          'config' 'procd_wan6_interface' 'wan6'
+	config_get uplink_interface              'config' 'uplink_interface'  'wan'
+	config_get uplink_interface6             'config' 'uplink_interface6' 'wan6'
 	local i
-	wanIface4="$procd_wan_interface"
-	wanIface6="$procd_wan6_interface"
+	wanIface4="$uplink_interface"
+	wanIface6="$uplink_interface6"
 	config_load 'firewall'
 	config_foreach _find_firewall_wan_zone 'zone'
 	for i in $(uci_get 'firewall' "$firewallWanZone" 'network'); do

@@ -11,10 +11,10 @@ var pkg = {
 		return "pbr";
 	},
 	get LuciCompat() {
-		return 14;
+		return 20;
 	},
 	get ReadmeCompat() {
-		return "1.1.8";
+		return "1.2.1";
 	},
 	get URL() {
 		return (
@@ -44,13 +44,30 @@ var pkg = {
 				: template.format(info || " ")) + "<br />"
 		);
 	},
+	buildGatewayText: function (gw) {
+		const gateways = Array.isArray(gw) ? gw : Object.values(gw);
+		const lines = gateways.map((g) => {
+			const iface = g.name;
+			if (!iface) return "";
+			const dev_ipv4 = g.device_ipv4;
+			const gw_ipv4 = g.gateway_ipv4;
+			const dev_ipv6 = g.device_ipv6;
+			const gw_ipv6 = g.gateway_ipv6;
+			const default_gw = g.default;
+			const parts = [iface];
+			if (dev_ipv4 && dev_ipv4 !== iface) parts.push(dev_ipv4);
+			if (gw_ipv4) parts.push(gw_ipv4);
+			if (gw_ipv6) {
+				if (dev_ipv6 && dev_ipv6 !== iface) parts.push(dev_ipv6);
+				parts.push(gw_ipv6);
+			}
+			let line = parts.join("/");
+			if (default_gw) line += " ✓";
+			return line;
+		});
+		return lines.join("<br />");
+	},
 };
-
-var getGateways = rpc.declare({
-	object: "luci." + pkg.Name,
-	method: "getGateways",
-	params: ["name"],
-});
 
 var getInitList = rpc.declare({
 	object: "luci." + pkg.Name,
@@ -116,26 +133,64 @@ var RPC = {
 	},
 };
 
+// Poll service status until completion (for long-running operations like download)
+var pollServiceStatus = function (callback) {
+	var maxAttempts = 300; // Max 5 minutes of polling
+	var attempt = 0;
+
+	var checkStatus = function () {
+		attempt++;
+
+		// Use the RPC function directly from the module scope
+		L.resolveDefault(getInitStatus(pkg.Name), {}).then(function (statusData) {
+			var currentStatus = statusData && statusData[pkg.Name] && statusData[pkg.Name].running;
+
+			// Check if completed or failed
+			if (currentStatus === true) {
+				callback(true, currentStatus);
+			}
+			// Check if timed out
+			else if (attempt >= maxAttempts) {
+				callback(false, 'timeout');
+			}
+			// Continue polling
+			else {
+				setTimeout(checkStatus, 1000); // Check again in 1 second
+			}
+		}).catch(function (err) {
+			// Retry on error unless timed out
+			if (attempt < maxAttempts) {
+				setTimeout(checkStatus, 1000);
+			} else {
+				callback(false, 'error');
+			}
+		});
+	};
+
+	// Start polling after 2 seconds delay (give backend time to start the task)
+	setTimeout(checkStatus, 3000);
+};
+
 var status = baseclass.extend({
 	render: function () {
 		return Promise.all([
 			L.resolveDefault(getInitStatus(pkg.Name), {}),
 			L.resolveDefault(getUbusInfo(pkg.Name), {}),
-		]).then(function (data) {
+		]).then(function ([initStatus, ubusInfo]) {
 			var reply = {
-				status: data[0]?.[pkg.Name] || {
+				status: initStatus?.[pkg.Name] || {
 					enabled: null,
 					running: null,
 					running_iptables: null,
 					running_nft: null,
 					running_nft_file: null,
 					version: null,
-					gateways: null,
 					packageCompat: 0,
 					rpcdCompat: 0,
 				},
-				ubus: data[1]?.[pkg.Name]?.instances?.main?.data || {
+				ubus: ubusInfo?.[pkg.Name]?.instances?.main?.data || {
 					packageCompat: 0,
+					gateways: [],
 					errors: [],
 					warnings: [],
 				},
@@ -155,8 +210,8 @@ var status = baseclass.extend({
 						pkg.LuciCompat,
 						reply.status.rpcdCompat,
 						'<a href="' +
-							pkg.URL +
-							'#Warning:InternalVersionMismatch" target="_blank">',
+						pkg.URL +
+						'#Warning:InternalVersionMismatch" target="_blank">',
 						"</a>",
 					],
 				});
@@ -200,20 +255,20 @@ var status = baseclass.extend({
 			]);
 
 			var gatewaysDiv = [];
-			if (reply.status.gateways) {
+			if (reply.ubus.gateways) {
 				var gatewaysTitle = E(
 					"label",
 					{ class: "cbi-value-title" },
 					_("Service Gateways")
 				);
-				text =
+				var description =
 					_(
 						"The %s indicates default gateway. See the %sREADME%s for details."
 					).format(
 						"<strong>✓</strong>",
 						'<a href="' +
-							pkg.URL +
-							'#AWordAboutDefaultRouting" target="_blank">',
+						pkg.URL +
+						'#AWordAboutDefaultRouting" target="_blank">',
 						"</a>"
 					) +
 					"<br />" +
@@ -221,8 +276,13 @@ var status = baseclass.extend({
 						"<a href='" + pkg.DonateURL + "' target='_blank'>",
 						"</a>"
 					);
-				var gatewaysDescr = E("div", { class: "cbi-value-description" }, text);
-				var gatewaysText = E("div", {}, reply.status.gateways);
+				var gatewaysDescr = E(
+					"div",
+					{ class: "cbi-value-description" },
+					description
+				);
+				text = pkg.buildGatewayText(reply.ubus.gateways);
+				var gatewaysText = E("div", {}, text);
 				var gatewaysField = E("div", { class: "cbi-value-field" }, [
 					gatewaysText,
 					gatewaysDescr,
@@ -278,11 +338,18 @@ var status = baseclass.extend({
 							"Please set 'dhcp.%%s.force=1' to speed up service start-up %s(more info)%s"
 						).format(
 							"<a href='" +
-								pkg.URL +
-								"#Warning:Pleasesetdhcp.lan.force1" +
-								"' target='_blank'>",
+							pkg.URL +
+							"#Warning:Pleasesetdhcp.lan.force1" +
+							"' target='_blank'>",
 							"</a>"
 						)
+					),
+					warningSummary: _("Warnings encountered, please check %s"),
+					warningIncompatibleDHCPOption6: _(
+						"Incompatible DHCP Option 6 for interface %s"
+					),
+					warningNetifdMissingInterfaceLocal: _(
+						"Netifd setup: option netifd_interface_local is missing, assuming '%s'"
 					),
 				};
 				var warningsTitle = E(
@@ -298,6 +365,10 @@ var status = baseclass.extend({
 						text += _("Unknown warning") + "<br />";
 					}
 				});
+				text += _("Warnings encountered, please check the %sREADME%s").format(
+					'<a href="' + pkg.URL + '#WarningMessagesDetails" target="_blank">',
+					"</a>!<br />"
+				);
 				var warningsText = E("div", { class: "cbi-value-description" }, text);
 				var warningsField = E(
 					"div",
@@ -332,11 +403,11 @@ var status = baseclass.extend({
 					errorNoWanGateway: _(
 						"The %s service failed to discover WAN gateway"
 					).format(pkg.Name),
-					errorNoWanInterface: _(
-						"The %s interface not found, you need to set the 'pbr.config.procd_wan_interface' option"
+					errorNoUplinkInterface: _(
+						"The %s interface not found, you need to set the 'pbr.config.uplink_interface' option"
 					),
-					errorNoWanInterfaceHint: _(
-						"Refer to https://docs.openwrt.melmac.ca/pbr/#procd_wan_interface"
+					errorNoUplinkInterfaceHint: _(
+						"Refer to https://docs.openwrt.melmac.ca/pbr/#uplink_interface"
 					),
 					errorIpsetNameTooLong: _(
 						"The ipset name '%s' is longer than allowed 31 characters"
@@ -416,6 +487,25 @@ var status = baseclass.extend({
 					errorInterfaceRoutingUnknownDevType: _(
 						"Unknown IPv6 Link type for device '%s'"
 					),
+					errorMktempFileCreate: _(
+						"Failed to create temporary file with mktemp mask: '%s'"
+					),
+					errorSummary: _("Errors encountered, please check %s"),
+					errorNetifdNftFileInstall: _(
+						"Netifd setup: failed to install fw4 netifd nft file '%s'"
+					),
+					errorNetifdNftFileRemove: _(
+						"Netifd setup: failed to remove fw4 netifd nft file '%s'"
+					),
+					errorNetifdMissingOption: _(
+						"Netifd setup: required option '%s' is missing"
+					),
+					errorNetifdInvalidGateway4: _(
+						"Netifd setup: invalid value of netifd_interface_default option '%s'"
+					),
+					errorNetifdInvalidGateway6: _(
+						"Netifd setup: invalid value of netifd_interface_default6 option '%s'"
+					),
 				};
 				var errorsTitle = E(
 					"label",
@@ -431,7 +521,7 @@ var status = baseclass.extend({
 					}
 				});
 				text += _("Errors encountered, please check the %sREADME%s").format(
-					'<a href="' + pkg.URL + '" target="_blank">',
+					'<a href="' + pkg.URL + '#ErrorMessagesDetails" target="_blank">',
 					"</a>!<br />"
 				);
 				var errorsText = E("div", { class: "cbi-value-description" }, text);
@@ -621,8 +711,12 @@ var status = baseclass.extend({
 });
 
 RPC.on("setInitAction", function (reply) {
-	ui.hideModal();
-	location.reload();
+	// Don't immediately hide modal and reload
+	// Instead, poll status until the operation actually completes
+	pollServiceStatus(function () {
+		ui.hideModal();
+		location.reload();
+	});
 });
 
 return L.Class.extend({

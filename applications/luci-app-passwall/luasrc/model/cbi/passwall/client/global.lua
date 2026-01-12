@@ -229,7 +229,9 @@ if (has_singbox or has_xray) and #nodes_table > 0 then
 					for k1, v1 in pairs(normal_list) do
 						o:value(v1.id, v1.remark)
 						o.group[#o.group+1] = (v1.group and v1.group ~= "") and v1.group or translate("default")
-						pt:depends({ [node_option] = v1.id, [vid .. "-preproxy_enabled"] = "1" })
+						if not api.is_local_ip(v1.address) then  --本地节点禁止使用前置
+							pt:depends({ [node_option] = v1.id, [vid .. "-preproxy_enabled"] = "1" })
+						end
 					end
 				end
 			end)

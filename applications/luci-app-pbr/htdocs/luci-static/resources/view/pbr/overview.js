@@ -196,10 +196,10 @@ return view.extend({
 		o = s.taboption(
 			"tab_advanced",
 			form.Value,
-			"wan_mark",
-			_("WAN Table FW Mark"),
+			"uplink_mark",
+			_("Uplink Interface Table FW Mark"),
 			_(
-				"Starting (WAN) FW Mark for marks used by the service. High starting mark is " +
+				"Starting (Uplink Interface) FW Mark for marks used by the service. High starting mark is " +
 					"used to avoid conflict with SQM/QoS. Change with caution together with"
 			) +
 				" " +
@@ -226,6 +226,21 @@ return view.extend({
 		o.rmempty = true;
 		o.placeholder = "ff0000";
 		o.datatype = "hexstring";
+
+		o = s.taboption(
+			"tab_advanced",
+			form.Value,
+			"uplink_ip_rules_priority",
+			_("Uplink IP Rules Priority"),
+			_(
+				"Starting (Uplink/WAN) ip rules priority used by the pbr service. High starting priority is " +
+					"used to avoid conflict with other services, this can be changed by user."
+			)
+		);
+		o.rmempty = true;
+		o.placeholder = "30000";
+		o.datatype = "uinteger";
+		o.default = "30000";
 
 		o = s.taboption(
 			"tab_webui",
@@ -321,9 +336,7 @@ return view.extend({
 		o = s.option(form.ListValue, "chain", _("Chain"));
 		o.value("", "prerouting");
 		o.value("forward", "forward");
-		o.value("input", "input");
 		o.value("output", "output");
-		o.value("postrouting", "postrouting");
 		o.default = "";
 		o.rmempty = true;
 
@@ -372,6 +385,12 @@ return view.extend({
 		reply.interfaces.forEach((element) => {
 			element === "ignore" || o.value(element);
 		});
+
+		o = s.option(form.Value, "dest_dns_port", _("Remote DNS Port"));
+		o.optional = true;
+		o.rmempty = true;
+		o.datatype = "port";
+		o.default = "53";
 
 		s = m.section(
 			form.NamedSection,
