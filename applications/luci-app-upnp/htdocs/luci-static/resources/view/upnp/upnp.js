@@ -333,9 +333,9 @@ return view.extend({
 			return value.search(/^[0-9 -]*$/) != -1 ? true : _('Expecting: %s').format(_('valid port or port range (port1-port2)'));
 		};
 
-		o = s.option(form.Flag, 'acl_before', _('ACL before'),
-			_('Whether the ACL entries should be checked before a preset; can extend/override a preset') + '<br>' +
-			_('Sequence: 1. Reject ports, 2. ACL entries (if enabled), 3. Preset ports, 4. Accept extra ports'));
+		o = s.option(form.Flag, 'ignore_acl', _('Ignore ACL'),
+			_('Do not check ACL entries before a preset; can extend/override a preset') + '<br>' +
+			_('Sequence: 1. Reject ports, 2. ACL entries (if not checked), 3. Preset ports, 4. Accept extra ports'));
 		o.editable = true;
 		o.retain = true;
 
@@ -350,8 +350,9 @@ return view.extend({
 		// Preferably: ACL part of extra tab with depends for section as immediately, and network section part of service setup tab. Nice to have: Add button (+input) calls function and opens modal pre-filled
 		let acl_used = false;
 		for (let ifnr = 0; uci.get('upnpd', `@internal_network[${ifnr}]`, 'interface'); ifnr++) {
-			if (uci.get('upnpd', `@internal_network[${ifnr}]`, 'acl_before') == '1') {
+			if (!uci.get('upnpd', `@internal_network[${ifnr}]`, 'ignore_acl') == '1') {
 				acl_used = true;
+				break;
 			}
 		}
 		s.disable = !acl_used;
