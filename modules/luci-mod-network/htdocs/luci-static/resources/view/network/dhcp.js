@@ -1096,7 +1096,7 @@ return view.extend({
 			so.value(duid_iaid, '%s (%s)'.format(duid_iaid, desc));
 		});
 
-		so = ss.option(form.Value, 'client_id',
+		so = ss.option(form.Value, 'clientid',
 			_('Client ID'),
 			_('Client identifier.'));
 

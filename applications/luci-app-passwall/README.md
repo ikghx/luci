@@ -1,3 +1,3 @@
 From here
 
-https://github.com/xiaorouji/openwrt-passwall
+https://github.com/Openwrt-Passwall/openwrt-passwall

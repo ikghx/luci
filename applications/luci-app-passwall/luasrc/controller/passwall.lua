@@ -1,5 +1,6 @@
 -- Copyright (C) 2018-2020 L-WRT Team
 -- Copyright (C) 2021-2025 xiaorouji
+-- Copyright (C) 2026 Openwrt-Passwall Organization
 
 module("luci.controller.passwall", package.seeall)
 local api = require "luci.passwall.api"
@@ -10,6 +11,7 @@ local http = require "luci.http"
 local util = require "luci.util"
 local i18n = require "luci.i18n"
 local jsonStringify = luci.jsonc.stringify
+local jsonParse = luci.jsonc.parse
 
 function index()
 	if not nixio.fs.access("/etc/config/passwall") then
@@ -78,6 +80,7 @@ function index()
 	entry({"admin", "vpn", appname, "ping_node"}, call("ping_node")).leaf = true
 	entry({"admin", "vpn", appname, "urltest_node"}, call("urltest_node")).leaf = true
 	entry({"admin", "vpn", appname, "add_node"}, call("add_node")).leaf = true
+	entry({"admin", "vpn", appname, "update_node"}, call("update_node")).leaf = true
 	entry({"admin", "vpn", appname, "set_node"}, call("set_node")).leaf = true
 	entry({"admin", "vpn", appname, "copy_node"}, call("copy_node")).leaf = true
 	entry({"admin", "vpn", appname, "clear_all_nodes"}, call("clear_all_nodes")).leaf = true
@@ -116,6 +119,16 @@ end
 local function http_write_json(content)
 	http.prepare_content("application/json")
 	http.write(jsonStringify(content or {code = 1}))
+end
+
+local function http_write_json_ok(data)
+	http.prepare_content("application/json")
+	http.write(jsonStringify({code = 1, data = data}))
+end
+
+local function http_write_json_error(data)
+	http.prepare_content("application/json")
+	http.write(jsonStringify({code = 0, data = data}))
 end
 
 function reset_config()
@@ -411,6 +424,8 @@ function add_node()
 		uci:set(appname, uuid, "group", group)
 	end
 
+	uci:set(appname, uuid, "type", "Xray")
+
 	if redirect == "1" then
 		api.uci_save(uci, appname)
 		http.redirect(api.url("node_config", uuid))
@@ -418,6 +433,23 @@ function add_node()
 		api.uci_save(uci, appname, true, true)
 		http_write_json({result = uuid})
 	end
+end
+
+function update_node()
+	local id = http.formvalue("id") -- Node id
+	local data = http.formvalue("data") -- json new Data
+	if id and data then
+		local data_t = jsonParse(data) or {}
+		if next(data_t) then
+			for k, v in pairs(data_t) do
+				uci:set(appname, id, k, v)
+			end
+			api.uci_save(uci, appname)
+			http_write_json_ok()
+			return
+		end
+	end
+	http_write_json_error()
 end
 
 function set_node()

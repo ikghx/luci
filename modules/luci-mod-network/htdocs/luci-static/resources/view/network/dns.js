@@ -704,7 +704,7 @@ return view.extend({
 			_('Fast DNS retry'),
 			_('Have dnsmasq actively issue round-robin DNS queries to the upstream DNS.'));
 
-		o = s.taboption('forward', form.Value, 'fast_dns_retry_params',
+		o = s.taboption('forward', form.Value, 'fast_dns_retry_param',
 			_('Fast retry time setting'),
 			_('Set initial retry dalay and time to continue retries in milliseconds') + '<br />' +
 			_('Syntax:') + ' ' + '&lt;initial retry dalay&gt;[,&lt;time to continue retries&gt;]' + '<br />' +
@@ -805,7 +805,7 @@ return view.extend({
 			_('use stale cache (TTL)'),
 			_('if a DNS name exists in the cache, but its time-to-live has expired, dnsmasq will return the data anyway.'));
 
-		o = s.taboption('cache', form.Value, 'stale_cache_params',
+		o = s.taboption('cache', form.Value, 'stale_cache_param',
 			_('Maximum expiration time'),
 			_('The maximum overaging of cached records in seconds, default to not serve anything older than one day. Setting to zero will serve stale cache data regardless how long it has expired.'));
 		o.optional = true;

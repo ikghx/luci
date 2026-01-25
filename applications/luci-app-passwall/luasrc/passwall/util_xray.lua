@@ -6,17 +6,6 @@ local jsonc = api.jsonc
 local appname = "passwall"
 local fs = api.fs
 
-local new_port
-
-local function get_new_port()
-	if new_port then
-		new_port = tonumber(sys.exec(string.format("echo -n $(/usr/share/%s/app.sh get_new_port %s tcp)", appname, new_port + 1)))
-	else
-		new_port = tonumber(sys.exec(string.format("echo -n $(/usr/share/%s/app.sh get_new_port auto tcp)", appname)))
-	end
-	return new_port
-end
-
 local function get_noise_packets()
 	local noises = {}
 	uci:foreach(appname, "xray_noise_packets", function(n)
@@ -72,7 +61,7 @@ function gen_outbound(flag, node, tag, proxy_table)
 				node.transport = "tcp"
 			else
 				local relay_port = node.port
-				new_port = get_new_port()
+				local new_port = api.get_new_port()
 				local config_file = string.format("%s_%s_%s.json", flag, tag, new_port)
 				if tag and node_id and not tag:find(node_id) then
 					config_file = string.format("%s_%s_%s_%s.json", flag, tag, node_id, new_port)
@@ -272,7 +261,7 @@ function gen_outbound(flag, node, tag, proxy_table)
 						port = string.gsub(node.hysteria2_hop, ":", "-"),
 						interval = (function()
 								local v = tonumber((node.hysteria2_hop_interval or "30s"):match("^%d+"))
-								return (v and v >= 5) and (v .. "s") or "30s"
+								return (v and v >= 5) and v or 30
 							    end)()
 					} or nil,
 					maxIdleTimeout = (function()
@@ -730,50 +719,6 @@ function gen_config(var)
 			table.insert(inbounds, inbound)
 		end
 
-		if tcp_redir_port or udp_redir_port then
-			local inbound = {
-				protocol = "dokodemo-door",
-				settings = {network = "tcp,udp", followRedirect = true},
-				streamSettings = {sockopt = {tproxy = "tproxy"}},
-				sniffing = {
-					enabled = xray_settings.sniffing_override_dest == "1" or node.protocol == "_shunt"
-				}
-			}
-			if inbound.sniffing.enabled == true then
-				inbound.sniffing.destOverride = {"http", "tls", "quic"}
-				inbound.sniffing.metadataOnly = false
-				inbound.sniffing.routeOnly = xray_settings.sniffing_override_dest ~= "1" or nil
-				inbound.sniffing.domainsExcluded = xray_settings.sniffing_override_dest == "1" and get_domain_excluded() or nil
-			end
-			if remote_dns_fake then
-				inbound.sniffing.enabled = true
-				if not inbound.sniffing.destOverride then
-					inbound.sniffing.destOverride = {"fakedns"}
-					inbound.sniffing.metadataOnly = true
-				else
-					table.insert(inbound.sniffing.destOverride, "fakedns")
-					inbound.sniffing.metadataOnly = false
-				end
-			end
-
-			if tcp_redir_port then
-				local tcp_inbound = api.clone(inbound)
-				tcp_inbound.tag = "tcp_redir"
-				tcp_inbound.settings.network = "tcp"
-				tcp_inbound.port = tonumber(tcp_redir_port)
-				tcp_inbound.streamSettings.sockopt.tproxy = tcp_proxy_way
-				table.insert(inbounds, tcp_inbound)
-			end
-
-			if udp_redir_port then
-				local udp_inbound = api.clone(inbound)
-				udp_inbound.tag = "udp_redir"
-				udp_inbound.settings.network = "udp"
-				udp_inbound.port = tonumber(udp_redir_port)
-				table.insert(inbounds, udp_inbound)
-			end
-		end
-
 		local function gen_loopback(outbound_tag, loopback_dst)
 			if not outbound_tag or outbound_tag == "" then return nil end
 			local inbound_tag = loopback_dst and "lo-to-" .. loopback_dst or outbound_tag .. "-lo"
@@ -992,6 +937,8 @@ function gen_config(var)
 			local preproxy_outbound_tag, preproxy_balancer_tag
 			local preproxy_nodes
 
+			inner_fakedns = node.fakedns or "0"
+
 			local function gen_shunt_node(rule_name, _node_id)
 				if not rule_name then return nil, nil end
 				if not _node_id then
@@ -1046,7 +993,7 @@ function gen_config(var)
 					end
 					--new outbound
 					if use_proxy and _node.type ~= "Xray" then
-						new_port = get_new_port()
+						local new_port = api.get_new_port()
 						table.insert(inbounds, {
 							tag = "proxy_" .. rule_name,
 							listen = "127.0.0.1",
@@ -1192,13 +1139,18 @@ function gen_config(var)
 							outboundTag = outbound_tag,
 							balancerTag = balancer_tag,
 							domain = {},
+							fakedns = nil,
 						}
 						domains = {}
 						string.gsub(e.domain_list, '[^' .. "\r\n" .. ']+', function(w)
 							if w:find("#") == 1 then return end
+							if w:find("rule-set:", 1, true) == 1 or w:find("rs:") == 1 then return end
 							table.insert(domains, w)
 							table.insert(domain_table.domain, w)
 						end)
+						if inner_fakedns == "1" and node[e[".name"] .. "_fakedns"] == "1" and #domains > 0 then
+							domain_table.fakedns = true
+						end
 						if outbound_tag or balancer_tag then
 							table.insert(dns_domain_rules, api.clone(domain_table))
 						end
@@ -1209,6 +1161,7 @@ function gen_config(var)
 						ip = {}
 						string.gsub(e.ip_list, '[^' .. "\r\n" .. ']+', function(w)
 							if w:find("#") == 1 then return end
+							if w:find("rule-set:", 1, true) == 1 or w:find("rs:") == 1 then return end
 							table.insert(ip, w)
 						end)
 						if #ip == 0 then ip = nil end
@@ -1227,7 +1180,7 @@ function gen_config(var)
 						balancerTag = balancer_tag,
 						network = e["network"] or "tcp,udp",
 						source = source,
-						sourcePort = e["sourcePort"] ~= "" and e["sourcePort"] or nil,
+						--sourcePort = e["sourcePort"] ~= "" and e["sourcePort"] or nil,
 						port = e["port"] ~= "" and e["port"] or nil,
 						protocol = protocols
 					}
@@ -1319,6 +1272,50 @@ function gen_config(var)
 				network = "tcp,udp"
 			})
 		end
+
+		if tcp_redir_port or udp_redir_port then
+			local inbound = {
+				protocol = "dokodemo-door",
+				settings = {network = "tcp,udp", followRedirect = true},
+				streamSettings = {sockopt = {tproxy = "tproxy"}},
+				sniffing = {
+					enabled = xray_settings.sniffing_override_dest == "1" or node.protocol == "_shunt"
+				}
+			}
+			if inbound.sniffing.enabled == true then
+				inbound.sniffing.destOverride = {"http", "tls", "quic"}
+				inbound.sniffing.metadataOnly = false
+				inbound.sniffing.routeOnly = xray_settings.sniffing_override_dest ~= "1" or nil
+				inbound.sniffing.domainsExcluded = xray_settings.sniffing_override_dest == "1" and get_domain_excluded() or nil
+			end
+			if remote_dns_fake or inner_fakedns == "1" then
+				inbound.sniffing.enabled = true
+				if not inbound.sniffing.destOverride then
+					inbound.sniffing.destOverride = {"fakedns"}
+					inbound.sniffing.metadataOnly = true
+				else
+					table.insert(inbound.sniffing.destOverride, "fakedns")
+					inbound.sniffing.metadataOnly = false
+				end
+			end
+
+			if tcp_redir_port then
+				local tcp_inbound = api.clone(inbound)
+				tcp_inbound.tag = "tcp_redir"
+				tcp_inbound.settings.network = "tcp"
+				tcp_inbound.port = tonumber(tcp_redir_port)
+				tcp_inbound.streamSettings.sockopt.tproxy = tcp_proxy_way
+				table.insert(inbounds, tcp_inbound)
+			end
+
+			if udp_redir_port then
+				local udp_inbound = api.clone(inbound)
+				udp_inbound.tag = "udp_redir"
+				udp_inbound.settings.network = "udp"
+				udp_inbound.port = tonumber(udp_redir_port)
+				table.insert(inbounds, udp_inbound)
+			end
+		end
 	end
 
 	if (remote_dns_udp_server and remote_dns_udp_port) or (remote_dns_tcp_server and remote_dns_tcp_port) then
@@ -1401,7 +1398,7 @@ function gen_config(var)
 			address = "fakedns",
 		}
 
-		if remote_dns_fake then
+		if remote_dns_fake or inner_fakedns == "1" then
 			fakedns = {}
 			local fakedns4 = {
 				ipPool = "198.18.0.0/15",
@@ -1419,7 +1416,9 @@ function gen_config(var)
 			elseif remote_dns_query_strategy == "UseIPv6" then
 				table.insert(fakedns, fakedns6)
 			end
-			table.insert(dns.servers, 1, _remote_fakedns)
+			if remote_dns_fake and inner_fakedns == "0" then
+				table.insert(dns.servers, 1, _remote_fakedns)
+			end
 		end
 
 		local dns_outbound_tag = "direct"
@@ -1509,7 +1508,7 @@ function gen_config(var)
 					if value.outboundTag == "direct" and _direct_dns.address then
 						dns_server = api.clone(_direct_dns)
 					else
-						if remote_dns_fake then
+						if value.fakedns then
 							dns_server = api.clone(_remote_fakedns)
 						else
 							dns_server = api.clone(_remote_dns)

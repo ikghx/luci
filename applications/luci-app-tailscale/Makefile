@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI for Tailscale
-LUCI_DEPENDS:=+tailscale
+LUCI_DEPENDS:=+tailscale +ip +luci-base
 
 PKG_MAINTAINER:=Geoffrey Hall <asvows@gmail.com>
 
