@@ -1882,7 +1882,7 @@ return view.extend({
 
 					o = ss.taboption('roaming', form.Value, 'mobility_domain', _('Mobility domain identifier'), _('4-character hexadecimal identifier for the group of APs that offer <abbr title="Fast Transition">FT</abbr> in an <abbr title="Extended Service Set">ESS</abbr>.'));
 					o.depends({ ieee80211r: '1' });
-					o.placeholder = '4f57';
+					o.placeholder = _('automatically derived from SSID');
 					o.datatype = 'and(hexstring,length(4))';
 					o.rmempty = true;
 
@@ -1911,7 +1911,7 @@ return view.extend({
 
 					o = ss.taboption('roaming', form.Value, 'r1_key_holder', _('R1 key holder'), _('12-character hexadecimal identifier for the R1 key holder. Must not contain colons.'));
 					o.depends({ ieee80211r: '1' });
-					o.placeholder = '00004f577274';
+					o.placeholder = _('automatically derived from Mobility Domain and PSK');
 					o.datatype = 'and(hexstring,length(12))';
 					o.rmempty = true;
 

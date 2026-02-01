@@ -1,20 +1,18 @@
 #!/bin/sh
 
-uci -q batch <<-EOF >/dev/null
-	set dhcp.@dnsmasq[0].localuse=1
-	commit dhcp
+uci -q batch <<-EOF
 	delete firewall.passwall
 	set firewall.passwall=include
-	set firewall.passwall.type=script
-	set firewall.passwall.path=/var/etc/passwall.include
-	set firewall.passwall.reload=1
-	commit firewall
+	set firewall.passwall.type='script'
+	set firewall.passwall.path='/var/etc/passwall.include'
+
 	delete firewall.passwall_server
 	set firewall.passwall_server=include
-	set firewall.passwall_server.type=script
-	set firewall.passwall_server.path=/var/etc/passwall_server.include
-	set firewall.passwall_server.reload=1
-	commit firewall
+	set firewall.passwall_server.type='script'
+	set firewall.passwall_server.path='/var/etc/passwall_server.include'
+
+	set dhcp.@dnsmasq[0].localuse=1
+	commit dhcp
 EOF
 
 [ ! -s "/etc/config/passwall" ] && cp -f /usr/share/passwall/0_default_config /etc/config/passwall
