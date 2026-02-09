@@ -254,6 +254,12 @@ return view.extend({
 			if (k[i].charAt(0) != '.')
 				o.value(uci.get('luci', 'themes', k[i]), k[i]);
 
+		o = s.taboption('language', form.Flag, '_tablefilters', _('Table Filters'));
+		o.default = o.disabled;
+		o.uciconfig = 'luci';
+		o.ucisection = 'main';
+		o.ucioption = 'tablefilters';
+
 		o = s.taboption('language', form.Value, '_pollinterval', _('Polling interval (sec)'), _('The automatic refresh interval for web pages.'));
 		o.uciconfig = 'luci';
 		o.ucisection = 'main';

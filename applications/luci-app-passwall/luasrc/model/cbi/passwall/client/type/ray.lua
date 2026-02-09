@@ -1,15 +1,12 @@
 local m, s = ...
 
-local api = require "luci.passwall.api"
-
 if not api.finded_com("xray") then
 	return
 end
 
-local appname = "passwall"
 local jsonc = api.jsonc
 
-local type_name = "Xray"
+type_name = "Xray"
 
 -- [[ Xray ]]
 
@@ -41,10 +38,6 @@ local ss_method_list = {
 
 local security_list = { "none", "auto", "aes-128-gcm", "chacha20-poly1305", "zero" }
 
-local header_type_list = {
-	"none", "srtp", "utp", "wechat-video", "dtls", "wireguard", "dns"
-}
-
 local xray_version = api.get_app_version("xray")
 
 o = s:option(ListValue, _n("protocol"), translate("Protocol"))
@@ -61,6 +54,7 @@ end
 if api.compare_versions(xray_version, ">=", "1.8.12") then
 	o:value("_balancing", translate("Balancing"))
 end
+o:value("_shunt", translate("Shunt"))
 o:value("_iface", translate("Custom Interface"))
 function o.custom_cfgvalue(self, section)
 	if arg_select_proto ~= "" then
@@ -71,23 +65,24 @@ function o.custom_cfgvalue(self, section)
 end
 
 local load_balancing_options = s.val["protocol"] == "_balancing" or arg_select_proto == "_balancing"
+local load_shunt_options = s.val["protocol"] == "_shunt" or arg_select_proto == "_shunt"
 local load_iface_options = s.val["protocol"] == "_iface" or arg_select_proto == "_iface"
 local load_normal_options = true
-if load_balancing_options or load_iface_options then
+if load_balancing_options or load_shunt_options or load_iface_options then
 	load_normal_options = nil
 end
 if not arg_select_proto:find("_") then
 	load_normal_options = true
 end
 
-local nodes_table = {}
-local balancers_table = {}
-local fallback_table = {}
-local iface_table = {}
+local nodes_list = {}
+local balancing_list = {}
+local fallback_list = {}
+local iface_list = {}
 local is_balancer = nil
 for k, e in ipairs(api.get_valid_nodes()) do
 	if e.node_type == "normal" then
-		nodes_table[#nodes_table + 1] = {
+		nodes_list[#nodes_list + 1] = {
 			id = e[".name"],
 			remark = e["remark"],
 			type = e["type"],
@@ -97,13 +92,13 @@ for k, e in ipairs(api.get_valid_nodes()) do
 		}
 	end
 	if e.protocol == "_balancing" then
-		balancers_table[#balancers_table + 1] = {
+		balancing_list[#balancing_list + 1] = {
 			id = e[".name"],
 			remark = e["remark"],
 			group = e["group"]
 		}
 		if e[".name"] ~= arg[1] then
-			fallback_table[#fallback_table + 1] = {
+			fallback_list[#fallback_list + 1] = {
 				id = e[".name"],
 				remark = e["remark"],
 				fallback = e["fallback_node"],
@@ -114,7 +109,7 @@ for k, e in ipairs(api.get_valid_nodes()) do
 		end
 	end
 	if e.protocol == "_iface" then
-		iface_table[#iface_table + 1] = {
+		iface_list[#iface_list + 1] = {
 			id = e[".name"],
 			remark = e["remark"],
 			group = e["group"]
@@ -134,8 +129,14 @@ m.uci:foreach(appname, "socks", function(s)
 end)
 
 if load_balancing_options then -- [[ 负载均衡 Start ]]
-	o = s:option(MultiValue, _n("balancing_node"), translate("Load balancing node list"), translate("Load balancing node list, <a target='_blank' href='https://xtls.github.io/config/routing.html#balancerobject'>document</a>"))
+	o = s:option(ListValue, _n("node_add_mode"), translate("Node Addition Method"))
 	o:depends({ [_n("protocol")] = "_balancing" })
+	o.default = "manual"
+	o:value("manual", translate("Manual"))
+	o:value("batch", translate("Batch"))
+
+	o = s:option(MultiValue, _n("balancing_node"), translate("Load balancing node list"), translate("Load balancing node list, <a target='_blank' href='https://xtls.github.io/config/routing.html#balancerobject'>document</a>"))
+	o:depends({ [_n("node_add_mode")] = "manual" })
 	o.widget = "checkbox"
 	o.template = appname .. "/cbi/nodes_multivalue"
 	o.group = {}
@@ -143,7 +144,7 @@ if load_balancing_options then -- [[ 负载均衡 Start ]]
 		o:value(v.id, v.remark)
 		o.group[#o.group+1] = v.group or ""
 	end
-	for i, v in pairs(nodes_table) do
+	for i, v in pairs(nodes_list) do
 		o:value(v.id, v.remark)
 		o.group[#o.group+1] = v.group or ""
 	end
@@ -172,6 +173,21 @@ if load_balancing_options then -- [[ 负载均衡 Start ]]
 		end
 	end
 
+	o = s:option(MultiValue, _n("node_group"), translate("Select Group"))
+	o:depends({ [_n("node_add_mode")] = "batch" })
+	o.widget = "checkbox"
+	o:value("default", translate("default"))
+	for k, v in pairs(groups) do
+		o:value(api.UrlEncode(k), k)
+	end
+
+	o = s:option(Value, _n("node_match_rule"), translate("Node Matching Rules"))
+	o:depends({ [_n("node_add_mode")] = "batch" })
+	local descrStr = "Example: <code>^A && B && !C && D$</code><br>"
+	descrStr = descrStr .. "This means the node remark must start with A (^), include B, exclude C (!), and end with D ($).<br>"
+	descrStr = descrStr .. "Conditions are joined by <code>&&</code>, and their order does not affect the result."
+	o.description = translate(descrStr)
+
 	o = s:option(ListValue, _n("balancingStrategy"), translate("Balancing Strategy"))
 	o:depends({ [_n("protocol")] = "_balancing" })
 	o:value("random")
@@ -187,9 +203,9 @@ if load_balancing_options then -- [[ 负载均衡 Start ]]
 	o.template = appname .. "/cbi/nodes_listvalue"
 	o.group = {""}
 	local function check_fallback_chain(fb)
-		for k, v in pairs(fallback_table) do
+		for k, v in pairs(fallback_list) do
 			if v.fallback == fb then
-				fallback_table[k] = nil
+				fallback_list[k] = nil
 				check_fallback_chain(v.id)
 			end
 		end
@@ -202,11 +218,11 @@ if load_balancing_options then -- [[ 负载均衡 Start ]]
 		o:value(v.id, v.remark)
 		o.group[#o.group+1] = (v.group and v.group ~= "") and v.group or translate("default")
 	end
-	for k, v in pairs(fallback_table) do
+	for k, v in pairs(fallback_list) do
 		o:value(v.id, v.remark)
 		o.group[#o.group+1] = (v.group and v.group ~= "") and v.group or translate("default")
 	end
-	for k, v in pairs(nodes_table) do
+	for k, v in pairs(nodes_list) do
 		o:value(v.id, v.remark)
 		o.group[#o.group+1] = (v.group and v.group ~= "") and v.group or translate("default")
 	end
@@ -390,15 +406,22 @@ o = s:option(Value, _n("tls_serverName"), translate("Domain"))
 o:depends({ [_n("tls")] = true })
 o:depends({ [_n("protocol")] = "hysteria2" })
 
-if api.compare_versions(xray_version, "<", "26.1.31") then
+if api.compare_versions(os.date("%Y.%m.%d"), "<", "2026.6.1") then
 	o = s:option(Flag, _n("tls_allowInsecure"), translate("allowInsecure"), translate("Whether unsafe connections are allowed. When checked, Certificate validation will be skipped."))
 	o.default = "0"
 	o:depends({ [_n("tls")] = true, [_n("reality")] = false })
 	o:depends({ [_n("protocol")] = "hysteria2" })
 end
 
-o = s:option(Value, _n("tls_chain_fingerprint"), translate("TLS Chain Fingerprint (SHA256)"), translate("Once set, connects only when the server’s chain fingerprint matches."))
-o:depends({ [_n("tls")] = true, [_n("reality")] = false })
+if api.compare_versions(xray_version, ">=", "26.1.31") then
+	o = s:option(Value, _n("tls_CertSha"), translate("TLS Chain Fingerprint (SHA256)"), translate("Once set, connects only when the server’s chain fingerprint matches."))
+	o:depends({ [_n("tls")] = true, [_n("reality")] = false })
+	o:depends({ [_n("protocol")] = "hysteria2" })
+
+	o = s:option(Value, _n("tls_CertByName"), translate("TLS Certificate Name (CertName)"), translate("TLS is used to verify the leaf certificate name."))
+	o:depends({ [_n("tls")] = true, [_n("reality")] = false })
+	o:depends({ [_n("protocol")] = "hysteria2" })
+end
 
 o = s:option(Flag, _n("ech"), translate("ECH"))
 o.default = "0"
@@ -522,11 +545,17 @@ o:depends({ [_n("tcp_guise")] = "http" })
 -- [[ mKCP部分 ]]--
 
 o = s:option(ListValue, _n("mkcp_guise"), translate("Camouflage Type"), translate('<br />none: default, no masquerade, data sent is packets with no characteristics.<br />srtp: disguised as an SRTP packet, it will be recognized as video call data (such as FaceTime).<br />utp: packets disguised as uTP will be recognized as bittorrent downloaded data.<br />wechat-video: packets disguised as WeChat video calls.<br />dtls: disguised as DTLS 1.2 packet.<br />wireguard: disguised as a WireGuard packet. (not really WireGuard protocol)<br />dns: Disguising traffic as DNS requests.'))
-for a, t in ipairs(header_type_list) do o:value(t) end
+o:value("none", "none")
+o:value("header-srtp", "srtp")
+o:value("header-utp", "utp")
+o:value("header-wechat", "wechat-video")
+o:value("header-dtls", "dtls")
+o:value("header-wireguard", "wireguard")
+o:value("header-dns", "dns")
 o:depends({ [_n("transport")] = "mkcp" })
 
 o = s:option(Value, _n("mkcp_domain"), translate("Camouflage Domain"), translate("Use it together with the DNS disguised type. You can fill in any domain."))
-o:depends({ [_n("mkcp_guise")] = "dns" })
+o:depends({ [_n("mkcp_guise")] = "header-dns" })
 
 o = s:option(Value, _n("mkcp_mtu"), translate("KCP MTU"))
 o.default = "1350"
@@ -723,8 +752,8 @@ o2:depends({ [_n("chain_proxy")] = "2" })
 o2.template = appname .. "/cbi/nodes_listvalue"
 o2.group = {}
 
-for k, v in pairs(nodes_table) do
-	if v.type == "Xray" and v.id ~= arg[1] and (not v.chain_proxy or v.chain_proxy == "") then
+for k, v in pairs(nodes_list) do
+	if v.id ~= arg[1] and (not v.chain_proxy or v.chain_proxy == "") then
 		o1:value(v.id, v.remark)
 		o1.group[#o1.group+1] = (v.group and v.group ~= "") and v.group or translate("default")
 		o2:value(v.id, v.remark)
@@ -741,5 +770,19 @@ for i, v in ipairs(s.fields[_n("protocol")].keylist) do
 end
 
 end
+-- [[ Normal single node End ]]
 
 api.luci_types(arg[1], m, s, type_name, option_prefix)
+
+if load_shunt_options then
+	local current_node = m.uci:get_all(appname, arg[1]) or {}
+	local shunt_lua = loadfile("/usr/lib/lua/luci/model/cbi/passwall/client/include/shunt_options.lua")
+	setfenv(shunt_lua, getfenv(1))(m, s, {
+		node_id = arg[1],
+		node = current_node,
+		socks_list = socks_list,
+		balancing_list = balancing_list,
+		iface_list = iface_list,
+		normal_list = nodes_list
+	})
+end

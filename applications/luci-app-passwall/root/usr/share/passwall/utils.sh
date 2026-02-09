@@ -64,19 +64,16 @@ get_enabled_anonymous_secs() {
 get_geoip() {
 	local geoip_code="$1"
 	local geoip_type_flag=""
-	local geoip_path="${V2RAY_LOCATION_ASSET%*/}/geoip.dat"
-	[ -s "$geoip_path" ] || { echo ""; return 1; }
+	local geoip_path="$(config_t_get global_rules v2ray_location_asset "/usr/share/v2ray/")"
+	geoip_path="${geoip_path%*/}/geoip.dat"
+	local bin="$(first_type $(config_t_get global_app geoview_file) geoview)"
+	[ -n "$bin" ] && [ -s "$geoip_path" ] || { echo ""; return 1; }
 	case "$2" in
 		"ipv4") geoip_type_flag="-ipv6=false" ;;
 		"ipv6") geoip_type_flag="-ipv4=false" ;;
 	esac
-	if type geoview &> /dev/null; then
-		geoview -input "$geoip_path" -list "$geoip_code" $geoip_type_flag -lowmem=true
-		return 0
-	else
-		echo ""
-		return 1
-	fi
+	"$bin" -input "$geoip_path" -list "$geoip_code" $geoip_type_flag -lowmem=true
+	return 0
 }
 
 get_host_ip() {
@@ -444,4 +441,39 @@ get_subscribe_host(){
 		url="$(host_from_url "$url")"
 		echo "$url"
 	done
+}
+
+gen_lanlist() {
+	cat $RULES_PATH/lanlist_ipv4 | tr -s '\n' | grep -v "^#"
+}
+
+gen_lanlist_6() {
+	cat $RULES_PATH/lanlist_ipv6 | tr -s '\n' | grep -v "^#"
+}
+
+get_wan_ips() {
+	local family="$1"
+	local NET_ADDR
+	local iface
+	local INTERFACES=$(ubus call network.interface dump | jsonfilter -e \
+			'@.interface[!(@.interface ~ /lan/) && !(@.l3_device ~ /\./) && @.route[0]].interface')
+	for iface in $INTERFACES; do
+		local addr
+		if [ "$family" = "ip6" ]; then
+			network_get_ipaddr6 addr "$iface"
+			case "$addr" in
+				""|fe80*) continue ;;
+			esac
+		else
+			network_get_ipaddr addr "$iface"
+			case "$addr" in
+				""|"0.0.0.0") continue ;;
+			esac
+		fi
+		case " $NET_ADDR " in
+			*" $addr "*) ;;
+			*) NET_ADDR="${NET_ADDR:+$NET_ADDR }$addr" ;;
+		esac
+	done
+	echo "$NET_ADDR"
 }

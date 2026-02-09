@@ -142,6 +142,18 @@ function base64Encode(text)
 	return result
 end
 
+function UrlEncode(szText)
+	return szText:gsub("([^%w%-_%.%~])", function(c)
+		return string.format("%%%02X", string.byte(c))
+	end)
+end
+
+function UrlDecode(szText)
+	return szText and szText:gsub("%+", " "):gsub("%%(%x%x)", function(h)
+		return string.char(tonumber(h, 16))
+	end) or nil
+end
+
 --提取URL中的域名和端口(no ip)
 function get_domain_port_from_url(url)
 	local scheme, domain, port = string.match(url, "^(https?)://([%w%.%-]+):?(%d*)")
@@ -457,11 +469,10 @@ function get_valid_nodes()
 	uci:foreach(appname, "nodes", function(e)
 		e.id = e[".name"]
 		if e.type and e.remarks then
-			if (e.type == "sing-box" or e.type == "Xray") and e.protocol and
-			   (e.protocol == "_balancing" or e.protocol == "_shunt" or e.protocol == "_iface" or e.protocol == "_urltest") then
-				local type = e.type
-				if type == "sing-box" then type = "Sing-Box" end
-				e["remark"] = trim("%s：[%s]" % {type .. " " .. i18n.translatef(e.protocol), e.remarks})
+			local type_name = e.type
+			if e.type == "sing-box" then type_name = "Sing-Box" end
+			if e.protocol and (e.protocol == "_balancing" or e.protocol == "_shunt" or e.protocol == "_iface" or e.protocol == "_urltest") then
+				e["remark"] = trim("%s：[%s]" % {type_name .. " " .. i18n.translatef(e.protocol), e.remarks})
 				e["node_type"] = "special"
 				if not e.group or e.group == "" then
 					default_nodes[#default_nodes + 1] = e
@@ -473,8 +484,7 @@ function get_valid_nodes()
 			if port and e.address then
 				local address = e.address
 				if is_ip(address) or datatypes.hostname(address) then
-					local type = e.type
-					if (type == "sing-box" or type == "Xray") and e.protocol then
+					if (e.type == "sing-box" or e.type == "Xray") and e.protocol then
 						local protocol = e.protocol
 						if protocol == "vmess" then
 							protocol = "VMess"
@@ -497,14 +507,13 @@ function get_valid_nodes()
 						else
 							protocol = protocol:gsub("^%l",string.upper)
 						end
-						if type == "sing-box" then type = "Sing-Box" end
-						type = type .. " " .. protocol
+						type_name = type_name .. " " .. protocol
 					end
 					if is_ipv6(address) then address = get_ipv6_full(address) end
-					e["remark"] = trim("%s：[%s]" % {type, e.remarks})
+					e["remark"] = trim("%s：[%s]" % {type_name, e.remarks})
 					if show_node_info == "1" then
 						port = port:gsub(":", "-")
-						e["remark"] = trim("%s：[%s] %s:%s" % {type, e.remarks, address, port})
+						e["remark"] = trim("%s：[%s] %s:%s" % {type_name, e.remarks, address, port})
 					end
 					e.node_type = "normal"
 					if not e.group or e.group == "" then
@@ -524,11 +533,11 @@ end
 function get_node_remarks(n)
 	local remarks = ""
 	if n then
-		if (n.type == "sing-box" or n.type == "Xray") and n.protocol and
-		   (n.protocol == "_balancing" or n.protocol == "_shunt" or n.protocol == "_iface" or n.protocol == "_urltest") then
-			remarks = trim("%s：[%s]" % {n.type .. " " .. i18n.translatef(n.protocol), n.remarks})
+		local type_name = n.type
+		if n.type == "sing-box" then type_name = "Sing-Box" end
+		if n.protocol and (n.protocol == "_balancing" or n.protocol == "_shunt" or n.protocol == "_iface" or n.protocol == "_urltest") then
+			remarks = trim("%s：[%s]" % {type_name .. " " .. i18n.translatef(n.protocol), n.remarks})
 		else
-			local type2 = n.type
 			if (n.type == "sing-box" or n.type == "Xray") and n.protocol then
 				local protocol = n.protocol
 				if protocol == "vmess" then
@@ -552,10 +561,9 @@ function get_node_remarks(n)
 				else
 					protocol = protocol:gsub("^%l",string.upper)
 				end
-				if type2 == "sing-box" then type2 = "Sing-Box" end
-				type2 = type2 .. " " .. protocol
+				type_name = type_name .. " " .. protocol
 			end
-			remarks = trim("%s：[%s]" % {type2, n.remarks})
+			remarks = trim("%s：[%s]" % {type_name, n.remarks})
 		end
 	end
 	return remarks
@@ -965,6 +973,15 @@ function to_check(arch, app_name)
 		remote_version = remote_version:gsub(com[app_name].remote_version_str_replace, "")
 	end
 	local has_update = compare_versions(local_version:match("[^v]+"), "<", remote_version:match("[^v]+"))
+--[[
+	if not has_update then
+		return {
+			code = 0,
+			local_version = local_version,
+			remote_version = remote_version
+		}
+	end
+]]--
 	local asset = {}
 	for _, v in ipairs(json.assets) do
 		if v.name and v.name:match(match_file_name) then
@@ -1391,4 +1408,51 @@ function apply_redirect(m)
 	else
 		sys.call("/bin/rm -f " .. tmp_uci_file)
 	end
+end
+
+function match_node_rule(name, rule)
+	if not name then return false end
+	if not rule or rule == "" then return true end
+	-- split rule by &&
+	local function split_and(expr)
+		local t = {}
+		for part in expr:gmatch("[^&]+") do
+			part = part:gsub("^%s+", ""):gsub("%s+$", "")
+			if part ~= "" then
+				table.insert(t, part)
+			end
+		end
+		return t
+	end
+	-- match single condition
+	local function match_cond(str, cond)
+		if cond == "" then
+			return true
+		end
+		-- exclude: !xxx
+		if cond:sub(1, 1) == "!" then
+			local k = cond:sub(2)
+			if k == "" then return true end
+			return not str:find(k, 1, true)
+		end
+		-- prefix: ^xxx
+		if cond:sub(1, 1) == "^" then
+			local k = cond:sub(2)
+			return str:sub(1, #k) == k
+		end
+		-- suffix: xxx$
+		if cond:sub(-1) == "$" then
+			local k = cond:sub(1, -2)
+			return str:sub(-#k) == k
+		end
+		-- contains
+		return str:find(cond, 1, true) ~= nil
+	end
+	-- AND logic
+	for _, cond in ipairs(split_and(rule)) do
+		if not match_cond(name, cond) then
+			return false
+		end
+	end
+	return true
 end

@@ -17,6 +17,8 @@ local ssub, slen, schar, sbyte, sformat, sgsub = string.sub, string.len, string.
 local split = api.split
 local jsonParse, jsonStringify = luci.jsonc.parse, luci.jsonc.stringify
 local base64Decode = api.base64Decode
+local UrlEncode = api.UrlEncode
+local UrlDecode = api.UrlDecode
 local uci = api.uci
 local fs = api.fs
 uci:revert(appname)
@@ -419,18 +421,6 @@ do
 	end
 end
 
-local function UrlEncode(szText)
-	return szText:gsub("([^%w%-_%.%~])", function(c)
-		return string.format("%%%02X", string.byte(c))
-	end)
-end
-
-local function UrlDecode(szText)
-	return szText and szText:gsub("+", " "):gsub("%%(%x%x)", function(h)
-		return string.char(tonumber(h, 16))
-	end) or nil
-end
-
 -- 取机场信息（剩余流量、到期时间）
 local subscribe_info = {}
 local function get_subscribe_info(cfgid, value)
@@ -624,6 +614,8 @@ local function processData(szType, content, add_mode, group)
 			else
 				result.tls_allowInsecure = allowInsecure_default and "1" or "0"
 			end
+			result.tls_CertSha = info.pcs
+			result.tls_CertByName = info.vcn
 		else
 			result.tls = "0"
 		end
@@ -883,6 +875,8 @@ local function processData(szType, content, add_mode, group)
 							result.ech = "1"
 							result.ech_config = params.ech
 						end
+						result.tls_CertSha = params.pcs
+						result.tls_CertByName = params.vcn
 						if params.security == "reality" then
 							result.reality = "1"
 							result.reality_publicKey = params.pbk or nil
@@ -1002,6 +996,8 @@ local function processData(szType, content, add_mode, group)
 
 			result.tls = '1'
 			result.tls_serverName = peer and peer or sni
+			result.tls_CertSha = params.pcs
+			result.tls_CertByName = params.vcn
 
 			params.allowinsecure = params.allowinsecure or params.insecure
 			if params.allowinsecure then
@@ -1264,6 +1260,8 @@ local function processData(szType, content, add_mode, group)
 					result.ech = "1"
 					result.ech_config = params.ech
 				end
+				result.tls_CertSha = params.pcs
+				result.tls_CertByName = params.vcn
 				if params.security == "reality" then
 					result.reality = "1"
 					result.reality_publicKey = params.pbk or nil
@@ -1380,6 +1378,8 @@ local function processData(szType, content, add_mode, group)
 			result.address = host_port
 		end
 		result.tls_serverName = params.sni
+		result.tls_CertSha = params.pcs
+		result.tls_CertByName = params.vcn
 		params.allowinsecure = params.allowinsecure or params.insecure
 		if params.allowinsecure and (params.allowinsecure == "1" or params.allowinsecure == "0") then
 			result.tls_allowInsecure = params.allowinsecure
@@ -1830,7 +1830,7 @@ local function update_node(manual)
 						uci:set(appname, cfgid, "domain_strategy", domain_strategy_node)
 					end
 					-- 订阅组链式代理
-					if chain_node_type ~= "" and kkk == "type" and vvv == chain_node_type then
+					if chain_node_type ~= "" and kkk == "type" and (vvv == "Xray" or vvv == "sing-box") then
 						if preproxy_node_group ~="" then
 							uci:set(appname, cfgid, "chain_proxy", "1")
 							uci:set(appname, cfgid, "preproxy_node", preproxy_node_group)

@@ -9,6 +9,8 @@ PKG_MAINTAINER:=Stan Grishin <stangri@melmac.ca>
 PKG_VERSION:=1.1.1
 PKG_RELEASE:=15
 
+PKG_BUILD_DEPENDS:=jq/host
+
 LUCI_TITLE:=Advanced Linksys Reboot Web UI
 LUCI_URL:=https://github.com/stangri/luci-app-advanced-reboot/
 LUCI_DESCRIPTION:=Provides Web UI (found under System/Advanced Reboot) to reboot supported Linksys and ZyXEL routers to\
