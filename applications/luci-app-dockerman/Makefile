@@ -7,7 +7,7 @@ LUCI_DEPENDS:=@(aarch64||arm||x86_64) \
 	+ttyd \
 	+dockerd \
 	+docker-compose \
-	+ucode-mod-socket
+	+ucode-mod-socket \
 	+kmod-crypto-ctr \
 	+kmod-crypto-gcm \
 	+kmod-dummy \
