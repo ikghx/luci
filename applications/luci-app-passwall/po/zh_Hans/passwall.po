@@ -32,12 +32,12 @@ msgstr "%s 节点日志"
 msgid "%s Node Use Type"
 msgstr "%s 节点使用类型"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1156
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1149
 msgid "%s not enough space."
 msgstr "%s 空间不足。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1030
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1085
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1023
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1078
 msgctxt "/tmp"
 msgid "%s not enough space."
 msgstr "%s 空间不足。"
@@ -321,7 +321,7 @@ msgstr "批量"
 msgid "Bind Local"
 msgstr "本机监听"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:139
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:132
 msgid "Blackhole (Block)"
 msgstr "黑洞（屏蔽）"
 
@@ -391,7 +391,7 @@ msgstr "伪装域名"
 msgid "Camouflage Type"
 msgstr "伪装类型"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:952
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:945
 msgid "Can't determine ARCH, or ARCH not supported."
 msgstr "无法确认ARCH架构，或是不支持。"
 
@@ -407,7 +407,7 @@ msgstr "无法确认ARCH架构，或是不支持。"
 msgid "Can't find this file!"
 msgstr "找不到这个文件！"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1170
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1163
 msgid "Can't move new file to path: %s"
 msgstr "无法移动新文件到：%s"
 
@@ -509,7 +509,7 @@ msgstr "客户端代理"
 msgid "Client Version"
 msgstr "客户端版本"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1128
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1121
 msgid "Client file is required."
 msgstr "请指定客户端文件。"
 
@@ -529,9 +529,9 @@ msgstr "请指定客户端文件。"
 msgid "Close"
 msgstr "关闭"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:136
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:167
-#: applications/luci-app-passwall/luasrc/view/passwall/include/shunt_options.htm:39
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:129
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:161
+#: applications/luci-app-passwall/luasrc/view/passwall/include/shunt_options.htm:40
 msgid "Close (Not use)"
 msgstr "关闭（不使用）"
 
@@ -692,7 +692,7 @@ msgstr ""
 msgid "Decimal numbers separated by \",\" or Base64-encoded strings."
 msgstr "用“,”隔开的十进制数字或 Base64 编码字符串。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:112
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:105
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:394
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:389
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:457
@@ -767,7 +767,7 @@ msgstr "目标协议"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:328
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:544
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:138
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:131
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:245
 msgid "Direct Connection"
 msgstr "直连"
@@ -879,7 +879,7 @@ msgstr "域名/IP 查询"
 msgid "Domestic group name"
 msgstr "国内分组名"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1020
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1013
 msgid "Download url is required."
 msgstr "请指定下载地址。"
 
@@ -920,6 +920,12 @@ msgstr "ECH 查询策略"
 msgid "EDNS Client Subnet"
 msgstr "EDNS 客户端子网"
 
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:157
+msgid ""
+"Each rule has a separate switch that controls whether this rule uses the pre-"
+"proxy or not."
+msgstr "每条规则都有独立开关控制本规则是否使用前置代理。"
+
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:632
 msgid "Early data header name"
 msgstr "前置数据 HTTP 头名"
@@ -945,7 +951,6 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:724
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:114
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:90
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:97
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:227
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:28
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:76
@@ -1124,7 +1129,7 @@ msgstr "导出配置文件"
 msgid "Export Of Multi WAN"
 msgstr "多 WAN 指定出口"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1194
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1187
 msgid "Failed"
 msgstr "失败"
 
@@ -1163,11 +1168,11 @@ msgstr "设置选项错误，请帮助调试："
 msgid "Fast Open"
 msgstr "快速打开"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1044
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1037
 msgid "File download failed or timed out: %s"
 msgstr "文件下载失败或超时：%s"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1058
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1051
 msgid "File path required."
 msgstr "请指定文件路径。"
 
@@ -1362,7 +1367,7 @@ msgstr ""
 msgid "Geosite Update URL"
 msgstr "Geosite 更新URL"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:967
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:960
 msgid "Get remote version info failed."
 msgstr "获取远程版本信息失败。"
 
@@ -2074,7 +2079,7 @@ msgstr ""
 msgid "New Reno"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:999
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:992
 msgid "New version found, but failed to get new version download url."
 msgstr "发现新版本，但未能获得新版本的下载地址。"
 
@@ -2108,7 +2113,7 @@ msgstr "未找到任何结果！"
 msgid "No table!"
 msgstr "没有表格！"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:133
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:126
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:47
 msgid "Node"
 msgstr "节点"
@@ -2186,7 +2191,7 @@ msgstr "不支持这种样式的："
 msgid "Not enabled log"
 msgstr "未启用日志"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1074
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1067
 msgid "Not installed %s, Can't unzip!"
 msgstr "未安装 %s，无法解压！"
 
@@ -2517,12 +2522,10 @@ msgstr ""
 msgid "Preferred Node Count"
 msgstr "优选节点数量"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:90
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:163
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:158
 msgid "Preproxy"
 msgstr "前置代理"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:92
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:258
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:265
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:735
@@ -2833,7 +2836,7 @@ msgstr "回滚中..."
 msgid "Route Hosts"
 msgstr "路由 Hosts 文件"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:123
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:116
 msgid "Rule"
 msgstr ""
 
@@ -2949,14 +2952,9 @@ msgstr "指定远程 TUIC 服务器 IP"
 msgid "Set the default domain resolution strategy for the sing-box node."
 msgstr "为 sing-box 节点设置默认的域名解析策略。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:92
-msgid ""
-"Set the node to be used as a pre-proxy. Each rule (including <code>Default</"
-"code>) has a separate switch that controls whether this rule uses the pre-"
-"proxy or not."
-msgstr ""
-"设置用作前置代理的节点。每条规则（包括<code>默认</code>）都有独立开关控制本规"
-"则是否使用前置代理。"
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:157
+msgid "Set the node to be used as a pre-proxy."
+msgstr "设置用作前置代理的节点。"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:163
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:252
@@ -3156,14 +3154,14 @@ msgstr "成功"
 msgid "Such as:"
 msgstr "例如："
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:99
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:152
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:92
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:145
 msgid ""
 "Such as: DNS unlocking of streaming media, reducing DNS query latency, etc."
 msgstr "例如：流媒体的 DNS 解锁、减少 DNS 查询延迟等。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:98
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:151
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:91
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:144
 msgid ""
 "Suitable scenarios for let the node servers get the target domain names."
 msgstr "适合让节点服务器获取目标域名的场景。"
@@ -3303,7 +3301,7 @@ msgstr "测试容差"
 msgid "The URL used to detect the connection status."
 msgstr "用于检测连接状态的网址。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1136
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1129
 msgid "The client file is not suitable for current device."
 msgstr "客户端文件不适合当前设备。"
 
@@ -3322,7 +3320,7 @@ msgstr "空闲超时时间。"
 msgid "The interval between initiating probes."
 msgstr "发起探测的间隔。"
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:1214
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:1207
 msgid ""
 "The latest version: %s, currently does not support automatic update, if you "
 "need to update, please compile or download the ipk and then manually install."
@@ -3677,12 +3675,12 @@ msgstr "使用自定义探测网址"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:500
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:446
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:97
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:150
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:90
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:143
 msgid "Use FakeDNS work in the domain that proxy."
 msgstr "需要代理的分流规则域名使用 FakeDNS。"
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:137
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:130
 msgid "Use default node"
 msgstr "使用默认节点"
 
@@ -3708,10 +3706,6 @@ msgstr "使用全局配置"
 msgid ""
 "Use it together with the DNS disguised type. You can fill in any domain."
 msgstr "配合伪装类型 DNS 使用，可随便填一个域名。"
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:168
-msgid "Use preproxy node"
-msgstr "使用前置代理节点"
 
 #: applications/luci-app-passwall/luasrc/view/passwall/rule_list/geoview.htm:30
 msgid ""
@@ -3911,7 +3905,7 @@ msgstr "您可以转发到 Nginx/Caddy/V2ray/Xray WebSocket 等。"
 msgid "You choose node is:"
 msgstr "你选择的节点是："
 
-#: applications/luci-app-passwall/luasrc/passwall/api.lua:930
+#: applications/luci-app-passwall/luasrc/passwall/api.lua:923
 msgid ""
 "You did not fill in the %s path. Please save and apply then update manually."
 msgstr "您没有填写 %s 路径。请保存应用后再手动更新。"
@@ -3986,16 +3980,10 @@ msgstr "自定义"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:799
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:803
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:124
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:182
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:175
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:178
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:185
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:191
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:194
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:200
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:203
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:209
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:212
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:218
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:221
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:188
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_config.lua:44
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:280
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:282
@@ -4004,11 +3992,13 @@ msgstr "自定义"
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:223
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:227
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:231
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:756
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:758
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:755
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:762
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:767
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:184
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:800
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:802
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:799
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:806
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:811
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:420
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:415
 #: applications/luci-app-passwall/luasrc/view/passwall/cbi/nodes_multivalue.htm:39
@@ -4151,9 +4141,6 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:16
 msgid "v2fly/domain-list-community"
 msgstr ""
-
-msgid "Default Preproxy"
-msgstr "默认前置代理"
 
 msgid "No shunt rules? Click me to go to add."
 msgstr "没有分流规则？点我前往去添加。"
