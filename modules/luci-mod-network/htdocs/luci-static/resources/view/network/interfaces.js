@@ -699,7 +699,7 @@ return view.extend({
 										uci.set('dhcp', section_id, 'interface', section_id);
 
 										if (protoval == 'static') {
-											uci.set('dhcp', section_id, 'start', 1);
+											uci.set('dhcp', section_id, 'start', 2);
 											uci.set('dhcp', section_id, 'limit', 254);
 											uci.set('dhcp', section_id, 'leasetime', '12h');
 											uci.set('dhcp', section_id, 'dhcpv4', 'server');
@@ -774,7 +774,7 @@ return view.extend({
 						so = ss.taboption('ipv4', form.Value, 'start', _('Start', 'DHCP IP range start address'), _('Lowest leased address as offset from the network address.'));
 						so.optional = true;
 						so.datatype = 'or(uinteger,ip4addr("nomask"))';
-						so.default = '1';
+						so.default = '2';
 
 						so = ss.taboption('ipv4', form.Value, 'limit', _('Limit'), _('Maximum number of leased addresses.'));
 						so.optional = true;
