@@ -35,7 +35,7 @@ return network.registerProtocol('dhcpv6', {
 		o = s.taboption('general', form.Flag, 'extendprefix', _('Extend prefix'), _('Extend 3GPP WAN interface /64 prefix via PD to LAN (RFC 7278)'));
 
 		o = s.taboption('general', form.Flag, 'norelease', _('Do not send a Release when restarting'),
-						_('Enable to minimise the chance of prefix change after a restart.'));
+						_('Enable to minimise the chance of prefix change after a restart'));
 		o.default = '1';
 
 		o = s.taboption('advanced', form.Value, 'clientid', _('Client ID to send when requesting DHCP'));
