@@ -4,8 +4,8 @@ config openclash 'config'
 	option socks_port '7891'
 	option proxy_port '7892'
 	option mixed_port '7893'
-	option tproxy_port '7895'
 	option dns_port '7874'
+	option tproxy_port '7895'
 	option enable '0'
 	option update '0'
 	option en_mode 'redir-host-mix'
@@ -86,84 +86,106 @@ config openclash 'config'
 	option lan_interface_name '0'
 	option proxy_dns_group 'Disable'
 	option keep_alive_interval '0'
+	option disable_quic_go_gso '1'
+	option geoasn_auto_update '0'
+	option smart_enable '0'
+	option custom_proxy_server_policy '0'
+	option auto_smart_switch '0'
+	option smart_prefer_asn '0'
+	option smart_enable_lgbm '0'
+	option smart_collect '0'
+	option lgbm_auto_update '0'
 
 config dns_servers
 	option group 'nameserver'
 	option type 'udp'
 	option ip '119.29.29.29'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'nameserver'
 	option type 'udp'
 	option ip '223.5.5.5'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'nameserver'
 	option type 'https'
 	option ip 'doh.pub/dns-query'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'nameserver'
 	option type 'https'
 	option ip 'dns.alidns.com/dns-query'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
 	option group 'fallback'
 	option ip '1.1.1.1'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
 	option group 'fallback'
 	option ip '208.67.222.222'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
 	option group 'fallback'
 	option ip '8.8.8.8'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip '1.1.1.1/dns-query'
 	option type 'https'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip '208.67.222.222/dns-query'
 	option type 'https'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip '8.8.8.8/dns-query'
 	option type 'https'
 	option enabled '1'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip 'cloudflare-dns.com/dns-query'
 	option type 'https'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip 'doh.opendns.com/dns-query'
 	option type 'https'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip 'dns.google/dns-query'
 	option type 'https'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -171,6 +193,7 @@ config dns_servers
 	option ip '2402:4e00::'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -178,6 +201,7 @@ config dns_servers
 	option ip '2400:3200::1'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -185,6 +209,7 @@ config dns_servers
 	option ip '2606:4700:4700::1111'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -192,6 +217,7 @@ config dns_servers
 	option ip '2606:4700:4700::1001'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -199,6 +225,7 @@ config dns_servers
 	option ip '2620:119:35::35'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -206,6 +233,7 @@ config dns_servers
 	option ip '2620:119:53::53'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -213,6 +241,7 @@ config dns_servers
 	option ip '2001:4860:4860::8888'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -220,6 +249,7 @@ config dns_servers
 	option ip '2001:4860:4860::8844'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option type 'udp'
@@ -227,36 +257,42 @@ config dns_servers
 	option ip '2001:da8::666'
 	option port '53'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option type 'https'
 	option ip 'public.dns.iij.jp/dns-query'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option type 'https'
 	option ip 'jp.tiar.app/dns-query'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option type 'https'
 	option ip 'jp.tiarap.org/dns-query'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip 'jp.tiar.app'
 	option type 'tls'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config dns_servers
 	option group 'fallback'
 	option ip 'dot.tiar.app'
 	option type 'tls'
 	option enabled '0'
+	option disable_ipv6 '0'
 
 config config_overwrite
 	option name 'default'

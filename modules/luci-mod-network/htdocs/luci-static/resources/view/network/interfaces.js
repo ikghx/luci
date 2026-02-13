@@ -901,7 +901,6 @@ return view.extend({
 
 					so = ss.taboption('ipv6-ra', form.Flag, 'ra_slaac', _('Enable <abbr title="Stateless Address Auto Config">SLAAC</abbr>'),
 						_('Set the autonomous address-configuration flag in the prefix information options of sent <abbr title="Router Advertisement">RA</abbr> messages. When enabled, clients will perform stateless IPv6 address autoconfiguration.'));
-					so.default = so.enabled;
 					so.depends('ra', 'server');
 					so.depends({ ra: 'hybrid', master: '0' });
 

@@ -3,6 +3,7 @@ config global
 	option enabled '0'
 	option socks_enabled '0'
 	option udp_node 'tcp'
+	option dns_shunt 'dnsmasq'
 	option dns_mode 'tcp'
 	option remote_dns '1.1.1.1'
 	list smartdns_remote_dns 'https://1.1.1.1/dns-query'
@@ -19,8 +20,8 @@ config global
 	option log_udp '0'
 	option loglevel 'error'
 	option trojan_loglevel '4'
-	option dns_shunt 'dnsmasq'
 	option log_chinadns_ng '0'
+	option flush_set '1'
 
 config global_haproxy
 	option balancing_enable '0'
@@ -36,7 +37,7 @@ config global_forwarding
 	option udp_proxy_drop_ports '443'
 	option tcp_redir_ports '22,25,53,80,143,443,465,587,853,873,993,995,5222,8080,8443,9418'
 	option udp_redir_ports '1:65535'
-	option use_nft '1'
+	option prefer_nft '1'
 	option tcp_proxy_way 'redirect'
 	option ipv6_tproxy '0'
 
@@ -47,16 +48,15 @@ config global_singbox
 	option sniff_override_destination '0'
 
 config global_other
-	option nodes_ping 'auto_ping tcping'
-	option ipv6_tproxy '0'
-	option auto_detection_time '0'
+	option auto_detection_time 'tcping'
+	option url_test_url 'https://www.google.com/generate_204'
 
 config global_rules
 	option auto_update '0'
-	option chnlist_update '0'
-	option chnroute_update '0'
-	option chnroute6_update '0'
-	option gfwlist_update '0'
+	option chnlist_update '1'
+	option chnroute_update '1'
+	option chnroute6_update '1'
+	option gfwlist_update '1'
 	option geosite_update '0'
 	option geoip_update '0'
 	list gfwlist_url 'https://cdn.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt'
@@ -77,7 +77,6 @@ config global_app
 	option hysteria_file '/usr/bin/hysteria'
 
 config global_subscribe
-	option subscribe_proxy '0'
 	option filter_keyword_mode '1'
 	list filter_discard_list '距离下次重置剩余'
 	list filter_discard_list '套餐到期'
@@ -218,18 +217,18 @@ config shunt_rules 'Proxy'
 	option remarks 'Proxy'
 	option domain_list 'geosite:geolocation-!cn
 geosite:gfw
-#geosite:google
-#geosite:github
-#geosite:telegram
-#geosite:microsoft
-#geosite:apple
-#geosite:amazon
-#geosite:netflix
-#geosite:disney
-#geosite:spotify
-#geosite:steam
-#geosite:cloudflare
-#geosite:fastly'
+geosite:google
+geosite:github
+geosite:telegram
+geosite:microsoft
+geosite:apple
+geosite:amazon
+geosite:netflix
+geosite:disney
+geosite:spotify
+geosite:steam
+geosite:cloudflare
+geosite:fastly'
 	option network 'tcp,udp'
 	option ip_list 'geoip:google
 geoip:telegram
@@ -280,3 +279,4 @@ config shunt_rules 'Russia'
 	option network 'tcp,udp'
 	option ip_list 'geoip:ru
 #rule-set:remote:https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/refs/heads/release/sing-box/rule-set-geoip/geoip-ru.srs'
+
