@@ -194,8 +194,8 @@ return view.extend({
 		o.depends('allow_cgnat', '');
 
 		o = s.taboption('advanced', form.ListValue, 'allow_third_party_mapping', _('Allow third-party mapping'),
-			_('Allow adding port maps for non-requesting IP addresses; normally disabled for security'));
-		o.value('', _('Disabled') + ' (' + _('recommended') + ')');
+			_('Allow adding port maps for non-requesting IP addresses'));
+		o.value('', _('Disabled'));
 		o.value('1', _('Enabled'));
 		o.value('upnp-igd', _('Enabled') + ' (' + _('UPnP IGD only') + ')');
 		o.value('pcp', _('Enabled') + ' (' + _('PCP only') + ')');
@@ -286,7 +286,7 @@ return view.extend({
 			_('Select local/internal (LAN) network interfaces to enable the service for.') + ' ' +
 			_('Use an access control preset for ports that all devices on a network can map.') + ' ' +
 			_('Alternatively, add client-specific permissions using the access control list (ACL), which can also extend/override a preset.') + ' ' +
-			_('IPv6 is currently always accepted unless disabled. (alternative text welcome)'));
+			_('IPv6 is currently always accepted unless disabled.'));
 		s.anonymous = true;
 		s.addremove = true;
 		s.cloneable = true;
