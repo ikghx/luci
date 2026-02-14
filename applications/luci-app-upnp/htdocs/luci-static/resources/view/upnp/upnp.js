@@ -94,7 +94,7 @@ return view.extend({
 		);
 		if (!uci.get('upnpd', 'settings')) {
 			ui.addNotification(null, E('div', '<h4>' + _('No suitable configuration was found!') + '</h4><p>' +
-				_('No suitable (LuCI app %s) config found in %s. Related package update (daemon or LuCI app) may be missing.').format('v2.0', '<code>/etc/config/upnpd</code>') + '<br>' +
+				_('No suitable (LuCI app %s) config found in %s. Related package update (daemon or LuCI app) may be missing.').format('v2.0', '<code>/etc/config/upnpd</code>') + '<br />' +
 				_('Use the software package manager, update lists, and install the related update. Config is migrated on the daemon package update.') + '</p>' +
 				'<a class="btn" href="/cgi-bin/luci/admin/system/package-manager?query=UPnP%20IGD%20&%20PCP/NAT-PMP">' + _('Go to package manager…') + '</a>'), 'warning');
 			m.readonly = true;
@@ -194,8 +194,8 @@ return view.extend({
 		o.depends('allow_cgnat', '');
 
 		o = s.taboption('advanced', form.ListValue, 'allow_third_party_mapping', _('Allow third-party mapping'),
-			_('Allow adding port maps for non-requesting IP addresses'));
-		o.value('', _('Disabled'));
+			_('Allow adding port maps for non-requesting IP addresses; normally disabled for security'));
+		o.value('', _('Disabled') + ' (' + _('recommended') + ')');
 		o.value('1', _('Enabled'));
 		o.value('upnp-igd', _('Enabled') + ' (' + _('UPnP IGD only') + ')');
 		o.value('pcp', _('Enabled') + ' (' + _('PCP only') + ')');
@@ -207,7 +207,7 @@ return view.extend({
 		o.depends('to-disable-as-rarely-used', '1');
 		o.retain = true;
 
-		o = s.taboption('advanced', form.ListValue, 'log_output', _('Log output level'));
+		o = s.taboption('advanced', form.ListValue, 'log_output', _('Log level'));
 		o.value('default', _('Default'));
 		o.value('info', _('Info'));
 		o.value('debug', _('Debug'));
@@ -286,7 +286,7 @@ return view.extend({
 			_('Select local/internal (LAN) network interfaces to enable the service for.') + ' ' +
 			_('Use an access control preset for ports that all devices on a network can map.') + ' ' +
 			_('Alternatively, add client-specific permissions using the access control list (ACL), which can also extend/override a preset.') + ' ' +
-			_('IPv6 is currently always accepted unless disabled.'));
+			_('IPv6 is currently always accepted unless disabled. (alternative text welcome)'));
 		s.anonymous = true;
 		s.addremove = true;
 		s.cloneable = true;
@@ -334,7 +334,7 @@ return view.extend({
 		};
 
 		o = s.option(form.Flag, 'ignore_acl', _('Ignore ACL'),
-			_('Do not check ACL entries before a preset; can extend/override a preset') + '<br>' +
+			_('Do not check ACL entries before a preset; can extend/override a preset') + '<br />' +
 			_('Sequence: 1. Reject ports, 2. ACL entries (if not checked), 3. Preset ports, 4. Accept extra ports'));
 		o.editable = true;
 		o.retain = true;

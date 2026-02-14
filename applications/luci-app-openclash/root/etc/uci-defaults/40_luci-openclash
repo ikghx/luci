@@ -2,22 +2,17 @@
 . /lib/functions.sh
 . /usr/share/openclash/uci.sh
 
-[ -e "/etc/config/ucitrack" ] && {
-uci -q delete ucitrack.@openclash[-1]
-uci -q add ucitrack openclash
-uci -q set ucitrack.@openclash[-1].init=openclash
-uci -q commit ucitrack
-}
-uci -q delete firewall.openclash
-uci -q set firewall.openclash=include
-uci -q set firewall.openclash.type=script
-uci -q set firewall.openclash.path=/var/etc/openclash.include
-[ -n "$(command -v fw4)" ] || uci -q set firewall.openclash.reload=1
-uci -q commit firewall
+uci -q batch <<-EOF
+	delete firewall.openclash
+	set firewall.openclash=include
+	set firewall.openclash.type=script
+	set firewall.openclash.path=/var/etc/openclash.include
+	[ -n "$(command -v fw4)" ] || uci -q set firewall.openclash.reload=1
+	commit firewall
+EOF
 
 mkdir -p /etc/openclash/config
 mkdir -p /etc/openclash/proxy_provider
-mkdir -p /etc/openclash/backup
 mkdir -p /etc/openclash/core
 mkdir -p /etc/openclash/history
 mkdir -p /usr/share/openclash/backup/overwrite
@@ -185,6 +180,7 @@ if [ -f "/tmp/openclash.bak" ]; then
 	rm -rf "/etc/openclash/custom/openclash_sniffing_ports_filter.yaml" >/dev/null 2>&1
 	rm -rf "/etc/openclash/custom/openclash_sniffing_port_filter.yaml" >/dev/null 2>&1
 	rm -rf "/etc/openclash/custom/openclash_sniffing_domain_filter.yaml" >/dev/null 2>&1
+	rm -rf "/etc/openclash/backup" >/dev/null 2>&1
 fi
 
 uci -q set openclash.config.enable=0
@@ -244,5 +240,4 @@ end
 EOF
 fi
 
-rm -f /tmp/luci-indexcache.* >/dev/null 2>&1
 exit 0
