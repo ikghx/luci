@@ -23,7 +23,7 @@ msgstr "/ścieżka/w/obrazie"
 msgid "0"
 msgstr "0"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:106
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:144
 msgid "A Token is preferred over a Password."
 msgstr "Token jest preferowany zamiast hasła."
 
@@ -77,6 +77,14 @@ msgid "Allocates an ephemeral host port for all of a container's exposed ports"
 msgstr ""
 "Przydziela efemeryczny port hosta dla wszystkich odsłoniętych portów "
 "kontenera"
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:91
+msgid "Allow Docker to create ip6tables rules"
+msgstr ""
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:86
+msgid "Allow Docker to create iptables rules"
+msgstr ""
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:480
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container_new.js:239
@@ -260,7 +268,7 @@ msgstr "Kliknij, aby usunąć ten tag"
 msgid "Click to view this network"
 msgstr "Kliknij, aby zobaczyć tę sieć"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:81
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:119
 msgid "Client connection"
 msgstr "Połączenie klienta"
 
@@ -458,6 +466,10 @@ msgstr "Utwórz nową sieć Dockera"
 msgid "Created"
 msgstr "Utworzone"
 
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:63
+msgid "Custom DNS"
+msgstr ""
+
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:529
 msgid "DNS"
 msgstr "DNS"
@@ -466,9 +478,13 @@ msgstr "DNS"
 msgid "DNS Names"
 msgstr "Nazwy DNS"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:73
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:111
 msgid "Debug"
 msgstr "Debugowanie"
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:71
+msgid "Default IP when binding container ports (default 0.0.0.0)."
+msgstr ""
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:57
 msgid "Default bridge"
@@ -482,7 +498,7 @@ msgstr "Domyślne flagi ps"
 msgid "Delete this volume mount"
 msgstr "Usuń to montowanie wolumenu"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:104
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:142
 msgid ""
 "Destinations prefixed with a Registry host matching an entry in this table "
 "invoke its corresponding credentials."
@@ -629,9 +645,18 @@ msgstr "Edytuj montowanie"
 msgid "Edit this container"
 msgstr "Edytuj ten kontener"
 
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:67
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/network_new.js:122
 msgid "Enable IPv6"
 msgstr "Włącz IPv6"
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:90
+msgid "Enable ip6tables"
+msgstr ""
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:85
+msgid "Enable iptables"
+msgstr ""
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/images.js:623
 msgid "Enter a new tag for image %s:"
@@ -661,7 +686,7 @@ msgstr "Środowisko"
 msgid "Environmental Variable(-e)"
 msgstr "Zmienna środowiskowa(-e)"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:76
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:114
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:1490
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:1491
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:1532
@@ -691,11 +716,11 @@ msgstr "Błąd wczytywania dzienników:"
 msgid "Events"
 msgstr "Zdarzenia"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:65
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:97
 msgid "Example:"
 msgstr "Przykład:"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:84
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:122
 msgid "Example: tcp://0.0.0.0:2375"
 msgstr "Przykład: tcp://0.0.0.0:2375"
 
@@ -749,7 +774,7 @@ msgstr "Nie udało się wysłać sygnału odłączenia"
 msgid "Failed to start console"
 msgstr "Nie udało się uruchomić konsoli"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:77
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:115
 msgid "Fatal"
 msgstr "Krytyczny"
 
@@ -768,6 +793,14 @@ msgstr "Zmiany w systemie plików"
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:463
 msgid "Finish Time"
 msgstr "Czas zakończenia"
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:75
+msgid "Fixed CIDR"
+msgstr ""
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:80
+msgid "Fixed CIDR IPv6"
+msgstr ""
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:27
 msgid ""
@@ -858,6 +891,10 @@ msgstr "Adres IP (opcjonalny):"
 msgid "IP VLAN"
 msgstr "IP VLAN"
 
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:70
+msgid "IP address"
+msgstr ""
+
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/network_new.js:113
 msgid "IP range"
 msgstr "Zakres IP"
@@ -871,6 +908,10 @@ msgstr "Sterownik IPAM"
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/network.js:123
 msgid "IPv4 Address"
 msgstr "Adres IPv4"
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:76
+msgid "IPv4 subnet for fixed IPs."
+msgstr ""
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/network.js:64
 msgid "IPv6"
@@ -894,6 +935,10 @@ msgstr "Adres lokalny łącza IPv6"
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/network_new.js:128
 msgid "IPv6 Subnet"
 msgstr "Podsieć IPv6"
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:81
+msgid "IPv6 subnet for fixed IPs."
+msgstr ""
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:453
 msgid "Image"
@@ -947,7 +992,7 @@ msgstr "Dołącz dzienniki"
 msgid "Index Server Address"
 msgstr "Adres serwera indeksu"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:74
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:112
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:447
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:1507
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:1551
@@ -990,7 +1035,7 @@ msgstr "Wewnętrzny"
 msgid "Ipvlan Mode"
 msgstr "Tryb Ipvlan"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:64
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:96
 msgid ""
 "It replaces the daemon registry mirrors with a new set of registry mirrors"
 msgstr "Zastępuje mirrory rejestru demona nowym zestawem mirrorów rejestru"
@@ -1016,7 +1061,7 @@ msgstr "Most L2"
 msgid "L3 bridge"
 msgstr "Most L3"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:94
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:132
 msgid "LAN connection"
 msgstr "Połączenie LAN"
 
@@ -1052,6 +1097,10 @@ msgstr "Wczytaj dzienniki"
 msgid "Loading logs…"
 msgstr "Wczytywanie dzienników…"
 
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:104
+msgid "Local"
+msgstr ""
+
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:34
 msgid "Lock API endpoint to a specific version (helps guarantee behaviour)."
 msgstr ""
@@ -1065,13 +1114,17 @@ msgstr "Kontrole dziennika"
 msgid "Log Driver"
 msgstr "Sterownik dziennika"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:71
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:109
 msgid "Log Level"
 msgstr "Poziom rejestrowania"
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:688
 msgid "Log Options"
 msgstr "Opcje dziennika"
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:103
+msgid "Log driver"
+msgstr ""
 
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container_new.js:727
 msgid "Log driver options"
@@ -1304,7 +1357,7 @@ msgstr "Brak dostępnych statystyk"
 msgid "No volumes available"
 msgstr "Brak dostępnych wolumenów"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:83
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:121
 msgid ""
 "Note that dockerd no longer listens on IP:port without TLS options after v27."
 msgstr ""
@@ -1384,7 +1437,7 @@ msgid "Pass-through (Mirror physical device to single MAC VLAN)"
 msgstr ""
 "Pass-through (kopia lustrzana urządzenia fizycznego do pojedynczego MAC VLAN)"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:120
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:158
 msgid "Password"
 msgstr "Hasło"
 
@@ -1541,15 +1594,15 @@ msgstr "Tylko do odczytu (ro)"
 msgid "Read-write (rw)"
 msgstr "Odczyt i zapis (rw)"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:125
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:163
 msgid "Registry"
 msgstr "Rejestr"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:100
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:138
 msgid "Registry Auth"
 msgstr "Uwierzytelnianie rejestru"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:63
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:95
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/overview.js:173
 msgid "Registry Mirrors"
 msgstr "Żródła rejestru"
@@ -1669,11 +1722,11 @@ msgstr "Ustaw niestandardowe serwery DNS"
 msgid "Set environment variables inside the container"
 msgstr "Ustaw zmienne środowiskowe wewnątrz kontenera"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:72
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:110
 msgid "Set the logging level"
 msgstr "Ustaw poziom rejestrowania"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:95
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:133
 msgid ""
 "Set your LAN interface when docker listens on all addresses like 0.0.0.0 "
 "or ::."
@@ -1686,7 +1739,7 @@ msgstr ""
 msgid "Size"
 msgstr "Rozmiar"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:82
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:120
 msgid ""
 "Specifies where the Docker daemon will listen for client connections. "
 "default:"
@@ -1804,7 +1857,7 @@ msgstr "Tag został pomyślnie dodany"
 msgid "Tag removed successfully"
 msgstr "Tag został pomyślnie usunięty"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:105
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:143
 msgid "The first match is used."
 msgstr "Używane jest pierwsze dopasowanie."
 
@@ -1873,11 +1926,11 @@ msgstr "Tmpfs(--tmpfs)"
 msgid "To"
 msgstr "Do"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:138
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:176
 msgid "Token"
 msgstr "Token"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:107
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:145
 msgid "Tokes and Passwords are not encrypted in the uci configuration."
 msgstr "Tokeny i hasła nie są szyfrowane w konfiguracji UCI."
 
@@ -1963,11 +2016,15 @@ msgstr "Przesyłanie obrazu…"
 msgid "Uploading…"
 msgstr "Przesyłanie…"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:103
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:64
+msgid "Use the hosts dnsmasq by default."
+msgstr ""
+
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:141
 msgid "Used for push/pull operations on custom registries."
 msgstr "Używany do operacji push/pull w rejestrach niestandardowych."
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:115
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:153
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:473
 msgid "User"
 msgstr "Użytkownik"
@@ -2012,7 +2069,7 @@ msgstr "Wolumeny"
 msgid "Volumes overview"
 msgstr "Przegląd wolumenów"
 
-#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:75
+#: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/configuration.js:113
 #: applications/luci-app-dockerman/htdocs/luci-static/resources/view/dockerman/container.js:1755
 msgid "Warning"
 msgstr "Ostrzeżenie"

@@ -56,8 +56,40 @@ return L.view.extend({
 		o = s.taboption('globals', form.Value, 'bip',
 			_('Default bridge'),
 			_('Configure the default bridge network'));
-		o.placeholder = '172.17.0.1/16';
+		o.placeholder = '172.18.0.1/24';
 		o.datatype = 'ipaddr';
+
+		o = s.taboption('globals', form.DynamicList, 'dns',
+			_('Custom DNS'),
+			_('Use the hosts dnsmasq by default.'));
+
+		o = s.taboption('globals', form.Flag, 'ipv6',
+			_('Enable IPv6'));
+
+		o = s.taboption('globals', form.Value, 'ip',
+			_('IP address'),
+			_('Default IP when binding container ports (default 0.0.0.0).'));
+		o.placeholder = '::ffff:0.0.0.0';
+
+		o = s.taboption('globals', form.Value, 'fixed_cidr',
+			_('Fixed CIDR'),
+			_('IPv4 subnet for fixed IPs.'));
+		o.placeholder = '172.18.0.0/24';
+
+		o = s.taboption('globals', form.Value, 'fixed_cidr_v6',
+			_('Fixed CIDR IPv6'),
+			_('IPv6 subnet for fixed IPs.'));
+		o.placeholder = 'fc00:1::/80';
+
+		o = s.taboption('globals', form.Flag, 'iptables',
+			_('Enable iptables'),
+			_('Allow Docker to create iptables rules'));
+		o.rmempty = false;
+
+		o = s.taboption('globals', form.Flag, 'ip6tables',
+			_('Enable ip6tables'),
+			_('Allow Docker to create ip6tables rules'));
+		o.rmempty = false;
 
 		o = s.taboption('globals', form.DynamicList, 'registry_mirrors',
 			_('Registry Mirrors'),
@@ -66,6 +98,12 @@ return L.view.extend({
 		o.value('https://docker.io');
 		o.value('https://ghcr.io');
 		o.value('https://hub-mirror.c.163.com');
+
+		o = s.taboption('globals', form.ListValue, 'log_driver',
+			_('Log driver'));
+		o.value('local', _('Local'));
+		o.value('');
+		o.rmempty = true;
 
 		o = s.taboption('globals', form.ListValue, 'log_level',
 			_('Log Level'),
