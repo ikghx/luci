@@ -10,14 +10,13 @@ return view.extend({
 		expect: { '': {} }
 	}),
 
-	load: function() {
+	load() {
 		return Promise.all([
 			this.callHostHints(),
 		]);
 	},
 
-	render: function(data) {
-		var hosts = data[0];
+	render([hosts]) {
 		let m, s, o;
 
 		m = new form.Map('keepalived');
@@ -36,11 +35,11 @@ return view.extend({
 		o.optional = false;
 		o.rmempty = false;
 		o.datatype = 'ipaddr';
-		for(var mac in hosts) {
+		for(let mac in hosts) {
 			if (hosts[mac]['ipaddrs'] == 'undefined') {
 				continue;
 			}
-			for(var i = 0; i < hosts[mac]['ipaddrs'].length; i++) {
+			for(let i = 0; i < hosts[mac]['ipaddrs'].length; i++) {
 				o.value(hosts[mac]['ipaddrs'][i]);
 			}
 		}
@@ -80,7 +79,7 @@ return view.extend({
 		o.modalonly = true;
 		o.datatype = 'file';
 		o.depends({ 'sync' : '1', 'sync_mode' : 'send' });
-
+	
 		o = s.option(form.TextValue, 'ssh_pubkey', _('SSH Public Key'),
 			_('Authorize ssh public key of peer'));
 		o.datatype = 'string';

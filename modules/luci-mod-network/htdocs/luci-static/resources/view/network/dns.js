@@ -90,14 +90,14 @@ function validateServerSpec(sid, s) {
 }
 
 return view.extend({
-	load: function() {
+	load() {
 		return Promise.all([
 			callHostHints(),
 			uci.load('firewall')
 		]);
 	},
 
-	render: function([hosts]) {
+	render([hosts]) {
 		let m, s, o, ss, so, dnss;
 
 		let noi18nstrings = {
