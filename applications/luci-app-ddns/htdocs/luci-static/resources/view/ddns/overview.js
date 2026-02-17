@@ -976,6 +976,10 @@ return view.extend({
 						return uci.get('ddns', section_id, 'use_logfile');
 					};
 
+					o = s.taboption("advanced", form.Flag, "use_api_check",
+						_("Use API check"),
+						_("Using provider API for registered IP check."));
+					o.modalonly = true;
 
 					o = s.taboption("timer", form.Value, "check_interval",
 						_("Check Interval"));
