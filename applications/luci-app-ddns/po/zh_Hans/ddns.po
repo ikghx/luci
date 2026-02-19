@@ -47,21 +47,21 @@ msgstr "使用的接口"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:332
 msgid "Binding to a specific network not supported"
-msgstr "不支持绑定到一个指定的网络"
+msgstr "不支持绑定到指定的网络"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:361
 msgid ""
 "BusyBox's nslookup and hostip do not support TCP instead of the default UDP "
 "when sending requests to the DNS server!"
 msgstr ""
-"BusyBox 的 nslookup 和 hostip 不支持使用 TCP 向 DNS 服务器发送请求，而是使用"
+"BusyBox 的 nslookup 和 hostip 在向 DNS 服务器发送请求时，不支持使用 TCP 替代"
 "默认的 UDP！"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:372
 msgid ""
 "BusyBox's nslookup in the current compiled version does not handle given DNS "
 "Servers correctly!"
-msgstr "当前编译版本中的 BusyBox 的 nslookup 不能正确处理给定的 DNS 服务器！"
+msgstr "当前编译版本的 BusyBox 的 nslookup 不支持指定的 DNS 服务器！"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:438
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:780
@@ -84,7 +84,7 @@ msgstr "检查间隔"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1000
 msgid "Check Unit"
-msgstr "检查时间单位"
+msgstr "检查间隔单位"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/status/include/70_ddns.js:27
 msgid "Configuration"
@@ -97,11 +97,11 @@ msgstr "配置错误"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:415
 msgid "Contains Log files for each running section."
-msgstr "包含每个运行部分的日志文件。"
+msgstr "用于存放各个项目运行日志的目录。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:409
 msgid "Contains PID and other status information for each running section."
-msgstr "包含每个正在运行的部分的 PID 和其他状态信息。"
+msgstr "用于存放各个项目运行时的PID和其他状态信息的目录。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:529
 msgid "Create service"
@@ -114,11 +114,11 @@ msgstr "当前配置："
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:209
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:276
 msgid "Currently DDNS updates are not started at boot or on interface events."
-msgstr "当前的 DDNS 不会在系统启动时或者网口事件时运行。"
+msgstr "当前的 DDNS更新不会在系统启动时或者发生接口事件时运行。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:720
 msgid "Custom update script for updating your DDNS Provider."
-msgstr "用于更新您的 DDNS 提供商的自定义更新脚本。"
+msgstr "自定义 DDNS 更新脚本。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:701
 msgid "Custom update-URL"
@@ -130,7 +130,7 @@ msgstr "自定义更新脚本"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:284
 msgid "DDNS"
-msgstr "动态DNS"
+msgstr "动态 DNS"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:207
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:279
@@ -165,15 +165,15 @@ msgstr "日期格式"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:843
 msgid "Defines the Web page to read systems IP-Address from."
-msgstr "定义读取系统IP地址的网页。"
+msgstr "定义用于读取系统IP地址的网页。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:853
 msgid "Defines the interface to read systems IP-Address from"
-msgstr "设定用来读取系统 IP 地址的接口"
+msgstr "设定用于读取系统 IP 地址的接口"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:835
 msgid "Defines the network to read systems IP-Address from"
-msgstr "设定用来读取系统 IP 地址的网络"
+msgstr "设定用于读取系统 IP 地址的网络"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:18
 msgid "Disabled"
@@ -199,7 +199,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:776
 msgid "Enable secure communication with DDNS provider"
-msgstr "启用安全连接与 DDNS 提供商联系"
+msgstr "与 DDNS 提供商通信时使用安全连接"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:605
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1151
@@ -212,7 +212,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1051
 msgid "Error Max Retry Counter"
-msgstr "最大错误重试计数"
+msgstr "出错时最大重试次数"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1061
 msgid "Error Retry Interval"
@@ -245,7 +245,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:704
 msgid "Follow instructions found on their WEB page."
-msgstr "按照其网页上的说明进行操作。"
+msgstr "按照网页上的说明操作。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:401
 msgid "For supported codes look here"
@@ -257,7 +257,7 @@ msgstr "强制设定 IP 版本"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1009
 msgid "Force Interval"
-msgstr "强制更新的周期"
+msgstr "强制更新间隔"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:930
 msgid "Force TCP on DNS"
@@ -265,7 +265,7 @@ msgstr "强制使用 TCP 进行 DNS 查询"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1035
 msgid "Force Unit"
-msgstr "强制更新单位"
+msgstr "强制更新间隔单位"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:940
 msgid "Format"
@@ -279,7 +279,7 @@ msgstr "格式：IP 或者 FQDN"
 msgid ""
 "GNU Wget will use the IP of given network, cURL will use the physical "
 "interface."
-msgstr "GNU Wget 将会使用给定的网络的 IP 地址，而 cURL 将会使用物理接口。"
+msgstr "GNU Wget 使用指定的网络的 IP 地址，而 cURL 使用物理接口的 IP 地址。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:265
 msgid "Global Settings"
@@ -295,7 +295,7 @@ msgstr "不支持 HTTPS"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:615
 msgid "Hostname/FQDN to validate, whether an IP update is necessary"
-msgstr "用于验证主机名/FQDN，是否需要更新 IP"
+msgstr "IP发生更新或需要更新时，用于验证的 主机名 / FQDN"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:796
 msgid "IP address source"
@@ -322,11 +322,11 @@ msgstr "IPv6 地址必须填写在中括号(\"[ ]\")内"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:311
 msgid "IPv6 is not supported by this system"
-msgstr "此系统不支持 IPv6"
+msgstr "该系统当前不支持IPv6"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:310
 msgid "IPv6 not supported"
-msgstr "IPv6 不被支持"
+msgstr "不支持IPv6"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:434
 msgid ""
@@ -340,7 +340,7 @@ msgstr "如果未检测到 IP 地址更改，则脚本将停止运行。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:606
 msgid "If this service section is disabled it will not be started."
-msgstr "如果此服务部分被禁用，它将不会启动。"
+msgstr "如果禁用此服务项，则不会启动。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:384
 msgid "If using secure communication you should verify server certificates!"
@@ -351,7 +351,7 @@ msgstr "如果使用安全通信，您应该验证服务器证书！"
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:353
 msgid ""
 "In some versions cURL/libcurl in OpenWrt is compiled without proxy support."
-msgstr "OpenWrt 中某些 cURL/libcurl 版本编译时没有启用代理服务器支持。"
+msgstr "OpenWrt 的某些 cURL/libcurl 版本编译时没有启用代理服务器支持。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:963
 msgid "Info"
@@ -365,15 +365,14 @@ msgstr ""
 msgid ""
 "Install 'bind-host' or 'knot-host' or 'drill' package if you know you need "
 "TCP for DNS requests."
-msgstr ""
-"如果您需要 TCP 来处理 DNS 请求，请安装“bind-host”或“knot-host”或“drill”包。"
+msgstr "如果需要使用TCP协议进行 DNS 请求，请安装 'bind-host'、'knot-host' 或 'drill' "
+"软件包。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:386
 msgid ""
 "Install 'ca-certificates' package or needed certificates by hand into /etc/"
 "ssl/certs default directory"
-msgstr ""
-"手动将“ca-certificates”包或需要的证书安装到 /etc/ssl/certs 的默认目录中"
+msgstr "安装“ca-certificates”包或手动将需要的证书安装到默认目录 /etc/ssl/certs 中"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:663
 msgid "Install Service"
@@ -386,11 +385,11 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1010
 msgid "Interval to force an update at the DDNS Provider"
-msgstr "强制在 DDNS 提供商处进行更新的间隔"
+msgstr "强制向 DDNS 提供商进行更新的间隔"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1036
 msgid "Interval unit for forced updates sent to DDNS Provider."
-msgstr "向 DDNS 提供商发送强制更新的间隔单位。"
+msgstr "强制 DDNS 更新间隔的单位。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1001
 msgid "Interval unit to check for changed IP"
@@ -414,7 +413,7 @@ msgstr "日志长度"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:969
 msgid "Log to file"
-msgstr "把日志记录到文件"
+msgstr "记录日志到文件"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:957
 msgid "Log to syslog"
@@ -424,7 +423,7 @@ msgstr "记录日志到系统日志"
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1141
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/status/include/70_ddns.js:29
 msgid "Lookup Hostname"
-msgstr "查询主机名"
+msgstr "域名"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:797
 msgid "Method used to determine the system IP-Address to send in updates"
@@ -463,7 +462,7 @@ msgstr ""
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:884
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:902
 msgid "Network on which the ddns-updater scripts will be started"
-msgstr "DDNS 更新脚本将会运行于该网络"
+msgstr "启动 DDNS 更新脚本的网络"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:228
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1160
@@ -491,11 +490,11 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:383
 msgid "No certificates found"
-msgstr "找不到证书"
+msgstr "未找到证书"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:962
 msgid "No logging"
-msgstr "无日志"
+msgstr "不记录"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:393
 msgid "Non-public and by default blocked IPs"
@@ -512,7 +511,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:427
 msgid "Number of last lines stored in log files"
-msgstr "日志文件中的最后几行"
+msgstr "保存最近多少行日志到日志文件"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:912
 msgid "OPTIONAL: Force the usage of pure IPv4/IPv6 only communication."
@@ -537,7 +536,7 @@ msgstr "可选：使用非默认 DNS 服务器检测\"已注册的 IP 地址\"�
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1052
 msgid ""
 "On Error the script will stop execution after the given number of retries."
-msgstr "当出错时，脚本将会重试该次数之后退出。"
+msgstr "出现错误时，脚本将在重试给定次数后停止执行。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:762
 msgid "Optional Encoded Parameter"
@@ -553,7 +552,7 @@ msgstr "可选：替换更新 URL（已编码 URL）中的 [PARAMENC]"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:769
 msgid "Optional: Replaces [PARAMOPT] in Update-URL (NOT URL-encoded)"
-msgstr "可选：替换更新 URL（未编码 URL）中的 [PARAMENC]"
+msgstr "可选： 替换更新 URL（未编码 URL）中的 [PARAMOPT]"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:937
 msgid "PROXY-Server"
@@ -566,7 +565,7 @@ msgstr ""
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:312
 msgid ""
 "Please follow the instructions on OpenWrt's homepage to enable IPv6 support"
-msgstr "请按照OpenWrt主页上的说明启用IPv6支持"
+msgstr "请按照 OpenWrt 主页上的说明启用 IPv6 支持"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1097
 msgid "Please press [Read] button"
@@ -575,7 +574,7 @@ msgstr "请按下 [读取] 按钮"
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:712
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:734
 msgid "Provide either an Update Script OR an Update URL"
-msgstr "提供更新脚本或更新 URL"
+msgstr "插入更新脚本或更新 URL"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1080
 msgid "Read / Reread log file"
@@ -600,7 +599,7 @@ msgstr "重启这个服务项"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:742
 msgid "Replaces [DOMAIN] in Update-URL (URL-encoded)"
-msgstr "替换更新 URL（已编码 URL）中的 [DOMAIN]"
+msgstr "替换更新 URL 中的 [DOMAIN] (已编码 URL)"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:754
 msgid "Replaces [PASSWORD] in Update-URL (URL-encoded)"
@@ -616,7 +615,7 @@ msgstr "重启 DDNS"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1069
 msgid "Retry Unit"
-msgstr "重试时间单位"
+msgstr "重试间隔单位"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:17
 msgid "Run once"
@@ -658,7 +657,7 @@ msgstr "服务下载网址"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:294
 msgid "Services list last update"
-msgstr "更新最新服务列表"
+msgstr "最近一次更新服务列表"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1012
 msgid "Setting this parameter to 0 will force the script to only run once"
@@ -668,7 +667,7 @@ msgstr "将此参数设置为 0 将强制脚本仅运行一次"
 msgid ""
 "Source URL for services file. Defaults to the master openwrt ddns package "
 "repo."
-msgstr "服务文件的源 URL。默认为主 openwrt ddns 包存储库。"
+msgstr "用于下载服务文件的 Url 。默认情况下是主 openwrt ddns 包仓库。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:201
 msgid "Start DDNS"
@@ -712,7 +711,7 @@ msgstr "默认设置“0”将无限重试。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1062
 msgid "The interval between which each subsequent retry commences."
-msgstr "每次后续重试开始的间隔。"
+msgstr "发起连续重试之间相隔的时长。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:490
 msgid "The service name is already used"
@@ -726,8 +725,8 @@ msgstr "没有已经配置好的服务项。"
 msgid ""
 "This is only a problem with multiple WAN interfaces and your DDNS provider "
 "is unreachable via one of them."
-msgstr ""
-"这只是多个 WAN 接口的问题，并且您的 DDNS 提供商无法通过其中一个接口访问。"
+msgstr "这个问题仅在你拥有多个 WAN 接口，并且无法通过其中一个接口访问你的 DDNS 提供商"
+"时才会出现。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1096
 msgid "This is the current content of the log file in %h for this service."
@@ -738,17 +737,15 @@ msgstr "这是此服务在 %h 中的日志文件的当前内容。"
 msgid ""
 "This is the default if you run DDNS scripts by yourself (i.e. via cron with "
 "force_interval set to '0')"
-msgstr ""
-"如果您自己运行 DDNS 脚本（即通过 cron force_interval设置为\"0\"），则这是默认"
-"值"
+msgstr "这是自行运行 DDNS 脚本（即 使用 cron 并将强制更新周期设置为\"0\"）时的默认值"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:889
 msgid "This will be autoset to the selected interface"
-msgstr "这将自动设置为选定的网口"
+msgstr "这将自动设置为选定的接口"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:601
 msgid "Timer Settings"
-msgstr "计时器设定"
+msgstr "定时器设定"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:801
 msgid "URL"
@@ -756,7 +753,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:842
 msgid "URL to detect"
-msgstr "用于检测的 URL"
+msgstr "IP地址检测 URL"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:229
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:230
@@ -772,11 +769,11 @@ msgstr "更新 DDns 服务列表"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:677
 msgid "Update URL"
-msgstr "更新网址"
+msgstr "更新 URL"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:702
 msgid "Update URL for updating your DDNS Provider."
-msgstr "用于更新您的 DDNS 提供商的更新 URL。"
+msgstr "用于DDNS 更新的URL。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:980
 msgid "Use API check"
@@ -810,11 +807,11 @@ msgstr "不支持使用特定的 DNS 服务器"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:994
 msgid "Values below 5 minutes == 300 seconds are not supported"
-msgstr "不支持小于5分钟== 300秒的值"
+msgstr "不支持小于5分钟(300秒)的值"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1029
 msgid "Values lower than 'Check Interval' except '0' are invalid"
-msgstr "除“0”之外低于“检查间隔”的值均无效"
+msgstr "不支持除低于“检查间隔”的值，除了“ 0”"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:16
 msgid "Verify"
@@ -827,7 +824,7 @@ msgstr ""
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:497
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:623
 msgid "Which record type to update at the DDNS provider (A/AAAA)"
-msgstr "在 DDNS 提供商处更新哪种记录类型（A/AAAA）"
+msgstr "要在 DDNS 服务提供商处更新的记录类型（IPv4 A 或 IPv6 AAAA）"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1070
 msgid "Which time units to use for retry counters."
@@ -842,30 +839,30 @@ msgstr "向日志中写入详细信息。文件将自动缩小。"
 msgid ""
 "Writes log messages to syslog. Critical Errors will always be written to "
 "syslog."
-msgstr "把日志写入系统日志。无论是否启用这项，错误信息总是会被写入系统日志。"
+msgstr "将日志写入系统日志。无论是否启用，严重错误始终写入。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:375
 msgid ""
 "You should install 'bind-host' or 'knot-host' or 'drill' or 'hostip' "
 "package, if you need to specify a DNS server to detect your registered IP."
 msgstr ""
-"如果您需要指定 DNS 服务器来检测您注册的 IP，您应该安装“bind-host”或“knot-"
-"host”或“drill”或“hostip”软件包。"
+"如果需要自定义的 DNS 服务器来检测注册的 IP，需要安装“bind-host”或“knot-host”"
+"或“drill”或“hostip”软件包。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:323
 msgid ""
 "You should install 'wget' or 'curl' or 'uclient-fetch' with 'libustream-"
 "*ssl' package."
-msgstr "您应该安装“wget”或“curl”或“uclient-fetch”，及“libustream-*ssl”软件包。"
+msgstr "需要安装“wget”或“curl”或“uclient-fetch”，及“libustream-*ssl”软件包。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:337
 msgid "You should install 'wget' or 'curl' package."
-msgstr "您应该安装“wget”或“curl”软件包。"
+msgstr "需要安装“wget”或“curl”软件包。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:351
 msgid ""
 "You should install 'wget' or 'uclient-fetch' package or replace libcurl."
-msgstr "您应该安装“wget”或“uclient-fetch”软件包，或替换 libcurl。"
+msgstr "需要安装“wget”或“uclient-fetch”软件包，或替换 libcurl。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:349
 msgid "cURL is installed, but libcurl was compiled without proxy support."
@@ -886,7 +883,7 @@ msgstr "天"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:781
 msgid "directory or path/file"
-msgstr "目录或者到文件的路径"
+msgstr "目录或文件路径"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1006
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1040
@@ -927,7 +924,7 @@ msgstr "无需网络请求即可发现公共 IP。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:785
 msgid "to run HTTPS without verification of server certificates (insecure)"
-msgstr "使用 HTTPS 但不检查服务器证书（不安全）"
+msgstr "使用 HTTPS 但不验证服务器证书（不安全）"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:949
 msgid "user agent"

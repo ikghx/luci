@@ -21,7 +21,7 @@ msgstr "CA 路径"
 msgid ""
 "Configure, start and stop the OpenWISP agent on this device. Read more about "
 "configuration values: %s."
-msgstr "在此设备上配置、启动和停止 OpenWISP 代理。阅读更多有关配置值的信息：%s。"
+msgstr "配置、启动和停止本设备上的 OpenWISP 代理。阅读配置值的更多信息：%s。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:87
 msgid "Connect Timeout"
@@ -29,7 +29,7 @@ msgstr "连接超时"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:49
 msgid "Consistent Key"
-msgstr "一致的密钥"
+msgstr "一致密钥"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:29
 msgid "Disabled"
@@ -53,7 +53,7 @@ msgstr ""
 
 #: applications/luci-app-openwisp/root/usr/share/rpcd/acl.d/luci-app-openwisp.json:3
 msgid "Grant access to luci-app-openwisp"
-msgstr "授予对 luci-app-openwisp 的访问权限"
+msgstr "授予访问 luci-app-openwisp 的权限"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:74
 msgid "Hardware ID Key"
@@ -68,13 +68,15 @@ msgid ""
 "If selected, in the event a config item is present in both the remote and "
 "local configuration, the remote configuration takes precedence over local "
 "configuration."
-msgstr "如果选中，如果远程和本地配置中都存在配置项，则远程配置优先于本地配置。"
+msgstr ""
+"若选中，则如果一个配置项同时存在于远程和本地配置中，那么远程配置优先级将高于"
+"本地配置。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:66
 msgid ""
 "If the agent is unable to reach the controller after applying the downloaded "
 "config it will be reverted."
-msgstr "如果代理在应用下载的配置后无法访问控制器，它将被还原。"
+msgstr "如果应用下载的配置后代理无法访问控制器，那么配置将恢复原样。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:23
 msgid "Key"
@@ -82,11 +84,11 @@ msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:53
 msgid "MAC Interface"
-msgstr "MAC接口"
+msgstr "MAC 接口"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:56
 msgid "Management Interface"
-msgstr "管理接口"
+msgstr "管理界面"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:92
 msgid "Max Time"
@@ -107,8 +109,8 @@ msgid ""
 "point to an executable script file. This hook is called each time openwisp-"
 "config applies a configuration, but after services are reloaded."
 msgstr ""
-"发布重新加载挂钩脚本的路径。如果路径不指向可执行脚本文件，则不会调用挂钩。每"
-"次 openwisp-config 应用配置时都会调用此钩子，在重新加载服务之后。"
+"后重加载 hook 脚本的路径。hook 将不被调用，如果路径不指向可执行脚本文件。每"
+"次 openwisp-config 应用配置时，都将调用此 hook，但是在重新加载服务后。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:103
 msgid ""
@@ -116,20 +118,20 @@ msgid ""
 "to an executable script file. This hook is called each time openwisp-config "
 "applies a configuration, but before services are reloaded."
 msgstr ""
-"预重载挂钩的路径。如果路径不指向可执行脚本文件，则不会调用挂钩。每次 "
-"openwisp-config 应用配置时都会调用此钩子，在重新加载服务之前。"
+"预重加载 hook 的路径。hook 将不被调用，如果路径不指向可执行脚本文件。每次 "
+"openwisp-config 应用配置时，会调用这个 hook，但是在重新加载服务之前。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:107
 msgid "Post-reload Hook"
-msgstr "重载后挂钩"
+msgstr "后重加载 Hook"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:103
 msgid "Pre-reload Hook"
-msgstr "重载前挂钩"
+msgstr "预重加载 Hook"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:33
 msgid "Server URL"
-msgstr "服务器网址"
+msgstr "服务器 URL"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:36
 msgid "Shared Secret"
@@ -141,7 +143,7 @@ msgstr "标签"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:64
 msgid "Tags applied to this device."
-msgstr "应用于此设备的标签。"
+msgstr "应用到此设备的标签。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:66
 msgid "Test Config"
@@ -153,19 +155,19 @@ msgstr "测试脚本"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:23
 msgid "The Key of this device in the OpenWISP server."
-msgstr "此设备在 OpenWISP 服务器中的密钥。"
+msgstr "OpenWISP 服务器中此设备的密钥。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:33
 msgid "The URL to the OpenWISP server. Example: %s"
-msgstr "OpenWISP 服务器的 URL。例如：%s"
+msgstr "OpenWISP 服务器的 URL。示例：%s"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:20
 msgid "The UUID of this device in the OpenWISP server."
-msgstr "此设备在 OpenWISP 服务器中的 UUID。"
+msgstr "OpenWISP 服务器中此设备的 UUID。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:53
 msgid "The interface to use for getting the MAC for this device."
-msgstr "用于获取此设备的 MAC 的接口。"
+msgstr "用于获得此设备 MAC 的接口。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:56
 msgid "The interface to use for management and control."
@@ -173,7 +175,7 @@ msgstr "用于管理和控制的接口。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:36
 msgid "The organization shared secret for auto enrollment."
-msgstr "组织共享用于自动注册的密钥。"
+msgstr "组织共享的密钥，用于自动加入。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:20
 msgid "UUID"
@@ -187,7 +189,7 @@ msgstr "更新间隔"
 msgid ""
 "Use a unique hardware ID for device identification, for example a serial "
 "number."
-msgstr "使用唯一的硬件 ID 进行设备标识，例如序列号。"
+msgstr "使用独有的硬件 ID 用于设备识别，比如序列号。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:100
 msgid ""
@@ -195,21 +197,21 @@ msgid ""
 "must be in PEM format, and the directory must have been processed using the "
 "c_rehash utility supplied with openssl."
 msgstr ""
-"使用指定的证书目录验证对端。证书必须是 PEM 格式，并且必须使用 openssl 提供的 "
-"c_rehash 实用程序处理目录。"
+"使用指定的证书目录来验证对等节点。证书必须是PEM格式，并且该目录必须已经使用"
+"openssl附带的c_rehash工具处理过。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:97
 msgid ""
 "Use the specified certificate file to verify the peer. The file may contain "
 "multiple CA certificates. The certificate(s) must be in PEM format."
 msgstr ""
-"使用指定的证书文件验证对端。该文件可能包含多个 CA 证书。证书必须是 PEM 格式。"
+"使用指定的证书文件来验证对等方。该文件可以包含多个CA证书。证书必须是PEM格式。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:92
 msgid ""
 "Value passed to curl --max-time argument, defaults to 30. Expressed in "
 "seconds."
-msgstr "传递给 curl --max-time 参数的值，默认为 30。单位（秒）。"
+msgstr "传递给 curl --max-time 变量的值，默认 30，单位为秒。"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:45
 msgid "Verify SSL"
@@ -226,5 +228,5 @@ msgid ""
 "default, but must be enabled also in the controller application in order to "
 "work."
 msgstr ""
-"使用自动注册时，此功能允许设备在重置或重新刷新时保持相同的配置。此功能默认启"
-"用，但也必须在控制器应用程序中启用才能工作。"
+"使用自动注册时，此功能允许设备保留相同配置，即便设备被重置或重新刷过映像。此"
+"功能默认开启，但必须同样在控制器程序中启用才能正常运作。"

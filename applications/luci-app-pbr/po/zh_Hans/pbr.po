@@ -211,7 +211,7 @@ msgstr "服务使用的FW掩码。高掩码用于避免与SQM / QoS冲突。谨�
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:504
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:536
 msgid "Failed to create temporary file with mktemp mask: '%s'"
-msgstr "使用 mktemp 掩码 '%s' 创建临时文件失败"
+msgstr "未能用 mktemp 掩码创建临时文件： '%s'"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:489
 msgid "Failed to download '%s'"
@@ -267,7 +267,7 @@ msgstr "不活跃（已停用）"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:353
 msgid "Incompatible DHCP Option 6 for interface %s"
-msgstr "接口 %s 的 DHCP 选项 6 不兼容"
+msgstr "接口 %s 不兼容的 DHCP Option 6"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:495
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:532
@@ -306,7 +306,7 @@ msgstr "接口 '%s' 没有分配 DNS"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:476
 msgid "Interface mark for '%s' exceeds the fwmask value"
-msgstr "接口“%s”的标记超过了防火墙掩码值"
+msgstr "“%s” 的接口记号超出了 fwmask 值"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:304
 msgid ""
@@ -314,8 +314,8 @@ msgid ""
 "may need to update packages or reboot the device, please check the "
 "%sREADME%s."
 msgstr ""
-"内部版本不匹配（软件包：%s，luci 应用程序：%s，luci rpcd：%s），您可能需要更"
-"新软件包或重新启动设备，请检查 %sREADME%s。"
+"内部版本不匹配（包： %s，luci 应用： ： %s，luci rpcd： %s），可能需要更新包"
+"或重启设备，请检查 %sREADME%s。"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:326
 msgid "Invalid OpenVPN config for %s interface"
@@ -373,7 +373,7 @@ msgstr "Netifd 设置：删除 fw4 netifd nft 文件“%s”失败"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:508
 msgid "Netifd setup: failed to install fw4 netifd nft file '%s'"
-msgstr "Netifd 安装失败：fw4 netifd nft 文件“%s”安装失败"
+msgstr "Netifd 设置： 安装 fw4 netifd nft 文件 “%s” 失败"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:517
 msgid "Netifd setup: invalid value of netifd_interface_default option '%s'"
@@ -385,7 +385,7 @@ msgstr "Netifd 设置：netifd_interface_default6 选项“%s”的值无效"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:356
 msgid "Netifd setup: option netifd_interface_local is missing, assuming '%s'"
-msgstr "Netifd 设置：缺少选项 netifd_interface_local，假定为 '%s'"
+msgstr "Netifd 设置： 选项 netifd_interface_local 缺失，假定 '%s'"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:514
 msgid "Netifd setup: required option '%s' is missing"
@@ -411,7 +411,7 @@ msgstr "路径"
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:279
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:718
 msgid "Please %sdonate%s to support development of this project."
-msgstr "请 %s捐赠%s 以支持本项目的发展。"
+msgstr "请 %捐赠% 支持本项目的开发。"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:101
 msgid "Please check the %sREADME%s before changing this option."
@@ -616,8 +616,8 @@ msgid ""
 "starting mark is used to avoid conflict with SQM/QoS. Change with caution "
 "together with"
 msgstr ""
-"起始（上行接口）固件标记，用于业务使用的标记。使用较高的起始标记是为了避免与 "
-"SQM/QoS 冲突。请谨慎更改。"
+"启动服务所用标记的 （上行链路接口）FW 标记。High 启动标记用于避免和 SQM/QoS "
+"的冲突。与以下项目一起更改时请谨慎"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:236
 msgid ""
@@ -625,8 +625,8 @@ msgid ""
 "starting priority is used to avoid conflict with other services, this can be "
 "changed by user."
 msgstr ""
-"PBR 服务使用的启动（上行/广域网）IP 规则优先级。较高的启动优先级用于避免与其"
-"他服务冲突，用户可以更改此设置。"
+"启动 pbr 服务使用的 (Uplink/WAN) ip 规则的优先级。高启动优先级用于避免和其他"
+"服务的冲突，用户可以更改优先级。"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:63
 msgid "Status"
@@ -700,7 +700,7 @@ msgstr "不清楚是否支持 %s。"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:491
 msgid "The '%s' schema requires curl, but it's not detected on this system"
-msgstr "'%s' 模式需要 curl，但此系统未检测到它。"
+msgstr "“%s” 方案需要 curl，但在这个系统上未检测到它"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:329
 msgid "The WebUI application (luci-app-pbr) is outdated, please update it"
@@ -729,7 +729,7 @@ msgstr "设备 '%s' 未知的 IPv6 链接类型"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:471
 msgid "Unknown entry in policy '%s'"
-msgstr "策略“%s”中存在未知条目"
+msgstr "策略“%s”中的未知条目"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:549
 msgid "Unknown error"
@@ -761,13 +761,13 @@ msgstr "上行链路接口表 FW 标记"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:359
 msgid "Uplink/WAN interface is still down, going back to boot mode"
-msgstr "上行/WAN接口仍然处于关闭状态，正在返回启动模式"
+msgstr "上行链路/WAN 接口仍未开启，回到 boot 模式"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:523
 msgid ""
 "Uplink/WAN interface is still down, increase value of "
 "'procd_boot_trigger_delay' option"
-msgstr "上行/WAN接口仍然处于关闭状态，请增加“procd_boot_trigger_delay”选项的值"
+msgstr "上行链路 /WAN 接口仍未开启，提高 'procd_boot_trigger_delay' 选项的值"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:449
 msgid ""
@@ -801,7 +801,7 @@ msgstr "遇到警告，请检查 %s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:375
 msgid "Warnings encountered, please check the %sREADME%s"
-msgstr "遇到警告，请查看 %sREADME%s"
+msgstr "遇到警告，请检查 %sREADME%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:61
 msgid "Web UI Configuration"
