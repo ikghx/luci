@@ -20,7 +20,11 @@
  * @module LuCI.cbi
  */
 const cbi_d = [];
+if (typeof window !== 'undefined')
+	window.cbi_d = cbi_d;
 const cbi_strings = { path: {}, label: {} };
+if (typeof window !== 'undefined')
+	window.cbi_strings = cbi_strings;
 
 /**
  * Read signed 8-bit integer from a byte array at the given offset.
@@ -326,7 +330,7 @@ function cbi_init() {
 		const depends = JSON.parse(n.getAttribute('data-depends'));
 		if (!isNaN(index) && depends.length > 0) {
 			for (let a of depends)
-				cbi_d_add(n, depends[a], index);
+				cbi_d_add(n, a, index);
 		}
 	}
 
@@ -445,7 +449,8 @@ function cbi_validate_form(form, errmsg)
 			const validator = fv;
 
 			if (!validator() && errmsg) {
-				alert(errmsg);
+				if (typeof window !== 'undefined' && typeof window.alert === 'function')
+					window.alert(errmsg);
 				return false;
 			}
 		}
@@ -680,6 +685,7 @@ String.prototype.format = function()
 		const m = a[1];
 		let leftpart = a[2], pPad = a[3], pJustify = a[4], pMinLength = a[5];
 		let pPrecision = a[6], pType = a[7];
+		let precision;
 
 		if (pType == '%') {
 			subst = '%';
@@ -690,13 +696,13 @@ String.prototype.format = function()
 
 				pad = '';
 				if (pPad && pPad.substr(0,1) == "'")
-					pad = leftpart.substr(1,1);
+					pad = pPad.substr(1,1);
 				else if (pPad)
 					pad = pPad;
 				else
 					pad = ' ';
 
-				var precision = -1;
+				precision = -1;
 				if (pPrecision && pType == 'f')
 					precision = +pPrecision.substring(1);
 
@@ -838,8 +844,9 @@ String.format = function()
 {
 	const a = [ ];
 
-	for (let ar of arguments)
-		a.push(ar);
+	for (let i = 1; i < arguments.length; i++) {
+		a.push(arguments[i]);
+	}
 
 	return ''.format.apply(arguments[0], a);
 }
@@ -855,8 +862,8 @@ String.nobr = function()
 {
 	const a = [ ];
 
-	for (let ar of arguments)
-		a.push(ar);
+	for (let i = 1; i < arguments.length; i++)
+		a.push(arguments[i]);
 
 	return ''.nobr.apply(arguments[0], a);
 }
