@@ -12,8 +12,8 @@ msgstr ""
 msgid "%s App Path"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:604
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:608
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:619
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:623
 msgid "%s Node Log"
 msgstr ""
 
@@ -28,6 +28,10 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:187
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:196
 msgid "%s Node Use Type"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:223
+msgid "%s cannot be empty."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/passwall/api.lua:1189
@@ -86,7 +90,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:411
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:360
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:375
 msgid "A/AAAA type"
 msgstr ""
 
@@ -109,7 +113,7 @@ msgid "Accept any if empty."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:520
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:487
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:502
 msgid ""
 "Accept: Trust the Reply, using this option can improve DNS resolution speeds "
 "for some mainland IPv4-only sites."
@@ -157,7 +161,7 @@ msgstr ""
 msgid "Address (Support Domain Name)"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:627
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:642
 msgid "Advanced log feature"
 msgstr ""
 
@@ -170,7 +174,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:191
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:280
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:292
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:621
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:636
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:67
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:77
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:95
@@ -243,7 +247,7 @@ msgstr ""
 msgid "Auth Type"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:215
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:230
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:156
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe.lua:129
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:207
@@ -311,7 +315,7 @@ msgid "Blackhole (Block)"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:315
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:535
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:550
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:34
 msgid "Block List"
 msgstr ""
@@ -408,7 +412,7 @@ msgid "Certificate fingerprint"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:268
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:696
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:697
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:738
 msgid "Chain Proxy"
 msgstr ""
@@ -434,7 +438,7 @@ msgid "China IPv6s(chnroute6) Update URL"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:326
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:544
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:559
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:295
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:308
 #: applications/luci-app-passwall/luasrc/view/passwall/global/proxy.htm:9
@@ -458,15 +462,15 @@ msgstr ""
 msgid "Clang.CN.IPv6"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:515
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:530
 msgid "Clear IPSET/NFTSET on service reboot. This may increase reboot time."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:518
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:533
 msgid "Clear NFTSET"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:514
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:529
 msgid "Clear NFTSET on Reboot"
 msgstr ""
 
@@ -483,8 +487,8 @@ msgstr ""
 msgid "Click to update"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:579
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:590
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:594
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:605
 msgid "Client Proxy"
 msgstr ""
 
@@ -519,10 +523,10 @@ msgid "Close (Not use)"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:327
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:545
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:560
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:269
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:168
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:697
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:698
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:739
 msgid "Close(Not use)"
 msgstr ""
@@ -589,11 +593,11 @@ msgstr ""
 msgid "Create Backup File"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:625
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:640
 msgid "Critical"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:734
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:749
 msgid "Current Node"
 msgstr ""
 
@@ -651,7 +655,7 @@ msgstr ""
 msgid "DNS"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:509
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:524
 msgid "DNS Redirect"
 msgstr ""
 
@@ -666,7 +670,7 @@ msgstr ""
 msgid "DeSelect all"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:614
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:629
 msgid "Debug"
 msgstr ""
 
@@ -684,13 +688,13 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:506
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:524
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:473
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:491
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:488
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:506
 msgid "Default DNS"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:552
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:558
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:567
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:573
 msgid "Default Proxy Mode"
 msgstr ""
 
@@ -749,7 +753,7 @@ msgid "Destination protocol"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:328
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:546
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:561
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:133
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:257
 msgid "Direct Connection"
@@ -757,20 +761,20 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:509
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:527
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:214
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:221
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:476
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:494
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:229
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:236
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:491
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:509
 msgid "Direct DNS"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:515
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:482
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:497
 msgid "Direct DNS: Internet experience may be better, but DNS will be leaked!"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:307
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:529
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:544
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:32
 msgid "Direct List"
 msgstr ""
@@ -817,7 +821,7 @@ msgid "Do Reset"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:519
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:486
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:501
 msgid "Do not accept: Wait and use Remote DNS Reply."
 msgstr ""
 
@@ -858,7 +862,8 @@ msgstr ""
 msgid "Domain/IP Query"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:208
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:215
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:223
 msgid "Domestic group name"
 msgstr ""
 
@@ -873,7 +878,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/view/passwall/haproxy/js.htm:99
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:825
 #: applications/luci-app-passwall/luasrc/view/passwall/node_subscribe/js.htm:160
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:212
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:237
 msgid "Drag to reorder"
 msgstr ""
 
@@ -899,7 +904,7 @@ msgid "ECH Query Policy"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:492
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:439
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:454
 msgid "EDNS Client Subnet"
 msgstr ""
 
@@ -927,11 +932,11 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl.lua:32
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:75
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:107
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:604
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:608
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:639
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:658
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:726
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:619
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:623
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:654
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:673
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:741
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:114
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:91
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/other.lua:227
@@ -957,13 +962,13 @@ msgstr ""
 msgid "Enable Load Balancing"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:688
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:689
 msgid ""
 "Enable Multipath TCP, need to be enabled in both server and client "
 "configuration."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:665
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:666
 msgid "Enable Mux.Cool"
 msgstr ""
 
@@ -1019,8 +1024,8 @@ msgstr ""
 msgid "Enter share links, one per line. Subscription links are not supported!"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:617
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:624
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:632
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:639
 #: applications/luci-app-passwall/luasrc/view/passwall/global/footer.htm:234
 #: applications/luci-app-passwall/luasrc/view/passwall/node_config/header.htm:48
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/link_add_node.htm:22
@@ -1029,8 +1034,8 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:415
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:565
 #: applications/luci-app-passwall/luasrc/view/passwall/node_list/node_list.htm:1043
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:152
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:188
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:177
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:213
 msgid "Error"
 msgstr ""
 
@@ -1098,7 +1103,7 @@ msgid "Excluded Domains"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:369
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:234
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:249
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule.lua:80
 msgid "Experimental feature."
 msgstr ""
@@ -1138,7 +1143,7 @@ msgid "Faltal on set option, please help in debug:"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/hysteria2.lua:47
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:684
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:685
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:48
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:49
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ssr.lua:67
@@ -1170,13 +1175,13 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:374
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:271
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:296
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:286
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:311
 msgid "Filter Mode"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:369
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:234
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:249
 msgid "Filter Proxy Host IPv6"
 msgstr ""
 
@@ -1209,19 +1214,19 @@ msgid ""
 "toggling Airplane Mode and reconnecting to WiFi."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:627
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:642
 msgid "For professionals only."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:501
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:516
 msgid "Force HTTPS SOA"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:501
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:516
 msgid "Force queries with qtype 65 to respond with an SOA record."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:509
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:524
 msgid "Force special DNS server to need proxy devices."
 msgstr ""
 
@@ -1285,7 +1290,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:320
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:539
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:554
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:282
 #: applications/luci-app-passwall/luasrc/view/passwall/global/proxy.htm:7
 msgid "GFW List"
@@ -1591,7 +1596,7 @@ msgid "Import Finished"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:518
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:485
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:500
 msgid "In smart mode, no-ip reply from Direct DNS:"
 msgstr ""
 
@@ -1604,8 +1609,8 @@ msgstr ""
 msgid "Inbound Tag"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:615
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:622
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:630
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:637
 msgid "Info"
 msgstr ""
 
@@ -1653,7 +1658,7 @@ msgstr ""
 msgid "Invert match result."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:646
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:661
 msgid ""
 "It is recommended to disable logging during regular use to reduce system "
 "overhead."
@@ -1729,8 +1734,8 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:271
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:283
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:699
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:711
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:700
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:712
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:741
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:753
 msgid "Landing Node"
@@ -1755,8 +1760,8 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:181
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:754
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:760
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:769
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:775
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:65
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:71
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:25
@@ -1792,8 +1797,8 @@ msgstr ""
 msgid "Local Address"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:575
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:584
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:590
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:599
 msgid "Localhost Proxy"
 msgstr ""
 
@@ -1801,8 +1806,8 @@ msgstr ""
 msgid "Location of Geo rule files"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:603
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:639
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:618
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:654
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:76
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:84
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/hysteria2.lua:107
@@ -1821,23 +1826,23 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:634
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:649
 msgid "Log Event Filter"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:612
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:619
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:627
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:634
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/ray.lua:471
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/sing-box.lua:466
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/trojan-plus.lua:101
 msgid "Log Level"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:629
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:644
 msgid "Logging to system log"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:629
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:644
 msgid ""
 "Logging to the system log for more advanced functions. For example, send "
 "logs to a dedicated log server."
@@ -1907,11 +1912,11 @@ msgstr ""
 msgid "Main"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:653
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:668
 msgid "Maintain"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:390
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:405
 msgid "Make sure socks service is available on this address."
 msgstr ""
 
@@ -1931,7 +1936,7 @@ msgid "Manual subscription All"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:80
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:154
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:179
 msgid "Manually update"
 msgstr ""
 
@@ -1983,11 +1988,11 @@ msgstr ""
 msgid "Misconfigured"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:583
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:598
 msgid "Missing components, transparent proxy is unavailable."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:527
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:542
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:163
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:600
 msgid "Mode"
@@ -2020,12 +2025,12 @@ msgstr ""
 msgid "Mux"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:676
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:677
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:644
 msgid "Mux concurrency"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:684
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:685
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss-rust.lua:48
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ss.lua:49
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ssr.lua:67
@@ -2053,8 +2058,8 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:335
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:340
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:553
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:559
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:568
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:574
 msgid "No Proxy"
 msgstr ""
 
@@ -2173,7 +2178,7 @@ msgstr ""
 msgid "Not true format, please re-enter!"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:395
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:410
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:139
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:89
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:147
@@ -2217,7 +2222,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:493
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:440
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:455
 msgid ""
 "Notify the DNS server when the DNS query is notified, the location of the "
 "client (cannot be a private IP address)."
@@ -2227,7 +2232,7 @@ msgstr ""
 msgid "Null"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:691
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:692
 msgid "Number of early established connections to reduce latency."
 msgstr ""
 
@@ -2278,8 +2283,8 @@ msgid "Only support Sing-Box."
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:275
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:706
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:711
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:707
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:712
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:748
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:753
 msgid "Only support a layer of proxy."
@@ -2358,7 +2363,7 @@ msgstr ""
 msgid "Permit without stream"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:632
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:647
 msgid "Persist log file directory"
 msgstr ""
 
@@ -2447,7 +2452,7 @@ msgstr ""
 msgid "Pre shared key"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:691
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:692
 msgid "Pre-connections"
 msgstr ""
 
@@ -2483,8 +2488,8 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:270
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:277
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:698
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:706
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:699
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:707
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:740
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:748
 msgid "Preproxy Node"
@@ -2557,15 +2562,15 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:329
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:336
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:341
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:547
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:554
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:560
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:562
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:569
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:575
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:258
 msgid "Proxy"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:311
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:532
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:547
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:33
 msgid "Proxy List"
 msgstr ""
@@ -2707,22 +2712,22 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:438
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:508
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:526
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:313
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:356
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:373
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:402
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:475
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:493
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:328
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:371
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:388
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:417
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:490
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:508
 msgid "Remote DNS"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:455
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:423
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:438
 msgid "Remote DNS DoH"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:514
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:481
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:496
 msgid ""
 "Remote DNS: Can avoid more DNS leaks, but some domestic domain names maybe "
 "to proxy!"
@@ -2732,18 +2737,18 @@ msgstr ""
 msgid "Remote Port"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:216
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:217
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:273
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:274
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:231
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:232
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:288
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:289
 msgid "Requery DNS By %s"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:407
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:422
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:214
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:356
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:373
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:229
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:371
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:388
 msgid "Request protocol"
 msgstr ""
 
@@ -2778,7 +2783,7 @@ msgstr ""
 msgid "Rollback"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:163
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:188
 msgid "Rollbacking..."
 msgstr ""
 
@@ -2932,11 +2937,11 @@ msgstr ""
 msgid "Share URL to clipboard unable."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:636
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:651
 msgid "Shell Command"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:636
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:651
 msgid "Shell command to execute, replace log content with %s."
 msgstr ""
 
@@ -2977,17 +2982,17 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:511
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:478
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:493
 msgid "Smart, Accept no-ip reply from Direct DNS"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:510
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:477
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:492
 msgid "Smart, Do not accept no-ip reply from Direct DNS"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:517
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:484
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:499
 msgid ""
 "Smart: Forward to both direct and remote DNS, if the direct DNS resolution "
 "result is a mainland China IP, then use the direct result, otherwise use the "
@@ -3001,18 +3006,18 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:43
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:67
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:661
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:676
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:23
 #: applications/luci-app-passwall/luasrc/passwall/api.lua:535
 msgid "Socks Config"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:730
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:745
 msgid "Socks Node"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:390
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:395
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:405
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:410
 msgid "Socks Server"
 msgstr ""
 
@@ -3047,7 +3052,7 @@ msgstr ""
 msgid "Standby"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:719
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:734
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/index.lua:35
 msgid "Status"
 msgstr ""
@@ -3082,7 +3087,7 @@ msgstr ""
 msgid "Subscribe URL cannot be empty."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:185
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:210
 msgid "Success"
 msgstr ""
 
@@ -3105,7 +3110,7 @@ msgid ""
 "Suitable scenarios for let the node servers get the target domain names."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:634
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:649
 msgid "Support regular expression."
 msgstr ""
 
@@ -3160,7 +3165,7 @@ msgid ""
 "as bypassing SNI blacklists."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:466
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:481
 msgid "TCP node must be '%s' type to use FakeDNS."
 msgstr ""
 
@@ -3285,7 +3290,7 @@ msgid ""
 "randomly distributed among them."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:632
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:647
 msgid ""
 "The path to the directory used to store persist log files, the \"/\" at the "
 "end can be omitted. Leave it blank to disable this feature."
@@ -3350,7 +3355,7 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:494
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:441
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:456
 msgid ""
 "This feature requires the DNS server to support the Edns Client Subnet "
 "(RFC7871)."
@@ -3433,7 +3438,7 @@ msgstr ""
 msgid "Trojan"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:519
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:534
 msgid "Try this feature if the rule modification does not take effect."
 msgstr ""
 
@@ -3562,7 +3567,7 @@ msgid "Updating, are you sure to close?"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:18
-#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:134
+#: applications/luci-app-passwall/luasrc/view/passwall/rule/rule_version.htm:159
 msgid "Updating..."
 msgstr ""
 
@@ -3574,10 +3579,10 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:311
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:315
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:320
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:529
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:532
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:535
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:539
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:544
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:547
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:550
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:554
 msgid "Use %s"
 msgstr ""
 
@@ -3595,7 +3600,7 @@ msgid "Use Custom Probe URL"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:500
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:448
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:463
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:91
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:145
 msgid "Use FakeDNS work in the domain that proxy."
@@ -3676,14 +3681,14 @@ msgstr ""
 msgid "Vmess"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:600
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:615
 msgid ""
 "Want different devices to use different proxy modes/ports/nodes? Please use "
 "access control."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:616
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:623
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:631
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:638
 msgid "Warning"
 msgstr ""
 
@@ -3723,11 +3728,11 @@ msgid ""
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:513
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:480
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:495
 msgid "When not matching any domain name list:"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:579
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:594
 msgid ""
 "When selected, devices in LAN can transparent proxy. Otherwise, it will not "
 "be proxy. But you can still use access control to allow the designated "
@@ -3747,7 +3752,7 @@ msgstr ""
 msgid "When selected, it can only be accessed localhost."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:575
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:590
 msgid "When selected, localhost can transparent proxy."
 msgstr ""
 
@@ -3802,7 +3807,7 @@ msgstr ""
 msgid "XHTTP Path"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:680
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:681
 msgid "XUDP Mux concurrency"
 msgstr ""
 
@@ -3828,7 +3833,7 @@ msgstr ""
 msgid "You no select nodes !"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:211
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:219
 msgid ""
 "You only need to configure domestic DNS packets in SmartDNS, and fill in the "
 "domestic DNS group name here."
@@ -3884,14 +3889,14 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:558
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:565
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:567
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:770
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:772
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:781
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:783
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:794
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:785
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:787
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:796
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:801
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:805
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:798
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:809
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:811
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:816
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:820
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/haproxy.lua:124
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:178
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/include/shunt_options.lua:181
@@ -3902,8 +3907,8 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:146
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:186
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:192
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:721
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:725
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:722
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/ray.lua:726
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:145
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:763
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/sing-box.lua:767

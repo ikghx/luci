@@ -154,22 +154,21 @@ const CBIJSONConfig = baseclass.extend({
 	},
 
 	add(config, sectiontype, sectionname) {
-		let num_sections_type = 0;
-		let next_index = 0;
+		let max_index = 0;
 
 		for (const name in this.data) {
-			num_sections_type += (this.data[name]['.type'] == sectiontype);
-			next_index = Math.max(next_index, this.data[name]['.index']);
+			max_index = Math.max(max_index, this.data[name]['.index']);
 		}
 
-		const section_id = sectionname ?? (sectiontype + num_sections_type);
+		const next_index = max_index + 1;
+		const section_id = sectionname ?? (sectiontype + next_index);
 
 		if (!this.data.hasOwnProperty(section_id)) {
 			this.data[section_id] = {
 				'.name': section_id,
 				'.type': sectiontype,
 				'.anonymous': (sectionname == null),
-				'.index': next_index + 1
+				'.index': next_index
 			};
 		}
 
@@ -186,7 +185,19 @@ const CBIJSONConfig = baseclass.extend({
 	},
 
 	move(config, section_id1, section_id2, after) {
-		return uci.move.apply(this, [config, section_id1, section_id2, after]);
+		const dataArray = Object.values(this.data).sort((a, b) => a['.index'] - b['.index']);
+
+		const fromIndex = dataArray.findIndex(section => section['.name'] === section_id1);
+		const toIndex = dataArray.findIndex(section => section['.name'] === section_id2);
+
+		const [itemToMove] = dataArray.splice(fromIndex, 1);
+		dataArray.splice(toIndex, 0, itemToMove);
+
+		dataArray.forEach((item, index) => {
+			item['.index'] = index;
+		});
+
+		this.data = Object.fromEntries(dataArray.map(item => [item['.name'], item]));
 	}
 });
 
