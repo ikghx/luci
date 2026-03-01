@@ -330,7 +330,13 @@ return view.extend({
 		]);
 	},
 
-	poll_status(nodes, [Hosts, Remotehosts, Remoteinfo, Localinfo, Clients]) {
+	poll_status(nodes, data) {
+
+		Hosts = data[1];
+		Remotehosts = data[2];
+		Remoteinfo = data[3];
+		Localinfo = data[4];
+		Clients = data[5];
 
 		const remotehosttableentries = [];
 		collectRemoteHosts(remotehosttableentries,Remotehosts);
