@@ -236,7 +236,7 @@ return view.extend({
 					}
 
 					local_wifi.signal = -10;
-					local_wifi.ssid = 'Local Interface';
+					local_wifi.ssid = _('Local Interface');
 
 					this.add_wifi_to_graph(chan_analysis, local_wifi, scanCache, center_channels, chan_width);
 					rows.push([
