@@ -1,3 +1,4 @@
+
 // Copyright 2023 MOSSDeF, Stan Grishin <stangri@melmac.ca>
 // This code wouldn't have been possible without help from:
 // - [@jow-](https://github.com/jow-)
@@ -383,6 +384,7 @@ return view.extend({
 		var _provider;
 		_provider = s.option(form.ListValue, "_provider", _("Provider"));
 		_provider.modalonly = true;
+		_provider.forcewrite = true;
 		_provider.cfgvalue = function (section_id) {
 			let resolver = this.map.data.get(
 				this.map.config,
@@ -480,6 +482,18 @@ return view.extend({
 						_paramList.value(val, descr);
 					});
 					_paramList.depends("_provider", prov.template);
+					_paramList.cfgvalue = function (section_id) {
+						let resolver = this.map.data.get(
+							this.map.config,
+							section_id,
+							"resolver_url"
+						);
+						if (resolver === undefined || resolver === null)
+							return prov.params.option.default || null;
+						let regexp = pkg.templateToRegexp(prov.template);
+						let match = resolver.match(regexp);
+						return (match && match[1]) || prov.params.option.default || null;
+					};
 					_paramList.write = function (section_id, formvalue) { };
 					_paramList.remove = function (section_id, formvalue) { };
 				} else if (prov.params.option.type === "text") {
@@ -667,3 +681,4 @@ return view.extend({
 		return Promise.all([status.render(), m.render()]);
 	},
 });
+

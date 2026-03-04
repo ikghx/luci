@@ -377,6 +377,7 @@ const UITextfield = UIElement.extend(/** @lends LuCI.ui.Textfield.prototype */ {
 			'class': this.options.password ? 'cbi-input-password' : 'cbi-input-text',
 			'readonly': this.options.readonly ? '' : null,
 			'disabled': this.options.disabled ? '' : null,
+			'data-widget-id': this.options.id ? `widget.${this.options.id}` : null,
 			'maxlength': this.options.maxlength,
 			'placeholder': this.options.placeholder,
 			'value': this.value,
