@@ -1,4 +1,3 @@
-
 // Copyright 2023 MOSSDeF, Stan Grishin <stangri@melmac.ca>
 // This code wouldn't have been possible without help from:
 // - [@jow-](https://github.com/jow-)
@@ -681,4 +680,3 @@ return view.extend({
 		return Promise.all([status.render(), m.render()]);
 	},
 });
-

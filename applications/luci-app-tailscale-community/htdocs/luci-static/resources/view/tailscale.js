@@ -1,4 +1,3 @@
-
 'use strict';
 'require view';
 'require form';
@@ -459,7 +458,7 @@ return view.extend({
 
 		const customLoginUrl = s.taboption('account', form.Value, 'custom_login_url',
 			_('Custom Login Server'),
-			_('Optional: Specify a custom control server URL (e.g., a Headscale instance, https://example.com).')
+			_('Optional: Specify a custom control server URL (e.g., a Headscale instance, %s).'.format('https://example.com'))
 			+'<br>'+_('Leave blank for default Tailscale control plane.')
 		);
 		customLoginUrl.placeholder = '';
@@ -577,4 +576,3 @@ return view.extend({
 	handleSave: null,
 	handleReset: null
 });
-
