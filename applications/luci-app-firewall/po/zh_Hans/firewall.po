@@ -267,12 +267,12 @@ msgstr "自定义规则"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/custom.js:26
 msgid ""
-"Custom rules allow you to execute arbitrary iptables commands which are not "
-"otherwise covered by the firewall framework. The commands are executed after "
-"each firewall restart, right after the default ruleset has been loaded."
+"Custom rules allow you to define custom firewall rules which are not "
+"otherwise covered by the firewall framework. On firewall4 systems, these "
+"rules must use nftables syntax."
 msgstr ""
-"自定义规则允许您执行不属于防火墙框架的任意 iptables 命令。每次重启防火墙时，"
-"这些命令在默认的规则运行后立即执行。"
+"自定义规则允许您定义防火墙框架未涵盖的自定义防火墙规则。在 firewall4 系统上，"
+"这些规则必须使用 nftables 语法。"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:415
 msgid "DSCP classification"
@@ -1430,8 +1430,8 @@ msgid ""
 "Port ranges in ipsets are unsupported by firewall4.<br />"
 msgstr ""
 "firewall4 支持通过引用和创建 IP 集合以简化大型地址列表的匹配，从而无需为每个"
-"要匹配的项目创建单独的规则。注意： firewall4 不支持 IP 集合中的端口范围"
-"。<br />"
+"要匹配的项目创建单独的规则。注意： firewall4 不支持 IP 集合中的端口范围。"
+"<br />"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:160
 msgid "fromport-toport"
