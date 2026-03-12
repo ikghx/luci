@@ -108,7 +108,7 @@ o.inputtitle = translate("Delete All File")
 o.inputstyle = "remove"
 o.write = function()
 	luci.sys.call("rm -rf /etc/openclash/rule_provider/* >/dev/null 2>&1")
-	HTTP.redirect(DISP.build_url("admin", "services", "openclash", "rule-providers-file-manage"))
+	HTTP.redirect(DISP.build_url("admin", "vpn", "openclash", "rule-providers-file-manage"))
 end
 
 o = a:option(Button, "Apply", " ")
