@@ -42,18 +42,20 @@ const methods = {
 				leasefile.close();
 			}
 
-			const ipt = popen('iptables --line-numbers -t nat -xnvL MINIUPNPD 2>/dev/null');
+			//const ipt = popen('iptables --line-numbers -t nat -xnvL MINIUPNPD 2>/dev/null');
+			// Workaround daemon bug with iptables >= 1.8.8 by parsing MINIUPNPD-POSTROUTING
+			const ipt = popen('iptables --line-numbers -t nat -xnvL MINIUPNPD-POSTROUTING 2>/dev/null');
 			if (ipt) {
 				for (let line = ipt.read('line'); length(line); line = ipt.read('line')) {
-					let m = match(line, /^([0-9]+)\s+([a-z]+).+dpt:([0-9]+) to:(\S+):([0-9]+)/);
+					//let m = match(line, /^([0-9]+)\s+([a-z]+).+dpt:([0-9]+) to:(\S+):([0-9]+)/);
+					let m = match(line, /^([0-9]+).*\*\s+([0-9.]+).*([ut].p) spt:([0-9]+).*ports: ([0-9]+)/);
 					if (m) {
 						push(rules, {
 							num: m[1],
-							proto: uc(m[2]),
-							extport: +m[3],
-							intaddr: arrtoip(iptoarr(m[4])),
-							intport: +m[5],
-							descr: ''
+							intaddr: arrtoip(iptoarr(m[2])),
+							intport: +m[4],
+							extport: +m[5],
+							proto: uc(m[3])
 						});
 					}
 				}
@@ -67,11 +69,10 @@ const methods = {
 					if (m) {
 						push(rules, {
 							num: `${num}`,
-							proto: (m[1] == '0x6') ? 'TCP' : 'UDP',
-							extport: +m[2],
 							intaddr: arrtoip(iptoarr(m[3])),
 							intport: +m[4],
-							descr: ''
+							extport: +m[2],
+							proto: (m[1] == '0x6') ? 'TCP' : 'UDP'
 						});
 						num++;
 					}
@@ -86,8 +87,8 @@ const methods = {
 							lease.intaddr == rule.intaddr &&
 							lease.intport == rule.intport &&
 							lease.extport == rule.extport) {
-							rule.descr = lease.descr;
 							rule.expires = lease.expires;
+							rule.descr = lease.descr;
 							break;
 						}
 					}

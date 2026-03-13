@@ -171,7 +171,7 @@ return view.extend({
 			.format('<a href="https://en.wikipedia.org/wiki/Carrier-grade_NAT" target="_blank" rel="noreferrer"><abbr title="Carrier-grade NAT">CGNAT</abbr></a>',
 				'<a href="https://en.wikipedia.org/wiki/STUN" target="_blank" rel="noreferrer"><abbr title="Session Traversal Utilities for NAT">STUN</abbr></a>'),
 			_('Allow use of unrestricted endpoint-independent (1:1) CGNATs and detect the public IPv4'));
-		o.value('', _('Disabled'), _('Manually override external IPv4 to allow a private IP'));
+		o.value('', _('Disabled'), _('Manually override external IPv4 to allow private IPs'));
 		o.value('1', _('Enabled'), _('Filtering test currently requires an extra firewall rule'));
 		o.value('allow-filtered', _('Enabled') + ' (' + _('allow filtered') + ')', _('Allow filtered IPv4 CGNAT test result'));
 		o.value('allow-private-ext-ipv4', _('Ignore CGNAT (allow private IPv4, avoid)'), _('No STUN public IPv4 detection; various issues'));
@@ -195,7 +195,7 @@ return view.extend({
 		o.depends('allow_cgnat', 'allow-private-ext-ipv4');
 
 		o = s.taboption('advanced', form.ListValue, 'allow_third_party_mapping', _('Allow third-party mapping'),
-			_('Allow adding port maps for non-requesting IP addresses; normally disabled for security'));
+			_('Allow adding port maps for non-requesting IP addresses; use with care'));
 		o.value('', _('Disabled') + ' (' + _('recommended') + ')');
 		o.value('1', _('Enabled'));
 		o.value('upnp-igd', _('Enabled') + ' (' + _('UPnP IGD only') + ')');
@@ -274,8 +274,8 @@ return view.extend({
 		o.retain = true;
 
 		o = s.taboption('igd', form.Value, 'notify_interval', _('Notify interval'),
-			_('A 900 s interval sends %s announcements with the min. %s header',
-				'A 900 s interval sends %s (%s = SSDP) announcements with the min. %s (%s = Cache-Control: max-age=1800) header')
+			_('A 900 s interval sends %s announcements with the minimum %s header',
+				'A 900 s interval sends %s (%s = SSDP) announcements with the minimum %s (%s = Cache-Control: max-age=1800) header')
 			.format('<abbr title="Simple Service Discovery Protocol">SSDP</abbr>', '<code>Cache-Control: max-age=1800</code>'));
 		o.datatype = 'min(900)';
 		o.placeholder = '900';
@@ -326,7 +326,7 @@ return view.extend({
 		};
 
 		o = s.option(form.Value, 'reject_ports', _('Reject ports'),
-			_('Reject unsafe/insecure/risky FTP/Telnet/DCE/NetBIOS/SMB/RDP ports on this network by default; override other settings; use space for none'));
+			_('Reject unsafe/insecure/risky FTP/Telnet/DCE/NetBIOS/SMB/RDP ports on the network by default; override other settings; use space for none'));
 		o.placeholder = '21 23 135 137-139 445 3389';
 		o.modalonly = true;
 		o.retain = true;

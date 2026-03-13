@@ -744,7 +744,7 @@ function get_sub_url(filename)
 end
 
 function sub_info_get()
-	local sub_ua, filename, sub_info
+	local sub_ua, filename, sub_info, url_result
 	local providers_data = {}
 
 	filename = luci.http.formvalue("filename")
@@ -760,7 +760,7 @@ function sub_info_get()
 	)
 
 	if filename and not is_start() then
-		local url_result = get_sub_url(filename)
+		url_result = get_sub_url(filename)
 
 		if not url_result then
 			sub_info = "No Sub Info Found"
@@ -793,7 +793,8 @@ function sub_info_get()
 	luci.http.write_json({
 		sub_info = sub_info,
 		providers = providers_data,
-		get_time = os.time()
+		get_time = os.time(),
+		url_result = url_result
 	})
 end
 
@@ -3909,14 +3910,6 @@ function action_get_subscribe_info_data()
 		luci.http.status(400, "Bad Request")
 		return
 	end
-
-	local data = {}
-	uci:foreach("openclash", "subscribe_info", function(s)
-		if s.name == filename then
-			data = s
-		end
-	end)
-
 	luci.http.prepare_content("application/json")
-	luci.http.write_json(data)
+	luci.http.write_json(get_sub_url(filename))
 end
