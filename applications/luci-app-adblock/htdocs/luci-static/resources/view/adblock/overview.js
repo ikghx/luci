@@ -24,7 +24,7 @@ function handleAction(ev) {
 					btn.blur();
 				});
 				return fs.exec_direct('/etc/init.d/adblock', [ev]);
-			})
+			});
 	} else {
 		if (ev !== 'stop') {
 			document.querySelectorAll('.cbi-page-actions button').forEach(function (btn) {
@@ -49,6 +49,7 @@ return view.extend({
 			`https://${window.location.hostname}/cgi-bin/adblock`
 		]);
 	},
+
 	render: function (result) {
 		/*
 			config check
@@ -78,40 +79,46 @@ return view.extend({
 		/*
 			poll runtime information
 		*/
+		let parseErrCount = 0;
 		poll.add(function () {
-			return L.resolveDefault(fs.read_direct('/var/run/adb_runtime.json'), null).then(function (res) {
-				const status = document.getElementById('status');
-				const buttons = document.querySelectorAll('.cbi-page-actions button');
-				let info = null;
-				try {
-					info = JSON.parse(res);
-				} catch (e) {
-					info = null;
-					status.textContent = '-';
-					if (status.classList.contains('spinning')) {
-						buttons.forEach(function (btn) {
-							btn.disabled = false;
-						})
-						status.classList.remove('spinning');
-					}
-					ui.addNotification(null, E('p', _('Unable to parse the runtime information!')), 'error');
+			return L.resolveDefault(fs.stat('/var/run/adb_runtime.json'), null).then(function (stat) {
+				if (!stat) {
 					return;
 				}
-				if (status && info) {
-					status.textContent = `${info.adblock_status || '-'} (frontend: ${info.frontend_ver || '-'} / backend: ${info.backend_ver || '-'})`;
-					if (info.adblock_status === "processing") {
-						if (!status.classList.contains("spinning")) {
-							status.classList.add("spinning");
-						}
-						buttons.forEach(function (btn) {
-							btn.disabled = true;
-							btn.blur();
-						})
-					} else {
-						if (status.classList.contains("spinning")) {
+				return L.resolveDefault(fs.read_direct('/var/run/adb_runtime.json'), null).then(function (res) {
+					const status = document.getElementById('status');
+					const buttons = document.querySelectorAll('.cbi-page-actions button');
+					let info = null;
+					try {
+						info = JSON.parse(res);
+						parseErrCount = 0;
+					} catch (e) {
+						info = null;
+						parseErrCount++;
+						if (status) {
+							status.textContent = '-';
 							buttons.forEach(function (btn) {
 								btn.disabled = false;
-							})
+							});
+							status.classList.remove('spinning');
+							if (parseErrCount >= 3) {
+								ui.addNotification(null, E('p', _('Unable to parse the adblock runtime information!')), 'error');
+								poll.stop();
+							}
+						}
+						return;
+					}
+					if (status && info) {
+						status.textContent = `${info.adblock_status || '-'} (frontend: ${info.frontend_ver || '-'} / backend: ${info.backend_ver || '-'})`;
+						if (info.adblock_status === "processing") {
+							buttons.forEach(function (btn) {
+								btn.disabled = true;
+								btn.blur();
+							});
+							if (!status.classList.contains("spinning")) {
+								status.classList.add("spinning");
+							}
+						} else {
 							status.classList.remove("spinning");
 							if (document.getElementById('btn_suspend')) {
 								if (info.adblock_status === 'paused') {
@@ -121,22 +128,22 @@ return view.extend({
 									document.querySelector('#btn_suspend').textContent = 'Suspend';
 								}
 							}
+							buttons.forEach(function (btn) {
+								btn.disabled = false;
+							});
 						}
 					}
-					if (info.adblock_status === 'paused' && document.getElementById('btn_suspend')) {
-						document.querySelector('#btn_suspend').textContent = 'Resume';
+					if (info) {
+						setText('domains', info.blocked_domains);
+						setText('feeds', info.active_feeds?.join(' '));
+						setText('backend', info.dns_backend);
+						setText('ifaces', info.run_ifaces);
+						setText('run', info.run_information);
+						setText('flags', info.run_flags);
+						setText('last', info.last_run);
+						setText('sys', info.system_info);
 					}
-				}
-				if (info) {
-					setText('domains', info.blocked_domains);
-					setText('feeds', info.active_feeds?.join(' '));
-					setText('backend', info.dns_backend);
-					setText('ifaces', info.run_ifaces);
-					setText('dirs', info.run_directories);
-					setText('flags', info.run_flags);
-					setText('run', info.last_run);
-					setText('sys', info.system_info);
-				}
+				});
 			});
 		}, 2);
 
@@ -168,8 +175,8 @@ return view.extend({
 					E('div', { 'class': 'cbi-value-field', 'id': 'ifaces', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
 				]),
 				E('div', { 'class': 'cbi-value' }, [
-					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('Run Directories')),
-					E('div', { 'class': 'cbi-value-field', 'id': 'dirs', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
+					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('Run Information')),
+					E('div', { 'class': 'cbi-value-field', 'id': 'run', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
 				]),
 				E('div', { 'class': 'cbi-value' }, [
 					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('Run Flags')),
@@ -177,7 +184,7 @@ return view.extend({
 				]),
 				E('div', { 'class': 'cbi-value' }, [
 					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('Last Run')),
-					E('div', { 'class': 'cbi-value-field', 'id': 'run', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
+					E('div', { 'class': 'cbi-value-field', 'id': 'last', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
 				]),
 				E('div', { 'class': 'cbi-value' }, [
 					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('System Info')),
@@ -221,7 +228,7 @@ return view.extend({
 		o.rmempty = true;
 
 		o = s.taboption('general', form.Flag, 'adb_tld', _('TLD Compression'), _('The top level domain compression removes thousands of needless host entries from the final DNS blocklist.'));
-		o.default = 1
+		o.default = 1;
 		o.rmempty = true;
 
 		o = s.taboption('general', form.Flag, 'adb_safesearch', _('Enable SafeSearch'), _('Enforcing SafeSearch for google, bing, brave, duckduckgo, yandex, youtube and pixabay.'));
@@ -262,6 +269,16 @@ return view.extend({
 		o = s.taboption('additional', form.Flag, 'adb_debug', _('Verbose Debug Logging'), _('Enable verbose debug logging in case of any processing errors.'));
 		o.rmempty = false;
 
+		o = s.taboption('additional', form.ListValue, 'adb_cores', _('CPU Cores'), _('Limit the cpu cores used by adblock to save RAM, autodetected by default.'));
+		o.value('1');
+		o.value('2');
+		o.value('4');
+		o.value('8');
+		o.value('16');
+		o.placeholder = _('-- default --');
+		o.optional = true;
+		o.rmempty = true;
+
 		o = s.taboption('additional', form.ListValue, 'adb_nicelimit', _('Nice Level'), _('The selected priority will be used for adblock background processing.'));
 		o.value('-20', _('Highest Priority'));
 		o.value('-10', _('High Priority'));
@@ -290,13 +307,13 @@ return view.extend({
 		o.rmempty = true;
 
 		o = s.taboption('additional', form.Flag, 'adb_fetchinsecure', _('Download Insecure'), _('Don\'t check SSL server certificates during download.'));
-		o.default = 0
+		o.default = 0;
 		o.rmempty = true;
 
 		/*
 			firewall settings tab
 		*/
-		o = s.taboption('firewall', form.DummyValue, '_sub');
+		o = s.taboption('firewall', form.DummyValue, '_fw_sub1');
 		o.rawhtml = true;
 		o.default = '<em style="color:#37c;font-weight:bold;">' + _('Changes on this tab needs an adblock service restart to take effect.') + '</em>'
 			+ '<hr style="width: 200px; height: 1px;" />'
@@ -320,7 +337,7 @@ return view.extend({
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_allowdnsv4', _('IPv4 DNS Resolver'), _('IPv4 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_allowdnsv4', _('IPv4 DNS Resolver'), _('External IPv4 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
 		o.depends('adb_nftallow', '1');
 		o.datatype = 'ip4addr("nomask")';
 		o.value('86.54.11.100', _('DNS4EU (unfiltered)'));
@@ -332,7 +349,7 @@ return view.extend({
 		o.default = '86.54.11.100';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_allowdnsv6', _('IPv6 DNS Resolver'), _('IPv6 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_allowdnsv6', _('IPv6 DNS Resolver'), _('External IPv6 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
 		o.depends('adb_nftallow', '1');
 		o.datatype = 'ip6addr("nomask")';
 		o.value('2a13:1001::86:54:11:100', _('DNS4EU (unfiltered)'));
@@ -344,7 +361,7 @@ return view.extend({
 		o.default = '2a13:1001::86:54:11:100';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.DummyValue, '_sub');
+		o = s.taboption('firewall', form.DummyValue, '_fw_sub2');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('External Filtered DNS Policy (MAC-/Interface‑based DNS bypass)') + '</em>';
 
@@ -366,7 +383,7 @@ return view.extend({
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_blockdnsv4', _('IPv4 DNS Resolver'), _('IPv4 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_blockdnsv4', _('IPv4 DNS Resolver'), _('External IPv4 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
 		o.depends('adb_nftblock', '1');
 		o.datatype = 'ip4addr("nomask")';
 		o.value('86.54.11.1', _('DNS4EU (protective)'));
@@ -387,7 +404,7 @@ return view.extend({
 		o.default = '86.54.11.13';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_blockdnsv6', _('IPv6 DNS Resolver'), _('IPv6 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_blockdnsv6', _('IPv6 DNS Resolver'), _('External IPv6 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
 		o.depends('adb_nftblock', '1');
 		o.datatype = 'ip6addr("nomask")';
 		o.value('2a13:1001::86:54:11:1', _('DNS4EU (protective)'));
@@ -408,7 +425,7 @@ return view.extend({
 		o.default = '2a13:1001::86:54:11:13';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.DummyValue, '_sub');
+		o = s.taboption('firewall', form.DummyValue, '_fw_sub3');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('External Remote DNS Policy (temporary MAC‑based remote DNS bypass)') + '</em>';
 
@@ -434,7 +451,7 @@ return view.extend({
 		o.default = '15';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_remotednsv4', _('IPv4 Remote DNS Resolver'), _('IPv4 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_remotednsv4', _('IPv4 Remote DNS Resolver'), _('External IPv4 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
 		o.depends('adb_nftremote', '1');
 		o.datatype = 'ip4addr("nomask")';
 		o.value('86.54.11.100', _('DNS4EU (unfiltered)'));
@@ -446,7 +463,7 @@ return view.extend({
 		o.default = '86.54.11.100';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_remotednsv6', _('IPv6 Remote DNS Resolver'), _('IPv6 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_remotednsv6', _('IPv6 Remote DNS Resolver'), _('External IPv6 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
 		o.depends('adb_nftremote', '1');
 		o.datatype = 'ip6addr("nomask")';
 		o.value('2a13:1001::86:54:11:100', _('DNS4EU (unfiltered)'));
@@ -468,12 +485,73 @@ return view.extend({
 				blackColor: 'black'
 			};
 			const svg = uqr.renderSVG(url, options);
-			o = s.taboption('firewall', form.DummyValue, '_sub', _('QRCode for Remote Access'));
+			o = s.taboption('firewall', form.DummyValue, '_fw_qr', _('QRCode for Remote Access'));
 			o.rawhtml = true;
 			o.default = svg;
 		}
 
-		o = s.taboption('firewall', form.DummyValue, '_sub');
+		o = s.taboption('firewall', form.DummyValue, '_fw_sub4');
+		o.rawhtml = true;
+		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('External DNS Bridge (Zero‑Downtime during DNS Restarts)') + '</em>';
+
+		o = s.taboption('firewall', form.Flag, 'adb_nftbridge', _('Enable DNS Bridge'), _('Enables a temporary DNS bridge to an external DNS resolver during local DNS restarts.'));
+		o.rmempty = false;
+
+		o = s.taboption('firewall', form.Value, 'adb_bridgednsv4', _('IPv4 DNS Resolver'), _('External IPv4 DNS resolver used during bridging.'));
+		o.depends('adb_nftbridge', '1');
+		o.datatype = 'ip4addr("nomask")';
+		o.value('86.54.11.1', _('DNS4EU (protective)'));
+		o.value('86.54.11.12', _('DNS4EU (protective+family)'));
+		o.value('86.54.11.13', _('DNS4EU (protective+adblock)'));
+		o.value('86.54.11.11', _('DNS4EU (protective+family+adblock)'));
+		o.value('176.9.93.198', _('dnsforge (normal)'));
+		o.value('49.12.43.208', _('dnsforge (clean)'));
+		o.value('49.12.222.213', _('dnsforge (hard)'));
+		o.value('94.140.14.14', _('AdGuard (default)'));
+		o.value('94.140.14.15', _('AdGuard (family)'));
+		o.value('76.76.10.0', _('Control D (security)'));
+		o.value('76.76.10.10', _('Control D (family)'));
+		o.value('76.76.10.11', _('Control D (adblock)'));
+		o.value('1.1.1.2', _('Cloudflare (malware)'));
+		o.value('1.1.1.3', _('Cloudflare (malware+family)'));
+		o.value('9.9.9.9', _('Quad9 (malware)'));
+		o.value('86.54.11.100', _('DNS4EU (unfiltered)'));
+		o.value('94.140.14.140', _('AdGuard (unfiltered)'));
+		o.value('76.76.2.0', _('Control D (unfiltered)'));
+		o.value('1.1.1.1', _('Cloudflare (unfiltered)'));
+		o.value('9.9.9.10', _('Quad9 (unfiltered)'));
+		o.value('185.150.99.255', _('Digitale Gesellschaft (unfiltered)'));
+		o.default = '86.54.11.13';
+		o.rmempty = true;
+
+		o = s.taboption('firewall', form.Value, 'adb_bridgednsv6', _('IPv6 DNS Resolver'), _('External IPv6 DNS resolver used during bridging.'));
+		o.depends('adb_nftbridge', '1');
+		o.datatype = 'ip6addr("nomask")';
+		o.value('2a13:1001::86:54:11:1', _('DNS4EU (protective)'));
+		o.value('2a13:1001::86:54:11:12', _('DNS4EU (protective+family)'));
+		o.value('2a13:1001::86:54:11:13', _('DNS4EU (protective+adblock)'));
+		o.value('2a13:1001::86:54:11:11', _('DNS4EU (protective+family+adblock)'));
+		o.value('2a01:4f8:151:34aa::198', _('dnsforge (normal)'));
+		o.value('2a01:4f8:c012:ed89::208', _('dnsforge (clean)'));
+		o.value('2a01:4f8:c17:2c61::213', _('dnsforge (hard)'));
+		o.value('2a10:50c0::ad1:ff', _('AdGuard (default)'));
+		o.value('2a10:50c0::bad1:ff', _('AdGuard (family)'));
+		o.value('2606:1a40:1::', _('Control D (security)'));
+		o.value('2606:1a40:1::1', _('Control D (family)'));
+		o.value('2606:1a40:1::2', _('Control D (adblock)'));
+		o.value('2606:4700:4700::1112', _('Cloudflare (malware)'));
+		o.value('2606:4700:4700::1113', _('Cloudflare (malware+family)'));
+		o.value('2620:fe::fe', _('Quad9 (malware)'));
+		o.value('2a13:1001::86:54:11:100', _('DNS4EU (unfiltered)'));
+		o.value('2a10:50c0::1:ff', _('AdGuard (unfiltered)'));
+		o.value('2606:1a40::', _('Control D (unfiltered)'));
+		o.value('2606:4700:4700::1111', _('Cloudflare (unfiltered)'));
+		o.value('2620:fe::10', _('Quad9 (unfiltered)'));
+		o.value('2a07:6b47:6b47::255', _('Digitale Gesellschaft (unfiltered)'));
+		o.default = '2a13:1001::86:54:11:13';
+		o.rmempty = true;
+
+		o = s.taboption('firewall', form.DummyValue, '_fw_sub5');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('Local DNS Enforcement') + '</em>';
 
@@ -647,12 +725,9 @@ return view.extend({
 		/*
 			prepare category data
 		*/
-		var code, category, list, path, categories = [];
-		if (result[2]) {
-			categories = result[2].trim().split('\n');
-		}
+		const categories = result[2] ? result[2].trim().split('\n') : [];
 
-		o = s.taboption('feeds', form.DummyValue, '_sub');
+		o = s.taboption('feeds', form.DummyValue, '_feeds1');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('1Hosts List Selection') + '</em>';
 
@@ -660,19 +735,14 @@ return view.extend({
 		for (let i = 0; i < categories.length; i++) {
 			const cat = categories[i].match(/^(\w+);(.*?);(.*)$/);
 			if (!cat) continue;
-
-			const code = cat[1].trim();
-			const list = cat[2].trim();
-			const path = cat[3].trim();
-
-			if (code === 'hst') {
-				o.value(path, list);
+			if (cat[1].trim() === 'hst') {
+				o.value(cat[3].trim(), cat[2].trim());
 			}
 		}
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('feeds', form.DummyValue, '_sub');
+		o = s.taboption('feeds', form.DummyValue, '_feeds2');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('Hagezi List Selection') + '</em>';
 
@@ -680,19 +750,14 @@ return view.extend({
 		for (let i = 0; i < categories.length; i++) {
 			const cat = categories[i].match(/^(\w+);(.*?);(.*)$/);
 			if (!cat) continue;
-
-			const code = cat[1].trim();
-			const list = cat[2].trim();
-			const path = cat[3].trim();
-
-			if (code === 'hag') {
-				o.value(path, list);
+			if (cat[1].trim() === 'hag') {
+				o.value(cat[3].trim(), cat[2].trim());
 			}
 		}
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('feeds', form.DummyValue, '_sub');
+		o = s.taboption('feeds', form.DummyValue, '_feeds3');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('IPFire List Selection') + '</em>';
 
@@ -700,19 +765,14 @@ return view.extend({
 		for (let i = 0; i < categories.length; i++) {
 			const cat = categories[i].match(/^(\w+);(.*?);(.*)$/);
 			if (!cat) continue;
-
-			const code = cat[1].trim();
-			const list = cat[2].trim();
-			const path = cat[3].trim();
-
-			if (code === 'ipf') {
-				o.value(path, list);
+			if (cat[1].trim() === 'ipf') {
+				o.value(cat[3].trim(), cat[2].trim());
 			}
 		}
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('feeds', form.DummyValue, '_sub');
+		o = s.taboption('feeds', form.DummyValue, '_feeds4');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('StevenBlack List Selection') + '</em>';
 
@@ -720,19 +780,14 @@ return view.extend({
 		for (let i = 0; i < categories.length; i++) {
 			const cat = categories[i].match(/^(\w+);(.*?);(.*)$/);
 			if (!cat) continue;
-
-			const code = cat[1].trim();
-			const list = cat[2].trim();
-			const path = cat[3].trim();
-
-			if (code === 'stb') {
-				o.value(path, list);
+			if (cat[1].trim() === 'stb') {
+				o.value(cat[3].trim(), cat[2].trim());
 			}
 		}
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('feeds', form.DummyValue, '_sub');
+		o = s.taboption('feeds', form.DummyValue, '_feeds5');
 		o.rawhtml = true;
 		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('UTCapitole Archive Selection') + '</em>';
 
@@ -740,12 +795,8 @@ return view.extend({
 		for (let i = 0; i < categories.length; i++) {
 			const cat = categories[i].match(/^(\w+);(.*)$/);
 			if (!cat) continue;
-
-			const code = cat[1].trim();
-			const category = cat[2].trim();
-
-			if (code === 'utc') {
-				o.value(category);
+			if (cat[1].trim() === 'utc') {
+				o.value(cat[2].trim());
 			}
 		}
 		o.optional = true;
@@ -787,10 +838,10 @@ return view.extend({
 					'style': 'float:none',
 					'title': 'Save & Restart',
 					'click': function () {
-						handleAction('restart');
+						return handleAction('restart');
 					}
 				}, [_('Save & Restart')])
-			])
+			]);
 		});
 		return m.render();
 	},
