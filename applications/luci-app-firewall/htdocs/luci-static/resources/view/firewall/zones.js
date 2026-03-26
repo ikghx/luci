@@ -165,9 +165,11 @@ return view.extend({
 			var masq_dest = uci.get('firewall', section_id, 'masq_dest')
 			if ((!family || family.indexOf('6') == -1) && (masq_src || masq_dest))
 				return _('Limited masquerading enabled');
+			return null;
+		};
 
 		if (fw4) {
-			o = s.taboption('advanced', form.Flag, 'masq6', _('IPv6 Masquerading'),
+			o = s.taboption('general', form.Flag, 'masq6', _('IPv6 Masquerading'),
 				_('Enable network address and port translation IPv6 (NAT6 or NAPT6) for outbound traffic on this zone.'));
 			o.modalonly = true;
 			o.tooltip = function(section_id) {

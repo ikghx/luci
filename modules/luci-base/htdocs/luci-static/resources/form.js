@@ -154,21 +154,22 @@ const CBIJSONConfig = baseclass.extend({
 	},
 
 	add(config, sectiontype, sectionname) {
-		let max_index = 0;
+		let num_sections_type = 0;
+		let next_index = 0;
 
 		for (const name in this.data) {
-			max_index = Math.max(max_index, this.data[name]['.index']);
+			num_sections_type += (this.data[name]['.type'] == sectiontype);
+			next_index = Math.max(next_index, this.data[name]['.index']);
 		}
 
-		const next_index = max_index + 1;
-		const section_id = sectionname ?? (sectiontype + next_index);
+		const section_id = sectionname ?? (sectiontype + num_sections_type);
 
 		if (!this.data.hasOwnProperty(section_id)) {
 			this.data[section_id] = {
 				'.name': section_id,
 				'.type': sectiontype,
 				'.anonymous': (sectionname == null),
-				'.index': next_index
+				'.index': next_index + 1
 			};
 		}
 
@@ -185,19 +186,7 @@ const CBIJSONConfig = baseclass.extend({
 	},
 
 	move(config, section_id1, section_id2, after) {
-		const dataArray = Object.values(this.data).sort((a, b) => a['.index'] - b['.index']);
-
-		const fromIndex = dataArray.findIndex(section => section['.name'] === section_id1);
-		const toIndex = dataArray.findIndex(section => section['.name'] === section_id2);
-
-		const [itemToMove] = dataArray.splice(fromIndex, 1);
-		dataArray.splice(toIndex, 0, itemToMove);
-
-		dataArray.forEach((item, index) => {
-			item['.index'] = index;
-		});
-
-		this.data = Object.fromEntries(dataArray.map(item => [item['.name'], item]));
+		return uci.move.apply(this, [config, section_id1, section_id2, after]);
 	}
 });
 
@@ -4462,7 +4451,7 @@ const CBIValue = CBIAbstractValue.extend(/** @lends LuCI.form.Value.prototype */
 					'for': 'widget.cbid.%s.%s.%s'.format(config_name, section_id, this.option),
 					'click': (ev) => {
 						const node = ev.currentTarget;
-						const elem = node.nextElementSibling.querySelector(`[data-widget-id="${node.getAttribute('for')}"]`) ?? node.nextElementSibling.querySelector(`#${node.getAttribute('for')}`);
+						const elem = node.nextElementSibling.querySelector(`#${node.getAttribute('for')}`) ?? node.nextElementSibling.querySelector(`[data-widget-id="${node.getAttribute('for')}"]`);
 
 						if (elem) {
 							elem.click();
