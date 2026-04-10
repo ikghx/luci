@@ -150,6 +150,13 @@ yml_other_set()
                            []
                      end;
 
+                     rule_providers_array = case custom_data.class.to_s
+                        when 'Hash'
+                           custom_data['rule-providers'].to_a if custom_data['rule-providers'].class.to_s == 'Hash'
+                        else
+                           []
+                     end;
+
                      next unless rules_array;
 
                      ipv4_regex = /^(\d{1,3}\.){3}\d{1,3}$/;
@@ -209,6 +216,11 @@ yml_other_set()
                      else
                         Value['rules'] = valid_rules.uniq;
                      end;
+
+                     if rule_providers_array and not rule_providers_array.empty? then
+                        Value['rule-providers'] ||= {};
+                        Value['rule-providers'] = Value['rule-providers'].merge!(custom_data['rule-providers']);
+                     end;
                   end;
                };
 
@@ -260,7 +272,7 @@ yml_other_set()
          begin
             provider_configs = {'proxy-providers' => 'proxy_provider', 'rule-providers' => 'rule_provider'};
             provider_configs.each do |provider_type, path_prefix|
-               if Value.key?(provider_type) then
+               if Value.key?(provider_type) && Value[provider_type].is_a?(Hash) then
                   Value[provider_type].each{|name, config|
                      threads << Thread.new {
                         if config['path'] and not config['path'] =~ /.\/#{path_prefix}\/*/ then
@@ -298,7 +310,7 @@ yml_other_set()
 
          # tolerance
          begin
-            if '$tolerance' != '0' and Value.key?('proxy-groups') then
+            if '$tolerance' != '0' and Value.key?('proxy-groups') and Value['proxy-groups'].is_a?(Array) then
                Value['proxy-groups'].each{|group|
                   threads << Thread.new {
                      if group['type'] == 'url-test' then
@@ -314,7 +326,7 @@ yml_other_set()
          # URL-Test interval
          begin
             if '$urltest_interval_mod' != '0' then
-               if Value.key?('proxy-groups') then
+               if Value.key?('proxy-groups') and Value['proxy-groups'].is_a?(Array) then
                   Value['proxy-groups'].each{|group|
                      threads << Thread.new {
                         if ['url-test', 'fallback', 'load-balance', 'smart'].include?(group['type']) then
@@ -349,7 +361,7 @@ yml_other_set()
                      };
                   };
                end;
-               if Value.key?('proxy-groups') then
+               if Value.key?('proxy-groups') and Value['proxy-groups'].is_a?(Array) then
                   Value['proxy-groups'].each{|group|
                      threads << Thread.new {
                         if ['url-test', 'fallback', 'load-balance', 'smart'].include?(group['type']) then
@@ -365,7 +377,7 @@ yml_other_set()
 
          # smart auto switch
          begin
-            if ('${8}' == '1' or '${9}' == '1' or '${11}' != '0' or '${12}' != '0' or '${12}' == '1' or '${13}' == '1') and Value.key?('proxy-groups') then
+            if ('${8}' == '1' or '${9}' == '1' or '${11}' != '0' or '${12}' != '0' or '${12}' == '1' or '${13}' == '1') and Value.key?('proxy-groups') and Value['proxy-groups'].is_a?(Array) then
                Value['proxy-groups'].each{|group|
                   threads << Thread.new {
                      if '${8}' == '1' and ['url-test', 'load-balance'].include?(group['type']) then

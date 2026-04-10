@@ -6,6 +6,11 @@ local jsonc = api.jsonc
 local appname = "passwall"
 local fs = api.fs
 
+local GLOBAL = {
+	DNS_SERVER = {},
+	DNS_HOSTNAME = {}
+}
+
 local xray_version = api.get_app_version("xray")
 
 local function get_domain_excluded()
@@ -134,6 +139,7 @@ function gen_outbound(flag, node, tag, proxy_table)
 			streamSettings = (node.streamSettings or node.protocol == "vmess" or node.protocol == "vless" or node.protocol == "socks" or node.protocol == "shadowsocks" or node.protocol == "trojan" or node.protocol == "hysteria") and {
 				sockopt = {
 					mark = 255,
+					domainStrategy = node.domain_strategy or "UseIP",
 					tcpFastOpen = (node.tcp_fast_open == "1") and true or nil,
 					tcpMptcp = (node.tcpMptcp == "1") and true or nil
 				},
@@ -284,7 +290,19 @@ function gen_outbound(flag, node, tag, proxy_table)
 							udpHop = (node.hysteria2_hop) and {
 								ports = string.gsub(node.hysteria2_hop, ":", "-"),
 								interval = (function(v)
-									v = tonumber((v or "30s"):match("^%d+"))
+									if not v then return 30 end
+									if v:find("-", 1, true) then
+										local min, max = v:match("^(%d+)%-(%d+)$")
+										min = tonumber(min)
+										max = tonumber(max)
+										if min and max then
+											min = (min >= 5) and min or 5
+											max = (max >= min) and max or min
+											return min .. "-" .. max
+										end
+										return 30
+									end
+									v = tonumber((v or "30"):match("^%d+"))
 									return (v and v >= 5) and v or 30
 								end)(node.hysteria2_hop_interval)
 							} or nil,
@@ -384,6 +402,48 @@ function gen_outbound(flag, node, tag, proxy_table)
 			if result.streamSettings.tlsSettings then
 				result.streamSettings.tlsSettings.alpn = alpn
 			end
+		end
+
+		if api.datatypes.hostname(node.address) and node.domain_resolver and (node.domain_resolver_dns or node.domain_resolver_dns_https) then
+			local dns_tag = node_id .. "_dns"
+			local dns_proto = node.domain_resolver
+			local config_address
+			local config_port
+			if dns_proto == "https" then
+				local _a = api.parseURL(node.domain_resolver_dns_https)
+				if _a then
+					config_address = node.domain_resolver_dns_https
+					if _a.port then
+						config_port = _a.port
+					else
+						config_port = 443
+					end
+					if _a.hostname then
+						if api.datatypes.hostname(_a.hostname) then
+							GLOBAL.DNS_HOSTNAME[_a.hostname] = true
+						end
+					end
+				end
+			else
+				local server_address = node.domain_resolver_dns
+				local config_port = 53
+				local split = api.split(server_address, ":")
+				if #split > 1 then
+					server_address = split[1]
+					config_port = tonumber(split[#split])
+				end
+				config_address = server_address
+				if dns_proto == "tcp" then
+					config_address = dns_proto .. "://" .. server_address .. ":" .. config_port
+				end
+			end
+			GLOBAL.DNS_SERVER[node_id] = {
+				tag = dns_tag,
+				queryStrategy = node.domain_strategy or "UseIP",
+				address = config_address,
+				port = config_port,
+				domains = {"full:" .. node.address}
+			}
 		end
 	end
 	return result
@@ -700,6 +760,14 @@ function gen_config_server(node)
 		end
 	end
 
+	for index, value in ipairs(config.outbounds) do
+		for k, v in pairs(config.outbounds[index]) do
+			if k and k:find("_") == 1 then
+				config.outbounds[index][k] = nil
+			end
+		end
+	end
+
 	return config
 end
 
@@ -746,6 +814,7 @@ function gen_config(var)
 	local fakedns = nil
 	local routing = nil
 	local observatory = nil
+	local burstObservatory = nil
 	local strategy = nil
 	local inbounds = {}
 	local outbounds = {}
@@ -1003,19 +1072,31 @@ function gen_config(var)
 				fallbackTag = fallback_node_tag,
 				strategy = strategy
 			})
-			if not observatory and (_node.balancingStrategy == "leastPing" or _node.balancingStrategy == "leastLoad" or fallback_node_tag) then
+			if _node.balancingStrategy == "leastPing" or _node.balancingStrategy == "leastLoad" or fallback_node_tag then
 				local t = api.format_go_time(_node.probeInterval)
 				if t == "0s" then
 					t = "60s"
 				elseif not t:find("[hm]") and tonumber(t:match("%d+")) < 10 then
 					t = "10s"
 				end
-				observatory = {
-					subjectSelector = { "blc-" },
-					probeUrl = _node.useCustomProbeUrl and _node.probeUrl or "https://www.google.com/generate_204",
-					probeInterval = t,
-					enableConcurrency = true
-				}
+				if _node.balancingStrategy == "leastLoad" then
+					burstObservatory = burstObservatory or {
+						subjectSelector = { "blc-" },
+						pingConfig = {
+							destination = _node.useCustomProbeUrl and _node.probeUrl or nil,
+							interval = t,
+							sampling = 3,
+							timeout = "5s"
+						}
+					}
+				else
+					observatory = observatory or {
+						subjectSelector = { "blc-" },
+						probeUrl = _node.useCustomProbeUrl and _node.probeUrl or nil,
+						probeInterval = t,
+						enableConcurrency = true
+					}
+				end
 			end
 			local loopback_outbound = gen_loopback(loopback_tag, loopback_dst)
 			local inbound_tag = loopback_outbound.settings.inboundTag
@@ -1034,14 +1115,25 @@ function gen_config(var)
 				else
 					local preproxy_node = get_node_by_id(node.preproxy_node)
 					if preproxy_node then
-						local preproxy_outbound = gen_outbound(node[".name"], preproxy_node)
+						local preproxy_outbound, exist
+						if preproxy_node.protocol == "_balancing" then
+							local balancer_tag, loopback_outbound = gen_balancer(preproxy_node)
+							if loopback_outbound then
+								preproxy_outbound = loopback_outbound
+								exist = true
+							end
+						else
+							preproxy_outbound = gen_outbound(node[".name"], preproxy_node)
+						end
 						if preproxy_outbound then
 							outbound.tag = preproxy_outbound.tag .. " -> " .. outbound.tag
 							outbound.proxySettings = {
 								tag = preproxy_outbound.tag,
 								transportLayer = true
 							}
-							last_insert_outbound = preproxy_outbound
+							if not exist then
+								last_insert_outbound = preproxy_outbound
+							end
 							default_outTag = outbound.tag
 						end
 					end
@@ -1051,17 +1143,17 @@ function gen_config(var)
 				local to_node = get_node_by_id(node.to_node)
 				if to_node then
 					-- Landing Node not support use special node.
-					if to_node.protocol:find("^_") then
+					if to_node.protocol and to_node.protocol:find("^_") then
 						to_node = nil
 					end
 				end
 				if to_node then
 					local to_outbound
 					if to_node.type ~= "Xray" then
-						local tag = to_node[".name"]
+						local in_tag = "inbound_" .. to_node[".name"] .. "_" .. tostring(outbound.tag)
 						local new_port = api.get_new_port()
 						table.insert(inbounds, {
-							tag = tag,
+							tag = in_tag,
 							listen = "127.0.0.1",
 							port = new_port,
 							protocol = "dokodemo-door",
@@ -1073,11 +1165,11 @@ function gen_config(var)
 						to_node.address = "127.0.0.1"
 						to_node.port = new_port
 						table.insert(rules, 1, {
-							inboundTag = {tag},
+							inboundTag = {in_tag},
 							outboundTag = outbound.tag
 						})
-						to_outbound = gen_outbound(node[".name"], to_node, tag, {
-							tag = tag,
+						to_outbound = gen_outbound(node[".name"], to_node, to_node[".name"], {
+							tag = to_node[".name"],
 							run_socks_instance = not no_run
 						})
 					else
@@ -1393,7 +1485,15 @@ function gen_config(var)
 		end
 	end
 
-	if (remote_dns_udp_server and remote_dns_udp_port) or (remote_dns_tcp_server and remote_dns_tcp_port) then
+	local node_dns = {}
+	for i, v in pairs(GLOBAL.DNS_SERVER) do
+		table.insert(node_dns, {
+			server = v,
+			outboundTag = "direct"
+		})
+	end
+
+	if (remote_dns_udp_server and remote_dns_udp_port) or (remote_dns_tcp_server and remote_dns_tcp_port) or #node_dns > 0 then
 		if not routing then
 			routing = {
 				domainStrategy = "IPOnDemand",
@@ -1416,6 +1516,8 @@ function gen_config(var)
 			tag = "dns-global-direct",
 			queryStrategy = (direct_dns_query_strategy and direct_dns_query_strategy ~= "") and direct_dns_query_strategy or "UseIP"
 		}
+
+		direct_dns_udp_server = (direct_dns_udp_server and direct_dns_udp_server ~= "") and direct_dns_udp_server or nil
 
 		if direct_dns_udp_server or direct_dns_tcp_server then
 			local domain = {}
@@ -1445,14 +1547,12 @@ function gen_config(var)
 			end
 		end
 
-		local _remote_dns = {
-			--tag = "dns-global-remote",
-			queryStrategy = (remote_dns_query_strategy and remote_dns_query_strategy ~= "") and remote_dns_query_strategy or "UseIPv4",
-		}
+		local _remote_dns = {}
+
 		if remote_dns_udp_server then
 			_remote_dns.address = remote_dns_udp_server
 			_remote_dns.port = tonumber(remote_dns_udp_port) or 53
-		else
+		elseif remote_dns_tcp_server then
 			_remote_dns.address = "tcp://" .. remote_dns_tcp_server .. ":" .. tonumber(remote_dns_tcp_port) or 53
 		end
 
@@ -1466,7 +1566,11 @@ function gen_config(var)
 			_remote_dns.port = tonumber(remote_dns_doh_port)
 		end
 
-		table.insert(dns.servers, _remote_dns)
+		if next(_remote_dns) then
+			-- _remote_dns.tag = "dns-global-remote"
+			_remote_dns.queryStrategy = (remote_dns_query_strategy and remote_dns_query_strategy ~= "") and remote_dns_query_strategy or "UseIPv4"
+			table.insert(dns.servers, _remote_dns)
+		end
 
 		local _remote_fakedns = {
 			--tag = "dns-global-remote-fakedns",
@@ -1605,7 +1709,7 @@ function gen_config(var)
 						dns_server = nil
 					end
 					if dns_server then
-						dns_server.finalQuery = true
+						--dns_server.finalQuery = true
 						dns_server.domains = value.domain
 						if value.shunt_rule_name then
 							dns_server.tag = "dns-in-" .. value.shunt_rule_name
@@ -1622,7 +1726,7 @@ function gen_config(var)
 		end
 
 		local _outboundTag
-		if not api.is_local_ip(_remote_dns.address) or dns_outbound_tag == "blackhole" then --dns为本地ip，不走代理
+		if _remote_dns.address and not api.is_local_ip(_remote_dns.address) or dns_outbound_tag == "blackhole" then --dns为本地ip，不走代理
 			_outboundTag = dns_outbound_tag
 		else
 			_outboundTag = "direct"
@@ -1654,6 +1758,37 @@ function gen_config(var)
 		if dns_hosts_len == 0 then
 			dns.hosts = nil
 		end
+
+		-- 自定义节点 DNS
+		if #node_dns > 0 and #dns.servers < 1 then
+			dns.servers = { "localhost" }
+		end
+		for i = #node_dns, 1, -1 do
+			local value = node_dns[i]
+			table.insert(routing.rules, 1, {
+				inboundTag = {
+					value.server.tag
+				},
+				outboundTag = value.outboundTag,
+			})
+			table.insert(dns.servers, 2, value.server)
+		end
+		if next(GLOBAL.DNS_HOSTNAME) then
+			local hostname = {}
+			for line, _ in pairs(GLOBAL.DNS_HOSTNAME) do
+				table.insert(hostname, line)
+			end
+			table.insert(dns.servers, 2, {
+				tag = "bootstrap",
+				address = "223.5.5.5",
+				queryStrategy = "UseIPv4",
+				domains = hostname
+			})
+			table.insert(routing.rules, 1, {
+				inboundTag = { "bootstrap" },
+				outboundTag = "direct"
+			})
+		end
 	end
 
 	if inbounds or outbounds then
@@ -1670,7 +1805,8 @@ function gen_config(var)
 			-- 传出连接
 			outbounds = outbounds,
 			-- 连接观测
-			observatory = observatory,
+			observatory = (not burstObservatory) and observatory or nil,
+			burstObservatory = burstObservatory,
 			-- 路由
 			routing = routing,
 			-- 本地策略
@@ -1720,14 +1856,10 @@ function gen_config(var)
 		else
 			table.insert(outbounds, blackhole_outbound)
 		end
-
 		for index, value in ipairs(config.outbounds) do
-			local s = value.settings
-			if not value["_flag_proxy_tag"] and value["_id"] and s and not no_run and
-			((s.vnext and s.vnext[1] and s.vnext[1].address and s.vnext[1].port) or 
-			(s.servers and s.servers[1] and s.servers[1].address and s.servers[1].port) or
-			(s.peers and s.peers[1] and s.peers[1].endpoint) or
-			(s.address and s.port)) then
+			local pt = value.protocol
+			local exclude = { blackhole=1, dns=1, freedom=1, loopback=1 }
+			if not value["_flag_proxy_tag"] and value["_id"] and pt and not exclude[pt] and not no_run then
 				sys.call(string.format("echo '%s' >> %s", value["_id"], api.TMP_PATH .. "/direct_node_list"))
 			end
 			for k, v in pairs(config.outbounds[index]) do

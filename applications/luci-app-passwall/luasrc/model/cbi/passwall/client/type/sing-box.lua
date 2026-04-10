@@ -25,7 +25,6 @@ local function _n(name)
 	return option_prefix .. name
 end
 
-local formvalue_key = "cbid." .. appname .. "." .. arg[1] .. "."
 local formvalue_proto = luci.http.formvalue(formvalue_key .. _n("protocol"))
 
 if formvalue_proto then s.val["protocol"] = formvalue_proto end
@@ -207,16 +206,6 @@ o = s:option(Value, _n("address"), translate("Address (Support Domain Name)"))
 o = s:option(Value, _n("port"), translate("Port"))
 o.datatype = "port"
 
-local protocols = s.fields[_n("protocol")].keylist
-if #protocols > 0 then
-	for index, value in ipairs(protocols) do
-		if not value:find("^_") then
-			s.fields[_n("address")]:depends({ [_n("protocol")] = value })
-			s.fields[_n("port")]:depends({ [_n("protocol")] = value })
-		end
-	end
-end
-
 o = s:option(Value, _n("uuid"), translate("ID"))
 o.password = true
 o:depends({ [_n("protocol")] = "vmess" })
@@ -279,9 +268,10 @@ if singbox_tags:find("with_quic") then
 	o.description = translate("Format as 1000:2000 or 1000-2000 Multiple groups are separated by commas (,).")
 	o:depends({ [_n("protocol")] = "hysteria" })
 
-	o = s:option(Value, _n("hysteria_hop_interval"), translate("Hop Interval"), translate("Example:") .. "30s (≥5s)")
-	o.placeholder = "30s"
-	o.default = "30s"
+	o = s:option(Value, _n("hysteria_hop_interval"), translate("Hop Interval(second)"), translate("Example:") .. "30 (≥5)")
+	o.datatype = "uinteger"
+	o.placeholder = "30"
+	o.default = "30"
 	o:depends({ [_n("protocol")] = "hysteria" })
 
 	o = s:option(Value, _n("hysteria_obfs"), translate("Obfs Password"))
@@ -363,9 +353,10 @@ if singbox_tags:find("with_quic") then
 	o.description = translate("Format as 1000:2000 or 1000-2000 Multiple groups are separated by commas (,).")
 	o:depends({ [_n("protocol")] = "hysteria2" })
 
-	o = s:option(Value, _n("hysteria2_hop_interval"), translate("Hop Interval"), translate("Example:") .. "30s (≥5s)")
-	o.placeholder = "30s"
-	o.default = "30s"
+	o = s:option(Value, _n("hysteria2_hop_interval"), translate("Hop Interval(Second)"), translate("Supports a fixed value or a random range (e.g., 30, 5-30), minimum 5."))
+	o.datatype = "or(uinteger,portrange)"
+	o.placeholder = "30"
+	o.default = "30"
 	o:depends({ [_n("protocol")] = "hysteria2" })
 
 	o = s:option(Value, _n("hysteria2_up_mbps"), translate("Max upload Mbps"))
@@ -741,6 +732,28 @@ o:value("v2ray-plugin")
 o = s:option(Value, _n("plugin_opts"), translate("opts"))
 o:depends({ [_n("plugin_enabled")] = true })
 
+o = s:option(ListValue, _n("domain_resolver"), translate("Domain DNS Resolve"))
+o.description = translate("If the node address is a domain name, this DNS will be used for resolution.") .. "<br>" .. string.format('<font color="red">%s</font>',
+		translate("Note: For node-specific DNS only. Keep Auto to avoid extra overhead."))
+o:value("", translate("Auto"))
+o:value("tcp", "TCP")
+o:value("udp", "UDP")
+o:value("https", "DoH")
+
+o = s:option(Value, _n("domain_resolver_dns"), "DNS")
+o.datatype = "or(ipaddr,ipaddrport)"
+o:value("114.114.114.114")
+o:value("223.5.5.5:53")
+o.default = o.keylist[1]
+o:depends({ [_n("domain_resolver")] = "tcp" })
+o:depends({ [_n("domain_resolver")] = "udp" })
+
+o = s:option(Value, _n("domain_resolver_dns_https"), "DNS")
+o:value("https://120.53.53.53/dns-query", "DNSPod")
+o:value("https://223.5.5.5/dns-query", "AliDNS")
+o.default = o.keylist[1]
+o:depends({ [_n("domain_resolver")] = "https" })
+
 o = s:option(ListValue, _n("domain_strategy"), translate("Domain Strategy"), translate("If is domain name, The requested domain name will be resolved to IP before connect."))
 o.default = ""
 o:value("", translate("Auto"))
@@ -748,17 +761,19 @@ o:value("prefer_ipv4", translate("Prefer IPv4"))
 o:value("prefer_ipv6", translate("Prefer IPv6"))
 o:value("ipv4_only", translate("IPv4 Only"))
 o:value("ipv6_only", translate("IPv6 Only"))
-o:depends({ [_n("protocol")] = "socks" })
-o:depends({ [_n("protocol")] = "http" })
-o:depends({ [_n("protocol")] = "shadowsocks" })
-o:depends({ [_n("protocol")] = "vmess" })
-o:depends({ [_n("protocol")] = "trojan" })
-o:depends({ [_n("protocol")] = "wireguard" })
-o:depends({ [_n("protocol")] = "hysteria" })
-o:depends({ [_n("protocol")] = "vless" })
-o:depends({ [_n("protocol")] = "tuic" })
-o:depends({ [_n("protocol")] = "hysteria2" })
-o:depends({ [_n("protocol")] = "anytls" })
+
+
+local protocols = s.fields[_n("protocol")].keylist
+if #protocols > 0 then
+	for i, v in ipairs(protocols) do
+		if not v:find("^_") then
+			s.fields[_n("address")]:depends({ [_n("protocol")] = v })
+			s.fields[_n("port")]:depends({ [_n("protocol")] = v })
+			s.fields[_n("domain_resolver")]:depends({ [_n("protocol")] = v })
+			s.fields[_n("domain_strategy")]:depends({ [_n("protocol")] = v })
+		end
+	end
+end
 end
 -- [[ Normal single node End ]]
 

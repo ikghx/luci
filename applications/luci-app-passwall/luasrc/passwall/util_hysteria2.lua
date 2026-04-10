@@ -63,17 +63,28 @@ function gen_config(var)
 	local config = {
 		server = server,
 		transport = {
-			type = node.protocol or "udp",
-			udp = {
-				hopInterval = (function()
-							local HopIntervalStr = tostring(node.hysteria2_hop_interval or "30s")
-							local HopInterval = tonumber(HopIntervalStr:match("^%d+"))
-							if HopInterval and HopInterval >= 5 then
-								return tostring(HopInterval) .. "s"
-							end
-							return "30s"
-						end)(),
-			}
+			type = "udp",
+			udp = node.hysteria2_hop and (function()
+				local udp = {}
+				local t = node.hysteria2_hop_interval
+				if not t then return nil end
+				if t:find("-", 1, true) then
+					local min, max = t:match("^(%d+)%-(%d+)$")
+					min = tonumber(min)
+					max = tonumber(max)
+					if min and max then
+						min = (min >= 5) and min or 5
+						max = (max >= min) and max or min
+						udp.minHopInterval = min .. "s"
+						udp.maxHopInterval = max .. "s"
+						return udp
+					end
+				end
+				t = tonumber((t or "30"):match("^%d+"))
+				t = (t and t >= 5) and t or 30
+				udp.hopInterval = t .. "s"
+				return udp
+			end)() or nil
 		},
 		obfs = (node.hysteria2_obfs) and {
 			type = "salamander",

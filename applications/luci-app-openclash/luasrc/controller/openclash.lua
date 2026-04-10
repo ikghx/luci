@@ -1640,6 +1640,13 @@ function rename_file()
 					uci:set("openclash", s[".name"], "name", fs.filename(new_file_name))
 				end
 			end)
+
+			uci:foreach("openclash", "subscribe_info",
+			function(s)
+				if s.name == fs.filename(old_file_name) and fs.filename(new_file_name) ~= new_file_name then
+					uci:set("openclash", s[".name"], "name", fs.filename(new_file_name))
+				end
+			end)
 			
 			uci:foreach("openclash", "groups",
 			function(s)
@@ -3450,9 +3457,7 @@ function action_add_subscription()
 				end
 			end
 			if #params > 0 then
-				for i, param in ipairs(params) do
-					uci:set_list("openclash", section_id, "custom_params", param)
-				end
+				uci:set_list("openclash", section_id, "custom_params", params)
 			end
 		end
 
@@ -3466,9 +3471,7 @@ function action_add_subscription()
 				end
 			end
 			if #keywords > 0 then
-				for i, kw in ipairs(keywords) do
-					uci:set_list("openclash", section_id, "keyword", kw)
-				end
+				uci:set_list("openclash", section_id, "keyword", keywords)
 			end
 		end
 
@@ -3482,9 +3485,7 @@ function action_add_subscription()
 				end
 			end
 			if #ex_keywords > 0 then
-				for i, ex_kw in ipairs(ex_keywords) do
-					uci:set_list("openclash", section_id, "ex_keyword", ex_kw)
-				end
+				uci:set_list("openclash", section_id, "ex_keyword", ex_keywords)
 			end
 		end
 
@@ -3513,6 +3514,16 @@ end
 function action_upload_overwrite()
 	local upload = luci.http.formvalue("config_file")
 	local filename = luci.http.formvalue("filename")
+	local config_values = {}
+	local raw_config = luci.http.formvalue("config") or ""
+	if raw_config ~= "" then
+		for line in raw_config:gmatch("[^\n]+") do
+			local config_value = line:match("^%s*(.-)%s*$")
+			if config_value and config_value ~= "" then
+				table.insert(config_values, config_value)
+			end
+		end
+	end
 	local enable = luci.http.formvalue("enable")
 	local order = luci.http.formvalue("order")
 	luci.http.prepare_content("application/json")
@@ -3558,6 +3569,10 @@ function action_upload_overwrite()
 		uci:foreach("openclash", "config_overwrite", function(s)
 			if s.name == section_name then
 				found = true
+				uci:delete("openclash", s[".name"], "config")
+				if #config_values > 0 then
+					uci:set_list("openclash", s[".name"], "config", config_values)
+				end
 				if s.enable == nil or (s.enable ~= nil and enable ~= nil) then
 					if enable == nil then
 						enable = 0
@@ -3583,6 +3598,10 @@ function action_upload_overwrite()
 			local sid = uci:add("openclash", "config_overwrite")
 			uci:set("openclash", sid, "name", section_name)
 			uci:set("openclash", sid, "type", "file")
+			uci:delete("openclash", sid, "config")
+			if #config_values > 0 then
+				uci:set_list("openclash", sid, "config", config_values)
+			end
 			if enable ~= nil then
 				uci:set("openclash", sid, "enable", tostring(enable))
 			else
@@ -3640,8 +3659,22 @@ function action_overwrite_subscribe_info()
 		local result = {}
 		uci:foreach("openclash", "config_overwrite", function(s)
 			if s.name then
+				local config_value = ""
+				if s.config then
+					local config_list = {}
+					for _, item in ipairs(s.config) do
+						if item and item ~= "" then
+							table.insert(config_list, tostring(item))
+						end
+					end
+					if #config_list > 0 then
+						config_value = config_list
+					end
+				end
+
 				result[s.name] = {
 					url = s.url or "",
+					config = config_value,
 					update_days = s.update_days or "",
 					update_hour = s.update_hour or "",
 					order = tonumber(s.order) or 0,
@@ -3664,6 +3697,16 @@ function action_overwrite_subscribe_info()
 		local update_hour = luci.http.formvalue("update_hour") or ""
 		local order = luci.http.formvalue("order")
 		local param = luci.http.formvalue("param") or ""
+		local config_values = {}
+		local raw_config = luci.http.formvalue("config") or ""
+		if raw_config ~= "" then
+			for line in raw_config:gmatch("[^\n]+") do
+				local config_value = line:match("^%s*(.-)%s*$")
+				if config_value and config_value ~= "" then
+					table.insert(config_values, config_value)
+				end
+			end
+		end
 		typ = luci.http.formvalue("type") or typ or "file"
 		local enable = luci.http.formvalue("enable")
 
@@ -3696,6 +3739,10 @@ function action_overwrite_subscribe_info()
 				if s.name == old_section_name then
 					uci:set("openclash", s[".name"], "name", section_name)
 					uci:set("openclash", s[".name"], "url", url)
+					uci:delete("openclash", s[".name"], "config")
+					if #config_values > 0 then
+						uci:set_list("openclash", s[".name"], "config", config_values)
+					end
 					uci:set("openclash", s[".name"], "update_days", update_days)
 					uci:set("openclash", s[".name"], "update_hour", update_hour)
 					uci:set("openclash", s[".name"], "type", typ)
@@ -3737,6 +3784,10 @@ function action_overwrite_subscribe_info()
 			uci:foreach("openclash", "config_overwrite", function(s)
 				if s.name == section_name then
 					uci:set("openclash", s[".name"], "url", url)
+					uci:delete("openclash", s[".name"], "config")
+					if #config_values > 0 then
+						uci:set_list("openclash", s[".name"], "config", config_values)
+					end
 					uci:set("openclash", s[".name"], "update_days", update_days)
 					uci:set("openclash", s[".name"], "update_hour", update_hour)
 					uci:set("openclash", s[".name"], "type", typ)
@@ -3768,6 +3819,10 @@ function action_overwrite_subscribe_info()
 			local sid = uci:add("openclash", "config_overwrite")
 			uci:set("openclash", sid, "name", section_name)
 			uci:set("openclash", sid, "url", url)
+			uci:delete("openclash", sid, "config")
+			if #config_values > 0 then
+				uci:set_list("openclash", sid, "config", config_values)
+			end
 			uci:set("openclash", sid, "update_days", update_days)
 			uci:set("openclash", sid, "update_hour", update_hour)
 			uci:set("openclash", sid, "type", typ)
