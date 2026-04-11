@@ -13,7 +13,7 @@ LUCI_TITLE:=LuCI support for clash
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+luci-compat +dnsmasq-full +coreutils +coreutils-nohup +bash \
 	+curl +ca-bundle +kmod-tun +ip-full +ipset +libcap +libcap-bin \
-	+ruby +ruby-yaml +unzip +kmod-inet-diag +kmod-nft-tproxy +openclash-meta
+	+ruby +ruby-yaml +unzip +kmod-inet-diag +kmod-nft-tproxy +mihomo-meta
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/openclash

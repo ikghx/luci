@@ -1,11 +1,11 @@
-# This is free software, licensed under the Apache License, Version 2.0
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Copyright (C) 2022 ImmortalWrt.org
 
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI for Zerotier
-LUCI_DEPENDS:=+zerotier +jsonfilter +ucode
-
-PKG_LICENSE:=Apache-2.0
+LUCI_DEPENDS:=+zerotier
 
 include ../../luci.mk
 
