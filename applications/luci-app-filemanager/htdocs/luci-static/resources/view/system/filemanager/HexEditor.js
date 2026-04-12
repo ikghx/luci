@@ -61,7 +61,6 @@ var hexeditCssContent = `
 	font-family: monospace;
 	font-size: 14px;
 	line-height: 1.2em;
-	background-color: var(--clr-background);
 	border: 1px solid var(--clr-border);
 	width: 100%;
 }
@@ -73,9 +72,9 @@ var hexeditCssContent = `
 /* Headers container */
 .hexedit-headers {
 	display: flex;
-	background-color: var(--clr-background);
 	border-bottom: 2px solid var(--clr-border);
 	font-family: monospace;
+	background: #ccc;
 }
 
 /* Header styles */
@@ -240,7 +239,6 @@ var hexeditCssContent = `
 /* Search container styles */
 .hexedit-search-container {
 	padding: 10px;
-	background-color: #f9f9f9;
 	border-bottom: 1px solid #ccc; /* Border to separate from headers */
 	display: flex;
 	flex-direction: column; /* Stack search groups vertically */
@@ -271,7 +269,6 @@ var hexeditCssContent = `
 	width: 50px;
 	text-align: center;
 	font-size: 14px;
-	color: #555;
 }
 
 /* Find Previous and Next buttons */
@@ -311,6 +308,7 @@ var hexeditCssContent = `
 /* Classes for passive view cursor highlighting */
 .passive-view-cursor {
 	background-color: var(--clr-cursor-passive);
+	color: #000;
 }
 
 /* Highlighted class to maintain yellow background for matches */
