@@ -25,12 +25,14 @@ function injectHexEditorCSS() {
 
 var hexeditCssContent = `
 /* Hex Editor CSS Styles */
-.hexview:focus,
-.textview:focus {
+
+#file-manager-container .hexview:focus,
+#file-manager-container .textview:focus {
 	outline: none;
 	box-shadow: none;
 	border-right: 2px solid var(--clr-border); 
 }
+
 :root {
 	--span-spacing: 0.25ch;
 	--clr-background: #f5f5f5;
@@ -47,14 +49,14 @@ var hexeditCssContent = `
 }
 
 /* Apply box-sizing to all elements */
-.hexedit *,
-.hexedit *::before,
-.hexedit *::after {
+#file-manager-container .hexedit *,
+#file-manager-container .hexedit *::before,
+#file-manager-container .hexedit *::after {
 	box-sizing: border-box;
 }
 
 /* Main hex editor container */
-.hexedit {
+#file-manager-container .hexedit {
 	display: flex;
 	flex-direction: column;
 	flex: 1; /* Allow hexedit to expand */
@@ -65,12 +67,12 @@ var hexeditCssContent = `
 	width: 100%;
 }
 
-.hexedit:focus {
+#file-manager-container .hexedit:focus {
 	outline: none;
 }
 
 /* Headers container */
-.hexedit-headers {
+#file-manager-container .hexedit-headers {
 	display: flex;
 	border-bottom: 2px solid var(--clr-border);
 	font-family: monospace;
@@ -78,9 +80,9 @@ var hexeditCssContent = `
 }
 
 /* Header styles */
-.offsets-header,
-.hexview-header,
-.textview-header {
+#file-manager-container .offsets-header,
+#file-manager-container .hexview-header,
+#file-manager-container .textview-header {
 	display: flex;
 	align-items: center;
 	padding: 5px;
@@ -90,34 +92,34 @@ var hexeditCssContent = `
 	border-right: 2px solid var(--clr-border);
 }
 
-.offsets-header {
+#file-manager-container .offsets-header {
 	width: 100px; /* Ensure alignment with .offsets */
 	text-align: left;
 }
 
-.hexview-header {
+#file-manager-container .hexview-header {
 	width: calc(16 * 2ch + 20 * var(--span-spacing)); /* Increased width to match content */
 	display: flex;
 }
 
-.hexview-header span {
+#file-manager-container .hexview-header span {
 	width: 2ch;
 	margin-right: var(--span-spacing);
 	text-align: center;
 }
 
-.hexview-header span:last-child {
+#file-manager-container .hexview-header span:last-child {
 	margin-right: 0;
 }
 
-.textview-header {
+#file-manager-container .textview-header {
 	flex: 1;
 	margin-left: 10px;
 	text-align: left;
 }
 
 /* Content container */
-.hexedit-content {
+#file-manager-container .hexedit-content {
 	display: flex;
 	height: 100%;
 	flex: 1 1 auto;
@@ -127,9 +129,9 @@ var hexeditCssContent = `
 }
 
 /* Columns */
-.offsets,
-.hexview,
-.textview {
+#file-manager-container .offsets,
+#file-manager-container .hexview,
+#file-manager-container .textview {
 	flex-shrink: 0;
 	display: block;
 	padding: 5px;
@@ -137,24 +139,24 @@ var hexeditCssContent = `
 	border-right: 2px solid var(--clr-border);
 }
 
-.offsets {
+#file-manager-container .offsets {
 	width: 100px; /* Increased width to match content */
 	display: flex;
 	flex-direction: column;
 	text-align: left;
 }
 
-.offsets span {
+#file-manager-container .offsets span {
 	display: block;
 	height: 1.2em;
 }
 
-.hexview {
+#file-manager-container .hexview {
 	width: calc(16 * 2ch + 20 * var(--span-spacing)); /* Increased width to match content */
 	text-align: center;
 }
 
-.textview {
+#file-manager-container .textview {
 	flex: 1;
 	margin-left: 10px;
 	text-align: left;
@@ -162,15 +164,15 @@ var hexeditCssContent = `
 }
 
 /* Line containers */
-.hex-line,
-.text-line {
+#file-manager-container .hex-line,
+#file-manager-container .text-line {
 	display: flex;
 	height: 1.2em;
 }
 
 /* Byte spans */
-.hex-line span,
-.text-line span {
+#file-manager-container .hex-line span,
+#file-manager-container .text-line span {
 	width: 2ch;
 	margin-right: var(--span-spacing);
 	text-align: center;
@@ -178,66 +180,66 @@ var hexeditCssContent = `
 	cursor: default;
 }
 
-.hex-line span:last-child,
-.hexview-header span:last-child,
-.text-line span:last-child {
+#file-manager-container .hex-line span:last-child,
+#file-manager-container .hexview-header span:last-child,
+#file-manager-container .text-line span:last-child {
 	margin-right: 0;
 }
 
 /* Selections */
-.selected {
+#file-manager-container .selected {
 	background-color: var(--clr-selected);
 }
 
-.selected-editing {
+#file-manager-container .selected-editing {
 	background-color: var(--clr-selected-editing);
 }
 
-.non-printable {
+#file-manager-container .non-printable {
 	color: var(--clr-non-printable);
 }
 
 /* Remove individual scrollbars */
-.offsets::-webkit-scrollbar,
-.hexview::-webkit-scrollbar,
-.textview::-webkit-scrollbar {
+#file-manager-container .offsets::-webkit-scrollbar,
+#file-manager-container .hexview::-webkit-scrollbar,
+#file-manager-container .textview::-webkit-scrollbar {
 	display: none;
 }
 
-.offsets,
-.hexview,
-.textview {
+#file-manager-container .offsets,
+#file-manager-container .hexview,
+#file-manager-container .textview {
 	scrollbar-width: none; /* For Firefox */
 }
 
 /* Adjust overall layout */
-.hexedit .offsets,
-.hexedit .hexview,
-.hexedit .textview {
+#file-manager-container .hexedit .offsets,
+#file-manager-container .hexedit .hexview,
+#file-manager-container .hexedit .textview {
 	border-right: 2px solid var(--clr-border);
 }
 
-.hexedit .textview {
+#file-manager-container .hexedit .textview {
 	border-right: none;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-	.hexedit {
+	#file-manager-container .hexedit {
 	font-size: 12px;
 	}
 
-	.offsets {
+	#file-manager-container .offsets {
 	width: 120px; /* Adjust for smaller screens */
 	}
 
-	.hexview {
+	#file-manager-container .hexview {
 	width: calc(16 * 2ch + 20 * var(--span-spacing));
 	}
 }
 
 /* Search container styles */
-.hexedit-search-container {
+#file-manager-container .hexedit-search-container {
 	padding: 10px;
 	border-bottom: 1px solid #ccc; /* Border to separate from headers */
 	display: flex;
@@ -248,7 +250,7 @@ var hexeditCssContent = `
 }
 
 /* Search group styles */
-.hexedit-search-group {
+#file-manager-container .hexedit-search-group {
 	display: flex;
 	align-items: center;
 	gap: 5px;
@@ -256,7 +258,7 @@ var hexeditCssContent = `
 }
 
 /* Search input fields */
-.hexedit-search-input {
+#file-manager-container .hexedit-search-input {
 	flex: 1;
 	padding: 8px;
 	border: 1px solid #ddd;
@@ -265,14 +267,14 @@ var hexeditCssContent = `
 }
 
 /* Search status fields */
-.hexedit-search-status {
+#file-manager-container .hexedit-search-status {
 	width: 50px;
 	text-align: center;
 	font-size: 14px;
 }
 
 /* Find Previous and Next buttons */
-.hexedit-search-button {
+#file-manager-container .hexedit-search-button {
 	padding: 8px 12px;
 	cursor: pointer;
 	background-color: #007bff;
@@ -283,12 +285,12 @@ var hexeditCssContent = `
 	transition: background-color 0.3s ease;
 }
 
-.hexedit-search-button:hover {
+#file-manager-container .hexedit-search-button:hover {
 	background-color: #0056b3;
 }
 
 /* Highlight search results */
-.search-highlight {
+#file-manager-container .search-highlight {
 	background-color: var(--clr-highlight);
 }
 
@@ -300,19 +302,19 @@ var hexeditCssContent = `
 }
 
 /* Classes for active view cursor blinking */
-.active-view-cursor {
+#file-manager-container .active-view-cursor {
 	animation: blink-blue var(--animation-duration) infinite;
 	background-color: var(--clr-cursor-active); /* Initial color */
 }
 
 /* Classes for passive view cursor highlighting */
-.passive-view-cursor {
+#file-manager-container .passive-view-cursor {
 	background-color: var(--clr-cursor-passive);
 	color: #000;
 }
 
 /* Highlighted class to maintain yellow background for matches */
-.highlighted {
+#file-manager-container .highlighted {
 	background-color: var(--clr-highlight);
 }
 `;

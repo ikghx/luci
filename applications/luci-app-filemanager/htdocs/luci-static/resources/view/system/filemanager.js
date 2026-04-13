@@ -253,18 +253,30 @@ function insertCss(cssContent) {
 
 // CSS styles for the file manager interface
 const cssContent = `
-  :root {
-    color-scheme: light dark;
-  
-    --light-bg: #EEE;
-    --light-color: #111;
-    --light-border: #CCC;
-  
-    --dark-bg: #111;
-    --dark-color: #EEE;
-    --dark-border: #666;
-  }
-.cbi-button-apply, .cbi-button-reset, .cbi-button-save:not(.custom-save-button) {
+:root {
+	color-scheme: light dark;
+	--light-bg: #EEE;
+	--light-bg-semi: #FFF;
+	--light-bg-semi2: #EEE;
+	--light-color: #111;
+	--light-border: #CCC;
+	--dark-bg: #111;
+	--dark-bg-semi: #222;
+	--dark-bg-semi2: #333;
+	--dark-color: #EEE;
+	--dark-border: #666;
+}
+#file-manager-container,
+#file-manager-container textarea,
+#file-manager-container textarea:hover,
+#file-manager-container input,
+#file-manager-container input:hover {
+	color: light-dark(var(--light-color),var(--dark-color));
+	background-color: light-dark(var(--light-bg-semi), var(--dark-bg-semi));
+}
+.cbi-button-apply, 
+.cbi-button-reset, 
+.cbi-button-save:not(.custom-save-button) {
 	display: none !important;
 }
 .cbi-page-actions {
@@ -276,39 +288,50 @@ const cssContent = `
 	justify-content: flex-start;
 	margin-top: 10px;
 }
-.cbi-tabmenu {
+#file-manager-container .cbi-tabmenu {
 	background: none !important;
 	border: none !important;
 	margin: 0 !important;
 	padding: 0 !important;
 }
-.cbi-tabmenu li {
-  margin: 15px 15px 21px 0;
-  border: 0;
-  height: unset;
+#file-manager-container .cbi-tabmenu > li[class~="cbi-tab"] {
+	background: none !important;
 }
-.cbi-tabmenu > li > a {
-  background-color: light-dark(var(--light-bg), var(--dark-bg));
-  color: light-dark(var(--light-color),var(--dark-color));
-  padding: 2px 13px 4px;
-  border-radius: 5px;
-  border: 1px solid;
-  border-color: light-dark(var(--light-border),var(--dark-border));
+#file-manager-container .cbi-tabmenu li {
+	margin: 15px 15px 21px 0;
+	border: 0;
+	height: unset;
 }
-.cbi-tabmenu > li > a:hover {
-  background-color: light-dark(var(--dark-bg), var(--light-bg));
-  color: light-dark(var(--dark-color),var(--light-color));
+#file-manager-container .cbi-tabmenu > li > a {
+	background-color: light-dark(var(--light-bg), var(--dark-bg));
+	color: light-dark(var(--light-color),var(--dark-color));
+	padding: 3px 13px;
+	border-radius: 5px;
+	border: 1px solid;
+	border-color: light-dark(var(--light-border),var(--dark-border));
+}
+#file-manager-container .cbi-tabmenu > li > a:hover {
+	background-color: light-dark(var(--dark-bg), var(--light-bg));
+	color: light-dark(var(--dark-color),var(--light-color));
 }
 #file-list-container {
 	overflow: auto;
-	border: 1px solid;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	border-left: 1px solid;
 	border-color: light-dark(var(--light-border),var(--dark-border));
 	padding: 0;
 	min-width: 600px;
 	position: relative;
 	resize: both;
 }
-#file-list-container.drag-over {
+#file-list {
+	background-color: light-dark(var(--light-bg-semi), var(--dark-bg-semi));
+}
+#file-list > tr:nth-of-type(2n) {
+	background-color: light-dark(var(--light-bg-semi2), var(--dark-bg-semi2));
+}
+#file-list-container .drag-over {
 	border: 2px dashed #00BFFF;
 	background-color: light-dark(var(--light-bg), var(--dark-bg));
 }
@@ -327,20 +350,20 @@ const cssContent = `
 	z-index: 10;
 	pointer-events: none;
 }
-.editor-container {
+#file-manager-container .editor-container {
 	display: flex;
 	flex-direction: column;
 	resize: both;
 	overflow: hidden;
 }
-.editor-content {
+#file-manager-container .editor-content {
 	flex: 1;
 	display: flex;
 	overflow: hidden;
 	border: 1px solid;
 	border-color: light-dark(var(--light-border),var(--dark-border));
 }
-.line-numbers {
+#file-manager-container .line-numbers {
 	width: 50px;
 	background-color: light-dark(var(--light-bg), var(--dark-bg));
 	text-align: right;
@@ -353,10 +376,10 @@ const cssContent = `
 	-ms-overflow-style: none; /* Hide scrollbar in IE и Edge */
 	scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
-.line-numbers::-webkit-scrollbar {
+#file-manager-container .line-numbers::-webkit-scrollbar {
 	display: none; /* Hide scrollbar in Chrome, Safari и Opera */
 }
-.line-numbers div {
+#file-manager-container .line-numbers div {
 	font-family: monospace;
 	font-size: 14px;
 	line-height: 1.2em;
@@ -381,10 +404,10 @@ const cssContent = `
 #editor-textarea, .line-numbers {
 	overflow-y: scroll;
 }
-.parent-dir {
-  background-color: light-dark(var(--light-bg), var(--dark-bg));
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+#file-manager-container .parent-dir {
+	background-color: light-dark(var(--light-bg), var(--dark-bg));
+	border-top: 1px solid;
+	border-bottom: 1px solid;
 	border-color: light-dark(var(--light-border),var(--dark-border));
 }
 #file-table th {
@@ -400,6 +423,7 @@ const cssContent = `
 	background-color: light-dark(var(--light-bg), var(--dark-bg));
 	z-index: 2;
 	padding: 5px 6px;
+	color: light-dark(var(--light-color),var(--dark-color));
 }
 #file-table td {
 	text-align: left !important;
@@ -411,75 +435,76 @@ const cssContent = `
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 1px 6px;
+	color: light-dark(var(--light-color),var(--dark-color));
 }
-th:last-child, td:last-child {
-  border-right: 0;
+#file-manager-container th:last-child, td:last-child {
+	border-right: 0;
 }
-tr:hover {
+#file-manager-container tr:hover {
 	background-color: light-dark(var(--light-bg), var(--dark-bg)) !important;
 }
-.download-button {
+#file-manager-container .download-button {
 	color: green;
 	cursor: pointer;
 	margin-left: 5px;
 }
-.delete-button {
+#file-manager-container .delete-button {
 	color: red;
 	cursor: pointer;
 	margin-left: 5px;
 }
-.edit-button {
+#file-manager-container .edit-button {
 	color: blue;
 	cursor: pointer;
 	margin-left: 5px;
 }
-.duplicate-button {
+#file-manager-container .duplicate-button {
 	color: orange;
 	cursor: pointer;
 	margin-left: 5px;
 }
-.symlink {
+#file-manager-container .symlink {
 	color: green;
 }
-.status-link {
+#file-manager-container .status-link {
 	color: blue;
 	text-decoration: underline;
 	cursor: pointer;
 }
-.action-button {
+#file-manager-container .action-button {
 	margin-right: 10px;
 	cursor: pointer;
 }
-.size-cell {
+#file-manager-container .size-cell {
 	font-family: monospace;
 	box-sizing: border-box;
 	white-space: nowrap;
 	align-items: center;
 }
-.size-number {
+#file-manager-container .size-number {
 	display: inline-block;
 	width: 8ch;
 	text-align: right;
 }
-.size-unit {
+#file-manager-container .size-unit {
 	display: inline-block;
 	width: 4ch;
 	text-align: right;
 	margin-left: 0.5ch;
 }
-.table {
+#file-manager-container .table {
 	table-layout: fixed;
 	border-collapse: collapse;
 	white-space: nowrap;
 	width: 100%;
 	margin: 0 !important;
 }
-.table th:nth-child(3), .table td:nth-child(3) {
+#file-manager-container .table th:nth-child(3), .table td:nth-child(3) {
 	width: 100px;
 	min-width: 100px;
 	max-width: 500px;
 }
-.resizer {
+#file-manager-container .resizer {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -489,7 +514,7 @@ tr:hover {
 	user-select: none;
 	z-index: 3;
 }
-.resizer::after {
+#file-manager-container .resizer::after {
 	content: "";
 	position: absolute;
 	right: 2px;
@@ -502,7 +527,7 @@ tr:hover {
 	resize: both;
 	overflow: auto;
 }
-.sort-button {
+#file-manager-container .sort-button {
 	position: absolute;
 	right: 10px;
 	top: 50%;
@@ -519,12 +544,12 @@ tr:hover {
 	transition: background-color 0.3s, color 0.3s; /* Smooth transition effects for hover */
 }
 
-.sort-button:hover {
+#file-manager-container .sort-button:hover {
 	background-color: #fff; /* Change background to white on hover */
 	color: #000; /* Change text color to black on hover */
 	border-color: #fff; /* White border on hover */
 }
-.sort-button:focus {
+#file-manager-container .sort-button:focus {
 	outline: none;
 }
 #status-bar {
@@ -543,6 +568,9 @@ tr:hover {
 	font-weight: bold;
 	display: flex;
 	align-items: center;
+}
+#status-info span {
+	padding-right: 10px;
 }
 #status-progress {
 	width: 50%;
@@ -573,18 +601,30 @@ tr:hover {
 	width: 100%;
 	font-size: 18px;
 }
-.file-manager-header button {
+#go-button {
 	font-size: 18px;
+	background-color: light-dark(var(--light-bg), var(--dark-bg));
+	color: light-dark(var(--light-color),var(--dark-color));
+	border-radius: 5px;
 	border: 1px solid;
 	border-color: light-dark(var(--light-border),var(--dark-border));
-	border-radius: 4px;
 }
-.directory-link {
+#go-button:hover {
+	background-color: light-dark(var(--dark-bg), var(--light-bg));
+	color: light-dark(var(--dark-color),var(--light-color));
+}
+#file-manager-container .directory-link {
 	font-weight: bold;
 }
 
-.file-link {
+#file-manager-container .file-link {
 	color: inherit; /* Use the default text color */
+}
+#content-settings h3 {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 25px;
+  line-height: unset;
 }
 `;
 

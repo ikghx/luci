@@ -51,8 +51,8 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 
 6. **Customizable Settings**
    - **Interface Customization**:
-     - **Column Widths**: Define the width of each column in the file list for optimal viewing.
-     - **Window Heights**: Adjust the heights of the editor windows.
+     - **Column Width**: Define the width of each column in the file list for optimal viewing.
+     - **Window Height**: Adjust the height of each editor window.
      - **Padding**: Set padding values to control the spacing within the interface.
    - **Persistent Configuration**: Save your settings to ensure a consistent user experience across sessions.
 
@@ -71,7 +71,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
      - Select a file from the File Manager to open it in the Editor.
      - Choose between text or hex editing modes using the toggle buttons.
    - **Settings Tab**:
-     - Adjust interface settings such as column widths, editor window heights, and padding.
+     - Adjust interface settings such as column width, editor window height, and padding.
      - Save your configurations to apply changes immediately.
    - **Help Tab**:
      - Access detailed instructions and information about the application's features and functionalities.
@@ -113,7 +113,7 @@ The **LuCI OpenWrt File Manager** is a tool to navigate directories, manage file
 
 6. **Customizing Settings**
    - Navigate to the **Settings Tab** to personalize the application's layout and behavior.
-   - Adjust parameters such as column widths, editor window heights, and padding to suit your preferences.
+   - Adjust parameters such as column width, editor window height, and padding to suit your preferences.
    - Save settings to ensure they persist across sessions.
 
 ## Additional Functionalities
