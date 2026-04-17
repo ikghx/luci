@@ -3216,16 +3216,30 @@ input[name="nslookup"] {
 .cbi-section {
 	padding-top: 1rem;
 }
+.node-admin-status-realtime-connections .cbi-section,
+.node-admin-status-realtime-load .cbi-section,
+#cbi-system-led {
+	padding-top: 2rem;
+}
+
 .cbi-title > h3 {
 	padding: 1rem 0 0 0;
 	margin: 0;
 	align-items: center;
 }
-.cbi-section > div:last-child {
-		padding-top: 1rem;
+
+.cbi-section > h3:first-child, .panel-title {
+	padding-top: 1rem;
+	margin-top: 0;
+	align-items: center;
 }
+
+.cbi-section > div:last-child {
+	padding-top: 1rem;
+}
+
 .cbi-section > div:empty {
-		display: none;
+	display: none;
 }
 
 /* Looks like there's a tablet mode also done for 1600px, need to fix spacing changes for that too */
@@ -3238,4 +3252,109 @@ input[name="nslookup"] {
 	}
 }
 
+#maincontent > .container {
+	margin-top: 2rem;
+}
+
+.node-admin-status-routes .cbi-tabmenu {
+	margin-top: 2rem;
+}
+
+.node-admin-system-startup .cbi-tabmenu,
+.node-admin-network-routes .cbi-tabmenu,
+.node-admin-status-realtime-bandwidth .cbi-tabmenu,
+.node-admin-network-dhcp .cbi-tabmenu,
+.node-admin-network-dns .cbi-tabmenu {
+	margin-top: 1rem;
+}
+
+.node-admin-status-routes [data-tab-active=true],
+.node-admin-status-realtime-bandwidth [data-tab-active=true],
+.node-admin-system-startup [data-tab-active=true],
+.node-admin-system-flash [data-tab-active=true],
+.node-admin-network-network [data-tab-active=true],
+.node-admin-network-routes [data-tab-active=true],
+.node-admin-network-dhcp [data-tab-active=true] {
+	padding: 1rem 2rem 2rem 2rem !important;
+}
+
+.node-admin-system-flash [data-tab=Actions] #cbi-json-actions {
+	padding-top: 0 !important;
+}
+
 /* === END FIX BOX SPACING === */
+
+/* === FIX OTHER SPACING === */
+
+.main > .loading {
+	top: 1rem;
+}
+
+#view > .spinning {
+	margin: 2rem 0 0 0;
+}
+
+.tabs {
+	margin: 0;
+	padding-left: 0;
+	background-color: inherit;
+}
+
+.cbi-map-descr, .cbi-section-descr {
+	padding-left: 0;
+}
+
+.node-admin-system-attendedsysupgrade-overview .container #view p > p {
+	margin-bottom: 10px;
+}
+.node-admin-system-attendedsysupgrade-overview .container #view p > button {
+	margin-top: 10px;
+}
+
+.node-admin-system-attendedsysupgrade-overview #modal_overlay div.btn {
+	font-weight: unset !important;
+}
+
+.node-admin-system-flash .cbi-value,
+.node-admin-system-flash .cbi-value .cbi-section,
+.node-admin-network-dhcp .cbi-value,
+.node-admin-network-dhcp .cbi-value .cbi-section {
+	padding: 0;
+	margin: 0;
+}
+
+.node-admin-network-dhcp .cbi-value .cbi-section .cbi-tabmenu {
+	padding-top: 2rem;
+}
+
+.node-admin-network-dns [data-tab=dnsrecords] .cbi-value {
+	padding: 1rem 1rem 2rem 1rem;
+}
+
+.controls > * {
+	padding: .5em 0;
+}
+
+input[type="checkbox"], 
+input[type="radio"] {
+	min-height: unset;
+}
+
+label > input[type="checkbox"], 
+label > input[type="radio"] {
+	margin-right: 0.2rem;
+}
+
+.btn {
+	line-height: 1.6rem;
+}
+
+.cbi-dropdown > ul > li {
+	padding: .25em .75rem;
+}
+
+footer {
+	padding: 1rem 2rem;
+}
+
+/* === END FIX OTHER SPACING === */
