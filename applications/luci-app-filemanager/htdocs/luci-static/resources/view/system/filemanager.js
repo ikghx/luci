@@ -274,6 +274,11 @@ const cssContent = `
 	color: light-dark(var(--light-color),var(--dark-color));
 	background-color: light-dark(var(--light-bg-semi), var(--dark-bg-semi));
 }
+.node-admin-system-filemanager .main-right,
+.main-right > #maincontent,
+[data-page=admin-system-filemanager] > #maincontainer > #maincontent {
+    background-color: light-dark(var(--light-bg-semi), var(--dark-bg-semi));
+}
 .cbi-button-apply, 
 .cbi-button-reset, 
 .cbi-button-save:not(.custom-save-button) {
@@ -330,6 +335,10 @@ const cssContent = `
 }
 #file-list > tr:nth-of-type(2n) {
 	background-color: light-dark(var(--light-bg-semi2), var(--dark-bg-semi2));
+}
+#file-table > thead > tr > th:last-child {
+border-right: 1px solid;
+border-color: light-dark(var(--light-border),var(--dark-border));
 }
 #file-list-container .drag-over {
 	border: 2px dashed #00BFFF;
