@@ -2627,29 +2627,29 @@ div.cbi-value var.cbi-tooltip-container,
 	stroke: var(--text-color-highest)!important;
 }
 
-/* === HIDE/SHOW LABEL BUTTONS === */
+/* === STATUS OVERVIEW: HIDE/SHOW BUTTONS === */
 
 /* Change mouse icon from text cursor to pointer */
-.cbi-title > h3 > .label {
+body[data-page='admin-status-overview'] .cbi-title .label {
   cursor: pointer;
 }
 
 /* Smaller buttons on larger screens */
 @media screen and (min-width : 481px) {
-  .cbi-title > h3 > .label {
+  body[data-page='admin-status-overview'] .cbi-title .label {
     line-height: 1em;
     margin: 0.7em 0;
   }
 }
 
 /* Slightly fade "show" button */
-.cbi-title > h3 > .label.notice {
+body[data-page='admin-status-overview'] .cbi-title .label.notice {
   opacity: var(--disabled-opacity);
 }
 
 /* Remove fade when hovered */
-.cbi-title > h3 > .label.notice:hover {
+body[data-page='admin-status-overview'] .cbi-title .label.notice:hover {
   opacity: initial;
 }
 
-/* === END HIDE/SHOW LABEL BUTTONS === */
+/* === END STATUS OVERVIEW: HIDE/SHOW BUTTONS === */
