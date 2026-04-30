@@ -667,7 +667,7 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 		if info.tls == "tls" or info.tls == "1" then
 			result.tls = "1"
 			result.tls_serverName = (info.sni and info.sni ~= "") and info.sni or info.host
-			result.tls_CertSha = info.pcs
+			result.tls_pinSHA256 = info.pcs
 			result.tls_CertByName = info.vcn
 			local insecure = info.allowinsecure or info.allowInsecure or info.insecure
 			result.tls_allowInsecure = (insecure == "1" or insecure == "0") and insecure or (sub_allowinsecure and "1" or "0")
@@ -938,7 +938,7 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 							result.ech = "1"
 							result.ech_config = params.ech
 						end
-						result.tls_CertSha = params.pcs
+						result.tls_pinSHA256 = params.pcs
 						result.tls_CertByName = params.vcn
 						if params.security == "reality" then
 							result.reality = "1"
@@ -1052,7 +1052,7 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 
 			result.tls = '1'
 			result.tls_serverName = params.peer or params.sni or ""
-			result.tls_CertSha = params.pcs
+			result.tls_pinSHA256 = params.pcs
 			result.tls_CertByName = params.vcn
 			local insecure = params.allowinsecure or params.allowInsecure or params.insecure
 			result.tls_allowInsecure = (insecure == "1" or insecure == "0") and insecure or (sub_allowinsecure and "1" or "0")
@@ -1296,7 +1296,7 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 					result.ech = "1"
 					result.ech_config = params.ech
 				end
-				result.tls_CertSha = params.pcs
+				result.tls_pinSHA256 = params.pcs
 				result.tls_CertByName = params.vcn
 				if params.security == "reality" then
 					result.reality = "1"
@@ -1407,11 +1407,10 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 			result.address = host_port
 		end
 		result.tls_serverName = params.sni
-		result.tls_CertSha = params.pcs
+		result.tls_pinSHA256 = params.pcs or params.pinsha256
 		result.tls_CertByName = params.vcn
 		local insecure = params.allowinsecure or params.insecure
 		result.tls_allowInsecure = (insecure == "1" or insecure == "0") and insecure or (sub_allowinsecure and "1" or "0")
-		result.hysteria2_tls_pinSHA256 = params.pinSHA256
 		result.hysteria2_hop = params.mport
 
 		if (sub_hysteria2_type == "sing-box" and has_singbox) or (sub_hysteria2_type == "xray" and has_xray) then
@@ -1941,11 +1940,12 @@ local function update_node(manual)
 							end
 						end
 						if domain_strategy then
+							local ds = domain_strategy
 							if vvv == "sing-box" then
 								local map = { UseIPv4v6 = "prefer_ipv4", UseIPv6v4 = "prefer_ipv6", UseIPv4 = "ipv4_only", UseIPv6 = "ipv6_only" }
-								domain_strategy = map[domain_strategy] or ""
+								ds = map[ds] or ""
 							end
-							uci:set(appname, cfgid, "domain_strategy", domain_strategy)
+							uci:set(appname, cfgid, "domain_strategy", ds)
 						end
 					end
 					-- 订阅组链式代理

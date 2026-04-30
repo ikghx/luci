@@ -509,7 +509,7 @@ o = s:option(ListValue, "xray_dns_mode", translate("Request protocol"))
 o.default = "tcp"
 o:value("tcp", "TCP")
 o:value("udp", "UDP")
-o:value("tcp+doh", "TCP + DoH (" .. translate("A/AAAA type") .. ")")
+o:value("doh", "DoH")
 o:depends("dns_mode", "xray")
 o.cfgvalue = function(self, section)
 	return m:get(section, "v2ray_dns_mode")
@@ -550,11 +550,11 @@ o:value("208.67.220.220", "208.67.220.220 (OpenDNS)")
 o:depends({dns_mode = "dns2socks"})
 o:depends({xray_dns_mode = "udp"})
 o:depends({xray_dns_mode = "tcp"})
-o:depends({xray_dns_mode = "tcp+doh"})
 o:depends({singbox_dns_mode = "udp"})
 o:depends({singbox_dns_mode = "tcp"})
 
 o = s:option(Value, "remote_dns_doh", translate("Remote DNS DoH"))
+o.description = translate("Format: URL[,IP] (optional IP to map the domain in the URL)")
 o:value("https://1.1.1.1/dns-query", "1.1.1.1 (CloudFlare)")
 o:value("https://1.1.1.2/dns-query", "1.1.1.2 (CloudFlare-Security)")
 o:value("https://8.8.4.4/dns-query", "8.8.4.4 (Google)")
@@ -565,7 +565,7 @@ o:value("https://208.67.222.222/dns-query", "208.67.222.222 (OpenDNS)")
 o:value("https://dns.adguard.com/dns-query,94.140.14.14", "94.140.14.14 (AdGuard)")
 o:value("https://doh.libredns.gr/dns-query,116.202.176.26", "116.202.176.26 (LibreDNS)")
 o:value("https://doh.libredns.gr/ads,116.202.176.26", "116.202.176.26 (LibreDNS-NoAds)")
-o.default = "https://1.1.1.1/dns-query"
+o.default = o.keylist[1]
 o.validate = function(self, value, t)
 	if value ~= "" then
 		value = api.trim(value)
@@ -588,7 +588,7 @@ o.validate = function(self, value, t)
 	end
 	return nil, translate("DoH request address") .. " " .. translate("Format must be:") .. " URL,IP"
 end
-o:depends({xray_dns_mode = "tcp+doh"})
+o:depends({xray_dns_mode = "doh"})
 o:depends({singbox_dns_mode = "doh"})
 o:depends({singbox_dns_mode = "http3"})
 
