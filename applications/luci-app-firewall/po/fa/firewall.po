@@ -150,7 +150,7 @@ msgstr "تایید - بازنویسی آدرس غیر فعال شد"
 msgid "Action"
 msgstr "اجرا"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:324
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:319
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -160,7 +160,7 @@ msgstr ""
 "عنوان مثال. <code>-p tcp --dport 443</code> فقط برای مطابقت با ترافیک خروجی "
 "HTTPS."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:309
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -183,19 +183,19 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:160
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:182
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:181
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:106
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:101
 msgid "Advanced Settings"
 msgstr "تنظیمات پیشرفته"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:273
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:268
 msgid "Allow \"invalid\" traffic"
 msgstr "پذیرش ترافیک \"نامعتبر\""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:387
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:382
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "اجازه به جلو از <em>مناطق منبع</em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:346
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:341
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "اجازه به جلو به<em>مناطق مقصد</em>:"
 
@@ -228,11 +228,11 @@ msgstr "کلاس یا مقدار DSCP داده شده را برای اتصالا
 msgid "Assign the specified connection tracking helper to matched traffic."
 msgstr "کمک ردیابی اتصال مشخص شده را به ترافیک همسان اختصاص دهید."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:276
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:271
 msgid "Automatic helper assignment"
 msgstr "واگذاری کمک کننده خودکار"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:276
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:271
 msgid ""
 "Automatically assign conntrack helpers based on traffic protocol and port"
 msgstr ""
@@ -243,11 +243,11 @@ msgstr ""
 msgid "Comment"
 msgstr "نظر"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:107
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:102
 msgid "Conntrack Settings"
 msgstr "تنظیمات Conntrack"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:280
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:275
 msgid "Conntrack helpers"
 msgstr "کمک کنندگان Conntrack"
 
@@ -263,15 +263,15 @@ msgstr "ادامه"
 msgid "Counters"
 msgstr "شمارنده ها"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:235
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:230
 msgid "Covered devices"
 msgstr "دستگاه های تحت پوشش"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:188
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:183
 msgid "Covered networks"
 msgstr "شبکه های تحت پوشش"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:240
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:235
 msgid "Covered subnets"
 msgstr "زیرشبکه های تحت پوشش"
 
@@ -316,7 +316,7 @@ msgstr "منطقه مقصد"
 msgid "Device name"
 msgstr "نام دستگاه"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:273
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:268
 msgid ""
 "Do not install extra rules to reject forwarded traffic with conntrack state "
 "<em>invalid</em>. This may be required for complex asymmetric route setups."
@@ -335,14 +335,6 @@ msgstr "رها کردن بسته های نامعتبر"
 msgid "Enable"
 msgstr "به کار انداختن"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:47
-msgid "Enable FullCone NAT"
-msgstr ""
-
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:49
-msgid "Enable FullCone NAT6"
-msgstr ""
-
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:304
 msgid "Enable NAT Loopback"
 msgstr "فعال کردن NAT Loopback"
@@ -354,11 +346,11 @@ msgstr "محافظت SYN-flood را فعال کردن"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:346
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:463
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:339
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:286
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:281
 msgid "Enable logging"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:160
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:155
 msgid ""
 "Enable network address and port translation IPv4 (NAT4 or NAPT4) for "
 "outbound traffic on this zone. This is typically enabled on the <em>wan</em> "
@@ -367,7 +359,7 @@ msgstr ""
 "آدرس شبکه و ترجمه پورت IPv4 (NAT4 یا NAPT4) را برای ترافیک خروجی در این "
 "منطقه فعال کنید. این معمولاً در منطقه <em>wan</em> فعال است."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:173
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:168
 msgid ""
 "Enable network address and port translation IPv6 (NAT6 or NAPT6) for "
 "outbound traffic on this zone."
@@ -387,7 +379,7 @@ msgstr "ردیابی تعداد بسته ها و بایت ها را برای م�
 msgid "Expecting: %s"
 msgstr "انتظار: %s"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:280
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:275
 msgid "Explicitly choses allowed connection tracking helpers for zone traffic"
 msgstr ""
 "به صراحت راهنماهای ردیابی اتصال مجاز را برای ترافیک منطقه انتخاب می کند"
@@ -406,15 +398,15 @@ msgstr "پورت خارجی"
 msgid "Extra arguments"
 msgstr "استدلال های اضافی"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:324
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:319
 msgid "Extra destination arguments"
 msgstr "استدلال های اضافی مقصد"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:108
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:103
 msgid "Extra iptables arguments"
 msgstr "استدلال های اضافی iptables"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:314
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:309
 msgid "Extra source arguments"
 msgstr "استدلال های اضافی منبع"
 
@@ -454,11 +446,11 @@ msgstr "فایروال - تنظیمات منطقه"
 msgid "Firewall configuration migration"
 msgstr "انتقال پیکربندی فایروال"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:73
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:68
 msgid "Flow offloading type"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:55
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:50
 msgctxt "firewall forward"
 msgid "Forward"
 msgstr ""
@@ -539,7 +531,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:181
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:180
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:39
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:105
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:100
 #: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:17
 msgid "General Settings"
 msgstr "پیکربندی عمومی"
@@ -548,11 +540,11 @@ msgstr "پیکربندی عمومی"
 msgid "Grant access to firewall configuration"
 msgstr "اجازه دسترسی به پیکربندی فایروال"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:76
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:71
 msgid "Hardware based offloading for routing with/without NAT."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:76
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:71
 msgid "Hardware flow offloading"
 msgstr "تخلیه جریان سخت افزار"
 
@@ -580,7 +572,7 @@ msgstr "آی پی ها/شبکه ها/مک ها"
 msgid "IPv4"
 msgstr "آی پی نسخه ۴"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:159
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:154
 msgid "IPv4 Masquerading"
 msgstr ""
 
@@ -588,14 +580,14 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:68
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:274
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:218
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:246
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:241
 msgid "IPv4 and IPv6"
 msgstr "IPv4 و IPv6"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:190
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:275
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:247
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:242
 msgid "IPv4 only"
 msgstr "فقط IPv4"
 
@@ -603,14 +595,14 @@ msgstr "فقط IPv4"
 msgid "IPv6"
 msgstr "آی پی نسخه ۶"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:172
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:167
 msgid "IPv6 Masquerading"
 msgstr "IPv6 Masquerading"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:191
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:276
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:248
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:243
 msgid "IPv6 only"
 msgstr "فقط IPv6"
 
@@ -650,8 +642,8 @@ msgstr ""
 msgid "Initial Hash Size"
 msgstr "اندازه هش اولیه"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:53
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:143
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:48
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:138
 msgctxt "firewall input"
 msgid "Input"
 msgstr ""
@@ -668,7 +660,7 @@ msgstr "پورت داخلی"
 msgid "Internal zone"
 msgstr "منطقه داخلی"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:145
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:140
 msgid "Intra zone forward"
 msgstr "هدایت بین ناحیه‌ای"
 
@@ -686,7 +678,7 @@ msgstr "ترکیدگی را محدود کنید"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:349
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:466
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:301
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:296
 msgid "Limit log messages"
 msgstr "محدود کردن پیام های گزارش"
 
@@ -704,8 +696,8 @@ msgstr ""
 "محدود کردن تطابق به <var>%{limit.num}</var> بسته ها در هر <var>%{limit.unit}"
 "</var>%{limit.burst? burst <var>%{limit.burst}</var>}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:167
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:180
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:162
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:175
 msgid "Limited masquerading enabled"
 msgstr "مخفی کاری محدود فعال شد"
 
@@ -713,7 +705,7 @@ msgstr "مخفی کاری محدود فعال شد"
 msgid "Limits traffic matching to the specified rate."
 msgstr "تطابق ترافیک را با نرخ مشخص شده محدود می کند."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:286
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:281
 msgid "Log matched packets on the selected tables to syslog."
 msgstr ""
 
@@ -731,7 +723,7 @@ msgstr "IP منبع Loopback"
 msgid "MASQUERADE - Automatically rewrite to outbound interface IP"
 msgstr "بالماسکه - به طور خودکار در IP رابط خروجی بازنویسی شود"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:185
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:180
 msgid "MSS clamping"
 msgstr "بستن MSS"
 
@@ -852,7 +844,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:42
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:204
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:188
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:121
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:116
 msgid "Name"
 msgstr "نام"
 
@@ -860,11 +852,11 @@ msgstr "نام"
 msgid "Netmask"
 msgstr "Netmask"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:74
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:69
 msgid "None"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:68
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:63
 msgid "Not fully compatible with QoS/SQM."
 msgstr "کامل با QoS / SQM سازگار نیست."
 
@@ -897,8 +889,8 @@ msgstr "دستگاه خروجی"
 msgid "Outbound zone"
 msgstr "منطقه خروجی"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:54
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:144
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:49
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:139
 msgctxt "firewall output"
 msgid "Output"
 msgstr ""
@@ -925,7 +917,7 @@ msgstr ""
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "آرگومان های اضافی را به iptables ارسال می کند. با احتیاط استفاده کنید!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:311
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:306
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -983,22 +975,22 @@ msgstr "مراجعه به مجموعه خارجی"
 msgid "Reflection zones"
 msgstr "مناطق بازتابی"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:76
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:71
 msgid "Requires hardware NAT support."
 msgstr "نیاز به پشتیبانی سخت افزاری NAT دارد."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:262
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:257
 msgid "Restrict Masquerading to given destination subnets"
 msgstr "Masquerading را به زیرشبکه‌های مقصد مشخص محدود کنید"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:251
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:246
 msgid "Restrict Masquerading to given source subnets"
 msgstr "Masquerading را به زیرشبکه های منبع داده شده محدود کنید"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:186
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:271
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:215
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:245
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:240
 msgid "Restrict to address family"
 msgstr "محدود کردن به آدرس خانواده"
 
@@ -1019,7 +1011,7 @@ msgstr ""
 msgid "Rewrite port"
 msgstr "بازنویسی پورت"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:67
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:62
 msgid "Routing/NAT Offloading"
 msgstr "بارگذاری مسیریابی/NAT"
 
@@ -1045,11 +1037,11 @@ msgstr ""
 "است. اگر یک ماسک مشخص شده باشد، فقط آن بیت هایی که در ماسک تنظیم شده اند، "
 "اصلاح می شوند."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:75
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:70
 msgid "Software based offloading for routing/NAT."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:75
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:70
 msgid "Software flow offloading"
 msgstr "تخلیه جریان نرم افزار"
 
@@ -1137,8 +1129,8 @@ msgstr ""
 "فایروال مناطقی را روی رابط های شبکه شما ایجاد می کند تا جریان ترافیک شبکه را "
 "کنترل کند."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:231
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:342
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:226
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:337
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1154,7 +1146,7 @@ msgstr ""
 "مثال. فوروارد از lan به wan <em>نیست</em> مستلزم اجازه فوروارد از wan به lan "
 "نیز نیست."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:112
 msgid ""
 "This section defines common properties of %q. The <em>input</em> and "
 "<em>output</em> options set the default policies for traffic entering and "
@@ -1287,7 +1279,7 @@ msgstr "فوروارد بدون نام"
 msgid "Unnamed rule"
 msgstr "قانون بدون نام"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:122
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 msgid "Unnamed zone"
 msgstr "منطقه بدون نام"
 
@@ -1319,7 +1311,7 @@ msgstr "از آدرس IP داخلی استفاده کنید"
 msgid "Use ipset"
 msgstr "استفاده از ipset"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:235
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:230
 msgid ""
 "Use this option to classify zone traffic by raw, non-<em>uci</em> managed "
 "network devices."
@@ -1327,7 +1319,7 @@ msgstr ""
 "از این گزینه برای طبقه بندی ترافیک منطقه بر اساس دستگاه های شبکه مدیریت شده "
 "خام و غیر<em>uci</em> استفاده کنید."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:240
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:235
 msgid ""
 "Use this option to classify zone traffic by source or destination subnet "
 "instead of networks or devices."
@@ -1365,11 +1357,11 @@ msgstr "دستگاه شما از فایروال 4 استفاده نمی کند."
 msgid "Your device runs firewall4."
 msgstr "دستگاه شما از فایروال 4 استفاده می کند."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:135
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:130
 msgid "Zone ⇒ Forwards"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:92
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:87
 msgid "Zones"
 msgstr "مناطق"
 
@@ -1382,8 +1374,8 @@ msgstr ""
 "استفاده می شود."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:409
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:61
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:151
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:56
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:146
 msgid "accept"
 msgstr "تایید"
 
@@ -1471,8 +1463,8 @@ msgid "don't track"
 msgstr "پیگیری نکنید"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:408
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:60
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:150
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:55
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:145
 msgid "drop"
 msgstr "رها کردن"
 
@@ -1539,8 +1531,8 @@ msgid "port: Port"
 msgstr "port: پورت"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:410
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:59
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:149
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:54
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:144
 msgid "reject"
 msgstr "رد کردن"
 
@@ -1583,9 +1575,9 @@ msgstr "src_port: پورت مبدا"
 msgid "this device"
 msgstr "این دستگاه"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:116
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:230
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:341
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:111
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:225
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:336
 msgid "this new zone"
 msgstr "این منطقه جدید"
 

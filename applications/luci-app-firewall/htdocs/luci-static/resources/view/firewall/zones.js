@@ -43,11 +43,6 @@ return view.extend({
 		o = s.option(form.Flag, 'synflood_protect', _('Enable SYN-flood protection'));
 
 		o = s.option(form.Flag, 'drop_invalid', _('Drop invalid packets'));
-		if (L.hasSystemFeature('fullcone')) {
-			o = s.option(form.Flag, 'fullcone', _('Enable FullCone NAT'));
-			if (fw4)
-				o = s.option(form.Flag, 'fullcone6', _('Enable FullCone NAT6'));
-		}
 
 		let p = [
 			s.option(form.ListValue, 'input', _('Input', 'firewall input')),
