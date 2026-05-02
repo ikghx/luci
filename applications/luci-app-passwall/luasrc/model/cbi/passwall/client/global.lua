@@ -479,7 +479,7 @@ o.validate = function(self, value, t)
 		end
 		local _tcp_node = s.fields["tcp_node"]:formvalue(t)
 		if _dns_mode and _tcp_node then
-			if (m:get(_tcp_node, "type") or ""):lower() ~= _dns_mode then
+			if (m:get(_tcp_node, "type") or ""):lower() ~= _dns_mode and not _tcp_node:find("Socks_") then
 				return nil, translatef("TCP node must be '%s' type to use FakeDNS.", _dns_mode)
 			end
 		end
@@ -827,5 +827,10 @@ footer.api = api
 footer.global_cfgid = global_cfgid
 footer.shunt_list = api.jsonc.stringify(shunt_list)
 m:append(footer)
+
+local apply = luci.http.formvalue("cbi.apply")
+	if apply then
+		luci.util.exec("/etc/init.d/" .. appname .." restart >/dev/null 2>&1")
+	end
 
 return m
