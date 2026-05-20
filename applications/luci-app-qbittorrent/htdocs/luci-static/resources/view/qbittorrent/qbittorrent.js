@@ -211,42 +211,27 @@ return view.extend({
 			_('If this option is enabled, the configuration set in WebUI will be replaced by the one in the LuCI.'));
 		o.default = o.disabled;
 
-		o = s.taboption('connection', form.Flag, 'UPnP', _('Use UPnP for Connections'), '%s %s %s.'
-			.format(_('Use UPnP/ NAT-PMP port forwarding from the router.'), _('Refer to the'),
-			'<a href="https://en.wikipedia.org/wiki/Port_forwarding" target="_blank">wiki</a>'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('connection', form.Flag, 'UseRandomPort', _('Use Random Port'),
-			_('Assign a different port randomly every time when qBittorrent starts up,' +
-			' which will invalidate the customized options.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
 		o = s.taboption('connection', CBIRandomPort, 'PortRangeMin', _('Connection Port'));
-		o.depends('UseRandomPort', 'false');
 		o.datatype = 'range(1024,65535)';
 		o.default = randomPort();
 		o.rmempty = false;
 
-		o = s.taboption('connection', form.Value, 'GlobalDLLimit', _('Global Download Speed'),
+		o = s.taboption('connection', form.Value, 'GlobalDLSpeedLimit', _('Global Download Speed'),
 			'%s %s'.format(_('Global Download Speed Limit(KiB/s).'), _('0 means has no limit.')));
 		o.datatype = 'float';
 		o.placeholder = '0';
 
-		o = s.taboption('connection', form.Value, 'GlobalUPLimit', _('Global Upload Speed'),
+		o = s.taboption('connection', form.Value, 'GlobalUPSpeedLimit', _('Global Upload Speed'),
 			'%s %s'.format(_('Global Upload Speed Limit(KiB/s).'), _('0 means has no limit.')));
 		o.datatype = 'float';
 		o.placeholder = '0';
 
-		o = s.taboption('connection', form.Value, 'GlobalDLLimitAlt', _('Alternative Download Speed'),
+		o = s.taboption('connection', form.Value, 'AlternativeGlobalDLSpeedLimit', _('Alternative Download Speed'),
 			'%s %s'.format(_('Alternative Download Speed Limit(KiB/s).'), _('0 means has no limit.')));
 		o.datatype = 'float';
 		o.placeholder = '10';
 
-		o = s.taboption('connection', form.Value, 'GlobalUPLimitAlt', _('Alternative Upload Speed'),
+		o = s.taboption('connection', form.Value, 'AlternativeGlobalUPSpeedLimit', _('Alternative Upload Speed'),
 			'%s %s'.format(_('Alternative Upload Speed Limit(KiB/s).'), _('0 means has no limit.')));
 		o.datatype = 'float';
 		o.placeholder = '10';
@@ -258,40 +243,19 @@ return view.extend({
 		o.value('UTP', _('UTP'));
 		o.default = 'Both';
 
-		o = s.taboption('connection', form.Value, 'InetAddress', _('Inet Address'),
-			_('The address that respond to the trackers.'));
-
-		o = s.taboption('downloads', form.Flag, 'CreateTorrentSubfolder', _('Create Subfolder'),
-			_('Create subfolder for torrents with multiple files.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('downloads', form.Flag, 'StartInPause', _('Start In Pause'),
-			_('Do not start the download automatically.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.disabled;
-
-		o = s.taboption('downloads', form.Flag, 'AutoDeleteAddedTorrentFile',
-			_('Auto Delete Torrent File'), _('The .torrent files will be deleted afterwards.'));
-		o.enabled = 'IfAdded';
-		o.disabled = 'Never';
-		o.default = o.disabled;
-
-		o = s.taboption('downloads', form.Flag, 'PreAllocation', _('Pre Allocation'),
+		o = s.taboption('downloads', form.Flag, 'Preallocation', _('Pre Allocation'),
 			_('Pre-allocate disk space for all files.'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.disabled;
 
-		o = s.taboption('downloads', form.Flag, 'UseIncompleteExtension', _('Use Incomplete Extension'),
+		o = s.taboption('downloads', form.Flag, 'AddExtensionToIncompleteFiles', _('Use Incomplete Extension'),
 			_('The incomplete tasks will be added the extension of !qB.'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.disabled;
 
-		o = s.taboption('downloads', form.Value, 'SavePath', _('Save Path'));
+		o = s.taboption('downloads', form.Value, 'DefaultSavePath', _('Save Path'));
 		o.placeholder = '/tmp/download';
 
 		o = s.taboption('downloads', form.Flag, 'TempPathEnabled', _('Enable Temp Path'));
@@ -304,69 +268,20 @@ return view.extend({
 		o.depends('TempPathEnabled', 'true');
 		o.placeholder = 'temp/';
 
-		o = s.taboption('downloads', form.Value, 'DiskWriteCacheSize', _('Disk Cache Size'),
-			_('By default, this value 64. Besides, -1 is auto and 0 is disable. (Unit: MiB)'));
-		o.datatype = 'integer';
-		o.placeholder = '64';
-
-		o = s.taboption('downloads', form.Value, 'DiskWriteCacheTTL', _('Disk Cache TTL'),
-			_('By default, this value is 60. (Unit: s)'));
-		o.datatype = 'integer';
-		o.placeholder = '60';
-
-		o = s.taboption('downloads', form.DummyValue, 'Saving Management', splitter_html.format(_('Saving Management')));
-		o.default = '';
-
-		o = s.taboption('downloads', form.ListValue, 'DisableAutoTMMByDefault',
-			_('Default Torrent Management Mode'));
-		o.value('true', _('Manual'));
-		o.value('false', _('Automaic'));
-		o.default = 'true';
-
-		o = s.taboption('downloads', form.ListValue, 'CategoryChanged', _('Torrent Category Changed'),
-			_('Choose the action when torrent category changed.'));
-		o.value('true', _('Switch torrent to Manual Mode'));
-		o.value('false', _('Relocate torrent'));
-		o.default = 'false';
-
-		o = s.taboption('downloads', form.ListValue, 'DefaultSavePathChanged',
-			_('Default Save Path Changed'), _('Choose the action when default save path changed.'));
-		o.value('true', _('Switch affected torrent to Manual Mode'));
-		o.value('false', _('Relocate affected torrent'));
-		o.default = 'true';
-
-		o = s.taboption('downloads', form.ListValue, 'CategorySavePathChanged',
-			_('Category Save Path Changed'), _('Choose the action when category save path changed.'));
-		o.value('true', _('Switch affected torrent to Manual Mode'));
-		o.value('false', _('Relocate affected torrent'));
-		o.default = 'true';
-
-		o = s.taboption('downloads', form.Value, 'TorrentExportDir', _('Torrent Export Dir'),
-			_('The .torrent files will be copied to the target directory.'));
-
-		o = s.taboption('downloads', form.Value, 'FinishedTorrentExportDir', _('Finished Torrent Export Dir'),
-			_('The .torrent files for finished downloads will be copied to the target directory.'));
-
-		o = s.taboption('bittorrent', form.Flag, 'DHT', _('Enable DHT'),
+		o = s.taboption('bittorrent', form.Flag, 'DHTEnabled', _('Enable DHT'),
 			_('Enable DHT (decentralized network) to find more peers.'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.enabled;
 
-		o = s.taboption('bittorrent', form.Flag, 'PeX', _('Enable PeX'),
+		o = s.taboption('bittorrent', form.Flag, 'PeXEnabled', _('Enable PeX'),
 			_('Enable Peer Exchange (PeX) to find more peers.'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.enabled;
 
-		o = s.taboption('bittorrent', form.Flag, 'LSD', _('Enable LSD'),
+		o = s.taboption('bittorrent', form.Flag, 'LSDEnabled', _('Enable LSD'),
 			_('Enable Local Peer Discovery to find more peers.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('bittorrent', form.Flag, 'uTP_rate_limited', _('μTP Rate Limit'),
-			_('Apply rate limit to μTP protocol.'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.enabled;
@@ -377,45 +292,10 @@ return view.extend({
 		o.value('2', _('Disable Encryption'));
 		o.default = '0';
 
-		o = s.taboption('bittorrent', form.Value, 'MaxConnecs', _('Max Connections'),
-		_('The max number of connections.'));
-		o.datatype = 'integer';
-		o.placeholder = '500';
-
-		o = s.taboption('bittorrent', form.Value, 'MaxConnecsPerTorrent',
-			_('Max Connections Per Torrent'), _('The max number of connections per torrent.'));
-		o.datatype = 'integer';
-		o.placeholder = '100';
-
-		o = s.taboption('bittorrent', form.Value, 'MaxUploads', _('Max Uploads'),
-			_('The max number of connected peers.'));
-		o.datatype = 'integer';
-		o.placeholder = '8';
-
-		o = s.taboption('bittorrent', form.Value, 'MaxUploadsPerTorrent', _('Max Uploads Per Torrent'),
-			_('The max number of connected peers per torrent.'));
-		o.datatype = 'integer';
-		o.placeholder = '4';
-
-		o = s.taboption('bittorrent', form.Value, 'MaxRatio', _('Max Ratio'),
-			_('The max ratio for seeding. -1 is not to limit the seeding.'));
-		o.datatype = 'float';
-		o.placeholder = '-1';
-
-		o = s.taboption('bittorrent', form.ListValue, 'MaxRatioAction', _('Max Ratio Action'),
-			_('The action when reach the max seeding ratio.'));
-		o.value('0', _('Pause them'));
-		o.value('1', _('Remove them'));
-		o.defaule = '0';
-
-		o = s.taboption('bittorrent', form.Value, 'GlobalMaxSeedingMinutes',
-			_('Max Seeding Minutes'), _('Units: minutes'));
-		o.datatype = 'integer';
-
 		o = s.taboption('bittorrent', form.DummyValue, 'Queueing Setting', splitter_html.format(_('Queueing Setting')));
 		o.default = '';
 
-		o = s.taboption('bittorrent', form.Flag, 'QueueingEnabled', _('Enable Torrent Queueing'));
+		o = s.taboption('bittorrent', form.Flag, 'QueueingSystemEnabled', _('Enable Torrent Queueing'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.enabled;
@@ -432,7 +312,7 @@ return view.extend({
 		o.datatype = 'integer';
 		o.placeholder = '5';
 
-		o = s.taboption('bittorrent', form.Flag, 'IgnoreSlowTorrents', _('Ignore Slow Torrents'),
+		o = s.taboption('bittorrent', form.Flag, 'IgnoreSlowTorrentsForQueueing', _('Ignore Slow Torrents'),
 			_('Do not count slow torrents in these limits.'));
 		o.enabled = 'true';
 		o.disabled = 'false';
@@ -459,12 +339,6 @@ return view.extend({
 		o.value('zh_CN', _('Chinese (zh_CN)'));
 		o.default = 'zh_CN';
 
-		o = s.taboption('webui', form.Flag, 'UseUPnP', _('Use UPnP for WebUI'),
-			_('Using the UPnP / NAT-PMP port of the router for connecting to WebUI.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
 		o = s.taboption('webui', form.Value, 'Username', _('Username'), _('The login name for WebUI.'));
 		o.placeholder = 'admin';
 
@@ -485,103 +359,22 @@ return view.extend({
 		o.datatype = 'port';
 		o.placeholder = '8080';
 
-		o = s.taboption('webui', form.Flag, 'HTTPS__Enabled', _('Enable HTTPS'),
-			_('Encrypt the connections with qbittorrent by SSL/TLS. The web clients must use https'
-			+ ' scheme to access the WebUI.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.disabled;
-
-		o = s.taboption('webui', form.Value, 'HTTPS__CertificatePath', _('Path to the Certificate'));
-		o.depends('HTTPS__Enabled', 'true');
-		o.validate = isNonEmpty;
-
-		o = s.taboption('webui', form.Value, 'HTTPS__KeyPath', _('Path to the Key'));
-		o.depends('HTTPS__Enabled', 'true');
-		o.validate = isNonEmpty;
-
-		o = s.taboption('webui', form.Flag, 'ClickjackingProtection', _('Clickjacking Protection'),
-			_('Enable clickjacking protection.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('webui', form.Flag, 'CSRFProtection', _('CSRF Protection'),
-			_('Enable Cross-Site Request Forgery (CSRF) protection.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('webui', form.Flag, 'SecureCookie', _('Cookie Secure flag'),
-			_('Enable cookie secure flag (require HTTPS).'));
-		o.depends('HTTPS__Enabled', 'true');
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('webui', form.Flag, 'HostHeaderValidation', _('Host Header Validation'),
-			_('Validate the host header.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('webui', form.Value, 'ServerDomains', _('Server Domains'));
-		o.placeholder = '*';
-		o.depends('HostHeaderValidation', 'true');
-
-		o = s.taboption('webui', form.Flag, 'LocalHostAuth', _('Bypass Local Host Authentication'),
-			_('Bypass authentication for clients on localhost.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('webui', form.Flag, 'AuthSubnetWhitelistEnabled',
-			_('Bypass authentication for clients in Whitelisted IP Subnets.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.disabled;
-
-		o = s.taboption('webui', form.DynamicList, 'AuthSubnetWhitelist', _('Subnet Whitelist'));
-		o.depends('AuthSubnetWhitelistEnabled', 'true');
-
-		o = s.taboption('webui', form.Flag, 'CustomHTTPHeadersEnabled', _('Add Custom HTTP Headers'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.disabled;
-
-		o = s.taboption('webui', form.TextValue, 'CustomHTTPHeaders', _('Custom HTTP Headers'));
-		o.depends('CustomHTTPHeadersEnabled', 'true');
-		o.placeholder = _('Header: value pairs, one per line');
-		o.cfgvalue = function(section_id) {
-			var cv = this.super('cfgvalue', arguments);
-			return cv ? cv.replace(/\\n/g, '\n') : cv;
-		}
-		o.formvalue = function(section_id) {
-			var fv = this.super('formvalue', arguments);
-			return fv ? fv.replace(/\\n/g, '\n') : fv;
-		}
-
-		o = s.taboption('advanced', form.Flag, 'AnonymousMode', _('Anonymous Mode'), '%s %s %s.'.format(
+		o = s.taboption('advanced', form.Flag, 'AnonymousModeEnabled', _('Anonymous Mode'), '%s %s %s.'.format(
 			_('When enabled, qBittorrent will take certain measures to try to mask its identity.'),
 			_('Refer to the'), '<a href="https://github.com/qbittorrent/qBittorrent/wiki/' +
 			'Anonymous-Mode" target="_blank">wiki</a>'));
 		o.enabled = 'true';
 		o.disabled = 'false';
-		o.default = o.enabled;
+		o.default = o.disabled;
 
-		o = s.taboption('advanced', form.Flag, 'IncludeOverhead', _('Limit Overhead Usage'),
+		o = s.taboption('advanced', form.Flag, 'IncludeOverheadInLimits', _('Limit Overhead Usage'),
 			_('The overhead usage is been limitted.'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.disabled;
 
-		o = s.taboption('advanced', form.Flag, 'IgnoreLimitsLAN', _('Ignore LAN Limit'),
+		o = s.taboption('advanced', form.Flag, 'IgnoreLimitsOnLAN', _('Ignore LAN Limit'),
 			_('Ignore the speed limit to LAN.'));
-		o.enabled = 'true';
-		o.disabled = 'false';
-		o.default = o.enabled;
-
-		o = s.taboption('advanced', form.Flag, 'osCache', _('Use os Cache'));
 		o.enabled = 'true';
 		o.disabled = 'false';
 		o.default = o.enabled;
