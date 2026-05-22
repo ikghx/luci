@@ -1,6 +1,6 @@
 {
 	"admin/services/vpn_toggle": {
-		"title": "VPN Toggle Setup",
+		"title": "VPN Toggle",
 		"action": {
 			"type": "firstchild"
 		},
@@ -9,12 +9,26 @@
 		},
 		"weight": 50
 	},
+	"admin/services/vpn_toggle/toggle": {
+		"title": "Toggle",
+		"action": {
+			"type": "view",
+			"path": "vpn_toggle/toggle"
+		},
+		"depends": {
+			"acl": [ "luci-app-vpn-toggle" ]
+		},
+		"weight": 10
+	},
 	"admin/services/vpn_toggle/settings": {
 		"title": "Settings",
 		"action": {
 			"type": "view",
 			"path": "vpn_toggle/settings"
 		},
-		"weight": 10
+		"depends": {
+			"acl": [ "luci-app-vpn-toggle", "luci-app-vpn-toggle-admin" ]
+		},
+		"weight": 20
 	}
 }

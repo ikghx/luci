@@ -332,7 +332,7 @@ return baseclass.extend(/** @lends LuCI.uci.prototype */ {
 	 * Returns the section ID of the newly cloned section which is equivalent
 	 * to the given name for non-anonymous sections.
 	 */
-	clone(conf, type, srcsid, put_next, ev, name) {
+	clone(conf, type, srcsid, put_next, name) {
 		let n = this.state.creates;
 		let sid = this.createSID(conf);
 		let v = this.state.values;

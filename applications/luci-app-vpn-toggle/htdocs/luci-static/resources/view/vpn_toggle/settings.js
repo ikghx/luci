@@ -3,6 +3,9 @@
 'require uci';
 'require ui';
 'require fs';
+'require rpc';
+
+var callUciApply = rpc.declare({ object: 'uci', method: 'apply', params: ['timeout', 'rollback'], reject: true });
 
 return view.extend({
 
@@ -14,7 +17,9 @@ load: function() {
     uci.load('dhcp'),
     fs.read('/var/dhcp.leases').catch(function(){ return ''; }),
     fs.read('/proc/net/arp').catch(function(){ return ''; }),
-    uci.load('firewall').catch(function(){ return null; })
+    uci.load('firewall').catch(function(){ return null; }),
+    uci.load('rpcd').catch(function(){ return null; }),
+    rpc.declare({ object: 'session', method: 'get', params: ['keys'], expect: { values: {} } })(['username']).catch(function(){ return null; })
   ]);
 },
 
@@ -33,18 +38,20 @@ _ifaces: function() {
 },
 
 _subnets: function() {
-  var r = [{ v:'', l:'-- select subnet --' }];
+  var r = [{ v:'', l:_('-- select subnet --') }];
   uci.sections('network', 'interface', function(s) {
-    if (s.ipaddr && s.netmask) {
-      var n = s.ipaddr.replace(/\.\d+$/, '.0/24');
-      r.push({ v:n, l:s['.name'].toUpperCase()+' ('+n+')' });
+    var ip = s.ipaddr || (Array.isArray(s.ipaddrs) && s.ipaddrs[0]);
+    if (ip && ip.indexOf('/') === -1) { // Basic IPv4 check
+      var n = ip.replace(/\.\d+$/, '.0/24');
+      var name = s['.name'] || 'unknown';
+      r.push({ v:n, l:name.toUpperCase()+' ('+n+')' });
     }
   });
   return r;
 },
 
 _devices: function(arp, dhcp) {
-  var r = [{ v:'', l:'-- entire subnet --' }];
+  var r = [{ v:'', l:_('-- entire subnet --') }];
   var seen = {};
   // Build hostname lookup from DHCP leases (format: timestamp MAC IP hostname)
   var dhcpInfo = {};
@@ -117,7 +124,8 @@ _srcZoneForSubnet: function(subnet) {
   if (!subnet) return 'lan';
   var ifaceName = null;
   uci.sections('network', 'interface', function(s) {
-    if (s.ipaddr && s.ipaddr.replace(/\.\d+$/, '.0/24') === subnet) ifaceName = s['.name'];
+    var ip = s.ipaddr || (Array.isArray(s.ipaddrs) && s.ipaddrs[0]);
+    if (ip && ip.replace(/\.\d+$/, '.0/24') === subnet) ifaceName = s['.name'];
   });
   if (!ifaceName) return 'lan';
   var zoneName = 'lan';
@@ -222,10 +230,20 @@ _deviceLabel: function(ip) {
   return label;
 },
 
-_sel: function(opts, cur, size) {
-  var attrs = { class:'cbi-input-select', style:'width:100%' };
-  if (size) attrs.size = size;
-  var s = E('select', attrs);
+_rpcdUsers: function() {
+  var r = [{ v:'', l:_('\u2014 all users \u2014') }];
+  uci.sections('rpcd', 'login', function(s) {
+    var readList = s.read || [];
+    if (!Array.isArray(readList)) readList = [readList];
+    if (readList.indexOf('luci-app-vpn-toggle') < 0) return;
+    var un = s.username || s['.name'];
+    r.push({ v: un, l: un });
+  });
+  return r;
+},
+
+_sel: function(opts, cur) {
+  var s = E('select', { class:'cbi-input-select', style:'width:100%' });
   opts.forEach(function(o) {
     var val = o.v !== undefined ? o.v : o;
     var lbl = o.l !== undefined ? o.l : o;
@@ -240,155 +258,181 @@ _sel: function(opts, cur, size) {
 
 render: function(data) {
   var self = this;
+  var sessionInfo = data[8];
+  var currentUser = (sessionInfo && sessionInfo.username) || '';
+  var isAdmin = currentUser === 'root';
   self._dhcp = data[4] || '';
   self._arp  = data[5] || '';
 
   var page = E('div', { class:'cbi-map' });
-  page.appendChild(E('h2', {}, 'VPN Toggle Settings'));
-  page.appendChild(E('p', {}, [
-    'Standalone toggle page: ',
-    E('a', { href:'/vpntoggle/', target:'_blank' }, '/vpntoggle/')
-  ]));
+  page.appendChild(E('h2', {}, _('VPN Toggle Settings')));
+
+  if (!isAdmin) {
+    page.appendChild(E('p', { style:'color:#f87171;margin-top:1em' },
+      _('Settings can only be modified by the admin (root) user.')));
+    return page;
+  }
 
   /* Users */
   var uSec = E('div', { class:'cbi-section' });
-  uSec.appendChild(E('h3', {}, 'Users'));
-  uSec.appendChild(E('p', { class:'cbi-section-descr' }, 'Login credentials for the standalone toggle page.'));
-  var uTable = self._buildUsersTable();
+  uSec.appendChild(E('h3', {}, _('VPN Toggle Users')));
+  uSec.appendChild(E('p', { class:'cbi-section-descr' },
+    _('Users who can access the VPN Toggle page. Passwords are stored via the system shadow database (same as the main router login).')));
+
+  var uTable = self._buildRpcdUsersTable();
   uSec.appendChild(uTable);
   uSec.appendChild(E('br'));
-  uSec.appendChild(E('button', { class:'cbi-button cbi-button-add', click: function() { self._addUserForm(uSec, uTable); } }, '+ Add User'));
+  uSec.appendChild(E('button', { class:'cbi-button cbi-button-add', click: function() {
+    self._addRpcdUserForm(uSec, uTable);
+  } }, _('+ Add User')));
   page.appendChild(uSec);
-  page.appendChild(E('hr'));
+
+  page.appendChild(E('hr', { style:'margin:16px 0;border-color:#334155' }));
 
   /* Switches */
   var swSec = E('div', { class:'cbi-section' });
-  swSec.appendChild(E('h3', {}, 'Switch Configurations'));
-  swSec.appendChild(E('p', { class:'cbi-section-descr' }, 'Switches are per user. PBR policies are created automatically on save.'));
-
-  var users = uci.sections('vpn_toggle', 'user');
-  var userSel = E('select', { class:'cbi-input-select', style:'margin-bottom:10px',
-    change: function() { self._renderSwitches(swGrid, this.value); }
-  });
-  if (!users.length) {
-    userSel.appendChild(E('option', { value:'' }, '-- add a user first --'));
-  } else {
-    users.forEach(function(u) {
-      userSel.appendChild(E('option', { value: u.username||'' }, u.username||'(unnamed)'));
-    });
-  }
-  swSec.appendChild(E('div', {}, [ E('label', { style:'font-weight:500;margin-right:8px' }, 'Showing switches for:'), userSel ]));
+  swSec.appendChild(E('h3', {}, _('Switch Configurations')));
+  swSec.appendChild(E('p', { class:'cbi-section-descr' }, _('PBR policies are created automatically on save.')));
 
   var swGrid = E('div', { id:'sw-grid' });
-  var initUser = users.length ? (users[0].username||'') : '';
-  self._renderSwitches(swGrid, initUser);
+  self._renderSwitches(swGrid);
   swSec.appendChild(swGrid);
 
   swSec.appendChild(E('br'));
   swSec.appendChild(E('button', { class:'cbi-button cbi-button-add', click: function() {
-    self._addSwitchForm(swGrid, userSel.value);
-  } }, '+ Add Switch'));
+    self._addSwitchForm(swGrid);
+  } }, _('+ Add Switch')));
 
   page.appendChild(swSec);
   return page;
 },
 
-/* ── user table ──────────────────────────────────────────── */
+/* ── rpcd user table ────────────────────────────────────── */
 
-_buildUsersTable: function() {
+_buildRpcdUsersTable: function() {
   var self = this;
   var t = E('table', { class:'table cbi-section-table', style:'width:100%' });
   t.appendChild(E('tr', { class:'tr table-titles' }, [
-    E('th', { class:'th' }, 'Username'),
-    E('th', { class:'th' }, 'Password'),
-    E('th', { class:'th', style:'width:130px' }, 'Actions')
+    E('th', { class:'th' }, _('Username')),
+    E('th', { class:'th', style:'width:120px' }, _('Actions'))
   ]));
-  var users = uci.sections('vpn_toggle', 'user');
-  if (!users.length) {
-    t.appendChild(E('tr', { class:'tr' }, [ E('td', { class:'td', colspan:'3', style:'color:#888' }, 'No users yet.') ]));
-  } else {
-    users.forEach(function(u) { t.appendChild(self._userRow(t, u)); });
+  var found = false;
+  uci.sections('rpcd', 'login', function(s) {
+    var readList = s.read || [];
+    if (!Array.isArray(readList)) readList = [readList];
+    if (readList.indexOf('luci-app-vpn-toggle') < 0) return;
+    found = true;
+    t.appendChild(self._rpcdUserRow(t, s));
+  });
+  if (!found) {
+    t.appendChild(E('tr', { class:'tr' }, [
+      E('td', { class:'td', colspan:'2', style:'color:#888' }, _('No VPN toggle users yet.'))
+    ]));
   }
   return t;
 },
 
-_userRow: function(table, u) {
+_rpcdUserRow: function(table, s) {
   var self = this;
+  var username = s.username || s['.name'];
   var row = E('tr', { class:'tr' });
-  row.appendChild(E('td', { class:'td' }, u.username||''));
-  row.appendChild(E('td', { class:'td' }, '••••••••'));
+  row.appendChild(E('td', { class:'td' }, username));
   row.appendChild(E('td', { class:'td' }, [
-    E('button', { class:'cbi-button cbi-button-edit', style:'margin-right:4px', click: function() {
-      self._editUserRow(table, u['.name'], row);
-    } }, 'Edit'),
     E('button', { class:'cbi-button cbi-button-remove', click: function(ev) {
       var btn = ev.currentTarget || ev.target;
-      if (btn.textContent !== 'Sure?') {
-        btn.textContent = 'Sure?';
-        btn._delTimer = setTimeout(function() { btn.textContent = 'Delete'; }, 3000);
+      if (btn.textContent !== _('Sure?')) {
+        btn.textContent = _('Sure?');
+        btn._delTimer = setTimeout(function() { btn.textContent = _('Delete'); }, 3000);
         return;
       }
       clearTimeout(btn._delTimer);
       btn.disabled = true;
-      uci.remove('vpn_toggle', u['.name']);
-      self._save().then(function() {
-        var tbody = row.parentNode;
-        tbody.removeChild(row);
-        if (!tbody.querySelector('tr.tr:not(.table-titles)')) {
-          tbody.appendChild(E('tr', { class:'tr' }, [ E('td', { class:'td', colspan:'3', style:'color:#888' }, 'No users yet.') ]));
-        }
-      });
-    } }, 'Delete')
+      fs.exec('/usr/share/vpn-toggle/user-manager', ['remove', username])
+        .catch(function() {})
+        .then(function() {
+          uci.remove('rpcd', s['.name']);
+          return self._save();
+        })
+        .then(function() {
+          var tbody = row.parentNode;
+          tbody.removeChild(row);
+          if (!tbody.querySelector('tr.tr:not(.table-titles)')) {
+            tbody.appendChild(E('tr', { class:'tr' }, [
+              E('td', { class:'td', colspan:'2', style:'color:#888' }, _('No VPN toggle users yet.'))
+            ]));
+          }
+        })
+        .catch(function(e) {
+          btn.disabled = false;
+          btn.textContent = _('Delete');
+          ui.addNotification(null, E('p', {}, _('Delete failed: %s').format(String(e))));
+        });
+    } }, _('Delete'))
   ]));
   return row;
 },
 
-_editUserRow: function(table, secName, row) {
-  var self = this;
-  var uIn = E('input', { type:'text', class:'cbi-input-text', value: uci.get('vpn_toggle', secName, 'username')||'', style:'width:100%' });
-  var pIn = E('input', { type:'password', class:'cbi-input-text', value: uci.get('vpn_toggle', secName, 'password')||'', style:'width:100%' });
-  row.innerHTML = '';
-  row.appendChild(E('td', { class:'td' }, [uIn]));
-  row.appendChild(E('td', { class:'td' }, [pIn]));
-  row.appendChild(E('td', { class:'td' }, [
-    E('button', { class:'cbi-button cbi-button-save', style:'margin-right:4px', click: function() {
-      uci.set('vpn_toggle', secName, 'username', uIn.value.trim());
-      uci.set('vpn_toggle', secName, 'password', pIn.value);
-      self._save().then(function() {
-        var u2 = { '.name':secName, username: uIn.value.trim() };
-        row.parentNode.replaceChild(self._userRow(table, u2), row);
-      });
-    } }, 'Save'),
-    E('button', { class:'cbi-button', click: function() {
-      var u2 = { '.name':secName, username: uci.get('vpn_toggle', secName, 'username')||'' };
-      row.parentNode.replaceChild(self._userRow(table, u2), row);
-    } }, 'Cancel')
-  ]));
-},
-
-_addUserForm: function(section, table) {
-  if (section.querySelector('#add-user-form')) return;
+_addRpcdUserForm: function(section, table) {
+  if (section.querySelector('#add-rpcd-user-form')) return;
   var self = this;
   var adding = false;
-  var uIn = E('input', { type:'text', class:'cbi-input-text', placeholder:'Username', style:'margin-right:6px;width:160px' });
-  var pIn = E('input', { type:'password', class:'cbi-input-text', placeholder:'Password', style:'margin-right:6px;width:160px' });
-  var form = E('div', { id:'add-user-form', style:'margin-top:8px;display:flex;gap:6px;align-items:center;flex-wrap:wrap' }, [
+
+  var uIn = E('input', { type:'text', class:'cbi-input-text',
+    placeholder:_('Username (a-z, 0-9, _)'), style:'width:160px' });
+  var pIn = E('input', { type:'password', class:'cbi-input-text',
+    placeholder:_('Password'), style:'width:160px' });
+  var errEl = E('span', { style:'color:#f87171;font-size:.85rem;margin-left:6px' }, '');
+
+  var form = E('div', { id:'add-rpcd-user-form',
+    style:'margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center' }, [
     uIn, pIn,
     E('button', { class:'cbi-button cbi-button-save', click: function() {
       if (adding) return;
-      var un = uIn.value.trim(), pw = pIn.value;
-      if (!un||!pw) return;
+      var un = uIn.value.trim();
+      var pw = pIn.value;
+      if (!un || !pw) { errEl.textContent = _('Username and password are required.'); return; }
+      if (!/^[a-zA-Z][a-zA-Z0-9_]{0,31}$/.test(un)) {
+        errEl.textContent = _('Must start with a letter; only letters, digits, underscore (max 32).');
+        return;
+      }
       adding = true;
-      var ns = uci.add('vpn_toggle', 'user');
-      uci.set('vpn_toggle', ns, 'username', un);
-      uci.set('vpn_toggle', ns, 'password', pw);
-      self._save().then(function() {
-        section.removeChild(form);
-        var newTable = self._buildUsersTable();
-        table.parentNode.replaceChild(newTable, table);
-      }).catch(function() { adding = false; });
-    } }, 'Add'),
-    E('button', { class:'cbi-button', click: function() { section.removeChild(form); } }, 'Cancel')
+      ui.showModal(null, E('p', { class: 'spinning' }, _('Creating system user and setting permissions...')));
+      // Step 1: create unix user entry (passwd + locked shadow row)
+      fs.exec('/usr/share/vpn-toggle/user-manager', ['add', un])
+        .then(function(res) {
+          var result = {};
+          try { result = JSON.parse(res.stdout || '{}'); } catch(e) {}
+          if (res.code !== 0 || result.error) throw new Error(result.error || 'user-manager failed');
+          // Step 2: hash & store password via luci ubus (same as System > Administration)
+          return rpc.declare({ object: 'luci', method: 'setPassword', params: ['username', 'password'] })(un, pw);
+        })
+        .then(function(res) {
+          if (!res || res.result === false)
+            throw new Error(_('Password could not be set \u2014 check the username.'));
+          // Step 3: add rpcd login section referencing unix shadow ($p$ prefix)
+          // luci-base            = required for the LuCI UI framework to function
+          // luci-app-vpn-toggle  = grants access to the Toggle page (also first landing page)
+          var ns = uci.add('rpcd', 'login');
+          uci.set('rpcd', ns, 'username', un);
+          uci.set('rpcd', ns, 'password', '$p$' + un);
+          uci.set('rpcd', ns, 'read', ['luci-base', 'luci-app-vpn-toggle']);
+          uci.set('rpcd', ns, 'write', ['luci-base', 'luci-app-vpn-toggle']);
+          return self._save();
+        })
+        .then(function() {
+          ui.hideModal();
+          section.removeChild(form);
+          var newTable = self._buildRpcdUsersTable();
+          table.parentNode.replaceChild(newTable, table);
+        })
+        .catch(function(e) {
+          adding = false;
+          ui.hideModal();
+          errEl.textContent = String(e);
+        });
+    } }, _('Add')),
+    E('button', { class:'cbi-button', click: function() { section.removeChild(form); } }, _('Cancel')),
+    errEl
   ]);
   section.appendChild(form);
   uIn.focus();
@@ -396,36 +440,36 @@ _addUserForm: function(section, table) {
 
 /* ── switch table ────────────────────────────────────────── */
 
-_renderSwitches: function(container, selUser) {
+_renderSwitches: function(container) {
   var self = this;
   container.innerHTML = '';
-  var switches = uci.sections('vpn_toggle', 'switch');
-  var list = switches.filter(function(s) { return !s.user || s.user === selUser; });
+  var list = uci.sections('vpn_toggle', 'switch');
 
   var t = E('table', { class:'table cbi-section-table', style:'width:100%' });
   t.appendChild(E('tr', { class:'tr table-titles' }, [
-    E('th', { class:'th' }, 'Name'),
-    E('th', { class:'th' }, 'Device / Subnet'),
-    E('th', { class:'th' }, 'WAN'),
-    E('th', { class:'th' }, 'VPN'),
-    E('th', { class:'th', style:'width:64px;text-align:center' }, 'Enabled'),
-    E('th', { class:'th', style:'width:140px' }, 'Actions')
+    E('th', { class:'th' }, _('Name')),
+    E('th', { class:'th' }, _('Device / Subnet')),
+    E('th', { class:'th' }, _('WAN')),
+    E('th', { class:'th' }, _('VPN')),
+    E('th', { class:'th', style:'width:110px' }, _('Visible to')),
+    E('th', { class:'th', style:'width:64px;text-align:center' }, _('Enabled')),
+    E('th', { class:'th', style:'width:140px' }, _('Actions'))
   ]));
 
   if (!list.length) {
-    t.appendChild(E('tr', { class:'tr' }, [ E('td', { class:'td', colspan:'6', style:'color:#888' }, 'No switches for this user.') ]));
+    t.appendChild(E('tr', { class:'tr' }, [ E('td', { class:'td', colspan:'7', style:'color:#888' }, _('No switches configured.')) ]));
   } else {
-    list.forEach(function(sw) { t.appendChild(self._switchRow(t, sw, selUser, container)); });
+    list.forEach(function(sw) { t.appendChild(self._switchRow(t, sw, container)); });
   }
   container.appendChild(t);
 },
 
-_switchRow: function(table, sw, selUser, container) {
+_switchRow: function(table, sw, container) {
   var self = this;
   var curIf = sw.pbr_rule ? (uci.get('pbr', sw.pbr_rule, 'interface')||'') : '';
   var isVpn = curIf !== '' && curIf === sw.vpn_if;
 
-  var chk = E('input', { type:'checkbox', title:'Enable on toggle page' });
+  var chk = E('input', { type:'checkbox', title:_('Enable on toggle page') });
   chk.checked = sw.enabled !== '0';
   chk.addEventListener('change', function() {
     uci.set('vpn_toggle', sw['.name'], 'enabled', chk.checked ? '1' : '0');
@@ -437,16 +481,17 @@ _switchRow: function(table, sw, selUser, container) {
   row.appendChild(E('td', { class:'td' }, sw.target_device ? self._deviceLabel(sw.target_device) : (sw.target_subnet||'')));
   row.appendChild(E('td', { class:'td' }, (sw.wan_if||'') + (!isVpn && curIf ? ' ✓' : '')));
   row.appendChild(E('td', { class:'td' }, (sw.vpn_if||'') + (isVpn ? ' ✓' : '')));
+  row.appendChild(E('td', { class:'td' }, sw.user || '—'));
   row.appendChild(E('td', { class:'td', style:'text-align:center' }, [chk]));
   row.appendChild(E('td', { class:'td' }, [
     E('button', { class:'cbi-button cbi-button-edit', style:'margin-right:4px', click: function() {
-      self._editSwitchInline(table, sw['.name'], row, selUser, container);
-    } }, 'Edit'),
+      self._editSwitchInline(table, sw['.name'], row, container);
+    } }, _('Edit')),
     E('button', { class:'cbi-button cbi-button-remove', click: function(ev) {
       var btn = ev.currentTarget || ev.target;
-      if (btn.textContent !== 'Sure?') {
-        btn.textContent = 'Sure?';
-        btn._delTimer = setTimeout(function() { btn.textContent = 'Delete'; }, 3000);
+      if (btn.textContent !== _('Sure?')) {
+        btn.textContent = _('Sure?');
+        btn._delTimer = setTimeout(function() { btn.textContent = _('Delete'); }, 3000);
         return;
       }
       clearTimeout(btn._delTimer);
@@ -457,15 +502,17 @@ _switchRow: function(table, sw, selUser, container) {
       if (sw.target_device && uci.get('vpn_toggle', sw['.name'], 'dhcp_made_static') === '1')
         self._restoreStaticLease(sw.target_device);
       uci.remove('vpn_toggle', sw['.name']);
-      self._save().then(function() {
-        self._renderSwitches(container, selUser);
-      }).catch(function() { btn.disabled = false; btn.textContent = 'Delete'; });
-    } }, 'Delete')
+      self._save()
+        .then(function() { return callUciApply(null, false); })
+        .then(function() {
+          self._renderSwitches(container);
+        }).catch(function() { btn.disabled = false; btn.textContent = _('Delete'); });
+    } }, _('Delete'))
   ]));
   return row;
 },
 
-_editSwitchInline: function(table, secName, row, selUser, container) {
+_editSwitchInline: function(table, secName, row, container) {
   var self = this;
   var existingId = 'edit-' + secName;
   var existing = table.querySelector('#'+existingId);
@@ -476,10 +523,12 @@ _editSwitchInline: function(table, secName, row, selUser, container) {
     subnet:  uci.get('vpn_toggle', secName, 'target_subnet')||'',
     device:  uci.get('vpn_toggle', secName, 'target_device')||'',
     wan:     uci.get('vpn_toggle', secName, 'wan_if')||'',
-    vpn:     uci.get('vpn_toggle', secName, 'vpn_if')||''
+    vpn:     uci.get('vpn_toggle', secName, 'vpn_if')||'',
+    user:    uci.get('vpn_toggle', secName, 'user')||''
   };
 
-  var nIn = E('input', { type:'text', class:'cbi-input-text', value:cur.name, placeholder:'Name', style:'width:100%' });
+  var nIn = E('input', { type:'text', class:'cbi-input-text', value:cur.name, placeholder:_('Name'), style:'width:100%' });
+  var userIn = self._sel(self._rpcdUsers(), cur.user);
   var subSel = self._sel(self._subnets(), cur.subnet);
   var devSel = self._sel(self._devicesInSubnet(cur.subnet), cur.device);
   var wanSel = self._sel(self._ifaces(), cur.wan);
@@ -492,17 +541,19 @@ _editSwitchInline: function(table, secName, row, selUser, container) {
   });
 
   var editRow = E('tr', { id: existingId, class:'tr', style:'background:rgba(99,102,241,.07)' }, [
-    E('td', { class:'td', colspan:'6' }, [
+    E('td', { class:'td', colspan:'7' }, [
       E('div', { style:'display:flex;flex-direction:column;gap:8px;padding:10px' }, [
-        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'Display Name'), E('div', {}, nIn)]),
-        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'Subnet'), E('div', {}, subSel)]),
-        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'Device (opt.)'), E('div', {}, devSel)]),
-        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'WAN'), E('div', {}, wanSel)]),
-        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'VPN'), E('div', {}, vpnSel)])
+        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Display Name')), E('div', {}, nIn)]),
+        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Visible to')), E('div', {}, userIn)]),
+        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Subnet')), E('div', {}, subSel)]),
+        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Device (opt.)')), E('div', {}, devSel)]),
+        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('WAN')), E('div', {}, wanSel)]),
+        E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('VPN')), E('div', {}, vpnSel)])
       ]),
       E('div', { style:'padding:0 10px 10px;display:flex;gap:8px' }, [
         E('button', { class:'cbi-button cbi-button-save', click: function() {
           uci.set('vpn_toggle', secName, 'display_name', nIn.value.trim());
+          uci.set('vpn_toggle', secName, 'user', userIn.value.trim());
           uci.set('vpn_toggle', secName, 'target_subnet', subSel.value);
           uci.set('vpn_toggle', secName, 'target_device', devSel.value);
           uci.set('vpn_toggle', secName, 'wan_if', wanSel.value);
@@ -524,26 +575,29 @@ _editSwitchInline: function(table, secName, row, selUser, container) {
               uci.set('vpn_toggle', secName, 'dhcp_made_static', '0');
             }
           }
-          self._save().then(function() {
-            editRow.parentNode.removeChild(editRow);
-            self._renderSwitches(container, selUser);
-          });
-        } }, 'Save'),
-        E('button', { class:'cbi-button', click: function() { editRow.parentNode.removeChild(editRow); } }, 'Cancel')
+          self._save()
+            .then(function() { return callUciApply(null, false); })
+            .then(function() {
+              editRow.parentNode.removeChild(editRow);
+              self._renderSwitches(container);
+            });
+        } }, _('Save')),
+        E('button', { class:'cbi-button', click: function() { editRow.parentNode.removeChild(editRow); } }, _('Cancel'))
       ])
     ])
   ]);
   row.parentNode.insertBefore(editRow, row.nextSibling);
 },
 
-_addSwitchForm: function(container, selUser) {
+_addSwitchForm: function(container) {
   var self = this;
   if (container.querySelector('#add-sw-form')) return;
 
   var adding = false;
-  var nIn = E('input', { type:'text', class:'cbi-input-text', placeholder:'Display Name', style:'width:100%' });
+  var nIn = E('input', { type:'text', class:'cbi-input-text', placeholder:_('Display Name'), style:'width:100%' });
+  var userIn = self._sel(self._rpcdUsers(), '');
   var subSel = self._sel(self._subnets(), '');
-  var devSel = self._sel(self._devicesInSubnet(''), '', 0);
+  var devSel = self._sel(self._devicesInSubnet(''), '');
   var wanSel = self._sel(self._ifaces(), '');
   var vpnSel = self._sel(self._ifaces(), '');
   subSel.addEventListener('change', function() {
@@ -554,13 +608,14 @@ _addSwitchForm: function(container, selUser) {
   });
 
   var form = E('div', { id:'add-sw-form', style:'margin-top:12px;padding:14px;border:1px solid #334155;border-radius:8px' }, [
-    E('h4', { style:'margin:0 0 10px' }, 'New Switch'),
+    E('h4', { style:'margin:0 0 10px' }, _('New Switch')),
     E('div', { style:'display:flex;flex-direction:column;gap:8px;margin-bottom:10px' }, [
-      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'Display Name'), E('div', {}, nIn)]),
-      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'Subnet'), E('div', {}, subSel)]),
-      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'Device (opt.)'), E('div', {}, devSel)]),
-      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'WAN'), E('div', {}, wanSel)]),
-      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, 'VPN'), E('div', {}, vpnSel)])
+      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Display Name')), E('div', {}, nIn)]),
+      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Visible to')), E('div', {}, userIn)]),
+      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Subnet')), E('div', {}, subSel)]),
+      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('Device (opt.)')), E('div', {}, devSel)]),
+      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('WAN')), E('div', {}, wanSel)]),
+      E('div', {}, [E('div', { style:'font-size:.8rem;color:#94a3b8;margin-bottom:2px' }, _('VPN')), E('div', {}, vpnSel)])
     ]),
     E('div', { style:'display:flex;gap:8px' }, [
       E('button', { class:'cbi-button cbi-button-save', click: function() {
@@ -570,11 +625,11 @@ _addSwitchForm: function(container, selUser) {
         adding = true;
         var ns = uci.add('vpn_toggle', 'switch');
         uci.set('vpn_toggle', ns, 'display_name', name);
+        if (userIn.value.trim()) uci.set('vpn_toggle', ns, 'user', userIn.value.trim());
         uci.set('vpn_toggle', ns, 'target_subnet', subSel.value);
         uci.set('vpn_toggle', ns, 'target_device', devSel.value);
         uci.set('vpn_toggle', ns, 'wan_if', wanSel.value);
         uci.set('vpn_toggle', ns, 'vpn_if', vpnSel.value);
-        uci.set('vpn_toggle', ns, 'user', selUser);
         uci.set('vpn_toggle', ns, 'enabled', '1');
         self._syncPbr(name, devSel.value||subSel.value, wanSel.value, ns);
         self._ensureFirewallForwarding(vpnSel.value, subSel.value);
@@ -586,11 +641,13 @@ _addSwitchForm: function(container, selUser) {
           var wasStatic = self._ensureStaticLease(devSel.value, devName);
           uci.set('vpn_toggle', ns, 'dhcp_made_static', wasStatic ? '0' : '1');
         }
-        self._save().then(function() {
-          self._renderSwitches(container, selUser);
-        }).catch(function() { adding = false; });
-      } }, 'Add Switch'),
-      E('button', { class:'cbi-button', click: function() { container.removeChild(form); } }, 'Cancel')
+        self._save()
+          .then(function() { return callUciApply(null, false); })
+          .then(function() {
+            self._renderSwitches(container);
+          }).catch(function() { adding = false; });
+      } }, _('Add Switch')),
+      E('button', { class:'cbi-button', click: function() { container.removeChild(form); } }, _('Cancel'))
     ])
   ]);
   container.appendChild(form);
