@@ -7,7 +7,7 @@
 
 const scope = this;
 
-uci.loadPackage('luci').catch();
+uci.loadPackage('luci').catch(() => {});
 
 const callSessionAccess = rpc.declare({
 	object: 'session',
@@ -2149,7 +2149,7 @@ const CBIAbstractValue = CBIAbstractElement.extend(/** @lends LuCI.form.Abstract
 			const cval = this.cfgvalue(section_id);
 			const fval = this.formvalue(section_id);
 
-			if (fval == null || fval == '') {
+			if (fval == null || fval == '' || (fval == this.default && (this.optional || this.rmempty))) {
 				if (this.rmempty || this.optional) {
 					return Promise.resolve(this.remove(section_id));
 				}
@@ -2161,11 +2161,7 @@ const CBIAbstractValue = CBIAbstractElement.extend(/** @lends LuCI.form.Abstract
 				}
 			}
 			else if (this.forcewrite || !isEqual(cval, fval)) {
-				/*
-				 * do not remove elements that are not rendered yet
-				 */
-				if (this.map.findElement('data-field', this.cbid(section_id)) != null)
-					return Promise.resolve(this.write(section_id, fval));
+				return Promise.resolve(this.write(section_id, fval));
 			}
 		}
 		else if (!this.retain) {

@@ -455,6 +455,10 @@ local function get_subscribe_info(cfgid, value)
 	if type(cfgid) ~= "string" or cfgid == "" or type(value) ~= "string" then
 		return
 	end
+	local info = subscribe_info[cfgid]
+	if info and info.expired_date and info.expired_date ~= "" and info.rem_traffic and info.rem_traffic ~= "" then
+		return
+	end
 	value = value:gsub("%s+", "")
 	local date_patterns = {"套餐到期：(.+)", "过期时间：(.+)", "有效期至：(.+)", "到期时间：(.+)", "截止日期：(.+)"}
 	local expired_date
@@ -677,6 +681,11 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 			result.tls_allowInsecure = (insecure == "1" or insecure == "0") and insecure or (sub_allowinsecure and "1" or "0")
 		else
 			result.tls = "0"
+		end
+
+		if info.ech and info.ech ~= "" then
+			result.ech = "1"
+			result.ech_config = info.ech
 		end
 
 		result.tcp_fast_open = info.tfo
@@ -1409,7 +1418,7 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 		result.hysteria2_down_mbps = params.downmbps or sub_hy_down_mbps
 		result.hysteria2_hop = params.mport
 		if params["obfs-password"] or params["obfs_password"] then
-			result.hysteria2_obfs_type = "salamander"
+			result.hysteria2_obfs_type = params.obfs or "salamander"
 			result.hysteria2_obfs_password = params["obfs-password"] or params["obfs_password"]
 		end
 
@@ -1543,6 +1552,10 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 					result.reality_publicKey = params.pbk or nil
 					result.reality_shortId = params.sid or nil
 				end
+				if params.ech and params.ech ~= "" then
+					result.ech = "1"
+					result.ech_config = params.ech
+				end
 			end
 			result.port = port
 			local insecure = params.allowinsecure or params.insecure
@@ -1627,7 +1640,12 @@ end
 local function curl(url, file, ua, mode)
 	if not url or url == "" then return 22, 404 end
 	local curl_args = {
-		"-fskL", "-w %{http_code}", "--retry 3", "--connect-timeout 3", "-H 'Accept-Encoding: identity'"
+		"-fskL",
+		"--retry 3",
+		"--connect-timeout 3",
+		"-H 'Accept-Encoding: identity'",
+		"--dump-header -",
+		"-w '\\n%{http_code}'"
 	}
 
 	ua = (ua and ua ~= "") and ua or "passwall"
@@ -1645,7 +1663,21 @@ local function curl(url, file, ua, mode)
 	else
 		return_code, result = api.curl_logic(url, file, curl_args)
 	end
-	return return_code, tonumber(result)
+
+	if result and result ~= "" then
+		local body, code = result:match("^(.-)%s*([0-9]+)$")
+		if code then
+			http_code = tonumber(code) or 0
+			header_str = body
+		else
+			http_code = tonumber(result:match("(%d+)%s*$")) or 0
+		end
+	end
+	if header_str ~= "" then
+		header_str = header_str:gsub("\r", "")
+	end
+
+	return return_code, http_code, header_str
 end
 
 function get_headers()
@@ -2122,7 +2154,7 @@ local execute = function()
 			local cfgid = value[".name"]
 			local remark = value.remark or ""
 			local url = value.url or ""
-			local tmp_file, ua
+			local tmp_file, ua, headers
 
 			local url_is_local
 			if fs.access(url) then
@@ -2137,7 +2169,7 @@ local execute = function()
 				log('正在订阅:【' .. remark .. '】' .. url .. ' [' .. result .. ']')
 				tmp_file = "/tmp/" .. cfgid
 				local return_code
-				return_code, value.http_code = curl(url, tmp_file, ua, access_mode)
+				return_code, value.http_code, headers = curl(url, tmp_file, ua, access_mode)
 				if return_code ~= 0 then
 					fail_list[#fail_list + 1] = value
 					luci.sys.call("rm -f " .. tmp_file)
@@ -2155,6 +2187,7 @@ local execute = function()
 						log('订阅:【' .. remark .. '】没有变化，无需更新。')
 					else
 						raw_data = parseClashNode(raw_data)
+						subscribe_info[cfgid] = parse_clash_sub_info(headers)
 						parse_link(raw_data, "2", remark, value)
 						uci:set(appname, cfgid, "md5", new_md5)
 					end

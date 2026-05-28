@@ -3,7 +3,7 @@
 
 START=98
 USE_PROCD=1
-
+PROG="/usr/bin/amuled"
 
 LIST_SEP="
 "
@@ -101,8 +101,7 @@ amule_start() {
 	local user
 	local incoming_dir config_dir temp_dir
 	local mem_percentage
-	local config_overwrite nice ionice_flags
-	local cmdline
+	local nice
 	local enabled
 
 	config_get_bool enabled "$cfg" 'enabled' 0
@@ -113,9 +112,7 @@ amule_start() {
 	config_get incoming_dir "$cfg" 'incoming_dir' "$config_dir/Incoming"
 	config_get temp_dir "$cfg" 'temp_dir' "$config_dir/Temp"
 	config_get mem_percentage "$cfg" 'mem_percentage' '50'
-	config_get config_overwrite "$cfg" config_overwrite 1
 	config_get nice "$cfg" nice "0"
-	config_get ionice_flags "$cfg" ionice_flags ''
 	
 	case $(echo "$config_dir"|grep -oE "^/[^/]+") in
 	"/var"|"/tmp"|"/mnt"|"/root"|"/home")
@@ -126,8 +123,6 @@ amule_start() {
 		return 1
 	;;
 	esac
-	
-	which ionice > /dev/null || ionice_flags=''
 
 	_make_dir "$incoming_dir" "$temp_dir" "$config_dir" || {
 		_err "Can't create dirs: ${incoming_dir}, ${temp_dir}, ${config_dir}"
@@ -155,16 +150,16 @@ amule_start() {
 	write_dat_file /etc/amule/shareddir.dat "$config_dir/shareddir.dat"
 	write_dat_file /etc/amule/ipfilter_static.dat "$config_dir/ipfilter_static.dat"
 
-	#[ "$config_overwrite" == 0 ] || {
-		set_params "$cfg" $(uci show amule|awk -F'[.=]' '{print $3}'|tr '\n' ' ')
-	#}
-	
+	set_params "$cfg" $(uci show amule|awk -F'[.=]' '{print $3}'|tr '\n' ' ')
+
 	HOME="$config_dir" /usr/bin/amulecmd --create-config-from="$config_file"
-	
-	cmdline="/usr/bin/amuled -c $config_dir"
-	[ "$ionice_flags" ] && cmdline="ionice $ionice_flags $cmdline"
+
 	procd_open_instance
-	procd_set_param command $cmdline
+	procd_set_param command "$PROG"
+	procd_append_param command -c "$config_dir"
+	procd_set_param user "$user"
+	procd_set_param group "$user"
+	procd_set_param nice "$nice"
 	procd_set_param respawn
 	procd_append_param limits core="0 0"
 
@@ -176,13 +171,22 @@ amule_start() {
 		fi
 	fi
 
-	procd_set_param user "$user"
-	procd_set_param nice "$nice"
-
-
 	procd_add_jail amule log
 	procd_add_jail_mount /usr/bin/amulecmd /usr/bin/amuleweb /usr/share/amule/
 	procd_add_jail_mount_rw "$config_dir" "$incoming_dir" "$temp_dir"
+
+	local shared_dat="$config_dir/shareddir.dat"
+	if [ -f "$shared_dat" ]; then
+		local line
+		while IFS= read -r line || [ -n "$line" ]; do
+			line=$(echo "$line" | tr -d '\r' | xargs)
+
+			if [ -n "$line" ] && [ "${line#\#}" = "$line" ] && [ -d "$line" ]; then
+				procd_add_jail_mount_rw "$line"
+			fi
+		done < "$shared_dat"
+	fi
+
 	procd_close_instance
 }
 

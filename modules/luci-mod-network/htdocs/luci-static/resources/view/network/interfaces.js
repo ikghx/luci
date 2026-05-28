@@ -82,7 +82,6 @@ function render_status(node, ifc, with_device) {
 	const cond00 = !changecount && !ifc.isDynamic() && !ifc.isAlias();
 	const cond01 = cond00 && macaddr;
 	const cond02 = cond00 && maindev;
-	const cond03 = cond00 && carrier;
 
 	function addEntries(label, array) {
 		return Array.isArray(array) ? array.flatMap((item) => [label, item]) : [label, null];
@@ -91,7 +90,7 @@ function render_status(node, ifc, with_device) {
 	return L.itemlist(node, [
 		_('Protocol'), with_device ? null : (desc || '?'),
 		_('Device'), with_device ? (maindev ? maindev.getShortName() : E('em', _('Not present'))) : null,
-		_('Carrier'), (cond03) ? _('Present') : _('Absent'),
+		_('Carrier'), (cond00) ? (carrier ? _('Present') : _('Absent')) : null,
 		_('Uptime'), (!changecount && ifc.isUp()) ? '%t'.format(ifc.getUptime()) : null,
 		_('MAC'), (cond01) ? macaddr : null,
 		_('RX'), (cond02) ? '%.2mB (%d %s)'.format(maindev.getRXBytes(), maindev.getRXPackets(), _('Pkts.')) : null,
@@ -115,7 +114,7 @@ function render_modal_status(node, ifc) {
 
 	dom.content(node, [
 		E('img', {
-			'src': L.resource('icons/%s%s.svg').format(dev ? dev.getType() : 'ethernet', ifc.isUp() ? '' : '_disabled'),
+			'src': L.resource('icons/%s%s.svg').format(dev ? dev.getType() : 'ethernet', ifc && ifc.isUp() ? '' : '_disabled'),
 			'title': dev ? dev.getTypeI18n() : _('Not present')
 		}),
 		ifc ? render_status(E('span'), ifc, true) : E('em', _('Interface not present or not connected yet.'))
@@ -750,7 +749,7 @@ return view.extend({
 							so = ss.taboption('ipv4', form.RichListValue, 'dhcpv4', _('DHCPv4 Service'),
 									  _('Enable or disable DHCPv4 services on this interface.'));
 							so.optional = true;
-							so.value('disabled', _('disabled'),
+							so.value('', _('disabled'),
 								 _('Do not provide DHCPv4 services on this interface.'));
 							so.value('server', _('enabled'),
 								 _('Provide DHCPv4 services on this interface.'));
@@ -900,8 +899,9 @@ return view.extend({
 
 					so = ss.taboption('ipv6-ra', form.ListValue, 'ra_preference', _('Router Priority'),
 						_('A tie-breaker for clients and their routes when multiple routers exist on the same network.'));
-					so.value('', _('Medium'));
+					so.default = 'medium';
 					so.value('low', _('Low'));
+					so.value('medium', _('Medium'));
 					so.value('high', _('High'));
 					so.depends('ra', 'server');
 
@@ -1802,8 +1802,6 @@ return view.extend({
 		o.default = '1';
 		o.optional = true;
 
-		const steer_flow = uci.get('network', 'globals', 'steering_flows');	
-
 		o = s.option(form.Value, 'steering_flows', _('Steering flows (<abbr title="Receive Packet Steering">RPS</abbr>)'),
 			_('Directs packet flows to specific CPUs where the local socket owner listens (the local service).') + ' ' +
 			_('Note: this setting is for local services on the device only (not for forwarding).'));
@@ -1813,7 +1811,6 @@ return view.extend({
 		o.depends('packet_steering', '1');
 		o.depends('packet_steering', '2');
 		o.datatype = 'uinteger';
-		o.default = steer_flow;
 
 		if (dslModemType != null) {
 			s = m.section(form.TypedSection, 'dsl', _('DSL'));

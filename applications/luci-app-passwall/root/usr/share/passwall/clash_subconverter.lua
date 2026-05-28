@@ -66,10 +66,10 @@ local function build_common(node)
 
 	local ech_opts = node["ech-opts"]
 	if ech_opts and ech_opts.enable == true then
-		if ech_opts.config then
-			o.tls.ech = ech_opts.config
-		elseif ech_opts["query-server-name"] then
+		if ech_opts["query-server-name"] then
 			o.tls.ech = ech_opts["query-server-name"] .. "+https://223.5.5.5/dns-query"
+		elseif ech_opts.config then
+			o.tls.ech = ech_opts.config
 		end
 	end
 
@@ -258,6 +258,7 @@ local function encode_trojan(node)
 	if o.tls.sni then table.insert(p, "sni=" .. urlencode(o.tls.sni)) end
 	if o.tls.fp then table.insert(p, "fp=" .. urlencode(o.tls.fp)) end
 	if o.tls.alpn then table.insert(p, "alpn=" .. urlencode(o.tls.alpn)) end
+	if o.tls.ech then table.insert(p, "ech=" .. urlencode(o.tls.ech)) end
 	if o.tls.pcs then table.insert(p, "pcs=" .. urlencode(o.tls.pcs)) end
 	table.insert(p, "allowInsecure=" .. (o.tls.insecure and "1" or "0"))
 
@@ -294,6 +295,7 @@ local function encode_vmess(node)
 		sni = o.tls.sni,
 		alpn = o.tls.alpn,
 		fp = o.tls.fp,
+		ech = o.tls.ech,
 		pcs = o.tls.pcs,
 		insecure = o.tls.insecure and "1" or "0",
 		tfo = node.tfo and "1" or "0"
@@ -425,7 +427,6 @@ local function encode_tuic(node)
 	if node["disable-sni"] then table.insert(p, "disable_sni=1") end
 	if node["skip-cert-verify"] then table.insert(p, "allowInsecure=1") end
 	if node["udp-relay-mode"] then table.insert(p, "udp_relay_mode=" .. node["udp-relay-mode"]) end
-	
 
 	if #p > 0 then
 		link = link .. "?" .. table.concat(p, "&")
@@ -436,14 +437,19 @@ end
 
 -- AnyTLS
 local function encode_anytls(node)
+	local o = build_common(node)
+
 	local link = "anytls://" .. (node.password or "") .. "@" .. host_format(node.server) .. ":" .. node.port
 	local p = {}
 
-	if node.sni then table.insert(p, "sni=" .. urlencode(node.sni)) end
-	if node["skip-cert-verify"] then table.insert(p, "allowInsecure=1") end
-
-	if node.alpn then
-		table.insert(p, "alpn=" .. urlencode(build_alpn(node.alpn)))
+	if o.tls.sni then table.insert(p, "sni=" .. urlencode(o.tls.sni)) end
+	if o.tls.alpn then table.insert(p, "alpn=" .. urlencode(o.tls.alpn)) end
+	if o.tls.fp then table.insert(p, "fp=" .. urlencode(o.tls.fp)) end
+	if o.tls.ech then table.insert(p, "ech=" .. urlencode(o.tls.ech)) end
+	if o.tls.pcs then
+		table.insert(p, "allowInsecure=1")
+	else
+		table.insert(p, "allowInsecure=" .. (o.tls.insecure and "1" or "0"))
 	end
 
 	if #p > 0 then
@@ -508,4 +514,47 @@ function parseClashNode(raw, remark)
 	end
 
 	return #links > 0 and table.concat(links, "\n") or ""
+end
+
+function parse_clash_sub_info(headers)
+	local userinfo = headers:match("[Ss]ubscription%-userinfo:%s*([^\r\n]+)")
+	if not userinfo then return nil end
+
+	local upload = tonumber(userinfo:match("upload=(%d+)")) or 0
+	local download = tonumber(userinfo:match("download=(%d+)")) or 0
+	local total = tonumber(userinfo:match("total=(%d+)")) or 0
+	local expire = tonumber(userinfo:match("expire=(%d+)"))
+	local remain = total - (upload + download)
+	if remain < 0 then remain = 0 end
+
+	local function format_size(bytes)
+		local units = { "B", "KB", "MB", "GB", "TB", "PB" }
+		local i = 1
+		while bytes >= 1024 and i < #units do
+			bytes = bytes / 1024
+			i = i + 1
+		end
+		if bytes >= 100 then
+			return string.format("%.0f%s", bytes, units[i])
+		elseif bytes >= 10 then
+			return string.format("%.1f%s", bytes, units[i])
+		else
+			return string.format("%.2f%s", bytes, units[i])
+		end
+	end
+
+	local rem_traffic = format_size(remain)
+
+	local expired_date
+	if expire and expire > 0 then
+		local t = os.date("*t", expire)
+		expired_date = string.format("%d-%d-%d", t.year, t.month, t.day)
+	else
+		expired_date = "长期有效"
+	end
+
+	return {
+		rem_traffic = rem_traffic,
+		expired_date = expired_date
+	}
 end

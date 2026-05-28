@@ -211,11 +211,6 @@ return view.extend({
 			_('If this option is enabled, the configuration set in WebUI will be replaced by the one in the LuCI.'));
 		o.default = o.disabled;
 
-		o = s.taboption('connection', CBIRandomPort, 'PortRangeMin', _('Connection Port'));
-		o.datatype = 'range(1024,65535)';
-		o.default = randomPort();
-		o.rmempty = false;
-
 		o = s.taboption('connection', form.Value, 'GlobalDLSpeedLimit', _('Global Download Speed'),
 			'%s %s'.format(_('Global Download Speed Limit(KiB/s).'), _('0 means has no limit.')));
 		o.datatype = 'float';
@@ -358,6 +353,12 @@ return view.extend({
 		o = s.taboption('webui', form.Value, 'Port', _('Listening Port'), _('The listening port for WebUI.'));
 		o.datatype = 'port';
 		o.placeholder = '8080';
+
+		o = s.taboption('webui', form.Flag, 'CSRFProtection', _('CSRF Protection'),
+			_('Enable Cross-Site Request Forgery (CSRF) protection.'));
+		o.enabled = 'true';
+		o.disabled = 'false';
+		o.default = o.enabled;
 
 		o = s.taboption('advanced', form.Flag, 'AnonymousModeEnabled', _('Anonymous Mode'), '%s %s %s.'.format(
 			_('When enabled, qBittorrent will take certain measures to try to mask its identity.'),
