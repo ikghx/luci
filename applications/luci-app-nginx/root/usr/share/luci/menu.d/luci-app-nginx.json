@@ -1,0 +1,40 @@
+{
+	"admin/services/nginx": {
+		"title": "Nginx",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/nginx/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-nginx" ],
+			"uci": { "nginx": true }
+		}
+	},
+
+	"admin/services/nginx/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "nginx/base"
+		}
+	},
+
+	"admin/services/nginx/conf": {
+		"title": "Advanced Settings",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "nginx/conf"
+		}
+	},
+
+	"admin/services/nginx/errlog": {
+		"title": "Error log",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "nginx/errlog"
+		}
+	}
+}

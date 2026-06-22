@@ -1,0 +1,14 @@
+{
+	"luci-app-tvheadend": {
+		"description": "Grant UCI access for luci-app-tvheadend",
+		"read": {
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "tvheadend" ]
+		},
+		"write": {
+			"uci": [ "tvheadend" ]
+		}
+	}
+}

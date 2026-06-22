@@ -1,0 +1,45 @@
+{
+	"admin/vpn/homeproxy": {
+		"title": "HomeProxy",
+		"order": 10,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-homeproxy" ],
+			"uci": { "homeproxy": true }
+		}
+	},
+	"admin/vpn/homeproxy/client": {
+		"title": "Client Settings",
+		"order": 10,
+		"action": {
+			"type": "view",
+			"path": "homeproxy/client"
+		}
+	},
+	"admin/vpn/homeproxy/node": {
+		"title": "Node Settings",
+		"order": 15,
+		"action": {
+			"type": "view",
+			"path": "homeproxy/node"
+		}
+	},
+	"admin/vpn/homeproxy/server": {
+		"title": "Server Settings",
+		"order": 20,
+		"action": {
+			"type": "view",
+			"path": "homeproxy/server"
+		}
+	},
+	"admin/vpn/homeproxy/status": {
+		"title": "Service Status",
+		"order": 30,
+		"action": {
+			"type": "view",
+			"path": "homeproxy/status"
+		}
+	}
+}

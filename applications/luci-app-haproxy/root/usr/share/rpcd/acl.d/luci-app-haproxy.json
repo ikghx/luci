@@ -1,0 +1,21 @@
+{
+	"luci-app-haproxy": {
+		"description": "Grant UCI access for luci-app-haproxy",
+		"read": {
+			"file": {
+				"/etc/haproxy.cfg": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "haproxy" ]
+		},
+		"write": {
+			"file": {
+				"/etc/haproxy.cfg": [ "write" ],
+				"/etc/init.d/haproxy restart": [ "exec" ]
+			},
+			"uci": [ "haproxy" ]
+		}
+	}
+}

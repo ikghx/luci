@@ -1,0 +1,51 @@
+{
+	"admin/services/mosdns": {
+		"title": "MosDNS",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/mosdns/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-mosdns" ],
+			"uci": { "mosdns": true }
+		}
+	},
+
+	"admin/services/mosdns/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "mosdns/base"
+		}
+	},
+
+	"admin/services/mosdns/conf": {
+		"title": "Configuration file",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "mosdns/conf"
+		}
+	},
+	
+
+	"admin/services/mosdns/conf1": {
+		"title": "Blocklist file",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "mosdns/conf1"
+		}
+	},
+	
+
+	"admin/services/mosdns/conf2": {
+		"title": "Whitelist file",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "mosdns/conf2"
+		}
+	}
+}

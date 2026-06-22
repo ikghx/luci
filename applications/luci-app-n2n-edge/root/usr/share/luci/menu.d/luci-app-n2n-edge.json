@@ -1,0 +1,31 @@
+{
+	"admin/services/n2n-edge": {
+		"title": "N2N Edge",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/n2n-edge/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-n2n-edge" ],
+			"uci": { "n2n-edge": true }
+		}
+	},
+
+	"admin/services/n2n-edge/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "n2n-edge/base"
+		}
+	},
+
+	"admin/services/n2n-edge/conf": {
+		"title": "Edge configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "n2n-edge/conf"
+		}
+	}
+}

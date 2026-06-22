@@ -1,0 +1,14 @@
+{
+	"luci-app-udpspeeder": {
+		"description": "Grant UCI access for luci-app-udpspeeder",
+		"read": {
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "udpspeeder" ]
+		},
+		"write": {
+			"uci": [ "udpspeeder" ]
+		}
+	}
+}

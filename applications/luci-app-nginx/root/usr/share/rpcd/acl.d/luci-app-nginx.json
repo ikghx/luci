@@ -1,0 +1,22 @@
+{
+	"luci-app-nginx": {
+		"description": "Grant UCI access for luci-app-nginx",
+		"read": {
+			"file": {
+				"/var/log/nginx/error.log": [ "read" ],
+				"/etc/nginx/nginx.conf": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "nginx" ]
+		},
+		"write": {
+			"file": {
+				"/etc/nginx/nginx.conf": [ "write" ],
+				"/etc/init.d/nginx restart": [ "exec" ]
+			},
+			"uci": [ "nginx" ]
+		}
+	}
+}

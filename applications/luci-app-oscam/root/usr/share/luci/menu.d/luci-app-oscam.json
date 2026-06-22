@@ -1,0 +1,49 @@
+{
+	"admin/services/oscam": {
+		"title": "OSCam",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/oscam/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-oscam" ],
+			"uci": { "oscam": true }
+		}
+	},
+
+	"admin/services/oscam/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "oscam/base"
+		}
+	},
+
+	"admin/services/oscam/conf1": {
+		"title": "Advanced Settings",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "oscam/conf1"
+		}
+	},
+
+	"admin/services/oscam/conf2": {
+		"title": "Server configuration",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "oscam/conf2"
+		}
+	},
+
+	"admin/services/oscam/conf3": {
+		"title": "User configuration",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "oscam/conf3"
+		}
+	}
+}

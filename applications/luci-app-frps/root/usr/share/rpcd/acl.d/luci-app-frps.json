@@ -1,0 +1,21 @@
+{
+	"luci-app-frps": {
+		"description": "Grant UCI access for luci-app-frps",
+		"read": {
+			"file": {
+				"/etc/frp/frps.ini": [ "read" ]
+			},
+			"ubus": {
+				"service": [ "list" ]
+			},
+			"uci": [ "frps" ]
+		},
+		"write": {
+			"file": {
+				"/etc/frp/frps.ini": [ "write" ],
+				"/etc/init.d/frps restart": [ "exec" ]
+			},
+			"uci": [ "frps" ]
+		}
+	}
+}

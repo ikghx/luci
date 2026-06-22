@@ -1,0 +1,40 @@
+{
+	"admin/services/shairport-sync": {
+		"title": "ShairPort Sync",
+		"action": {
+			"type": "alias",
+			"path": "admin/services/shairport-sync/base"
+		},
+		"depends": {
+			"acl": [ "luci-app-shairport-sync" ],
+			"uci": { "shairport-sync": true }
+		}
+	},
+
+	"admin/services/shairport-sync/base": {
+		"title": "General Settings",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "shairport-sync/base"
+		}
+	},
+
+	"admin/services/shairport-sync/custom": {
+		"title": "Custom configuration",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "shairport-sync/custom"
+		}
+	},
+
+	"admin/services/shairport-sync/conf": {
+		"title": "Configuration file",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "shairport-sync/conf"
+		}
+	}
+}
