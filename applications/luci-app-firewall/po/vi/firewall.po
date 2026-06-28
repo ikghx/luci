@@ -17,33 +17,32 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:48
 msgid ""
 "%{src?%{dest?Forwarded:Incoming}:Outgoing} %{ipv6?%{ipv4?<var>IPv4</var> and "
-"<var>IPv6</var>:<var>IPv6</var>}:<var>IPv4</var>}%{proto?, protocol %{proto#%"
-"{next?, }%{item.types?<var class=\"cbi-tooltip-container\">%{item.name}<span "
-"class=\"cbi-tooltip\">ICMP with types %{item.types#%{next?, }<var>%{item}</"
-"var>}</span></var>:<var>%{item.name}</var>}}}%{mark?, mark <var%{mark.inv? "
-"data-tooltip=\"Match fwmarks except %{mark.num}%{mark.mask? with mask %"
-"{mark.mask}}.\":%{mark.mask? data-tooltip=\"Mask fwmark value with %"
-"{mark.mask} before compare.\"}}>%{mark.val}</var>}%{dscp?, DSCP %{dscp.inv?"
-"<var data-tooltip=\"Match DSCP classifications except %{dscp.num?:%"
-"{dscp.name}}\">%{dscp.val}</var>:<var>%{dscp.val}</var>}}%{helper?, helper %"
-"{helper.inv?<var data-tooltip=\"Match any helper except &quot;%{helper.name}"
-"&quot;\">%{helper.val}</var>:<var data-tooltip=\"%{helper.name}\">%"
-"{helper.val}</var>}}"
+"<var>IPv6</var>:<var>IPv6</var>}:<var>IPv4</var>}%{proto?, protocol "
+"%{proto#%{next?, }%{item.types?<var class=\"cbi-tooltip-container\">%{item."
+"name}<span class=\"cbi-tooltip\">ICMP with types %{item.types#%{next?, }"
+"<var>%{item}</var>}</span></var>:<var>%{item.name}</var>}}}%{mark?, mark "
+"<var%{mark.inv? data-tooltip=\"Match fwmarks except %{mark.num}%{mark.mask? "
+"with mask %{mark.mask}}.\":%{mark.mask? data-tooltip=\"Mask fwmark value "
+"with %{mark.mask} before compare.\"}}>%{mark.val}</var>}%{dscp?, DSCP %{dscp."
+"inv?<var data-tooltip=\"Match DSCP classifications except %{dscp.num?:%{dscp."
+"name}}\">%{dscp.val}</var>:<var>%{dscp.val}</var>}}%{helper?, helper "
+"%{helper.inv?<var data-tooltip=\"Match any helper except &quot;%{helper.name}"
+"&quot;\">%{helper.val}</var>:<var data-tooltip=\"%{helper.name}\">%{helper."
+"val}</var>}}"
 msgstr ""
 "%{src?%{dest?Được chuyển tiếp:Đến}:Ra} %{ipv6?%{ipv4?<var>IPv4</var> và "
-"<var>IPv6</var>:<var>IPv6</var>}:<var>IPv4</var>}%{proto?, giao thức %"
-"{proto#%{next?, }%{item.types?<var class=\"cbi-tooltip-container\">%"
-"{item.name}<span class=\"cbi-tooltip\">ICMP với các loại %{item.types#%"
-"{next?, }<var>%{item}</var>}</span></var>:<var>%{item.name}</var>}}}%{mark?, "
-"mark <var%{mark.inv? data-tooltip=\"So sánh với các fwmarks ngoại trừ %"
-"{mark.num}%{mark.mask? với mask %{mark.mask}}.\":%{mark.mask? data-"
-"tooltip=\"Mask giá trị fwmark bằng %{mark.mask} trước khi so sánh.\"}}>%"
-"{mark.val}</var>}%{dscp?, DSCP %{dscp.inv?<var data-tooltip=\"So sánh với "
-"các DSCP phân loại ngoại trừ %{dscp.num?:%{dscp.name}}\">%{dscp.val}</var>:"
-"<var>%{dscp.val}</var>}}%{helper?, helper %{helper.inv?<var data-"
-"tooltip=\"So sánh với bất kỳ helper nào ngoại trừ &quot;%{helper.name}&quot;"
-"\">%{helper.val}</var>:<var data-tooltip=\"%{helper.name}\">%{helper.val}</"
-"var>}}"
+"<var>IPv6</var>:<var>IPv6</var>}:<var>IPv4</var>}%{proto?, giao thức "
+"%{proto#%{next?, }%{item.types?<var class=\"cbi-tooltip-container\">%{item."
+"name}<span class=\"cbi-tooltip\">ICMP với các loại %{item.types#%{next?, }"
+"<var>%{item}</var>}</span></var>:<var>%{item.name}</var>}}}%{mark?, mark "
+"<var%{mark.inv? data-tooltip=\"So sánh với các fwmarks ngoại trừ %{mark."
+"num}%{mark.mask? với mask %{mark.mask}}.\":%{mark.mask? data-tooltip=\"Mask "
+"giá trị fwmark bằng %{mark.mask} trước khi so sánh.\"}}>%{mark.val}</"
+"var>}%{dscp?, DSCP %{dscp.inv?<var data-tooltip=\"So sánh với các DSCP phân "
+"loại ngoại trừ %{dscp.num?:%{dscp.name}}\">%{dscp.val}</var>:<var>%{dscp.val}"
+"</var>}}%{helper?, helper %{helper.inv?<var data-tooltip=\"So sánh với bất "
+"kỳ helper nào ngoại trừ &quot;%{helper.name}&quot;\">%{helper.val}</var>:"
+"<var data-tooltip=\"%{helper.name}\">%{helper.val}</var>}}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:462
 msgid "-- add IP --"
@@ -65,8 +64,8 @@ msgstr "1024"
 msgid ""
 "<var data-tooltip=\"ACCEPT\">Accept</var> %{src?%{dest?forward:input}:output}"
 msgstr ""
-"<var data-tooltip=\"ACCEPT\">Chấp nhận</var> %{src?%{dest?"
-"forward:input}:output}"
+"<var data-tooltip=\"ACCEPT\">Chấp nhận</var> %{src?%{dest?forward:input}:"
+"output}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:93
 msgid "<var data-tooltip=\"ACCEPT\">Prevent source rewrite</var>"
@@ -74,11 +73,11 @@ msgstr "<var data-tooltip=\"ACCEPT\">Ngăn chặn viết lại nguồn</var>"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:85
 msgid ""
-"<var data-tooltip=\"DNAT\">Forward</var> to %{dest}%{dest_ip? IP <var>%"
-"{dest_ip}</var>}%{dest_port? port <var>%{dest_port}</var>}"
+"<var data-tooltip=\"DNAT\">Forward</var> to %{dest}%{dest_ip? IP "
+"<var>%{dest_ip}</var>}%{dest_port? port <var>%{dest_port}</var>}"
 msgstr ""
-"<var data-tooltip=\"DNAT\">Chuyển hướng</var> to %{dest}%{dest_ip? IP <var>%"
-"{dest_ip}</var>}%{dest_port? cổng<var>%{dest_port}</var>}"
+"<var data-tooltip=\"DNAT\">Chuyển hướng</var> to %{dest}%{dest_ip? IP "
+"<var>%{dest_ip}</var>}%{dest_port? cổng<var>%{dest_port}</var>}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:115
 msgid ""
@@ -95,16 +94,16 @@ msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:127
 msgid ""
-"<var data-tooltip=\"HELPER\">Assign conntrack</var> helper <var%"
-"{helper_name? data-tooltip=\"%{helper_name}\"}>%{set_helper}</var>"
+"<var data-tooltip=\"HELPER\">Assign conntrack</var> helper "
+"<var%{helper_name? data-tooltip=\"%{helper_name}\"}>%{set_helper}</var>"
 msgstr ""
 "<var data-tooltip=\"HELPER\">Gán conntrack</var> trợ giúp<var%{helper_name? "
 "data-tooltip=\"%{helper_name}\"}>%{set_helper}</var>"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:130
 msgid ""
-"<var data-tooltip=\"MARK\">%{set_mark?Assign:XOR}</var> firewall mark <var>%"
-"{set_mark?:%{set_xmark}}</var>"
+"<var data-tooltip=\"MARK\">%{set_mark?Assign:XOR}</var> firewall mark "
+"<var>%{set_mark?:%{set_xmark}}</var>"
 msgstr ""
 "<var data-tooltip=\"MARK\">%{set_mark?Gán:XOR}</var> đánh dấu trường "
 "lửa<var>%{set_mark?:%{set_xmark}}</var>"
@@ -115,11 +114,11 @@ msgstr "<var data-tooltip=\"MASQUERADE\">Tự động viết lại</var> IP ngu�
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:124
 msgid ""
-"<var data-tooltip=\"NOTRACK\">Do not track</var> %{src?%{dest?"
-"forward:input}:output}"
+"<var data-tooltip=\"NOTRACK\">Do not track</var> %{src?%{dest?forward:input}:"
+"output}"
 msgstr ""
-"<var data-tooltip=\"NOTRACK\">Không theo dõi</var> %{src?%{dest?"
-"forward:input}:output}"
+"<var data-tooltip=\"NOTRACK\">Không theo dõi</var> %{src?%{dest?forward:"
+"input}:output}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:121
 msgid ""
@@ -152,7 +151,7 @@ msgstr "ACCEPT - Vô hiệu hóa viết lại địa chỉ"
 msgid "Action"
 msgstr "Hành động"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:322
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone destination "
 "traffic, e.g. <code>-p tcp --dport 443</code> to only match outbound HTTPS "
@@ -161,7 +160,7 @@ msgstr ""
 "Các đối số thô <em>iptables</em> bổ sung để phân loại lưu lượng đích vùng, "
 "ví dụ: <code>-p tcp --dport 443</code> để chỉ khớp lưu lượng HTTPS đi ra."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:322
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:312
 msgid ""
 "Additional raw <em>iptables</em> arguments to classify zone source traffic, "
 "e.g. <code>-p tcp --sport 443</code> to only match inbound HTTPS traffic."
@@ -182,19 +181,19 @@ msgstr "Họ địa chỉ, địa chỉ nguồn, địa chỉ đích, địa ch�
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:160
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:182
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:181
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:113
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:101
 msgid "Advanced Settings"
 msgstr "Cài đặt Nâng cao"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:281
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:271
 msgid "Allow \"invalid\" traffic"
 msgstr "Cho phép lưu lượng \"không hợp lệ\""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:395
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:385
 msgid "Allow forward from <em>source zones</em>:"
 msgstr "Cho phép tiến về từ <em>vùng nguồn</em>:"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:354
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:344
 msgid "Allow forward to <em>destination zones</em>:"
 msgstr "Cho phép tiến về đến <em>vùng đích</em>:"
 
@@ -202,8 +201,8 @@ msgstr "Cho phép tiến về đến <em>vùng đích</em>:"
 msgid "Any"
 msgstr "Bất kỳ"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:482
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:498
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:483
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:499
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:353
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:369
 msgid "Any day"
@@ -223,15 +222,15 @@ msgstr ""
 msgid "Apply the given DSCP class or value to established connections."
 msgstr "Áp dụng lớp hoặc giá trị DSCP đã cho cho các kết nối đã thiết lập."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:434
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
 msgid "Assign the specified connection tracking helper to matched traffic."
 msgstr "Gán trình theo dõi kết nối đã chỉ định cho lưu lượng khớp."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:284
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:274
 msgid "Automatic helper assignment"
 msgstr "Gán tự động trình theo dõi kết nối"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:284
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:274
 msgid ""
 "Automatically assign conntrack helpers based on traffic protocol and port"
 msgstr ""
@@ -242,11 +241,11 @@ msgstr ""
 msgid "Comment"
 msgstr "Bình luận"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:114
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:102
 msgid "Conntrack Settings"
 msgstr "Cài đặt Conntrack"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:288
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:278
 msgid "Conntrack helpers"
 msgstr "Trình theo dõi kết nối"
 
@@ -262,15 +261,15 @@ msgstr "Tiếp tục"
 msgid "Counters"
 msgstr "Bộ đếm"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:229
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:233
 msgid "Covered devices"
 msgstr "Thiết bị được bao phủ"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:182
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:186
 msgid "Covered networks"
 msgstr "Mạng được bao phủ"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:234
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:238
 msgid "Covered subnets"
 msgstr "Mạng con được bao phủ"
 
@@ -280,15 +279,12 @@ msgstr "Quy tắc Tùy chỉnh"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/custom.js:26
 msgid ""
-"Custom rules allow you to execute arbitrary iptables commands which are not "
-"otherwise covered by the firewall framework. The commands are executed after "
-"each firewall restart, right after the default ruleset has been loaded."
+"Custom rules allow you to define custom firewall rules which are not "
+"otherwise covered by the firewall framework. On firewall4 systems, these "
+"rules must use nftables syntax."
 msgstr ""
-"Quy tắc tùy chỉnh cho phép bạn thực thi các lệnh iptables tùy ý mà không "
-"được bao phủ bởi khung tường lửa. Các lệnh được thực thi sau mỗi lần khởi "
-"động lại tường lửa, ngay sau khi tập luật mặc định đã được tải."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:416
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:417
 msgid "DSCP classification"
 msgstr "Phân loại DSCP"
 
@@ -318,7 +314,7 @@ msgstr "Vùng điểm đến"
 msgid "Device name"
 msgstr "Tên thiết bị"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:281
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:271
 msgid ""
 "Do not install extra rules to reject forwarded traffic with conntrack state "
 "<em>invalid</em>. This may be required for complex asymmetric route setups."
@@ -327,7 +323,7 @@ msgstr ""
 "thái conntrack <em>invalid</em>. Điều này có thể cần thiết cho các thiết lập "
 "tuyến đường không đối xứng phức tạp."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:57
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:45
 msgid "Drop invalid packets"
 msgstr "Bỏ qua nhưng gói không hợp lý"
 
@@ -346,13 +342,13 @@ msgid "Enable SYN-flood protection"
 msgstr "Kích hoạt bảo vệ SYN-flood"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:346
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:464
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:339
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:294
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:284
 msgid "Enable logging"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:167
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:158
 msgid ""
 "Enable network address and port translation IPv4 (NAT4 or NAPT4) for "
 "outbound traffic on this zone. This is typically enabled on the <em>wan</em> "
@@ -362,7 +358,7 @@ msgstr ""
 "ngoài trên vùng này. Thông thường, điều này được kích hoạt trên vùng "
 "<em>wan</em>."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:241
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:171
 msgid ""
 "Enable network address and port translation IPv6 (NAT6 or NAPT6) for "
 "outbound traffic on this zone."
@@ -382,7 +378,7 @@ msgstr "Bật theo dõi số gói tin và số byte cho bộ sưu tập."
 msgid "Expecting: %s"
 msgstr "Đang chờ: %s"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:288
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:278
 msgid "Explicitly choses allowed connection tracking helpers for zone traffic"
 msgstr ""
 "Chọn rõ ràng các trình hỗ trợ theo dõi kết nối được phép cho giao thông vùng"
@@ -396,20 +392,20 @@ msgid "External port"
 msgstr "External port"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:355
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:473
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:474
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:343
 msgid "Extra arguments"
 msgstr "Các tham số bổ sung"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:332
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:322
 msgid "Extra destination arguments"
 msgstr "Các tham số đích bổ sung"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:115
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:103
 msgid "Extra iptables arguments"
 msgstr "Các tham số iptables bổ sung"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:322
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:312
 msgid "Extra source arguments"
 msgstr "Các tham số nguồn bổ sung"
 
@@ -449,20 +445,21 @@ msgstr "Tường lửa - Cài đặt Vùng"
 msgid "Firewall configuration migration"
 msgstr "Di cư cấu hình tường lửa"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:80
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:68
 msgid "Flow offloading type"
 msgstr "Kiểu offloading flow"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:62
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:50
+msgctxt "firewall forward"
 msgid "Forward"
-msgstr "Forward"
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:34
 msgid ""
 "Forwarded %{ipv6?%{ipv4?<var>IPv4</var> and <var>IPv6</var>:<var>IPv6</var>}:"
 "<var>IPv4</var>}%{proto?, protocol %{proto#%{next?, }<var>%{item.name}</"
-"var>}}%{mark?, mark <var%{mark.inv? data-tooltip=\"Match fwmarks except %"
-"{mark.num}%{mark.mask? with mask %{mark.mask}}.\":%{mark.mask? data-"
+"var>}}%{mark?, mark <var%{mark.inv? data-tooltip=\"Match fwmarks except "
+"%{mark.num}%{mark.mask? with mask %{mark.mask}}.\":%{mark.mask? data-"
 "tooltip=\"Mask fwmark value with %{mark.mask} before compare.\"}}>%{mark.val}"
 "</var>}"
 msgstr ""
@@ -470,71 +467,71 @@ msgstr ""
 "var>}:<var>IPv4</var>}%{proto?, giao thức %{proto#%{next?, }<var>%{item.name}"
 "</var>}}%{mark?, đánh dấu <var%{mark.inv? data-tooltip=\"Khớp các fwmark trừ "
 "%{mark.num}%{mark.mask? với mặt nạ %{mark.mask}}.\":%{mark.mask? data-"
-"tooltip=\"Mặt nạ giá trị fwmark với %{mark.mask} trước khi so sánh.\"}}>%"
-"{mark.val}</var>}"
+"tooltip=\"Mặt nạ giá trị fwmark với %{mark.mask} trước khi so sánh.\"}}"
+">%{mark.val}</var>}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:488
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:489
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:359
 msgid "Friday"
 msgstr "Thứ 6"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:45
 msgid ""
-"From %{src}%{src_device?, interface <var>%{src_device}</var>}%{src_ip?, IP %"
-"{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Match IP addresses except %"
-"{item.val}.\"}>%{item.ival}</var>}}%{src_port?, port %{src_port#%{next?, }"
-"<var%{item.inv? data-tooltip=\"Match ports except %{item.val}.\"}>%"
-"{item.ival}</var>}}"
+"From %{src}%{src_device?, interface <var>%{src_device}</var>}%{src_ip?, IP "
+"%{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Match IP addresses except "
+"%{item.val}.\"}>%{item.ival}</var>}}%{src_port?, port %{src_port#%{next?, }"
+"<var%{item.inv? data-tooltip=\"Match ports except %{item.val}.\"}>%{item."
+"ival}</var>}}"
 msgstr ""
-"Từ %{src}%{src_device?, giao diện <var>%{src_device}</var>}%{src_ip?, IP %"
-"{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Khớp địa chỉ IP trừ %"
-"{item.val}.\"}>%{item.ival}</var>}}%{src_port?, cổng %{src_port#%{next?, }"
+"Từ %{src}%{src_device?, giao diện <var>%{src_device}</var>}%{src_ip?, IP "
+"%{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Khớp địa chỉ IP trừ %{item."
+"val}.\"}>%{item.ival}</var>}}%{src_port?, cổng %{src_port#%{next?, }"
 "<var%{item.inv? data-tooltip=\"Khớp cổng trừ %{item.val}.\"}>%{item.ival}</"
 "var>}}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:64
 msgid ""
-"From %{src}%{src_device?, interface <var>%{src_device}</var>}%{src_ip?, IP %"
-"{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Match IP addresses except %"
-"{item.val}.\"}>%{item.ival}</var>}}%{src_port?, port %{src_port#%{next?, }"
-"<var%{item.inv? data-tooltip=\"Match ports except %{item.val}.\"}>%"
-"{item.ival}</var>}}%{src_mac?, MAC %{src_mac#%{next?, }<var%{item.inv? data-"
-"tooltip=\"Match MACs except %{item.val}%{item.hint.name? a.k.a. %"
-"{item.hint.name}}.\":%{item.hint.name? data-tooltip=\"%{item.hint.name}\"}}>%"
-"{item.ival}</var>}}"
+"From %{src}%{src_device?, interface <var>%{src_device}</var>}%{src_ip?, IP "
+"%{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Match IP addresses except "
+"%{item.val}.\"}>%{item.ival}</var>}}%{src_port?, port %{src_port#%{next?, }"
+"<var%{item.inv? data-tooltip=\"Match ports except %{item.val}.\"}>%{item."
+"ival}</var>}}%{src_mac?, MAC %{src_mac#%{next?, }<var%{item.inv? data-"
+"tooltip=\"Match MACs except %{item.val}%{item.hint.name? a.k.a. %{item.hint."
+"name}}.\":%{item.hint.name? data-tooltip=\"%{item.hint.name}\"}}>%{item.ival}"
+"</var>}}"
 msgstr ""
-"Từ %{src}%{src_device?, interface <var>%{src_device}</var>}%{src_ip?, IP %"
-"{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Địa chỉ IP khớp loại trừ %"
-"{item.val}.\"}>%{item.ival}</var>}}%{src_port?, port %{src_port#%{next?, }"
-"<var%{item.inv? data-tooltip=\"Cổng khớp loại trừ %{item.val}.\"}>%"
-"{item.ival}</var>}}%{src_mac?, MAC %{src_mac#%{next?, }<var%{item.inv? data-"
-"tooltip=\"MAC khớp loại trừ %{item.val}%{item.hint.name? được biết như là. %"
-"{item.hint.name}}.\":%{item.hint.name? data-tooltip=\"%{item.hint.name}\"}}>%"
-"{item.ival}</var>}}"
+"Từ %{src}%{src_device?, interface <var>%{src_device}</var>}%{src_ip?, IP "
+"%{src_ip#%{next?, }<var%{item.inv? data-tooltip=\"Địa chỉ IP khớp loại trừ "
+"%{item.val}.\"}>%{item.ival}</var>}}%{src_port?, port %{src_port#%{next?, }"
+"<var%{item.inv? data-tooltip=\"Cổng khớp loại trừ %{item.val}.\"}>%{item."
+"ival}</var>}}%{src_mac?, MAC %{src_mac#%{next?, }<var%{item.inv? data-"
+"tooltip=\"MAC khớp loại trừ %{item.val}%{item.hint.name? được biết như là. "
+"%{item.hint.name}}.\":%{item.hint.name? data-tooltip=\"%{item.hint.name}\"}}"
+">%{item.ival}</var>}}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:52
 msgid ""
 "From %{src}%{src_ip?, IP %{src_ip#%{next?, }<var%{item.inv? data-"
-"tooltip=\"Match IP addresses except %{item.val}.\"}>%{item.ival}</var>}}%"
-"{src_port?, port %{src_port#%{next?, }<var%{item.inv? data-tooltip=\"Match "
-"ports except %{item.val}.\"}>%{item.ival}</var>}}%{src_mac?, MAC %{src_mac#%"
-"{next?, }<var%{item.inv? data-tooltip=\"Match MACs except %{item.val}%"
-"{item.hint.name? a.k.a. %{item.hint.name}}.\":%{item.hint.name? data-"
-"tooltip=\"%{item.hint.name}\"}}>%{item.ival}</var>}}"
+"tooltip=\"Match IP addresses except %{item.val}.\"}>%{item.ival}</"
+"var>}}%{src_port?, port %{src_port#%{next?, }<var%{item.inv? data-"
+"tooltip=\"Match ports except %{item.val}.\"}>%{item.ival}</var>}}%{src_mac?, "
+"MAC %{src_mac#%{next?, }<var%{item.inv? data-tooltip=\"Match MACs except "
+"%{item.val}%{item.hint.name? a.k.a. %{item.hint.name}}.\":%{item.hint.name? "
+"data-tooltip=\"%{item.hint.name}\"}}>%{item.ival}</var>}}"
 msgstr ""
 "Từ %{src}%{src_ip?, Địa chỉ IP %{src_ip#%{next?, }<var%{item.inv? data-"
-"tooltip=\"Khớp địa chỉ IP trừ khi %{item.val}.\"}>%{item.ival}</var>}}%"
-"{src_port?, cổng %{src_port#%{next?, }<var%{item.inv? data-tooltip=\"Khớp "
-"cổng trừ khi %{item.val}.\"}>%{item.ival}</var>}}%{src_mac?, MAC %{src_mac#%"
-"{next?, }<var%{item.inv? data-tooltip=\"Khớp MAC trừ khi %{item.val}%"
-"{item.hint.name? a.k.a. %{item.hint.name}}.\":%{item.hint.name? data-"
-"tooltip=\"%{item.hint.name}\"}}>%{item.ival}</var>}}"
+"tooltip=\"Khớp địa chỉ IP trừ khi %{item.val}.\"}>%{item.ival}</"
+"var>}}%{src_port?, cổng %{src_port#%{next?, }<var%{item.inv? data-"
+"tooltip=\"Khớp cổng trừ khi %{item.val}.\"}>%{item.ival}</var>}}%{src_mac?, "
+"MAC %{src_mac#%{next?, }<var%{item.inv? data-tooltip=\"Khớp MAC trừ khi "
+"%{item.val}%{item.hint.name? a.k.a. %{item.hint.name}}.\":%{item.hint.name? "
+"data-tooltip=\"%{item.hint.name}\"}}>%{item.ival}</var>}}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:159
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:181
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:180
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:39
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:112
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:100
 #: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:17
 msgid "General Settings"
 msgstr "Các cài đặt chung"
@@ -543,11 +540,11 @@ msgstr "Các cài đặt chung"
 msgid "Grant access to firewall configuration"
 msgstr "Cấp quyền truy cập vào cấu hình tường lửa"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:83
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:71
 msgid "Hardware based offloading for routing with/without NAT."
 msgstr "Sử dụng phần cứng để định tuyến cùng/không cùng với NAT."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:83
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:71
 msgid "Hardware flow offloading"
 msgstr "Offload sử dụng phần cứng"
 
@@ -556,9 +553,12 @@ msgid "IP (range)"
 msgstr "IP (phạm vi)"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:32
-#: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:53
 msgid "IP Sets"
 msgstr "Các bộ IP"
+
+#: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:53
+msgid "IP sets"
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:153
 msgid "IPs/Networks"
@@ -572,7 +572,7 @@ msgstr "IP/Mạng/MAC"
 msgid "IPv4"
 msgstr "IPv4"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:166
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:157
 msgid "IPv4 Masquerading"
 msgstr "Masquerading"
 
@@ -580,14 +580,14 @@ msgstr "Masquerading"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:68
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:275
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:218
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:254
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:244
 msgid "IPv4 and IPv6"
 msgstr "IPv4 và IPv6"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:190
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:276
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:255
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:245
 msgid "IPv4 only"
 msgstr "Chỉ IPv4"
 
@@ -595,14 +595,14 @@ msgstr "Chỉ IPv4"
 msgid "IPv6"
 msgstr "IPv6"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:240
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:170
 msgid "IPv6 Masquerading"
 msgstr "IPv6 Masquerading"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:191
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:277
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:220
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:256
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:246
 msgid "IPv6 only"
 msgstr "Chỉ IPv6"
 
@@ -619,34 +619,35 @@ msgid ""
 "Incoming %{ipv6?%{ipv4?<var>IPv4</var> and <var>IPv6</var>:<var>IPv6</var>}:"
 "<var>IPv4</var>}%{proto?, protocol %{proto#%{next?, }%{item.types?<var "
 "class=\"cbi-tooltip-container\">%{item.name}<span class=\"cbi-tooltip\">ICMP "
-"with types %{item.types#%{next?, }<var>%{item}</var>}</span></var>:<var>%"
-"{item.name}</var>}}}%{mark?, mark <var%{mark.inv? data-tooltip=\"Match "
-"fwmarks except %{mark.num}%{mark.mask? with mask %{mark.mask}}.\":%"
-"{mark.mask? data-tooltip=\"Mask fwmark value with %{mark.mask} before "
-"compare.\"}}>%{mark.val}</var>}%{helper?, helper %{helper.inv?<var data-"
-"tooltip=\"Match any helper except &quot;%{helper.name}&quot;\">%{helper.val}"
-"</var>:<var data-tooltip=\"%{helper.name}\">%{helper.val}</var>}}"
+"with types %{item.types#%{next?, }<var>%{item}</var>}</span></var>:"
+"<var>%{item.name}</var>}}}%{mark?, mark <var%{mark.inv? data-tooltip=\"Match "
+"fwmarks except %{mark.num}%{mark.mask? with mask %{mark.mask}}.\":%{mark."
+"mask? data-tooltip=\"Mask fwmark value with %{mark.mask} before compare.\"}}"
+">%{mark.val}</var>}%{helper?, helper %{helper.inv?<var data-tooltip=\"Match "
+"any helper except &quot;%{helper.name}&quot;\">%{helper.val}</var>:<var data-"
+"tooltip=\"%{helper.name}\">%{helper.val}</var>}}"
 msgstr ""
 "Đầu vào %{ipv6?%{ipv4?<var>IPv4</var> và <var>IPv6</var>:<var>IPv6</var>}:"
 "<var>IPv4</var>}%{proto?, giao thức %{proto#%{next?, }%{item.types?<var "
 "class=\"cbi-tooltip-container\">%{item.name}<span class=\"cbi-tooltip\">ICMP "
-"với các loại %{item.types#%{next?, }<var>%{item}</var>}</span></var>:<var>%"
-"{item.name}</var>}}}%{mark?, đánh dấu <var%{mark.inv? data-tooltip=\"Khớp "
-"fwmark trừ khi %{mark.num}%{mark.mask? với mặt nạ %{mark.mask}}.\":%"
-"{mark.mask? data-tooltip=\"Áp dụng mặt nạ %{mark.mask} lên giá trị fwmark "
-"trước khi so sánh.\"}}>%{mark.val}</var>}%{helper?, trợ giúp %{helper.inv?"
-"<var data-tooltip=\"Khớp bất kỳ trợ giúp nào trừ &quot;%{helper.name}&quot;"
-"\">%{helper.val}</var>:<var data-tooltip=\"%{helper.name}\">%{helper.val}</"
-"var>}}"
+"với các loại %{item.types#%{next?, }<var>%{item}</var>}</span></var>:"
+"<var>%{item.name}</var>}}}%{mark?, đánh dấu <var%{mark.inv? data-"
+"tooltip=\"Khớp fwmark trừ khi %{mark.num}%{mark.mask? với mặt nạ %{mark."
+"mask}}.\":%{mark.mask? data-tooltip=\"Áp dụng mặt nạ %{mark.mask} lên giá "
+"trị fwmark trước khi so sánh.\"}}>%{mark.val}</var>}%{helper?, trợ giúp "
+"%{helper.inv?<var data-tooltip=\"Khớp bất kỳ trợ giúp nào trừ &quot;%{helper."
+"name}&quot;\">%{helper.val}</var>:<var data-tooltip=\"%{helper."
+"name}\">%{helper.val}</var>}}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:181
 msgid "Initial Hash Size"
 msgstr "Kích thước băm Ban đầu"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:60
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:150
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:48
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:138
+msgctxt "firewall input"
 msgid "Input"
-msgstr "Input"
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:290
 msgid "Internal IP address"
@@ -660,7 +661,7 @@ msgstr "Cổng nội bộ"
 msgid "Internal zone"
 msgstr "Vùng nội bộ"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:152
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:140
 msgid "Intra zone forward"
 msgstr ""
 
@@ -677,8 +678,8 @@ msgid "Limit burst"
 msgstr "Số lượng tắt đột ngột"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:349
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:467
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:309
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:468
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:299
 msgid "Limit log messages"
 msgstr "Giới hạn tin nhắn nhật ký"
 
@@ -696,8 +697,8 @@ msgstr ""
 "Giới hạn khớp <var>%{limit.num}</var> gói tin mỗi <var>%{limit.unit}%</"
 "var>{limit.burst? với cú pháp <var>%{limit.burst}</var>}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:174
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:248
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:165
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:178
 msgid "Limited masquerading enabled"
 msgstr "Bật masquerading có giới hạn"
 
@@ -705,12 +706,12 @@ msgstr "Bật masquerading có giới hạn"
 msgid "Limits traffic matching to the specified rate."
 msgstr "Giới hạn khớp lưu lượng với tốc độ được chỉ định."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:294
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:284
 msgid "Log matched packets on the selected tables to syslog."
 msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:346
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:464
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:339
 msgid "Log matched packets to syslog."
 msgstr ""
@@ -723,7 +724,7 @@ msgstr "Địa chỉ IP nguồn Loopback"
 msgid "MASQUERADE - Automatically rewrite to outbound interface IP"
 msgstr "MASQUERADE - Tự động viết lại thành địa chỉ IP giao diện ra"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:179
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:183
 msgid "MSS clamping"
 msgstr "MSS Clamping"
 
@@ -767,7 +768,7 @@ msgstr ""
 "định."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:324
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:441
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:442
 msgid "Match helper"
 msgstr "Khớp trợ giúp"
 
@@ -784,7 +785,7 @@ msgid "Match mark"
 msgstr "Khớp nhãn"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:324
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:441
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:442
 msgid "Match traffic using the specified connection tracking helper."
 msgstr "Khớp lưu lượng sử dụng trình hỗ trợ theo dõi kết nối đã chỉ định."
 
@@ -816,12 +817,12 @@ msgstr ""
 "Số lượng gói ban đầu tối đa để khớp: số này sẽ được nạp lại một lần mỗi khi "
 "không đạt đến giới hạn được chỉ định ở trên, lên tới số này."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:484
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:485
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:355
 msgid "Monday"
 msgstr "Thứ 2"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:494
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:495
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:365
 msgid "Month Days"
 msgstr "Tháng Ngày"
@@ -843,7 +844,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:42
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:204
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:188
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:128
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:116
 msgid "Name"
 msgstr "Tên"
 
@@ -851,11 +852,11 @@ msgstr "Tên"
 msgid "Netmask"
 msgstr "Netmask"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:81
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:69
 msgid "None"
 msgstr "Không có"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:75
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:63
 msgid "Not fully compatible with QoS/SQM."
 msgstr "Không tương thích hoàn toàn với QoS/SQM."
 
@@ -887,10 +888,11 @@ msgstr "Thiết bị đầu cuối ra"
 msgid "Outbound zone"
 msgstr "Vùng đầu cuối ra"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:61
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:151
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:49
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:139
+msgctxt "firewall output"
 msgid "Output"
-msgstr "Output"
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:76
 msgid "Packet Field Match"
@@ -909,12 +911,12 @@ msgstr ""
 "<br />*Ghi chú: loại dữ liệu <code>set</code> không được hỗ trợ trong fw4."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:356
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:474
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:475
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:344
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "Truyền các đối số bổ sung cho iptables. Sử dụng cẩn thận!"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:319
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:309
 msgid ""
 "Passing raw iptables arguments to source and destination traffic "
 "classification rules allows to match packets based on other criteria than "
@@ -972,22 +974,22 @@ msgstr "Tham chiếu tới tập hợp ngoại vi"
 msgid "Reflection zones"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:83
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:71
 msgid "Requires hardware NAT support."
 msgstr "Yêu cầu phần cứng có hỗ trợ NAT."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:270
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:260
 msgid "Restrict Masquerading to given destination subnets"
 msgstr "Hạn chế Masquerading cho các mạng con đích được chỉ định"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:259
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:249
 msgid "Restrict Masquerading to given source subnets"
 msgstr "Hạn chế Masquerading cho các mạng con nguồn được chỉ định"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:186
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:272
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:215
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:253
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:243
 msgid "Restrict to address family"
 msgstr "Giới hạn địa chỉ gia đình"
 
@@ -1007,7 +1009,7 @@ msgstr "Ghi đè lưu lượng khớp với cổng nguồn hoặc dải cổng �
 msgid "Rewrite port"
 msgstr "Ghi đè cổng"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:74
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:62
 msgid "Routing/NAT Offloading"
 msgstr "Offload định tuyến/NAT"
 
@@ -1015,7 +1017,7 @@ msgstr "Offload định tuyến/NAT"
 msgid "SNAT - Rewrite to specific source IP or port"
 msgstr "SNAT - Ghi đè lên địa chỉ IP hoặc cổng nguồn cụ thể"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:489
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:490
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:360
 msgid "Saturday"
 msgstr "Thứ 7"
@@ -1033,11 +1035,11 @@ msgstr ""
 "là value[/mask]. Nếu có chỉ định mặt nạ, chỉ những bit được đặt trong mặt nạ "
 "mới được thay đổi."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:82
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:70
 msgid "Software based offloading for routing/NAT."
 msgstr "Sử dụng phần mềm để offload định tuyến/NAT."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:82
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:70
 msgid "Software flow offloading"
 msgstr "Offload sử dụng phần mềm"
 
@@ -1082,22 +1084,22 @@ msgstr ""
 "Xác định xem có sử dụng địa chỉ IP ngoại vi hoặc nội bộ cho lưu lượng phản "
 "chiếu hay không."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:513
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:514
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:384
 msgid "Start Date (yyyy-mm-dd)"
 msgstr "Ngày bắt đầu (yyyy-mm-dd)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:505
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:506
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:376
 msgid "Start Time (hh:mm:ss)"
 msgstr "Thời gian bắt đầu (hh:mm:ss)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:517
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:518
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:388
 msgid "Stop Date (yyyy-mm-dd)"
 msgstr "Ngày kết thúc (yyyy-mm-dd)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:509
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:510
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:380
 msgid "Stop Time (hh:mm:ss)"
 msgstr "Thời gian kết thúc (hh:mm:ss)"
@@ -1106,7 +1108,7 @@ msgstr "Thời gian kết thúc (hh:mm:ss)"
 msgid "Storage Method"
 msgstr "Phương pháp lưu trữ"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:483
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:484
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:354
 msgid "Sunday"
 msgstr "Chủ Nhật"
@@ -1126,8 +1128,8 @@ msgstr ""
 "The firewall tạo zones trên giao diện mạng lưới để điều triển sự dòng lưu "
 "thông của mạng."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:225
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:350
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:229
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:340
 msgid ""
 "The options below control the forwarding policies between this zone (%s) and "
 "other zones. <em>Destination zones</em> cover forwarded traffic "
@@ -1143,7 +1145,7 @@ msgstr ""
 "tiếp là <em>một chiều</em>, ví dụ: một chuyển tiếp từ lan đến wan <em>không</"
 "em> bao gồm quyền chuyển tiếp từ wan đến lan."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:124
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:112
 msgid ""
 "This section defines common properties of %q. The <em>input</em> and "
 "<em>output</em> options set the default policies for traffic entering and "
@@ -1157,7 +1159,7 @@ msgstr ""
 "chuyển tiếp giữa các mạng khác nhau trong vùng. <em>Mạng bao gồm</em> chỉ "
 "định các mạng có sẵn là thành viên của vùng này."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:487
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:488
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:358
 msgid "Thursday"
 msgstr "Thứ 5"
@@ -1167,7 +1169,7 @@ msgstr "Thứ 5"
 msgid "Time Restrictions"
 msgstr "Hạn chế Thời gian"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:521
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:522
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:392
 msgid "Time in UTC"
 msgstr "Thời gian theo UTC"
@@ -1185,42 +1187,42 @@ msgid ""
 "To %{dest}%{dest_device?, interface <var>%{dest_device}</var>}%{dest_ip?, IP "
 "%{dest_ip#%{next?, }<var%{item.inv? data-tooltip=\"Match IP addresses except "
 "%{item.val}.\"}>%{item.ival}</var>}}%{dest_port?, port %{dest_port#%{next?, }"
-"<var%{item.inv? data-tooltip=\"Match ports except %{item.val}.\"}>%"
-"{item.ival}</var>}}"
+"<var%{item.inv? data-tooltip=\"Match ports except %{item.val}.\"}>%{item."
+"ival}</var>}}"
 msgstr ""
 "Đến %{dest}%{dest_device?, giao diện <var>%{dest_device}</var>}%{dest_ip?, "
-"IP %{dest_ip#%{next?, }<var%{item.inv? data-tooltip=\"Khớp địa chỉ IP trừ %"
-"{item.val}.\"}>%{item.ival}</var>}}%{dest_port?, cổng %{dest_port#%{next?, }"
+"IP %{dest_ip#%{next?, }<var%{item.inv? data-tooltip=\"Khớp địa chỉ IP trừ "
+"%{item.val}.\"}>%{item.ival}</var>}}%{dest_port?, cổng %{dest_port#%{next?, }"
 "<var%{item.inv? data-tooltip=\"Khớp cổng trừ %{item.val}.\"}>%{item.ival}</"
 "var>}}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:55
 msgid ""
-"To %{dest}%{dest_device?, via interface <var>%{dest_device}</var>}%"
-"{dest_ip?, IP %{dest_ip#%{next?, }<var%{item.inv? data-tooltip=\"Match IP "
-"addresses except %{item.val}.\"}>%{item.ival}</var>}}%{dest_port?, port %"
-"{dest_port#%{next?, }<var%{item.inv? data-tooltip=\"Match ports except %"
-"{item.val}.\"}>%{item.ival}</var>}}"
+"To %{dest}%{dest_device?, via interface <var>%{dest_device}</"
+"var>}%{dest_ip?, IP %{dest_ip#%{next?, }<var%{item.inv? data-tooltip=\"Match "
+"IP addresses except %{item.val}.\"}>%{item.ival}</var>}}%{dest_port?, port "
+"%{dest_port#%{next?, }<var%{item.inv? data-tooltip=\"Match ports except "
+"%{item.val}.\"}>%{item.ival}</var>}}"
 msgstr ""
-"Đến %{dest}%{dest_device?, qua giao diện <var>%{dest_device}</var>}%"
-"{dest_ip?, IP %{dest_ip#%{next?, }<var%{item.inv? data-tooltip=\"Khớp địa "
-"chỉ IP trừ %{item.val}.\"}>%{item.ival}</var>}}%{dest_port?, cổng %"
-"{dest_port#%{next?, }<var%{item.inv? data-tooltip=\"Khớp cổng trừ %"
-"{item.val}.\"}>%{item.ival}</var>}}"
+"Đến %{dest}%{dest_device?, qua giao diện <var>%{dest_device}</"
+"var>}%{dest_ip?, IP %{dest_ip#%{next?, }<var%{item.inv? data-tooltip=\"Khớp "
+"địa chỉ IP trừ %{item.val}.\"}>%{item.ival}</var>}}%{dest_port?, cổng "
+"%{dest_port#%{next?, }<var%{item.inv? data-tooltip=\"Khớp cổng trừ %{item."
+"val}.\"}>%{item.ival}</var>}}"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:61
 msgid ""
 "To %{dest}%{dest_ip?, IP %{dest_ip#%{next?, }<var%{item.inv? data-"
-"tooltip=\"Match IP addresses except %{item.val}.\"}>%{item.ival}</var>}}%"
-"{dest_port?, port %{dest_port#%{next?, }<var%{item.inv? data-tooltip=\"Match "
-"ports except %{item.val}.\"}>%{item.ival}</var>}}"
+"tooltip=\"Match IP addresses except %{item.val}.\"}>%{item.ival}</"
+"var>}}%{dest_port?, port %{dest_port#%{next?, }<var%{item.inv? data-"
+"tooltip=\"Match ports except %{item.val}.\"}>%{item.ival}</var>}}"
 msgstr ""
 "Đến %{dest}%{dest_ip?, IP %{dest_ip#%{next?, }<var%{item.inv? data-"
-"tooltip=\"Khớp địa chỉ IP trừ %{item.val}.\"}>%{item.ival}</var>}}%"
-"{dest_port?, cổng %{dest_port#%{next?, }<var%{item.inv? data-tooltip=\"Khớp "
-"cổng trừ %{item.val}.\"}>%{item.ival}</var>}}"
+"tooltip=\"Khớp địa chỉ IP trừ %{item.val}.\"}>%{item.ival}</"
+"var>}}%{dest_port?, cổng %{dest_port#%{next?, }<var%{item.inv? data-"
+"tooltip=\"Khớp cổng trừ %{item.val}.\"}>%{item.ival}</var>}}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:434
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
 msgid "Tracking helper"
 msgstr "Bộ trợ giúp theo dõi"
 
@@ -1239,7 +1241,7 @@ msgstr ""
 "khác nhau, ví dụ như từ chối giao thông giữa các máy chủ nhất định hoặc mở "
 "cổng WAN trên bộ định tuyến."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:485
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:356
 msgid "Tuesday"
 msgstr "Thứ 3"
@@ -1257,7 +1259,7 @@ msgstr ""
 "viễn.<br />Tối đa: 2147483 giây."
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:339
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:456
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:457
 msgid "Unknown or not installed conntrack helper \"%s\""
 msgstr "Trợ giúp conntrack không xác định hoặc chưa cài đặt \"%s\""
 
@@ -1276,7 +1278,7 @@ msgstr "Chuyển tiếp không có tên"
 msgid "Unnamed rule"
 msgstr "Quy tắc không có tên"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:129
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:117
 msgid "Unnamed zone"
 msgstr "Vùng không có tên"
 
@@ -1308,7 +1310,7 @@ msgstr "Sử dụng địa chỉ IP nội bộ"
 msgid "Use ipset"
 msgstr "Sử dụng ipset"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:229
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:233
 msgid ""
 "Use this option to classify zone traffic by raw, non-<em>uci</em> managed "
 "network devices."
@@ -1316,7 +1318,7 @@ msgstr ""
 "Sử dụng tùy chọn này để phân loại lưu lượng vùng theo thiết bị mạng thô, "
 "không được quản lý bởi <em>uci</em>."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:234
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:238
 msgid ""
 "Use this option to classify zone traffic by source or destination subnet "
 "instead of networks or devices."
@@ -1328,17 +1330,17 @@ msgstr ""
 msgid "Valid firewall mark required"
 msgstr "Yêu cầu dấu tường lửa hợp lệ"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:487
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:357
 msgid "Wednesday"
 msgstr "Thứ 4"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:478
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:479
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:349
 msgid "Week Days"
 msgstr "Ngày trong tuần"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:415
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:416
 msgid "XOR firewall mark"
 msgstr "Dấu tường lửa XOR"
 
@@ -1354,11 +1356,11 @@ msgstr "Thiết bị của bạn không chạy firewall4."
 msgid "Your device runs firewall4."
 msgstr "Thiết bị của bạn chạy firewall4."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:142
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:130
 msgid "Zone ⇒ Forwards"
 msgstr "Vùng ⇒ Chuyển tiếp"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:99
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:87
 msgid "Zones"
 msgstr "Các vùng"
 
@@ -1368,9 +1370,9 @@ msgid ""
 "destination zone is used."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:410
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:68
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:158
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:411
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:56
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:146
 msgid "accept"
 msgstr "chấp nhận"
 
@@ -1382,8 +1384,8 @@ msgstr "chấp nhận"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:326
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:387
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:402
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:436
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:443
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:437
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:444
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:265
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:281
 msgid "any"
@@ -1402,11 +1404,11 @@ msgstr "bất kỳ vùng nào"
 msgid "any/all"
 msgstr "bất kỳ/tất cả"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:414
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:415
 msgid "apply firewall mark"
 msgstr "áp dụng dấu tường lửa"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:413
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:414
 msgid "assign conntrack helper"
 msgstr "gán trợ giúp conntrack"
 
@@ -1453,13 +1455,13 @@ msgstr "*dest_set: ipset đích*"
 msgid "do not rewrite"
 msgstr "không viết lại"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:412
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:413
 msgid "don't track"
 msgstr "không theo dõi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:409
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:67
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:157
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:410
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:55
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:145
 msgid "drop"
 msgstr "drop"
 
@@ -1526,9 +1528,9 @@ msgstr "net: (sub)net"
 msgid "port: Port"
 msgstr "port: Cổng"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:411
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:66
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:156
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:412
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:54
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:144
 msgid "reject"
 msgstr "Không chấp nhận"
 
@@ -1571,9 +1573,9 @@ msgstr "src_port: Cổng nguồn"
 msgid "this device"
 msgstr "thiết bị này"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:123
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:224
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:349
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:111
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:228
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:339
 msgid "this new zone"
 msgstr "vùng mới này"
 
@@ -1593,3 +1595,22 @@ msgstr "lên đến 65536 mục."
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:338
 msgid "valid firewall mark"
 msgstr "dấu tường lửa hợp lệ"
+
+#~ msgid ""
+#~ "Custom rules allow you to execute arbitrary iptables commands which are "
+#~ "not otherwise covered by the firewall framework. The commands are "
+#~ "executed after each firewall restart, right after the default ruleset has "
+#~ "been loaded."
+#~ msgstr ""
+#~ "Quy tắc tùy chỉnh cho phép bạn thực thi các lệnh iptables tùy ý mà không "
+#~ "được bao phủ bởi khung tường lửa. Các lệnh được thực thi sau mỗi lần khởi "
+#~ "động lại tường lửa, ngay sau khi tập luật mặc định đã được tải."
+
+#~ msgid "Forward"
+#~ msgstr "Forward"
+
+#~ msgid "Input"
+#~ msgstr "Input"
+
+#~ msgid "Output"
+#~ msgstr "Output"

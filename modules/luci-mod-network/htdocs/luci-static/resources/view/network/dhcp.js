@@ -285,9 +285,9 @@ return view.extend({
 								host = lease.hostname;
 
 							const columns = [
-								host || '-',
+								'%h'.format(host || '-'),
 								lease.ipaddr,
-								vendor ? lease.macaddr + vendor : lease.macaddr,
+								'%h'.format(vendor ? lease.macaddr + vendor : lease.macaddr),
 								lease.duid || '-',
 								lease.iaid || '-',
 								exp
@@ -324,7 +324,7 @@ return view.extend({
 								host = name;
 
 							const columns = [
-								host || '-',
+								'%h'.format(host || '-'),
 								lease.ip6addrs ? lease.ip6addrs.join('<br />') : lease.ip6addr,
 								lease.duid,
 								lease.iaid,

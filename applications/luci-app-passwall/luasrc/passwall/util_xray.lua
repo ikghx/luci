@@ -284,10 +284,18 @@ function gen_outbound(flag, node, tag, proxy_table)
 							local o = {
 								type = "salamander",
 								settings = node.hysteria2_obfs_password and {
-									password = node.hysteria2_obfs_password,
-									packetSize = node.hysteria2_obfs_type == "gecko" and "512-1200" or nil
+									password = node.hysteria2_obfs_password
 								} or nil
 							}
+							if node.hysteria2_obfs_type == "gecko" then
+								local min = tonumber(node.hysteria2_obfs_MinPacketSize) or 512
+								local max = tonumber(node.hysteria2_obfs_MaxPacketSize) or 1200
+								if min <= 0 or min > max or max > 2048 then
+									min = 512
+									max = 1200
+								end
+								o.settings.packetSize = min .. "-" .. max
+							end
 							udp[#udp+1] = o
 						end
 						if node.hysteria2_realms then
@@ -388,6 +396,14 @@ function gen_outbound(flag, node, tag, proxy_table)
 				level = 0
 			}
 		}
+
+		if node.protocol == "hysteria" and node.hysteria2_realms then
+			local realm = api.parse_realm_uri(node.hysteria2_realm_url)
+			if realm then
+				result.settings.address = realm.address
+				result.settings.port = realm.port
+			end
+		end
 
 		if node.protocol == "wireguard" then
 			result.settings.noKernelTun = true
@@ -716,10 +732,18 @@ function gen_config_server(node)
 								local o = {
 									type = "salamander",
 									settings = node.hysteria2_obfs_password and {
-										password = node.hysteria2_obfs_password,
-										packetSize = node.hysteria2_obfs_type == "gecko" and "512-1200" or nil
+										password = node.hysteria2_obfs_password
 									} or nil
 								}
+								if node.hysteria2_obfs_type == "gecko" then
+									local min = tonumber(node.hysteria2_obfs_MinPacketSize) or 512
+									local max = tonumber(node.hysteria2_obfs_MaxPacketSize) or 1200
+									if min <= 0 or min > max or max > 2048 then
+										min = 512
+										max = 1200
+									end
+									o.settings.packetSize = min .. "-" .. max
+								end
 								udp[#udp+1] = o
 							end
 							if node.hysteria2_realms then

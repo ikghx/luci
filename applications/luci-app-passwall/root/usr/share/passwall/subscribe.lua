@@ -597,7 +597,16 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 		elseif result.type == "Xray" and info.net == "tcp" then
 			info.net = "raw"
 		end
-		if info.net == 'h2' or info.net == 'http' then
+		-- Clash 'network: http' = TCP + HTTP/1.1 header obfuscation (no TLS),
+		-- i.e. Xray raw transport with tcp header type "http" -- NOT xhttp
+		-- (splithttp). Normalize to 'raw' + guise 'http' so the tcp_guise
+		-- block below handles it; the server otherwise replies HTTP 400.
+		-- 'h2' still maps to xhttp (Xray dropped the standalone h2 transport).
+		if info.net == 'http' and result.type == "Xray" then
+			info.net = "raw"
+			info.type = "http"
+			result.transport = "raw"
+		elseif info.net == 'h2' or info.net == 'http' then
 			info.net = "http"
 			result.transport = (result.type == "Xray") and "xhttp" or "http"
 		else
@@ -1409,6 +1418,10 @@ local function processData(szType, content, add_mode, group, sub_cfg)
 		if params["obfs-password"] or params["obfs_password"] then
 			result.hysteria2_obfs_type = params.obfs or "salamander"
 			result.hysteria2_obfs_password = params["obfs-password"] or params["obfs_password"]
+		end
+		if params.obfs == "gecko" then
+			result.hysteria2_obfs_MinPacketSize = params.minpacketsize or "512"
+			result.hysteria2_obfs_MaxPacketSize = params.maxpacketsize or "1200"
 		end
 
 		if (sub_hysteria2_type == "sing-box" and has_singbox) or (sub_hysteria2_type == "xray" and has_xray) then

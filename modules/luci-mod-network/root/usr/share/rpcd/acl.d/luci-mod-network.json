@@ -15,9 +15,10 @@
 			"ubus": {
 				"file": [ "exec" ],
 				"iwinfo": [ "assoclist", "countrylist", "freqlist", "txpowerlist" ],
-				"luci": [ "getSwconfigFeatures", "getSwconfigPortState" ]
+				"luci": [ "getSwconfigFeatures", "getSwconfigPortState" ],
+				"network.device": [ "status" ]
 			},
-			"uci": [ "dhcp", "firewall", "network", "wireless", "system" ]
+			"uci": [ "dhcp", "firewall", "luci", "network", "wireless", "system" ]
 		},
 		"write": {
 			"cgi-io": [ "exec" ],
@@ -32,7 +33,7 @@
 				"hostapd.*": [ "del_client" ],
 				"iwinfo": [ "scan" ]
 			},
-			"uci": [ "dhcp", "firewall", "network", "wireless" ]
+			"uci": [ "dhcp", "firewall", "luci", "network", "wireless" ]
 		}
 	},
 
