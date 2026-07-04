@@ -73,6 +73,14 @@ const openvpnOptions = [
 	},
 	{
 		tab: 'general',
+		type: form.FileUpload,
+		root_directory: '/etc/openvpn',
+		name: 'auth_user_pass',
+		label: _('Username and password file (one per line)'),
+		placeholder: '/etc/openvpn/some-client-auth-user-pass'
+	},
+	{
+		tab: 'general',
 		type: form.Value,
 		name: 'ifconfig',
 		datatype: 'tuple(ipaddr,ipaddr)',

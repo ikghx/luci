@@ -13,10 +13,4 @@ PKG_LICENSE_FILES:=LICENSE
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
-define Package/$(PKG_NAME)/postinst
-#!/bin/sh
-chmod +x /usr/share/vpn-toggle/user-manager 2>/dev/null
-exit 0
-endef
-
-$(eval $(call BuildPackage,$(PKG_NAME)))
+# call BuildPackage - OpenWrt buildroot signature

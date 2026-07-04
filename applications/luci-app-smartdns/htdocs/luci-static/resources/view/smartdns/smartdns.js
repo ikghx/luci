@@ -72,7 +72,7 @@ function smartdnsRenderStatus(res) {
 			const protocol = window.location.protocol;
 			const hostname = window.location.hostname;
 			const uiLink = protocol + "//" + hostname + ":" + uiPort;
-			renderHTML += "&#160; <a class=\"btn cbi-button\" style=\"margin-left: 10px; background-color: black; color: white; border-color: #333;\" href=\"" + uiLink + "\" target=\"_blank\">" + _("Open the WebUI") + "</a>";
+			renderHTML +=  '&#160; <a class="cbi-button cbi-button-positive" ' +  'href="' + uiLink + '" target="_blank">' +  _("Open the WebUI") +  '</a>';
 		}
 	} else {
 		renderHTML += "<span style=\"color:red;font-weight:bold\">SmartDNS - " + _("Not Running") + "</span>";
@@ -237,7 +237,7 @@ return view.extend({
 				return true;
 			}
 
-			const check_mode = value.split(",")
+			const check_mode = value.split(",");
 			for (let cm of check_mode) {
 
 				if (cm == "ping") {
@@ -371,7 +371,7 @@ return view.extend({
 		o.default = o.enabled;
 
 		// resolve local hostname;
-		o = s.taboption("advanced", form.Flag, "resolve_local_hostnames", _("Resolve Local Hostnames"), _("Resolve local hostnames by reading Dnsmasq lease file."));
+		o = s.taboption("advanced", form.Flag, "resolve_local_hostnames", _("Resolve Local Hostnames"), _("Resolve local hostnames by reading Dnsmasq or odhcpd lease files."));
 		o.rmempty = false;
 		o.default = o.enabled;
 
@@ -856,7 +856,7 @@ return view.extend({
 		o.placeholder = "default";
 		o.depends({"enable_audit_log":"1", "audit_log_output_mode":"file"});
 
-		o = s.taboption("log", form.Value, "audit_log_file", _("Audit Log File"))
+		o = s.taboption("log", form.Value, "audit_log_file", _("Audit Log File"));
 		o.rmempty = true
 		o.placeholder = "/var/log/smartdns/smartdns-audit.log"
 		o.depends({"enable_audit_log":"1", "audit_log_output_mode":"file"});
@@ -880,7 +880,7 @@ return view.extend({
 		// Upstream servers;
 		////////////////
 		s = m.section(form.GridSection, "server", _("Upstream Servers"),
-			_("Upstream Servers, support UDP, TCP, DoT, DoH, DoQ, DoH3 protocol. Please configure multiple DNS servers, "
+			_("Upstream Servers, support UDP, TCP, TLS, HTTPS, QUIC and HTTP3 protocol. Please configure multiple DNS servers, "
 				+ "including multiple foreign DNS servers."));
 		s.anonymous = true;
 		s.addremove = true;
@@ -919,7 +919,7 @@ return view.extend({
 		o.value("tls", _("tls"));
 		o.value("https", _("https"));
 		o.value("quic", _("quic"));
-		o.value("h3", _("h3"));
+		o.value("h3", _("http3"));
 		o.default = "udp";
 		o.rempty = false;
 
@@ -1040,8 +1040,9 @@ return view.extend({
 				return _("Please set proxy server first.");
 			}
 
-			if (server_type == "udp" && !proxy_server.match(/^(socks5):\/\//)) {
-				return _("Only socks5 proxy support udp server.");
+			if ((server_type == "udp" || server_type == "quic" || server_type == "h3")
+				&& !proxy_server.match(/^(socks5):\/\//)) {
+				return _("Only socks5 proxy support UDP, QUIC and HTTP3 server.");
 			}
 
 			return true;
@@ -1559,7 +1560,7 @@ return view.extend({
 				return true;
 			}
 
-			const check_mode = value.split(",")
+			const check_mode = value.split(",");
 			for (let cm of check_mode) {
 
 				if (cm == "ping") {
