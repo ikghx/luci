@@ -28,7 +28,7 @@ msgid ""
 "&quot;\">%{helper.val}</var>:<var data-tooltip=\"%{helper.name}\">%{helper."
 "val}</var>}}"
 msgstr ""
-"%{src?%{dest?转发:入站}:出站} %{ipv6?%{ipv4?<var>IPv4</var> and <var>IPv6</"
+"%{src?%{dest?转发:入站}:出站} %{ipv6?%{ipv4?<var>IPv4</var> 和 <var>IPv6</"
 "var>:<var>IPv6</var>}:<var>IPv4</var>}%{proto?, 协议 "
 "%{proto#%{next?, }%{item.types?<var class=\"cbi-tooltip-container\">%{item."
 "name}<span class=\"cbi-tooltip\">具有类型 %{item.types#%{next?, }<var>%{item}"
@@ -131,7 +131,7 @@ msgstr "必须指定重写 IP！"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:291
 msgid "ACCEPT - Disable address rewriting"
-msgstr "转发 - 禁用地址重写"
+msgstr "接受 - 禁用地址重写"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:222
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:219
@@ -204,7 +204,7 @@ msgid ""
 "established connections. Format is value[/mask]. If a mask is specified then "
 "those bits set in the mask are zeroed out."
 msgstr ""
-"在已建立的连接上对给定值和现有标记值进行按位异或运算。格式为 value[/mask]。如"
+"在已建立的连接上对给定值和现有标记值进行按位异或运算。格式为 值[/掩码]。如"
 "果指定了掩码，则掩码中设置的位将归零。"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:263
@@ -271,6 +271,8 @@ msgid ""
 "otherwise covered by the firewall framework. On firewall4 systems, these "
 "rules must use nftables syntax."
 msgstr ""
+"自定义规则允许您定义防火墙框架未涵盖的自定义防火墙规则。在 firewall4 系统上，"
+"这些规则必须使用 nftables 语法。"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:417
 msgid "DSCP classification"
@@ -300,14 +302,14 @@ msgstr "目标区域"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:264
 msgid "Device name"
-msgstr "设备名"
+msgstr "设备名称"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:271
 msgid ""
 "Do not install extra rules to reject forwarded traffic with conntrack state "
 "<em>invalid</em>. This may be required for complex asymmetric route setups."
 msgstr ""
-"禁止为连接跟踪状态为 <em>invalid</em> 的转发流量添加拒绝规则。在复杂的非对称"
+"禁止为连接跟踪状态为 <em>无效</em> 的转发流量添加拒绝规则。在复杂的非对称"
 "路由环境中，可能需要此项设置。"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:45
@@ -435,7 +437,7 @@ msgstr "流量卸载类型"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:50
 msgctxt "firewall forward"
 msgid "Forward"
-msgstr ""
+msgstr "转发"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:34
 msgid ""
@@ -455,7 +457,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:489
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:359
 msgid "Friday"
-msgstr "周五"
+msgstr "星期五"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:45
 msgid ""
@@ -540,7 +542,7 @@ msgstr "IP 集"
 
 #: applications/luci-app-firewall/root/usr/share/luci/menu.d/luci-app-firewall.json:53
 msgid "IP sets"
-msgstr ""
+msgstr "IP 集"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:153
 msgid "IPs/Networks"
@@ -556,7 +558,7 @@ msgstr "IPv4"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:157
 msgid "IPv4 Masquerading"
-msgstr "IP 动态伪装"
+msgstr "IPv4 动态伪装"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:189
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:68
@@ -628,7 +630,7 @@ msgstr "初始哈希大小"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:138
 msgctxt "firewall input"
 msgid "Input"
-msgstr ""
+msgstr "入站"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:290
 msgid "Internal IP address"
@@ -796,7 +798,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:485
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:355
 msgid "Monday"
-msgstr "周一"
+msgstr "星期一"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:495
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:365
@@ -865,7 +867,7 @@ msgstr "出站区域"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:139
 msgctxt "firewall output"
 msgid "Output"
-msgstr ""
+msgstr "出站"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/ipsets.js:76
 msgid "Packet Field Match"
@@ -989,7 +991,7 @@ msgstr "SNAT - 重写为特定的源 IP 或端口"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:490
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:360
 msgid "Saturday"
-msgstr "周六"
+msgstr "星期六"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:315
 msgid "Set mark"
@@ -1075,7 +1077,7 @@ msgstr "存储方式"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:484
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:354
 msgid "Sunday"
-msgstr "周日"
+msgstr "星期日"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:693
 msgid ""
@@ -1119,7 +1121,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:488
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:358
 msgid "Thursday"
-msgstr "周四"
+msgstr "星期四"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:183
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:182
@@ -1200,7 +1202,7 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:356
 msgid "Tuesday"
-msgstr "周二"
+msgstr "星期二"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/custom.js:19
 msgid "Unable to save contents: %s"
@@ -1284,7 +1286,7 @@ msgstr "需要有效的防火墙标记"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:487
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:357
 msgid "Wednesday"
-msgstr "周三"
+msgstr "星期三"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:479
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:349
@@ -1545,21 +1547,3 @@ msgstr "最多 65536 个条目。"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:338
 msgid "valid firewall mark"
 msgstr "有效的防火墙标记"
-
-#~ msgid ""
-#~ "Custom rules allow you to execute arbitrary iptables commands which are "
-#~ "not otherwise covered by the firewall framework. The commands are "
-#~ "executed after each firewall restart, right after the default ruleset has "
-#~ "been loaded."
-#~ msgstr ""
-#~ "自定义规则允许您执行不属于防火墙框架的任意 iptables 命令。每次重启防火墙"
-#~ "时，这些命令在默认的规则运行后立即执行。"
-
-#~ msgid "Forward"
-#~ msgstr "转发"
-
-#~ msgid "Input"
-#~ msgstr "输入"
-
-#~ msgid "Output"
-#~ msgstr "出站数据"
