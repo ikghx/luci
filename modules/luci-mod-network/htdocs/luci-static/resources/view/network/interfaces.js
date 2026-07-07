@@ -90,7 +90,7 @@ function render_status(node, ifc, with_device) {
 	return L.itemlist(node, [
 		_('Protocol'), with_device ? null : (desc || '?'),
 		_('Device'), with_device ? (maindev ? maindev.getShortName() : E('em', _('Not present'))) : null,
-		_('Carrier'), (cond00) ? (carrier ? _('Present') : _('Absent')) : null,
+		_('Carrier'), (cond02) ? (carrier ? _('Present') : _('Absent')) : null,
 		_('Uptime'), (!changecount && ifc.isUp()) ? '%t'.format(ifc.getUptime()) : null,
 		_('MAC'), (cond01) ? macaddr : null,
 		_('RX'), (cond02) ? '%.2mB (%d %s)'.format(maindev.getRXBytes(), maindev.getRXPackets(), _('Pkts.')) : null,
