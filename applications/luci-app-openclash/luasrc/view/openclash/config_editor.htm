@@ -29,7 +29,6 @@ function _cmWhenReady(callback) {
         'mode/yaml/yaml.js',
         'mode/log/log.js',
         'mode/shell/shell.js',
-		'mode/markdown/markdown.js',
         'addon/fold/foldcode.js',
         'addon/fold/foldgutter.js',
         'addon/fold/indent-fold.js',
@@ -321,10 +320,10 @@ function other_editor(id, readOnly, wid, height)
 	};
 };
 
-function log_editor(id, name, readOnly, wid, height, mode)
+function log_editor(id, name, readOnly, wid, height)
 {
 	window['editor_' + name] = CodeMirror.fromTextArea(id, {
-	mode: mode || "log",
+	mode: "log",
 	autoRefresh: true,
 	styleActiveLine: true,
 	lineNumbers: true,
@@ -359,11 +358,9 @@ function log_editor(id, name, readOnly, wid, height, mode)
 _cmWhenReady(function() {
 var core_log = document.getElementById("core_log");
 var oc_log = document.getElementById("cbid.openclash.config.clog");
-var debug_log = document.getElementById("debug_log");
-if (core_log && oc_log && debug_log) {
+if (core_log && oc_log) {
 	log_editor(oc_log, 'oc', true, '100%', '540px');
 	log_editor(core_log, 'core', true, '100%', '540px');
-	log_editor(debug_log, 'debug', true, '100%', '540px', 'text/x-markdown');
 };
 
 var custom_cfg_value = document.getElementById("cbid.openclash.<%=sid%>.other_parameters");

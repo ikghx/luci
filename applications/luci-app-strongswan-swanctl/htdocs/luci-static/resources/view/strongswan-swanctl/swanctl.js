@@ -1,10 +1,16 @@
 'use strict';
 'require view';
 'require form';
+'require rpc';
 'require uci';
 'require ui';
 'require tools.widgets as widgets';
-'require strongswan_algorithms';
+
+const callListAlgorithms = rpc.declare({
+	object: 'luci.swanctl',
+	method: 'list-algs',
+	expect: { }
+});
 
 function validateTimeFormat(section_id, value) {
 	if (value && !value.match(/^\d+[smhd]$/)) {
@@ -15,11 +21,13 @@ function validateTimeFormat(section_id, value) {
 }
 
 function addAlgorithms(o, algorithms) {
-	algorithms.forEach(function (algorithm) {
-		if (strongswan_algorithms.isInsecure(algorithm)) {
-			o.value(algorithm, '%s*'.format(algorithm));
+	algorithms?.forEach(function (algorithm) {
+		const { name: name, insecure: insecure } = algorithm;
+
+		if (insecure) {
+			o.value(name, '%s*'.format(name));
 		} else {
-			o.value(algorithm);
+			o.value(name);
 		}
 	});
 }
@@ -46,26 +54,40 @@ function sectionNameCheck(extra_class) {
 };
 
 return view.extend({
-	load: function () {
-		return uci.load('network');
+	load: async function () {
+		await uci.load('network');
+		return await callListAlgorithms();
 	},
 
-	render: function () {
+	render: function (result) {
 		let m, s, o;
+		const algorithms = result.data ?? {};
+		const error = result.error;
+
+		if (error)
+			ui.addNotification(null, E('p', _('Some options are unavailable because swanctl failed to load: %s').format(error)), 'warning');
 
 		m = new form.Map('ipsec', _('strongSwan Configuration'),
 			_('Configure strongSwan for secure VPN connections.'));
 		m.tabbed = true;
 
 		// strongSwan General Settings
-		s = m.section(form.NamedSection, 'globals', _('General Settings'));
+		s = m.section(form.TypedSection, 'ipsec', _('General Settings'));
+		s.anonymous = true;
+		s.addremove = true;
 
-		o = s.option(widgets.NetworkSelect, 'interface', _('Listening Interfaces'),
-			_('Interfaces that accept VPN traffic') + '<br /> ' +
-			_('Select an interface or leave empty for all interfaces'));
+		o = s.option(widgets.ZoneSelect, 'zone', _('Zone'),
+			_('Firewall zone that has to match the defined firewall zone'));
+		o.default = 'lan';
 		o.multiple = true;
-		o.nocreate = true;
-		o.optional = true;
+
+		o = s.option(widgets.NetworkSelect, 'listen', _('Listening Interfaces'),
+			_('Interfaces that accept VPN traffic'));
+		o.datatype = 'interface';
+		o.placeholder = _('Select an interface or leave empty for all interfaces');
+		o.default = 'wan';
+		o.multiple = true;
+		o.rmempty = false;
 
 		o = s.option(form.Value, 'debug', _('Debug Level'),
 			_('Trace level: 0 is least verbose, 4 is most'));
@@ -252,19 +274,19 @@ return view.extend({
 
 		o = s.taboption('general', form.DynamicList, 'local_subnet', _('Local Subnet'),
 			_('Local network(s)'));
-		o.datatype = 'cidr';
+		o.datatype = 'subnet';
 		o.placeholder = '192.168.1.1/24';
 		o.rmempty = false;
 
 		o = s.taboption('general', form.DynamicList, 'remote_subnet', _('Remote Subnet'),
 			_('Remote network(s)'));
-		o.datatype = 'cidr';
+		o.datatype = 'subnet';
 		o.placeholder = '192.168.2.1/24';
 		o.rmempty = false;
 
 		o = s.taboption('general', form.Value, 'local_nat', _('Local NAT'),
 			_('NAT range for tunnels with overlapping IP addresses'));
-		o.datatype = 'cidr';
+		o.datatype = 'subnet';
 		o.modalonly = true;
 
 		o = s.taboption('general', form.ListValue, 'if_id', ('XFRM Interface ID'),
@@ -388,31 +410,32 @@ return view.extend({
 			_('Encryption Algorithm'),
 			_('Algorithms marked with * are considered insecure'));
 		o.default = 'aes256gcm128';
-		addAlgorithms(o, strongswan_algorithms.getEncryptionAlgorithms());
-		addAlgorithms(o, strongswan_algorithms.getAuthenticatedEncryptionAlgorithms());
+		addAlgorithms(o, algorithms.encryption);
+		addAlgorithms(o, algorithms.aead);
 
 
+		const encryptionAlgorithmNames = algorithms.encryption?.map(algorithm => algorithm.name);
 		o = s.option(form.ListValue, 'hash_algorithm', _('Hash Algorithm'),
 			_('Algorithms marked with * are considered insecure'));
-		strongswan_algorithms.getEncryptionAlgorithms().forEach(function (algorithm) {
-			o.depends('encryption_algorithm', algorithm);
+		encryptionAlgorithmNames?.forEach(function (algorithmName) {
+			o.depends('encryption_algorithm', algorithmName);
 		});
 		o.default = 'sha512';
 		o.rmempty = false;
-		addAlgorithms(o, strongswan_algorithms.getHashAlgorithms());
+		addAlgorithms(o, algorithms.integrity);
 
 		o = s.option(form.ListValue, 'dh_group', _('Diffie-Hellman Group'),
 			_('Algorithms marked with * are considered insecure'));
 		o.default = 'modp3072';
-		addAlgorithms(o, strongswan_algorithms.getDiffieHellmanAlgorithms());
+		addAlgorithms(o, algorithms.ke);
 
 		o = s.option(form.ListValue, 'prf_algorithm', _('PRF Algorithm'),
 			_('Algorithms marked with * are considered insecure'));
 		o.validate = function (section_id, value) {
-			var encryptionAlgorithm = this.section.formvalue(section_id, 'encryption_algorithm');
+			const encryptionAlgorithm = this.section.formvalue(section_id, 'encryption_algorithm');
+			const aeadAlgorithmNames = algorithms.aead?.map(algorithm => algorithm.name);
 
-			if (strongswan_algorithms.getAuthenticatedEncryptionAlgorithms().includes(
-					encryptionAlgorithm) && !value) {
+			if (aeadAlgorithmNames?.includes(encryptionAlgorithm) && !value) {
 				return _('PRF Algorithm must be configured when using an Authenticated Encryption Algorithm');
 			}
 
@@ -420,7 +443,7 @@ return view.extend({
 		};
 		o.optional = true;
 		o.depends('is_esp', '0');
-		addAlgorithms(o, strongswan_algorithms.getPrfAlgorithms());
+		addAlgorithms(o, algorithms.prf);
 
 		return m.render();
 	}
