@@ -72,22 +72,14 @@ return view.extend({
 		m.tabbed = true;
 
 		// strongSwan General Settings
-		s = m.section(form.TypedSection, 'ipsec', _('General Settings'));
-		s.anonymous = true;
-		s.addremove = true;
+		s = m.section(form.NamedSection, 'globals', 'ipsec', _('General Settings'));
 
-		o = s.option(widgets.ZoneSelect, 'zone', _('Zone'),
-			_('Firewall zone that has to match the defined firewall zone'));
-		o.default = 'lan';
+		o = s.option(widgets.NetworkSelect, 'interface', _('Listening Interfaces'),
+			_('Interfaces that accept VPN traffic') + '<br /> ' +
+			_('Select an interface or leave empty for all interfaces'));
 		o.multiple = true;
-
-		o = s.option(widgets.NetworkSelect, 'listen', _('Listening Interfaces'),
-			_('Interfaces that accept VPN traffic'));
-		o.datatype = 'interface';
-		o.placeholder = _('Select an interface or leave empty for all interfaces');
-		o.default = 'wan';
-		o.multiple = true;
-		o.rmempty = false;
+		o.nocreate = true;
+		o.optional = true;
 
 		o = s.option(form.Value, 'debug', _('Debug Level'),
 			_('Trace level: 0 is least verbose, 4 is most'));
@@ -256,7 +248,7 @@ return view.extend({
 
 		o = s.taboption('advanced', form.ListValue, 'keyexchange', _('Keyexchange'),
 			_('Version of IKE for negotiation'));
-		o.value('ikev1', 'IKEv1 (%s)', _('deprecated'));
+		o.value('ikev1', 'IKEv1 (%s)'.format(_('deprecated')));
 		o.value('ikev2', 'IKEv2');
 		o.value('ike', 'IKE (%s, %s)'.format(_('both'), _('deprecated')));
 		o.default = 'ikev2';
@@ -274,19 +266,19 @@ return view.extend({
 
 		o = s.taboption('general', form.DynamicList, 'local_subnet', _('Local Subnet'),
 			_('Local network(s)'));
-		o.datatype = 'subnet';
+		o.datatype = 'cidr';
 		o.placeholder = '192.168.1.1/24';
 		o.rmempty = false;
 
 		o = s.taboption('general', form.DynamicList, 'remote_subnet', _('Remote Subnet'),
 			_('Remote network(s)'));
-		o.datatype = 'subnet';
+		o.datatype = 'cidr';
 		o.placeholder = '192.168.2.1/24';
 		o.rmempty = false;
 
 		o = s.taboption('general', form.Value, 'local_nat', _('Local NAT'),
 			_('NAT range for tunnels with overlapping IP addresses'));
-		o.datatype = 'subnet';
+		o.datatype = 'cidr';
 		o.modalonly = true;
 
 		o = s.taboption('general', form.ListValue, 'if_id', ('XFRM Interface ID'),
