@@ -107,6 +107,7 @@ function index()
 	for _, com in ipairs(coms.order) do
 		entry({"admin", "vpn", appname, "check_" .. com}, call("com_check", com)).leaf = true
 		entry({"admin", "vpn", appname, "update_" .. com}, call("com_update", com)).leaf = true
+		entry({"admin", "vpn", appname, "version_" .. com}, call("com_version", com)).leaf = true
 	end
 
 	--[[Backup]]
@@ -802,6 +803,11 @@ function com_update(comname)
 	end
 
 	http_write_json(json)
+end
+
+function com_version(comname)
+	local version = api.get_app_version(comname)
+	http_write_json_ok(version)
 end
 
 function read_rulelist()
