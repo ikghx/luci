@@ -1,0 +1,1085 @@
+'use strict';
+'require view';
+'require fs';
+'require ui';
+'require uci';
+'require poll';
+'require rpc';
+'require dom';
+
+var VER='2.5.5';
+var UCI_PATH='/etc/config/qosify';
+var RULES_PATH='/etc/qosify/00-defaults.conf';
+var DSCP=['CS0','CS1','CS2','CS3','CS4','CS5','CS6','CS7','AF11','AF12','AF13','AF21','AF22','AF23','AF31','AF32','AF33','AF41','AF42','AF43','EF','VA','LE','DF'];
+var OVH=['none','manual','conservative','ethernet','docsis','pppoe-ptm','bridged-ptm','pppoe-vcmux','pppoe-llcsnap','pppoa-vcmux','pppoa-llc','bridged-vcmux','bridged-llcsnap','ipoa-vcmux','ipoa-llcsnap'];
+var MODES=['diffserv3','diffserv4','diffserv8','besteffort','precedence'];
+
+var callInit=rpc.declare({
+	object:'luci',
+	method:'setInitAction',
+	params:['name','action'],
+	expect:{result:false}
+});
+var callServiceList=rpc.declare({
+	object:'service',
+	method:'list',
+	params:['name'],
+	expect:{'':{}}
+});
+var callUciRevert=rpc.declare({
+	object:'uci',
+	method:'revert',
+	params:['config']
+});
+function isRunning(r){
+	try{var i=r.qosify.instances;for(var k in i)if(i[k].running)return true;}catch(e){}
+	return false;
+}
+
+function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+function trim(s){return (s||'').replace(/^\s+|\s+$/g,'');}
+function $(id){return document.getElementById(id);}
+
+function detectActive(out){return /qdisc cake|: active/.test(out||'');}
+
+function countRules(text){
+	var n=0,lines=(text||'').split('\n');
+	for(var i=0;i<lines.length;i++){
+		var l=lines[i],h=l.indexOf('#');
+		if(h>=0)l=l.slice(0,h);
+		if(trim(l))n++;
+	}
+	return n;
+}
+
+function validateRules(d){
+	if(/\x00/.test(d))return _('Binary content rejected');
+	var lines=d.split('\n');
+	for(var i=0;i<lines.length;i++){
+		var l=lines[i],h=l.indexOf('#');
+		if(h>=0)l=l.slice(0,h);
+		l=trim(l);
+		if(l&&!/^\S+\s+\S/.test(l))return _('Invalid rule line: %s').format(l.slice(0,40));
+	}
+	return null;
+}
+function fmtSize(n){return n<1024?n+'B':(n/1024).toFixed(1)+'K';}
+function fmtMtime(t){if(!t)return '';return new Date(t*1000).toLocaleString();}
+
+function getWan(){
+	var w=uci.get('qosify','wan');
+	if(!w){
+		uci.add('qosify','interface','wan');
+		uci.set('qosify','wan','name','wan');
+	}
+	return 'wan';
+}
+
+function notify(msg,kind){
+	var n=ui.addNotification(null,E('p',{},msg),kind||'info');
+	var ms=(kind==='danger')?10000:(kind==='warning')?8000:5000;
+	if(n)setTimeout(function(){if(n&&n.parentNode)n.parentNode.removeChild(n);},ms);
+	return n;
+}
+
+return view.extend({
+	handleSaveApply:null,handleSave:null,handleReset:null,
+	currentTab:'ov',
+
+	load:function(){
+		return Promise.all([
+			uci.load('qosify').catch(function(){return null;}),
+			L.resolveDefault(fs.read(RULES_PATH),''),
+			L.resolveDefault(fs.read(UCI_PATH),''),
+			L.resolveDefault(fs.stat(UCI_PATH),null),
+			L.resolveDefault(fs.stat(RULES_PATH),null),
+			L.resolveDefault(callServiceList('qosify'),{}),
+			L.resolveDefault(fs.exec('/etc/init.d/qosify',['enabled']),{code:1}),
+			L.resolveDefault(fs.stat('/usr/sbin/qosify'),null),
+			L.resolveDefault(fs.stat('/etc/init.d/qosify'),null),
+			L.resolveDefault(fs.exec('/usr/sbin/qosify-status',[]),{stdout:''})
+		]);
+	},
+
+	render:function(d){
+		var ctx={
+			rulesText:d[1]||'',
+			cfgRaw:d[2]||'',
+			cfgStat:d[3],
+			rulesStat:d[4],
+			running:isRunning(d[5]),
+			enabled:d[6].code===0,
+			hasBin:d[7]!=null,
+			hasInit:d[8]!=null,
+			qstatus:(d[9]&&d[9].stdout)||'',
+		};
+		ctx.active=detectActive(ctx.qstatus);
+
+		var root=E('div',{'class':'cbi-map','id':'qos-app'});
+		root.appendChild(E('style',{},this.css()));
+		root.appendChild(E('h2',{},'qosify'));
+		root.appendChild(E('div',{'class':'cbi-map-descr'},_('Traffic shaping and DSCP classification via qosify')));
+
+		var tabs=E('ul',{'class':'cbi-tabmenu'});
+		var tabDef=[['ov',_('Overview')],['cf',_('Config')],['ru',_('Classification Rules')],['ad',_('Advanced')],['st',_('Status')]];
+		var self=this;
+		tabDef.forEach(function(t){
+			var li=E('li',{'class':'cbi-tab-disabled','id':'th-'+t[0]},
+				E('a',{'href':'#','click':function(ev){ev.preventDefault();self.showTab(t[0]);}},t[1]));
+			tabs.appendChild(li);
+		});
+		root.appendChild(tabs);
+
+		root.appendChild(this.tabOverview(ctx));
+		root.appendChild(this.tabConfig(ctx));
+		root.appendChild(this.tabRules(ctx));
+		root.appendChild(this.tabAdvanced(ctx));
+		root.appendChild(this.tabStatus(ctx));
+
+		root.appendChild(E('div',{'style':'margin:8px 0 0'},[
+			E('span',{'style':'opacity:.6;font-size:12px'},'luci-app-qosify v'+VER)
+		]));
+
+		var hash=(location.hash||'').slice(1);
+		var map={overview:'ov',config:'cf',rules:'ru',advanced:'ad',status:'st'};
+		setTimeout(function(){self.showTab(map[hash]||'ov');},0);
+
+		this.installPollers();
+		return root;
+	},
+
+	installPollers:function(){
+		var self=this;
+		poll.add(function(){if(self.currentTab!=='ov'||self._busy)return;return self.refreshOverview();},10);
+		poll.add(function(){return self.refreshStatus();},5);
+	},
+
+	showTab:function(t){
+		var dirty=this.dirty();
+		if(dirty&&(this.currentTab==='cf'||this.currentTab==='ru')&&t!==this.currentTab){
+			if(!confirm(_('You have unsaved changes. Leave this tab?')))return;
+		}
+		this.currentTab=t;
+		['ov','cf','ru','ad','st'].forEach(function(x){
+			var el=$('qos-'+x),th=$('th-'+x);
+			if(!el||!th)return;
+			if(x===t){el.style.display='block';th.className='cbi-tab';}
+			else{el.style.display='none';th.className='cbi-tab-disabled';}
+		});
+		var rev={ov:'overview',cf:'config',ru:'rules',ad:'advanced',st:'status'};
+		try{history.replaceState(null,'','#'+rev[t]);}catch(e){}
+	},
+
+	dirty:function(){
+		var c=$('qos-config-ta'),r=$('qos-rules-ta');
+		if(c&&c.dataset.orig!=null&&c.value!==c.dataset.orig)return true;
+		if(r&&r.dataset.orig!=null&&r.value!==r.dataset.orig)return true;
+		return false;
+	},
+
+	css:function(){return [
+		'.qos-badge{display:inline-block;padding:2px 10px;border-radius:3px;font-size:12px;font-weight:bold;color:#fff}',
+		'.qos-green{background:#4caf50}.qos-red{background:#e53935}.qos-amber{background:#ff9800}',
+		'.qos-ok{color:#4caf50}.qos-err{color:#e53935}.qos-warn{color:#ff9800}',
+		'.qos-tab{display:none}.qos-kv td{padding:7px 12px;border-bottom:1px solid #eee}',
+		'.qos-kv td:first-child{font-weight:bold;opacity:.7;width:200px}',
+		'.qos-kv tr:last-child td{border-bottom:none}',
+		'.qos-svc>*{display:inline-block;margin:0 3px 3px 0}',
+		'.qos-btn-en{background:transparent !important;border:2px solid #4caf50 !important;color:#4caf50 !important;font-weight:bold}',
+		'.qos-btn-en:hover{background:#4caf50 !important;color:#fff !important}',
+		'.qos-btn-dis{background:transparent !important;border:2px solid #e53935 !important;color:#e53935 !important;font-weight:bold}',
+		'.qos-btn-dis:hover{background:#e53935 !important;color:#fff !important}',
+		'.qos-ref{margin:0 0 10px;padding:6px 10px;border:1px solid #888;border-radius:4px}',
+		'.qos-ref summary{cursor:pointer;font-weight:bold;font-size:13px}',
+		'.qos-qa{margin:0 0 8px;padding:8px 10px;border:1px solid #888;border-radius:4px}',
+		'.qos-qa label{font-size:11px;opacity:.7}',
+		'.qos-qa-row{display:flex;gap:6px;align-items:center;margin:6px 0 0;flex-wrap:wrap}'
+	].join('');},
+
+	tabOverview:function(ctx){
+		var section=E('div',{'class':'qos-tab','id':'qos-ov'});
+		section.appendChild(E('fieldset',{'class':'cbi-section','id':'qos-svc-sect'},this.buildSvcSect(ctx)));
+		section.appendChild(E('fieldset',{'class':'cbi-section','id':'qos-qs-sect'},this.buildQsSect(ctx)));
+		section.appendChild(E('fieldset',{'class':'cbi-section','id':'qos-cfg-sect'},this.buildCfgSect(ctx)));
+		section.appendChild(E('fieldset',{'class':'cbi-section','id':'qos-ctl-sect'},this.buildCtlSect(ctx)));
+		return section;
+	},
+
+	buildSvcSect:function(ctx){
+		return [E('legend',{},_('Service Status')),this.renderSvcTable(ctx)];
+	},
+
+	buildCfgSect:function(ctx){
+		return [E('legend',{},_('Configuration Files')),this.renderCfgFiles(ctx)];
+	},
+
+	buildQsSect:function(ctx){
+		var self=this;
+		var w=uci.get('qosify','wan')||{};
+		var wanDis=(w.disabled==='1');
+		var enChecked=(uci.get('qosify','wan','name')&&!wanDis);
+
+		var nodes=[];
+		nodes.push(E('legend',{},_('Quick Settings')));
+		nodes.push(E('div',{'class':'cbi-section-descr'},_('Common WAN settings — edit and apply without touching raw config.')));
+		var tbl=E('table',{'class':'qos-kv','width':'100%'});
+		var bdy=E('tbody');tbl.appendChild(bdy);
+
+		function row(lbl,el){bdy.appendChild(E('tr',{},[E('td',{},lbl),E('td',{},el)]));}
+		function chk(name,val){return E('input',{'type':'checkbox','id':'q-'+name,'data-q':name,'checked':val?'checked':null});}
+		function txt(name,val,ph,style){return E('input',{'type':'text','id':'q-'+name,'data-q':name,'value':val||'','placeholder':ph||'','style':style||'width:140px;font-family:monospace'});}
+		function sel(name,val,opts,style,def){
+			var s=E('select',{'id':'q-'+name,'data-q':name,'style':style||'width:180px'});
+			if(!def)s.appendChild(E('option',{'value':''},'--'));
+			var sv=val||def||'',known=false;
+			opts.forEach(function(o){var a={'value':o};if(sv===o){a.selected='selected';known=true;}s.appendChild(E('option',a,o));});
+			if(val&&!known)s.appendChild(E('option',{'value':val,'selected':'selected'},val+' (current)'));
+			return s;
+		}
+
+		var enCb=chk('enabled',enChecked);
+		var enBadge=E('span',{'class':'qos-badge qos-amber','style':'margin-left:8px','id':'q-en-badge'},'');
+		this.updateEnBadge(enBadge,ctx,enChecked);
+		row(_('QoS Enabled'),[enCb,enBadge]);
+		row(_('Bandwidth Up'),txt('bw_up',w.bandwidth_up,'e.g. 100mbit'));
+		row(_('Bandwidth Down'),txt('bw_down',w.bandwidth_down,'e.g. 100mbit'));
+		row(_('Overhead Type'),sel('overhead',w.overhead_type,OVH,'width:180px','none'));
+		row(_('Queue Mode'),sel('mode',w.mode,MODES,'width:148px'));
+		row(_('Ingress'),chk('ingress',w.ingress!=='0'));
+		row(_('Egress'),chk('egress',w.egress!=='0'));
+		row(_('NAT'),chk('nat',w.nat!=='0'));
+		row(_('Host Isolate'),chk('host_isolate',w.host_isolate!=='0'));
+		row(_('Autorate Ingress'),chk('autorate',w.autorate_ingress==='1'));
+		row(_('Ingress Options'),txt('ing_opts',w.ingress_options,'e.g. triple-isolate memlimit 32mb','width:100%;max-width:400px;font-family:monospace'));
+		row(_('Egress Options'),txt('egr_opts',w.egress_options,'e.g. triple-isolate memlimit 32mb wash','width:100%;max-width:400px;font-family:monospace'));
+		row(_('Options'),txt('opts',w.options||w.option,'e.g. overhead 44 mpu 84','width:100%;max-width:400px;font-family:monospace'));
+		nodes.push(tbl);
+		nodes.push(E('div',{'class':'cbi-page-actions'},
+			E('button',{'class':'cbi-button cbi-button-apply','click':function(){return self.saveQuick();}},_('Save & Apply'))));
+		return nodes;
+	},
+
+	buildCtlSect:function(ctx){
+		var self=this;
+		var nodes=[E('legend',{},_('Service Controls'))];
+		var svcCt=E('div',{'class':'qos-svc','id':'qos-svc-btns'});
+		svcCt.appendChild(E('button',{
+			'class':'cbi-button '+(ctx.enabled?'qos-btn-en':'qos-btn-dis'),
+			'title':ctx.enabled?_('Click to disable autostart'):_('Click to enable autostart'),
+			'click':function(){return self.svcAction(ctx.enabled?'disable':'enable');}
+		},ctx.enabled?_('Enabled'):_('Disabled')));
+		['start','stop','restart','reload'].forEach(function(a){
+			svcCt.appendChild(E('button',{
+				'class':'cbi-button cbi-button-'+(a==='stop'?'reset':'apply'),
+				'click':function(){return self.svcAction(a);}
+			},({start:_('Start'),stop:_('Stop'),restart:_('Restart'),reload:_('Reload')})[a]));
+		});
+		nodes.push(svcCt);
+		return nodes;
+	},
+
+	fillSect:function(id,nodes){
+		var el=$(id);
+		if(!el)return;
+		dom.content(el,'');
+		nodes.forEach(function(n){el.appendChild(n);});
+	},
+
+	waitForRunning:function(timeoutMs){
+		var deadline=Date.now()+(timeoutMs||3000);
+		function tick(){
+			return L.resolveDefault(callServiceList('qosify'),{}).then(function(r){
+				if(isRunning(r))return true;
+				if(Date.now()>=deadline)return false;
+				return new Promise(function(res){setTimeout(res,400);}).then(tick);
+			});
+		}
+		return tick();
+	},
+
+	applyService:function(){
+		var self=this;
+		return callInit('qosify','restart').then(function(){
+			return self.waitForRunning(4000);
+		}).then(function(){
+			return callInit('qosify','reload');
+		});
+	},
+
+	updateEnBadge:function(el,ctx,enChecked){
+		dom.content(el,'');
+		if(ctx.active){el.className='qos-badge qos-green';dom.append(el,_('Active'));}
+		else if(ctx.running&&enChecked){el.className='qos-badge qos-amber';dom.append(el,_('Enabled — Not Shaping (check config)'));}
+		else if(enChecked){el.className='qos-badge qos-amber';dom.append(el,_('Enabled — Not Running'));}
+		else{el.className='qos-badge qos-red';dom.append(el,_('Disabled'));}
+	},
+
+	renderSvcTable:function(ctx){
+		function ok(t){return E('span',{'class':'qos-ok'},'\u2714 '+t);}
+		function err(t){return E('span',{'class':'qos-err'},'\u2718 '+t);}
+		function bdg(cls,t){return E('span',{'class':'qos-badge '+cls},t);}
+		var tbl=E('table',{'class':'qos-kv','width':'100%','id':'qos-svc-tbl'});
+		var b=E('tbody');tbl.appendChild(b);
+		b.appendChild(E('tr',{},[E('td',{},_('Package')),E('td',{},ctx.hasBin?ok(_('Installed')):err(_('Not installed')))]));
+		b.appendChild(E('tr',{},[E('td',{},_('Init Script')),E('td',{},ctx.hasInit?ok(_('Available')):err(_('Missing')))]));
+		b.appendChild(E('tr',{},[E('td',{},_('Autostart')),E('td',{},bdg(ctx.enabled?'qos-green':'qos-red',ctx.enabled?_('Enabled'):_('Disabled')))]));
+		var run;
+		if(ctx.running&&ctx.active)run=bdg('qos-green',_('Running & Shaping'));
+		else if(ctx.running)run=bdg('qos-amber',_('Running — Not Shaping'));
+		else run=bdg('qos-red',_('Not Running'));
+		b.appendChild(E('tr',{},[E('td',{},_('Running')),E('td',{},run)]));
+		return tbl;
+	},
+
+	renderCfgFiles:function(ctx){
+		var rulesN=countRules(ctx.rulesText);
+		var cfgOk=ctx.cfgRaw.length>10&&/(^|\n)config /.test(ctx.cfgRaw);
+		var rulesOk=rulesN>0;
+		var tbl=E('table',{'class':'qos-kv','width':'100%'});
+		var b=E('tbody');tbl.appendChild(b);
+		function fileRow(path,exists,ok,sz,mod,extra){
+			var st;
+			if(ok)st=E('span',{'class':'qos-ok'},'\u2714 '+_('Valid'));
+			else if(exists)st=E('span',{'class':'qos-warn'},'\u26a0 '+_('Found (empty or invalid)'));
+			else st=E('span',{'class':'qos-err'},'\u2718 '+_('Missing'));
+			var meta=exists?E('span',{'style':'opacity:.7;margin-left:8px;font-size:12px'},'('+(extra||'')+fmtSize(sz)+', '+mod+')'):'';
+			b.appendChild(E('tr',{},[E('td',{},path),E('td',{},[st,meta])]));
+		}
+		fileRow(UCI_PATH,!!ctx.cfgStat,cfgOk,ctx.cfgStat?ctx.cfgStat.size:0,ctx.cfgStat?fmtMtime(ctx.cfgStat.mtime):'');
+		fileRow(RULES_PATH,!!ctx.rulesStat,rulesOk,ctx.rulesStat?ctx.rulesStat.size:0,ctx.rulesStat?fmtMtime(ctx.rulesStat.mtime):'',rulesN+' '+_('rules')+', ');
+		return tbl;
+	},
+
+	tabConfig:function(ctx){
+		var self=this;
+		var section=E('div',{'class':'qos-tab','id':'qos-cf','style':'display:none'});
+		var fs1=E('fieldset',{'class':'cbi-section'},[
+			E('legend',{},_('Config')),
+			E('div',{'class':'cbi-section-descr'},[_('UCI configuration — classes, interfaces, defaults.')+' ',E('code',{},UCI_PATH)])
+		]);
+
+		// Reference panel
+		var ref=E('details',{'class':'qos-ref'});
+		ref.appendChild(E('summary',{},_('Config Reference')));
+		var refBody=E('div',{'style':'font-size:11px;margin:6px 0;font-family:monospace;line-height:1.8'});
+		refBody.innerHTML=[
+			'<strong>config defaults</strong><br/>',
+			'&nbsp; list defaults, option timeout, option dscp_prio, option dscp_icmp, option dscp_bulk, option dscp_default_tcp, option dscp_default_udp, option prio_max_avg_pkt_len, option bulk_trigger_pps, option bulk_trigger_timeout<br/>',
+			'<strong>config class</strong> &lsquo;name&rsquo; (config alias: same options)<br/>',
+			'&nbsp; option value, option ingress, option egress, option dscp_prio, option dscp_bulk, option prio_max_avg_pkt_len, option bulk_trigger_pps, option bulk_trigger_timeout<br/>',
+			'<strong>config interface</strong> &lsquo;name&rsquo;<br/>',
+			'&nbsp; option name, option disabled, option bandwidth_up, option bandwidth_down, option bandwidth, option overhead_type, option overhead (manual), option overhead_encap, option overhead_mpu, option overhead_vlan, option mode, option ingress, option egress, option nat, option host_isolate, option autorate_ingress, option ingress_options, option egress_options, option options<br/>',
+			'<strong>config device</strong> &lsquo;name&rsquo;<br/>',
+			'&nbsp; all interface options (nat defaults 0); option bandwidth = shared up/down fallback'
+		].join('');
+		ref.appendChild(refBody);
+
+		// Live defaults & classes
+		var defs={};
+		uci.sections('qosify','defaults',function(s){if(!defs['.name'])defs=s;});
+		if(defs['.name']){
+			var defBox=E('div',{'style':'margin:6px 0 4px;padding:4px 8px;border:1px solid #888;border-radius:3px'});
+			defBox.appendChild(E('strong',{'style':'font-size:12px'},'config defaults'));
+			var defLine=E('div',{'style':'font-size:11px;margin:2px 0 0;font-family:monospace'});
+			var keys=['dscp_default_tcp','dscp_default_udp','dscp_icmp','dscp_prio','dscp_bulk','prio_max_avg_pkt_len','bulk_trigger_pps','bulk_trigger_timeout'];
+			var parts=[];
+			keys.forEach(function(k){if(defs[k])parts.push(k+': <strong>'+esc(defs[k])+'</strong>');});
+			defLine.innerHTML=parts.join(' &nbsp; ');
+			defBox.appendChild(defLine);
+			ref.appendChild(defBox);
+		}
+		var classes=this.getClasses();
+		var clsBox=E('div',{'id':'qos-cfg-cls'});
+		classes.forEach(function(c){
+			var box=E('div',{'style':'margin:4px 0;padding:4px 8px;border:1px solid #888;border-radius:3px'});
+			box.appendChild(E('strong',{'style':'font-size:12px'},c.name));
+			box.appendChild(E('span',{'style':'font-size:11px;opacity:.75;margin-left:8px'},'Ingress: '+(c.ingress||'')+' / Egress: '+(c.egress||'')));
+			clsBox.appendChild(box);
+		});
+		ref.appendChild(clsBox);
+		ref.appendChild(E('div',{'style':'opacity:.7;font-size:11px;margin:4px 0 2px'},
+			_('DSCP codepoints: CS0–CS7, AF11–AF43, EF, LE. Prefix with + for priority boost (rules only).')));
+		fs1.appendChild(ref);
+
+		// Quick Add Config
+		var qa=E('div',{'class':'qos-qa'});
+		qa.appendChild(E('strong',{'style':'font-size:13px;color:#aaa'},_('Quick Add Config')));
+		var qacRow=E('div',{'class':'qos-qa-row'});
+		var qacType=E('select',{'id':'qac-type','style':'width:130px','change':function(){self.qacSwitch();}});
+		[['defaults','config defaults'],['class','config class'],['interface','config interface']].forEach(function(o){
+			qacType.appendChild(E('option',{'value':o[0]},o[1]));
+		});
+		qacRow.appendChild(qacType);
+		qacRow.appendChild(E('span',{'id':'qac-nm-w','style':'display:none'},
+			E('input',{'id':'qac-name','type':'text','placeholder':'section name','style':'width:120px;font-family:monospace'})));
+		qacRow.appendChild(E('button',{'class':'cbi-button cbi-button-add','click':function(){return self.qacAdd();}},_('Add')));
+		qa.appendChild(qacRow);
+
+		var clsNames=classes.map(function(c){return c.name;});
+		var dscpChoices=clsNames.concat(DSCP);
+		// defaults options
+		var qadDef=E('div',{'class':'qos-qa-row','id':'qac-opts-defaults'});
+		this.qaInput(qadDef,'defaults','list','/etc/qosify/*.conf',180);
+		this.qaSelect(qadDef,'dscp_prio',dscpChoices,140);
+		this.qaSelect(qadDef,'dscp_icmp',dscpChoices,140);
+		this.qaSelect(qadDef,'dscp_bulk',dscpChoices,140);
+		this.qaSelect(qadDef,'dscp_default_tcp',dscpChoices,140);
+		this.qaSelect(qadDef,'dscp_default_udp',dscpChoices,140);
+		this.qaNum(qadDef,'prio_max_avg_pkt_len','500',55);
+		this.qaNum(qadDef,'bulk_trigger_pps','100',55);
+		this.qaNum(qadDef,'bulk_trigger_timeout','5',45);
+		qa.appendChild(qadDef);
+
+		// class options
+		var qadCls=E('div',{'class':'qos-qa-row','id':'qac-opts-class','style':'display:none'});
+		this.qaSelect(qadCls,'ingress',DSCP,70);
+		this.qaSelect(qadCls,'egress',DSCP,70);
+		this.qaSelect(qadCls,'dscp_prio',DSCP,70);
+		this.qaSelect(qadCls,'dscp_bulk',DSCP,70);
+		this.qaNum(qadCls,'prio_max_avg_pkt_len','500',55);
+		this.qaNum(qadCls,'bulk_trigger_pps','100',55);
+		this.qaNum(qadCls,'bulk_trigger_timeout','5',45);
+		qa.appendChild(qadCls);
+
+		// interface options
+		var qadIf=E('div',{'class':'qos-qa-row','id':'qac-opts-interface','style':'display:none'});
+		this.qaInput(qadIf,'name','option','wan',80);
+		this.qaSelect(qadIf,'disabled',['0','1'],45);
+		this.qaInput(qadIf,'bandwidth_up','option','100mbit',80);
+		this.qaInput(qadIf,'bandwidth_down','option','100mbit',80);
+		this.qaSelect(qadIf,'overhead_type',OVH,130);
+		this.qaSelect(qadIf,'mode',MODES,100);
+		this.qaSelect(qadIf,'ingress',['0','1'],45);
+		this.qaSelect(qadIf,'egress',['0','1'],45);
+		this.qaSelect(qadIf,'nat',['0','1'],45);
+		this.qaSelect(qadIf,'host_isolate',['0','1'],45);
+		this.qaSelect(qadIf,'autorate_ingress',['0','1'],45);
+		this.qaInput(qadIf,'ingress_options','option','triple-isolate',160);
+		this.qaInput(qadIf,'egress_options','option','triple-isolate wash',160);
+		this.qaInput(qadIf,'options','option','overhead 44 mpu 84',160);
+		qa.appendChild(qadIf);
+
+		fs1.appendChild(qa);
+
+		// Editor
+		var ta=E('textarea',{
+			'id':'qos-config-ta',
+			'rows':28,
+			'style':'width:100%;font-family:monospace;font-size:12px;line-height:1.4;tab-size:4;border:1px solid #ccc;padding:6px'
+		},ctx.cfgRaw);
+		ta.dataset.orig=ctx.cfgRaw;
+		fs1.appendChild(ta);
+		fs1.appendChild(E('div',{'class':'cbi-page-actions'},[
+			E('button',{'class':'cbi-button cbi-button-reset','style':'margin-right:6px','click':function(){return self.clearCfg();}},_('Clear')),
+			E('button',{'class':'cbi-button cbi-button-apply','click':function(){return self.saveConfig();}},_('Save & Apply'))
+		]));
+
+		section.appendChild(fs1);
+		return section;
+	},
+
+	qaInput:function(parent,opt,pre,ph,w){
+		parent.appendChild(E('label',{},opt+':'));
+		parent.appendChild(E('input',{
+			'data-opt':opt,'data-pre':pre,'type':'text',
+			'value':pre==='list'?ph:'','placeholder':pre==='list'?'':ph,
+			'style':'width:'+w+'px;font-family:monospace'
+		}));
+	},
+	qaSelect:function(parent,opt,opts,w,required){
+		parent.appendChild(E('label',{},opt+':'));
+		var s=E('select',{'data-opt':opt,'style':'width:'+w+'px'});
+		if(!required)s.appendChild(E('option',{'value':''},'--'));
+		opts.forEach(function(o){s.appendChild(E('option',{'value':o},o));});
+		parent.appendChild(s);
+	},
+	qaNum:function(parent,opt,ph,w){
+		parent.appendChild(E('label',{},opt+':'));
+		parent.appendChild(E('input',{'data-opt':opt,'type':'number','min':'0','placeholder':ph,'style':'width:'+w+'px'}));
+	},
+
+	getClasses:function(){
+		var arr=[];
+		uci.sections('qosify','class',function(s){
+			arr.push({name:s['.name'],ingress:s.ingress||'',egress:s.egress||'',
+				dscp_prio:s.dscp_prio||'',dscp_bulk:s.dscp_bulk||'',
+				prio_max_avg_pkt_len:s.prio_max_avg_pkt_len||'',
+				bulk_trigger_pps:s.bulk_trigger_pps||'',
+				bulk_trigger_timeout:s.bulk_trigger_timeout||''});
+		});
+		return arr;
+	},
+
+	refreshClasses:function(){
+		var classes=this.getClasses();
+		var sel=$('qar-cls');
+		if(sel){
+			var cur=sel.value;
+			dom.content(sel,'');
+			classes.forEach(function(c){sel.appendChild(E('option',{'value':c.name},c.name));});
+			if(cur)sel.value=cur;
+		}
+		var ref=$('qos-cls-ref');
+		if(ref){
+			dom.content(ref,'');
+			if(classes.length){
+				classes.forEach(function(c){
+					ref.appendChild(E('tr',{},[
+						E('td',{'style':'width:140px'},c.name),
+						E('td',{},'Ingress: '+(c.ingress||'')+' / Egress: '+(c.egress||''))
+					]));
+				});
+			}else{
+				ref.appendChild(E('tr',{},E('td',{'colspan':2,'style':'opacity:.7'},E('em',{},_('No classes defined in /etc/config/qosify')))));
+			}
+		}
+		var cbox=$('qos-cfg-cls');
+		if(cbox){
+			dom.content(cbox,'');
+			classes.forEach(function(c){
+				var box=E('div',{'style':'margin:4px 0;padding:4px 8px;border:1px solid #888;border-radius:3px'});
+				box.appendChild(E('strong',{'style':'font-size:12px'},c.name));
+				box.appendChild(E('span',{'style':'font-size:11px;opacity:.75;margin-left:8px'},'Ingress: '+(c.ingress||'')+' / Egress: '+(c.egress||'')));
+				cbox.appendChild(box);
+			});
+		}
+	},
+
+	tabRules:function(ctx){
+		var self=this;
+		var section=E('div',{'class':'qos-tab','id':'qos-ru','style':'display:none'});
+		var fs1=E('fieldset',{'class':'cbi-section'},[
+			E('legend',{},_('Classification Rules')),
+			E('div',{'class':'cbi-section-descr'},[_('DSCP mapping rules loaded by qosify on startup.')+' ',E('code',{},RULES_PATH)])
+		]);
+
+		// Available classes
+		var classes=this.getClasses();
+		var ref=E('details',{'class':'qos-ref'});
+		ref.appendChild(E('summary',{},_('Available Classes')));
+		var refTbl=E('table',{'class':'qos-kv','style':'margin:6px 0 0','width':'100%'});
+		var refB=E('tbody',{'id':'qos-cls-ref'});refTbl.appendChild(refB);
+		if(classes.length){
+			classes.forEach(function(c){
+				refB.appendChild(E('tr',{},[
+					E('td',{'style':'width:140px'},c.name),
+					E('td',{},'Ingress: '+(c.ingress||'')+' / Egress: '+(c.egress||''))
+				]));
+			});
+		}else{
+			refB.appendChild(E('tr',{},E('td',{'colspan':2,'style':'opacity:.7'},E('em',{},_('No classes defined in /etc/config/qosify')))));
+		}
+		ref.appendChild(refTbl);
+		ref.appendChild(E('div',{'style':'opacity:.7;font-size:11px;margin:6px 0 2px'},
+			_('Prefix with + for priority within class. Ports: tcp:443, udp:3074, ranges: tcp:5060-5061. DNS: dns:*teams*, regex: dns:/zoom[0-9]+. IP: 1.1.1.1, ff01::1')));
+		fs1.appendChild(ref);
+
+		// Quick Add Rule
+		var qa=E('div',{'class':'qos-qa'});
+		qa.appendChild(E('strong',{'style':'font-size:13px;color:#aaa'},_('Quick Add Rule')));
+		var qarRow=E('div',{'class':'qos-qa-row'});
+		var qarType=E('select',{'id':'qar-type','style':'width:140px','change':function(){self.qarPlaceholder();}});
+		[['tcp:',_('tcp port')],['udp:',_('udp port')],['both:',_('tcp+udp port')],['dns:',_('dns pattern')],['dnsr:',_('dns regex')],['dns_c:',_('dns_c pattern')],['dns_cr:',_('dns_c regex')],['ipv4:',_('IPv4 address')],['ipv6:',_('IPv6 address')]].forEach(function(o){
+			qarType.appendChild(E('option',{'value':o[0]},o[1]));
+		});
+		qarRow.appendChild(qarType);
+		qarRow.appendChild(E('input',{'id':'qar-val','type':'text','placeholder':'e.g. 4500 or 5060-5061','style':'width:180px;font-family:monospace'}));
+		var qarCls=E('select',{'id':'qar-cls','style':'width:140px'});
+		classes.forEach(function(c){qarCls.appendChild(E('option',{'value':c.name},c.name));});
+		qarRow.appendChild(qarCls);
+		qarRow.appendChild(E('label',{'style':'font-size:12px;color:#aaa;white-space:nowrap'},
+			[E('input',{'type':'checkbox','id':'qar-prio'}),' '+_('priority (+)')]));
+		qarRow.appendChild(E('button',{'class':'cbi-button cbi-button-add','click':function(){return self.qarAdd();}},_('Add')));
+		qa.appendChild(qarRow);
+		fs1.appendChild(qa);
+
+		// Editor
+		var ta=E('textarea',{
+			'id':'qos-rules-ta','rows':28,
+			'style':'width:100%;font-family:monospace;font-size:12px;line-height:1.4;tab-size:4;border:1px solid #ccc;padding:6px'
+		},ctx.rulesText);
+		ta.dataset.orig=ctx.rulesText;
+		fs1.appendChild(ta);
+		fs1.appendChild(E('div',{'class':'cbi-page-actions'},[
+			E('button',{'class':'cbi-button cbi-button-reset','style':'margin-right:6px','click':function(){return self.clearRules();}},_('Clear')),
+			E('button',{'class':'cbi-button cbi-button-apply','click':function(){return self.saveRules();}},_('Save & Apply'))
+		]));
+
+		section.appendChild(fs1);
+		return section;
+	},
+
+	tabAdvanced:function(ctx){
+		var self=this;
+		var section=E('div',{'class':'qos-tab','id':'qos-ad','style':'display:none'});
+
+		// Backup
+		var fb=E('fieldset',{'class':'cbi-section'},[
+			E('legend',{},_('Backup Current Files')),
+			E('div',{'class':'cbi-section-descr'},_('Download current config files before making changes.'))
+		]);
+		fb.appendChild(this.dlRow('/etc/config/qosify','qosify'));
+		fb.appendChild(this.dlRow('/etc/qosify/00-defaults.conf','00-defaults.conf'));
+		section.appendChild(fb);
+
+		// Upload
+		var fu=E('fieldset',{'class':'cbi-section'},[
+			E('legend',{},_('Upload Config Files')),
+			E('div',{'class':'cbi-section-descr'},_('Select files and click Save & Apply to overwrite and restart qosify.'))
+		]);
+		var u1=E('input',{'type':'file','id':'qos-up-cfg'});
+		var u2=E('input',{'type':'file','id':'qos-up-rules'});
+		fu.appendChild(E('div',{'class':'cbi-value'},[
+			E('label',{'class':'cbi-value-title'},'/etc/config/qosify'),
+			E('div',{'class':'cbi-value-field'},u1)
+		]));
+		fu.appendChild(E('div',{'class':'cbi-value'},[
+			E('label',{'class':'cbi-value-title'},'/etc/qosify/00-defaults.conf'),
+			E('div',{'class':'cbi-value-field'},u2)
+		]));
+		fu.appendChild(E('div',{'class':'cbi-page-actions'},
+			E('button',{'class':'cbi-button cbi-button-apply','click':function(){return self.uploadFiles();}},_('Save & Apply'))
+		));
+		section.appendChild(fu);
+
+		// Reset
+		section.appendChild(E('fieldset',{'class':'cbi-section'},[
+			E('legend',{},_('Reset to qosify Defaults')),
+			E('div',{'class':'cbi-section-descr'},_('Replaces both config files with qosify defaults, qosify will be disabled.')),
+			E('div',{'class':'cbi-page-actions'},
+				E('button',{'class':'cbi-button cbi-button-negative','click':function(){return self.resetDefaults();}},_('Reset to Defaults')))
+		]));
+		return section;
+	},
+
+	dlRow:function(path,fn){
+		return E('div',{'class':'cbi-value'},[
+			E('label',{'class':'cbi-value-title'},path),
+			E('div',{'class':'cbi-value-field'},
+				E('button',{'class':'cbi-button cbi-button-action','click':function(){
+					L.resolveDefault(fs.read(path),'').then(function(content){
+						var b=new Blob([content||''],{type:'application/octet-stream'});
+						var a=document.createElement('a');
+						a.href=URL.createObjectURL(b);a.download=fn;a.click();URL.revokeObjectURL(a.href);
+					});
+				}},_('Download')))
+		]);
+	},
+
+	tabStatus:function(ctx){
+		var section=E('div',{'class':'qos-tab','id':'qos-st','style':'display:none'});
+		var fs1=E('fieldset',{'class':'cbi-section'},E('legend',{},_('qosify-status')));
+		var body=E('div',{'id':'qos-st-body'});
+		this.fillStatus(body,ctx);
+		fs1.appendChild(body);
+		section.appendChild(fs1);
+		return section;
+	},
+
+	fillStatus:function(body,ctx){
+		dom.content(body,'');
+		if(!ctx.running){
+			body.appendChild(E('div',{'class':'alert-message warning'},_('qosify is not running. Start from the Overview tab.')));
+		}else if(!ctx.qstatus){
+			body.appendChild(E('p',{'style':'opacity:.7'},E('em',{},_('qosify-status returned no output.'))));
+		}else{
+			body.appendChild(E('pre',{'style':'background:#1e1e1e;color:#e0e0e0;padding:12px;border:1px solid #333;border-radius:4px;overflow-x:auto;font-size:12px;line-height:1.5;white-space:pre-wrap'},ctx.qstatus));
+		}
+	},
+
+	// === Actions ===
+
+	svcAction:function(action){
+		var self=this;
+		ui.showModal(_('Working'),[E('p',{},_('Sending %s to qosify...').format(action))]);
+		var p=callInit('qosify',action);
+		if(action==='start'||action==='restart')
+			p=p.then(function(){return self.waitForRunning(4000);}).then(function(){return callInit('qosify','reload');});
+		if(action==='stop')
+			p=p.then(function(){return L.resolveDefault(fs.exec('/usr/share/qosify-luci/cleanup',[]),null);});
+		return p.then(function(){
+			return new Promise(function(r){setTimeout(r,800);});
+		}).then(function(){
+			return self.refreshOverview();
+		}).finally(function(){
+			ui.hideModal();
+		});
+	},
+
+	saveQuick:function(){
+		var self=this;
+		var get=function(id){var e=$('q-'+id);return e?e.value:'';};
+		var chk=function(id){var e=$('q-'+id);return e&&e.checked;};
+		var bw=function(s){return (s||'').toLowerCase().replace(/\s+/g,'');};
+		var bwUp=bw(get('bw_up')),bwDn=bw(get('bw_down'));
+		var ovh=get('overhead'),mode=get('mode');
+		var iopts=trim(get('ing_opts')),eopts=trim(get('egr_opts')),gopts=trim(get('opts'));
+		var safe=/^[\w\s\-\.]*$/;
+		if(!safe.test(iopts)||!safe.test(eopts)||!safe.test(gopts)){
+			notify(_('Error: invalid characters in options fields. Use alphanumeric, spaces, hyphens, dots only.'),'danger');
+			return;
+		}
+		if(bwUp&&!/^\d+(\.\d+)?[kmg]?bit$/.test(bwUp)){notify(_('Error: bandwidth_up must look like 100mbit'),'danger');return;}
+		if(bwDn&&!/^\d+(\.\d+)?[kmg]?bit$/.test(bwDn)){notify(_('Error: bandwidth_down must look like 100mbit'),'danger');return;}
+
+		var sec=getWan();
+		uci.set('qosify',sec,'disabled',chk('enabled')?'0':'1');
+		if(bwUp)uci.set('qosify',sec,'bandwidth_up',bwUp);
+		if(bwDn)uci.set('qosify',sec,'bandwidth_down',bwDn);
+		if(ovh){uci.set('qosify',sec,'overhead_type',ovh);if(ovh!=='manual')uci.unset('qosify',sec,'overhead');}
+		if(mode)uci.set('qosify',sec,'mode',mode);
+		uci.set('qosify',sec,'ingress',chk('ingress')?'1':'0');
+		uci.set('qosify',sec,'egress',chk('egress')?'1':'0');
+		uci.set('qosify',sec,'nat',chk('nat')?'1':'0');
+		uci.set('qosify',sec,'host_isolate',chk('host_isolate')?'1':'0');
+		uci.set('qosify',sec,'autorate_ingress',chk('autorate')?'1':'0');
+		uci.set('qosify',sec,'ingress_options',iopts);
+		uci.set('qosify',sec,'egress_options',eopts);
+		uci.set('qosify',sec,'options',gopts);
+		uci.unset('qosify',sec,'option');
+
+		ui.showModal(_('Saving'),[E('p',{},_('Saving settings and applying...'))]);
+		return uci.save().then(function(){return uci.apply();}).then(function(){
+			return self.applyService();
+		}).then(function(){
+			return self.checkShapingForSave(_('Settings saved'));
+		}).then(function(msg){
+			ui.hideModal();
+			notify(msg.text,msg.kind);
+			return self.refreshOverviewFull();
+		}).catch(function(e){
+			ui.hideModal();
+			notify(_('Save failed: %s').format(e),'danger');
+		});
+	},
+
+	saveConfig:function(){
+		var self=this;
+		var ta=$('qos-config-ta');
+		if(!ta)return;
+		var data=ta.value.replace(/\r\n/g,'\n');
+		if(data.length===0){
+			if(!confirm(_('Empty config will stop qosify. Continue?')))return;
+			return L.resolveDefault(callUciRevert('qosify'),null).then(function(){
+				return fs.write(UCI_PATH,'');
+			}).then(function(){
+				return callInit('qosify','stop');
+			}).then(function(){
+				return L.resolveDefault(fs.exec('/usr/share/qosify-luci/cleanup',[]),null);
+			}).then(function(){
+				ta.dataset.orig='';
+				notify(_('Config cleared, qosify stopped.'),'info');
+				return self.refreshOverview();
+			});
+		}
+		if(!/(^|\n)config /.test(data)){
+			notify(_('Error: No valid config stanzas found.'),'danger');return;
+		}
+		ui.showModal(_('Saving'),[E('p',{},_('Writing config and reloading qosify...'))]);
+		return L.resolveDefault(callUciRevert('qosify'),null).then(function(){
+			return fs.write(UCI_PATH,data);
+		}).then(function(){
+			uci.unload('qosify');
+			return uci.load('qosify');
+		}).then(function(){
+			return self.applyService();
+		}).then(function(){
+			return self.checkShapingForSave(_('Config saved'));
+		}).then(function(msg){
+			ta.dataset.orig=data;
+			ui.hideModal();
+			notify(msg.text,msg.kind);
+			self.refreshClasses();
+			return self.refreshOverviewFull();
+		}).catch(function(e){
+			ui.hideModal();
+			notify(_('Save failed: %s').format(e),'danger');
+		});
+	},
+
+	checkShapingForSave:function(prefix){
+		return Promise.all([
+			L.resolveDefault(fs.exec('/usr/sbin/qosify-status',[]),{stdout:''}),
+			uci.load('qosify')
+		]).then(function(r){
+			var st=r[0].stdout||'';
+			var w=uci.get('qosify','wan')||{};
+			if(w.disabled==='1')return {text:_('%s, applied (QoS disabled).').format(prefix),kind:'info'};
+			if(detectActive(st))return {text:_('%s, applied.').format(prefix),kind:'info'};
+			return {text:_('Warning: %s but qosify is not shaping traffic — check for syntax errors.').format(prefix),kind:'warning'};
+		});
+	},
+
+	saveRules:function(){
+		var self=this;
+		var ta=$('qos-rules-ta');
+		if(!ta)return;
+		var data=ta.value.replace(/\r\n/g,'\n');
+		var verr=validateRules(data);
+		if(verr){notify(_('Error: %s').format(verr),'danger');return;}
+		ui.showModal(_('Saving'),[E('p',{},_('Writing rules and reloading qosify...'))]);
+		return fs.write(RULES_PATH,data).then(function(){
+			return self.applyService();
+		}).then(function(){
+			return self.checkShapingForSave(_('Rules saved'));
+		}).then(function(msg){
+			ta.dataset.orig=data;
+			ui.hideModal();
+			notify(msg.text,msg.kind);
+			return self.refreshOverview();
+		}).catch(function(e){
+			ui.hideModal();
+			notify(_('Save failed: %s').format(e),'danger');
+		});
+	},
+
+	clearCfg:function(){
+		if(!confirm(_('Clear config editor? Content will not be saved until you click Save.')))return;
+		var ta=$('qos-config-ta');if(ta)ta.value='';
+	},
+	clearRules:function(){
+		if(!confirm(_('Clear rules editor? Content will not be saved until you click Save.')))return;
+		var ta=$('qos-rules-ta');if(ta)ta.value='';
+	},
+
+	uploadFiles:function(){
+		var self=this;
+		var u1=$('qos-up-cfg'),u2=$('qos-up-rules');
+		var f1=u1&&u1.files[0],f2=u2&&u2.files[0];
+		if(!f1&&!f2){notify(_('No files selected.'),'warning');return;}
+		if(!confirm(_('Upload and overwrite config files? qosify will reload.')))return;
+
+		function readFile(f){
+			return new Promise(function(res,rej){
+				if(f.size<1)return rej(_('Empty file'));
+				if(f.size>65536)return rej(_('File too large (max 64KB)'));
+				var r=new FileReader();
+				r.onload=function(){res(r.result);};
+				r.onerror=function(){rej(_('Read error'));};
+				r.readAsText(f);
+			});
+		}
+		function validateUci(d){
+			if(/\x00/.test(d))return _('Binary content rejected');
+			if(!/(^|\n)config /.test(d))return _('No valid UCI config stanzas');
+			return null;
+		}
+		ui.showModal(_('Uploading'),[E('p',{},_('Reading and validating files...'))]);
+		var ops=[],names=[],errs=[];
+		if(f1)ops.push(readFile(f1).then(function(d){
+			var e=validateUci(d);
+			if(e){errs.push(_('Config: %s').format(e));return null;}
+			return L.resolveDefault(callUciRevert('qosify'),null).then(function(){return fs.write(UCI_PATH,d);}).then(function(){names.push('/etc/config/qosify');});
+		},function(e){errs.push(_('Config: %s').format(e));}));
+		if(f2)ops.push(readFile(f2).then(function(d){
+			var e=validateRules(d);
+			if(e){errs.push(_('Rules: %s').format(e));return null;}
+			return fs.write(RULES_PATH,d).then(function(){names.push('00-defaults.conf');});
+		},function(e){errs.push(_('Rules: %s').format(e));}));
+
+		return Promise.all(ops).then(function(){
+			if(names.length===0){
+				ui.hideModal();
+				notify(_('Upload error: %s').format(errs.join('; ')),'danger');
+				return;
+			}
+			return self.applyService().then(function(){
+				ui.hideModal();
+				var msg=_('%s uploaded, qosify reloaded.').format(names.join(' & '));
+				if(errs.length)msg+=' '+_('Errors:')+' '+errs.join('; ');
+				notify(msg,errs.length?'warning':'info');
+				if(u1)u1.value='';if(u2)u2.value='';
+				return self.refreshAll();
+			});
+		}).catch(function(e){
+			ui.hideModal();
+			notify(_('Upload failed: %s').format(e),'danger');
+		});
+	},
+
+	resetDefaults:function(){
+		var self=this;
+		if(!confirm(_('Reset qosify config to defaults?')))return;
+		ui.showModal(_('Resetting'),[E('p',{},_('Restoring defaults...'))]);
+		return L.resolveDefault(callUciRevert('qosify'),null).then(function(){
+			return Promise.all([
+				fs.read('/usr/share/qosify-luci/qosify'),
+				fs.read('/usr/share/qosify-luci/00-defaults.conf')
+			]);
+		}).then(function(t){
+			return Promise.all([
+				fs.write(UCI_PATH,t[0]),
+				fs.write(RULES_PATH,t[1])
+			]);
+		}).then(function(){
+			return self.applyService();
+		}).then(function(){
+			ui.hideModal();
+			notify(_('Reset to defaults, applied.'),'info');
+			return self.refreshAll();
+		}).catch(function(e){
+			ui.hideModal();
+			notify(_('Reset failed: %s').format(e),'danger');
+		});
+	},
+
+	// === Quick Add handlers ===
+
+	qarPlaceholder:function(){
+		var t=$('qar-type').value;
+		var v=$('qar-val');
+		var ph={'tcp:':'e.g. 4500 or 5060-5061','udp:':'e.g. 4500 or 5060-5061','both:':'e.g. 4500 or 5060-5061',
+			'dns:':'e.g. *teams* or *.zoom*','dnsr:':'e.g. zoom[0-9]+\\.us','dns_c:':'e.g. *cdn*','dns_cr:':'e.g. cdn[0-9]+',
+			'ipv4:':'e.g. 1.1.1.1','ipv6:':'e.g. ff01::1'};
+		v.placeholder=ph[t]||'';
+	},
+
+	qarAdd:function(){
+		var ty=$('qar-type').value;
+		var val=trim($('qar-val').value);
+		var cls=$('qar-cls').value;
+		var pr=$('qar-prio').checked;
+		if(!val){alert(_('Enter a value.'));return;}
+		if(!cls){alert(_('No classes defined. Add classes in the Config tab first.'));return;}
+		var pt=(ty==='tcp:'||ty==='udp:'||ty==='both:');
+		if(pt&&!/^\d+(-\d+)?$/.test(val)){alert(_('Port must be a number or range (e.g. 4500 or 5060-5061).'));return;}
+		if(pt){
+			var pp=val.split('-');
+			for(var j=0;j<pp.length;j++){var n=parseInt(pp[j]);if(n<1||n>65535){alert(_('Port must be 1-65535.'));return;}}
+			if(pp.length===2&&+pp[0]>+pp[1]){alert(_('Range start must not exceed end.'));return;}
+		}else if(/\s/.test(val)){alert(_('No spaces allowed in patterns or addresses.'));return;}
+		if(ty==='ipv4:'){
+			var oc=val.split('.');
+			if(oc.length!==4||oc.some(function(x){return !/^\d{1,3}$/.test(x)||+x>255;})){alert(_('Enter a single IPv4 address (qosify does not accept CIDR).'));return;}
+		}
+		if(ty==='ipv6:'&&(!/^[0-9a-fA-F:]+(%[a-zA-Z0-9]+)?$/.test(val)||val.indexOf(':')<0||val.length>45)){alert(_('Enter a single IPv6 address (qosify does not accept CIDR).'));return;}
+		var pfx=pr?'+':'';
+		var ta=$('qos-rules-ta');if(!ta)return;
+		var lines=[];
+		if(ty==='both:'){lines.push('tcp:'+val+'\t'+pfx+cls);lines.push('udp:'+val+'\t'+pfx+cls);}
+		else if(ty==='ipv4:'||ty==='ipv6:')lines.push(val+'\t'+pfx+cls);
+		else if(ty==='dnsr:')lines.push('dns:/'+val+'\t'+pfx+cls);
+		else if(ty==='dns_cr:')lines.push('dns_c:/'+val+'\t'+pfx+cls);
+		else lines.push(ty+val+'\t'+pfx+cls);
+		var v=ta.value.replace(/\s+$/,'');
+		ta.value=v+(v?'\n\n':'')+lines.join('\n')+'\n';
+		$('qar-val').value='';
+		$('qar-prio').checked=false;
+		ta.scrollTop=ta.scrollHeight;
+	},
+
+	qacSwitch:function(){
+		var ty=$('qac-type').value;
+		['defaults','class','interface'].forEach(function(x){
+			var el=$('qac-opts-'+x);
+			if(el)el.style.display=(x===ty)?'flex':'none';
+		});
+		$('qac-nm-w').style.display=(ty==='defaults')?'none':'';
+	},
+
+	qacAdd:function(){
+		var ty=$('qac-type').value;
+		var ta=$('qos-config-ta');if(!ta)return;
+		var nm='';
+		if(ty!=='defaults'){
+			nm=$('qac-name').value.replace(/[^a-zA-Z0-9_]/g,'');
+			if(!nm){alert(_('Enter a section name (alphanumeric/underscore).'));return;}
+		}
+		var s='config '+ty+(nm?" '"+nm+"'":'');
+		var div=$('qac-opts-'+ty);
+		var els=div.querySelectorAll('[data-opt]');
+		for(var i=0;i<els.length;i++){
+			var v=els[i].value;if(!v)continue;
+			v=v.replace(/'/g,'');
+			var opt=els[i].getAttribute('data-opt');
+			var pre=els[i].getAttribute('data-pre')||'option';
+			s+="\n\t"+pre+" "+opt+" '"+v+"'";
+		}
+		var cv=ta.value.replace(/\s+$/,'');
+		ta.value=cv+(cv?'\n\n':'')+s+'\n';
+		if(nm)$('qac-name').value='';
+		for(var i=0;i<els.length;i++){
+			if(els[i].tagName==='SELECT')els[i].selectedIndex=0;
+			else els[i].value=els[i].defaultValue||'';
+		}
+		ta.scrollTop=ta.scrollHeight;
+	},
+
+	// === Refreshers ===
+
+	gatherCtx:function(){
+		return Promise.all([
+			L.resolveDefault(fs.read(UCI_PATH),''),
+			L.resolveDefault(fs.read(RULES_PATH),''),
+			L.resolveDefault(fs.stat(UCI_PATH),null),
+			L.resolveDefault(fs.stat(RULES_PATH),null),
+			L.resolveDefault(callServiceList('qosify'),{}),
+			L.resolveDefault(fs.exec('/etc/init.d/qosify',['enabled']),{code:1}),
+			L.resolveDefault(fs.stat('/usr/sbin/qosify'),null),
+			L.resolveDefault(fs.stat('/etc/init.d/qosify'),null),
+			L.resolveDefault(fs.exec('/usr/sbin/qosify-status',[]),{stdout:''})
+		]).then(function(d){
+			var ctx={
+				cfgRaw:d[0]||'',rulesText:d[1]||'',
+				cfgStat:d[2],rulesStat:d[3],
+				running:isRunning(d[4]),enabled:d[5].code===0,
+				hasBin:d[6]!=null,hasInit:d[7]!=null,
+				qstatus:(d[8]&&d[8].stdout)||''
+			};
+			ctx.active=detectActive(ctx.qstatus);
+			return ctx;
+		});
+	},
+
+	refreshOverview:function(){
+		var self=this;
+		self._busy=true;
+		uci.unload('qosify');
+		return uci.load('qosify').then(function(){
+			return self.gatherCtx();
+		}).then(function(ctx){
+			self.fillSect('qos-svc-sect',self.buildSvcSect(ctx));
+			self.fillSect('qos-cfg-sect',self.buildCfgSect(ctx));
+			self.fillSect('qos-ctl-sect',self.buildCtlSect(ctx));
+			var stb=$('qos-st-body');
+			if(stb)self.fillStatus(stb,ctx);
+			return ctx;
+		}).finally(function(){self._busy=false;});
+	},
+
+	refreshOverviewFull:function(){
+		var self=this;
+		return self.refreshOverview().then(function(ctx){
+			self.fillSect('qos-qs-sect',self.buildQsSect(ctx));
+			return ctx;
+		});
+	},
+
+	refreshStatus:function(){
+		if(this.currentTab!=='st')return;
+		var self=this;
+		return Promise.all([
+			L.resolveDefault(callServiceList('qosify'),{}),
+			L.resolveDefault(fs.exec('/usr/sbin/qosify-status',[]),{stdout:''})
+		]).then(function(d){
+			var ctx={running:isRunning(d[0]),qstatus:(d[1]&&d[1].stdout)||''};
+			var stb=$('qos-st-body');
+			if(stb)self.fillStatus(stb,ctx);
+		});
+	},
+
+	refreshAll:function(){
+		var self=this;
+		return self.refreshOverviewFull().then(function(){
+			self.refreshClasses();
+			return Promise.all([
+				L.resolveDefault(fs.read(UCI_PATH),''),
+				L.resolveDefault(fs.read(RULES_PATH),'')
+			]);
+		}).then(function(d){
+			var c=$('qos-config-ta'),r=$('qos-rules-ta');
+			if(c){c.value=d[0]||'';c.dataset.orig=c.value;}
+			if(r){r.value=d[1]||'';r.dataset.orig=r.value;}
+		});
+	}
+});

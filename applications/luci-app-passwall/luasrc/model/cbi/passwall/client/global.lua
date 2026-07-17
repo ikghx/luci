@@ -8,6 +8,8 @@ local has_gfwlist = fs.access("/usr/share/passwall/rules/gfwlist")
 local has_chnlist = fs.access("/usr/share/passwall/rules/chnlist")
 local has_chnroute = fs.access("/usr/share/passwall/rules/chnroute")
 
+api.set_default_cbi()
+
 m = Map(appname)
 api.set_apply_on_parse(m)
 
@@ -837,4 +839,4 @@ local apply = luci.http.formvalue("cbi.apply")
 		luci.util.exec("/etc/init.d/" .. appname .." restart >/dev/null 2>&1")
 	end
 
-return m
+return api.return_map(m)
