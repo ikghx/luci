@@ -3,9 +3,12 @@ config global
 	option enabled '0'
 	option socks_enabled '0'
 	option udp_node 'tcp'
-	option dns_shunt 'dnsmasq'
-	option dns_mode 'tcp'
-	option remote_dns '1.1.1.1'
+	option tcp_node_socks_port '1070'
+	option dns_shunt 'chinadns-ng'
+	option direct_dns_mode 'udp'
+	option direct_dns '127.0.0.1:5336'
+	option dns_mode 'udp'
+	option remote_dns '127.0.0.1:5337'
 	list smartdns_remote_dns 'https://1.1.1.1/dns-query'
 	option use_default_dns 'direct'
 	option chinadns_ng_default_tag 'none'
@@ -20,14 +23,14 @@ config global
 	option log_udp '0'
 	option loglevel 'error'
 	option log_chinadns_ng '0'
-	option flush_set '1'
+	option trojan_loglevel '4'
 
 config global_haproxy
 	option balancing_enable '0'
 
 config global_delay
 	option start_daemon '1'
-	option start_delay '60'
+	option start_delay '20'
 
 config global_forwarding
 	option tcp_no_redir_ports 'disable'
@@ -37,7 +40,7 @@ config global_forwarding
 	option tcp_redir_ports '22,25,53,80,143,443,465,587,853,873,993,995,5222,8080,8443,9418'
 	option udp_redir_ports '1:65535'
 	option prefer_nft '1'
-	option tcp_proxy_way 'redirect'
+	option tcp_proxy_way 'tproxy'
 	option ipv6_tproxy '0'
 
 config global_xray
@@ -45,12 +48,15 @@ config global_xray
 
 config global_singbox
 	option sniff_override_destination '0'
+	option record_fragment '0'
+	option fragment '0'
 
 config global_other
 	option auto_detection_time 'tcping'
 	option url_test_url 'https://www.google.com/generate_204'
 
 config global_rules
+	option auto_update '0'
 	option chnlist_update '1'
 	option chnroute_update '1'
 	option chnroute6_update '1'

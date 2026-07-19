@@ -1484,13 +1484,6 @@ const openvpnOptions = [
 		tab: 'push_opt',
 		depends: { server: "", "!reverse": true },
 		type: form.Value,
-		name: 'auth_user_pass',
-		label: _('Authenticate using username/password')
-	},
-	{
-		tab: 'push_opt',
-		depends: { server: "", "!reverse": true },
-		type: form.Value,
 		name: 'auth_retry',
 		label: _('Handling of authentication failures')
 	},
