@@ -1077,16 +1077,13 @@ return view.extend({
 				ss.tab('encryption', _('Wireless Security'));
 				ss.tab('macfilter', _('MAC Address Filter'));
 				ss.tab('advanced', _('Advanced Settings'));
-				ss.tab('roaming', _('WLAN roaming'));
+				ss.tab('roaming', _('WLAN Roaming'));
 
 				o = ss.taboption('general', form.ListValue, 'mode', _('Mode') , !have_mesh ? '<a id="installmesh" href="%s" target="_blank" rel="noreferrer">%s</a>'
 						.format(L.url('admin/system/package-manager') + '?query=wpad-mesh', _('802.11s? Install mesh wpad') ) : '');
-				if (radioNet.isModeSupported('ap'))
-					o.value('ap', _('Access Point'));
-				if (radioNet.isModeSupported('sta'))
-					o.value('sta', _('Client'));
-				if (radioNet.isModeSupported('adhoc'))
-					o.value('adhoc', _('Ad-Hoc'));
+				o.value('ap', _('Access Point'));
+				o.value('sta', _('Client'));
+				o.value('adhoc', _('Ad-Hoc'));
 
 				o = ss.taboption('general', form.Value, 'mesh_id', _('Mesh identity'));
 				o.depends('mode', 'mesh');
@@ -1171,9 +1168,9 @@ return view.extend({
 					const mode = ss.children.find(obj => obj.option === 'mode');
 					const bssid = ss.children.find(obj => obj.option === 'bssid');
 
-					if (have_mesh && radioNet.isModeSupported('mesh')) mode.value('mesh', '802.11s');
-					if (radioNet.isModeSupported('ahdemo')) mode.value('ahdemo', _('Pseudo ad-hoc (ahdemo)'));
-					if (radioNet.isModeSupported('monitor')) mode.value('monitor', _('Monitor'));
+					if (have_mesh) mode.value('mesh', '802.11s');
+					mode.value('ahdemo', _('Pseudo ad-hoc (ahdemo)'));
+					mode.value('monitor', _('Monitor'));
 
 					bssid.depends('mode', 'adhoc');
 					bssid.depends('mode', 'sta');
@@ -1201,10 +1198,8 @@ return view.extend({
 						}, this));
 					};
 
-					if (radioNet.isModeSupported('ap-wds'))
-						mode.value('ap-wds', '%s (%s)'.format(_('Access Point'), _('WDS')));
-					if (radioNet.isModeSupported('sta-wds'))
-						mode.value('sta-wds', '%s (%s)'.format(_('Client'), _('WDS')));
+					mode.value('ap-wds', '%s (%s)'.format(_('Access Point'), _('WDS')));
+					mode.value('sta-wds', '%s (%s)'.format(_('Client'), _('WDS')));
 
 					mode.write = function(section_id, value) {
 						switch (value) {
