@@ -634,6 +634,41 @@ msgstr "<abbr title=\"라우터 광고(Router Advertisement)\">RA</abbr> 서비�
 msgid "<br/>"
 msgstr "<br/>"
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:43
+msgid ""
+"<em>Automatic</em> uses the client ID configured below, else the default "
+"DUID of this device, else a DUID-LL derived from the MAC address of this "
+"interface."
+msgstr ""
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:39
+msgid ""
+"<em>Automatic</em> uses the client ID configured below, else the default "
+"DUID of this device, else the MAC address of this interface."
+msgstr ""
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:40
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:44
+msgid ""
+"<em>Default DUID</em> always uses the default DUID of this device, even if a "
+"client ID is configured below."
+msgstr ""
+
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:45
+msgid ""
+"<em>Hardware address</em> always uses a DUID-LL derived from the MAC address "
+"of this interface."
+msgstr ""
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:41
+msgid ""
+"<em>Hardware address</em> always uses the MAC address of this interface."
+msgstr ""
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:42
+msgid "<em>None</em> sends no client identifier at all."
+msgstr ""
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:112
 msgid ""
 "<strong>Warning: After every sysupgrade you have to configure everything "
@@ -1773,9 +1808,11 @@ msgstr ""
 msgid "Autofill listen addresses"
 msgstr "수신 주소 자동 완성"
 
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:43
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:120
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:18
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:26
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:46
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:108
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:117
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:113
@@ -2478,8 +2515,8 @@ msgstr ""
 msgid "Client"
 msgstr "클라이언트"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:40
-#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:41
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:49
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:51
 msgid "Client ID to send when requesting DHCP"
 msgstr "DHCP 요청 시 전송할 클라이언트 ID"
 
@@ -3132,7 +3169,9 @@ msgstr "기본값"
 msgid "Default %d"
 msgstr ""
 
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:44
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1863
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:47
 msgid "Default DUID"
 msgstr "기본 DUID"
 
@@ -5631,6 +5670,11 @@ msgstr "중단"
 
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/view/batman-adv/status.js:112
 msgid "Hardware Interfaces"
+msgstr ""
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:48
+msgid "Hardware address"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:699
@@ -8311,7 +8355,7 @@ msgstr "멀티캐스트 규칙"
 msgid "Multicast to unicast"
 msgstr "멀티캐스트-유니캐스트 변환"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:47
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:56
 msgid "Multiple parameters are separated by spaces."
 msgstr ""
 
@@ -8835,6 +8879,7 @@ msgstr "잡음 여유도"
 msgid "Noise:"
 msgstr "잡음:"
 
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:46
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:923
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:167
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:193
@@ -10079,6 +10124,11 @@ msgstr "LTE 우선"
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:79
 msgid "Prefer UMTS"
 msgstr "UMTS 우선"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:41
+msgid "Preferred client ID"
+msgstr ""
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:110
 msgid "Preferred network technology"
@@ -11605,6 +11655,17 @@ msgstr "디렉터리 선택…"
 msgid "Select file…"
 msgstr "파일 선택…"
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:42
+msgid ""
+"Selects the <abbr title=\"DHCP Unique Identifier\">DUID</abbr> to send when "
+"requesting DHCPv6."
+msgstr ""
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:38
+msgid ""
+"Selects the client identifier (DHCP option 61) to send when requesting DHCP."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:900
 msgid ""
 "Send <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</abbr> "
@@ -11612,10 +11673,6 @@ msgid ""
 msgstr ""
 "장치를 IPv6 라우터로 알리는 <abbr title=\"라우터 광고(Router Advertisement), "
 "ICMPv6 Type 134\">RA</abbr> 메시지를 전송합니다."
-
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-msgid "Send Client ID"
-msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1250
 msgid "Send ICMP redirects"
@@ -11646,12 +11703,6 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:823
 msgid "Send options to clients that did not request them."
 msgstr "옵션을 요청하지 않은 클라이언트에게도 전송합니다."
-
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-msgid ""
-"Send the DHCP client identifier (option 61). Disable for ISPs that reject "
-"requests containing it"
-msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:24
 msgid "Send the hostname of this device"
@@ -14514,7 +14565,7 @@ msgstr ""
 msgid "Vendor"
 msgstr "벤더"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:44
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:53
 msgid "Vendor Class to send when requesting DHCP"
 msgstr "DHCP 요청 시 전송할 벤더 클래스"
 
@@ -14891,7 +14942,7 @@ msgstr "ZRam 설정"
 msgid "ZRam Size"
 msgstr "ZRam 크기"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:46
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:55
 msgid "additional DHCP options to send when requesting DHCP"
 msgstr ""
 

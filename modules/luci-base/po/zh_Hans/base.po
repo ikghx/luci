@@ -631,6 +631,47 @@ msgstr "<abbr title=\"Router Advertisement\">RA</abbr> 服务"
 msgid "<br/>"
 msgstr ""
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:43
+msgid ""
+"<em>Automatic</em> uses the client ID configured below, else the default "
+"DUID of this device, else a DUID-LL derived from the MAC address of this "
+"interface."
+msgstr ""
+"</em>自动</em> 模式使用下方配置的客户端 ID；若未配置，则使用该设备的默认 "
+"DUID；若默认 DUID 也不可用，则使用基于该接口 MAC 地址生成的 DUID-LL。"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:39
+msgid ""
+"<em>Automatic</em> uses the client ID configured below, else the default "
+"DUID of this device, else the MAC address of this interface."
+msgstr ""
+"</em>自动</em> 模式使用下方配置的客户端 ID；若未配置，则使用该设备的默认 "
+"DUID；若两者均无，则使用该接口的 MAC 地址。"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:40
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:44
+msgid ""
+"<em>Default DUID</em> always uses the default DUID of this device, even if a "
+"client ID is configured below."
+msgstr ""
+"</em>默认 DUID</em> 始终使用该设备的默认 DUID，即使下方配置了客户端 ID 也是如"
+"此。"
+
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:45
+msgid ""
+"<em>Hardware address</em> always uses a DUID-LL derived from the MAC address "
+"of this interface."
+msgstr "<em>硬件地址</em> 始终使用基于该接口 MAC 地址生成的 DUID-LL。"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:41
+msgid ""
+"<em>Hardware address</em> always uses the MAC address of this interface."
+msgstr "<em>硬件地址</em> 始终使用该接口的 MAC 地址。"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:42
+msgid "<em>None</em> sends no client identifier at all."
+msgstr "<em>无</em> 不发送任何客户端标识符。"
+
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:112
 msgid ""
 "<strong>Warning: After every sysupgrade you have to configure everything "
@@ -1761,9 +1802,11 @@ msgstr "自动协商"
 msgid "Autofill listen addresses"
 msgstr "自动填充监听地址"
 
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:43
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:120
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:18
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:26
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:46
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:108
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:117
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:113
@@ -2464,8 +2507,8 @@ msgstr ""
 msgid "Client"
 msgstr "客户端"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:40
-#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:41
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:49
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:51
 msgid "Client ID to send when requesting DHCP"
 msgstr "请求 DHCP 时发送的客户端 ID"
 
@@ -3115,7 +3158,9 @@ msgstr "默认"
 msgid "Default %d"
 msgstr "默认 %d"
 
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:44
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1863
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:47
 msgid "Default DUID"
 msgstr "默认 DUID"
 
@@ -5599,6 +5644,11 @@ msgstr "挂起"
 #: protocols/luci-proto-batman-adv/htdocs/luci-static/resources/view/batman-adv/status.js:112
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:45
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:48
+msgid "Hardware address"
+msgstr "硬件地址"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:699
 msgid ""
@@ -8281,7 +8331,7 @@ msgstr "组播规则"
 msgid "Multicast to unicast"
 msgstr "组播到单播"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:47
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:56
 msgid "Multiple parameters are separated by spaces."
 msgstr "多个参数之间用空格分隔。"
 
@@ -8810,6 +8860,7 @@ msgstr "噪声容限"
 msgid "Noise:"
 msgstr "噪声："
 
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:46
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:923
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:167
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:193
@@ -10054,6 +10105,11 @@ msgstr "首选 LTE"
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:79
 msgid "Prefer UMTS"
 msgstr "首选 UMTS"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:41
+msgid "Preferred client ID"
+msgstr "首选客户 ID"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:110
 msgid "Preferred network technology"
@@ -11564,6 +11620,17 @@ msgstr "选择目录…"
 msgid "Select file…"
 msgstr "选择文件…"
 
+#: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dhcpv6.js:42
+msgid ""
+"Selects the <abbr title=\"DHCP Unique Identifier\">DUID</abbr> to send when "
+"requesting DHCPv6."
+msgstr "选择请求 DHCPv6 时发送的 <abbr title=\"DHCP 唯一标识符\">DUID</abbr>。"
+
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:38
+msgid ""
+"Selects the client identifier (DHCP option 61) to send when requesting DHCP."
+msgstr "选择在请求 DHCP 时发送的客户端标识符（DHCP 选项 61）。"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:900
 msgid ""
 "Send <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</abbr> "
@@ -11571,10 +11638,6 @@ msgid ""
 msgstr ""
 "发送 <abbr title=\"Router Advertisement, ICMPv6 Type 134（路由器通告，ICMPv6 "
 "消息类型 134）\">RA</abbr> 消息，以通告此设备为 IPv6 路由器。"
-
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-msgid "Send Client ID"
-msgstr "发送客户端 ID"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1250
 msgid "Send ICMP redirects"
@@ -11605,14 +11668,6 @@ msgstr "断开连接时向客户端发送通知"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:823
 msgid "Send options to clients that did not request them."
 msgstr "发送选项到没有请求它们的客户端。"
-
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:37
-msgid ""
-"Send the DHCP client identifier (option 61). Disable for ISPs that reject "
-"requests containing it"
-msgstr ""
-"发送 DHCP 客户端标识符（选项 61）。如果 ISP 拒绝包含该标识符的请求，请禁用此"
-"选项。"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:24
 msgid "Send the hostname of this device"
@@ -14455,7 +14510,7 @@ msgstr "使用系统内置的 CA 包验证服务器证书，<br />需要“ca-bu
 msgid "Vendor"
 msgstr "供应商"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:44
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:53
 msgid "Vendor Class to send when requesting DHCP"
 msgstr "请求 DHCP 时要发送的供应商类别"
 
@@ -14841,7 +14896,7 @@ msgstr "ZRam 设置"
 msgid "ZRam Size"
 msgstr "ZRam 大小"
 
-#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:46
+#: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:55
 msgid "additional DHCP options to send when requesting DHCP"
 msgstr "请求 DHCP 时发送的附加 DHCP 选项"
 

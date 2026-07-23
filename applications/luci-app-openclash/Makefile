@@ -5,15 +5,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-openclash
-PKG_VERSION:=0.47.133
+PKG_VERSION:=0.47.136
 PKG_RELEASE:=1
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 
 LUCI_TITLE:=LuCI support for clash
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+luci-compat +dnsmasq-full +coreutils +coreutils-nohup +bash \
-	+curl +ca-bundle +kmod-tun +ip-full +ipset +libcap +libcap-bin \
-	+ruby +ruby-yaml +unzip +kmod-inet-diag +kmod-nft-tproxy +mihomo-meta
+LUCI_DEPENDS:=+luci-compat +dnsmasq-full +bash +curl +ca-bundle +ip-full +ruby \
+	+ruby-yaml +kmod-inet-diag +kmod-nft-tproxy +kmod-tun +unzip +mihomo-meta
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/openclash
