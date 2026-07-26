@@ -83,7 +83,7 @@ const methods = {
 		args: { service_name: 'service_name' },
 		call: function(request) {
 			let result = 'File not found or empty';
-			
+
 			// Get the log directory. Fall back to '/var/log/ddns' if not found
 			let logdir = uci.get('ddns', 'global', 'ddns_logdir') || ddns_log_path;
 
@@ -101,7 +101,7 @@ const methods = {
 			return { result: result };
 		}
 	},
-	
+
 	get_services_status: {
 		call: function() {
 			const rundir = uci.get('ddns', 'global', 'ddns_rundir') || ddns_run_path;
@@ -308,7 +308,7 @@ const methods = {
 
 			res['has_cacerts'] = checkCerts();
 
-			res['has_ipv6'] = (stat('/proc/net/ipv6_route')?.type == 'file' && 
+			res['has_ipv6'] = (stat('/proc/net/ipv6_route')?.type == 'file' &&
 				(stat('/usr/sbin/ip6tables')?.type == 'file' || stat('/usr/sbin/nft')?.type == 'file'));
 
 			return res;
