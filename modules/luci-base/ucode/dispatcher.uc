@@ -1,17 +1,17 @@
 // Copyright 2022 Jo-Philipp Wich <jo@mein.io>
 // Licensed to the public under the Apache License 2.0.
 
-import { open, stat, glob, lsdir, unlink, basename } from 'fs';
+import { open, readfile, stat, glob, lsdir, unlink, basename } from 'fs';
 import { striptags, entityencode } from 'html';
 import { connect } from 'ubus';
 import { cursor } from 'uci';
-import { rand } from 'math';
 import { openlog, syslog, closelog, LOG_INFO, LOG_WARNING, LOG_AUTHPRIV } from 'log';
 
 import { hash, load_catalog, change_catalog, translate, ntranslate, getuid } from 'luci.core';
 import { revision as luciversion, branch as luciname } from 'luci.version';
 import { default as LuCIRuntime } from 'luci.runtime';
 import { urldecode, urlencode } from 'luci.http';
+import { get_challenges, verify } from 'luci.authplugins';
 
 let ubus = connect();
 let uci = cursor();
@@ -486,12 +486,12 @@ function session_retrieve(sid, allowed_users) {
 }
 
 function randomid(num_bytes) {
-	let bytes = [];
+	let data = readfile('/dev/urandom', num_bytes);
 
-	while (num_bytes-- > 0)
-		push(bytes, sprintf('%02x', rand() % 256));
+	if (length(data) != num_bytes)
+		return null;
 
-	return join('', bytes);
+	return hexenc(data);
 }
 
 function session_setup(user, pass, path) {
@@ -518,6 +518,15 @@ function session_setup(user, pass, path) {
 		join('/', map(path, p => urlencode(p))), urlencode(user || "?"), http.getenv("REMOTE_ADDR") || "?");
 
 	closelog();
+}
+
+function set_auth_required_plugins(session, plugin_ids) {
+	ubus.call("session", "set", {
+		ubus_rpc_session: session.sid,
+		values: {
+			pending_auth_plugins: (type(plugin_ids) == 'array') ? plugin_ids : null
+		}
+	});
 }
 
 function check_authentication(method) {
@@ -936,6 +945,19 @@ dispatch = function(_http, path) {
 					pass = http.formvalue('luci_password');
 				}
 
+				let auth_check = get_challenges(http, user ?? 'root');
+				let auth_fields = null;
+				let auth_message = null;
+				let auth_html = null;
+				let auth_assets = null;
+
+				if (auth_check.pending) {
+					auth_fields = auth_check.fields;
+					auth_message = auth_check.message;
+					auth_html = auth_check.html;
+					auth_assets = auth_check.assets;
+				}
+
 				if (user != null && pass != null)
 					session = session_setup(user, pass, resolved.ctx.request_path);
 
@@ -945,7 +967,15 @@ dispatch = function(_http, path) {
 					http.status(403, 'Forbidden');
 					http.header('X-LuCI-Login-Required', 'yes');
 
-					let scope = { duser: 'root', fuser: user };
+					// Show login form with 2FA fields if required
+					let scope = {
+						duser: 'root',
+						fuser: user,
+						auth_fields: auth_fields,
+						auth_message: auth_message,
+						auth_html: auth_html,
+						auth_assets: auth_assets
+					};
 					let theme_sysauth = `themes/${basename(runtime.env.media)}/sysauth`;
 
 					if (runtime.is_ucode_template(theme_sysauth) || runtime.is_lua_template(theme_sysauth)) {
@@ -958,6 +988,55 @@ dispatch = function(_http, path) {
 					}
 
 					return runtime.render('sysauth', scope);
+				}
+
+				let auth_user = session.data?.username;
+				if (!auth_user)
+					auth_user = user;
+
+				// Compute required plugin list once for authenticated user and bind it to the temporary session.
+				auth_check = get_challenges(http, auth_user);
+				if (auth_check.pending) {
+					let required_plugin_ids = map(auth_check.challenges, c => c.uuid);
+					set_auth_required_plugins(session, required_plugin_ids);
+
+					// Verify exactly the plugin list stored in this temporary session
+					let auth_verify = verify(http, auth_user, required_plugin_ids);
+
+					if (!auth_verify.success) {
+						// Additional auth failed or not provided
+						// Destroy the temporary session to prevent bypass
+						ubus.call("session", "destroy", { ubus_rpc_session: session.sid });
+
+						resolved.ctx.path = [];
+						http.status(403, 'Forbidden');
+						http.header('X-LuCI-Login-Required', 'yes');
+
+						let scope = {
+							duser: 'root',
+							fuser: user,
+							auth_plugin: length(auth_check.challenges) ? auth_check.challenges[0].name : null,
+							auth_fields: auth_check.fields,
+							auth_message: auth_verify.message ?? auth_check.message,
+							auth_html: auth_check.html,
+							auth_assets: auth_check.assets
+						};
+
+						let theme_sysauth = `themes/${basename(runtime.env.media)}/sysauth`;
+
+						if (runtime.is_ucode_template(theme_sysauth) || runtime.is_lua_template(theme_sysauth)) {
+							try {
+								return runtime.render(theme_sysauth, scope);
+							}
+							catch (e) {
+								runtime.env.media_error = `${e}`;
+							}
+						}
+
+						return runtime.render('sysauth', scope);
+					}
+
+					set_auth_required_plugins(session, null);
 				}
 
 				let cookie_name = (http.getenv('HTTPS') == 'on') ? 'sysauth_https' : 'sysauth_http',
