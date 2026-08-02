@@ -149,15 +149,3 @@ export function init_enabled(name) {
 
 	return false;
 };
-
-export function init_action(name, action) {
-	if (!match(action, /^[a-z_][a-z0-9_-]*$/s))
-		return false;
-
-	const s = stat(`/etc/init.d/${basename(name)}`);
-
-	if (s?.type != 'file' || s?.perm?.user_exec == false)
-		return false;
-
-	return system(`env -i /etc/init.d/${basename(name)} ${action} >/dev/null`);
-};

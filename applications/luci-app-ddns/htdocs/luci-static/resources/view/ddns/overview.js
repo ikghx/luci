@@ -33,10 +33,9 @@ return view.extend({
 	}),
 
 	callInitAction: rpc.declare({
-		object: 'luci',
-		method: 'setInitAction',
-		params: [ 'name', 'action' ],
-		expect: { result: false }
+		object: 'rc',
+		method: 'init',
+		params: [ 'name', 'action' ]
 	}),
 
 	callDDnsGetStatus: rpc.declare({

@@ -16,10 +16,9 @@ return view.extend({
 	},
 
 	handleEnableSQM: rpc.declare({
-		object: 'luci',
-		method: 'setInitAction',
-		params: [ 'sqm', 'enable' ],
-		expect: { result: false }
+		object: 'rc',
+		method: 'init',
+		params: [ 'name', 'action' ]
 	}),
 
 	load: function() {
@@ -79,7 +78,7 @@ return view.extend({
 		o.rmempty = false;
 		o.write = L.bind(function(section, value) {
 			if (value == "1") {
-				this.handleEnableSQM();
+				this.handleEnableSQM('sqm', 'enable');
 				ui.addNotification(null, E('p', _("The SQM GUI has just enabled the sqm initscript on your behalf. Remember to disable the sqm initscript manually under System Startup menu in case this change was not wished for.")));
 			}
 

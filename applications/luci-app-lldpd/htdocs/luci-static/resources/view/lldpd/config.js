@@ -26,10 +26,9 @@ const callInitList = rpc.declare({
 });
 
 const callInitAction = rpc.declare({
-	object: 'luci',
-	method: 'setInitAction',
-	params: [ 'name', 'action' ],
-	expect: { result: false }
+	object: 'rc',
+	method: 'init',
+	params: [ 'name', 'action' ]
 });
 
 const usage = _('See syntax <a %s>here</a>.').format('href=https://lldpd.github.io/usage.html target="_blank"');
