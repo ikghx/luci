@@ -2810,7 +2810,7 @@ Protocol = baseclass.extend(/** @lends LuCI.network.Protocol.prototype */ {
 				for (let radioname of radionames) {
 					const netid = getWifiNetidBySid(wf_if['.name'], radioname);
 
-				if (netid != null)
+					if (netid != null)
 						rv.push(Network.prototype.instantiateDevice(netid[0], this));
 				}
 			}
