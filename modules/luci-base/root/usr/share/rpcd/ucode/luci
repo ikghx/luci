@@ -206,7 +206,6 @@ const methods = {
 				bonding:    access('/sys/module/bonding'),
 				mii_tool:   access('/usr/sbin/mii-tool'),
 				offloading: access('/sys/module/xt_FLOWOFFLOAD/refcnt') == true || access('/sys/module/nft_flow_offload/refcnt') == true,
-				fullcone:   access('/sys/module/xt_FULLCONENAT/refcnt') == true || access('/sys/module/nft_fullcone/refcnt') == true,
 				br2684ctl:  access('/usr/sbin/br2684ctl') == true,
 				swconfig:   access('/sbin/swconfig') == true,
 				zram:       access('/sys/class/zram-control') == true,
@@ -681,22 +680,6 @@ const methods = {
 				return { cpuinfo: cpuinfo };
 			} else {
 				return { cpuinfo: error() };
-			}
-		}
-	},
-
-	getCPUUsage: {
-		call: function() {
-			const fd = popen('top -n1 | awk \'/^CPU/ {printf("%d%", 100 - $8)}\'');
-			if (fd) {
-				let cpuusage = fd.read('all');
-				if (!cpuusage)
-					cpuusage = '?';
-				fd.close();
-
-				return { cpuusage: cpuusage };
-			} else {
-				return { cpuusage: error() };
 			}
 		}
 	},
