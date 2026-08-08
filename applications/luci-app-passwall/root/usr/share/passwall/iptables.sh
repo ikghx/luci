@@ -952,7 +952,14 @@ add_firewall_rule() {
 	[ "$USE_SHUNT_NODE" = "1" ] && {
 		local GEOIP_CODE=""
 		local shunt_ids=$(uci show $CONFIG | grep "=shunt_rules" | awk -F '.' '{print $2}' | awk -F '=' '{print $1}')
+		local shunt_group
+		if [ "${USE_SHUNT_TCP}" = "1" ]; then
+			shunt_group=$(config_n_get $_TCP_NODE shunt_group)
+		elif [ "${USE_SHUNT_UDP}" = "1" ]; then
+			shunt_group=$(config_n_get $_UDP_NODE shunt_group)
+		fi
 		for shunt_id in $shunt_ids; do
+			[ "${shunt_group}" != "$(config_n_get ${shunt_id} group)" ] && continue
 			config_n_get $shunt_id ip_list | tr -s "\r\n" "\n" | grep -v "^#" | sed -e "/^$/d" | grep -E "(\.((2(5[0-5]|[0-4][0-9]))|[0-1]?[0-9]{1,2})){3}" | sed -e "s/^/add $IPSET_SHUNT &/g" -e "s/$/ timeout 0/g" | ipset -! -R
 			config_n_get $shunt_id ip_list | tr -s "\r\n" "\n" | grep -v "^#" | sed -e "/^$/d" | grep -E "([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}" | sed -e "s/^/add $IPSET_SHUNT6 &/g" -e "s/$/ timeout 0/g" | ipset -! -R
 			[ "$USE_GEOVIEW" = "1" ] && {
@@ -1398,8 +1405,8 @@ del_firewall_rule() {
 	done
 	for ipt in "$ipt_f" "$ip6t_f"; do
 		for chain in "FORWARD" "INPUT" "OUTPUT"; do
-			for i in $(seq 1 $($ipt -nL $chain | grep -c PSW)); do
-				local index=$($ipt --line-number -nL $chain | grep PSW | head -1 | awk '{print $1}')
+			for i in $(seq 1 $($ipt -nL $chain | grep -c PSW_REJECT)); do
+				local index=$($ipt --line-number -nL $chain | grep PSW_REJECT | head -1 | awk '{print $1}')
 				$ipt -D $chain $index 2>/dev/null
 			done
 		done

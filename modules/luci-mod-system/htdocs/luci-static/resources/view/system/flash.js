@@ -16,13 +16,15 @@ const callSystemValidateFirmwareImage = rpc.declare({
 });
 
 const callGetBoardJSON = rpc.declare({
-	object: 'luci',
+	object: 'luci-rpc',
 	method: 'getBoardJSON',
 	expect: { '': {} }
 });
 
-const factoryLanIP = () =>
-	L.resolveDefault(callGetBoardJSON(), {}).then(bj => bj?.network?.lan?.ipaddr);
+/* Cached factory-reset LAN IP, prefetched in load() so it can be passed
+ * synchronously to ui.awaitReconnect() before firstboot/sysupgrade wipe
+ * the device and rpcd disappears. */
+let factoryLanIP = '192.168.9.1';
 
 function findStorageSize(procmtd, procpart) {
 	let kernsize = 0, rootsize = 0, wholesize = 0;
@@ -80,7 +82,11 @@ return view.extend({
 			fs.trimmed('/proc/sys/kernel/hostname'),
 			fs.trimmed('/proc/mtd'),
 			fs.trimmed('/proc/partitions'),
-			fs.trimmed('/proc/mounts')
+			fs.trimmed('/proc/mounts'),
+			L.resolveDefault(callGetBoardJSON(), {}).then(bj => {
+				factoryLanIP = bj?.network?.lan?.ipaddr ?? '192.168.9.1';
+				return factoryLanIP;
+			})
 		];
 
 		return Promise.all(tasks);
@@ -110,7 +116,7 @@ return view.extend({
 		/* Currently the sysupgrade rpc call will not return, hence no promise handling */
 		fs.exec('/sbin/firstboot', [ '-r', '-y' ]);
 
-		factoryLanIP().then(ip => ui.awaitReconnect(ip, 'openwrt.lan'));
+		ui.awaitReconnect(factoryLanIP, 'openwrt.lan');
 	},
 
 	handleRestore(ev) {
@@ -172,8 +178,7 @@ return view.extend({
 					E('p', { 'class': 'spinning' }, _('The system is rebooting now. If the restored configuration changed the current LAN IP address, you might need to reconnect manually.'))
 				]);
 
-				factoryLanIP().then(ip =>
-					ui.awaitReconnect(window.location.host, ip, 'openwrt.lan'));
+				ui.awaitReconnect(window.location.host, factoryLanIP, 'openwrt.lan');
 			}, this))
 			.catch(function(e) { ui.addNotification(null, E('p', e.message)) })
 			.finally(function() { btn.firstChild.data = _('Upload archive...') });
@@ -347,8 +352,7 @@ return view.extend({
 		if (opts['keep'][0].checked)
 			ui.awaitReconnect(window.location.host);
 		else
-			factoryLanIP().then(ip =>
-				ui.awaitReconnect(window.location.host, ip, 'openwrt.lan'));
+			ui.awaitReconnect(window.location.host, factoryLanIP, 'openwrt.lan');
 	},
 
 	handleBackupList(ev) {

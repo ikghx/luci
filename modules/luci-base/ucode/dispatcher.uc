@@ -349,6 +349,7 @@ function build_pagetree() {
 		action: 'object',
 		auth: 'object',
 		cors: 'bool',
+		css: 'string',
 		depends: 'object',
 		order: 'int',
 		setgroup: 'string',
@@ -748,7 +749,7 @@ function lookup(...segments) {
 			push(path, name);
 
 	for (let name in path) {
-		node = node.children?[name];
+		node = node.children?.[name];
 
 		if (!node)
 			return null;
