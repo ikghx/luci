@@ -1107,7 +1107,9 @@ return baseclass.extend({
 		const min_mtu = dev ? dev.getMinMTU() : null;
 		const max_mtu = dev ? dev.getMaxMTU() : null;
 		const effective_max_mtu = max_mtu || 9200;
-		const effective_min_mtu = Math.min(Math.max(min_mtu || 576, 576), effective_max_mtu);
+		const effective_min_mtu = effective_max_mtu < 576
+			? Math.min(min_mtu || effective_max_mtu, effective_max_mtu)
+			: Math.min(Math.max(min_mtu || 576, 576), effective_max_mtu);
 
 		o = this.replaceOption(s, 'devgeneral', form.Value, 'mtu', _('MTU'));
 		o.datatype = 'range(%d, %d)'.format(effective_min_mtu, effective_max_mtu);
