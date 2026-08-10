@@ -995,8 +995,8 @@ body[data-page="admin-system-admin-sshkeys"] .cbi-dynlist{max-width:none}
 #content_syslog > div:has(> label) > label{white-space:nowrap}
 #content_syslog > div:has(> label) > :is(select,input){flex:1 1 auto;min-width:0;max-width:100%}
 #content_syslog > div:has(> label) > input[type="checkbox"]{flex:0 0 auto}
-#logMaxRows{flex-basis:6ch;max-width:12ch}
-@container fs-view (max-width:560px){div:has(> #logFacilitySelect){display:grid;grid-template-columns:auto auto auto minmax(0,1fr);column-gap:var(--fs-space-1)}
+#content_syslog > div:has(> label) > input[type="number"]{flex-basis:6ch;max-width:12ch}
+@container fs-view (max-width:560px){#content_syslog > div:has(> label):has(> select ~ select){display:grid;grid-template-columns:auto auto auto minmax(0,1fr);column-gap:var(--fs-space-1)}
 }
 #syslog{width:100%;min-height:500px;color:var(--fs-text);margin-bottom:var(--fs-space-4);font-family:var(--fs-font-mono);font-size:var(--fs-type);line-height:var(--fs-leading);white-space:pre;resize:vertical}
 }
