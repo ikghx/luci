@@ -365,24 +365,6 @@ if api.is_finded("smartdns") then
 	o.cfgvalue = function(self, section)
 		return m:get(section, self.option) or {"tcp://1.1.1.1"}
 	end
-	function o.write(self, section, value)
-		local t = {}
-		local t2 = {}
-		if type(value) == "table" then
-			local x
-			for _, x in ipairs(value) do
-				if x and #x > 0 then
-					if not t2[x] then
-						t2[x] = x
-						t[#t+1] = x
-					end
-				end
-			end
-		else
-			t = { value }
-		end
-		return DynamicList.write(self, section, t)
-	end
 end
 
 o = s:taboption("DNS", ListValue, "xray_dns_mode", translate("Remote DNS") .. " " .. translate("Request protocol"))

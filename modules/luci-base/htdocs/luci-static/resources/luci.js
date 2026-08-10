@@ -698,10 +698,6 @@
 
 				return new Promise((resolveFn, rejectFn) => {
 					opt.xhr.onreadystatechange = callback.bind(opt, resolveFn, rejectFn);
-
-					if (Poll.tickDepth > 0)
-						opt.url += ((/\?/).test(opt.url) ? '&' : '?') + '_luci_bg=1';
-
 					opt.method = String(opt.method ?? 'GET').toUpperCase();
 
 					if ('query' in opt) {
@@ -1206,8 +1202,7 @@
 
 				e.r = false;
 
-				Poll.tickDepth = (Poll.tickDepth || 0) + 1;
-				Promise.resolve(e.fn()).finally(() => { e.r = true; Poll.tickDepth--; });
+				Promise.resolve(e.fn()).finally((function() { this.r = true }).bind(e));
 			}
 
 			Poll.tick = (Poll.tick + 1) % Math.pow(2, 32);
