@@ -60,10 +60,11 @@ define Package/$(PKG_NAME)/postrm
 	rm -rf /etc/config/openclash >/dev/null 2>&1
 	rm -rf /tmp/openclash.log >/dev/null 2>&1
 	rm -rf /tmp/openclash_start.log >/dev/null 2>&1
-	rm -rf /tmp/openclash_last_version >/dev/null 2>&1
 	rm -rf /tmp/openclash.change >/dev/null 2>&1
-	rm -rf /tmp/clash_last_version >/dev/null 2>&1
 	rm -rf /usr/share/openclash >/dev/null 2>&1
+	rm -rf /tmp/openclash_version_history.json >/dev/null 2>&1
+	rm -rf /tmp/openclash_cdn_info.json >/dev/null 2>&1
+	rm -rf /tmp/openclash_proxy_ips_cache >/dev/null 2>&1
 	rm -rf ${DNSMASQ_CONF_DIR}/dnsmasq_openclash_custom_domain.conf >/dev/null 2>&1
 	rm -rf ${DNSMASQ_CONF_DIR}/dnsmasq_openclash_chnroute_pass.conf >/dev/null 2>&1
 	rm -rf ${DNSMASQ_CONF_DIR}/dnsmasq_openclash_chnroute6_pass.conf >/dev/null 2>&1
@@ -71,6 +72,9 @@ define Package/$(PKG_NAME)/postrm
 	rm -rf /tmp/openclash_announcement >/dev/null 2>&1
 	rm -rf /www/luci-static/resources/openclash >/dev/null 2>&1
 	rm -rf /tmp/oix* >/dev/null 2>&1
+	rm -rf /tmp/openclash_oix_version.json >/dev/null 2>&1
+	rm -rf /tmp/openclash_version_history_* >/dev/null 2>&1
+	rm -rf /tmp/openclash_cdn_info_* >/dev/null 2>&1
 	sed -i '/OpenClash Append/,/OpenClash Append End/d' "/usr/lib/lua/luci/model/network.lua" >/dev/null 2>&1
 	uci -q delete firewall.openclash
 	uci -q commit firewall
