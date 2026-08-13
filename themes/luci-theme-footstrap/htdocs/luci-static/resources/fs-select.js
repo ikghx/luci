@@ -87,7 +87,7 @@ function enhance(sel) {
 	if (sel.dataset.fsSelect || sel.disabled) return;	/* disabled: NOT marked — it may be enabled later */
 	/* `multiple` and "not in a CBI field" are permanent, so mark it and stop re-testing on
 	 * every scan */
-	if (sel.multiple || !sel.closest('.cbi-value-field, .td.cbi-value-field, .cbi-value')) {
+	if (sel.multiple || !sel.closest('.cbi-value-field, .cbi-value')) {
 		sel.dataset.fsSelect = 'skip';
 		return;
 	}
@@ -100,7 +100,14 @@ function enhance(sel) {
 			sort: false,
 			optional: Object.prototype.hasOwnProperty.call(choices, '')
 		});
-	} catch (e) { return; }
+	} catch (e) {
+		/* Marked, not merely returned from: without the mark the same select is re-selected by
+		 * scan()'s :not([data-fs-select]) on every mutation frame and throws again, forever and
+		 * silently. One loud failure, then left as the stock <select> it already is. */
+		sel.dataset.fsSelect = 'skip';
+		console.error('footstrap: a select could not be enhanced', e);
+		return;
+	}
 
 	const node = dd.render();
 	const ac = new AbortController();
@@ -165,10 +172,53 @@ function enhance(sel) {
  *
  * `.table`, not `table.table` — the SAME selector relevant() and STACKABLE use. Stock LuCI
  * happens to emit only real <table>s, but a third-party luci-app-* may emit a <div class="table">
- * (coverage rule, docs/conventions.md), which a tag qualifier would pass over so it could never card. */
+ * (coverage rule, docs/conventions.md), which a tag qualifier would pass over so it could never card.
+ *
+ * `.table` is LuCI's own class, and everything the theme knows how to do with a table hangs off it.
+ * A third-party app that emits a BARE `<table>` — no LuCI classes at all — therefore matched none of
+ * this: nothing tagged it, nothing measured it, nothing carded it, and the only thing that reached it
+ * was a phone-tier scrollbar (theme/90-responsive.css). Reported from a phone against a wifi-clients
+ * dashboard whose last column was simply cut off.
+ *
+ * So the second half of this selector claims those too. It is deliberately UNMEASURABLE on the dev
+ * stand — a census of `#view table:not(.table):not(.cbi-section-table)` over all 196 menu pages,
+ * openclash / justclash / ssclash / dashboard / statistics included, found ZERO. That is the point:
+ * every table anyone here emits already carries the class, so this changes nothing that can be
+ * measured and covers the one shape that cannot be (docs/conventions.md: coverage is a contract). */
+/* NO `:not(.fs-dt)`, and that is the difference between claiming a table once and KEEPING it. These
+ * tables are polled: L.ui.Table.update() and every hand-rolled equivalent replace the rows inside
+ * the element they already have. Excluding what we tagged meant the claim ran exactly once per
+ * element — the rows present at that moment were adopted and captioned, and every batch after it
+ * kept neither `.tr`/`.td` nor `data-title`, on a table that by then may carry `.fs-stacked`, where
+ * `#view .table.fs-dt.fs-stacked { overflow: hidden }` clips the lot with no scrollbar. That is the
+ * exact failure adoptMarkup() was written to prevent, arriving one poll later. LuCI's own tables
+ * were never exposed to it (ui.Table writes those class names and the caption itself), so this is
+ * third-party-only — which is the zone this whole selector exists for.
+ *
+ * Re-running is what the two functions below are already written for: both are additive, both skip
+ * what is already done, and neither re-decides anything (adoptMarkup() settles the "is this ours to
+ * rewrite?" question once, at claim time, and remembers the answer on the element). */
+const FOREIGN_TABLE = '#view .table:not(.cbi-section-table), ' +
+	'#view table:not(.table):not(.cbi-section-table)';
+
+/* The FOURTH header markup, and the one only a foreign table produces: `<table><tr><th>…`, with no
+ * `<thead>` for the parser to imply and none of LuCI's class names. It is the exact shape the phone
+ * tier's scroll fallback was written against, so it has to be recognisable here or that table can
+ * still only ever scroll.
+ *
+ * "Every cell in the first row is a `<th>`" is the whole test, and it has to be EVERY: a data row
+ * whose first cell is a row header (`<th scope=row>`) would otherwise be read as the header row and
+ * every value below it captioned with a value. A table with no `<th>` at all — a layout table, a
+ * matrix — returns null and keeps today's behaviour, which is what the scroll fallback is for. */
+function headerRow(t) {
+	const row = t.rows && t.rows[0];
+	if (!row || !row.cells.length) return null;
+	return [ ...row.cells ].every((c) => c.tagName === 'TH') ? row : null;
+}
+
 function tagDataTables() {
-	document.querySelectorAll('#view .table:not(.cbi-section-table):not(.fs-dt)').forEach((t) => {
-		/* THREE header markups, and each missing one cost a page. L.ui.Table emits
+	document.querySelectorAll(FOREIGN_TABLE).forEach((t) => {
+		/* FOUR header markups, and each missing one cost a page. L.ui.Table emits
 		 * `.tr.table-titles`; the apk Software page emits `.tr.cbi-section-table-titles` (missing
 		 * it is why the package list once needed a stacking block of its own); and a third-party
 		 * table may simply use a real `<thead>` — luci-mod-dashboard's device lists are
@@ -181,14 +231,65 @@ function tagDataTables() {
 		 * to the `<thead>` — the parser's implied row never happens, so a `tr` in the selector finds
 		 * nothing. Read as "the header ROW-ISH element", which is what its children are cells of.
 		 *
-		 * ANY of the three = a data table; NONE = a key/value include (System, Memory), which must
+		 * ANY of the four = a data table; NONE = a key/value include (System, Memory), which must
 		 * never card. `thead` is the structural form of the same statement the two classes make, so
-		 * it belongs in the same list rather than in a rule of its own. */
-		const head = t.querySelector('.tr.table-titles, .tr.cbi-section-table-titles, thead');
+		 * it belongs in the same list rather than in a rule of its own; headerRow() is the fourth and
+		 * cannot be, because "the first row is all `<th>`" is not a selector. */
+		const head = t.querySelector('.tr.table-titles, .tr.cbi-section-table-titles, thead') || headerRow(t);
 		if (!head) return;
-		t.classList.add('fs-dt');
+		/* `.table` as well as `.fs-dt`, and only ever ADDED: the theme's whole table vocabulary —
+		 * the frame, the cell padding, the card stack — is written against `.table`, so a foreign
+		 * table that has just been recognised as a data table has to join it or the tag buys nothing.
+		 * A no-op on everything LuCI renders, which carries the class already. */
+		t.classList.add('table', 'fs-dt');
+		adoptMarkup(t, head);
 		labelCells(t, head);
 	});
+}
+
+/* ...AND THE ROWS AND CELLS INSIDE IT, or the claim is a trap.
+ *
+ * `.table` alone gets the frame and the padding, because those rules end at the table. Everything
+ * that makes the CARD is written one level down — `.table.fs-stacked .tr { display: flex }`, the
+ * `.td[data-title]::before` label, the hidden header row — and a bare foreign `<table>` carries none
+ * of those class names. So the fitter would measure it, decide it no longer fits, set `.fs-stacked`
+ * and change NOTHING: measured at 390px on a bare four-column table, the rows stayed `table-row`,
+ * the cells `table-cell` at 80px each, no label was generated — and `#view .table.fs-dt.fs-stacked`
+ * sets `overflow: hidden`, so the columns were CLIPPED with no scrollbar to reach them. That is
+ * worse than the phone-tier scroll it replaced, which is the whole reason this exists.
+ *
+ * `.tr` / `.td` / `.th` are LuCI's own names for these roles (docs/third-party-apps.md: the shared
+ * zone), and the theme is already writing `.table` onto the same element — this is that one act
+ * carried down to the rows, not a new liberty. Additive only, and cheap enough to re-run every fit
+ * pass: `classList.add` on an element that already has the class is the same `contains` check we
+ * would write to skip it, and these tables are POLLED, so fresh rows arrive bare.
+ *
+ * The HEADER also has to be recognisable as one, or the card shows it as a first row of column
+ * names: a `<thead>` becomes `.thead` and a plain first row of `<th>` becomes `.tr.table-titles` —
+ * the two names theme/30-tables.css hides when stacked. */
+function adoptMarkup(t, head) {
+	/* DECIDED ONCE, AT CLAIM TIME, and only for a table that speaks none of this vocabulary — then
+	 * READ on every pass, because the caller now revisits a table it has already claimed (see
+	 * FOREIGN_TABLE). Asking the question afresh each pass instead would answer "already adopted"
+	 * the moment we adopted it, and the fresh rows a poll brings in bare would never be taken.
+	 * Asking it at all is what keeps the theme's hands off LuCI's own markup: the apk Software list
+	 * heads its table with `.tr.cbi-section-table-titles`, and blindly adding `table-titles` to that
+	 * would be the theme rewriting a class LuCI chose. */
+	if (t._fsAdopt === undefined) t._fsAdopt = !t.querySelector('.tr, .thead');
+	if (!t._fsAdopt) return;
+	if (head.tagName === 'THEAD') head.classList.add('thead');
+	else head.classList.add('tr', 'table-titles');
+	const titleRow = (head.firstElementChild && head.firstElementChild.tagName === 'TR') ? head.firstElementChild : head;
+	for (const c of titleRow.children) c.classList.add('th');
+	/* `t.rows` covers a real <table> whether or not it has a <tbody> — a table built with
+	 * createElement has its <tr> directly under the <table> and `tbody tr` finds nothing. A
+	 * `<div class="table">` has no `.rows` and is LuCI's own markup, which carries the classes. */
+	if (!t.rows) return;
+	for (const row of t.rows) {
+		if (head.contains(row) || row === head) continue;
+		row.classList.add('tr');
+		for (const cell of row.children) cell.classList.add(cell.tagName === 'TH' ? 'th' : 'td');
+	}
 }
 
 /* Give every cell the column heading it will show once the table cards.
@@ -205,17 +306,31 @@ function tagDataTables() {
  * matters because these tables are POLLED: the rows are replaced wholesale every few seconds, and
  * the fresh ones arrive without it. */
 function labelCells(t, head) {
-	const titles = [ ...head.children ].map((c) => (c.textContent || '').trim());
+	/* A `<thead>` that was WRITTEN as markup nests a real `<tr>` — the parser inserts one even where
+	 * the author left it out — while one built by E() holds the `<th>`s directly (see above). Reading
+	 * `head.children` blind therefore captioned every cell of a parsed table with the header row's
+	 * ENTIRE text: "HostAddressSignal" over the hostname, over the address and over the signal.
+	 * Measured against a bare `<table><thead><tr><th>` on the stand, which is the shape a
+	 * server-rendered or innerHTML-built foreign table has. */
+	const titleRow = (head.firstElementChild && head.firstElementChild.tagName === 'TR') ? head.firstElementChild : head;
+	const titles = [ ...titleRow.children ].map((c) => (c.textContent || '').trim());
 	if (!titles.some(Boolean)) return;
 	for (const row of t.querySelectorAll('.tr, tbody tr')) {
 		if (row === head) continue;
 		const cells = row.children;
+		/* COLUMN cursor, not the cell index: a cell that spans N columns occupies N of the header's
+		 * slots while advancing the cell index by one, so keying titles off `i` captioned every cell
+		 * AFTER a spanning one with the heading of the column to its left — "Hostname" over an IP
+		 * address, and nothing to say the mapping was guessed. Only the spanning cell itself is left
+		 * uncaptioned, because it has no single heading to take. (A rowspan reaching down from an
+		 * earlier row would shift this too; no LuCI table emits one, and a wrong caption is worse
+		 * than none, so that shape stays unhandled rather than approximated.) */
+		let col = 0;
 		for (let i = 0; i < cells.length; i++) {
-			if (i >= titles.length || !titles[i]) continue;
-			if (cells[i].hasAttribute('data-title')) continue;
-			/* a cell that spans columns has no single heading to take */
-			if (cells[i].colSpan > 1) continue;
-			cells[i].setAttribute('data-title', titles[i]);
+			const span = (cells[i].colSpan > 1) ? cells[i].colSpan : 1;
+			if (span === 1 && col < titles.length && titles[col] && !cells[i].hasAttribute('data-title'))
+				cells[i].setAttribute('data-title', titles[col]);
+			col += span;
 		}
 	}
 }
@@ -243,8 +358,11 @@ const STACKABLE = '#view .table.fs-dt';
  * unreadable ribbon. Do NOT give the cells a min-width so that "cramped" MANUFACTURES an
  * overflow: tried, and it carded the firewall's zone table at 1420px and still overflowed by
  * 39px once carded — a floor big enough to force the overflow is big enough to break the card. */
-const CRAMPED = 568;	/* stock LuCI cards its tables at a 600px viewport; below the 767px
-						 * tier .fs-content pads 16px a side, so 600 -> 568 of room */
+const CRAMPED = 568;	/* stock LuCI cards its tables at a 600px viewport; below the 767px tier
+						 * .fs-content pads var(--fs-space-4) a side, 16px at the default density,
+						 * so 600 -> 568 of room. A fixed number and not a re-read of that token on
+						 * purpose: the threshold is the DESIGN judgement above, and Compact density
+						 * shrinking the gutter to 10px is not a reason to keep a table wider. */
 
 /* The ribbon has one more shape, and CRAMPED cannot see it: the table has room by the number
  * above and still shreds its FIRST column, because auto table layout hands width out by what
@@ -282,6 +400,30 @@ function idTower(t) {
 	return false;
 }
 
+/* ---- AND THE SAME RIBBON IN A COLUMN THAT IS NOT THE FIRST ----
+ *
+ * There is no second test for it, and that is the fix rather than an omission.
+ *
+ * `idTower` above is deliberately first-column-only, on the grounds that "a value column wrapping to
+ * a few lines is a value being shown, not a table falling apart". That held right up until the value
+ * was one unbreakable token: `overflow-wrap: anywhere` gave such a cell a min-content of ONE
+ * CHARACTER, so auto table layout was free to starve its column to one character, and `overflows()`
+ * then reported — truthfully, uselessly — that the table fit. Reported from a hardware router at
+ * 700-790px of window: the v4 lease table cards there (its `nowrap` columns give it a floor, so it
+ * really does overflow) while the v6 table beside it shredded the DUID, measured at 5 lines with
+ * 674px of room and 7 at 654px, against 1 line at 1160px.
+ *
+ * A first pass answered it with a line count, which is a number somebody picks. This asks the table
+ * instead: `fit.wordFloor()` returns the narrowest the table can be without breaking a word through —
+ * per column, the widest WORD it must show, in that column's own font, summed. Past that width the
+ * browser has to cut through a value, and the card view is what shows values whole. So every table
+ * carries its own breakpoint, derived from its own content, and no threshold was chosen anywhere.
+ *
+ * On the reporting router, at 1190px of room: leases6 asks for 935, the associated-stations table
+ * for 966, the v4 leases for 645, Processes for 794, Connections for 550 and Startup for 381 — so
+ * the two that were unreadable card at roughly a 1000px window, and the four that were fine keep
+ * being tables until the room they actually need runs out. */
+
 function fitTables() {
 	document.querySelectorAll(STACKABLE).forEach((t) => {
 		const was = t.classList.contains('fs-stacked');
@@ -292,8 +434,8 @@ function fitTables() {
 		const room = fit.roomFor(t);
 		if (!(room > 0)) { if (was) t.classList.add('fs-stacked'); return; }
 
-		/* idTower last: it is the only one that walks the rows */
-		const stack = room < CRAMPED || fit.overflows(t) || idTower(t);
+		/* the two row walks last, cheapest first: idTower reads one column, wordFloor every cell */
+		const stack = room < CRAMPED || fit.overflows(t) || idTower(t) || fit.wordFloor(t) > room;
 		/* write only on a real change: the poll re-renders these tables once a second, and
 		 * toggling the class off and on each tick would invalidate style for every row of
 		 * Processes/Leases for nothing */
