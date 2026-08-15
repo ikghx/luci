@@ -142,10 +142,10 @@ return network.registerProtocol('modemmanager', {
 		o.password = true;
 
 		o = s.taboption('general', form.ListValue, 'iptype', _('IP Type'));
-		o.value('ipv4v6', _('IPv4/IPv6 (both - defaults to IPv4)'))
 		o.value('ipv4', _('IPv4 only'));
 		o.value('ipv6', _('IPv6 only'));
-		o.default = 'ipv4v6';
+		o.value('ipv4v6', _('IPv4/IPv6 (both)'));
+		o.default = 'ipv4';
 
 		o = s.taboption('general', form.Value, 'plmn', _('Network operator MCCMNC'));
 		o.placeholder = '46001';
@@ -207,9 +207,9 @@ return network.registerProtocol('modemmanager', {
 
 		o = s.taboption('general', form.ListValue, 'init_iptype', _('Initial EPS Bearer IP Type'));
 		o.depends('init_epsbearer', 'custom');
-		o.value('ipv4v6', _('IPv4/IPv6 (both - defaults to IPv4)'))
 		o.value('ipv4', _('IPv4 only'));
 		o.value('ipv6', _('IPv6 only'));
-		o.default = 'ipv4v6';
+		o.value('ipv4v6', _('IPv4/IPv6 (both)'));
+		o.default = 'ipv4';
 	}
 });
