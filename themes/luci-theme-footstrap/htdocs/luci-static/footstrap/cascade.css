@@ -427,6 +427,13 @@ ul.nav .dropdown-menu a,.dropdown-menu a{line-height:18px}
 .fs-sidebar #indicators:empty{display:none}
 .fs-indicators{flex-wrap:wrap}
 .fs-content{padding:var(--fs-space-5) var(--fs-content-pad);flex:1 1 auto;width:100%;max-width:var(--fs-content-max);margin:0 auto}
+.fs-staging{visibility:hidden;height:0;overflow:clip}
+#fs-nav-progress{position:fixed;inset-inline:0;top:0;height:2px;background:var(--fs-accent);transform:scaleX(0);transform-origin:left center;opacity:0;pointer-events:none;z-index:var(--fs-z-tooltip)}
+:root[dir="rtl"] #fs-nav-progress{transform-origin:right center}
+#fs-nav-progress[data-state="active"]{opacity:1;transform:scaleX(.8);transition:transform 2s cubic-bezier(.1,.7,.1,1),opacity 120ms linear}
+#fs-nav-progress[data-state="done"]{opacity:0;transform:scaleX(1);transition:transform 120ms ease-out,opacity 300ms linear 100ms}
+@media (prefers-reduced-motion:reduce){#fs-nav-progress[data-state="active"],#fs-nav-progress[data-state="done"]{transition:none;transform:scaleX(1)}
+}
 footer{padding:var(--fs-space-3-5) var(--fs-content-pad);border-top:1px solid var(--fs-border);color:var(--fs-dim);font-size:var(--fs-type);background:var(--fs-bg);justify-content:center;text-align:center;line-height:max(26px,calc(var(--fs-type) * 2))}
 footer a{color:var(--fs-dim)}
 footer a:hover{color:var(--fs-accent)}
@@ -477,6 +484,7 @@ legend{font-size:var(--fs-type-lg);font-weight:var(--fs-weight-bold);color:var(-
 .table.fs-dt:not(.fs-stacked) .td,.table.fs-dt:not(.fs-stacked) .td :not(button):not(.btn):not(input):not(select):not(textarea){word-break:normal !important}
 :where(:root[data-layout="sidebar"]:not([data-narrow]) #view,#modal_overlay) .table.fs-dt:not(.fs-stacked) .tr.table-titles .th{position:sticky;top:0;z-index:1;background:var(--fs-panel2)}
 :where(:root[data-layout="top"] #view,:root[data-narrow] #view) .table.fs-dt:not(.fs-stacked) .tr.table-titles .th{position:sticky;top:var(--fs-bar-live,var(--fs-bar-h));z-index:1;background:var(--fs-panel2)}
+.table.fs-dt{overflow-anchor:none}
 .cbi-section .table:is([id],.fs-dt) .tr:not(.table-titles):not(.placeholder):hover .td{background:var(--fs-panel2)}
 .cbi-section .table:is([id],.fs-dt) .tr.table-titles .th{border-bottom-color:var(--fs-border)}
 .cbi-section .table[id],#view .table[id],.cbi-section .table.fs-dt,.cbi-section table.fs-dt,table.fs-dt{border-collapse:separate;border-spacing:0;border:1px solid var(--fs-border);border-radius:var(--fs-radius-lg);overflow:visible}

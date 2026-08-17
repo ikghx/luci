@@ -12,7 +12,7 @@ PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 LUCI_TITLE:=LuCI support for clash
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+luci-compat +dnsmasq-full +bash +curl +ca-bundle +ip-full +ruby \
-	+ruby-yaml +kmod-inet-diag +kmod-nft-tproxy +kmod-tun +unzip +mihomo-meta
+	+ruby-yaml +kmod-inet-diag +kmod-nft-tproxy +kmod-tun +unzip +mihomo
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/openclash
