@@ -18,7 +18,7 @@ return view.extend({
 		o.default  = o.enabled;
 
 		// Virtual option: derives UI mode from Interface/DirectInterface,
-		// is not stored in UCI and clears the real options on change
+		// is not stored in UCI; inactive real options are removed on save
 		o = s.option(form.ListValue, '_bind_to', _('Bind to'), _('Select how the SSH service should be bound to network interfaces or IP addresses'));
 		o.widget = 'radio';
 		o.value('all', _('All interfaces (unspecified)'));
@@ -37,14 +37,14 @@ return view.extend({
 			this.remove(section);
 		};
 
-		o = s.option(widgets.NetworkSelect, 'DirectInterface', _('Interface'), _('Listen only on the given interface or, if unspecified, on all'));
+		o = s.option(widgets.NetworkSelect, 'DirectInterface', _('Interface'), _('Listen only on the given interface'));
 		o.nocreate = true;
 		o.depends('_bind_to', 'direct');
 		o.validate = function(section, value) {
 			return value ? true : _('Please select an interface');
 		};
 
-		o = s.option(widgets.NetworkSelect, 'Interface', _('Interface'), _('Listen on up to 10 IPs on the given interface or, if unspecified, on all interfaces'));
+		o = s.option(widgets.NetworkSelect, 'Interface', _('Interface'), _('Listen on up to 10 IPs on the given interface'));
 		o.nocreate = true;
 		o.depends('_bind_to', 'interface');
 		o.validate = function(section, value) {
