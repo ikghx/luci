@@ -51,6 +51,13 @@ const css = '								\
 		white-space: nowrap;			\
 	}									\
 										\
+	/* Theme sets 15%; shrink to fit */	\
+	#packages .td.cbi-section-actions {	\
+		width: auto;					\
+		padding-left: 1em;				\
+		padding-right: 1em;				\
+	}									\
+										\
 	ul.deps, ul.deps ul, ul.errors {	\
 		margin-left: 1em;				\
 	}									\
