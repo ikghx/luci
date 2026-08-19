@@ -4,7 +4,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=SFP/QSFP Transceiver Diagnostics
-LUCI_DEPENDS:=+luci-base +ethtool-full  # requires ethtool >= 7.0 for --json support
+LUCI_DEPENDS:=+luci-base +ethtool-full +ucode-mod-math
 LUCI_PKGARCH:=all
 
 PKG_LICENSE:=Apache-2.0
