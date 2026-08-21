@@ -9,14 +9,11 @@ if [ "$PKG_UPGRADE" != 1 ]; then
 	EOF
 fi
 
-mkdir -p /etc/footstrap 2>/dev/null
-[ -d /www/luci-static/footstrap ] && ln -sf /etc/footstrap/login-bg /www/luci-static/footstrap/bg 2>/dev/null
-[ -d /www/luci-static/footstrap ] && ln -sf /etc/footstrap/pattern.svg /www/luci-static/footstrap/pattern.svg 2>/dev/null
-
+mkdir -p /etc/footstrap
 if [ -d /www/luci-static/footstrap ]; then
-	[ ! -e /www/luci-static/footstrap/fonts ] || [ -L /www/luci-static/footstrap/fonts ] ||
-		rm -rf /www/luci-static/footstrap/fonts
-	ln -sfn /etc/footstrap/fonts /www/luci-static/footstrap/fonts 2>/dev/null
+	ln -sf /etc/footstrap/login-bg /www/luci-static/footstrap/bg
+	ln -sf /etc/footstrap/pattern.svg /www/luci-static/footstrap/pattern.svg
+	ln -sfn /etc/footstrap/fonts /www/luci-static/footstrap/fonts
 fi
 
 exit 0
