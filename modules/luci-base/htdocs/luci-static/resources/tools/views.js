@@ -116,11 +116,13 @@ var CBILogreadBox = function(logtag, name) {
 					return line.toLowerCase().includes(this.logTagFilter?.toLowerCase());
 				});
 
-				const filter = this.logTextFilter.toLowerCase();
-				loglines = loglines.filter(line => {
-					const match = line.toLowerCase().includes(filter);
-					return this.invertLogTextSearch ? !match : match;
-				});
+				if (this.logTextFilter) {
+					const filter = this.logTextFilter.toLowerCase();
+					loglines = loglines.filter(line => {
+						const match = line.toLowerCase().includes(filter);
+						return this.invertLogTextSearch ? !match : match;
+					});
+				}
 
 				return {
 					value: loglines?.join('\n'),

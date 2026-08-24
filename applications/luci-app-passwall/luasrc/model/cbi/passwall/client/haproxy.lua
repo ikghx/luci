@@ -45,7 +45,6 @@ o:depends("console_auth", true)
 
 ---- Console Port
 o = s:option(Value, "console_port", translate("Console Port"), translate("In the browser input routing IP plus port access, such as:192.168.1.1:1188"))
-o.datatype = "port"
 o.default = "1188"
 o.datatype = "range(1,65535)"
 o.rmempty = false
