@@ -1190,7 +1190,7 @@ return dm2.dv.extend({
 				]),
 				E('div', {
 					'id': 'container-logs-text',
-					'style': 'width: 100%; font-family: monospace; padding: 10px; border: 1px solid #ccc; overflow: auto;',
+					'style': 'width: 100%; font-family: monospace; padding: 10px; border: 1px solid #ccc; overflow: auto; white-space: pre-wrap;',
 					'innerHTML': ''
 				})
 			]);
@@ -1685,10 +1685,12 @@ return dm2.dv.extend({
 					return false;
 				}
 
-				let logText = response?.body || _('No logs available');
-				if ("application/vnd.docker.multiplexed-stream" == response?.headers['content-type']) {
-				logText = (response?.body || []).map((frame)=>frame.payload).join('');
+				let logText = response?.body;
+				if ("application/vnd.docker.multiplexed-stream" === response?.headers['content-type']) {
+					logText = (response?.body || []).map((frame)=>frame.payload).join('');
 				}
+				logText = logText || _('No logs available');
+
 				// Convert ANSI codes to HTML and set innerHTML
 				logsDiv.innerHTML = dm2.ansiToHtml(logText);
 				logsDiv.scrollTop = logsDiv.scrollHeight;
