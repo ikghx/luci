@@ -1686,8 +1686,8 @@ return dm2.dv.extend({
 				}
 
 				let logText = response?.body;
-				if ("application/vnd.docker.multiplexed-stream" === response?.headers['content-type']) {
-					logText = (response?.body || []).map((frame)=>frame.payload).join('');
+				if ("application/vnd.docker.multiplexed-stream" === response?.headers?.['content-type']) {
+					logText = (response?.body || []).map(frame => frame.payload).join('');
 				}
 				logText = logText || _('No logs available');
 
