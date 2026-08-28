@@ -206,7 +206,7 @@ o:depends({dns_shunt = "dnsmasq"})
 o:depends({dns_shunt = "chinadns-ng"})
 
 o = s:taboption("DNS", Value, "direct_dns", translate("Direct DNS"))
-o.datatype = "or(ipaddr,ipaddrport)"
+o.datatype = "or(ipaddr,ipaddrport(1))"
 o.default = "223.5.5.5"
 o:value("223.5.5.5")
 o:value("223.6.6.6")
@@ -382,7 +382,7 @@ o:depends({dns_mode = "dns2socks"})
 
 ---- DNS Forward
 o = s:taboption("DNS", Value, "remote_dns", translate("Remote DNS"))
-o.datatype = "or(ipaddr,ipaddrport)"
+o.datatype = "or(ipaddr,ipaddrport(1))"
 o.default = "1.1.1.1"
 o:value("1.1.1.1", "1.1.1.1 (CloudFlare DNS)")
 o:value("1.1.1.2", "1.1.1.2 (CloudFlare-Security)")
