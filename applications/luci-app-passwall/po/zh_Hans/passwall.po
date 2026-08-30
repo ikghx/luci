@@ -237,9 +237,9 @@ msgstr "你确定要隐藏吗？"
 msgid "Are you sure you want to delete all subscribed nodes?"
 msgstr "您确定要删除所有已订阅的节点吗？"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:153
-msgid "Are you sure you want to restore the client to default settings?"
-msgstr "是否真的要恢复客户端默认配置？"
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:185
+msgid "Are you sure you want to restore the %s to default settings?"
+msgstr "是否真的要恢复%s默认配置？"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/2_xray.lua:814
 msgid ""
@@ -397,7 +397,7 @@ msgstr "可以通过输入域名/IP，查询它们所在的 Geo 规则列表。"
 msgid "CIDR: such as '127.0.0.0/8'."
 msgstr "CIDR: 形如'10.0.0.0/8'."
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:46
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:61
 msgid "CLOSE WIN"
 msgstr "关闭窗口"
 
@@ -532,6 +532,12 @@ msgstr "清空日志"
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:18
 msgid "Click to update"
 msgstr "点击更新"
+
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:30
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:52
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:182
+msgid "Client"
+msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:212
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/2_xray.lua:178
@@ -873,6 +879,7 @@ msgid "Discard List,But Keep List First"
 msgstr "丢弃列表，但保留列表优先"
 
 #: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:32
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:39
 msgid "Do Reset"
 msgstr "执行重置"
 
@@ -885,9 +892,9 @@ msgstr "不接受：等待并使用远程 DNS 的响应。"
 msgid "Do not send server name in ClientHello."
 msgstr "不要在 ClientHello 中发送服务器名称。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:151
-msgid "Do you want to restore the client to default settings?"
-msgstr "是否要恢复客户端默认配置？"
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:184
+msgid "Do you want to restore the %s to default settings?"
+msgstr "是否要恢复%s默认配置？"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:454
 msgid "DoH request address"
@@ -1258,7 +1265,7 @@ msgstr "文件下载失败或超时：%s"
 msgid "File path required."
 msgstr "请指定文件路径。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:177
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:219
 msgid "File size exceeds 10MB limit."
 msgstr "文件大小超过 10MB 限制。"
 
@@ -1804,7 +1811,7 @@ msgstr "Realm URL 不正确。"
 msgid "Invalid Share URL Format"
 msgstr "无效的分享URL信息"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:171
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:213
 msgid "Invalid file type. Please upload a .tar.gz file."
 msgstr "文件类型无效，请上传一个 .tar.gz 文件。"
 
@@ -2218,7 +2225,7 @@ msgstr "没有节点！"
 msgid "No patterns are used"
 msgstr "不使用"
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1014
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1031
 msgid "No results were found!"
 msgstr "未找到任何结果！"
 
@@ -2314,9 +2321,9 @@ msgstr "未设置"
 msgid "Not a supported scheme:"
 msgstr "不支持这种样式的："
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:299
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:322
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:792
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:287
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:310
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:780
 msgid "Not enabled log"
 msgstr "未启用日志"
 
@@ -2553,7 +2560,7 @@ msgstr ""
 "纯字符串: 当此字符串匹配目标域名中任意部分，该规则生效。比如'sina.com'可以匹"
 "配'sina.com'、'sina.com.cn'和'www.sina.com'，但不匹配'sina.cn'。"
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:944
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:961
 #: applications/luci-app-passwall/luasrc/view/passwall/rule_list/geoview.htm:75
 msgid "Please enter query content!"
 msgstr "请输入查询内容！"
@@ -2584,12 +2591,12 @@ msgid ""
 "priority."
 msgstr "请注意优先级问题，排序越上面优先级越高。"
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1040
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1063
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1057
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1080
 msgid "Please save and apply before manually subscribing."
 msgstr "请先保存并应用后再手动订阅。"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:167
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:209
 msgid "Please select a file first."
 msgstr "请先选择一个文件。"
 
@@ -2988,18 +2995,19 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:30
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:37
+msgid "Reset %s Configuration"
+msgstr "重置%s配置"
+
 #: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:23
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:40
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:45
 msgid "Restore Backup File"
 msgstr "恢复备份文件"
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:164
 msgid "Restore Switch"
 msgstr "恢复切换"
-
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:30
-msgid "Restore to default configuration"
-msgstr "恢复默认配置"
 
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:15
 msgid "Retry"
@@ -3034,7 +3042,7 @@ msgstr "规则管理"
 msgid "Rule status"
 msgstr "规则版本"
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:994
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1011
 msgid "Rules containing this value:"
 msgstr "所在规则列表："
 
@@ -3096,6 +3104,12 @@ msgstr "全选"
 #: applications/luci-app-passwall/luasrc/view/passwall/cbi/nodes_multivalue_com.htm:269
 msgid "Selected:"
 msgstr "已选："
+
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:37
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:56
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:182
+msgid "Server"
+msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/server_config.lua:20
 msgid "Server Config"
@@ -3456,7 +3470,7 @@ msgstr "测试容差"
 msgid "The URL used to detect the connection status."
 msgstr "用于检测连接状态的网址。"
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:312
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:300
 msgid ""
 "The access control node is the same as the global node. Please enable global "
 "logging."
@@ -3595,7 +3609,7 @@ msgid ""
 "google.com."
 msgstr "加入的域名将走代理。输入网站域名，如：google.com，每个地址段一行。"
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1147
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1164
 msgid "This ID already exists."
 msgstr "该 ID 已存在。"
 
@@ -3742,10 +3756,10 @@ msgstr "TCP 封装 UDP"
 msgid "UDP relay mode"
 msgstr "UDP 中继模式"
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:45
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:214
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:218
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:230
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:60
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:256
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:260
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:272
 msgid "UL Restore"
 msgstr "上传恢复"
 

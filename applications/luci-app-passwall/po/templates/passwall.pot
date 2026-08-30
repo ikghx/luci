@@ -222,8 +222,8 @@ msgstr ""
 msgid "Are you sure you want to delete all subscribed nodes?"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:153
-msgid "Are you sure you want to restore the client to default settings?"
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:185
+msgid "Are you sure you want to restore the %s to default settings?"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/2_xray.lua:814
@@ -382,7 +382,7 @@ msgstr ""
 msgid "CIDR: such as '127.0.0.0/8'."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:46
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:61
 msgid "CLOSE WIN"
 msgstr ""
 
@@ -514,6 +514,12 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:18
 msgid "Click to update"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:30
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:52
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:182
+msgid "Client"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:212
@@ -856,6 +862,7 @@ msgid "Discard List,But Keep List First"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:32
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:39
 msgid "Do Reset"
 msgstr ""
 
@@ -868,8 +875,8 @@ msgstr ""
 msgid "Do not send server name in ClientHello."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:151
-msgid "Do you want to restore the client to default settings?"
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:184
+msgid "Do you want to restore the %s to default settings?"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:454
@@ -1240,7 +1247,7 @@ msgstr ""
 msgid "File path required."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:177
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:219
 msgid "File size exceeds 10MB limit."
 msgstr ""
 
@@ -1778,7 +1785,7 @@ msgstr ""
 msgid "Invalid Share URL Format"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:171
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:213
 msgid "Invalid file type. Please upload a .tar.gz file."
 msgstr ""
 
@@ -2186,7 +2193,7 @@ msgstr ""
 msgid "No patterns are used"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1014
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1031
 msgid "No results were found!"
 msgstr ""
 
@@ -2282,9 +2289,9 @@ msgstr ""
 msgid "Not a supported scheme:"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:299
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:322
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:792
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:287
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:310
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:780
 msgid "Not enabled log"
 msgstr ""
 
@@ -2515,7 +2522,7 @@ msgid ""
 "com', 'sina.com.cn' and 'www.sina.com', but not 'sina.cn'."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:944
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:961
 #: applications/luci-app-passwall/luasrc/view/passwall/rule_list/geoview.htm:75
 msgid "Please enter query content!"
 msgstr ""
@@ -2544,12 +2551,12 @@ msgid ""
 "priority."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1040
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1063
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1057
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1080
 msgid "Please save and apply before manually subscribing."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:167
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:209
 msgid "Please select a file first."
 msgstr ""
 
@@ -2941,17 +2948,18 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:30
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:37
+msgid "Reset %s Configuration"
+msgstr ""
+
 #: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:23
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:40
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:45
 msgid "Restore Backup File"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/socks_config.lua:164
 msgid "Restore Switch"
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:30
-msgid "Restore to default configuration"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/view/passwall/app_update/app_version.htm:15
@@ -2987,7 +2995,7 @@ msgstr ""
 msgid "Rule status"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:994
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1011
 msgid "Rules containing this value:"
 msgstr ""
 
@@ -3048,6 +3056,12 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/view/passwall/cbi/nodes_multivalue.htm:108
 #: applications/luci-app-passwall/luasrc/view/passwall/cbi/nodes_multivalue_com.htm:269
 msgid "Selected:"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:37
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:56
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:182
+msgid "Server"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/server_config.lua:20
@@ -3399,7 +3413,7 @@ msgstr ""
 msgid "The URL used to detect the connection status."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:312
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:300
 msgid ""
 "The access control node is the same as the global node. Please enable global "
 "logging."
@@ -3520,7 +3534,7 @@ msgid ""
 "google.com."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1147
+#: applications/luci-app-passwall/luasrc/controller/passwall.lua:1164
 msgid "This ID already exists."
 msgstr ""
 
@@ -3667,10 +3681,10 @@ msgstr ""
 msgid "UDP relay mode"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:45
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:214
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:218
-#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:230
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:60
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:256
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:260
+#: applications/luci-app-passwall/luasrc/view/passwall/global/backup.htm:272
 msgid "UL Restore"
 msgstr ""
 

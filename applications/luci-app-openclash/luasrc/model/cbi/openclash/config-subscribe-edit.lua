@@ -70,7 +70,7 @@ end
 o = s:option(Value, "sub_ua", "User-Agent")
 o.default = "clash-verge/v2.4.5"
 o.description = font_red..bold_on..translate("Used for Downloading Subscriptions, Defaults to").." "..o.default..bold_off..font_off
-o:value("clash.meta/1.19.29")
+o:value("clash.meta/1.19.30")
 o:value("clash-verge/v2.4.5")
 o:value("Clash")
 o.rmempty = true
