@@ -151,8 +151,8 @@ end
 
 o = s:taboption("Main", Value, "node_socks_port", translate("Node") .. " Socks " .. translate("Listen Port"))
 o.default = 1070
+o.placeholder = 1070
 o.datatype = "range(1,65535)"
-o.rmempty = false
 o:depends({ node = "", ["!reverse"] = true })
 o = s:taboption("Main", Flag, "node_socks_bind_local", translate("Node") .. " Socks " .. translate("Bind Local"), translate("When selected, it can only be accessed localhost."))
 o.default = "1"
