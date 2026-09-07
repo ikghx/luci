@@ -164,16 +164,24 @@ local function dase()
 	return fs.uci_get_config("config", "dashboard_password")
 end
 
-local function db_foward_domain()
+local function dashboard_forward_domain()
 	return fs.uci_get_config("config", "dashboard_forward_domain")
 end
 
-local function db_foward_port()
+local function dashboard_forward_port()
 	return fs.uci_get_config("config", "dashboard_forward_port")
 end
 
-local function db_foward_ssl()
+local function dashboard_forward_ssl()
 	return fs.uci_get_config("config", "dashboard_forward_ssl") or 0
+end
+
+local function dashboard_custom_url()
+	return fs.uci_get_config("config", "dashboard_custom_url")
+end
+
+local function dashboard_custom_clash_compatible()
+	return fs.uci_get_config("config", "dashboard_custom_clash_compatible") or 0
 end
 
 local function coremodel()
@@ -1088,7 +1096,7 @@ function action_switch_run_mode()
 	end
 	uci:commit("openclash")
 	if is_running() then
-		SYS.exec("/etc/init.d/openclash restart >/dev/null 2>&1 &")
+		SYS.exec("/etc/init.d/openclash restart >/dev/null 2>&1")
 	end
 end
 
@@ -1477,8 +1485,10 @@ function action_conn_status(internal)
 		clash = uci:get("openclash", "config", "enable") == "1",
 		daip = daip(),
 		dase = dase(),
-		db_foward_port = db_foward_port(),
-		db_foward_domain = db_foward_domain(),
+		-- Keep the misspelled JSON keys for compatibility with existing views.
+		db_foward_port = dashboard_forward_port(),
+		db_foward_domain = dashboard_forward_domain(),
+		db_forward_ssl = dashboard_forward_ssl(),
 		cn_port = cn_port()
 	}
 	if internal then return data end
@@ -1499,7 +1509,9 @@ function action_status()
 		dase = status_data.dase,
 		db_foward_port = status_data.db_foward_port,
 		db_foward_domain = status_data.db_foward_domain,
-		db_forward_ssl = db_foward_ssl(),
+		db_forward_ssl = status_data.db_forward_ssl,
+		dashboard_custom_url = dashboard_custom_url(),
+		dashboard_custom_clash_compatible = dashboard_custom_clash_compatible(),
 		cn_port = status_data.cn_port,
 		yacd = fs.isdirectory("/usr/share/openclash/ui/yacd"),
 		dashboard = fs.isdirectory("/usr/share/openclash/ui/dashboard"),
@@ -3849,7 +3861,7 @@ function action_switch_oc_setting()
 			end
 			uci:set("openclash", "@overwrite[0]", "china_ip_route", value)
 			uci:commit("openclash")
-			SYS.exec("/etc/init.d/openclash restart >/dev/null 2>&1 &")
+			SYS.exec("/etc/init.d/openclash restart >/dev/null 2>&1")
 		end
 	elseif setting == "stream_unlock" then
 		uci:set("openclash", "config", "stream_auto_select", value)

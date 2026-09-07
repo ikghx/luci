@@ -1,39 +1,45 @@
 'use strict';
+'require dom';
 'require view';
 'require form';
 'require poll';
 'require rpc';
 'require tools.widgets as widgets';
 
-const callServiceList = rpc.declare({
-	object: 'service',
-	method: 'list',
-	params: ['name'],
-	expect: { '': {} }
-});
+const RUNNING_SPAN = `<span style="color: var(--success-color-high); font-weight: bold">${_('Running')}</span>`;
+const NOT_RUNNING_SPAN = `<span style="color: var(--error-color-high); font-weight: bold">${_('Not running')}</span>`;
 
-function getServiceStatus() {
-	return L.resolveDefault(callServiceList('adguardhome'), {}).then(function (res) {
-		var isRunning = false;
-		try {
-			isRunning = res['adguardhome']['instances']['instance1']['running'];
-		} catch (e) {}
-		return isRunning;
+function getServiceInfo(name) {
+	const fn = rpc.declare({
+		object: 'service',
+		method: 'list',
+		params: ['name'],
+		expect: { [name]: { instances: { [name]: {} }}},
 	});
+	return () => fn(name);
 }
 
-function renderStatus(isRunning) {
-    const spanTemp = '<span style="color:%s"><strong>%s</strong></span>';
+const getAGHServiceInfo = getServiceInfo('adguardhome');
 
-    return isRunning
-        ? String.format(spanTemp, 'green', _('Running'))
-        : String.format(spanTemp, 'red', _('Not Running'));
+function getStatusValue(isRunning) {
+	return isRunning ? RUNNING_SPAN : NOT_RUNNING_SPAN;
+}
+
+async function getStatus() {
+	try {
+		const res = await getAGHServiceInfo();
+		const isRunning = res?.instances?.adguardhome?.running;
+		return isRunning ?? false;
+	} catch (e) {
+		console.error(e);
+		return false;
+	}
 }
 
 return view.extend({
 	load: function () {
 		return Promise.all([
-			getServiceStatus()
+			getStatus()
 		]);
 	},
 
@@ -50,9 +56,9 @@ return view.extend({
 		o.rawhtml = true;
 		o.cfgvalue = function () {
 			poll.add(function () {
-				return L.resolveDefault(getServiceStatus()).then(function (res) {
+				return L.resolveDefault(getStatus()).then(function (res) {
 					var view = document.getElementById('service_status');
-					view.innerHTML = renderStatus(res);
+					view.innerHTML = getStatusValue(res);
 				});
 			});
 
@@ -65,9 +71,6 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(widgets.UserSelect, 'user', _('Run daemon as user'));
-
-		o = s.option(form.Value, 'pidfile', _('PID file'));
-		o.value('/run/adguardhome.pid');
 
 		o = s.option(form.Value, 'config_file', _('Config file'));
 		o.value('/etc/adguardhome/adguardhome.yaml');

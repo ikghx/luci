@@ -143,7 +143,7 @@ var CBILogreadBox = function(logtag, name) {
 			if (element) {
 				const log = await this.retrieveLog();
 				element.value = log?.value;
-				element.rows = log?.rows;
+				element.rows = log?.rows + 1;
 			}
 		},
 
@@ -254,7 +254,7 @@ var CBILogreadBox = function(logtag, name) {
 
 			return E([], [
 				E('h2', {}, [ this.logName ]),
-				E('div', { 'id': 'content_syslog' }, [
+				E('div', { 'id': 'content_syslog', 'class': 'cbi-section' }, [
 					E('div', { class: 'cbi-section-descr' }, this.logTagFilter ? _('The syslog output, pre-filtered for messages related to: ' + this.logTagFilter) : '') ,
 					E('div', { 'style': 'margin-bottom:10px' }, [
 						E('label', { 'for': 'invertLogFacilitySearch', 'style': 'margin-right:5px' }, _('Not')),
@@ -280,7 +280,7 @@ var CBILogreadBox = function(logtag, name) {
 						'style': 'font-size:12px',
 						'readonly': 'readonly',
 						'wrap': 'off',
-						'rows': loglines?.rows,
+						'rows': loglines?.rows + 1
 					}, [ loglines?.value ]),
 					E('div', {'style': 'padding-bottom: 20px'}, [scrollUpButton])
 				])

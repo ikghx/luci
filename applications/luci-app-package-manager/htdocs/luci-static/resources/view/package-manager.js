@@ -986,7 +986,7 @@ function handleConfig(ev)
 			body.push(E('h5', {}, '%h'.format(file)));
 			body.push(E('textarea', {
 				'name': file,
-				'rows': Math.max(Math.min(L.toArray(conf[file].match(/\n/g)).length, 10), 3)
+				'rows': Math.max(Math.min(L.toArray(conf[file].match(/\n/g)).length, 10), 3) + 1
 			}, '%h'.format(conf[file])));
 		});
 
@@ -1247,7 +1247,7 @@ return view.extend({
 				))
 			]),
 
-			E('div', { 'class': 'controls' }, [
+			E('div', { 'class': 'cbi-section' }, E('div', { 'class': 'controls' }, [
 				E('div', {}, [
 					E('label', {'id': 'disk-space-label'}, _('Disk space') + ':'),
 					E('div', { 'class': 'cbi-progressbar', 'title': _('unknown') }, E('div', {}, [ '\u00a0' ]))
@@ -1322,7 +1322,7 @@ return view.extend({
 						])
 					])
 				])
-			]),
+			])),
 
 			E('ul', { 'class': 'cbi-tabmenu mode' }, [
 				E('li', { 'data-mode': 'available', 'class': 'available cbi-tab', 'click': handleMode }, E('a', { 'href': '#' }, [ _('Available') ])),
@@ -1330,6 +1330,7 @@ return view.extend({
 				E('li', { 'data-mode': 'updates', 'class': 'installed cbi-tab-disabled', 'click': handleMode }, E('a', { 'href': '#' }, [ _('Updates') ]))
 			]),
 
+			E('div', { 'class': 'cbi-section' }, [
 			E('div', { 'class': 'controls', 'style': 'display:none' }, [
 				E('div', { 'class': 'pager center' }, [
 					E('button', { 'class': 'btn cbi-button-neutral prev', 'aria-label': _('Previous page'), 'click': handlePage }, [ '«' ]),
@@ -1354,6 +1355,7 @@ return view.extend({
 					E('div', { 'class': 'text' }, [ 'dummy' ]),
 					E('button', { 'class': 'btn cbi-button-neutral next', 'aria-label': _('Next page'), 'click': handlePage }, [ '»' ])
 				])
+			])
 			])
 		]);
 

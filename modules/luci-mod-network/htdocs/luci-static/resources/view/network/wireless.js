@@ -2747,7 +2747,10 @@ return view.extend({
 
 			cbi_update_table(table, [], E('em', { 'class': 'spinning' }, _('Collecting data...')));
 
-			return E([ nodes, E('h3', _('Associations')), table ]);
+			return E([ nodes, E('div', { 'class': 'cbi-section' }, [
+				E('h3', _('Associations')),
+				table
+			]) ]);
 		}, this, m));
 	},
 
