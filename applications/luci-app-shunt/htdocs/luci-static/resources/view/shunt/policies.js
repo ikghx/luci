@@ -88,10 +88,19 @@ return view.extend({
 		o.default = '1';
 		o.editable = true;
 
+		o = s.option(form.ListValue, 'action', _('Action'),
+			_('Route the selected traffic into the interface below, or \
+				bypass it - a bypass policy marks nothing and exempts the traffic from every policy after it.'));
+		o.value('route', _('Route into a policy interface'));
+		o.value('bypass', _('Bypass - leave the traffic alone'));
+		o.default = 'route';
+		o.editable = true;
+
 		o = s.option(form.Value, 'interface', _('Interface'),
 			_('The device or logical interface this policy routes into. A \
 				netifd name is resolved to its device; any other device name is used as entered.'));
 		o.rmempty = false;
+		o.depends('action', 'route');
 
 		uci.sections('network', 'interface').forEach(function (n) {
 			if (n['.name'] !== 'loopback') {
@@ -103,6 +112,15 @@ return view.extend({
 		o.value('main', _('Fall through to the normal uplink'));
 		o.value('block', _('Block the traffic (killswitch)'));
 		o.default = 'main';
+		o.depends('action', 'route');
+
+		o = s.option(form.Flag, 'keep_local', _('Keep Local Traffic'),
+			_('Traffic to networks the routing table already has a route for \
+				- your other subnets, your static routes - stays on the normal path instead of entering the policy interface. Turn this off only for a hermetic killswitch.'));
+		o.default = '1';
+		o.rmempty = false;
+		o.modalonly = true;
+		o.depends('action', 'route');
 
 		o = s.option(form.DynamicList, 'src', _('Source Addresses'),
 			_('Client addresses or prefixes this policy applies to. Leave empty to apply to every client.'));

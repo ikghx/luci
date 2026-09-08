@@ -92,9 +92,16 @@ function renderState(st) {
 		]);
 	}
 
+	// The firewall's stop action deletes every nftables table, shunt's
+	// included; the daemon puts its own back. The counter is the only trace
+	// that is left of it, so it is shown where the state is.
+	const reapplied = (st.service && st.service.reapplied) || 0;
+
 	if (st.running && st.applied) {
 		return E('div', { 'class': 'shunt-state' }, [
-			dot('ok'), E('span', {}, _('running, policy applied'))
+			dot('ok'), E('span', {}, _('running, policy applied')),
+			reapplied ? E('span', { 'class': 'shunt-key' },
+				_('ruleset re-applied %d time(s)').format(reapplied)) : ''
 		]);
 	}
 
@@ -201,6 +208,7 @@ function renderPolicies(st) {
 	const rows = [
 		E('tr', { 'class': 'tr table-titles' }, [
 			E('th', { 'class': 'th' }, _('Policy')),
+			E('th', { 'class': 'th' }, _('Action')),
 			E('th', { 'class': 'th' }, _('Interface')),
 			E('th', { 'class': 'th' }, _('Mark')),
 			E('th', { 'class': 'th' }, _('Table')),
@@ -211,14 +219,19 @@ function renderPolicies(st) {
 	];
 
 	st.policies.forEach(function (p) {
+		// A bypass policy has no mark, no table and no rule of its own, so
+		// those cells are empty rather than unknown.
+		const bypass = (p.action === 'bypass');
+
 		rows.push(E('tr', { 'class': 'tr' }, [
 			E('td', { 'class': 'td' }, [p.name]),
+			E('td', { 'class': 'td' }, [p.action || 'route']),
 			E('td', { 'class': 'td' }, [p.interface || '-']),
 			E('td', { 'class': 'td' }, [fmtMark(p.mark)]),
-			E('td', { 'class': 'td' }, [fmtCount(p.rt_table)]),
-			E('td', { 'class': 'td' }, [fmtCount(p.rules)]),
-			E('td', { 'class': 'td' }, [fmtCount(p.routes)]),
-			E('td', { 'class': 'td' }, [p.fallback || 'main'])
+			E('td', { 'class': 'td' }, [bypass ? '-' : fmtCount(p.rt_table)]),
+			E('td', { 'class': 'td' }, [bypass ? '-' : fmtCount(p.rules)]),
+			E('td', { 'class': 'td' }, [bypass ? '-' : fmtCount(p.routes)]),
+			E('td', { 'class': 'td' }, [bypass ? '-' : (p.fallback || 'main')])
 		]));
 	});
 
