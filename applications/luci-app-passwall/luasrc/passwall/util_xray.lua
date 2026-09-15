@@ -12,7 +12,7 @@ local GLOBAL = {
 
 local xray_version = api.get_app_version("xray")
 
-local xray_min_version = "26.3.27"
+local xray_min_version = "26.7.11"
 
 local function get_domain_excluded()
 	local path = string.format("/usr/share/%s/rules/domains_excluded", api.c_config)
@@ -58,31 +58,50 @@ function gen_outbound(flag, node, tag, proxy_table)
 		if node.type ~= "Xray" then
 			if node.type == "Socks" then
 				node.protocol = "socks"
-				node.transport = "tcp"
+				node.transport = "raw"
 			else
-				local relay_port = node.port
-				local new_port = api.get_new_port()
-				local config_file = string.format("%s_%s_%s.json", flag, tag, new_port)
-				if tag and node_id and not tag:find(node_id) then
-					config_file = string.format("%s_%s_%s_%s.json", flag, tag, node_id, new_port)
-				end
+				local new_port
 				if run_socks_instance then
-					sys.call(string.format('/usr/share/passwall/app.sh run_socks "%s"> /dev/null',
-						string.format("flag=%s node=%s bind=%s socks_port=%s config_file=%s relay_port=%s",
-							new_port, --flag
-							node_id, --node
-							"127.0.0.1", --bind
-							new_port, --socks port
-							config_file, --config file
-							(proxy_tag and relay_port) and tostring(relay_port) or "" --relay port
+					local relay_port = (proxy_tag and node.port) and tostring(node.port) or ""
+					if relay_port == "" then
+						local cache = api.get_socks_port_by_cache(node_id)
+						if cache then
+							new_port = cache
+							run_socks_instance = nil
+						end
+					end
+					if run_socks_instance then
+						new_port = api.get_new_port()
+						local config_file = string.format("nodesocks_%s_%s.json", node_id, new_port)
+						if tag and node_id and not tag:find(node_id) then
+							config_file = string.format("nodesocks_%s_%s_%s.json", tag, node_id, new_port)
+						end
+						sys.call(string.format('/usr/share/passwall/app.sh run_socks "%s"> /dev/null',
+							string.format("flag=%s node=%s bind=%s socks_port=%s config_file=%s relay_port=%s",
+								new_port, --flag
+								node_id, --node
+								"127.0.0.1", --bind
+								new_port, --socks port
+								config_file, --config file
+								relay_port --relay port
+								)
+							)
 						)
-					))
+						if relay_port == "" then
+							api.set_socks_port_to_cache(node_id, new_port)
+						end
+					end
+				else
+					TMP_PORT = TMP_PORT and TMP_PORT + 1 or 3001  -- 导出配置时作为演示
+					new_port = TMP_PORT
 				end
-				node = {}
-				node.protocol = "socks"
-				node.transport = "tcp"
-				node.address = "127.0.0.1"
-				node.port = new_port
+				if new_port then
+					node = {}
+					node.protocol = "socks"
+					node.transport = "raw"
+					node.address = "127.0.0.1"
+					node.port = new_port
+				end
 			end
 			node.stream_security = "none"
 			proxy_tag = "socks <- " .. node_id
@@ -120,6 +139,10 @@ function gen_outbound(flag, node, tag, proxy_table)
 			node.stream_security = "tls"
 		end
 
+		if node.protocol == "http" and node.stream_security == "tls" then
+			node.transport = "raw"
+		end
+
 		if remarks then
 			tag = tag .. ":" .. remarks
 		end
@@ -138,7 +161,7 @@ function gen_outbound(flag, node, tag, proxy_table)
 				xudpConcurrency = (node.mux == "1" and ((node.xudp_concurrency) and tonumber(node.xudp_concurrency) or 8)) or nil
 			} or nil,
 			-- 底层传输配置
-			streamSettings = (node.streamSettings or dialer_proxy_tag or node.protocol == "vmess" or node.protocol == "vless" or node.protocol == "socks" or node.protocol == "shadowsocks" or node.protocol == "trojan" or node.protocol == "hysteria") and {
+			streamSettings = (node.streamSettings or dialer_proxy_tag or node.protocol == "vmess" or node.protocol == "vless" or node.protocol == "socks" or node.protocol == "shadowsocks" or node.protocol == "trojan" or node.protocol == "hysteria" or node.protocol == "http") and {
 				sockopt = {
 					mark = 255,
 					domainStrategy = node.domain_strategy or "UseIP",
@@ -152,7 +175,7 @@ function gen_outbound(flag, node, tag, proxy_table)
 					} or nil,
 					dialerProxy = dialer_proxy_tag,
 				},
-				[(api.compare_versions(xray_version, "<", "26.7.11")) and "network" or "method"] = node.transport, -- Todo: Remove version check and "network"
+				method = node.transport,
 				security = node.stream_security,
 				tlsSettings = (node.stream_security == "tls") and {
 					serverName = node.tls_serverName,
@@ -544,7 +567,7 @@ function gen_config_server(node)
 			allowTransparent = false,
 			users = users
 		}
-		node.transport = "tcp"
+		node.transport = "raw"
 		node.tcp_guise = "none"
 	elseif node.protocol == "shadowsocks" then
 		settings = {
@@ -671,7 +694,7 @@ function gen_config_server(node)
 				protocol = node.protocol,
 				settings = settings,
 				streamSettings = {
-					[(api.compare_versions(xray_version, "<", "26.7.11")) and "network" or "method"] = node.transport, -- Todo: Remove version check and "network"
+					method = node.transport,
 					security = "none",
 					tlsSettings = ("1" == node.tls) and {
 						disableSystemRoot = false,
@@ -852,9 +875,6 @@ function gen_config_server(node)
 			if k and k:find("_") == 1 then
 				config.outbounds[index][k] = nil
 			end
-		end
-		if value.protocol == "freedom" and api.compare_versions(xray_version, "<", "26.5.3") then -- Todo is to remove it
-			value.settings = nil
 		end
 	end
 
@@ -1312,9 +1332,9 @@ function gen_config(var)
 									interface = node.iface
 								}
 							},
-							settings = (api.compare_versions(xray_version, ">", "26.4.25")) and {  -- Todo: Remove version check
+							settings = {
 								finalRules = {{ action = "allow" }}
-							} or nil
+							}
 						}
 						sys.call(string.format("mkdir -p %s && touch %s/%s", api.TMP_IFACE_PATH, api.TMP_IFACE_PATH, node.iface))
 					end
@@ -1798,11 +1818,10 @@ function gen_config(var)
 					sockopt = { dialerProxy = (dns_outbound_tag ~= "blackhole") and dns_outbound_tag or "direct" }
 				} or nil,
 				settings = {
-					address = (chn_list ~= "proxy") and "8.8.8.8" or "223.5.5.5",
-					port = 53,
-					network = "tcp",
-					nonIPQuery = (api.compare_versions(xray_version, "<", "26.4.25")) and "reject" or nil, -- Todo is to remove it
-					rules = (api.compare_versions(xray_version, ">", "26.4.17")) and {} or nil
+					rewriteAddress = (chn_list ~= "proxy") and "8.8.8.8" or "223.5.5.5",
+					rewritePort = 53,
+					rewriteNetwork = "tcp",
+					rules = {}
 				}
 			}
 
@@ -2026,9 +2045,9 @@ function gen_config(var)
 		local direct_outbound = {
 			protocol = "freedom",
 			tag = "direct",
-			settings = (api.compare_versions(xray_version, ">", "26.4.25")) and {  -- Todo: Remove version check
+			settings = {
 				finalRules = {{ action = "allow" }}
-			} or nil,
+			},
 			streamSettings = {
 				sockopt = {
 					mark = 255,
@@ -2132,7 +2151,7 @@ function gen_proto_config(var)
 		local outbound = {
 			protocol = server_proto,
 			streamSettings = {
-				network = "tcp",
+				method = "raw",
 				security = "none"
 			},
 			settings = {
@@ -2157,10 +2176,12 @@ function gen_proto_config(var)
 	table.insert(outbounds, {
 		protocol = "freedom",
 		tag = "direct",
-		settings = (api.compare_versions(xray_version, ">", "26.4.25")) and { -- Todo: Remove version check
+		settings = {
 			finalRules = {{ action = "allow" }}
-		} or nil,
-		sockopt = {mark = 255}
+		},
+		streamSettings = {
+			sockopt = {mark = 255}
+		}
 	})
 
 	local config = {
@@ -2172,7 +2193,10 @@ function gen_proto_config(var)
 		-- 传出连接
 		outbounds = outbounds,
 		-- 路由
-		routing = routing
+		routing = routing,
+		version = {
+			min = xray_min_version
+		}
 	}
 	return jsonc.stringify(config, 1)
 end
