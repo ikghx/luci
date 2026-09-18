@@ -6,8 +6,9 @@
 # A clean stop already does this itself: procd sends SIGTERM, qosify's main()
 # calls qosify_iface_stop() and interface_clear_qdisc() removes the root qdisc,
 # the bpf filters and the ifb device. This script only matters after a crash, a
-# SIGKILL or a respawn loop, so it deliberately only touches devices qosify is
-# configured for -- never a qdisc this package did not create.
+# SIGKILL or a respawn loop, so it deliberately only touches the devices of
+# enabled qosify sections and the ifb names qosify derives from them -- never a
+# qdisc or ifb this package did not create.
 
 . /lib/functions.sh
 . /lib/functions/network.sh
@@ -39,11 +40,14 @@ clear_dev() {
 	local ifb
 
 	[ -n "$dev" ] || return 0
-	[ -e "/sys/class/net/$dev" ] || return 0
 
-	tc qdisc del dev "$dev" clsact 2>/dev/null
-	tc qdisc del dev "$dev" root 2>/dev/null
+	if [ -e "/sys/class/net/$dev" ]; then
+		tc qdisc del dev "$dev" clsact 2>/dev/null
+		tc qdisc del dev "$dev" root 2>/dev/null
+	fi
 
+	# An ifb outlives its parent, so this is not gated on $dev still existing.
+	# That only helps a `config device`, whose name survives the netdev.
 	ifb="$(ifb_name "$dev")" || return 0
 	[ -e "/sys/class/net/$ifb" ] || return 0
 
@@ -51,12 +55,26 @@ clear_dev() {
 	ip link del "$ifb" 2>/dev/null
 }
 
+# add_interface() in qosify.init returns before reading anything else when
+# disabled is set, so qosify never touched those devices.
+section_enabled() {
+	local disabled
+
+	config_get_bool disabled "$1" disabled 0
+	[ "$disabled" -eq 0 ]
+}
+
 # `config interface` names a netifd interface, not a device; qosify resolves it
-# to the l3 device before touching tc, so resolve it the same way.
+# to .l3_device before touching tc, so resolve it the same way. netifd drops
+# .l3_device when the interface goes down, so a vanished pppoe device leaves no
+# name to derive the ifb from here. qosify clears that one itself: on the next
+# up, interface_start() runs interface_clear_qdisc(), which deletes ifb-<dev>
+# before cmd_add_ingress() creates it again.
 clear_interface() {
 	local cfg="$1"
 	local name dev
 
+	section_enabled "$cfg" || return 0
 	config_get name "$cfg" name
 	[ -n "$name" ] || return 0
 
@@ -69,6 +87,7 @@ clear_device() {
 	local cfg="$1"
 	local name
 
+	section_enabled "$cfg" || return 0
 	config_get name "$cfg" name
 	clear_dev "$name"
 }
@@ -76,15 +95,5 @@ clear_device() {
 config_load qosify
 config_foreach clear_interface interface
 config_foreach clear_device device
-
-# Orphaned ifb devices: qosify is the only thing that creates ifb-* names
-# (sqm-scripts uses ifb4*), and removing the device on its own cannot disturb a
-# qdisc belonging to anything else.
-for ifb in /sys/class/net/ifb-*; do
-	[ -e "$ifb" ] || continue
-	ifb="${ifb##*/}"
-	ip link set "$ifb" down 2>/dev/null
-	ip link del "$ifb" 2>/dev/null
-done
 
 exit 0

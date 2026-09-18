@@ -31,11 +31,11 @@ msgid "%ds"
 msgstr ""
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:211
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:91
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:107
 msgid "Action"
 msgstr ""
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:71
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:87
 msgid "Add policy"
 msgstr "添加策略"
 
@@ -56,11 +56,11 @@ msgstr "用于某项策略的响应"
 msgid "Apply failed: %s"
 msgstr ""
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:113
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:129
 msgid "Block the traffic (killswitch)"
 msgstr "阻断流量（终止开关）"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:95
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:111
 msgid "Bypass - leave the traffic alone"
 msgstr "绕过 - 不干预流量"
 
@@ -68,7 +68,7 @@ msgstr "绕过 - 不干预流量"
 msgid "Bytes routed"
 msgstr "已路由的字节数"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:131
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:147
 msgid "Client MACs this policy applies to, ORed with the addresses above."
 msgstr "此策略适用的客户端 MAC 地址，与上述地址进行 OR 运算。"
 
@@ -76,7 +76,7 @@ msgstr "此策略适用的客户端 MAC 地址，与上述地址进行 OR 运算
 msgid "Client Selectors"
 msgstr "客户端选择器"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:126
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:142
 msgid ""
 "Client addresses or prefixes this policy applies to. Leave empty to apply to "
 "every client."
@@ -98,23 +98,27 @@ msgstr "自服务启动以来在 %s 上观测到的 DNS 响应"
 msgid "Debug Logging"
 msgstr "调试日志记录"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:146
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:162
 msgid "Destination Addresses"
 msgstr "目标地址"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:141
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:157
 msgid "Destination Ports"
 msgstr "目标端口"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:147
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:163
 msgid "Destination addresses or prefixes to route into this policy."
 msgstr "要路由至此策略的目标地址或前缀。"
+
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:172
+msgid "Domain Files"
+msgstr ""
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:128
 msgid "Domain is in no policy"
 msgstr "域名未应用任何策略"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:151
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:167
 msgid "Domains"
 msgstr "域名"
 
@@ -123,7 +127,7 @@ msgid "Enable the shunt service."
 msgstr "启用分流服务。"
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:409
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:86
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:102
 msgid "Enabled"
 msgstr ""
 
@@ -135,7 +139,7 @@ msgstr "条目生命周期"
 msgid "Error reply, e.g. NXDOMAIN"
 msgstr "错误响应，例如 NXDOMAIN"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:64
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:80
 msgid ""
 "Evaluated top to bottom - the first policy a packet matches wins. Within one "
 "policy the selectors are ANDed: source plus domain means only that client, "
@@ -143,6 +147,10 @@ msgid ""
 msgstr ""
 "从上到下进行评估——数据包匹配到的第一条策略即生效。在同一条策略内，选择器采"
 "用“ANDed”运算：源地址加域名，意味着仅限该客户端，且仅限发往这些域名。"
+
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:179
+msgid "Expecting a bare file name or an absolute path, without whitespace"
+msgstr ""
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/setreport.js:135
 msgid "Expires"
@@ -152,7 +160,7 @@ msgstr ""
 msgid "Extension header chain too long"
 msgstr "扩展标头链过长"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:112
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:128
 msgid "Fall through to the normal uplink"
 msgstr "回退至正常的上行链路"
 
@@ -160,9 +168,17 @@ msgstr "回退至正常的上行链路"
 msgid "Fallback"
 msgstr "回退"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:111
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:127
 msgid "Fallback Behavior"
 msgstr "回退行为"
+
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:173
+msgid ""
+"Files with one domain pattern per line, for large or community-maintained "
+"lists. A bare name lives under /tmp/shunt, an absolute path is used as "
+"given. Entries from a file are learned by the DNS observer only, never "
+"polled; after the file changed, refresh below."
+msgstr ""
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:145
 msgid "Frame ends mid-structure"
@@ -180,11 +196,11 @@ msgstr ""
 msgid "IP fragment"
 msgstr "IP 分片"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:156
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:184
 msgid "IPv4 Gateway Override"
 msgstr "IPv4 网关覆盖"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:162
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:190
 msgid "IPv6 Gateway Override"
 msgstr "IPv6 网关覆盖"
 
@@ -197,11 +213,11 @@ msgid "Inconsistent UDP length"
 msgstr "UDP 长度不一致"
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:212
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:99
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:115
 msgid "Interface"
 msgstr ""
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:117
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:133
 msgid "Keep Local Traffic"
 msgstr "保持本地流量"
 
@@ -260,12 +276,16 @@ msgstr "尚无与 %s 相关的日志！"
 msgid "No client is selected, so every client is covered."
 msgstr "未选中任何客户端，因此涵盖所有客户端。"
 
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:54
+msgid "No output"
+msgstr ""
+
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:205
 msgid "No policy is active."
 msgstr "没有处于活动状态的策略。"
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:271
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:57
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:73
 msgid "No shunt config found!"
 msgstr "未找到分流器配置！"
 
@@ -296,7 +316,7 @@ msgstr ""
 msgid "Observed Devices"
 msgstr "已观察到的设备"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:157
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:185
 msgid ""
 "Only needed when the gateway discovered from netifd is wrong. Point to point "
 "interfaces need no gateway at all."
@@ -314,7 +334,7 @@ msgstr "已路由的数据包"
 msgid "Passive DNS Observer"
 msgstr "被动 DNS 观察器"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:63
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:79
 #: applications/luci-app-shunt/root/usr/share/luci/menu.d/luci-app-shunt.json:31
 msgid "Policies"
 msgstr "策略"
@@ -343,7 +363,7 @@ msgstr "轮询间隔"
 msgid "Processing Log"
 msgstr "处理日志"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:135
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:151
 msgid "Protocols"
 msgstr "协议"
 
@@ -363,6 +383,14 @@ msgstr "记录长度与类型不符"
 msgid "Refresh"
 msgstr "刷新"
 
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:213
+msgid "Refresh Domain Files"
+msgstr ""
+
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:59
+msgid "Refresh failed: %s"
+msgstr ""
+
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:252
 msgid "Rejected settings"
 msgstr "已拒绝的设置"
@@ -371,7 +399,7 @@ msgstr "已拒绝的设置"
 msgid "Reserved label type"
 msgstr "保留标签类型"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:136
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:152
 msgid "Restrict to tcp, udp or both. A port without a protocol covers both."
 msgstr "限定为 TCP、UDP 或两者。未指定协议的端口涵盖两者。"
 
@@ -379,11 +407,11 @@ msgstr "限定为 TCP、UDP 或两者。未指定协议的端口涵盖两者。"
 msgid "Reverse path filtering is strict"
 msgstr "反向路径过滤是严格的。"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:94
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:110
 msgid "Route into a policy interface"
 msgstr "路由到策略接口"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:92
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:108
 msgid ""
 "Route the selected traffic into the interface below, or bypass it - a bypass "
 "policy marks nothing and exempts the traffic from every policy after it."
@@ -400,7 +428,7 @@ msgid "Rules"
 msgstr "规则"
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:470
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:177
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:205
 msgid "Save & Restart"
 msgstr "保存并重启"
 
@@ -441,15 +469,15 @@ msgid ""
 "between cycles."
 msgstr "应至少为轮询间隔（%d）的两倍，否则条目会在周期之间过期。"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:142
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:158
 msgid "Single ports or ranges like 8000-8080, ANDed with the addresses below."
 msgstr "单个端口或端口范围（如 8000-8080），与下方的地址进行“ANDed”运算。"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:125
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:141
 msgid "Source Addresses"
 msgstr "源地址"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:130
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:146
 msgid "Source MAC Addresses"
 msgstr "源 MAC 地址"
 
@@ -483,7 +511,7 @@ msgstr ""
 "DNS 响应在传往客户端途中所经过的 LAN 设备，通常为 br-lan。每个网段对应一条条"
 "目，具体请参阅 README。"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:100
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:116
 msgid ""
 "The device or logical interface this policy routes into. A netifd name is "
 "resolved to its device; any other device name is used as entered."
@@ -509,7 +537,7 @@ msgstr "响应过多"
 msgid "Too many stacked VLAN tags"
 msgstr "堆叠的 VLAN 标签过多"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:118
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:134
 msgid ""
 "Traffic to networks the routing table already has a route for - your other "
 "subnets, your static routes - stays on the normal path instead of entering "
@@ -542,7 +570,7 @@ msgstr "涵盖所有策略"
 msgid "all policies"
 msgstr "所有策略"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:152
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:168
 msgid ""
 "example.com matches that name only, *.example.com matches its subdomains but "
 "not the apex - list both to cover both."
@@ -550,7 +578,7 @@ msgstr ""
 "example.com 仅匹配该名称，而 *.example.com 匹配其子域名但不匹配根域名 - 因此"
 "需同时列出两者以实现全面覆盖。"
 
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:107
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:123
 msgid "interface"
 msgstr "接口"
 

@@ -362,7 +362,7 @@ return view.extend({
 		return root;
 	},
 
-	// Both tabs tick at 10 s. Overview is five ubus calls and no forks; the Status
+	// Both tabs tick at 10 s. Overview is six ubus calls and no forks; the Status
 	// tab forks qosify-status, which runs tc twice per active interface, so it is
 	// the expensive one and does not get a faster tick. Poll.step() holds
 	// the next tick until the promise this returns settles, and refreshStatus()
@@ -1569,8 +1569,9 @@ return view.extend({
 		});
 	},
 
-	// Poll path: five ubus calls, no shell forks, and the parts of the page that
-	// hold user input or focus are patched in place rather than rebuilt.
+	// Poll path: six ubus calls (uci.get and gatherCtx(false)'s five), no shell
+	// forks, and the parts of the page that hold user input or focus are patched
+	// in place rather than rebuilt.
 	refreshOverview:function(){
 		var self=this;
 		self.lock();
