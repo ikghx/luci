@@ -188,8 +188,8 @@ msgstr ""
 msgid "An XHttpObject in JSON format, used for sharing."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:222
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:259
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:220
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:256
 msgid "Annotation: Begining with #"
 msgstr ""
 
@@ -354,7 +354,7 @@ msgstr ""
 msgid "Buffer size for every connection (kB)"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1769
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1828
 msgid "Build Share URL"
 msgstr ""
 
@@ -374,7 +374,7 @@ msgid ""
 "By entering a domain or IP, you can query the Geo rule list they belong to."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:250
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:247
 msgid "CIDR: such as '127.0.0.0/8'."
 msgstr ""
 
@@ -430,6 +430,11 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/5_hysteria2.lua:104
 msgid "Certificate fingerprint"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:261
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/2_xray.lua:201
+msgid "Certificate or Private key path can not be empty!"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/node_subscribe_config.lua:281
@@ -956,10 +961,6 @@ msgstr ""
 msgid "ECH Query Domain"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/5_hysteria2.lua:153
-msgid "ECH key absolute path"
-msgstr ""
-
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:464
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua:426
 msgid "EDNS Client Subnet"
@@ -1175,7 +1176,7 @@ msgstr ""
 msgid "Experimental feature."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1772
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1831
 msgid "Export Config File"
 msgstr ""
 
@@ -1208,7 +1209,7 @@ msgstr ""
 msgid "Faltal on get option, please help in debug:"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:809
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:837
 msgid "Faltal on set option, please help in debug:"
 msgstr ""
 
@@ -1365,7 +1366,7 @@ msgstr ""
 msgid "Fragmented packet length (byte)"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1768
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1827
 msgid "From Share URL"
 msgstr ""
 
@@ -1374,7 +1375,7 @@ msgstr ""
 msgid "Full certificate (chain), PEM format."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:213
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:211
 msgid ""
 "Full domain: Begining with 'full:' and the rest is a domain. When the "
 "targeting domain is exactly the value, the rule takes effect. Example: rule "
@@ -1410,7 +1411,7 @@ msgstr ""
 msgid "Gecko Packet Size (min)"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1770
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1829
 msgid "Generate QRCode"
 msgstr ""
 
@@ -1445,7 +1446,7 @@ msgstr ""
 msgid "GeoIP/Geosite Query"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:251
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:248
 msgid ""
 "GeoIP: such as 'geoip:cn'. It begins with geoip: (lower case) and followed "
 "by two letter of country code."
@@ -1634,7 +1635,7 @@ msgstr ""
 msgid "IP range"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:249
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:246
 msgid "IP: such as '127.0.0.1'."
 msgstr ""
 
@@ -1703,7 +1704,7 @@ msgstr ""
 msgid "Immediately switch back to the main node when it becomes available."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1727
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1786
 msgid "Import Finished"
 msgstr ""
 
@@ -1763,12 +1764,12 @@ msgstr ""
 msgid "Invalid Realm URL."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:854
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1157
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1357
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1492
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1612
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1719
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:882
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1185
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1385
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1520
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1640
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:1778
 msgid "Invalid Share URL Format"
 msgstr ""
 
@@ -1780,7 +1781,7 @@ msgstr ""
 msgid "Invalid interface name"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:262
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:259
 msgid "Invert match result."
 msgstr ""
 
@@ -2265,7 +2266,7 @@ msgstr ""
 msgid "Not Set"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:704
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:732
 msgid "Not a supported scheme:"
 msgstr ""
 
@@ -2289,7 +2290,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:89
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:147
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:203
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:242
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:239
 msgid "Not valid IP format, please re-enter!"
 msgstr ""
 
@@ -2304,7 +2305,7 @@ msgstr ""
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:61
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:119
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/rule_list.lua:175
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:203
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:201
 msgid "Not valid domain name, please re-enter!"
 msgstr ""
 
@@ -2396,7 +2397,7 @@ msgstr ""
 msgid "Only recommend to use with VLESS-TCP-XTLS-Vision."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:262
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:259
 msgid "Only support Sing-Box."
 msgstr ""
 
@@ -2479,8 +2480,24 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:739
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:767
 msgid "Paste Share URL Here"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/5_hysteria2.lua:153
+msgid "Path to the ECH key file"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:314
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/2_xray.lua:266
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/5_hysteria2.lua:123
+msgid "Path to the certificate file"
+msgstr ""
+
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:333
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/2_xray.lua:282
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/5_hysteria2.lua:138
+msgid "Path to the private key file"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/1_sing-box.lua:733
@@ -2492,7 +2509,7 @@ msgstr ""
 msgid "PinSHA256"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:210
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:208
 msgid ""
 "Plaintext: If this string matches any part of the targeting domain, this "
 "rule takes effet. Example: rule 'sina.com' matches targeting domain 'sina."
@@ -2573,7 +2590,7 @@ msgstr ""
 msgid "Pre shared key"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:214
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:212
 msgid ""
 "Pre-defined domain list: Begining with 'geosite:' and the rest is a name, "
 "such as geosite:google or geosite:cn."
@@ -2630,12 +2647,6 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/1_sing-box.lua:478
 msgid "Private Key Passphrase"
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:333
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/2_xray.lua:282
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/5_hysteria2.lua:138
-msgid "Private key absolute path"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/2_xray.lua:239
@@ -2725,17 +2736,6 @@ msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/type/2_xray.lua:513
 msgid "Public key"
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:314
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/2_xray.lua:266
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/5_hysteria2.lua:123
-msgid "Public key absolute path"
-msgstr ""
-
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/1_sing-box.lua:261
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/server/type/2_xray.lua:201
-msgid "Public key and Private key path can not be empty!"
 msgstr ""
 
 #: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/acl_config.lua:237
@@ -2847,7 +2847,7 @@ msgstr ""
 msgid "Recommended value: Sec-WebSocket-Protocol"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:211
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:209
 msgid ""
 "Regular expression: Begining with 'regexp:', the rest is a regular "
 "expression. When the regexp matches targeting domain, this rule takes "
@@ -3086,11 +3086,11 @@ msgstr ""
 msgid "ShadowsocksR"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:724
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:752
 msgid "Share URL to clipboard successfully."
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:726
+#: applications/luci-app-passwall/luasrc/view/passwall/node_config/link_share_man.htm:754
 msgid "Share URL to clipboard unable."
 msgstr ""
 
@@ -3129,8 +3129,8 @@ msgstr ""
 msgid "Shunt Rule Group"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:216
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:253
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:214
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:250
 msgid ""
 "Sing-Box is compatible with Geo rules and rule-set. rule-set begin with "
 "'rule-set:remote:' or 'rule-set:local:'."
@@ -3219,7 +3219,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:212
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:210
 msgid ""
 "Subdomain (recommended): Begining with 'domain:' and the rest is a domain. "
 "When the targeting domain is exactly the value, or is a subdomain of the "
@@ -3253,10 +3253,10 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:218
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:219
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:255
-#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:256
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:216
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:217
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:252
+#: applications/luci-app-passwall/luasrc/model/cbi/passwall/client/shunt_rules.lua:253
 msgid "Such as:"
 msgstr ""
 

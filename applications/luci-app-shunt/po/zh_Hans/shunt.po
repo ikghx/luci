@@ -68,6 +68,17 @@ msgstr "绕过 - 不干预流量"
 msgid "Bytes routed"
 msgstr "已路由的字节数"
 
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:427
+msgid ""
+"Ceiling in seconds for a learned address in its Set. An address learned from "
+"a DNS answer expires with the TTL of that answer, clamped to the range 60 to "
+"this value; a polled address uses this value. Keep it well above the poll "
+"interval."
+msgstr ""
+"设定该集合中已学习地址的上限值。对于从 DNS 响应中学习到的地址，其有效期由该响"
+"应的 TTL 决定（并被限制在 60 到此设定值之间）；而轮询获取的地址则直接使用此设"
+"定值。请确保该值远大于轮询间隔。"
+
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:147
 msgid "Client MACs this policy applies to, ORed with the addresses above."
 msgstr "此策略适用的客户端 MAC 地址，与上述地址进行 OR 运算。"
@@ -130,10 +141,6 @@ msgstr "启用分流服务。"
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:102
 msgid "Enabled"
 msgstr ""
-
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:426
-msgid "Entry Lifetime"
-msgstr "条目生命周期"
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:132
 msgid "Error reply, e.g. NXDOMAIN"
@@ -247,6 +254,10 @@ msgstr "管理 rp_filter"
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:213
 msgid "Mark"
 msgstr "标记"
+
+#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:426
+msgid "Maximum Entry Lifetime"
+msgstr "条目最长生命周期"
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:136
 msgid "Message ends mid-structure"
@@ -431,13 +442,6 @@ msgstr "规则"
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/policies.js:205
 msgid "Save & Restart"
 msgstr "保存并重启"
-
-#: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:427
-msgid ""
-"Seconds a learned address stays in its Set. Keep this well above the poll "
-"interval."
-msgstr ""
-"已学习地址在其所属集合（Set）中保留的时长（秒）。请确保该值远大于轮询间隔。"
 
 #: applications/luci-app-shunt/htdocs/luci-static/resources/view/shunt/overview.js:422
 msgid "Seconds between poll cycles."

@@ -71,9 +71,6 @@ define Package/$(PKG_NAME)/postrm
 	rm -rf /tmp/openclash_announcement >/dev/null 2>&1
 	rm -rf /www/luci-static/resources/openclash >/dev/null 2>&1
 	rm -rf /tmp/oix* >/dev/null 2>&1
-	rm -rf /tmp/openclash_oix_version.json >/dev/null 2>&1
-	rm -rf /tmp/openclash_version_history_* >/dev/null 2>&1
-	rm -rf /tmp/openclash_cdn_info_* >/dev/null 2>&1
 	uci -q delete firewall.openclash
 	uci -q commit firewall
 	exit 0

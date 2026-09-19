@@ -222,7 +222,7 @@ o:depends("enable_redirect_dns", "0")
 o = s:taboption("dns", Value, "custom_domain_dns_server", translate("Specify DNS Server"))
 o.description = translate("Specify DNS Server For List, Only One IP Server Address Support")
 o.default = "114.114.114.114"
-o.placeholder = translate("114.114.114.114 or 127.0.0.1#5334")
+o.placeholder = "114.114.114.114 or 127.0.0.1#5334"
 o:depends{enable_redirect_dns = "1", enable_custom_domain_dns_server = "1"}
 
 custom_domain_dns = s:taboption("dns", Value, "custom_domain_dns")
@@ -322,7 +322,7 @@ ip_ac:value("localnetwork", translate("Local Network"))
 
 o = s2:option(Value, "src_port", translate("Internal ports"))
 o.datatype = "or(port, portrange)"
-o.placeholder = translate("5000 or 1234-2345")
+o.placeholder = "5000 or 1234-2345"
 o.rmempty = true
 
 o = s2:option(ListValue, "proto", translate("Proto"))
@@ -505,7 +505,7 @@ o.description = translate("Only Common Ports, Prevent BT/P2P Passing")
 o:value("0", translate("Disable"))
 o:value("21 22 23 53 80 123 143 194 443 465 587 853 993 995 998 2052 2053 2082 2083 2086 2095 2096 2197 5222 5223 5228 5229 5230 8080 8443 8880 8888 8889", translate("Default Common Ports"))
 o.default = 0
-o.placeholder = translate("443 or 21-443, Use Space to Separate")
+o.placeholder = "443 or 21-443"
 o:depends("en_mode", "redir-host")
 o:depends("en_mode", "redir-host-tun")
 o:depends("en_mode", "redir-host-mix")
@@ -516,6 +516,18 @@ o.default = 0
 o:value("0", translate("Disable"))
 o:value("1", translate("Bypass Mainland China"))
 o:value("2", translate("Bypass Overseas"))
+
+if op_mode == "fake-ip" then
+o = s:taboption("traffic_control", ListValue, "china_ip_route_domain_source", translate("China IP Route Domain Source"))
+o.description = translate("Select The China Domain Data Source Used by China IP Route in Fake-IP Mode. MetaCubeX Uses cn.mrs from MetaCubeX/meta-rules-dat; GeoSite Uses The cn Category in The Current GeoSite Database")
+o:value("mrs", translate("MetaCubeX Rules cn.mrs (Default)"))
+o:value("geosite", translate("GeoSite Rules geosite:cn"))
+o.default = "mrs"
+o:depends("china_ip_route", "1")
+o:depends("china_ip_route", "2")
+o:depends("china_ip6_route", "1")
+o:depends("china_ip6_route", "2")
+end
 
 o = s:taboption("traffic_control", Flag, "intranet_allowed", translate("Only intranet allowed"))
 o.description = translate("When Enabled, The Control Panel And The Connection Broker Port Will Not Be Accessible From The Public Network")
@@ -1263,6 +1275,12 @@ o.default = "9090"
 o.datatype = "port"
 o.rmempty = false
 o.description = translate("Dashboard Address Example:").." "..font_green..bold_on..lan_ip..':'..cn_port..'/ui/yacd'..'、'..lan_ip..':'..cn_port..'/ui/dashboard'..bold_off..font_off
+local cn_port_write = o.write
+o.write = function(self, section, value)
+	local ret = cn_port_write(self, section, value)
+	SYS.exec("/usr/share/openclash/openclash_nginx.sh >/dev/null 2>&1 &")
+	return ret
+end
 
 o = s:taboption("dashboard", Value, "dashboard_password")
 o.title = translate("Dashboard Secret")
