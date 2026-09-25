@@ -12,8 +12,8 @@ fi
 mkdir -p /etc/footstrap
 if [ -d /www/luci-static/footstrap ]; then
 	ln -sf /etc/footstrap/login-bg /www/luci-static/footstrap/bg
-	ln -sf /etc/footstrap/pattern.svg /www/luci-static/footstrap/pattern.svg
 	ln -sfn /etc/footstrap/fonts /www/luci-static/footstrap/fonts
 fi
+[ -L /www/luci-static/footstrap/pattern.svg ] && rm -f /www/luci-static/footstrap/pattern.svg
 
 exit 0

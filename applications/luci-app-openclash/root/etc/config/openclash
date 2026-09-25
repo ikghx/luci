@@ -211,15 +211,6 @@ config dns_servers
 	option enabled '0'
 	option disable_ipv6 '0'
 
-config config_overwrite
-	option name 'default'
-	option enable '0'
-	option url 'https://raw.githubusercontent.com/vernesong/OpenClash/refs/heads/dev/luci-app-openclash/root/etc/openclash/overwrite/default'
-	option update_days 'off'
-	option update_hour 'off'
-	option type 'http'
-	option order '1'
-
 config dns_servers
 	option enabled '1'
 	option group 'default'
@@ -263,4 +254,24 @@ config dns_servers
 	option node_resolve '1'
 	option disable_ipv4 '0'
 	option disable_ipv6 '0'
+
+config config_overwrite
+	option name 'default'
+	option enable '0'
+	option url 'https://raw.githubusercontent.com/vernesong/OpenClash/refs/heads/dev/luci-app-openclash/root/etc/openclash/overwrite/default'
+	option update_days 'off'
+	option update_hour 'off'
+	option type 'http'
+	option order '1'
+	list config 'all'
+
+config config_overwrite
+	option name 'Google_Play'
+	option enable '0'
+	option url 'https://raw.githubusercontent.com/vernesong/OpenClash/refs/heads/dev/luci-app-openclash/root/etc/openclash/overwrite/Google_Play'
+	option update_days 'off'
+	option update_hour 'off'
+	option type 'http'
+	option order '2'
+	list config 'all'
 
