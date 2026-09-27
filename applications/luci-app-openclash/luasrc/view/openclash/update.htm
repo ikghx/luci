@@ -290,7 +290,7 @@
         if (defaultTipTimer) { clearTimeout(defaultTipTimer); defaultTipTimer = null; }
         var tips = [
             '<%:Note: manual upload works if the update fails%>',
-            '<%:Note: squashfs firmware may not free flash space%>'
+            '<%:Note: squashfs firmware may not free disk space%>'
         ];
         var tip = tips[Math.floor(Math.random() * tips.length)];
         hint.innerHTML = '<svg><use href="#oc-icon-alert-circle"/></svg><span>' + tip + '</span>';
@@ -412,27 +412,95 @@
             '<a href="' + escAttr(dlUrl) + '" target="_blank" rel="noopener" class="dl-btn" title="<%:Download%>"><svg width="11" height="11"><use href="#oc-icon-download"/></svg></a>';
     }
 
+    var verColsTimer = null;
+
+    // the plugin and core columns are as wide as the versions in them need: the widest cell is
+    // measured and written as a custom property, so the header and the rows stay on the same tracks
+    // and a version with a long suffix is not cut behind an ellipsis
+    function syncVersionColumns() {
+        var body = document.getElementById('addr-list-body');
+        if (!body) return;
+        var widest = { plugin: 0, core: 0 };
+        document.querySelectorAll('#addr-list-body .addr-row .ver-text').forEach(function (cell) {
+            var link = cell.querySelector('.ver-link');
+            if (!link) return;
+            var key = cell.classList.contains('ver-plugin') ? 'plugin' : (cell.classList.contains('ver-core') ? 'core' : null);
+            if (!key) return;
+            // the range reads the full text even while the cell clips it, the paddings and the download
+            // button are what the cell has to hold around that text
+            var range = document.createRange();
+            range.selectNodeContents(link);
+            var linkStyle = getComputedStyle(link);
+            var cellStyle = getComputedStyle(cell);
+            var btn = cell.querySelector('.dl-btn');
+            var width = range.getBoundingClientRect().width
+                + parseFloat(linkStyle.paddingLeft) + parseFloat(linkStyle.paddingRight)
+                + parseFloat(cellStyle.paddingLeft) + parseFloat(cellStyle.paddingRight)
+                + (btn ? btn.offsetWidth + parseFloat(cellStyle.columnGap || 0) : 0)
+                + 2;
+            if (width > widest[key]) widest[key] = width;
+        });
+        if (widest.plugin > 0) body.style.setProperty('--addr-ver-plugin', Math.ceil(widest.plugin) + 'px');
+        if (widest.core > 0) body.style.setProperty('--addr-ver-core', Math.ceil(widest.core) + 'px');
+    }
+
+    function queueVersionColumns() {
+        if (verColsTimer) return;
+        verColsTimer = setTimeout(function () {
+            verColsTimer = null;
+            syncVersionColumns();
+        }, 60);
+    }
+
+    // a breakpoint change also changes the font size of the cells, so the measurement is redone
+    function resetVersionColumns() {
+        var body = document.getElementById('addr-list-body');
+        if (!body) return;
+        body.style.removeProperty('--addr-ver-plugin');
+        body.style.removeProperty('--addr-ver-core');
+        queueVersionColumns();
+    }
+
     function updateAddrRow(row, addrUrl, info) {
         var smart = smart_enable.value || '0';
         var latencyEl = row.querySelector('.addr-status');
         var verSpans = row.querySelectorAll('.ver-text');
         var pluginEl = verSpans[0];
         var coreEl = verSpans[1];
-        var unreachable = (info.latency === -1 || info.latency === -2);
-        row.classList.toggle('unreachable', unreachable);
+        var coreVer = (smart === '1' && info.core_smart_ver) ? info.core_smart_ver : info.core_meta_ver;
+        var errText = '';
+        if (info.latency === -1) {
+            errText = '<%:Access Timed Out%>';
+        } else if (info.latency === -2) {
+            errText = '<%:Access Denied%>';
+        } else if (info.latency > 0 && (!info.plugin_ver || !coreVer)) {
+            errText = info.core_error === 'timeout' ? '<%:Access Timed Out%>' : '<%:Access Denied%>';
+        }
+        row.classList.toggle('row-error', !!errText);
+
+        infoCache[addrUrl] = {
+            plugin_ver: info.plugin_ver || null,
+            core_meta_ver: info.core_meta_ver || null,
+            core_smart_ver: info.core_smart_ver || null,
+            latency: info.latency,
+            core_error: info.core_error || null,
+            error: errText || null
+        };
+
+        if (errText) {
+            latencyEl.textContent = errText;
+            latencyEl.className = 'addr-status err';
+            latencyEl.title = '';
+            if (pluginEl) { pluginEl.textContent = '--'; pluginEl.classList.remove('has-data', 'err'); }
+            if (coreEl) { coreEl.textContent = '--'; coreEl.classList.remove('has-data', 'err'); }
+            queueVersionColumns();
+            return;
+        }
 
         if (info.latency != null && info.latency > 0) {
             var ms = parseInt(info.latency);
             latencyEl.textContent = ms + ' ms';
             latencyEl.className = 'addr-status ' + (ms <= 500 ? 'fast' : ms <= 1000 ? 'medium' : 'slow');
-            latencyEl.title = '';
-        } else if (info.latency === -1) {
-            latencyEl.textContent = '<%:Access Timed Out%>';
-            latencyEl.className = 'addr-status err';
-            latencyEl.title = '';
-        } else if (info.latency === -2) {
-            latencyEl.textContent = '<%:Access Denied%>';
-            latencyEl.className = 'addr-status err';
             latencyEl.title = '';
         } else {
             latencyEl.textContent = '--';
@@ -446,49 +514,22 @@
                 pluginEl.classList.add('has-data');
                 pluginEl.classList.remove('err');
             } else {
-                var selLink = makeVerCell(addrUrl, 'plugin');
-                if (selLink) {
-                    pluginEl.innerHTML = selLink;
-                    pluginEl.classList.add('has-data');
-                    pluginEl.classList.remove('err');
-                } else {
-                    pluginEl.textContent = '--';
-                    pluginEl.classList.remove('has-data', 'err');
-                }
+                pluginEl.textContent = '--';
+                pluginEl.classList.remove('has-data', 'err');
             }
         }
         if (coreEl) {
-            var coreVer = (smart === '1' && info.core_smart_ver) ? info.core_smart_ver : info.core_meta_ver;
             if (coreVer) {
                 coreEl.innerHTML = makeVerCell(addrUrl, 'core', coreVer);
                 coreEl.classList.add('has-data');
                 coreEl.classList.remove('err');
-            } else if (info.latency === -1 || info.latency === -2 || info.latency === -3 || info.latency == null) {
+            } else {
                 coreEl.textContent = '--';
                 coreEl.classList.remove('has-data', 'err');
-            } else {
-                var selLink = makeVerCell(addrUrl, 'core');
-                if (selLink) {
-                    coreEl.innerHTML = selLink;
-                    coreEl.classList.add('has-data');
-                    coreEl.classList.remove('err');
-                } else if (info.core_error) {
-                    coreEl.textContent = info.core_error === 'timeout' ? '<%:Access Timed Out%>' : '<%:Access Denied%>';
-                    coreEl.classList.add('has-data', 'err');
-                } else {
-                    coreEl.textContent = '<%:Access Timed Out%>';
-                    coreEl.classList.add('has-data', 'err');
-                }
             }
         }
 
-        infoCache[addrUrl] = {
-            plugin_ver: info.plugin_ver || null,
-            core_meta_ver: info.core_meta_ver || null,
-            core_smart_ver: info.core_smart_ver || null,
-            latency: info.latency,
-            core_error: info.core_error || null
-        };
+        queueVersionColumns();
     }
 
     function buildAddrRows(st) {
@@ -809,7 +850,7 @@
                 el.textContent = '--';
                 el.classList.remove('has-data', 'err');
             });
-            row.classList.remove('unreachable');
+            row.classList.remove('row-error');
         });
         addrSortDirty = true;
         updateAddrListState();
@@ -817,7 +858,7 @@
 
     function addrLatencyRank(addrUrl) {
         var info = infoCache[addrUrl];
-        if (!info || info.latency == null || info.latency <= 0) return Infinity;
+        if (!info || info.error || info.latency == null || info.latency <= 0) return Infinity;
         return info.latency;
     }
 
@@ -1740,6 +1781,7 @@
     }
     window.addEventListener('beforeunload', stopLogStream);
     window.addEventListener('pagehide', stopLogStream);
+    window.addEventListener('resize', resetVersionColumns);
     initPopupResizeObserver();
 //]]>
 </script>
