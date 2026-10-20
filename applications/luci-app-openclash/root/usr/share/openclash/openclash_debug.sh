@@ -28,7 +28,7 @@ DEBUG_LOG="/tmp/openclash_debug.log"
 LOGTIME=$(echo $(date "+%Y-%m-%d %H:%M:%S"))
 log_level=$(uci_get_config "log_level")
 enable_custom_dns=$(uci_get_config "enable_custom_dns")
-enable_custom_clash_rules=$(uci_get_config "enable_custom_clash_rules") 
+enable_custom_clash_rules=$(uci_get_config "enable_custom_clash_rules")
 ipv6_enable=$(uci_get_config "ipv6_enable")
 ipv6_dns=$(uci_get_config "ipv6_dns")
 enable_redirect_dns=$(uci_get_config "enable_redirect_dns")
@@ -64,6 +64,7 @@ delay_start=$(uci_get_config "delay_start")
 log_size=$(uci_get_config "log_size")
 bypass_gateway_compatible=$(uci_get_config "bypass_gateway_compatible")
 disable_quic_go_gso=$(uci_get_config "disable_quic_go_gso")
+disable_tun_gso=$(uci_get_config "disable_tun_gso")
 small_flash_memory=$(uci_get_config "small_flash_memory")
 enable_meta_sniffer=$(uci_get_config "enable_meta_sniffer")
 enable_respect_rules=$(uci_get_config "enable_respect_rules")
@@ -94,28 +95,28 @@ fi
 
 ts_cf()
 {
-	if [ "$1" = "0" ] || [ -z "$1" ]; then
-	   echo "停用"
-	else
-	   echo "启用"
+   if [ "$1" = "0" ] || [ -z "$1" ]; then
+      echo "停用"
+   else
+      echo "启用"
    fi
 }
 
 ts_re()
 {
-	if [ -z "$1" ]; then
-	   echo "未安装"
-	else
-	   echo "已安装 ($1)"
+   if [ -z "$1" ]; then
+      echo "未安装"
+   else
+      echo "已安装 ($1)"
   fi
 }
 
 dns_re()
 {
    if [ "$1" = "1" ]; then
-	   echo "Dnsmasq 转发"
+      echo "Dnsmasq 转发"
    elif [ "$1" = "2" ]; then
-	   echo "Firewall 转发"
+      echo "Firewall 转发"
    else
       echo "停用"
    fi
@@ -151,6 +152,7 @@ cat > "$DEBUG_LOG" <<-EOF
 | 系统运行时间 | $(uptime 2>/dev/null) |
 | IPV6-DHCP | $(uci -q get dhcp.lan.dhcpv6 || echo "未配置") |
 | DNS劫持 | $(dns_re "$enable_redirect_dns") |
+| TFO 黑洞超时（秒） | $(cat /proc/sys/net/ipv4/tcp_fastopen_blackhole_timeout_sec 2>/dev/null || echo "不支持") |
 
 ### 磁盘与内存
 
@@ -318,11 +320,12 @@ cat >> "$DEBUG_LOG" <<-EOF
 | 绕过中国大陆IP | $(ts_cf "$china_ip_route") |
 | 中国大陆域名数据源 | $china_ip_route_domain_source |
 | 路由本机代理 | $(ts_cf "$router_self_proxy") |
-| TUN堆栈类型 | ${stack_type:-system} |
+| TUN堆栈类型 | ${stack_type:-mips} |
 | 启动延迟 | ${delay_start:-0}秒 |
 | 日志大小 | ${log_size:-1024}KB |
 | 旁路由兼容 | $(ts_cf "$bypass_gateway_compatible") |
 | 禁用quic-go GSO | $(ts_cf "$disable_quic_go_gso") |
+| 禁用TUN GSO | $(ts_cf "$disable_tun_gso") |
 | 小闪存模式 | $(ts_cf "$small_flash_memory") |
 | 域名嗅探 | $(ts_cf "$enable_meta_sniffer") |
 | DNS代理 | $(ts_cf "$enable_respect_rules") |

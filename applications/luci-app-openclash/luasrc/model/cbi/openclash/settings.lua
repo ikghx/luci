@@ -30,33 +30,8 @@ for dev in SYS.exec("ls -1 /sys/class/net/ 2>/dev/null"):gmatch("[^%s]+") do
 	end
 end
 
--- 优化 CBI UI（新版 LuCI 专用）
-local function optimize_cbi_ui()
-	HTTP.write([[
-		<script type="text/javascript">
-			// 修正上移、下移按钮名称
-			document.querySelectorAll("input.btn.cbi-button.cbi-button-up").forEach(function(btn) {
-				btn.value = "]] .. translate("Move up") .. [[";
-			});
-			document.querySelectorAll("input.btn.cbi-button.cbi-button-down").forEach(function(btn) {
-				btn.value = "]] .. translate("Move down") .. [[";
-			});
-			// 删除控件和说明之间的多余换行
-			document.querySelectorAll("div.cbi-value-description").forEach(function(descDiv) {
-				var prev = descDiv.previousSibling;
-				while (prev && prev.nodeType === Node.TEXT_NODE && prev.textContent.trim() === "") {
-					prev = prev.previousSibling;
-				}
-				if (prev && prev.nodeType === Node.ELEMENT_NODE && prev.tagName === "BR") {
-					prev.remove();
-				}
-			});
-		</script>
-	]])
-end
-
-font_green = [[<b style=color:green>]]
-font_red = [[<b style=color:red>]]
+font_green = [[<b class="oc-txt-good">]]
+font_red = [[<b class="oc-txt-bad">]]
 font_off = [[</b>]]
 bold_on = [[<strong>]]
 bold_off = [[</strong>]]
@@ -110,7 +85,7 @@ o.default = "fake-ip"
 end
 
 o = s:taboption("op_mode", Flag, "enable_udp_proxy", translate("Proxy UDP Traffics"))
-o.description = translate("The Servers Must Support UDP forwarding").."<br>"..font_red..bold_on.."1."..translate("If Docker is Installed, UDP May Not Forward Normally").."<br>2."..translate("In Fake-ip Mode, Even If This Option is Turned Off, Domain Type Connections Still Pass Through The Core For The Availability")..bold_off..font_off
+o.description = translate("The Servers Must Support UDP forwarding")..", "..font_red..bold_on..translate("In Fake-ip Mode, Even If This Option is Turned Off, Domain Type Connections Still Pass Through The Core For The Availability")..bold_off..font_off
 o:depends("en_mode", "redir-host")
 o:depends("en_mode", "fake-ip")
 o.default = 1
@@ -125,7 +100,7 @@ o:value("system", translate("System"))
 o:value("gvisor", translate("gVisor"))
 o:value("mixed", translate("Mixed"))
 o:value("mips", translate("Mips"))
-o.default = "system"
+o.default = "mips"
 
 o = s:taboption("op_mode", ListValue, "proxy_mode", translate("Proxy Mode"))
 o.description = translate("Select Proxy Mode")
@@ -149,6 +124,10 @@ o.default = 0
 
 o = s:taboption("op_mode", Flag, "disable_quic_go_gso", translate("Disable quic-go GSO Support"))
 o.description = font_red..bold_on..translate("Suggestion: If Encountering Issues With QUIC UDP on The Linux Kernel Version Above 6.6, Please Try to Enable.")..bold_off..font_off
+o.default = 0
+
+o = s:taboption("op_mode", Flag, "disable_tun_gso", translate("Disable TUN GSO Support"))
+o.description = font_red..bold_on..translate("Suggestion: If Encountering Speed Drops or Connection Issues With TUN Mode, Please Try to Enable.")..bold_off..font_off
 o.default = 0
 
 o = s:taboption("op_mode", Flag, "small_flash_memory", translate("Small Flash Memory"))
@@ -300,8 +279,8 @@ s2.addremove = true
 s2.rmempty = false
 s2.render = function(self, ...)
 	Map.render(self, ...)
-	if type(optimize_cbi_ui) == "function" then
-		optimize_cbi_ui()
+	if type(fs.optimize_cbi_ui) == "function" then
+		fs.optimize_cbi_ui()
 	end
 end
 
@@ -354,25 +333,25 @@ o.default = ""
 local passwd_content = fs.readfile("/etc/passwd")
 local users = ""
 if passwd_content then
-    for line in string.gmatch(passwd_content, "[^\n]+") do
-        if line:match("^[^#]") and line:match(":") then
-            local fields = {}
-            for field in string.gmatch(line, "([^:]+)") do
-                table.insert(fields, field)
-            end
-            if #fields >= 3 then
-                local username = fields[1]
-                local uid_str = fields[3]
-                local uid = tonumber(uid_str)
-                if uid and uid >= 0 then
-                    users = users .. uid .. ":" .. username .. "\n"
-                end
-            end
-        end
-    end
+	for line in string.gmatch(passwd_content, "[^\n]+") do
+		if line:match("^[^#]") and line:match(":") then
+			local fields = {}
+			for field in string.gmatch(line, "([^:]+)") do
+				table.insert(fields, field)
+			end
+			if #fields >= 3 then
+				local username = fields[1]
+				local uid_str = fields[3]
+				local uid = tonumber(uid_str)
+				if uid and uid >= 0 then
+					users = users .. uid .. ":" .. username .. "\n"
+				end
+			end
+		end
+	end
 end
 for uid, username in string.gmatch(users, "(%d+):(%S+)") do
-    o:value(uid, username)
+	o:value(uid, username)
 end
 o.rmempty = true
 
@@ -597,7 +576,7 @@ o.description = translate("Auto Select Proxy For Streaming Unlock, Support Netfl
 o.default = 0
 o:depends("router_self_proxy", "1")
 
-o = s:taboption("stream_enhance", Button, translate("Flush Unlock Test Cache")) 
+o = s:taboption("stream_enhance", Button, translate("Flush Unlock Test Cache"))
 o.title = translate("Flush Unlock Test Cache")
 o.inputtitle = translate("Flush Cache")
 o.inputstyle = "reload"
@@ -1017,6 +996,87 @@ o.template = "openclash/other_stream_option"
 o.value = "Gemini"
 o:depends("stream_auto_select_gemini", "1")
 
+o = s:taboption("stream_enhance", Flag, "stream_auto_select_bahamut", font_red..translate("Bahamut Anime")..font_off)
+o.default = 0
+o:depends("stream_auto_select", "1")
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_group_key_bahamut", translate("Group Filter"))
+o.placeholder = "bahamut|巴哈"
+o.description = translate("It Will Be Searched According To The Regex When Auto Search Group Fails")
+o:depends("stream_auto_select_bahamut", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_region_key_bahamut", translate("Unlock Region Filter"))
+o.placeholder = "TW"
+o.description = translate("It Will Be Selected Region(Country Shortcode) According To The Regex")
+o:depends("stream_auto_select_bahamut", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_node_key_bahamut", translate("Unlock Nodes Filter"))
+o.description = translate("It Will Be Selected Nodes According To The Regex")
+o:depends("stream_auto_select_bahamut", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", DummyValue, "Bahamut Anime", translate("Manual Test"))
+o.rawhtml = true
+o.template = "openclash/other_stream_option"
+o.value = "Bahamut Anime"
+o:depends("stream_auto_select_bahamut", "1")
+
+o = s:taboption("stream_enhance", Flag, "stream_auto_select_spotify", font_red..translate("Spotify")..font_off)
+o.default = 0
+o:depends("stream_auto_select", "1")
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_group_key_spotify", translate("Group Filter"))
+o.placeholder = "spotify"
+o.description = translate("It Will Be Searched According To The Regex When Auto Search Group Fails")
+o:depends("stream_auto_select_spotify", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_region_key_spotify", translate("Unlock Region Filter"))
+o.placeholder = "HK|SG|US"
+o.description = translate("It Will Be Selected Region(Country Shortcode) According To The Regex")
+o:depends("stream_auto_select_spotify", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_node_key_spotify", translate("Unlock Nodes Filter"))
+o.description = translate("It Will Be Selected Nodes According To The Regex")
+o:depends("stream_auto_select_spotify", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", DummyValue, "Spotify", translate("Manual Test"))
+o.rawhtml = true
+o.template = "openclash/other_stream_option"
+o.value = "Spotify"
+o:depends("stream_auto_select_spotify", "1")
+
+o = s:taboption("stream_enhance", Flag, "stream_auto_select_steam", font_red..translate("Steam")..font_off)
+o.default = 0
+o:depends("stream_auto_select", "1")
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_group_key_steam", translate("Group Filter"))
+o.placeholder = "steam"
+o.description = translate("It Will Be Searched According To The Regex When Auto Search Group Fails")
+o:depends("stream_auto_select_steam", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_region_key_steam", translate("Unlock Region Filter"))
+o.placeholder = "CNY|USD"
+o.description = translate("It Will Be Selected Region(Country Shortcode) According To The Regex")
+o:depends("stream_auto_select_steam", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", Value, "stream_auto_select_node_key_steam", translate("Unlock Nodes Filter"))
+o.description = translate("It Will Be Selected Nodes According To The Regex")
+o:depends("stream_auto_select_steam", "1")
+o.rmempty = true
+
+o = s:taboption("stream_enhance", DummyValue, "Steam", translate("Manual Test"))
+o.rawhtml = true
+o.template = "openclash/other_stream_option"
+o.value = "Steam"
+o:depends("stream_auto_select_steam", "1")
+
 ---- update Settings
 o = s:taboption("geo_update", Flag, "geo_auto_update", font_red..bold_on..translate("Auto Update GeoIP MMDB")..bold_off..font_off)
 o.default = 0
@@ -1051,7 +1111,7 @@ o:value("https://github.com/alecthw/mmdb_china_ip_list/releases/latest/download/
 o.default = "https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb"
 o:depends("geo_auto_update", "1")
 
-o = s:taboption("geo_update", Button, translate("GEOIP Update")) 
+o = s:taboption("geo_update", Button, translate("GEOIP Update"))
 o.title = translate("Update GeoIP MMDB")
 o.description = translate("Current Version:").." "..font_green..bold_on..fs.get_resourse_mtime("/etc/openclash/Country.mmdb")..bold_off..font_off
 o.inputtitle = translate("Check And Update")
@@ -1095,7 +1155,7 @@ o:value("https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/downloa
 o.default = "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
 o:depends("geoip_auto_update", "1")
 
-o = s:taboption("geo_update", Button, translate("GEOIP Dat Update")) 
+o = s:taboption("geo_update", Button, translate("GEOIP Dat Update"))
 o.title = translate("Update GeoIP Dat")
 o.description = translate("Current Version:").." "..font_green..bold_on..fs.get_resourse_mtime("/etc/openclash/GeoIP.dat")..bold_off..font_off
 o.inputtitle = translate("Check And Update")
@@ -1139,7 +1199,7 @@ o:value("https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/downloa
 o.default = "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 o:depends("geosite_auto_update", "1")
 
-o = s:taboption("geo_update", Button, translate("GEOSITE Update")) 
+o = s:taboption("geo_update", Button, translate("GEOSITE Update"))
 o.title = translate("Update GeoSite Database")
 o.description = translate("Current Version:").." "..font_green..bold_on..fs.get_resourse_mtime("/etc/openclash/GeoSite.dat")..bold_off..font_off
 o.inputtitle = translate("Check And Update")
@@ -1183,7 +1243,7 @@ o:value("https://github.com/xishang0128/geoip/releases/latest/download/GeoLite2-
 o.default = "https://testingcf.jsdelivr.net/gh/xishang0128/geoip@release/GeoLite2-ASN.mmdb"
 o:depends("geoasn_auto_update", "1")
 
-o = s:taboption("geo_update", Button, translate("ASN Update")) 	
+o = s:taboption("geo_update", Button, translate("ASN Update"))
 o.title = translate("Update Geo ASN Database")
 o.description = translate("Current Version:").." "..font_green..bold_on..fs.get_resourse_mtime("/etc/openclash/ASN.mmdb")..bold_off..font_off
 o.inputtitle = translate("Check And Update")
@@ -1235,7 +1295,7 @@ o:value("https://ispip.clang.cn/all_cn_ipv6.txt", translate("Clang-CN-IPV6")..tr
 o:value("https://raw.githubusercontent.com/gaoyifan/china-operator-ip/refs/heads/ip-lists/china6.txt", translate("gaoyifan-github-Version"))
 o.default = "https://ispip.clang.cn/all_cn_ipv6.txt"
 
-o = s:taboption("chnr_update", Button, translate("Chnroute Lists Update")) 
+o = s:taboption("chnr_update", Button, translate("Chnroute Lists Update"))
 o.title = translate("Update Chnroute Lists")
 o.description = translate("Current Version:").." "..font_green..bold_on.. "IPv4 ("..fs.get_resourse_mtime("/etc/openclash/china_ip_route.ipset")..")"..bold_off..font_off.." "..font_green..bold_on.. "& IPv6 ("..fs.get_resourse_mtime("/etc/openclash/china_ip6_route.ipset")..")"..bold_off..font_off
 o.inputtitle = translate("Check And Update")
@@ -1408,10 +1468,10 @@ o:value("system", translate("System"))
 o:value("gvisor", translate("gVisor"))
 o:value("mixed", translate("Mixed"))
 o:value("mips", translate("Mips"))
-o.default = "system"
+o.default = "mips"
 
 o = s:taboption("ipv6", Flag, "enable_v6_udp_proxy", translate("Proxy UDP Traffics"))
-o.description = translate("The Servers Must Support UDP forwarding").."<br>"..font_red..bold_on..translate("If Docker is Installed, UDP May Not Forward Normally")..bold_off..font_off
+o.description = translate("The Servers Must Support UDP forwarding")
 o:depends("ipv6_mode", "0")
 o:depends("ipv6_mode", "1")
 o.default = 1
@@ -1425,9 +1485,9 @@ o = s:taboption("ipv6", Value, "fakeip_range6", translate("Fake-IP Range").." (I
 o.description = translate("Set Fake-IP Range").. " (IPv6 Cidr)"
 o:depends("ipv6_dns", "1")
 o:value("0", translate("Disable"))
-o:value("fdfe:dcba:9876::1/64")
+o:value("2001:2::1/64")
 o.default = "0"
-o.placeholder = "fdfe:dcba:9876::1/64"
+o.placeholder = "2001:2::1/64"
 function o.validate(self, value)
 	if value == "0" then
 		return "0"
@@ -1435,7 +1495,7 @@ function o.validate(self, value)
 	if datatype.cidr6(value) then
 		return value
 	end
-	return "fdfe:dcba:9876::1/64"
+	return "2001:2::1/64"
 end
 end
 
@@ -1562,7 +1622,6 @@ o.write = function()
 	HTTP.redirect(DISP.build_url("admin", "vpn", "openclash"))
 end
 
-m:append(Template("openclash/toolbar_show"))
 m:append(Template("openclash/config_editor"))
 
 return m

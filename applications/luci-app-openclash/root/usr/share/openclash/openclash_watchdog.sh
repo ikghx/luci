@@ -75,7 +75,12 @@ begin
          if provider.key?('path') and not provider['path'].empty?
             path = provider['path'].start_with?('./') ? '/etc/openclash/' + provider['path'][2..-1] : provider['path']
             if File.exist?(path)
-               file_is_age_encrypted = File.read(path, 512).include?('BEGIN AGE ENCRYPTED FILE') rescue false
+               if name == 'oixCloud'
+                  YAML.LOG('Set Proxies Address Skip: Bypass【oixCloud】')
+                  next
+               end
+               age_header = '-----BEGIN AGE ENCRYPTED FILE-----'.b
+               file_is_age_encrypted = File.binread(path, age_header.bytesize) == age_header rescue false
                begin
                   if provider.key?('age-secret-key') and not provider['age-secret-key'].to_s.empty?
                      begin
@@ -86,11 +91,7 @@ begin
                      end
                   else
                      if file_is_age_encrypted
-                        if name == 'oixCloud'
-                           YAML.LOG('Set Proxies Address Skip: Bypass【oixCloud】')
-                        else
-                           YAML.LOG_WARN('Set Proxies Address Skip: Failed【' + path + '】File is AGE encrypted but no secret key provided')
-                        end
+                        YAML.LOG_WARN('Set Proxies Address Skip: Failed【' + path + '】File is AGE encrypted but no secret key provided')
                         next
                      end
                      provider_config = YAML.load_file(path)
@@ -218,6 +219,9 @@ do
    stream_auto_select_openai=$(uci_get_config "stream_auto_select_openai" || echo 0)
    stream_auto_select_claude=$(uci_get_config "stream_auto_select_claude" || echo 0)
    stream_auto_select_gemini=$(uci_get_config "stream_auto_select_gemini" || echo 0)
+   stream_auto_select_bahamut=$(uci_get_config "stream_auto_select_bahamut" || echo 0)
+   stream_auto_select_spotify=$(uci_get_config "stream_auto_select_spotify" || echo 0)
+   stream_auto_select_steam=$(uci_get_config "stream_auto_select_steam" || echo 0)
    upnp_lease_file=$(uci -q get upnpd.config.upnp_lease_file)
 
 #wait for core start complete
@@ -227,11 +231,21 @@ do
 done >/dev/null 2>&1
 
 #check the clash service status
-if ! ubus call service list '{"name":"openclash"}' 2>/dev/null | jsonfilter -e '@.openclash.instances.*.running' | grep -q 'true'; then
-   uci -q set openclash.config.enable=0
-   uci -q commit openclash
-   /etc/init.d/openclash stop >/dev/null 2>&1
-   exit 0
+CORE_JSON=$(ubus call service list '{"name":"openclash"}' 2>/dev/null)
+if [ -n "$CORE_JSON" ]; then
+   # stop signals the watchdog itself, this exits it when the core vanished otherwise
+   if [ -z "$(echo "$CORE_JSON" | jsonfilter -e '@.openclash.instances.openclash')" ]; then
+      LOG_WATCHDOG "OpenClash Service Not Running, Exit..."
+      exit 0
+   fi
+   # procd drops the respawn table once it gave up on the core (crash loop)
+   if [ "$(echo "$CORE_JSON" | jsonfilter -e '@.openclash.instances.openclash.running')" != "true" ] \
+      && [ -z "$(echo "$CORE_JSON" | jsonfilter -e '@.openclash.instances.openclash.respawn.retry')" ]; then
+      uci -q set openclash.config.enable=0
+      uci -q commit openclash
+      /etc/init.d/openclash stop >/dev/null 2>&1
+      exit 0
+   fi
 fi
 
 ## Porxy history
@@ -246,14 +260,16 @@ fi
 
 ## 防火墙检查
    if [ "$FIREWALL_RELOAD" -le "$MAX_FIREWALL_RELOAD" ]; then
+      # dnsmasq restarts re-append their port-53 redirect at the tail (a platform
+      # init rule), DNS lines never carry the proxy jump order and are ignored here
       if [ -z "$FW4" ]; then
-         nat_last_line=$(iptables -t nat -nL PREROUTING --line-number 2>/dev/null | awk 'END {print $1}')
-         man_last_line=$(iptables -t mangle -nL PREROUTING --line-number 2>/dev/null | awk 'END {print $1}')
+         nat_last_line=$(iptables -t nat -nL PREROUTING --line-number 2>/dev/null | grep -Ev "DNS|dns" | awk 'END {print $1}')
+         man_last_line=$(iptables -t mangle -nL PREROUTING --line-number 2>/dev/null | grep -Ev "DNS|dns" | awk 'END {print $1}')
          nat_op_line=$(iptables -t nat -nL PREROUTING --line-number 2>/dev/null | grep -E "openclash|OpenClash" | grep -Ev "DNS|dns" | awk '{print $1}' | tail -1)
          man_op_line=$(iptables -t mangle -nL PREROUTING --line-number 2>/dev/null | grep -E "openclash|OpenClash" | grep -Ev "DNS|dns" | awk '{print $1}' | tail -1)
       else
-         nat_last_line=$(nft -a list chain inet fw4 dstnat 2>/dev/null | grep "# handle" | awk -F '# handle ' '{print $2}' | tail -1)
-         man_last_line=$(nft -a list chain inet fw4 mangle_prerouting 2>/dev/null | grep "# handle" | awk -F '# handle ' '{print $2}' | tail -1)
+         nat_last_line=$(nft -a list chain inet fw4 dstnat 2>/dev/null | grep "# handle" | grep -Ev "DNS|dns" | awk -F '# handle ' '{print $2}' | tail -1)
+         man_last_line=$(nft -a list chain inet fw4 mangle_prerouting 2>/dev/null | grep "# handle" | grep -Ev "DNS|dns" | awk -F '# handle ' '{print $2}' | tail -1)
          nat_op_line=$(nft -a list chain inet fw4 dstnat 2>/dev/null | grep -E "openclash|OpenClash" | grep -Ev "DNS|dns" | grep "# handle" | awk -F '# handle ' '{print $2}' | tail -1)
          man_op_line=$(nft -a list chain inet fw4 mangle_prerouting 2>/dev/null | grep -E "openclash|OpenClash" | grep -Ev "DNS|dns" | grep "# handle" | awk -F '# handle ' '{print $2}' | tail -1)
       fi
@@ -404,7 +420,7 @@ fi
          uci -q delete dhcp.@dnsmasq[0].resolvfile
          uci -q set dhcp.@dnsmasq[0].noresolv=1
          [ "$disable_masq_cache" -eq 1 ] && {
-         	uci -q set dhcp.@dnsmasq[0].cachesize=0
+            uci -q set dhcp.@dnsmasq[0].cachesize=0
          }
          uci -q commit dhcp
          /etc/init.d/dnsmasq restart >/dev/null 2>&1
@@ -481,6 +497,18 @@ fi
             if [ "$stream_auto_select_gemini" -eq 1 ]; then
                LOG_INFO "【Gemini】Start Auto Select Unlock Proxy..."
                /usr/share/openclash/openclash_streaming_unlock.lua "Gemini" >> $LOG_FILE
+            fi
+            if [ "$stream_auto_select_bahamut" -eq 1 ]; then
+               LOG_INFO "【Bahamut Anime】Start Auto Select Unlock Proxy..."
+               /usr/share/openclash/openclash_streaming_unlock.lua "Bahamut Anime" >> $LOG_FILE
+            fi
+            if [ "$stream_auto_select_spotify" -eq 1 ]; then
+               LOG_INFO "【Spotify】Start Auto Select Unlock Proxy..."
+               /usr/share/openclash/openclash_streaming_unlock.lua "Spotify" >> $LOG_FILE
+            fi
+            if [ "$stream_auto_select_steam" -eq 1 ]; then
+               LOG_INFO "【Steam】Start Auto Select Unlock Proxy..."
+               /usr/share/openclash/openclash_streaming_unlock.lua "Steam" >> $LOG_FILE
             fi
          fi
       fi

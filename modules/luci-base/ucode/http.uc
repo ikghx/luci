@@ -14,7 +14,7 @@ import {
 } from 'fs';
 
 // luci.http module scope
-export let HTTP_MAX_CONTENT = 1024*100;		// 100 kB maximum content size
+export let HTTP_MAX_CONTENT = 1024*10240*2;
 
 // Decode a mime encoded http message body with multipart/form-data
 // Content-Type. Stores all extracted data associated with its parameter name

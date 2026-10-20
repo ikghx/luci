@@ -20,6 +20,7 @@ china_ip_route=$(uci_get_config "china_ip_route" || echo 0)
 china_ip6_route=$(uci_get_config "china_ip6_route" || echo 0)
 china_ip_route_domain_source=$(uci_get_config "china_ip_route_domain_source" || echo "mrs")
 enable_redirect_dns=$(uci_get_config "enable_redirect_dns" || echo 1)
+disable_tun_gso=$(uci_get_config "disable_tun_gso" || echo 0)
 fake_ip_filter_mode="${33}"
 [ -z "$fake_ip_filter_mode" ] && fake_ip_filter_mode="blacklist"
 default_dashboard=$(uci_get_config "default_dashboard" || echo "metacubexd")
@@ -38,7 +39,7 @@ esac
 
 en_mode_tun=${11:-0}
 if [ -z "${12}" ]; then
-   stack_type=${30:-"system"}
+   stack_type=${30:-"mips"}
 else
    stack_type=${12}
 fi
@@ -46,7 +47,7 @@ fi
 if [ "$1" = "fake-ip" ] && [ "$enable_redirect_dns" != "2" ]; then
    TMP_FILTER_FILE="/tmp/yaml_openclash_fake_filter_include"
    > "$TMP_FILTER_FILE"
-   
+
    process_pass_list() {
       [ ! -f "$1" ] && return
       awk '
@@ -431,6 +432,7 @@ begin
    fake_ip_filter_mode = '$fake_ip_filter_mode'
    routing_mark_setting = '${34}'
    quic_gso = '${35}' == '1'
+   disable_tun_gso = '$disable_tun_gso' == '1'
    cors_origin = http_origin(ENV['OPENCLASH_CORS_CUSTOM_URL']) || controller_origin(ENV['OPENCLASH_CORS_DOMAIN'], ENV['OPENCLASH_CORS_PORT'], ENV['OPENCLASH_CORS_SSL'])
    geo_custom_url = '${37}'
    geoip_custom_url = '${38}'
@@ -557,8 +559,8 @@ begin
 
          if enable_sniffer
             sniffer_config = {
-               'enable' => true, 'override-destination' => true,
-               'sniff' => {'QUIC' => {'ports' => [443]}, 'TLS' => {'ports' => [443, 8443]}, 'HTTP' => {'ports' => [80, '8080-8880'], 'override-destination' => true}},
+               'enable' => true, 'override-destination' => false,
+               'sniff' => {'QUIC' => {'ports' => [443]}, 'TLS' => {'ports' => [443, 8443]}, 'HTTP' => {'ports' => [80, '8080-8880'], 'override-destination' => false}},
                'force-domain' => ['+.netflix.com', '+.nflxvideo.net', '+.amazonaws.com', '+.media.dssott.com'],
                'skip-domain' => ['Mijia Cloud', 'dlg.io.mi.com', '+.oray.com', '+.sunlogin.net', '+.push.apple.com']
             }
@@ -577,7 +579,8 @@ begin
                'enable' => true, 'stack' => stack_type, 'device' => 'utun',
                'dns-hijack' => ['127.0.0.1:53'], 'endpoint-independent-nat' => true,
                'auto-route' => false, 'auto-detect-interface' => false,
-               'auto-redirect' => false, 'strict-route' => false, 'disable-icmp-forwarding' => false
+               'auto-redirect' => false, 'strict-route' => false, 'disable-icmp-forwarding' => false,
+               'gso' => !disable_tun_gso
             }
             Value['tun'].delete('iproute2-table-index')
          else

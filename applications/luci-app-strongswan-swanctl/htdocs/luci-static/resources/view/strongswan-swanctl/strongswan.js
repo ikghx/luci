@@ -1,19 +1,44 @@
 'use strict';
 'require form';
+'require uci';
 'require view';
+'require strongswan-swanctl.ikev1 as ikev1';
 'require tools.widgets as widgets';
 
 function addLogLevel(o) {
-	o.value('-1', _('Absolutely silent'));
-	o.value('0', _('Very basic auditing logs'));
-	o.value('', _('Generic control flow with errors (default)'));
-	o.value('2', _('More detailed debugging control flow'));
-	o.value('3', _('Including RAW data dumps in hex'));
-	o.value('4', _('Also include sensitive material in dumps, e.g. keys'));
+	o.value('', _('Use daemon default'));
+	o.value('-1', '%s: %s'.format('-1', _('Absolutely silent')));
+	o.value('0', '%s: %s'.format('0', _('Very basic auditing logs')));
+	o.value('1', '%s: %s'.format('1', _('Generic control flow with errors (default)')));
+	o.value('2', '%s: %s'.format('2', _('More detailed debugging control flow')));
+	o.value('3', '%s: %s'.format('3', _('Including RAW data dumps in hex')));
+	o.value('4', '%s: %s'.format('4', _('Also include sensitive material in dumps, e.g. keys')));
 	o.default = '';
 }
 
 return view.extend({
+	load: function () {
+		return uci.load('ipsec').then(function () {
+			let save = false;
+			if (uci.get('ipsec', 'globals') == null) {
+				uci.add('ipsec', 'globals', 'globals');
+				save = true;
+			}
+
+			if (uci.get('ipsec', 'syslog') == null) {
+				uci.add('ipsec', 'syslog', 'syslog');
+				save = true;
+			}
+
+			if (uci.get('ipsec', 'netlink') == null) {
+				uci.add('ipsec', 'netlink', 'netlink');
+				save = true;
+			}
+
+			if (save)
+				uci.save();
+		});
+	},
 	render: function (result) {
 		let m, s, o;
 
@@ -33,7 +58,7 @@ return view.extend({
 		o.optional = true;
 
 		// syslog plugin settings
-		s = m.section(form.NamedSection, 'syslog', 'plugin', _('Syslog Settings'),
+		s = m.section(form.NamedSection, 'syslog', 'syslog', _('Syslog Settings'),
 			_('Configure how strongswan logs events, errors, and debug information.'));
 
 		o = s.option(form.ListValue, 'app', 'app', _('Applications other than daemons'));
@@ -93,6 +118,16 @@ return view.extend({
 		o = s.option(form.ListValue, 'tnc', 'tnc', _('Trusted Network Connect'));
 		addLogLevel(o);
 
-		return m.render();
+		// kernel-netlink plugin settings
+		s = m.section(form.NamedSection, 'netlink', 'netlink', _('Netlink Settings'),
+			_('Configure the kernel-netlink plugin options.'));
+
+		o = s.option(form.Flag, 'install_routes_xfrmi', _('Install routes via XFRM interfaces'),
+			_('When this is enabled, the routes for all XFRM interfaces are set automatically.'));
+		o.default = '0';
+
+		return m.render().then(function (node) {
+			return ikev1.prepend(node);
+		});
 	}
 });

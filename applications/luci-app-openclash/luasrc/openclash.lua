@@ -29,19 +29,19 @@ local os    = require "os"
 local ltn12 = require "luci.ltn12"
 local fs	= require "nixio.fs"
 local nutil = require "nixio.util"
--- The section types used to be written with a hyphen, convert the stored package once.
-do
-	local sys = require "luci.sys"
-	if sys.call("grep -q '^config proxy-groups\\|^config proxy-providers' /etc/config/openclash /tmp/.uci/openclash 2>/dev/null") == 0 then
-		sys.call("sed -i 's/^config proxy-groups/config proxy_groups/;s/^config proxy-providers/config proxy_providers/' /etc/config/openclash /tmp/.uci/openclash 2>/dev/null")
-	end
-end
 
 local uci = require "luci.model.uci".cursor()
-local dynamic_uci = require "luci.model.uci".cursor()
 local SYS  = require "luci.sys"
+-- The section types used to be written with a hyphen, convert the stored package once.
+do
+	if SYS.call("grep -q '^config proxy-groups\\|^config proxy-providers' /etc/config/openclash /tmp/.uci/openclash 2>/dev/null") == 0 then
+		SYS.call("sed -i 's/^config proxy-groups/config proxy_groups/;s/^config proxy-providers/config proxy_providers/' /etc/config/openclash /tmp/.uci/openclash 2>/dev/null")
+	end
+end
 local HTTP = require "luci.http"
 local json = require "luci.jsonc"
+local UTIL = require "luci.util"
+local i18n = require "luci.i18n"
 
 local type  = type
 local string  = string
@@ -53,6 +53,12 @@ local b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 
 --- LuCI filesystem library.
 module "luci.openclash"
+
+--- Browser-like User-Agent for plugin HTTP requests, some endpoints reject curl's default.
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36"
+
+--- sec-ch-ua client hint of user_agent, the Chrome version has to be bumped together.
+user_agent_ch_ua = '"Google Chrome";v="156", "Chromium";v="156", "Not.A/Brand";v="24"'
 
 --- Test for file access permission on given path.
 -- @class		function
@@ -294,12 +300,30 @@ function filename(str)
 	end
 end
 
+--- ASCII stays limited to [A-Za-z0-9._- ] so the name is safe in shell, ruby and cron
+--- arguments; non-ASCII (CJK) bytes are allowed, capped to fit the filesystem name limit.
+function is_safe_filename(name)
+	if type(name) ~= "string" or name == "" or #name > 200 or name:sub(1, 1) == "." then
+		return false
+	end
+	if name:match("^ +$") then
+		return false
+	end
+	for i = 1, #name do
+		local byte = name:byte(i)
+		if byte < 0x80 and not string.char(byte):match("[A-Za-z0-9._%- ]") then
+			return false
+		end
+	end
+	return true
+end
+
 function filesize(e)
 	local t=0
 	local a={' KB',' MB',' GB',' TB',' PB'}
 	if e < 0 then
-        e = -e
-    end
+		e = -e
+	end
 	repeat
 		e=e/1024
 		t=t+1
@@ -328,60 +352,60 @@ function lanip(loopback)
 end
 
 function find_case_insensitive_path(path)
-    local dir = dirname(path)
-    local base = basename(path)
-    local files = dir and fs.dir(dir)
-    if not files then
-        return nil
-    end
+	local dir = dirname(path)
+	local base = basename(path)
+	local files = dir and fs.dir(dir)
+	if not files then
+		return nil
+	end
 
-    for f in files do
-        if f:lower() == base:lower() then
-            return dir .. "/" .. f
-        end
-    end
-    return nil
+	for f in files do
+		if f:lower() == base:lower() then
+			return dir .. "/" .. f
+		end
+	end
+	return nil
 end
 
 function get_resourse_mtime(path)
-    local real_path = path
-    if not fs.access(path) then
-        local found = find_case_insensitive_path(path)
-        if found then
-            real_path = found
-        elseif uci_get_config("config", "small_flash_memory") == "1" then
-            local fallback_path = path:gsub("^/etc/openclash/", "/tmp/etc/openclash/")
-            local fallback_found = find_case_insensitive_path(fallback_path)
-            if fallback_found then
-                real_path = fallback_found
-            else
-                return "File Not Exist"
-            end
-        else
-            return "File Not Exist"
-        end
-    end
-    local file = fs.readlink(real_path) or real_path
+	local real_path = path
+	if not fs.access(path) then
+		local found = find_case_insensitive_path(path)
+		if found then
+			real_path = found
+		elseif uci_get_config("config", "small_flash_memory") == "1" then
+			local fallback_path = path:gsub("^/etc/openclash/", "/tmp/etc/openclash/")
+			local fallback_found = find_case_insensitive_path(fallback_path)
+			if fallback_found then
+				real_path = fallback_found
+			else
+				return "File Not Exist"
+			end
+		else
+			return "File Not Exist"
+		end
+	end
+	local file = fs.readlink(real_path) or real_path
 	local resourse_etag_version = SYS.exec(string.format("source /usr/share/openclash/openclash_etag.sh && GET_ETAG_TIMESTAMP_BY_PATH '%s'", file))
-    if resourse_etag_version and resourse_etag_version ~= "" then
+	if resourse_etag_version and resourse_etag_version ~= "" then
 		return resourse_etag_version
 	end
 	local resourse_version = os.date("%Y-%m-%d %H:%M:%S", mtime(file))
 	if resourse_version and resourse_version ~= "" then
-        return resourse_version
+		return resourse_version
 	end
-    return "Unknown"
+	return "Unknown"
 end
 
 function uci_get_config(section, key)
 	local val
 	if section == "config" then
-    	val = uci:get("openclash", "@overwrite[0]", key)
+		val = uci:get("openclash", "@overwrite[0]", key)
 	end
-    if val == nil then
-    	val = uci:get("openclash", section, key)
-    end
-    return val
+	if val == nil then
+		val = uci:get("openclash", section, key)
+	end
+	return val
 end
 
 function get_file_path_from_request()
@@ -404,6 +428,26 @@ function get_file_path_from_request()
 	return file_path
 end
 
+function restore_backup(archive)
+	local quoted = UTIL.shellquote(archive)
+	local listfile = "/tmp/oc_restore.list"
+	-- list the archive before touching /etc/openclash: a broken upload used to report
+	-- success because every tar/mv error was discarded, and members with absolute or
+	-- parent-relative paths must not be extracted
+	local tarok = SYS.call("tar tzf " .. quoted .. " >" .. listfile .. " 2>/dev/null") == 0
+	local has_members = SYS.call("grep -q . " .. listfile) == 0
+	local has_config = SYS.call("grep -Fxq './openclash' " .. listfile) == 0
+	local unsafe = SYS.call("grep -qE '(^|/)\\.\\./|^/' " .. listfile) == 0
+	local restored = false
+	if tarok and has_members and has_config and not unsafe then
+		if SYS.call("tar -C '/etc/openclash/' -xzf " .. quoted .. " >/dev/null 2>&1") == 0 then
+			restored = SYS.call("mv -f /etc/openclash/openclash /etc/config/openclash >/dev/null 2>&1") == 0
+		end
+	end
+	SYS.call("rm -f " .. listfile)
+	return restored
+end
+
 function get_age_keys(file)
 	local name = filename(basename(file))
 	local pub, sec
@@ -420,61 +464,61 @@ function get_age_keys(file)
 end
 
 function age_encrypt(public, content)
-    if not public or public == "" or not content then return nil end
+	if not public or public == "" or not content then return nil end
 
-    local tmp_in = os.tmpname()
-    local tmp_out = os.tmpname()
-    local f = io.open(tmp_in, "w")
-    if not f then return nil end
-    f:write(content)
-    f:close()
+	local tmp_in = os.tmpname()
+	local tmp_out = os.tmpname()
+	local f = io.open(tmp_in, "w")
+	if not f then return nil end
+	f:write(content)
+	f:close()
 
-    local cmd = string.format(
-        "/etc/openclash/core/clash_meta age encrypt %s %s %s 2>/dev/null",
-        public, tmp_in, tmp_out
-    )
-    os.execute(cmd)
+	local cmd = string.format(
+		"/etc/openclash/core/clash_meta age encrypt %s %s %s 2>/dev/null",
+		public, tmp_in, tmp_out
+	)
+	os.execute(cmd)
 
-    local out = nil
-    local f_out = io.open(tmp_out, "r")
-    if f_out then
-        out = f_out:read("*a") or ""
-        f_out:close()
-    end
+	local out = nil
+	local f_out = io.open(tmp_out, "r")
+	if f_out then
+		out = f_out:read("*a") or ""
+		f_out:close()
+	end
 
-    os.remove(tmp_in)
-    os.remove(tmp_out)
+	os.remove(tmp_in)
+	os.remove(tmp_out)
 
-    return out
+	return out
 end
 
 function age_decrypt(secret, content)
-    if not secret or secret == "" or not content then return nil end
+	if not secret or secret == "" or not content then return nil end
 
-    local tmp_in = os.tmpname()
-    local tmp_out = os.tmpname()
-    local f = io.open(tmp_in, "w")
-    if not f then return nil end
-    f:write(content)
-    f:close()
+	local tmp_in = os.tmpname()
+	local tmp_out = os.tmpname()
+	local f = io.open(tmp_in, "w")
+	if not f then return nil end
+	f:write(content)
+	f:close()
 
-    local cmd = string.format(
-        "/etc/openclash/core/clash_meta age decrypt %s %s %s 2>/dev/null",
-        secret, tmp_in, tmp_out
-    )
-    os.execute(cmd)
+	local cmd = string.format(
+		"/etc/openclash/core/clash_meta age decrypt %s %s %s 2>/dev/null",
+		secret, tmp_in, tmp_out
+	)
+	os.execute(cmd)
 
-    local out = nil
-    local f_out = io.open(tmp_out, "r")
-    if f_out then
-        out = f_out:read("*a") or ""
-        f_out:close()
-    end
+	local out = nil
+	local f_out = io.open(tmp_out, "r")
+	if f_out then
+		out = f_out:read("*a") or ""
+		f_out:close()
+	end
 
-    os.remove(tmp_in)
-    os.remove(tmp_out)
+	os.remove(tmp_in)
+	os.remove(tmp_out)
 
-    return out
+	return out
 end
 
 function decode64(data)
@@ -530,7 +574,6 @@ function config_refs(old_file_name, new_file_name)
 				else
 					uci:delete("openclash", s[".name"])
 				end
-				return false
 			end
 		end
 	)
@@ -543,42 +586,41 @@ function config_refs(old_file_name, new_file_name)
 				else
 					uci:delete("openclash", s[".name"])
 				end
-				return false
 			end
 		end
 	)
 
-	dynamic_uci:foreach("openclash", "proxy_groups",
+	uci:foreach("openclash", "proxy_groups",
 		function(s)
 			if s.config == old_file_full then
 				if is_rename and new_name_no_ext ~= new_file_name then
-					dynamic_uci:set("openclash", s[".name"], "config", new_file_full)
+					uci:set("openclash", s[".name"], "config", new_file_full)
 				else
-					dynamic_uci:delete("openclash", s[".name"])
+					uci:delete("openclash", s[".name"])
 				end
 			end
 		end
 	)
 
-	dynamic_uci:foreach("openclash", "proxy_providers",
+	uci:foreach("openclash", "proxy_providers",
 		function(s)
 			if s.config == old_file_full then
 				if is_rename and new_name_no_ext ~= new_file_name then
-					dynamic_uci:set("openclash", s[".name"], "config", new_file_full)
+					uci:set("openclash", s[".name"], "config", new_file_full)
 				else
-					dynamic_uci:delete("openclash", s[".name"])
+					uci:delete("openclash", s[".name"])
 				end
 			end
 		end
 	)
 
-	dynamic_uci:foreach("openclash", "proxies",
+	uci:foreach("openclash", "proxies",
 		function(s)
 			if s.config == old_file_full then
 				if is_rename and new_name_no_ext ~= new_file_name then
-					dynamic_uci:set("openclash", s[".name"], "config", new_file_full)
+					uci:set("openclash", s[".name"], "config", new_file_full)
 				else
-					dynamic_uci:delete("openclash", s[".name"])
+					uci:delete("openclash", s[".name"])
 				end
 			end
 		end
@@ -592,13 +634,20 @@ function config_refs(old_file_name, new_file_name)
 				else
 					uci:delete("openclash", s[".name"])
 				end
-				return false
 			end
 		end
 	)
 
+	if is_rename then
+		-- Traffic history is stored per config name, keep it with the renamed config
+		local old_history = "/etc/openclash/history/" .. old_name_no_ext .. ".db"
+		local new_history = "/etc/openclash/history/" .. new_name_no_ext .. ".db"
+		if isfile(old_history) and not isfile(new_history) then
+			fs.rename(old_history, new_history)
+		end
+	end
+
 	uci:commit("openclash")
-	dynamic_uci:commit("openclash")
 end
 
 --- Returns the appropriate ps command string for the system's ps implementation.
@@ -623,9 +672,11 @@ function pkg_type()
 	end
 end
 
---- Reads the CDN proxy address list from /usr/share/openclash/res/cdn.list.
+--- Reads the CDN proxy address list from /usr/share/openclash/res/cdn.list,
+-- followed by the user-defined addresses stored in uci
+-- (openclash.config.github_addr_custom, list or space-separated string).
 -- Lines starting with "#" are treated as comments and skipped.
--- @return Table of CDN address strings (deduplicated, in file order)
+-- @return Table of CDN address strings (deduplicated, file order first)
 function cdn_list()
 	local list = {}
 	local seen = {}
@@ -637,6 +688,16 @@ function cdn_list()
 				seen[line] = true
 				list[#list + 1] = line
 			end
+		end
+	end
+	local custom = uci:get("openclash", "config", "github_addr_custom")
+	if type(custom) == "table" then
+		custom = table.concat(custom, " ")
+	end
+	for addr in (custom or ""):gmatch("%S+") do
+		if not seen[addr] then
+			seen[addr] = true
+			list[#list + 1] = addr
 		end
 	end
 	return list
@@ -735,8 +796,45 @@ function oc_version()
 	return v or "0"
 end
 
+--- Build/Prepare replaces the token with PKG_VERSION (files deployed without make keep it).
+OC_VERSION = "@OPENCLASH_VERSION@"
+
+--- Loads common.js + oc-common.css for pages whose templates carry no head include of their own.
+function render_page_head()
+	local lang = i18n.context and i18n.context.lang or ""
+	HTTP.write(string.format([[
+<script src="/cgi-bin/luci/admin/services/openclash/translate_js?f=common&v=%s&l=%s"></script>
+<link rel="stylesheet" href="/luci-static/resources/openclash/css/oc-common.css?v=%s">
+]], OC_VERSION, lang, OC_VERSION))
+end
+
 function IsYamlExt(e)
 	e = e or ""
 	local lower = string.lower(e)
 	return lower:sub(-5) == ".yaml" or lower:sub(-4) == ".yml"
+end
+
+-- Rename the up/down buttons and drop stray <br> nodes before descriptions on newer LuCI.
+-- The i18n module is pinned at the top of this file: this function also runs inside
+-- the CBI template context, where looking up globals like require is not possible.
+function optimize_cbi_ui()
+	HTTP.write([[
+		<script type="text/javascript">
+			document.querySelectorAll("input.btn.cbi-button.cbi-button-up").forEach(function(btn) {
+				btn.value = "]] .. i18n.translate("Move up") .. [[";
+			});
+			document.querySelectorAll("input.btn.cbi-button.cbi-button-down").forEach(function(btn) {
+				btn.value = "]] .. i18n.translate("Move down") .. [[";
+			});
+			document.querySelectorAll("div.cbi-value-description").forEach(function(descDiv) {
+				var prev = descDiv.previousSibling;
+				while (prev && prev.nodeType === Node.TEXT_NODE && prev.textContent.trim() === "") {
+					prev = prev.previousSibling;
+				}
+				if (prev && prev.nodeType === Node.ELEMENT_NODE && prev.tagName === "BR") {
+					prev.remove();
+				}
+			});
+		</script>
+	]])
 end

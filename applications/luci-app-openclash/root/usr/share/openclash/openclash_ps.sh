@@ -4,35 +4,35 @@
 JOB_COUNTER_FILE="/tmp/openclash_jobs"
 
 unify_ps_status() {
-	if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
-		echo "$(ps -efw |grep -v grep |grep -c "$1")"
-	else
-		echo "$(ps -w |grep -v grep |grep -c "$1")"
-	fi
+   if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
+      echo "$(ps -efw |grep -v grep |grep -c "$1")"
+   else
+      echo "$(ps -w |grep -v grep |grep -c "$1")"
+   fi
 }
 
 unify_ps_pids() {
-	if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
-		echo "$(ps -efw |grep "$1" |grep -v grep |awk '{print $2}' 2>/dev/null)"
-	else
-		echo "$(ps -w |grep "$1" |grep -v grep |awk '{print $1}' 2>/dev/null)"
-	fi
+   if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
+      echo "$(ps -efw |grep "$1" |grep -v grep |awk '{print $2}' 2>/dev/null)"
+   else
+      echo "$(ps -w |grep "$1" |grep -v grep |awk '{print $1}' 2>/dev/null)"
+   fi
 }
 
 unify_ps_prevent() {
-	if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
-		echo "$(ps -efw |grep -v grep |grep -c "/etc/init.d/openclash")"
-	else
-		echo "$(ps -w |grep -v grep |grep -c "/etc/init.d/openclash")"
-	fi
+   if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
+      echo "$(ps -efw |grep -v grep |grep -c "/etc/init.d/openclash")"
+   else
+      echo "$(ps -w |grep -v grep |grep -c "/etc/init.d/openclash")"
+   fi
 }
 
 unify_ps_cfgname() {
-	if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
-		echo "$(ps -efw |grep /etc/openclash/clash 2>/dev/null |grep -v grep |awk -F '-f ' '{print $2}' 2>/dev/null)"
-	else
-		echo "$(ps -w |grep /etc/openclash/clash 2>/dev/null |grep -v grep |awk -F '-f ' '{print $2}' 2>/dev/null)"
-	fi
+   if [ "$(ps --version 2>&1 |grep -c procps-ng)" -eq 1 ]; then
+      echo "$(ps -efw |grep /etc/openclash/clash 2>/dev/null |grep -v grep |awk -F '-f ' '{print $2}' 2>/dev/null)"
+   else
+      echo "$(ps -w |grep /etc/openclash/clash 2>/dev/null |grep -v grep |awk -F '-f ' '{print $2}' 2>/dev/null)"
+   fi
 }
 
 inc_job_counter() {
@@ -48,6 +48,7 @@ inc_job_counter() {
 
 dec_job_counter_and_restart() {
    local restart_flag="$1"
+   local suppress_restart="${2:-0}"
    exec 999>"/tmp/lock/openclash_jobs.lock"
    flock -x 999
    local cnt=0
@@ -62,7 +63,7 @@ dec_job_counter_and_restart() {
 
    echo "$cnt $restart" > "$JOB_COUNTER_FILE"
 
-   if [ $cnt -eq 0 ] && [ "$restart" -eq 1 ] && [ "$(unify_ps_prevent)" -eq 0 ]; then
+   if [ "$suppress_restart" != "1" ] && [ $cnt -eq 0 ] && [ "$restart" -eq 1 ] && [ "$(unify_ps_prevent)" -eq 0 ]; then
       /etc/init.d/openclash restart >/dev/null 2>&1 &
       rm -rf "$JOB_COUNTER_FILE" >/dev/null 2>&1
    fi

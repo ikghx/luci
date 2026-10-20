@@ -4,6 +4,7 @@ c_config = "passwall"
 s_config = "passwall_server"
 local com = require "luci.passwall.com"
 nixio = require "nixio"
+require "nixio.util"
 fs = require "nixio.fs"
 sys = require "luci.sys"
 uci = require "luci.model.uci".cursor()
@@ -12,9 +13,9 @@ datatypes = require "luci.cbi.datatypes"
 jsonc = require "luci.jsonc"
 i18n = require "luci.i18n"
 
-appname = "passwall"
 curl_args = { "-skfL", "--connect-timeout 3", "--retry 3", "-H 'Accept: */*'" }
 command_timeout = 300
+DIRECT_GID = 9911
 OPENWRT_ARCH = nil
 DISTRIB_ARCH = nil
 OPENWRT_BOARD = nil
@@ -168,7 +169,7 @@ function del_cache_var(key)
 end
 
 function set_cache_var(key, val)
-	sys.call(string.format('. /usr/share/passwall/utils.sh ; set_cache_var "%s" "%s"', key, val))
+	sys.call(string.format('. /usr/share/passwall/utils.sh ; set_cache_var %s %s', util.shellquote(tostring(key)), util.shellquote(tostring(val))))
 end
 
 function get_cache_var(key)
@@ -177,15 +178,17 @@ function get_cache_var(key)
 	return val
 end
 
-function get_new_port()
-	local cmd_format = ". /usr/share/passwall/utils.sh ; echo -n $(get_new_port %s tcp,udp)"
-	return tonumber(sys.exec(string.format(cmd_format, "auto")))
+function get_new_port(start_port, protocol)
+	start_port = tonumber(start_port) or "auto"
+	if protocol ~= "tcp" and protocol ~= "udp" then protocol = "tcp,udp" end
+	local cmd_format = ". /usr/share/passwall/utils.sh ; echo -n $(get_new_port %s %s)"
+	return tonumber(sys.exec(string.format(cmd_format, util.shellquote(tostring(start_port)), util.shellquote(protocol))))
 end
 
 function exec_call(cmd)
 	math.randomseed(os.time())
 	local tag = "\x01__RC__" .. tostring(math.random(100000, 999999)) .. "\x01"
-	local f = io.popen('(' .. cmd .. '); printf "\\n' .. tag .. '%d" "$?"')
+	local f = io.popen('(' .. cmd .. ') 2>&1; printf "\\n' .. tag .. '%d" "$?"')
 	local out = f:read("*a") or ""
 	f:close()
 	local rc = out:match(tag .. "(%d+)%s*$")
@@ -194,6 +197,30 @@ function exec_call(cmd)
 	end
 	out = out:gsub("\n?" .. tag .. "%d+%s*$", "")
 	return tonumber(rc), trim(out)
+end
+
+function exec_call_as_gid(cmd, gid)
+	local reader, writer = nixio.pipe()
+	if not reader then return 255, "Unable to create command pipe" end
+	local pid = nixio.fork()
+	if not pid then
+		reader:close()
+		writer:close()
+		return 255, "Unable to fork command"
+	elseif pid == 0 then
+		reader:close()
+		nixio.dup(writer, nixio.stdout)
+		nixio.dup(writer, nixio.stderr)
+		writer:close()
+		if not nixio.setgid(gid) then os.exit(1) end
+		nixio.exec("/bin/sh", "-c", cmd)
+		os.exit(127)
+	end
+	writer:close()
+	local out = reader:readall() or ""
+	reader:close()
+	local _, status, code = nixio.waitpid(pid)
+	return status == "exited" and code or 255, trim(out)
 end
 
 function base64Decode(text)
@@ -231,6 +258,25 @@ function UrlDecode(szText)
 	end) or nil
 end
 
+-- 计算文件 MD5
+function md5_file(path)
+	if type(path) ~= "string" then return "" end
+	local quoted = "'" .. path:gsub("'", "'\\''") .. "'"
+	local out = sys.exec("md5sum " .. quoted)
+	if not out then return "" end
+	return out:sub(1, 32)
+end
+
+-- 计算字符串 MD5
+function md5_string(str)
+	if type(str) ~= "string" then return "" end
+	local path = trim(sys.exec("mktemp /tmp/md5.XXXXXX") or "")
+	if path == "" then return "" end
+	local md5 = fs.writefile(path, str) == #str and md5_file(path) or ""
+	fs.unlink(path)
+	return md5
+end
+
 --提取URL中的域名和端口(no ip)
 function get_domain_port_from_url(url)
 	local scheme, domain, port = string.match(url, "^(https?)://([%w%.%-]+):?(%d*)")
@@ -244,22 +290,38 @@ function get_domain_port_from_url(url)
 	return domain, port
 end
 
---解析域名
-function domainToIPv4(domain, dns)
-	local Dns = dns or "223.5.5.5"
-	local IPs = luci.sys.exec('nslookup %s %s | awk \'/^Name:/{getline; if ($1 == "Address:") print $2}\'' % { domain, Dns })
-	for IP in string.gmatch(IPs, "%S+") do
-		if datatypes.ipaddr(IP) and not datatypes.ip6addr(IP) then return IP end
+function resolve_domain(domain, dns)
+	dns = dns or get_cache_var("LOCAL_DNS") or "223.5.5.5"
+	local address, port = dns:match("^(.-)#(%d+)$")
+	if not address then address, port = dns:match("^%[(.-)%]:(%d+)$") end
+	if not address then address, port = dns:match("^([^:]+):(%d+)$") end
+	address = (address or dns):gsub("^%[(.-)%]$", "%1")
+	port = port or "53"
+	local server = datatypes.ip6addr(address) and ("[" .. address .. "]") or address
+	local rc, result
+	for _, dns_server in ipairs({server .. ":" .. port, address .. "#" .. port, "223.5.5.5"}) do
+		rc, result = exec_call_as_gid("LC_ALL=C nslookup " .. util.shellquote(domain) .. " " .. util.shellquote(dns_server), DIRECT_GID)
+		local ips, seen, answer = {}, {}, false
+		for line in result:gmatch("[^\r\n]+") do
+			if line:match("^%s*Name:") then answer = true end
+			local ip = answer and line:match("^%s*Address%s*%d*:%s*(%S+)")
+			if ip and (datatypes.ip4addr(ip) or datatypes.ip6addr(ip)) and not seen[ip] then
+				ips[#ips + 1] = ip
+				seen[ip] = true
+			end
+		end
+		if #ips > 0 then return ips end
 	end
-	return nil
+	return nil, result, rc
 end
 
-function curl_base(url, file, args)
+function curl_base(url, file, args, gid)
 	if not args then args = {} end
 	if file then
 		args[#args + 1] = "-o " .. file
 	end
 	local cmd = string.format('curl %s "%s"', table_join(args), url)
+	if gid then return exec_call_as_gid(cmd, gid) end
 	return exec_call(cmd)
 end
 
@@ -278,38 +340,34 @@ end
 function curl_logic(url, file, args)
 	local return_code, result = curl_proxy(url, file, args)
 	if not return_code or return_code ~= 0 then
-		return_code, result = curl_base(url, file, args)
+		return_code, result = curl_direct(url, file, args)
 	end
 	return return_code, result
 end
 
 function curl_direct(url, file, args)
-	--直连访问
-	local chn_list = uci_get_c("@global[0]", "chn_list") or "direct"
-	local Dns = (chn_list == "proxy") and "1.1.1.1" or "223.5.5.5"
-	if not args then args = {} end
-	local tmp_args = clone(args)
+	if get_cache_var("ENABLED_DEFAULT_ACL") ~= "1" and get_cache_var("ENABLED_ACLS") ~= "1" then
+		return curl_base(url, file, args)
+	end
+	local tmp_args = clone(args or {})
+	tmp_args[#tmp_args + 1] = "--noproxy '*'"
 	local domain, port = get_domain_port_from_url(url)
 	if domain then
-		local ip = domainToIPv4(domain, Dns)
-		if ip then
-			tmp_args[#tmp_args + 1] = "--resolve " .. domain .. ":" .. port .. ":" .. ip
+		local ips, err = resolve_domain(domain)
+		if not ips then return 6, err end
+		for i, ip in ipairs(ips) do
+			if datatypes.ip6addr(ip) then ips[i] = "[" .. ip .. "]" end
 		end
+		tmp_args[#tmp_args + 1] = "--resolve " .. util.shellquote(domain .. ":" .. port .. ":" .. table.concat(ips, ","))
 	end
-	return curl_base(url, file, tmp_args)
+	return curl_base(url, file, tmp_args, DIRECT_GID)
 end
 
 function curl_auto(url, file, args)
-	local localhost_proxy = uci_get_c("@global[0]", "localhost_proxy") or "1"
-	if localhost_proxy == "1" then
-		return curl_base(url, file, args) -- 当路由器本机开启代理时，采用passwall规则进行访问
-	else
-		local return_code, result = curl_proxy(url, file, args)
-		if not return_code or return_code ~= 0 then
-			return_code, result = curl_direct(url, file, args)
-		end
-		return return_code, result
+	if (uci_get_c("@global[0]", "localhost_proxy") or "1") == "1" then
+		return curl_base(url, file, args)
 	end
+	return curl_logic(url, file, args)
 end
 
 function url(...)
@@ -378,9 +436,10 @@ function repeat_exist(table, value)
 end
 
 function remove(...)
-	for index, value in ipairs({...}) do
-		if value and #value > 0 and value ~= "/" then
-			sys.call(string.format("rm -rf %s", value))
+	for i = 1, select("#", ...) do
+		local value = select(i, ...)
+		if type(value) == "string" and #value > 0 and value ~= "/" then
+			sys.call(string.format("rm -rf -- %s", value))
 		end
 	end
 end
@@ -815,18 +874,25 @@ function clone(org)
 end
 
 function get_bin_version_cache(file, cmd)
-	sys.call("mkdir -p " .. CACHE_PATH)
-	if fs.access(file) then
+	if file and file ~= "" and fs.access(file) then
 		chmod_755(file)
-		local md5 = sys.exec("echo -n $(md5sum " .. file .. " | awk '{print $1}')")
-		if fs.access(CACHE_PATH .. "/" .. md5) then
-			return sys.exec("echo -n $(cat %s)" % { CACHE_PATH .. "/" .. md5 })
-		else
-			local version = sys.exec(string.format("echo -n $(%s %s)", file, cmd))
-			if version and version ~= "" then
-				sys.call("echo '%s' > %s"  % { version, CACHE_PATH .. "/" .. md5})
-				return version
+		local stat = fs.stat(file)
+		local cache_file
+		if stat and stat.dev and stat.ino and stat.size and stat.mtime and stat.ctime then
+			-- Use metadata to avoid hashing the entire binary on every lookup.
+			cache_file = CACHE_PATH .. "/binver_" .. table.concat({stat.dev, stat.ino, stat.size, stat.mtime, stat.ctime}, "_")
+			local cached = fs.readfile(cache_file)
+			if cached and trim(cached) ~= "" then
+				return trim(cached)
 			end
+		end
+		local version = sys.exec(string.format("echo -n $(%s %s)", util.shellquote(file), cmd))
+		if version and version ~= "" then
+			if cache_file then
+				fs.mkdirr(CACHE_PATH)
+				fs.writefile(cache_file, version)
+			end
+			return version
 		end
 	end
 	return ""
@@ -848,7 +914,7 @@ end
 
 local function is_file(path)
 	if path and #path > 1 then
-		if sys.exec('[ -f "%s" ] && echo -n 1' % path) == "1" then
+		if fs.stat(path, "type") == "reg" then
 			return true
 		end
 	end
@@ -857,7 +923,7 @@ end
 
 local function is_dir(path)
 	if path and #path > 1 then
-		if sys.exec('[ -d "%s" ] && echo -n 1' % path) == "1" then
+		if fs.stat(path, "type") == "dir" then
 			return true
 		end
 	end
@@ -962,9 +1028,16 @@ function compare_versions(ver1, comp, ver2)
 	local n2 = table.getn(av2)
 	if (max < n2) then max = n2 end
 
+	local function version_part(value)
+		local number = tonumber(value)
+		if number then return number end
+		local revision = type(value) == "string" and value:match("^[rR](%d+)$")
+		return tonumber(revision) or 0
+	end
+
 	for i = 1, max, 1 do
-		local s1 = tonumber(av1[i] or 0) or 0
-		local s2 = tonumber(av2[i] or 0) or 0
+		local s1 = version_part(av1[i] or 0)
+		local s2 = version_part(av2[i] or 0)
 
 		if comp == "~=" and (s1 ~= s2) then return true end
 		if (comp == "<" or comp == "<=") and (s1 < s2) then return true end
@@ -1113,11 +1186,11 @@ local default_file_tree = {
 }
 
 local function get_api_json(url)
-	local gh_proxy = uci_get_c("@global_app[0]", "github_proxy") or "0"
+	local gh_proxy = uci_get_c("@global_app[0]", "gh_proxy_url") or ""
 	local return_code, content
-	if gh_proxy == "1" then
-		url = "https://gh-proxy.org/" .. url
-		return_code, content = curl_base(url, nil, curl_args)
+	if gh_proxy ~= "" then
+		url = gh_proxy .. url
+		return_code, content = curl_direct(url, nil, curl_args)
 	else
 		return_code, content = curl_auto(url, nil, curl_args)
 	end
@@ -1213,8 +1286,8 @@ function to_check(arch, app_name)
 	}
 end
 
-function to_download(app_name, url, size)
-	local result = check_path(app_name)
+function to_download(app_name, url, size, task_id, keep_files)
+	local result = app_name == appname and {code = 0} or check_path(app_name)
 	if result.code ~= 0 then
 		return result
 	end
@@ -1223,9 +1296,15 @@ function to_download(app_name, url, size)
 		return {code = 1, error = i18n.translate("Download url is required.")}
 	end
 
-	sys.call("/bin/rm -f /tmp/".. app_name .."_download.*")
+	if not keep_files then remove("/tmp/" .. app_name .. "_download.*") end
 
-	local tmp_file = trim(util.exec("mktemp -u -t ".. app_name .."_download.XXXXXX"))
+	local tmp_file
+	if task_id and task_id:match("^[%w_-]+$") then
+		tmp_file = "/tmp/" .. app_name .. "_download." .. task_id
+		remove(tmp_file)
+	else
+		tmp_file = trim(util.exec("mktemp -u -t " .. app_name .. "_download.XXXXXX"))
+	end
 
 	if size then
 		local kb1 = get_free_space("/tmp")
@@ -1237,11 +1316,11 @@ function to_download(app_name, url, size)
 	local _curl_args = clone(curl_args)
 	table.insert(_curl_args, "--speed-limit 51200 --speed-time 15 --max-time 300")
 
-	local gh_proxy = uci_get_c("@global_app[0]", "github_proxy") or "0"
+	local gh_proxy = uci_get_c("@global_app[0]", "gh_proxy_url") or ""
 	local return_code, result
-	if gh_proxy == "1" then
-		url = "https://gh-proxy.org/" .. url
-		return_code, result = curl_base(url, tmp_file, _curl_args)
+	if gh_proxy ~= "" then
+		url = gh_proxy .. url
+		return_code, result = curl_direct(url, tmp_file, _curl_args)
 	else
 		return_code, result = curl_auto(url, tmp_file, _curl_args)
 	end
@@ -1256,6 +1335,26 @@ function to_download(app_name, url, size)
 	end
 
 	return {code = 0, file = tmp_file, zip = com[app_name].zipped }
+end
+
+function to_download_progress(app_name, task_id, total_size)
+	if not com[app_name] or type(task_id) ~= "string" or not task_id:match("^[%w_-]+$") then
+		return {code = 1, error = i18n.translate("Invalid download task.")}
+	end
+
+	total_size = tonumber(total_size) or 0
+	local tmp_file = "/tmp/" .. app_name .. "_download." .. task_id
+	local downloaded = tonumber(fs.stat(tmp_file, "size")) or 0
+	if app_name == appname then
+		downloaded = (tonumber(fs.stat(tmp_file .. "1", "size")) or 0) + (tonumber(fs.stat(tmp_file .. "2", "size")) or 0)
+	end
+	local percent
+	if total_size > 0 then
+		-- The download request has not completed yet, so leave 100% for its success callback.
+		percent = math.min(99, math.floor(downloaded * 100 / total_size))
+	end
+
+	return {code = 0, downloaded = downloaded, total = total_size, percent = percent}
 end
 
 function to_extract(app_name, file, subfix)
@@ -1287,7 +1386,7 @@ function to_extract(app_name, file, subfix)
 		end
 	end
 
-	sys.call("/bin/rm -rf /tmp/".. app_name .."_extract.*")
+	remove("/tmp/" .. app_name .. "_extract.*")
 
 	local new_file_size = get_file_space(file)
 	local tmp_free_size = get_free_space("/tmp")
@@ -1327,20 +1426,20 @@ function to_move(app_name,file)
 
 	local app_path = result.app_path
 	local bin_path = file
-	local cmd_rm_tmp = "/bin/rm -rf /tmp/" .. app_name .. "_download.*"
+	local rm_tmp = "/tmp/" .. app_name .. "_download.*"
 	if fs.stat(file, "type") == "dir" then
 		bin_path = file .. "/" .. com[app_name].name:lower()
-		cmd_rm_tmp = "/bin/rm -rf /tmp/" .. app_name .. "_extract.*"
+		rm_tmp = "/tmp/" .. app_name .. "_extract.*"
 	end
 
 	if not file or file == "" then
-		sys.call(cmd_rm_tmp)
+		remove(rm_tmp)
 		return {code = 1, error = i18n.translate("Client file is required.")}
 	end
 
 	local new_version = get_app_version(app_name, bin_path)
 	if new_version == "" then
-		sys.call(cmd_rm_tmp)
+		remove(rm_tmp)
 		return {
 			code = 1,
 			error = i18n.translate("The client file is not suitable for current device.") .. app_name .. "__" .. bin_path
@@ -1362,14 +1461,14 @@ function to_move(app_name,file)
 	if final_dir_free_size > 0 then
 		final_dir_free_size = final_dir_free_size + old_app_size
 		if new_app_size > final_dir_free_size then
-			sys.call(cmd_rm_tmp)
+			remove(rm_tmp)
 			return {code = 1, error = i18n.translatef("%s not enough space.", final_dir)}
 		end
 	end
 
 	result = exec("/bin/mv", { "-f", bin_path, app_path }, nil, command_timeout) == 0
 
-	sys.call(cmd_rm_tmp)
+	remove(rm_tmp)
 	if flag == 0 then
 		sys.call("/etc/init.d/passwall restart >/dev/null 2>&1 &")
 	end
@@ -1400,51 +1499,80 @@ function get_version()
 			fs.writefile(version_file, version)
 		end
 	end
-	return version:match("^([^-]+)") or ""
+	version = (version or ""):match("^%s*(.-)%s*$")
+	-- Normalize APK's -rN release notation while retaining the release number.
+	return version:gsub("%-r(%d+)$", "-%1")
 end
 
 function to_check_self()
-	local url = "https://raw.githubusercontent.com/Openwrt-Passwall/openwrt-passwall/main/luci-app-passwall/Makefile"
-	local tmp_file = "/tmp/passwall_makefile"
-	local gh_proxy = uci_get_c("@global_app[0]", "github_proxy") or "0"
-	local return_code, result
-	if gh_proxy == "1" then
-		url = "https://gh-proxy.org/" .. url
-		return_code, result = curl_base(url, tmp_file, curl_args)
-	else
-		return_code, result = curl_auto(url, tmp_file, curl_args)
+	local release = get_api_json(com[appname]:get_url())
+	if type(release) == "table" and #release > 0 then
+		release = release[1]
 	end
-	result = return_code == 0
-	if not result then
-		exec("/bin/rm", {"-f", tmp_file})
-		return {
-			code = 1,
-			error = i18n.translatef("Failed")
-		}
+	if type(release) ~= "table" or not release.tag_name then
+		return {code = 1, error = i18n.translate("Get remote version info failed.")}
 	end
 	local local_version  = get_version()
-	local remote_version = sys.exec("echo -n $(grep '^PKG_VERSION' /tmp/passwall_makefile | head -n 1 | awk -F '=' '{print $2}')")
-	exec("/bin/rm", {"-f", tmp_file})
-
+	-- Keep the release suffix (-1, -2, ...) so package revisions are compared too.
+	local remote_version = release.tag_name:gsub("^v", "")
 	local has_update = compare_versions(local_version, "<", remote_version)
-	if not has_update then
-		return {
-			code = 0,
-			local_version = local_version,
-			remote_version = remote_version
-		}
+	local prefix, extension
+	if sys.call("command -v apk >/dev/null 2>&1") == 0 then
+		prefix, extension = "25.12+_", ".apk"
+	else
+		if sys.call("command -v uname >/dev/null 2>&1") ~= 0 then return {code = 1} end
+		local kernel = trim(sys.exec("uname -r 2>/dev/null")):match("^(%d+%.%d+)")
+		if not kernel then return {code = 1} end
+		prefix = compare_versions(kernel, "<", "5.11") and "22.03-_" or "23.05-24.10_"
+		extension = ".ipk"
+	end
+	local main, i18n_package
+	for _, search_prefix in ipairs({prefix, ""}) do
+		for _, asset in ipairs(release.assets or {}) do
+			local name = asset.name or ""
+			if name:find(search_prefix, 1, true) == 1 and name:sub(-#extension) == extension then
+				name = name:sub(#search_prefix + 1)
+				if not main and name:match("^luci%-app%-" .. appname .. "[_%-]%d") then main = asset end
+				if not i18n_package and name:match("^luci%-i18n%-" .. appname .. "%-zh%-cn[_%-]%d") then i18n_package = asset end
+			end
+		end
+		if main and i18n_package then break end
+	end
+	if not main or not i18n_package then
+		return {code = 1, error = i18n.translate("Get remote version info failed.")}
 	end
 	return {
-		code = 1,
-		has_update = true,
-		local_version = local_version,
-		remote_version = remote_version,
-		error = i18n.translatef("The latest version: %s, currently does not support automatic update, if you need to update, please compile or download the ipk and then manually install.", remote_version)
+		code = 0, has_update = has_update, local_version = local_version,
+		remote_version = remote_version, html_url = release.html_url,
+		data = main, i18n = i18n_package
 	}
 end
 
+function to_install_self(id, force)
+	if not id or not id:match("^[%w_-]+$") then return {code = 1} end
+	local dir = "/tmp/" .. appname .. "_luci_update." .. id
+	local manager = sys.call("command -v apk >/dev/null 2>&1") == 0 and "apk" or "opkg"
+	local extension = manager == "apk" and ".apk" or ".ipk"
+	local status_dir = "/www/luci-static/resources/" .. appname .. "-update"
+	local status = status_dir .. "/" .. id .. ".json"
+	fs.mkdir(dir)
+	fs.mkdir(status_dir)
+	exec("/bin/mv", {"/tmp/" .. appname .. "_download." .. id .. "1", dir .. "/luci-app-" .. appname .. extension})
+	exec("/bin/mv", {"/tmp/" .. appname .. "_download." .. id .. "2", dir .. "/luci-i18n-" .. appname .. "-zh-cn" .. extension})
+	local script = dir .. "/luci_update.sh"
+	if exec("/bin/cp", {"/usr/share/" .. appname .. "/luci_update.sh", script}) ~= 0 then
+		remove(dir)
+		return {code = 1}
+	end
+	chmod_755(script)
+	fs.writefile(status, '{"installing":true}')
+	sys.call("nohup " .. script .. " " .. dir .. " " .. status .. " " .. manager .. " " ..
+		(force == "1" and "1" or "0") .. " >/dev/null 2>&1 </dev/null &")
+	return {code = 0}
+end
+
 function is_js_luci()
-	return sys.call('[ -f "/www/luci-static/resources/uci.js" ]') == 0
+	return fs.stat("/www/luci-static/resources/uci.js", "type") == "reg"
 end
 
 function set_default_cbi()
@@ -1494,6 +1622,16 @@ function set_default_cbi()
 			end
 			self:append(obj)
 			return obj
+		end
+	end
+	if true then
+		--Table
+		local Table = cbi.Table
+		local default_init = Table.__init__
+		function Table.__init__(self, form, ...)
+			default_init(self, form, ...)
+			-- Table 的 map 是独立数据源，需要从所属表单传递 API
+			self.map.api = form.api
 		end
 	end
 	if true then

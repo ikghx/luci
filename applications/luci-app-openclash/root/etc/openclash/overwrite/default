@@ -1,5 +1,15 @@
 
 # ==========================================================
+# ==== 可选：模块元信息标识（添加模块时自动回填表单） ====
+# ==========================================================
+# 在注释行写入 #!KEY=VALUE 形式的标识行，可声明以下信息（大小写不敏感，等号也可写作冒号）：
+#   NAME (模块名称), DESC (模块描述), CONFIG (匹配配置文件, all 或文件名列表),
+#   CRON (更新时间, off 或 0 4 * * 3 形式), ENV (环境变量, 如 EN_KEY1;EN_KEY2=默认值)
+# 上传文件或输入订阅链接后，添加窗口会读取这些标识并回填对应选项；
+# 对解析器而言它们只是普通注释，不影响模块执行。详见技能文档 16-overwrite-module-format.md §16.2.5。
+# ==========================================================
+
+# ==========================================================
 # ==== 以下为可设置的插件配置参数 ====
 # ==========================================================
 
@@ -47,7 +57,7 @@
 # ENABLE_UDP_PROXY (启用 UDP 代理, 0: 禁用, 1: 启用, only for EN_MODE_TUN is nil)
 # DISABLE_UDP_QUIC (禁用 UDP QUIC, 0: 启用, 1: 禁用)
 # ROUTER_SELF_PROXY (路由器自身代理, 0: 禁用, 1: 启用)
-# STACK_TYPE (TUN 网络栈类型, system/gvisor/mixed/mips, default is system)
+# STACK_TYPE (TUN 网络栈类型, system/gvisor/mixed/mips, default is mips)
 # PROXY_MODE (代理模式, rule/global/direct, default is rule)
 
 # --- 防火墙与访问控制 ---
@@ -119,6 +129,7 @@
 # GLOBAL_UA (全局 User-Agent, 0:不覆写，或具体 UA)
 # SMALL_FLASH_MEMORY (小闪存模式, 0: 禁用, 1: 启用)
 # DISABLE_QUIC_GO_GSO (禁用 QUIC GO GSO, 0: 插件不覆写, 1: 启用)
+# DISABLE_TUN_GSO (禁用 TUN GSO, 0: 插件不覆写, 1: 启用)
 # DELAY_START (延时启动, 0: 禁用 or 秒数)
 # SKIP_PROXY_ADDRESS (跳过代理地址, 0: 禁用, 1: 启用)
 # SUB_INFO_URL (订阅信息 URL)
@@ -138,6 +149,7 @@
 #ROUTER_SELF_PROXY = 1
 #CHINA_IP_ROUTE = 1
 #DISABLE_QUIC_GO_GSO = 1
+#DISABLE_TUN_GSO = 1
 #CORE_TYPE = Smart
 #ENABLE_REDIRECT_DNS = 1
 #IPV6_ENABLE = 0
@@ -163,8 +175,8 @@
 #[Overwrite]
 #EN_KEY 为对应模块需要用户指定的环境变量值, EN_KEY1=URL1;EN_KEY2=URL2;EN_KEY3=URL3
 #其他 Ruby 编辑函数请参考 openclash_custom_overwrite.sh
-#值里不能出现 \ 、; 、反引号 与 $( ) ，否则整行会被跳过并记录 skip invalid Overwrite command 日志
-#正则不使用反斜杠转义，改用字符类写法（\. 写作 [.]）；值里有字面 $ 时用单引号参数，避免被当作环境变量展开
+#参数按字面量解析（\ 、; 、$( ) 无需转义）；代码参数受 AST 白名单限制，未列入的调用（system/send/File./ENV、反引号等）会被跳过并记录 skip invalid Overwrite command，纯值参数与引号内的选项字不受影响
+#正则里的 \. 可直接书写（旧写法 [.] 仍有效）；值里有字面 $ 时用单引号参数，避免被当作环境变量展开
 #ruby_map_edit "$CONFIG_FILE" "['proxy-providers']" "provider1" "['filter']" '^abc[.]com$x'
 #ruby_map_edit "$CONFIG_FILE" "['proxy-providers']" "优质服务商" "['url']" "$EN_KEY1"
 #ruby_map_edit "$CONFIG_FILE" "['proxy-providers']" "备用服务商" "['url']" "$EN_KEY2"
@@ -200,7 +212,7 @@
 #DISABLE_UDP_QUIC = 1
 #ROUTER_SELF_PROXY = 1
 #PROXY_MODE = rule
-#STACK_TYPE = system
+#STACK_TYPE = mips
 
 # --- 模块更新后重启 ---
 #RESTART = true
@@ -536,7 +548,7 @@ EN_MODE = fake-ip-mix
 DISABLE_UDP_QUIC = 1
 ROUTER_SELF_PROXY = 1
 PROXY_MODE = rule
-STACK_TYPE = system
+STACK_TYPE = mips
 
 # --- 防火墙与访问控制 ---
 INTRANET_ALLOWED = 1
@@ -579,6 +591,7 @@ GEOSITE_UPDATE_DAY_TIME = 5
 # --- 其它功能 ---
 SMALL_FLASH_MEMORY = 0
 DISABLE_QUIC_GO_GSO = 1
+DISABLE_TUN_GSO = 0
 DELAY_START = 0
 SKIP_PROXY_ADDRESS = 1
 RESTART = false

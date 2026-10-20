@@ -11,7 +11,7 @@ local L, table, ipairs, pairs, type, error = _G.L, table, ipairs, pairs, type, e
 
 module "luci.http"
 
-HTTP_MAX_CONTENT      = 1024*100		-- 100 kB maximum content size
+HTTP_MAX_CONTENT      = 1024*10240*2
 
 function close()
 	L.http:close()
