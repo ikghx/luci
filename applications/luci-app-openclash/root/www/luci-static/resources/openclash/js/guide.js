@@ -3,10 +3,10 @@
 
 var Guide = {
     urls: {
-        check_core: '<%=url("admin", "services", "openclash", "check_core")%>',
-        update: '<%=url("admin", "services", "openclash", "update")%>',
-        status: '<%=url("admin", "services", "openclash", "status")%>',
-        config_file_list: '<%=url("admin", "services", "openclash", "config_file_list")%>'
+        check_core: '<%=url("admin", "vpn", "openclash", "check_core")%>',
+        update: '<%=url("admin", "vpn", "openclash", "update")%>',
+        status: '<%=url("admin", "vpn", "openclash", "status")%>',
+        config_file_list: '<%=url("admin", "vpn", "openclash", "config_file_list")%>'
     },
     running: false,
     step: 0,

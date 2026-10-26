@@ -521,7 +521,7 @@
 
             if (httpCheckXHR) { try { httpCheckXHR.abort(); } catch(e) {} httpCheckXHR = null; }
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/cgi-bin/luci/admin/services/openclash/website_check?domains=' + domainParam, true);
+            xhr.open('GET', '/cgi-bin/luci/admin/vpn/openclash/website_check?domains=' + domainParam, true);
             xhr.timeout = 0;
             var lastIndex = 0;
             var pendingBuf = '';
@@ -613,7 +613,7 @@
 
     function unlock_load_services() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/cgi-bin/luci/admin/services/openclash/unlock_services', true);
+        xhr.open('GET', '/cgi-bin/luci/admin/vpn/openclash/unlock_services', true);
         xhr.timeout = 10000;
         xhr.onloadend = function() {
             if (xhr.status !== 200) return;
@@ -957,7 +957,7 @@
         var ok = panel.querySelector('.myip-gear-ok');
         ok.disabled = true;
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/cgi-bin/luci/admin/services/openclash/unlock_services', true);
+        xhr.open('POST', '/cgi-bin/luci/admin/vpn/openclash/unlock_services', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.timeout = 15000;
         xhr.onloadend = function() {
@@ -1255,7 +1255,7 @@
             if (unlock_xhrs[key]) { left--; return; }
             unlock_set_pending(key, manual || !unlock_results[key], quiet);
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/cgi-bin/luci/admin/services/openclash/unlock_check?service=' + encodeURIComponent(key), true);
+            xhr.open('GET', '/cgi-bin/luci/admin/vpn/openclash/unlock_check?service=' + encodeURIComponent(key), true);
             xhr.timeout = 90000;
             xhr.onloadend = function() {
                 if (unlock_xhrs[key] === xhr) {
@@ -1310,7 +1310,7 @@
         });
 
         var xhr = new XMLHttpRequest();
-        var url = '/cgi-bin/luci/admin/services/openclash/unlock_check';
+        var url = '/cgi-bin/luci/admin/vpn/openclash/unlock_check';
         if (list.length === 1) url += '?service=' + encodeURIComponent(list[0]);
         xhr.open('GET', url, true);
         xhr.timeout = 90000;
@@ -1406,7 +1406,7 @@
             unlock_set_find_buttons();
             unlock_set_pending(key, true);
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/cgi-bin/luci/admin/services/openclash/manual_stream_unlock_test?type=' + encodeURIComponent(UNLOCK_SERVICES[i].name) + '&result=1', true);
+            xhr.open('GET', '/cgi-bin/luci/admin/vpn/openclash/manual_stream_unlock_test?type=' + encodeURIComponent(UNLOCK_SERVICES[i].name) + '&result=1', true);
             xhr.timeout = 300000;
             xhr.onloadend = function() {
                 var res = null;
@@ -1707,7 +1707,7 @@
     function get_router_ip_info() {
         if (ipCheckXHR) { try { ipCheckXHR.abort(); } catch(e) {} ipCheckXHR = null; }
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/cgi-bin/luci/admin/services/openclash/myip_check', true);
+        xhr.open('GET', '/cgi-bin/luci/admin/vpn/openclash/myip_check', true);
         xhr.timeout = 35000;
         var lastIndex = 0;
         var pendingBuf = '';

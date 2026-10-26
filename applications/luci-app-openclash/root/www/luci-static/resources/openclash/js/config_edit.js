@@ -482,7 +482,7 @@ var ConfigEditor = {
         var url, mode;
         if (this.isOverwrite) {
             var file = this.currentConfigFile || '/etc/openclash/custom/openclash_custom_overwrite.sh';
-            url = '/cgi-bin/luci/admin/services/openclash/config_file_read?config_file=' + encodeURIComponent(file);
+            url = '/cgi-bin/luci/admin/vpn/openclash/config_file_read?config_file=' + encodeURIComponent(file);
             if (file.endsWith('.yaml') || file.endsWith('.yml')) {
                 mode = "text/yaml";
             } else if (file.endsWith('.sh')) {
@@ -492,10 +492,10 @@ var ConfigEditor = {
             }
         } else if (this.currentViewMode === 'runtime') {
             var runtimePath = '/etc/openclash/' + encodeURIComponent(this.formatDisplayName(this.currentConfigFile));
-            url = '/cgi-bin/luci/admin/services/openclash/config_file_read?config_file=' + runtimePath;
+            url = '/cgi-bin/luci/admin/vpn/openclash/config_file_read?config_file=' + runtimePath;
             mode = "text/yaml";
         } else {
-            url = '/cgi-bin/luci/admin/services/openclash/config_file_read?config_file=' + encodeURIComponent(this.currentConfigFile);
+            url = '/cgi-bin/luci/admin/vpn/openclash/config_file_read?config_file=' + encodeURIComponent(this.currentConfigFile);
             mode = "text/yaml";
         }
 
@@ -653,7 +653,7 @@ var ConfigEditor = {
         var getOriginal = function() {
             return new Promise(function(resolve, reject) {
                 if (self.originalContent) return resolve(self.originalContent);
-                var url = '/cgi-bin/luci/admin/services/openclash/config_file_read?config_file=' + encodeURIComponent(self.currentConfigFile);
+                var url = '/cgi-bin/luci/admin/vpn/openclash/config_file_read?config_file=' + encodeURIComponent(self.currentConfigFile);
                 fetch(url).then(function(r){return r.ok ? r.text() : ''}).then(function(text){
                     resolve(text || '');
                 }).catch(function(){resolve('')});
@@ -663,7 +663,7 @@ var ConfigEditor = {
             return new Promise(function(resolve, reject) {
                 if (self.runtimeContent) return resolve(self.runtimeContent);
                 var runtimePath = '/etc/openclash/' + encodeURIComponent(self.formatDisplayName(self.currentConfigFile));
-                var url = '/cgi-bin/luci/admin/services/openclash/config_file_read?config_file=' + runtimePath;
+                var url = '/cgi-bin/luci/admin/vpn/openclash/config_file_read?config_file=' + runtimePath;
                 fetch(url).then(function(r){return r.ok ? r.text() : ''}).then(function(text){
                     resolve(text || '');
                 }).catch(function(){resolve('')});
@@ -783,7 +783,7 @@ var ConfigEditor = {
         var formData = new FormData();
         formData.append('content', new Blob([content.replace(/\r\n?/g, '\n')], { type: 'text/plain' }), target.split('/').pop());
 
-        fetch('/cgi-bin/luci/admin/services/openclash/config_file_save?config_file=' + encodeURIComponent(target), {
+        fetch('/cgi-bin/luci/admin/vpn/openclash/config_file_save?config_file=' + encodeURIComponent(target), {
             method: 'POST',
             body: formData
         })
@@ -930,7 +930,7 @@ var ConfigEditor = {
 
     loadOverwriteFiles: function() {
         var self = this;
-        fetch('/cgi-bin/luci/admin/services/openclash/overwrite_file_list')
+        fetch('/cgi-bin/luci/admin/vpn/openclash/overwrite_file_list')
         .then(r => r.json())
         .then(function(data) {
             var files = [];
@@ -951,7 +951,7 @@ var ConfigEditor = {
 
     loadOverwriteSubInfo: function() {
         var self = this;
-        fetch('/cgi-bin/luci/admin/services/openclash/overwrite_subscribe_info')
+        fetch('/cgi-bin/luci/admin/vpn/openclash/overwrite_subscribe_info')
         .then(r => r.json())
         .then(function(data) {
             if (data.status === 'success') {
@@ -1142,7 +1142,7 @@ var ConfigEditor = {
                     }, 3000);
                 };
 
-                fetch('/cgi-bin/luci/admin/services/openclash/overwrite_subscribe_info', {
+                fetch('/cgi-bin/luci/admin/vpn/openclash/overwrite_subscribe_info', {
                     method: 'POST',
                     body: formData
                 }).then(function(r) { return r.json(); }).then(function(data) {
@@ -1205,7 +1205,7 @@ var ConfigEditor = {
                     formData.append('config', self.parseOverwriteConfigValue(sub.config).join('\n'));
                     formData.append('enable', typeof sub.enable !== 'undefined' ? sub.enable : 1);
                     formData.append('refresh', '1');
-                    fetch('/cgi-bin/luci/admin/services/openclash/overwrite_subscribe_info', {
+                    fetch('/cgi-bin/luci/admin/vpn/openclash/overwrite_subscribe_info', {
                         method: 'POST',
                         body: formData
                     }).then(r=>r.json()).then(function(data){
@@ -1267,7 +1267,7 @@ var ConfigEditor = {
                     if (choice !== 'delete') {
                         return;
                     }
-                    fetch('/cgi-bin/luci/admin/services/openclash/delete_overwrite_file', {
+                    fetch('/cgi-bin/luci/admin/vpn/openclash/delete_overwrite_file', {
                         method: 'POST',
                         body: new URLSearchParams({ filename: name })
                     })
@@ -1658,7 +1658,7 @@ var ConfigEditor = {
                 formData.append('config', self.parseOverwriteConfigValue(item.sub.config).join('\n'));
                 formData.append('order', item.order);
                 formData.append('enable', parseInt(item.sub.enable, 10) === 1 ? '1' : '0');
-                return fetch('/cgi-bin/luci/admin/services/openclash/overwrite_subscribe_info', {
+                return fetch('/cgi-bin/luci/admin/vpn/openclash/overwrite_subscribe_info', {
                     method: 'POST',
                     body: formData
                 }).then(function(r) { return r.json(); }).then(function(data) {
@@ -2591,7 +2591,7 @@ var ConfigEditor = {
             bar.start('<%:Downloading...%>');
             var formData = new FormData();
             formData.append('url', url);
-            ocPostNdjson('/cgi-bin/luci/admin/services/openclash/overwrite_module_preview', formData, function(received, total) {
+            ocPostNdjson('/cgi-bin/luci/admin/vpn/openclash/overwrite_module_preview', formData, function(received, total) {
                 if (seq !== previewSeq) return;
                 if (total > 0) {
                     bar.set('<%:Downloading...%>', received * 100 / total);
@@ -2773,7 +2773,7 @@ var ConfigEditor = {
                 formData.append('param', param);
                 formData.append('desc', desc);
                 bar.start('<%:Uploading...%>');
-                fetch('/cgi-bin/luci/admin/services/openclash/upload_overwrite', {
+                fetch('/cgi-bin/luci/admin/vpn/openclash/upload_overwrite', {
                     method: 'POST',
                     body: formData
                 }).then(function(r) { return r.json(); }).then(function(data) {
@@ -2804,7 +2804,7 @@ var ConfigEditor = {
             formData.append('update_hour', model.querySelector('#overwrite-add-update-hour').value);
             statusText.textContent = '<%:Downloading subscription content...%>';
             bar.start('<%:Downloading...%>');
-            ocPostNdjson('/cgi-bin/luci/admin/services/openclash/overwrite_subscribe_info', formData, function(received, total) {
+            ocPostNdjson('/cgi-bin/luci/admin/vpn/openclash/overwrite_subscribe_info', formData, function(received, total) {
                 if (total > 0) {
                     bar.set('<%:Downloading...%>', received * 100 / total);
                 } else {
@@ -3004,7 +3004,7 @@ var ConfigEditor = {
                 statusText.textContent = '<%:Downloading subscription content...%>';
                 editBar.start('<%:Downloading...%>');
             }
-            fetch('/cgi-bin/luci/admin/services/openclash/overwrite_subscribe_info', {
+            fetch('/cgi-bin/luci/admin/vpn/openclash/overwrite_subscribe_info', {
                 method: 'POST',
                 body: formData
             }).then(r=>r.json()).then(function(data){

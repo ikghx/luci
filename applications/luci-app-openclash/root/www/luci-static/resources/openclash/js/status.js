@@ -7,7 +7,7 @@ var ocLang = window.ocLang || '';
 
     window.ocChartUrl = '/luci-static/resources/openclash/js/chart.umd.min.js?v=' + ocPluginVer;
     // Companion bundles are lazy-loaded on first use (see editConfig/openGuide/etc below).
-    function ocJsUrl(name) { return '/cgi-bin/luci/admin/services/openclash/translate_js?f=' + name.replace(/\.js$/, '') + '&v=' + (window.ocPluginVer || '') + '&l=' + ocLang; }
+    function ocJsUrl(name) { return '/cgi-bin/luci/admin/vpn/openclash/translate_js?f=' + name.replace(/\.js$/, '') + '&v=' + (window.ocPluginVer || '') + '&l=' + ocLang; }
     function ocCssUrl(name) { return '/luci-static/resources/openclash/css/' + name + '?v=' + (window.ocPluginVer || ''); }
 
     // Operation failures surface as non-blocking toasts instead of ocAlert() on the client page
@@ -600,7 +600,7 @@ var ocLang = window.ocLang || '';
                 } catch (e) {}
             }
 
-            StateManager.cachedXHRGetWithParams('<%=url("admin", "services", "openclash", "config_file_list")%>', params, function(x, data) {
+            StateManager.cachedXHRGetWithParams('<%=url("admin", "vpn", "openclash", "config_file_list")%>', params, function(x, data) {
                 if (x && x.status == 200) {
                     ConfigFileManager.handleConfigListResponse(data, params.fingerprint);
                 } else {
@@ -1300,7 +1300,7 @@ var ocLang = window.ocLang || '';
                     this.showLoading();
                 }
 
-                StateManager.cachedXHRGetWithParams('<%=url("admin", "services", "openclash", "sub_info_get")%>', {filename: filename}, function(x, status) {
+                StateManager.cachedXHRGetWithParams('<%=url("admin", "vpn", "openclash", "sub_info_get")%>', {filename: filename}, function(x, status) {
                     if (SubscriptionManager.currentConfigFile !== requestConfigFile) {
                         return;
                     }
@@ -1797,7 +1797,7 @@ var ocLang = window.ocLang || '';
             this.isLoading = true;
             var self = this;
 
-            StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "overwrite_subscribe_info")%>', function(x, status) {
+            StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "overwrite_subscribe_info")%>', function(x, status) {
                 self.isLoading = false;
                 if (x && x.status == 200 && status && status.status === 'success' && status.data) {
                     self.data = status.data;
@@ -2005,7 +2005,7 @@ var ocLang = window.ocLang || '';
             var self = this;
 
             var stream = ocCreateLogStream({
-                url: '<%=url("admin", "services", "openclash", "startlog")%>',
+                url: '<%=url("admin", "vpn", "openclash", "startlog")%>',
                 script: scriptName,
                 initialMessage: initialMessage,
                 skipLines: this.lastLogLineCount,
@@ -2029,7 +2029,7 @@ var ocLang = window.ocLang || '';
             if (skipClearLog) {
                 stream.start();
             } else {
-                XHR.get('<%=url("admin", "services", "openclash", "del_start_log")%>', null, function() {
+                XHR.get('<%=url("admin", "vpn", "openclash", "del_start_log")%>', null, function() {
                     stream.start();
                 });
             }
@@ -2167,7 +2167,7 @@ var ocLang = window.ocLang || '';
             if (!this.isEnabled) return;
 
             var self = this;
-            StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "toolbar_show_sys")%>', function(x, status) {
+            StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "toolbar_show_sys")%>', function(x, status) {
                 if (x && x.status == 200 && x.responseText != "" && status) {
                     self.retryCount = 0;
                     // two cumulative tick samples give the usage; USER_HZ is 100, so ticks/s is percent
@@ -2267,7 +2267,7 @@ var ocLang = window.ocLang || '';
             if (!this.isEnabled) return;
 
             var self = this;
-            StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "toolbar_show")%>', function(x, status) {
+            StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "toolbar_show")%>', function(x, status) {
                 if (x && x.status == 200 && x.responseText != "" && status) {
                     self.retryCount = 0;
                     self.updateNetworkStats(status);
@@ -3382,11 +3382,11 @@ var ocLang = window.ocLang || '';
         iconPick: null,
 
         endpoints: {
-            ac: '<%=url("admin", "services", "openclash", "clients_ac")%>',
-            stats: '<%=url("admin", "services", "openclash", "clients_stats")%>',
-            set: '<%=url("admin", "services", "openclash", "clients_set")%>',
-            meta: '<%=url("admin", "services", "openclash", "clients_meta")%>',
-            dns: '<%=url("admin", "services", "openclash", "clients_dns_switch")%>'
+            ac: '<%=url("admin", "vpn", "openclash", "clients_ac")%>',
+            stats: '<%=url("admin", "vpn", "openclash", "clients_stats")%>',
+            set: '<%=url("admin", "vpn", "openclash", "clients_set")%>',
+            meta: '<%=url("admin", "vpn", "openclash", "clients_meta")%>',
+            dns: '<%=url("admin", "vpn", "openclash", "clients_dns_switch")%>'
         },
 
         icons: {
@@ -4705,7 +4705,7 @@ var ocLang = window.ocLang || '';
 
     get_op_mode();
 
-    XHR.poll(5, '<%=url("admin", "services", "openclash", "status")%>', null, function(x, status) {
+    XHR.poll(5, '<%=url("admin", "vpn", "openclash", "status")%>', null, function(x, status) {
         if (x && x.status == 200) {
             StateManager.current_status = status;
             var updates = [];
@@ -5170,7 +5170,7 @@ var ocLang = window.ocLang || '';
 
         if (!bannerElement || !contentElement) return;
 
-        StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "announcement")%>', function(x, status) {
+        StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "announcement")%>', function(x, status) {
             var remoteData = null;
             if (x && x.status == 200 && status.content) {
                 try {
@@ -5209,7 +5209,7 @@ var ocLang = window.ocLang || '';
         return SettingsManager.switchSetting(
             'rule_mode',
             value,
-            '<%=url("admin", "services", "openclash", "switch_rule_mode")%>'
+            '<%=url("admin", "vpn", "openclash", "switch_rule_mode")%>'
         );
     }
 
@@ -5218,7 +5218,7 @@ var ocLang = window.ocLang || '';
             return;
         }
 
-        StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "get_run_mode")%>', function(x, status) {
+        StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "get_run_mode")%>', function(x, status) {
             if (x && x.status == 200 && status.mode) {
                 var expectedValue = status["mode"].split("-")[2] == undefined ? "" : ("-" + status["mode"].split("-")[2]);
                 var operationKey = 'run_mode_' + status.mode;
@@ -5240,7 +5240,7 @@ var ocLang = window.ocLang || '';
         return SettingsManager.switchSetting(
             'run_mode',
             value,
-            '<%=url("admin", "services", "openclash", "switch_run_mode")%>'
+            '<%=url("admin", "vpn", "openclash", "switch_run_mode")%>'
         );
     }
 
@@ -5256,7 +5256,7 @@ var ocLang = window.ocLang || '';
     }
 
     function get_op_mode() {
-        StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "op_mode")%>', function(x, status) {
+        StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "op_mode")%>', function(x, status) {
             if (x && x.status == 200 && status.op_mode) {
                 setDnsModeUI(status.op_mode);
             }
@@ -5308,12 +5308,12 @@ var ocLang = window.ocLang || '';
             }
         }
 
-        XHR.get('<%=url("admin", "services", "openclash", "switch_mode")%>', null, function(x1) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "switch_mode")%>', null, function(x1) {
             if (!x1 || x1.status != 200) {
                 setTimeout(function() { finish(false); }, 1500);
                 return;
             }
-            XHR.get('<%=url("admin", "services", "openclash", "switch_run_mode")%>', { run_mode: suffix }, function(x2) {
+            XHR.get('<%=url("admin", "vpn", "openclash", "switch_run_mode")%>', { run_mode: suffix }, function(x2) {
                 setTimeout(function() { finish(x2 && x2.status == 200); }, 1500);
             });
         });
@@ -5414,7 +5414,7 @@ var ocLang = window.ocLang || '';
     var b_flush_dns_cache = debounceButton(function(btn) {
         btn.disabled = true;
         btn.value = '<%:Flushing...%> ';
-        XHR.get('<%=url("admin", "services", "openclash", "flush_dns_cache")%>', null, function(x, status) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "flush_dns_cache")%>', null, function(x, status) {
             btn.disabled = false;
             if (x && x.status == 200) {
                 btn.value = (status.fakeip_flush === "" && status.dns_flush === "") ? '<%:Flush Successful%>' : '<%:Flush Failed%>';
@@ -5429,7 +5429,7 @@ var ocLang = window.ocLang || '';
         btn.disabled = true;
         btn.value = '<%:Reloading...%>';
         LogManager.startLogDisplay('<%:Reloading...%>', false, 'init');
-        XHR.get('<%=url("admin", "services", "openclash", "reload_firewall")%>', null, function(x, status) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "reload_firewall")%>', null, function(x, status) {
             btn.disabled = false;
             btn.value = (x && x.status == 200) ? '<%:Reload Firewall%>' : '<%:Firewall Rules Reset Failed%>';
         });
@@ -5439,7 +5439,7 @@ var ocLang = window.ocLang || '';
     var b_close_all_connection = debounceButton(function(btn) {
         btn.disabled = true;
         btn.value = '<%:Reloading...%>';
-        XHR.get('<%=url("admin", "services", "openclash", "close_all_connection")%>', null, function(x, status) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "close_all_connection")%>', null, function(x, status) {
             btn.disabled = false;
             btn.value = (x && x.status == 200) ? '<%:Close Connect%>' : '<%:Close Connect Failed%>';
         });
@@ -5588,7 +5588,7 @@ var ocLang = window.ocLang || '';
             }
         }
 
-        StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "update")%>', function(x, status) {
+        StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "update")%>', function(x, status) {
             if (x && x.status == 200) {
                 if (status.coremetacv && status.coremetacv !== "0") {
                     var coreVersionText = status.coremetacv;
@@ -5622,7 +5622,7 @@ var ocLang = window.ocLang || '';
         });
 
         function checkLatestVersions() {
-            StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "last_version")%>', function(x, data) {
+            StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "last_version")%>', function(x, data) {
                 if (x && x.status == 200 && data) {
                     updateCoreDot(data.corelv);
                     updatePluginDot(data.oplv);
@@ -5635,7 +5635,7 @@ var ocLang = window.ocLang || '';
     }
 
     function check_core() {
-        StateManager.cachedXHRGet('<%=url("admin", "services", "openclash", "check_core")%>', function(x, status) {
+        StateManager.cachedXHRGet('<%=url("admin", "vpn", "openclash", "check_core")%>', function(x, status) {
             if (x && x.status == 200) {
                 coreMissing = (status.core_status != "1");
                 autoOpenGuide();
@@ -5672,7 +5672,7 @@ var ocLang = window.ocLang || '';
             return false;
         }
 
-        XHR.get('<%=url("admin", "services", "openclash", "dashboard_type")%>', null, function(x, status) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "dashboard_type")%>', null, function(x, status) {
             if (x && x.status == 200) {
                 var panel = status.default_dashboard;
                 if (panel && StateManager.current_status[panel]) {
@@ -5737,7 +5737,7 @@ var ocLang = window.ocLang || '';
         return SettingsManager.switchSetting(
             'oversea',
             value,
-            '<%=url("admin", "services", "openclash", "switch_oc_setting")%>'
+            '<%=url("admin", "vpn", "openclash", "switch_oc_setting")%>'
         );
     }
 
@@ -5745,7 +5745,7 @@ var ocLang = window.ocLang || '';
         return SettingsManager.switchSetting(
             'meta_sniffer',
             value,
-            '<%=url("admin", "services", "openclash", "switch_oc_setting")%>'
+            '<%=url("admin", "vpn", "openclash", "switch_oc_setting")%>'
         );
     }
 
@@ -5753,7 +5753,7 @@ var ocLang = window.ocLang || '';
         return SettingsManager.switchSetting(
             'respect_rules',
             value,
-            '<%=url("admin", "services", "openclash", "switch_oc_setting")%>'
+            '<%=url("admin", "vpn", "openclash", "switch_oc_setting")%>'
         );
     }
 
@@ -5761,7 +5761,7 @@ var ocLang = window.ocLang || '';
         return SettingsManager.switchSetting(
             'stream_unlock',
             value,
-            '<%=url("admin", "services", "openclash", "switch_oc_setting")%>'
+            '<%=url("admin", "vpn", "openclash", "switch_oc_setting")%>'
         );
     }
 
@@ -5775,7 +5775,7 @@ var ocLang = window.ocLang || '';
                 href: window.location.href
             };
 
-            XHR.get('<%=url("admin", "services", "openclash", "generate_pac")%>', {
+            XHR.get('<%=url("admin", "vpn", "openclash", "generate_pac")%>', {
                 client_protocol: currentUrl.protocol.replace(':', ''),
                 client_hostname: currentUrl.hostname,
                 client_host: currentUrl.host,
@@ -5844,7 +5844,7 @@ var ocLang = window.ocLang || '';
 
         if (isEnabled) LogManager.markCoreStart();
         LogManager.startLogDisplay(isEnabled ? '<%:Starting...%>' : '<%:Stopping...%>', false, 'init');
-        XHR.get('<%=url("admin", "services", "openclash", "action")%>', requestParams, function(x, status) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "action")%>', requestParams, function(x, status) {
             if (x && x.status == 200 && status && status.status === 'success') {
                 setTimeout(function() {
                     pluginToggleUserAction = false;
@@ -5899,7 +5899,7 @@ var ocLang = window.ocLang || '';
         LogManager.markCoreStart();
         LogManager.startLogDisplay('<%:Switching Config...%>', false, 'init');
 
-        XHR.get('<%=url("admin", "services", "openclash", "switch_config")%>', {
+        XHR.get('<%=url("admin", "vpn", "openclash", "switch_config")%>', {
             config_file: currentConfig
         }, function(x, status) {
             if (x && x.status == 200 && status.status === 'success') {
@@ -5940,7 +5940,7 @@ var ocLang = window.ocLang || '';
         LogManager.markCoreStart();
         LogManager.startLogDisplay('<%:Updating Config...%>', false, 'openclash.sh');
 
-        XHR.get('<%=url("admin", "services", "openclash", "update_config")%>', {
+        XHR.get('<%=url("admin", "vpn", "openclash", "update_config")%>', {
             filename: filename
         }, function(x, status) {
             if (x && x.status == 200) {
@@ -6007,7 +6007,7 @@ var ocLang = window.ocLang || '';
         LogManager.markCoreStart();
         LogManager.startLogDisplay('<%:Restarting...%>', false, 'init');
 
-        XHR.get('<%=url("admin", "services", "openclash", "action")%>', requestParams, function(x, status) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "action")%>', requestParams, function(x, status) {
             if (restartBtn) {
                 restartBtn.disabled = false;
             }
@@ -6122,7 +6122,7 @@ var ocLang = window.ocLang || '';
                 var formData = new FormData();
                 formData.append('backup_file', file, file.name);
 
-                fetch('<%=url("admin", "services", "openclash", "restore_backup")%>', {
+                fetch('<%=url("admin", "vpn", "openclash", "restore_backup")%>', {
                     method: 'POST',
                     body: formData
                 }).then(function(r) {
@@ -6190,7 +6190,7 @@ var ocLang = window.ocLang || '';
             return false;
         }
 
-        XHR.get('<%=url("admin", "services", "openclash", "get_subscribe_data")%>', {
+        XHR.get('<%=url("admin", "vpn", "openclash", "get_subscribe_data")%>', {
             filename: filename
         }, function(x, status) {
             if (x.status == 200) {

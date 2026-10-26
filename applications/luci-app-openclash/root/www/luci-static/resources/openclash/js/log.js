@@ -60,7 +60,7 @@ function setLogTab(log_level) {
 };
 
 function get_log_level() {
-    XHR.get('<%=url("admin", "services", "openclash", "log_level")%>', null, function(x, status) {
+    XHR.get('<%=url("admin", "vpn", "openclash", "log_level")%>', null, function(x, status) {
         if (x && x.status == 200 && status.log_level != "") {
             currentLogLevel = status.log_level;
             setLogTab(currentLogLevel);
@@ -72,7 +72,7 @@ function get_log_level() {
 function switch_log_level(value)
 {
     if (!coreWebSocket || coreWebSocket.readyState !== WebSocket.OPEN) {
-        XHR.get('<%=url("admin", "services", "openclash", "switch_log")%>', {log_level: value}, function(x, status) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "switch_log")%>', {log_level: value}, function(x, status) {
             if (!x || x.status != 200) {
                 ocToast('<%:Switch failed%>', 'error');
                 return
@@ -212,11 +212,11 @@ function del_log() {
 
     if (activeTabId === 2) {
         restoreDebugEditor();
-        XHR.get('<%=url("admin", "services", "openclash", "del_log")%>', {type: "debug"}, function(x, data){
+        XHR.get('<%=url("admin", "vpn", "openclash", "del_log")%>', {type: "debug"}, function(x, data){
             ensureDebugEditor();
         });
     } else {
-        XHR.get('<%=url("admin", "services", "openclash", "del_log")%>', null, function(x, data){
+        XHR.get('<%=url("admin", "vpn", "openclash", "del_log")%>', null, function(x, data){
             lv.value = "";
             cl.value = "";
             coreLogBuffer = [];
@@ -235,7 +235,7 @@ function del_log() {
 };
 
 function getWebSocketConnectionInfo(callback) {
-    XHR.get('<%=url("admin", "services", "openclash", "conn_status")%>', null, function(x, status) {
+    XHR.get('<%=url("admin", "vpn", "openclash", "conn_status")%>', null, function(x, status) {
         if (x && x.status == 200 && status) {
             callback(status);
         } else {
@@ -365,7 +365,7 @@ function gen_debug_logs()
 
     var xhr = new XMLHttpRequest();
     xhr.timeout = 0;
-    xhr.open('GET', '<%=url("admin", "services", "openclash", "gen_debug_logs")%>', true);
+    xhr.open('GET', '<%=url("admin", "vpn", "openclash", "gen_debug_logs")%>', true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
     var lastLen = 0;
@@ -438,7 +438,7 @@ function ensureDebugEditor() {
 
 function load_debug_log()
 {
-    XHR.get('<%=url("admin", "services", "openclash", "get_debug_logs")%>', null, function(x, status) {
+    XHR.get('<%=url("admin", "vpn", "openclash", "get_debug_logs")%>', null, function(x, status) {
         if (x && x.status == 200 && x.responseText != "")
         {
             dl.value = x.responseText;
@@ -772,7 +772,7 @@ function poll_log(){
 
     isPolling = true;
 
-    XHR.get('<%=url("admin", "services", "openclash", "refresh_log")%>',
+    XHR.get('<%=url("admin", "vpn", "openclash", "refresh_log")%>',
         {
             log_len: log_len, core_refresh: core_refresh
         },

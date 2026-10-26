@@ -888,7 +888,7 @@ m:appendTemplate("/cbi/sortable", {sectiontype = s2.sectiontype})
 
 local apply = luci.http.formvalue("cbi.apply")
 	if apply then
-		luci.util.exec("/etc/init.d/" .. appname .." restart >/dev/null 2>&1")
+		luci.util.exec("/etc/init.d/passwall restart >/dev/null 2>&1")
 	end
 
 return api.return_map(m)

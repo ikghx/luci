@@ -354,7 +354,7 @@
         var val = row.dataset.value;
         if (!val) return;
         var newVal = (val === currentProxyAddr) ? '0' : val;
-        XHR.get('<%=url("admin", "services", "openclash", "save_github_address_mod")%>', {value: newVal}, function(x) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "save_github_address_mod")%>', {value: newVal}, function(x) {
             if (x && x.status == 200) {
                 currentProxyAddr = newVal;
                 renderProxyStates();
@@ -373,7 +373,7 @@
             document.getElementById('select-plugin-ver').disabled = true;
             document.getElementById('select-core-ver').disabled = true;
         }
-        XHR.get('<%=url("admin", "services", "openclash", "update")%>', null, function(x, st) {
+        XHR.get('<%=url("admin", "vpn", "openclash", "update")%>', null, function(x, st) {
             if (x && x.status == 200) {
                 if (st.corever && st.corever != '0') core_version.value = st.corever; else core_version.value = '0';
                 if (st.release_branch) release_branch.value = st.release_branch; else release_branch.value = 'master';
@@ -454,7 +454,7 @@
         pluginSelect.innerHTML = '<option value="__latest__"><%:Latest%></option>';
         coreSelect.innerHTML = '<option value="__latest__"><%:Latest%></option>';
 
-        var url = '<%=url("admin", "services", "openclash", "version_history")%>?' +
+        var url = '<%=url("admin", "vpn", "openclash", "version_history")%>?' +
             Object.keys(params).map(function(k) { return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&');
         var xhr = new XMLHttpRequest();
         xhr.timeout = 0;
@@ -577,7 +577,7 @@
     }
 
     function saveOptions() {
-        XHR.get('<%=url("admin", "services", "openclash", "save_corever_branch")%>', {
+        XHR.get('<%=url("admin", "vpn", "openclash", "save_corever_branch")%>', {
             core_ver: core_version.value,
             release_branch: release_branch.value,
             smart_enable: smart_enable.value
@@ -750,7 +750,7 @@
             clearAddrRows();
         }
         if (opts && opts.user && !addrDataReceived) setAddrListLoading(true);
-        var url = '<%=url("admin", "services", "openclash", "addr_info")%>?' +
+        var url = '<%=url("admin", "vpn", "openclash", "addr_info")%>?' +
             Object.keys(params).map(function(k) { return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&');
         var xhr = new XMLHttpRequest();
         xhr.timeout = 0;
@@ -992,10 +992,10 @@
         if (type === 'core') {
             var params = {download_url: dlUrl};
             if (addr && addr !== '') params.url = addr;
-            XHR.get('<%=url("admin", "services", "openclash", "core_download")%>', params, function() {});
+            XHR.get('<%=url("admin", "vpn", "openclash", "core_download")%>', params, function() {});
         } else {
             var pParams = {url: addr, download_url: dlUrl, update_type: 'plugin'};
-            XHR.get('<%=url("admin", "services", "openclash", "one_key_update")%>', pParams, function() {});
+            XHR.get('<%=url("admin", "vpn", "openclash", "one_key_update")%>', pParams, function() {});
         }
     }
 
@@ -1069,7 +1069,7 @@
                 addrSortDirty = true;
                 renderProxyStates();
                 refreshAddrInfo({merge: true, cancel: true, user: true});
-                XHR.get('<%=url("admin", "services", "openclash", "save_custom_addr")%>', {addr: val}, function(x) {
+                XHR.get('<%=url("admin", "vpn", "openclash", "save_custom_addr")%>', {addr: val}, function(x) {
                     if (!x || x.status != 200) showHint('<%:Failed to save%>');
                 });
             } else {
@@ -1169,14 +1169,14 @@
                 var coreURL = buildDownloadURL(addr, 'core', r, coreVer, coreSHA, arch);
                 var params = {download_url: coreURL};
                 if (addr && addr !== '') params.url = addr;
-                XHR.get('<%=url("admin", "services", "openclash", "core_download")%>', params, function() {});
+                XHR.get('<%=url("admin", "vpn", "openclash", "core_download")%>', params, function() {});
             } else {
                 var pluginURL = buildDownloadURL(addr, 'plugin', r, pluginVer, pluginSHA, arch);
                 var oneKeyParams = {url: addr};
                 if (!pluginSame) {
                     oneKeyParams.download_url = pluginURL;
                 }
-                XHR.get('<%=url("admin", "services", "openclash", "one_key_update")%>', oneKeyParams, function() {});
+                XHR.get('<%=url("admin", "vpn", "openclash", "one_key_update")%>', oneKeyParams, function() {});
             }
         }
     }
@@ -1236,7 +1236,7 @@
                 return;
             }
             ocSetBtnBusy(btn, true, '<%:Removing...%>');
-            XHR.get('<%=url("admin", "services", "openclash", "remove_all_core")%>', null, function(x) {
+            XHR.get('<%=url("admin", "vpn", "openclash", "remove_all_core")%>', null, function(x) {
                 showHint((x && x.status == 200) ? '<%:Remove succeeded!%>' : '<%:Remove failed!%>');
                 ocSetBtnBusy(btn, false);
             });
@@ -1246,7 +1246,7 @@
 
     function backup_file(btn) {
         var endpoint = document.getElementById('BACKUP_SELECT').value;
-        var url = '<%=url("admin", "services", "openclash")%>/' + endpoint;
+        var url = '<%=url("admin", "vpn", "openclash")%>/' + endpoint;
         ocSetBtnBusy(btn, true, '<%:Backing up...%>');
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -1291,10 +1291,10 @@
                 return;
             }
             ocSetBtnBusy(btn, true, '<%:Restoring...%>');
-            XHR.get('<%=url("admin", "services", "openclash", "restore")%>', null, function(x) {
+            XHR.get('<%=url("admin", "vpn", "openclash", "restore")%>', null, function(x) {
                 ocSetBtnBusy(btn, false);
                 if (x && x.status == 200) {
-                    window.location.href = '<%=url("admin", "services", "openclash", "settings")%>';
+                    window.location.href = '<%=url("admin", "vpn", "openclash", "settings")%>';
                 } else {
                     showHint('<%:Restore failed!%>');
                 }
@@ -1341,7 +1341,7 @@
         }
 
         var stream = ocCreateLogStream({
-            url: '<%=url("admin", "services", "openclash", "startlog")%>',
+            url: '<%=url("admin", "vpn", "openclash", "startlog")%>',
             script: scriptName,
             initialMessage: initialMessage ? '<b style="color:var(--primary-color)">' + initialMessage + '</b>' : '',
             skipLines: lastLogLineCount,
@@ -1356,7 +1356,7 @@
         if (skipClearLog) {
             stream.start();
         } else {
-            XHR.get('<%=url("admin", "services", "openclash", "del_start_log")%>', null, function() {
+            XHR.get('<%=url("admin", "vpn", "openclash", "del_start_log")%>', null, function() {
                 stream.start();
             });
         }

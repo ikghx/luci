@@ -264,7 +264,7 @@ function ocApplyCustomAccent() {
 // browser follows the theme that was saved once
 function ocSyncThemeFromUci() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/cgi-bin/luci/admin/services/openclash/theme_get', true);
+    xhr.open('GET', '/cgi-bin/luci/admin/vpn/openclash/theme_get', true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4 || xhr.status !== 200) return;
@@ -285,7 +285,7 @@ function ocSyncThemeFromUci() {
 
 function ocSaveThemeToUci() {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/cgi-bin/luci/admin/services/openclash/theme_save', true);
+    xhr.open('POST', '/cgi-bin/luci/admin/vpn/openclash/theme_save', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.send('mode=' + encodeURIComponent(localStorage.getItem('oc-theme') || 'auto')

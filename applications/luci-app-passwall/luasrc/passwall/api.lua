@@ -386,7 +386,7 @@ function curl_auto(url, file, args)
 end
 
 function url(...)
-	local url = string.format("admin/services/%s", appname)
+	local url = string.format("admin/vpn/%s", appname)
 	local args = { ... }
 	for i, v in pairs(args) do
 		if v ~= "" then
