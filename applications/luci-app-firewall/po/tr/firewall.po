@@ -147,7 +147,7 @@ msgstr "KABUL ET - Adres yeniden yazmayı devre dışı bırak"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:222
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:406
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:427
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:201
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:284
 msgid "Action"
@@ -207,8 +207,8 @@ msgstr "<em> Hedef bölgelerden </em> gelen yönlendirmeye izin ver"
 msgid "Any"
 msgstr "Herhangi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:483
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:499
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:504
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:520
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:352
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:368
 msgid "Any day"
@@ -228,7 +228,7 @@ msgstr ""
 msgid "Apply the given DSCP class or value to established connections."
 msgstr "Verilen DSCP sınıfını veya değerini kurulan bağlantılara uygulayın."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:456
 msgid "Assign the specified connection tracking helper to matched traffic."
 msgstr "Belirtilen bağlantı izleme yardımcısını eşleşen trafiğe atayın."
 
@@ -291,7 +291,7 @@ msgid ""
 "rules must use nftables syntax."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:417
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:438
 msgid "DSCP classification"
 msgstr "DSCP sınıflandırması"
 
@@ -303,17 +303,17 @@ msgstr "DSCP işareti"
 msgid "DSCP mark required"
 msgstr "DSCP işareti gerekli"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:397
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:418
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:267
 msgid "Destination address"
 msgstr "Hedef adres"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:399
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:420
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:275
 msgid "Destination port"
 msgstr "Hedef bağlantı noktası"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:391
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:412
 msgid "Destination zone"
 msgstr "Hedef bölge"
 
@@ -340,7 +340,7 @@ msgstr "Geçersiz paketleri düşür"
 msgid "Enable"
 msgstr "Etkinleştir"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:304
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:325
 msgid "Enable NAT Loopback"
 msgstr "NAT Döngü sınamasını etkinleştir"
 
@@ -348,8 +348,8 @@ msgstr "NAT Döngü sınamasını etkinleştir"
 msgid "Enable SYN-flood protection"
 msgstr "SYN-flood korumasını etkinleştir"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:346
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:367
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:338
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:284
 msgid "Enable logging"
@@ -385,21 +385,28 @@ msgstr "Küme için paket ve bayt sayısı takibini etkinleştirir."
 msgid "Expecting: %s"
 msgstr "Beklenen: %s"
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:271
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:399
+msgid ""
+"Expecting: set name, optionally prefixed with \"!\" and followed by up to "
+"three \"src\"/\"dest\" tokens"
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:278
 msgid "Explicitly choses allowed connection tracking helpers for zone traffic"
 msgstr ""
 "Bölge trafiği için izin verilen bağlantı izleme yardımcılarını açıkça seçer"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:272
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:293
 msgid "External IP address"
 msgstr "Harici IP adresi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:277
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:298
 msgid "External port"
 msgstr "Harici port"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:355
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:474
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:376
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:495
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:342
 msgid "Extra arguments"
 msgstr "Ekstra argümanlar"
@@ -477,7 +484,7 @@ msgstr ""
 "tooltip=\"Karşılaştırmadan önce fwmark değerini %{mark.mask} ile maskeleyin."
 "\"}}>%{mark.val</var>}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:489
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:510
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:358
 msgid "Friday"
 msgstr "Cuma"
@@ -657,15 +664,15 @@ msgctxt "firewall input"
 msgid "Input"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:290
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
 msgid "Internal IP address"
 msgstr "Dahili IP adresi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:295
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:316
 msgid "Internal port"
 msgstr "İç bağlantı noktası"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:285
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:306
 msgid "Internal zone"
 msgstr "İç bölge"
 
@@ -685,8 +692,8 @@ msgstr "Geçersiz sınır değeri"
 msgid "Limit burst"
 msgstr "Sınır patlaması"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:349
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:468
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:370
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:489
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:299
 msgid "Limit log messages"
 msgstr "Günlük mesajlarını sınırla"
@@ -718,13 +725,13 @@ msgstr "Belirtilen oranla eşleşen trafiği sınırlar."
 msgid "Log matched packets on the selected tables to syslog."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:346
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:367
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:338
 msgid "Log matched packets to syslog."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:309
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:330
 msgid "Loopback source IP"
 msgstr "Geri döngü kaynak IP'si"
 
@@ -749,6 +756,15 @@ msgstr "DSCP ile eşleştir"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:288
 msgid "Match ICMP type"
 msgstr "ICMP tipiyle eşleş"
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:246
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:374
+msgid ""
+"Match against one or more named sets. All listed sets must match (logical "
+"AND). Append <code>src</code> or <code>dest</code> per set field to override "
+"the match direction, prefix a set name with <code>!</code> to negate the "
+"match."
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:244
 msgid "Match device"
@@ -776,12 +792,12 @@ msgstr ""
 "Verilen kaynak bağlantı noktasından veya bağlantı noktası aralığından gelen "
 "iletilen trafiği eşleştirin."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:324
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:442
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:345
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:463
 msgid "Match helper"
 msgstr "Yardımcıyı eşleştir"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:278
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:299
 msgid ""
 "Match incoming traffic directed at the given destination port or port range "
 "on this host"
@@ -793,8 +809,8 @@ msgstr ""
 msgid "Match mark"
 msgstr "İşaretleri eşleştir"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:324
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:442
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:345
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:463
 msgid "Match traffic using the specified connection tracking helper."
 msgstr "Belirtilen bağlantı izleme yardımcısını kullanarak trafiği eşleştirin."
 
@@ -827,12 +843,12 @@ msgstr ""
 "Eşleşecek maksimum ilk paket sayısı: Bu sayı, bu sayıya kadar yukarıda "
 "belirtilen sınıra her ulaşılmadığında bir kez yeniden doldurulur."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:485
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:506
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:354
 msgid "Monday"
 msgstr "Pazartesi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:495
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:516
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:364
 msgid "Month Days"
 msgstr "Ayın Günleri"
@@ -870,19 +886,19 @@ msgstr ""
 msgid "Not fully compatible with QoS/SQM."
 msgstr "QoS/SQM ile tam uyumlu değildir."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:273
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:294
 msgid "Only match incoming traffic directed at the given IP address."
 msgstr "Yalnızca verilen IP adresine yönlendirilen gelen trafiği eşleştirin."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:254
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:275
 msgid "Only match incoming traffic from these MACs."
 msgstr "Yalnızca bu MAC'lardan gelen trafiği eşleştirin."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:259
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:280
 msgid "Only match incoming traffic from this IP or range."
 msgstr "Yalnızca bu IP veya aralıktan gelen trafiği eşleştirin."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:264
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:285
 msgid ""
 "Only match incoming traffic originating from the given source port or port "
 "range on the client host"
@@ -922,8 +938,8 @@ msgstr ""
 "önekleri isteğe bağlıdır.<br />*Not: <code>set</code> veri türü fw4'te "
 "desteklenmez."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:356
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:475
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:377
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:496
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:343
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "İptables'a ek argümanlar iletir. Dikkatli kullanın!"
@@ -970,14 +986,14 @@ msgstr "Bağlantı noktası aralığı"
 msgid "Protocol"
 msgstr "Protokol"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:296
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:317
 msgid ""
 "Redirect matched incoming traffic to the given port on the internal host"
 msgstr ""
 "Gelen trafiği dahili ana bilgisayardaki belirli bağlantı noktasına "
 "yönlendirin"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:291
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:312
 msgid "Redirect matched incoming traffic to the specified internal host"
 msgstr "Gelen trafiği belirtilen dahili ana bilgisayara yönlendirin"
 
@@ -985,7 +1001,7 @@ msgstr "Gelen trafiği belirtilen dahili ana bilgisayara yönlendirin"
 msgid "Refer To External Set"
 msgstr "Harici Sete Bakın"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:318
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:339
 msgid "Reflection zones"
 msgstr "Yansıma bölgeleri"
 
@@ -1034,7 +1050,7 @@ msgstr "Yönlendirme / NAT Aktarımı"
 msgid "SNAT - Rewrite to specific source IP or port"
 msgstr "SNAT - Belirli bir kaynak IP'sine veya bağlantı noktasına yeniden yaz"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:490
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:511
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:359
 msgid "Saturday"
 msgstr "Cumartesi"
@@ -1059,22 +1075,22 @@ msgstr ""
 msgid "Software flow offloading"
 msgstr "Yazılım tabanlı akış boşaltma"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:258
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:279
 msgid "Source IP address"
 msgstr "Kaynak IP Adresi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:253
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:381
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:274
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:402
 msgid "Source MAC address"
 msgstr "Kaynak MAC adresi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:382
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:403
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:250
 msgid "Source address"
 msgstr "Kaynak adresi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:263
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:384
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:284
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:405
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:258
 msgid "Source port"
 msgstr "Kaynak portu"
@@ -1092,7 +1108,7 @@ msgstr ""
 "Bu trafik kuralının belirli bir gelen veya giden ağ aygıtına bağlanıp "
 "bağlanmayacağını belirtir."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:309
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:330
 msgid ""
 "Specifies whether to use the external or the internal IP address for "
 "reflected traffic."
@@ -1100,22 +1116,22 @@ msgstr ""
 "Yansıtılan trafik için harici veya dahili IP adresinin kullanılıp "
 "kullanılmayacağını belirtir."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:514
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:535
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:383
 msgid "Start Date (yyyy-mm-dd)"
 msgstr "Başlangıç Tarihi (yyyy-aa-gg)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:506
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:527
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:375
 msgid "Start Time (hh:mm:ss)"
 msgstr "Başlangıç Zamanı (sa.dd.sn)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:518
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:539
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:387
 msgid "Stop Date (yyyy-mm-dd)"
 msgstr "Bitiş Tarihi (yyyy-aa-gg)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:510
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:531
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:379
 msgid "Stop Time (hh:mm:ss)"
 msgstr "Durdurma Zamanı (sa.dd.sn)"
@@ -1124,7 +1140,7 @@ msgstr "Durdurma Zamanı (sa.dd.sn)"
 msgid "Storage Method"
 msgstr "Depolama Yöntemi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:484
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:505
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:353
 msgid "Sunday"
 msgstr "Pazar"
@@ -1176,7 +1192,7 @@ msgstr ""
 "yönlendirilen trafik için politikayı açıklar bölge içinde. <em>Kapsanan ağla "
 "</em>, hangi kullanılabilir ağların bu bölgenin üyesi olduğunu belirtir."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:488
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:509
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:357
 msgid "Thursday"
 msgstr "Perşembe"
@@ -1186,7 +1202,7 @@ msgstr "Perşembe"
 msgid "Time Restrictions"
 msgstr "Zaman Kısıtlamaları"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:522
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:543
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:391
 msgid "Time in UTC"
 msgstr "UTC Zamanı"
@@ -1241,7 +1257,7 @@ msgstr ""
 "tooltip=\"Dışındaki bağlantı noktalarını eşleştir %{item.val}.\"}>%{item."
 "ival}</var>}}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:456
 msgid "Tracking helper"
 msgstr "İzleme yardımcısı"
 
@@ -1260,7 +1276,7 @@ msgstr ""
 "reddetmek veya yönlendiricide WAN bağlantı noktalarını açmak gibi farklı "
 "bölgeler arasında seyahat eden paketler için politikalar tanımlar."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:507
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:355
 msgid "Tuesday"
 msgstr "Salı"
@@ -1277,8 +1293,8 @@ msgstr ""
 "Birim: saniye. Varsayılan <code>0</code>, girişin sete kalıcı olarak "
 "eklendiği anlamına gelir.<br />Maks: 2147483 saniye."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:339
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:457
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:360
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:478
 msgid "Unknown or not installed conntrack helper \"%s\""
 msgstr "Bilinmeyen veya yüklenmemiş bağlantı yolu yardımcısı \"%s\""
 
@@ -1315,11 +1331,11 @@ msgstr ""
 "bölümleri \"nat\" bölümlerine dönüştürülecek ve güncellenmiş yapılandırmayı "
 "uygulamak için güvenlik duvarı yeniden başlatılacaktır."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:313
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:334
 msgid "Use external IP address"
 msgstr "Harici bir IP adresi kullan"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:312
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:333
 msgid "Use internal IP address"
 msgstr "Dahili bir IP adresi kullan"
 
@@ -1349,17 +1365,17 @@ msgstr ""
 msgid "Valid firewall mark required"
 msgstr "Geçerli güvenlik duvarı işareti gerekli"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:487
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:508
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:356
 msgid "Wednesday"
 msgstr "Çarşamba"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:479
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:500
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:348
 msgid "Week Days"
 msgstr "Hafta içi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:416
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:437
 msgid "XOR firewall mark"
 msgstr "XOR güvenlik duvarı işareti"
 
@@ -1383,7 +1399,7 @@ msgstr "Bölge ⇒ Yönlendirmeler"
 msgid "Zones"
 msgstr "Bölgeler"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:318
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:339
 msgid ""
 "Zones from which reflection rules shall be created. If unset, only the "
 "destination zone is used."
@@ -1391,7 +1407,7 @@ msgstr ""
 "Yansıma kurallarının oluşturulacağı bölgeler. Ayarlanmadığı takdirde "
 "yalnızca hedef bölge kullanılır."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:411
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:432
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:56
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:146
 msgid "accept"
@@ -1400,13 +1416,13 @@ msgstr "kabul et"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:267
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:462
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:485
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:268
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:299
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:326
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:387
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:402
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:437
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:444
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:289
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:320
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:347
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:408
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:423
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:458
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:263
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:279
 msgid "any"
@@ -1425,11 +1441,11 @@ msgstr "herhangi bir bölge"
 msgid "any/all"
 msgstr "herhangi biri/hepsi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:415
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:436
 msgid "apply firewall mark"
 msgstr "güvenlik duvarı işaretini uygula"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:414
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
 msgid "assign conntrack helper"
 msgstr "bağlantı yardımcısı atama"
 
@@ -1476,11 +1492,11 @@ msgstr "dest_set: Hedef ipset*"
 msgid "do not rewrite"
 msgstr "yeniden yazma"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:413
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:434
 msgid "don't track"
 msgstr "izleme"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:410
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:431
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:55
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:145
 msgid "drop"
@@ -1550,7 +1566,7 @@ msgstr "net: (alt)net"
 msgid "port: Port"
 msgstr "port: Port"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:412
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:433
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:54
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:144
 msgid "reject"

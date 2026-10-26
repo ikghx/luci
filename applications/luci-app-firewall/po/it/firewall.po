@@ -152,7 +152,7 @@ msgstr "ACCETTA - Disattiva riscrittura degli indirizzi"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:222
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:219
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:406
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:427
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:201
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:284
 msgid "Action"
@@ -212,8 +212,8 @@ msgstr "Consenti l'inoltro a <em>zone di destinazione</em>:"
 msgid "Any"
 msgstr "Qualsiasi"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:483
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:499
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:504
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:520
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:352
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:368
 msgid "Any day"
@@ -233,7 +233,7 @@ msgstr ""
 msgid "Apply the given DSCP class or value to established connections."
 msgstr "Applica la classe o il valore DSCP dato per le connessioni stabilite."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:456
 msgid "Assign the specified connection tracking helper to matched traffic."
 msgstr ""
 "Assegna l'assistente di tracciamento di connessione specificato al traffico "
@@ -298,7 +298,7 @@ msgid ""
 "rules must use nftables syntax."
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:417
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:438
 msgid "DSCP classification"
 msgstr "Classificazione DSCP"
 
@@ -310,17 +310,17 @@ msgstr "Contrassegno DSCP"
 msgid "DSCP mark required"
 msgstr "Contrassegno DSCP richiesto"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:397
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:418
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:267
 msgid "Destination address"
 msgstr "Indirizzo di destinazione"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:399
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:420
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:275
 msgid "Destination port"
 msgstr "Porta di destinazione"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:391
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:412
 msgid "Destination zone"
 msgstr "Zona di destinazione"
 
@@ -347,7 +347,7 @@ msgstr "Scarta (drop) pacchetti non validi"
 msgid "Enable"
 msgstr "Abilitare"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:304
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:325
 msgid "Enable NAT Loopback"
 msgstr "Attiva loopback NAT"
 
@@ -355,8 +355,8 @@ msgstr "Attiva loopback NAT"
 msgid "Enable SYN-flood protection"
 msgstr "Attiva protezione SYN-flood"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:346
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:367
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:338
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:284
 msgid "Enable logging"
@@ -392,22 +392,29 @@ msgstr "Attiva il monitoraggio del conto di pacchetti e byte per il set."
 msgid "Expecting: %s"
 msgstr "Previsto: %s"
 
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:271
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:399
+msgid ""
+"Expecting: set name, optionally prefixed with \"!\" and followed by up to "
+"three \"src\"/\"dest\" tokens"
+msgstr ""
+
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:278
 msgid "Explicitly choses allowed connection tracking helpers for zone traffic"
 msgstr ""
 "Sceglie esplicitamente gli assistenti autorizzati del monitoraggio delle "
 "connessioni per il traffico della zona"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:272
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:293
 msgid "External IP address"
 msgstr "Indirizzo IP esterno"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:277
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:298
 msgid "External port"
 msgstr "Porta esterna"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:355
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:474
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:376
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:495
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:342
 msgid "Extra arguments"
 msgstr "Argomenti extra"
@@ -485,7 +492,7 @@ msgstr ""
 "mask? data-tooltip=\"Maschera valore fwmark con %{mark.mask} prima di "
 "confrontare.\"}}>%{mark.val}</var>}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:489
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:510
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:358
 msgid "Friday"
 msgstr "Venerdì"
@@ -665,15 +672,15 @@ msgctxt "firewall input"
 msgid "Input"
 msgstr ""
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:290
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:311
 msgid "Internal IP address"
 msgstr "Indirizzo IP interno"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:295
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:316
 msgid "Internal port"
 msgstr "Porta interna"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:285
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:306
 msgid "Internal zone"
 msgstr "Zona interna"
 
@@ -693,8 +700,8 @@ msgstr "Valore di limite non valido"
 msgid "Limit burst"
 msgstr "Limite di raffica"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:349
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:468
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:370
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:489
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:299
 msgid "Limit log messages"
 msgstr "Limita messaggi del registro"
@@ -727,13 +734,13 @@ msgid "Log matched packets on the selected tables to syslog."
 msgstr ""
 "Registra in syslog i pacchetti che corrispondono sulle tabelle selezionate."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:346
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:367
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:338
 msgid "Log matched packets to syslog."
 msgstr "Registra in syslog i pacchetti che corrispondono."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:309
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:330
 msgid "Loopback source IP"
 msgstr "IP di origine loopback"
 
@@ -759,6 +766,15 @@ msgstr "Corrispondi DSCP"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:288
 msgid "Match ICMP type"
 msgstr "Corrispondi tipo ICMP"
+
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:246
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:374
+msgid ""
+"Match against one or more named sets. All listed sets must match (logical "
+"AND). Append <code>src</code> or <code>dest</code> per set field to override "
+"the match direction, prefix a set name with <code>!</code> to negate the "
+"match."
+msgstr ""
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:244
 msgid "Match device"
@@ -786,12 +802,12 @@ msgstr ""
 "Corrispondi il traffico inoltrato derivante dalla porta o dall'intervallo di "
 "porte di origine."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:324
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:442
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:345
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:463
 msgid "Match helper"
 msgstr "Corrispondi assistente"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:278
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:299
 msgid ""
 "Match incoming traffic directed at the given destination port or port range "
 "on this host"
@@ -803,8 +819,8 @@ msgstr ""
 msgid "Match mark"
 msgstr "Corrispondi contrassegno"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:324
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:442
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:345
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:463
 msgid "Match traffic using the specified connection tracking helper."
 msgstr ""
 "Corrispondi il traffico usando l'assistente di monitoraggio della "
@@ -844,12 +860,12 @@ msgstr ""
 "ricaricato da uno ogni volta che il limite specificato sopra non è "
 "raggiunto, fino a questo numero."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:485
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:506
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:354
 msgid "Monday"
 msgstr "Lunedì"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:495
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:516
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:364
 msgid "Month Days"
 msgstr "Giorni del mese"
@@ -887,19 +903,19 @@ msgstr "Nessuno"
 msgid "Not fully compatible with QoS/SQM."
 msgstr "Non completamente compatibile con QoS/SQM."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:273
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:294
 msgid "Only match incoming traffic directed at the given IP address."
 msgstr "Corrispondi solo traffico in entrata diretto al dato indirizzo IP."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:254
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:275
 msgid "Only match incoming traffic from these MACs."
 msgstr "Corrispondi solo traffico in entrata da questi MAC."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:259
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:280
 msgid "Only match incoming traffic from this IP or range."
 msgstr "Corrispondi solo traffico in entrata da questo IP o intervallo."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:264
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:285
 msgid ""
 "Only match incoming traffic originating from the given source port or port "
 "range on the client host"
@@ -939,8 +955,8 @@ msgstr ""
 "set</code>.<br />I prefissi di direzione sono facoltativi. <br />*Nota: il "
 "tipo di dati <code>set</code> non è supportato in fw4."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:356
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:475
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:377
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:496
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:343
 msgid "Passes additional arguments to iptables. Use with care!"
 msgstr "Passa comandi addizionali a iptables. Usare con cura!"
@@ -987,12 +1003,12 @@ msgstr "Intervallo di porte"
 msgid "Protocol"
 msgstr "Protocollo"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:296
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:317
 msgid ""
 "Redirect matched incoming traffic to the given port on the internal host"
 msgstr "Reindirizza il traffico in entrata alla porta data su host interno"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:291
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:312
 msgid "Redirect matched incoming traffic to the specified internal host"
 msgstr "Reindirizza il traffico in entrata allo specifico host interno"
 
@@ -1000,7 +1016,7 @@ msgstr "Reindirizza il traffico in entrata allo specifico host interno"
 msgid "Refer To External Set"
 msgstr "Fare riferimento a set esterno"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:318
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:339
 msgid "Reflection zones"
 msgstr "Zone riflettive"
 
@@ -1050,7 +1066,7 @@ msgstr "Scarico dell'instradamento/NAT"
 msgid "SNAT - Rewrite to specific source IP or port"
 msgstr "SNAT - Riscrivi sull'IP o porta di origine specificati"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:490
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:511
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:359
 msgid "Saturday"
 msgstr "Sabato"
@@ -1076,22 +1092,22 @@ msgstr "Scarico basato sul software per l'instradamento/NAT."
 msgid "Software flow offloading"
 msgstr "Scarico del flusso software"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:258
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:279
 msgid "Source IP address"
 msgstr "Indirizzo IP di origine"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:253
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:381
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:274
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:402
 msgid "Source MAC address"
 msgstr "Indirizzo MAC di origine"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:382
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:403
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:250
 msgid "Source address"
 msgstr "Indirizzo di origine"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:263
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:384
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:284
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:405
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:258
 msgid "Source port"
 msgstr "Porta di origine"
@@ -1109,29 +1125,29 @@ msgstr ""
 "Specifica se legare questa regola di traffico a uno specifico dispositivo di "
 "rete in ingresso o in uscita."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:309
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:330
 msgid ""
 "Specifies whether to use the external or the internal IP address for "
 "reflected traffic."
 msgstr ""
 "Specifica se usare l'indirizzo IP esterno o interno per il traffico riflesso."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:514
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:535
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:383
 msgid "Start Date (yyyy-mm-dd)"
 msgstr "Data di Inizio (yyyy-mm-dd)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:506
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:527
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:375
 msgid "Start Time (hh:mm:ss)"
 msgstr "Ora di inizio (hh:mm:ss)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:518
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:539
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:387
 msgid "Stop Date (yyyy-mm-dd)"
 msgstr "Data di Stop (yyyy-mm-dd)"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:510
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:531
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:379
 msgid "Stop Time (hh:mm:ss)"
 msgstr "Ora di fine (hh:mm:ss)"
@@ -1140,7 +1156,7 @@ msgstr "Ora di fine (hh:mm:ss)"
 msgid "Storage Method"
 msgstr "Metodo di archiviazione"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:484
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:505
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:353
 msgid "Sunday"
 msgstr "Domenica"
@@ -1194,7 +1210,7 @@ msgstr ""
 "differenti nella zona. Le <em>reti coperte</em> specificano quali reti "
 "disponibili sono membri di questa zona."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:488
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:509
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:357
 msgid "Thursday"
 msgstr "Giovedì"
@@ -1204,7 +1220,7 @@ msgstr "Giovedì"
 msgid "Time Restrictions"
 msgstr "Restrizioni temporali"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:522
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:543
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:391
 msgid "Time in UTC"
 msgstr "Orario in UTC"
@@ -1257,7 +1273,7 @@ msgstr ""
 "var>}}%{dest_port?, porta %{dest_port#%{next?, }<var%{item.inv? data-"
 "tooltip=\"Corrispondi le porte eccetto %{item.val}.\"}>%{item.ival}</var>}}"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:456
 msgid "Tracking helper"
 msgstr "Assistente di monitoraggio"
 
@@ -1276,7 +1292,7 @@ msgstr ""
 "tra zone differenti, per esempio per rifiutare il traffico tra certi host o "
 "per aprire porte WAN sul router."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:486
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:507
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:355
 msgid "Tuesday"
 msgstr "Martedì"
@@ -1293,8 +1309,8 @@ msgstr ""
 "Unità: secondi. Il predefinito <code>0</code> significa che la voce viene "
 "aggiunta in modo permanente al set.<br />Max: 2147483 secondi."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:339
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:457
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:360
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:478
 msgid "Unknown or not installed conntrack helper \"%s\""
 msgstr "Assitente conntrack sconosciuto o non installato \"%s\""
 
@@ -1331,11 +1347,11 @@ msgstr ""
 "\"SNAT\" saranno convertite in sezioni \"nat\" e il firewall verrà riavviato "
 "per applicare la configurazione aggiornata."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:313
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:334
 msgid "Use external IP address"
 msgstr "Usa l'indirizzo IP esterno"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:312
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:333
 msgid "Use internal IP address"
 msgstr "Usa l'indirizzo IP interno"
 
@@ -1365,17 +1381,17 @@ msgstr ""
 msgid "Valid firewall mark required"
 msgstr "Contrassegno firewall valido richiesto"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:487
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:508
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:356
 msgid "Wednesday"
 msgstr "Mercoledì"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:479
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:500
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:348
 msgid "Week Days"
 msgstr "Giorni della Settimana"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:416
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:437
 msgid "XOR firewall mark"
 msgstr "Contrassegno firewall XOR"
 
@@ -1399,7 +1415,7 @@ msgstr "Zona ⇒ Inoltri"
 msgid "Zones"
 msgstr "Zone"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:318
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:339
 msgid ""
 "Zones from which reflection rules shall be created. If unset, only the "
 "destination zone is used."
@@ -1407,7 +1423,7 @@ msgstr ""
 "Zone da cui devono essere create regole riflettive. Se non impostato, viene "
 "usata solo la zona di destinazione."
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:411
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:432
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:56
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:146
 msgid "accept"
@@ -1416,13 +1432,13 @@ msgstr "accetta"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:267
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:462
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:485
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:268
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:299
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:326
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:387
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:402
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:437
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:444
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:289
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:320
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/forwards.js:347
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:408
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:423
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:458
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:465
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:263
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:279
 msgid "any"
@@ -1441,11 +1457,11 @@ msgstr "qualsiasi zona"
 msgid "any/all"
 msgstr "qualsiasi/tutti"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:415
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:436
 msgid "apply firewall mark"
 msgstr "applica contrassegno firewall"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:414
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:435
 msgid "assign conntrack helper"
 msgstr "assegna assistente conntrack"
 
@@ -1492,11 +1508,11 @@ msgstr "dest_set: ipset* di destinazione"
 msgid "do not rewrite"
 msgstr "non riscrivere"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:413
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:434
 msgid "don't track"
 msgstr "non tracciare"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:410
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:431
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:55
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:145
 msgid "drop"
@@ -1565,7 +1581,7 @@ msgstr "net: (sotto)rete"
 msgid "port: Port"
 msgstr "port: porta"
 
-#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:412
+#: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:433
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:54
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:144
 msgid "reject"

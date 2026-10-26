@@ -370,13 +370,34 @@ return view.extend({
 		o.allowany = true;
 		o.allowlocal = 'src';
 
-		o = s.taboption('advanced', form.Value, 'ipset', _('Use ipset'));
+		o = s.taboption('advanced', form.DynamicList, 'ipset', _('Use ipset'),
+			_('Match against one or more named sets. All listed sets must match (logical AND). Append <code>src</code> or <code>dest</code> per set field to override the match direction, prefix a set name with <code>!</code> to negate the match.'));
 		uci.sections('firewall', 'ipset', function(s) {
 			if (typeof(s.name) == 'string')
 				o.value(s.name, s.comment ? '%s (%s)'.format(s.name, s.comment) : s.name);
 		});
 		o.modalonly = true;
 		o.rmempty = true;
+		/* A legacy scalar value may carry direction tokens ("set src"); keep it
+		   as one entry instead of letting the list widget split it at spaces. */
+		o.cfgvalue = function(section_id /*, set_value */) {
+			var v = form.DynamicList.prototype.cfgvalue.apply(this, arguments);
+			return (v == null) ? null : (Array.isArray(v) ? v : [ v ]);
+		};
+		/* A single reference stays an `option`, which older fw4 accepts;
+		   several references become a `list`. */
+		o.write = function(section_id, value) {
+			value = Array.isArray(value) ? value : [ value ];
+			uci.set('firewall', section_id, 'ipset', (value.length == 1) ? value[0] : value);
+		};
+		/* Syntax only: a set name, optionally negated, followed by up to three
+		   direction tokens (one per set field). fw4 checks that the set exists. */
+		o.validate = function(section_id, value) {
+			value = String(value ?? '').trim();
+			if (value == '' || /^!?[a-zA-Z_.][a-zA-Z0-9\/_.-]*(?:[ \t,]+(?:src|dst|dest)){0,3}$/.test(value))
+				return true;
+			return _('Expecting: set name, optionally prefixed with "!" and followed by up to three "src"/"dest" tokens');
+		};
 
 		fwtool.addMACOption(s, 'advanced', 'src_mac', _('Source MAC address'), null, hosts);
 		fwtool.addIPOption(s, 'general', 'src_ip', _('Source address'), null, '', hosts, true);
