@@ -2,7 +2,7 @@
 
 'use strict';
 
-import { readfile, popen, stat, glob } from 'fs';
+import { readfile, writefile, mkdir, popen, stat, glob } from 'fs';
 import { init_enabled } from 'luci.sys';
 import { isnan } from 'math';
 import { cursor } from 'uci';
@@ -20,12 +20,6 @@ function shellquote(value) {
 		value = '';
 
 	return "'" + replace(value, "'", "'\\''") + "'";
-}
-
-/* A DDNS service name is a UCI section name, so restrict it to the characters
- * UCI permits. This keeps path separators and ".." out of composed log paths. */
-function is_valid_service_name(name) {
-	return length(name) > 0 && match(name, /^[a-zA-Z0-9_-]+$/) != null;
 }
 
 function get_dateformat() {
@@ -49,7 +43,7 @@ function trimnonewline(input) {
 }
 
 function get_date(seconds, format) {
-	return trimnonewline( popen(`date -d @${int(seconds)} ${shellquote('+' + format)} 2>/dev/null`, 'r')?.read?.('line') );
+	return trimnonewline( popen(`date -d @${seconds} +${shellquote(format)} 2>/dev/null`, 'r')?.read?.('line') );
 }
 
 // convert epoch date to given format
@@ -57,16 +51,6 @@ function epoch2date(epoch, format) {
 	if (!format || length(format) < 2) {
 		format = get_dateformat();
 	}
-
-	/* date(1) echoes anything that is not a conversion specifier verbatim, and
-	 * the status views render the result as HTML - see the '%n' expansion below.
-	 * Restrict the format to the characters strftime actually needs so that a
-	 * configured value cannot inject markup, and fall back to the default
-	 * otherwise, mirroring how an unsafe ddns_logdir is handled. */
-	if (match(format, /[^%A-Za-z0-9 :\/.,_+-]/)) {
-		format = '%F %R';
-	}
-
 	format = replace(format, /%n/g, '<br />'); // Replace '%n' with '<br />'
 	format = replace(format, /%t/g, '    ');   // Replace '%t' with four spaces
 
@@ -99,7 +83,7 @@ const methods = {
 		args: { service_name: 'service_name' },
 		call: function(request) {
 			let result = 'File not found or empty';
-
+			
 			// Get the log directory. Fall back to '/var/log/ddns' if not found
 			let logdir = uci.get('ddns', 'global', 'ddns_logdir') || ddns_log_path;
 
@@ -108,9 +92,8 @@ const methods = {
 				logdir = ddns_log_path;
 			}
 
-			// Check if service_name is valid and the log file exists
-			if (is_valid_service_name(request.args?.service_name) &&
-			    stat(`${logdir}/${request.args.service_name}.log`)?.type == 'file' ) {
+			// Check if service_name is provided and log file exists
+			if (request.args && request.args.service_name && stat(`${logdir}/${request.args.service_name}.log`)?.type == 'file' ) {
 				result = readfile(`${logdir}/${request.args.service_name}.log`);
 			}
 
@@ -118,7 +101,7 @@ const methods = {
 			return { result: result };
 		}
 	},
-
+	
 	get_services_status: {
 		call: function() {
 			const rundir = uci.get('ddns', 'global', 'ddns_rundir') || ddns_run_path;
@@ -157,12 +140,14 @@ const methods = {
 					if (length(dnsServer) > 0) push(command, '-d', shellquote(dnsServer));
 					push(command, '-- get_registered_ip');
 
-					/* LuCI fetches the status in one request with the rest of a page, such
-					as the Overview, and without a working DNS the lookup takes 10 s or more
-					to time out. Run it in the background: the helper writes the result to
-					the IP file, and a later call reads it from there. The empty file keeps
-					later calls from starting the lookup again. */
-					system(`mkdir -p ${shellquote(rundir)} && : > ${shellquote(ipFile)} && { ${join(' ', command)} >/dev/null 2>&1 & }`);
+					/* Without a working DNS the lookup takes 10 s or more, and LuCI fetches
+					this status together with the rest of a page such as the Overview. So the
+					lookup runs in the background, and the helper writes its result to the IP
+					file for a later call. The file is created empty first, so that the calls
+					in between do not start the lookup again. */
+					mkdir(rundir);
+					writefile(ipFile, '');
+					system(`${join(' ', command)} >/dev/null 2>&1 &`);
 				}
 
 				lastUpdate = int(readfile(`${rundir}/${section}.update`) || 0);
@@ -313,15 +298,11 @@ const methods = {
 
 			res['has_bindhost'] = cache['has_bindhost'] || hasBindHost();
 
-			const hasHostIp = () => {
-				return hasCommand('hostip');
-			};
-
 			const hasNslookup = () => {
 				return hasCommand('nslookup');
 			};
 
-			res['has_dnsserver'] = cache['has_bindhost'] || hasNslookup() || hasHostIp() || hasBindHost();
+			res['has_dnsserver'] = cache['has_bindhost'] || hasNslookup() || hasBindHost();
 
 			const checkCerts = () => {
 				let present = false;
@@ -334,7 +315,7 @@ const methods = {
 
 			res['has_cacerts'] = checkCerts();
 
-			res['has_ipv6'] = (stat('/proc/net/ipv6_route')?.type == 'file' &&
+			res['has_ipv6'] = (stat('/proc/net/ipv6_route')?.type == 'file' && 
 				(stat('/usr/sbin/ip6tables')?.type == 'file' || stat('/usr/sbin/nft')?.type == 'file'));
 
 			return res;

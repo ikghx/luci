@@ -35,4 +35,7 @@ do
 	[ -f "/etc/passwall/rules/$file" ] || cp "/usr/share/passwall/rules/$file" "/etc/passwall/rules/$file"
 done
 
+rm -f /usr/share/passwall/rules/*.nft
+rm -rf /tmp/etc/passwall_tmp
+
 exit 0

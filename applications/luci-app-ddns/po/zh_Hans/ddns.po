@@ -51,11 +51,9 @@ msgstr "不支持绑定到指定的网络"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:361
 msgid ""
-"BusyBox's nslookup and hostip do not support TCP instead of the default UDP "
-"when sending requests to the DNS server!"
-msgstr ""
-"BusyBox 的 nslookup 和 hostip 在向 DNS 服务器发送请求时，不支持使用 TCP 替代"
-"默认的 UDP！"
+"BusyBox's nslookup does not support TCP instead of the default UDP when "
+"sending requests to the DNS server!"
+msgstr "在向 DNS 服务器发送请求时，BusyBox 的 nslookup 不支持使用 TCP（默认使用的是 UDP）！"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:372
 msgid ""
@@ -72,7 +70,7 @@ msgstr ""
 msgid ""
 "CA certificates path that will be used to download services data. Set IGNORE "
 "to skip certificate validation."
-msgstr ""
+msgstr "用于下载服务数据的 CA 证书路径。设置为 忽略 可跳过证书验证。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:525
 msgid "Cancel"
@@ -336,7 +334,7 @@ msgstr "如果 Wget 和 cURL 包都安装了，默认会用 Wget 来通信。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1043
 msgid "If no IP address change is detected, the script will stop running."
-msgstr ""
+msgstr "如果未检测到 IP 地址发生变化，脚本将停止运行。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:604
 msgid "If this service section is disabled it will not be started."
@@ -749,7 +747,7 @@ msgstr "定时器设定"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:799
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:840
 msgid "URL to detect"
@@ -777,7 +775,7 @@ msgstr "用于DDNS 更新的URL。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:978
 msgid "Use API check"
-msgstr ""
+msgstr "使用 API 检查"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:773
 msgid "Use HTTP Secure"
@@ -791,7 +789,7 @@ msgstr "使用 cURL"
 msgid ""
 "User defined script, command or ash compatible statement to read systems IP-"
 "Address."
-msgstr ""
+msgstr "用户定义的脚本、命令或与 ash 兼容的语句，用于读取系统的 IP 地址。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:745
 msgid "Username"
@@ -799,7 +797,7 @@ msgstr "用户名"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:979
 msgid "Using provider API for registered IP check."
-msgstr ""
+msgstr "使用服务商 API 进行已注册 IP 的核查。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:371
 msgid "Using specific DNS Server not supported"
@@ -843,11 +841,11 @@ msgstr "将日志写入系统日志。无论是否启用，严重错误始终写
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:375
 msgid ""
-"You should install 'bind-host' or 'knot-host' or 'drill' or 'hostip' "
-"package, if you need to specify a DNS server to detect your registered IP."
+"You should install 'bind-host' or 'knot-host' or 'drill' package, if you "
+"need to specify a DNS server to detect your registered IP."
 msgstr ""
 "如果需要自定义的 DNS 服务器来检测注册的 IP，需要安装“bind-host”或“knot-"
-"host”或“drill”或“hostip”软件包。"
+"host”或“drill”软件包。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:323
 msgid ""
@@ -893,7 +891,7 @@ msgstr "小时"
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:441
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:787
 msgid "ignore"
-msgstr ""
+msgstr "忽略"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1003
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1037
@@ -911,7 +909,7 @@ msgstr "或将系统更新到最新的 OpenWrt 版本"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1042
 msgid "run only once"
-msgstr ""
+msgstr "仅运行一次"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1002
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1071
@@ -920,7 +918,7 @@ msgstr "秒"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:865
 msgid "to discover public IP w/o web request."
-msgstr ""
+msgstr "在不发起网络请求的情况下获取公网 IP。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:783
 msgid "to run HTTPS without verification of server certificates (insecure)"
@@ -928,30 +926,8 @@ msgstr "使用 HTTPS 但不验证服务器证书（不安全）"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:947
 msgid "user agent"
-msgstr ""
+msgstr "用户代理"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:948
 msgid "user agent for wget."
-msgstr ""
-
-#~ msgid "CA cert bundle file"
-#~ msgstr "CA 证书路径"
-
-#~ msgid ""
-#~ "CA certificate bundle file that will be used to download services data. "
-#~ "Set IGNORE to skip certificate validation."
-#~ msgstr ""
-#~ "用于以安全方式下载服务数据的CA 证书路径。设置 IGNORE 将跳过对服务器的证书"
-#~ "验证。"
-
-#~ msgid "IPv4-Address"
-#~ msgstr "IPv4 地址"
-
-#~ msgid "IPv6-Address"
-#~ msgstr "IPv6 地址"
-
-#~ msgid "Path to CA-Certificate"
-#~ msgstr "CA 证书路径"
-
-#~ msgid "User defined script to read system IP-Address"
-#~ msgstr "用来读取系统 IP 地址的自定义脚本"
+msgstr "wget 的用户代理"

@@ -20,7 +20,7 @@ msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d 个核心"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:233
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:310
 msgid "%d min ago"
 msgstr "%d 分钟前"
 
@@ -28,7 +28,7 @@ msgstr "%d 分钟前"
 msgid "%d of %d SSIDs active"
 msgstr "%d 个 SSID 处于活动状态（共 %d 个）"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:233
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:310
 msgid "%d s ago"
 msgstr "%d 秒前"
 
@@ -40,7 +40,7 @@ msgstr "15分钟：%.2f"
 msgid "5 min: %.2f"
 msgstr "5分钟：%.2f"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:279
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:322
 msgid "Active"
 msgstr "活跃"
 
@@ -52,39 +52,58 @@ msgstr "有效租约"
 msgid "Architecture"
 msgstr "架构"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:297
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:340
 msgid "BSSID"
 msgstr "BSSID"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:291
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:218
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:372
+msgid "Band"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:334
 msgid "Bitrate"
 msgstr "速率"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:173
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:175
 msgid "Buffered"
 msgstr ""
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:141
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:166
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:143
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:168
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:303
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:14
 msgid "CPU"
 msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:43
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:87
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:162
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:164
 msgid "CPU usage"
 msgstr "CPU 使用率"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:176
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:178
 msgid "Cached"
 msgstr ""
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:285
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:53
+msgid "Center"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:328
 msgid "Channel"
 msgstr "信道"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/history.js:52
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:44
+msgid "Chassis"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/history.js:56
 msgid "Collecting data..."
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:313
+msgid "Component"
 msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:72
@@ -92,10 +111,14 @@ msgstr ""
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:164
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:204
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:169
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:220
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:367
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:221
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:418
 msgid "Connected"
 msgstr "已连接"
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:31
+msgid "DDR"
+msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:14
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:19
@@ -115,32 +138,49 @@ msgstr "DNSv6"
 msgid "Dashboard"
 msgstr "主页"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:13
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:52
 msgid "Detail tabs"
 msgstr "详细信息选项卡"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:309
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:352
 msgid "Devices Connected"
 msgstr "已连接设备"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:73
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:168
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:178
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:219
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:220
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:240
 msgid "Down."
 msgstr "下行"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:303
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:68
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:168
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:177
+msgid "Download"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:346
 msgid "Encryption"
 msgstr "加密"
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:33
+msgid "Ethernet"
+msgstr ""
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:55
+msgid "FMan"
+msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:300
 msgid "Firmware Version"
 msgstr "固件版本"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:287
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:272
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:330
 msgid "GHz"
 msgstr "GHz"
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:38
+msgid "GPU"
+msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:188
 msgid "GatewayV4"
@@ -150,7 +190,11 @@ msgstr "IPv4 网关"
 msgid "GatewayV6"
 msgstr "IPv6 网关"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:25
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:41
+msgid "GbE"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:26
 msgid "Gbit/s"
 msgstr ""
 
@@ -158,7 +202,7 @@ msgstr ""
 msgid "Good"
 msgstr ""
 
-#: modules/luci-mod-dashboard/root/usr/share/rpcd/acl.d/luci-mod-dashboard.json:31
+#: modules/luci-mod-dashboard/root/usr/share/rpcd/acl.d/luci-mod-dashboard.json:32
 msgid "Grant access to DHCP status display"
 msgstr "授予访问 DHCP 状态展示的权限"
 
@@ -170,19 +214,19 @@ msgstr "授予访问主状态展示的权限"
 msgid "Grant access to the system route status"
 msgstr "授予访问系统路由状态的权限"
 
-#: modules/luci-mod-dashboard/root/usr/share/rpcd/acl.d/luci-mod-dashboard.json:40
+#: modules/luci-mod-dashboard/root/usr/share/rpcd/acl.d/luci-mod-dashboard.json:41
 msgid "Grant access to wireless status display"
 msgstr "授予访问无线状态展示的权限"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:46
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:214
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:327
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:47
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:215
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:378
 msgid "Hostname"
 msgstr "主机名"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:46
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:215
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:333
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:47
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:216
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:384
 msgid "IP Address"
 msgstr "IP 地址"
 
@@ -217,7 +261,7 @@ msgstr "接口已禁用"
 msgid "Internet"
 msgstr "互联网"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:25
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:26
 msgid "Kbit/s"
 msgstr ""
 
@@ -225,21 +269,21 @@ msgstr ""
 msgid "Kernel Version"
 msgstr "内核版本"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/index.js:187
-msgid "Layout"
-msgstr "布局"
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:30
+msgid "LPASS"
+msgstr ""
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:12
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:51
 msgid "Live charts"
 msgstr "实时图表"
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:45
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:106
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:154
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:156
 msgid "Load average"
 msgstr "平均负载"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/index.js:244
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/index.js:308
 msgid "Loading view…"
 msgstr ""
 
@@ -247,51 +291,72 @@ msgstr ""
 msgid "Local Time"
 msgstr "本地时间"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:46
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:47
 msgid "MAC"
 msgstr "MAC"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:293
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:25
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:336
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:26
 msgid "Mbit/s"
 msgstr "Mbit/s"
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:44
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:97
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:142
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:144
 msgid "Memory"
 msgstr ""
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:170
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:172
 msgid "Memory used"
 msgstr "已用内存"
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:52
+msgid "Misc"
+msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:290
 msgid "Model"
 msgstr "型号"
 
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:29
+msgid "Modem"
+msgstr ""
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:39
+msgid "NPU"
+msgstr ""
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:28
+msgid "NSS"
+msgstr ""
+
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:119
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:229
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:231
 msgid "No RX signal"
 msgstr "无接收信号"
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:40
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:52
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:53
 msgid "No active leases"
 msgstr "无有效租约"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/history.js:52
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:73
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/history.js:56
 msgid "No data received"
 msgstr "未接收到数据"
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:283
+msgid "No supported temperature sensors found"
+msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:88
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:113
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:180
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:239
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:244
 msgid "No wireless clients connected"
 msgstr "没有无线客户端连接"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:217
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:219
 msgid "Noise floor"
 msgstr "噪声底限"
 
@@ -303,83 +368,185 @@ msgstr "未配置或未获取地址"
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:104
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:140
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:147
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:50
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:74
 msgid "Not connected"
 msgstr "未连接"
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:43
+msgid "PHY"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:290
+msgid "Processor temperature unavailable"
+msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:176
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:216
 msgid "Protocol"
 msgstr "协议"
 
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:50
+msgid "RFA"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:294
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:310
+msgid "Reading age: %d seconds"
+msgstr ""
+
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:47
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:202
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:204
 msgid "Resources"
 msgstr "资源"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:216
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:273
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:339
-msgid "SSID"
-msgstr "SSID"
-
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:61
-msgid "Save & Apply"
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:56
+msgid "SEC"
 msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:217
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:316
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:390
+msgid "SSID"
+msgstr "SSID"
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:115
+msgid "Save & Apply"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:190
+msgid "Select at least one sensor."
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:191
+msgid "Select no more than %d sensors."
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:268
+msgid "Selected temperature sensors are unavailable"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:97
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:102
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:313
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:57
+msgid "Sensor"
+msgstr ""
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:54
+msgid "SerDes"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/index.js:261
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/index.js:308
+msgid "Settings"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:219
 msgid "Signal"
 msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:35
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:96
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:345
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:396
 msgid "Signal Strength"
 msgstr "信号强度"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:11
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:22
+msgid "SoC"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:311
+msgid "Some temperature sensors are unavailable"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:50
 msgid "Status cards"
 msgstr "状态卡"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:180
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:37
+msgid "Storage"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:182
 msgid "Swap used"
 msgstr "已使用交换空间"
 
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:46
+msgid "Switch"
+msgstr ""
+
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:24
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:317
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:45
 msgid "System"
 msgstr "系统"
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:46
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:130
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:137
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:131
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/12_resources.js:139
 msgid "System load"
 msgstr ""
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/layout.js:18
-msgid ""
-"The lists follow the page from top to bottom. What is in a list is shown, in "
-"that order: drag an entry to move it. An empty list shows the defaults."
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:87
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:302
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:313
+msgid "Temperature"
 msgstr ""
-"列表按从上到下的顺序排列。列表中的内容按既定顺序显示；您可以拖动条目来移动"
-"它。空列表将显示默认设置。"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:53
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:240
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:88
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:172
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:208
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:225
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:263
+msgid "Temperature history"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:267
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:283
+msgid "Temperature temporarily unavailable"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:89
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:309
+msgid "Temperatures"
+msgstr ""
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:51
+msgid "Top Glue"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/20_lan.js:54
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:245
 msgid "Total"
 msgstr "总计"
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:160
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:356
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:407
 msgid "Transferred"
 msgstr "已传输"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:74
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:168
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:177
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:218
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:48
+msgid "UBI"
+msgstr ""
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:49
+msgid "UBI32"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/13_temperature.js:189
+msgid "Unavailable"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:220
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:238
 msgid "Up."
 msgstr "上行"
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:69
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:168
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:178
+msgid "Upload"
+msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:22
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/10_router.js:170
@@ -388,13 +555,25 @@ msgstr "上行"
 msgid "Uptime"
 msgstr "运行时间"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:10
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:13
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:40
+msgid "VE"
+msgstr ""
+
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:39
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:41
 msgid "WAN traffic"
 msgstr "WAN 流量"
 
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/15_traffic.js:74
+msgid "Waiting for a new sample..."
+msgstr ""
+
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:112
 msgid "Weak"
+msgstr ""
+
+#: modules/luci-mod-dashboard/root/usr/share/ucode/luci/dashboard/temperature.uc:24
+msgid "Wi-Fi"
 msgstr ""
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:28
@@ -415,11 +594,11 @@ msgstr "无线客户端分布"
 
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:33
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:70
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:247
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:288
 msgid "Wireless clients"
 msgstr "无线客户端"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:25
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:26
 msgid "bit/s"
 msgstr ""
 
@@ -436,8 +615,8 @@ msgstr "客户端"
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:112
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:121
 #: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:124
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:229
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:232
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:231
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/include/30_wifi.js:234
 msgid "dBm"
 msgstr ""
 
@@ -445,6 +624,16 @@ msgstr ""
 msgid "load %.2f"
 msgstr "负载 %.2f"
 
-#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:234
+#: modules/luci-mod-dashboard/htdocs/luci-static/resources/view/dashboard/lib/charts.js:339
 msgid "now"
 msgstr "现在"
+
+#~ msgid "Layout"
+#~ msgstr "布局"
+
+#~ msgid ""
+#~ "The lists follow the page from top to bottom. What is in a list is shown, "
+#~ "in that order: drag an entry to move it. An empty list shows the defaults."
+#~ msgstr ""
+#~ "列表按从上到下的顺序排列。列表中的内容按既定顺序显示；您可以拖动条目来移动"
+#~ "它。空列表将显示默认设置。"

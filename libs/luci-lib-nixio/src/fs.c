@@ -273,7 +273,7 @@ static int nixio_utimes(lua_State *L) {
 int nixio__push_stat(lua_State *L, nixio_stat_t *buf) {
 	lua_createtable(L, 0, 15);
 
-	lua_pushinteger(L, buf->st_dev);
+	lua_pushinteger(L, buf->st_atime);
 	lua_setfield(L, -2, "dev");
 
 	lua_pushinteger(L, buf->st_ino);
@@ -320,13 +320,13 @@ int nixio__push_stat(lua_State *L, nixio_stat_t *buf) {
 	nixio__pushnumber(L, buf->st_size);
 	lua_setfield(L, -2, "size");
 
-	lua_pushinteger(L, buf->st_atime);
+	nixio__pushnumber(L, buf->st_atime);
 	lua_setfield(L, -2, "atime");
 
-	lua_pushinteger(L, buf->st_mtime);
+	nixio__pushnumber(L, buf->st_mtime);
 	lua_setfield(L, -2, "mtime");
 
-	lua_pushinteger(L, buf->st_ctime);
+	nixio__pushnumber(L, buf->st_ctime);
 	lua_setfield(L, -2, "ctime");
 
 #ifndef __WINNT__
