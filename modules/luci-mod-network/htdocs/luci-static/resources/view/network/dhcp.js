@@ -10,6 +10,7 @@
 'require validation';
 'require fs';
 'require tools.widgets as widgets';
+'require tools.network as nettools';
 
 const callHostHints = rpc.declare({
 	object: 'luci-rpc',
@@ -110,15 +111,6 @@ function calculateNetwork(addr, mask) {
 		].join('.'),
 		mask.join('.')
 	];
-}
-
-function generateDnsmasqInstanceEntry(d) {
-	const idx = d['.index'], name = d['.name'], anon = d['.anonymous'];
-	const label = anon ? `dnsmasq[${idx}]` : name;
-	const parts = [`${idx} (${_('Name')}: ${label}`];
-	if (d.domain) parts.push(`${_('Domain')}: ${d.domain}`);
-	if (d.local) parts.push(`${_('Local')}: ${d.local}`);
-	return [name, parts.join(', ') + ')'];
 }
 
 function getDHCPPools() {
@@ -636,7 +628,7 @@ return view.extend({
 		so.optional = true;
 
 		Object.values(L.uci.sections('dhcp', 'dnsmasq')).forEach(function(val, index) {
-			const [name, display_str] = generateDnsmasqInstanceEntry(val);
+			const [name, display_str] = nettools.generateDnsmasqInstanceEntry(val);
 			so.value(name, display_str);
 		});
 		// End pxe_tftp
@@ -1127,7 +1119,7 @@ return view.extend({
 			_('Dnsmasq instance to which this DHCP host section is bound. If unspecified, the section is valid for all dnsmasq instances.'));
 		so.optional = true;
 		Object.values(L.uci.sections('dhcp', 'dnsmasq')).forEach(function(val, index) {
-			const [name, display_str] = generateDnsmasqInstanceEntry(val);
+			const [name, display_str] = nettools.generateDnsmasqInstanceEntry(val);
 			so.value(name, display_str);
 		});
 

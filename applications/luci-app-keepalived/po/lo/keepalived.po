@@ -96,7 +96,7 @@ msgstr ""
 "ອະນຸຍາດໃຫ້ເຄື່ອງທີ່ມີບູລິມະສິດຕ່ຳກວ່າຮັກສາບົດບາດ MASTER ໄວ້ "
 "ເຖິງແມ່ນວ່າເຄື່ອງທີ່ມີບູລິມະສິດສູງກວ່າຈະກັບມາອອນລາຍ."
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:23
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:33
 msgid "Alternative config"
 msgstr "ການຕັ້ງຄ່າທາງເລືອກ"
 
@@ -119,6 +119,12 @@ msgstr "ສຳຮອງຂໍ້ມູນ"
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:57
 msgid "Blackhole"
 msgstr "Blackhole"
+
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:25
+msgid ""
+"Bypass UCI-generated configuration and load a native keepalived.conf "
+"directly from a file you provide."
+msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:159
 msgid "Check"
@@ -165,7 +171,7 @@ msgstr "ໜ່ວງເວລາກ່ອນລອງໃໝ່"
 msgid "Delay Loop"
 msgstr "ໜ່ວງເວລາ Loop"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:67
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:77
 msgid "Delay in seconds before VRRP instances start up after"
 msgstr "ໜ່ວງເວລາເປັນວິນາທີກ່ອນທີ່ອິນສະແຕນ VRRP ຈະເລີ່ມເຮັດວຽກຫຼັງຈາກ"
 
@@ -215,7 +221,7 @@ msgstr "ປິດການຕິດຕາມຫຼັກ"
 msgid "Do not send VRRP adverts over VRRP multicast group."
 msgstr "ບໍ່ສົ່ງປະກາດ VRRP ຜ່ານກຸ່ມ multicast ຂອງ VRRP."
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:34
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:44
 msgid "EMail accounts that will receive the notification mail"
 msgstr "ບັນຊີອີເມວທີ່ຈະໄດ້ຮັບອີເມວແຈ້ງເຕືອນ"
 
@@ -227,7 +233,7 @@ msgstr "ການແຈ້ງເຕືອນທາງອີເມວ"
 msgid "Email Notification"
 msgstr "ການແຈ້ງເຕືອນຜ່ານອີເມວ"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:39
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:49
 msgid "Email to use when processing “MAIL FROM:” SMTP command"
 msgstr "ອີເມວທີ່ຈະໃຊ້ເມື່ອປະມວນຜົນຄຳສັ່ງ SMTP “MAIL FROM:”"
 
@@ -239,7 +245,7 @@ msgstr "ເປີດໃຊ້ງານ"
 msgid "Enable Sync"
 msgstr "ເປີດໃຊ້ງານການຊິງ"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:15
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:16
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:137
 msgid "Enabled"
 msgstr "ເປີດໃຊ້ງານ"
@@ -477,7 +483,7 @@ msgid ""
 "are monitoring it"
 msgstr "ລະຫັດການອອກຂອງມັນຈະຖືກບັນທຶກສຳລັບທຸກອິນສະແຕນ VRRP ແລະ ກຸ່ມຊິງທີ່ກຳລັງຕິດຕາມມັນຢູ່"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:11
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:12
 msgid "Keepalived Global Settings"
 msgstr "ການຕັ້ງຄ່າທົ່ວໄປຂອງ Keepalived"
 
@@ -502,7 +508,7 @@ msgstr "Least-Connection"
 msgid "Link"
 msgstr "ລິ້ງ"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:28
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:38
 msgid "Link Polling"
 msgstr "Link Polling"
 
@@ -526,11 +532,11 @@ msgstr "Mark"
 msgid "Master"
 msgstr "Master"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:55
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:65
 msgid "Multicast Group to use for IPv4 VRRP adverts"
 msgstr "ກຸ່ມ Multicast ທີ່ໃຊ້ສຳລັບປະກາດ IPv4 VRRP"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:61
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:71
 msgid "Multicast Group to use for IPv6 VRRP adverts"
 msgstr "ກຸ່ມ Multicast ທີ່ໃຊ້ສຳລັບປະກາດ IPv6 VRRP"
 
@@ -573,11 +579,11 @@ msgstr "ບໍ່ມີ"
 msgid "Notification"
 msgstr "ການແຈ້ງເຕືອນ"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:33
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:43
 msgid "Notification E-Mail"
 msgstr "ອີເມວແຈ້ງເຕືອນ"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:38
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:48
 msgid "Notification E-Mail From"
 msgstr "ອີເມວແຈ້ງເຕືອນຈາກ"
 
@@ -625,7 +631,7 @@ msgstr "ຄວາມລະອຽດການຄົງຢູ່"
 msgid "Persist Timeout"
 msgstr "ເວລາໝົດກຳນົດການຄົງຢູ່"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:29
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:39
 msgid ""
 "Poll to detect media link failure using ETHTOOL, MII or ioctl interface "
 "otherwise uses netlink interface"
@@ -721,7 +727,7 @@ msgstr "Route"
 msgid "Route Table"
 msgstr "ຕາຕະລາງ Route"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:18
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:19
 msgid "Router ID"
 msgstr "Router ID"
 
@@ -742,11 +748,11 @@ msgid ""
 "Routes would be referenced into Static and Virtual Routes of VRRP instances"
 msgstr "Route ຈະຖືກອ້າງອີງໃນ Route ແບບຄົງທີ່ ແລະ ແບບສະເໝືອນຂອງອິນສະແຕນ VRRP"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:48
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:58
 msgid "SMTP Connect Timeout"
 msgstr "ເວລາເຊື່ອມຕໍ່ SMTP ໝົດກຳນົດ"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:43
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:53
 msgid "SMTP Server"
 msgstr "ເຊີບເວີ SMTP"
 
@@ -811,7 +817,7 @@ msgstr "ພອດເຊີບເວີ"
 msgid "Server to be added to the pool if all real servers are down"
 msgstr "ເຊີບເວີທີ່ຈະເພີ່ມເຂົ້າໃນ Pool ຖ້າເຊີບເວີແທ້ທັງໝົດຢຸດເຮັດວຽກ"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:44
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:54
 msgid "Server to use for sending mail notifications"
 msgstr "ເຊີບເວີທີ່ຈະໃຊ້ສຳລັບສົ່ງອີເມວແຈ້ງເຕືອນ"
 
@@ -863,7 +869,7 @@ msgstr "Static Routes"
 msgid "Static Routes are not moved by vrrpd, they stay on the machine."
 msgstr "Static Routes ຈະບໍ່ຖືກຍ້າຍໂດຍ vrrpd, ມັນຈະຍັງຢູ່ເທິງເຄື່ອງນັ້ນ."
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:19
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:20
 msgid "String identifying the machine (need not be hostname)"
 msgstr "ຂໍ້ຄວາມທີ່ໃຊ້ລະບຸເຄື່ອງ (ບໍ່ຈຳເປັນຕ້ອງເປັນ hostname)"
 
@@ -928,7 +934,7 @@ msgstr "ພາບລວມນີ້ສະແດງສະຖານະປະຈຸ
 msgid "Time in seconds to delay preempting compared"
 msgstr "ເວລາເປັນວິນາທີໃນການໜ່ວງການ Preempt"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:49
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:59
 msgid "Timeout in seconds for SMTP stream processing"
 msgstr "ເວລາໝົດກຳນົດເປັນວິນາທີສຳລັບການປະມວນຜົນສະຕຣີມ SMTP"
 
@@ -1015,6 +1021,10 @@ msgstr "ໃຊ້ VMAC Base"
 msgid "Use VRRP Virtual MAC"
 msgstr "ໃຊ້ VRRP Virtual MAC"
 
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:24
+msgid "Use alternative config file"
+msgstr ""
+
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:175
 msgid "User Check Script"
 msgstr "ສະຄຣິບກວດສອບຂອງຜູ້ໃຊ້"
@@ -1037,11 +1047,11 @@ msgstr "IP VRRP ທີ່ຖືກຍົກເວັ້ນຈາກ VRRP."
 msgid "VRRP Instance"
 msgstr "ອິນສະແຕນ VRRP"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:54
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:64
 msgid "VRRP Multicast Group 4"
 msgstr "ກຸ່ມ Multicast VRRP 4"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:60
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:70
 msgid "VRRP Multicast Group 6"
 msgstr "ກຸ່ມ Multicast VRRP 6"
 
@@ -1054,7 +1064,7 @@ msgstr "ສະຄຣິບ VRRP"
 msgid "VRRP Scripts must be configured for Track Scripts"
 msgstr "ຕ້ອງຕັ້ງຄ່າສະຄຣິບ VRRP ສຳລັບ Track Scripts"
 
-#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:66
+#: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:76
 msgid "VRRP Startup Delay"
 msgstr "ໜ່ວງເວລາເລີ່ມຕົ້ນ VRRP"
 

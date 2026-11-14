@@ -56,7 +56,18 @@ function handleAction(ev) {
 					E('p', {}, [_('Apply failed: %s').format(e)]), 'error');
 			});
 	}
-	return fs.exec_direct('/etc/init.d/shunt', [ev]);
+	return fs.exec_direct('/etc/init.d/shunt', [ev])
+		.catch(function (e) {
+			ui.addNotification(null,
+				E('p', {}, [_('Action failed: %s').format(e)]), 'error');
+		});
+}
+
+// What the session may not do, it is not offered: the buttons below save
+// the form and run the init script, both of which need the write half of
+// the ACL. LuCI's own Save & Apply goes by the same check.
+function readOnly(m) {
+	return !!m.readonly || L.hasViewPermission() === false;
 }
 
 function fmtMark(mark) {
@@ -200,23 +211,26 @@ function renderSnoop(svc) {
 	]);
 }
 
-// The interface of a tracked policy carries the health of its device: the
-// probes are per device, and every policy on it falls back together.
-function renderIface(p, devices) {
+// The interface of a tracked policy carries the health of its interface: the
+// probes are per interface, and every policy on it falls back together. Of a
+// policy with several interfaces, the one its new connections use is marked.
+function renderIface(p, devices, active) {
 	const name = p.interface || (p.tproxy_port ? ':%d'.format(p.tproxy_port) : '-');
-	const h = (devices && p.interface) ? devices[p.interface] : null;
+	const h = (devices && p.iface) ? devices[p.iface] : null;
+	const inuse = (p.members > 1 && active && active[p.name] === p.member)
+		? E('span', { 'class': 'shunt-key' }, _('in use')) : '';
 
 	if (!h) {
-		return name;
+		return inuse ? E('span', {}, [name, inuse]) : name;
 	}
 
 	return E('span', {
 		'class': 'shunt-state',
 		'title': h.alive
 			? _('answers the health probes')
-			: _('no answer to the health probes since %s - the fallback applies')
+			: _('no answer to the health probes since %s')
 				.format(new Date(h.since * 1000).toLocaleTimeString())
-	}, [dot(h.alive ? 'ok' : 'warn'), E('span', {}, name)]);
+	}, [dot(h.alive ? 'ok' : 'warn'), E('span', {}, name), inuse]);
 }
 
 function renderTrack(svc) {
@@ -251,6 +265,7 @@ function renderPolicies(st) {
 	];
 
 	const devices = st.service && st.service.track ? st.service.track.devices : null;
+	const active = st.service ? st.service.active : null;
 
 	st.policies.forEach(function (p) {
 		// A bypass policy has no mark, no table and no rule of its own, so
@@ -258,9 +273,10 @@ function renderPolicies(st) {
 		const bypass = (p.action === 'bypass');
 
 		rows.push(E('tr', { 'class': 'tr' }, [
-			E('td', { 'class': 'td' }, [p.name]),
+			// The further interfaces of a policy go under its first one.
+			E('td', { 'class': 'td' }, [p.member > 0 ? '↳ %d'.format(p.member + 1) : p.name]),
 			E('td', { 'class': 'td' }, [p.action || 'route']),
-			E('td', { 'class': 'td' }, [renderIface(p, devices)]),
+			E('td', { 'class': 'td' }, [renderIface(p, devices, active)]),
 			E('td', { 'class': 'td' }, [fmtMark(p.mark)]),
 			E('td', { 'class': 'td' }, [bypass ? '-' : fmtCount(p.rt_table)]),
 			E('td', { 'class': 'td' }, [bypass ? '-' : fmtCount(p.rules)]),
@@ -389,8 +405,16 @@ return view.extend({
 			setNodes('shunt-state', renderState(st));
 			setNodes('shunt-version', E('span', {}, ['%s / %s'.format(
 				pkgs['luci-app-shunt'] || _('n/a'), pkgs['shunt'] || _('n/a'))]));
+			// A learned Set is bounded by learn_limit, see the README. A
+			// policy listed here was brought more addresses than fit.
+			const capped = (svc && svc.capped) ? Object.keys(svc.capped).sort() : [];
+
 			setNodes('shunt-learned', E('span', {}, [
-				svc ? fmtCount(svc.dedupe) : '-']));
+				svc ? fmtCount(svc.dedupe) : '-',
+				capped.length ? E('div', { 'class': 'shunt-sub' },
+					_('limit reached: %s').format(capped.map(function (n) {
+						return '%s (%d)'.format(n, svc.capped[n]);
+					}).join(', '))) : '']));
 			setNodes('shunt-poll', E('span', {}, [svc?.poll
 				? (svc.poll.resolv
 					? _('%d name(s) every %ds').format(svc.poll.names, svc.poll.interval)
@@ -432,7 +456,7 @@ return view.extend({
 
 		poll.add(function () {
 			return L.resolveDefault(getStatus(), null).then(update);
-		}, 2);
+		}, 5);
 
 		// The status subtree only exists once m.render() has resolved and
 		// View.__init__ has attached the nodes; a direct call here would find
@@ -480,6 +504,11 @@ return view.extend({
 			return true;
 		};
 
+		o = s.taboption('general', form.Value, 'learn_limit', _('Learned Address Limit'),
+			_('Most addresses one learned Set holds, per policy and address family. An address beyond it is not learned until older ones expire and takes the normal uplink meanwhile. It bounds what a host on an observed segment can do with forged DNS answers; raise it only if a policy with a very large list reaches it.'));
+		o.datatype = 'and(uinteger,range(64,65536))';
+		o.placeholder = '4096';
+
 		o = s.taboption('snoop', form.Flag, 'snoop', _('Passive DNS Observer'),
 			_('Read DNS answers as they pass the LAN device, whichever resolver produced them. Required for wildcard domains, which cannot be resolved ahead of time.'));
 		o.rmempty = false;
@@ -500,10 +529,13 @@ return view.extend({
 		s.anonymous = true;
 		s.addremove = false;
 		s.render = L.bind(function () {
+			const ro = readOnly(m) || null;
+
 			return E('div', { 'class': 'cbi-page-actions' }, [
 				E('button', {
 					'class': 'btn cbi-button cbi-button-negative important',
 					'style': 'float:none;margin-right:.4em;',
+					'disabled': ro,
 					'click': ui.createHandlerFn(this, function () {
 						return handleAction('stop');
 					})
@@ -511,6 +543,7 @@ return view.extend({
 				E('button', {
 					'class': 'btn cbi-button cbi-button-positive important',
 					'style': 'float:none',
+					'disabled': ro,
 					'click': ui.createHandlerFn(this, function () {
 						return handleAction('restart');
 					})
