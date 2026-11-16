@@ -1674,10 +1674,6 @@ msgstr ""
 msgid "Always"
 msgstr "Mindig"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "Mindig ki (kernel: none)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "Mindig be (kernel: default-on)"
@@ -7437,7 +7433,7 @@ msgstr ""
 "Nemzetközi mobil előfizetői azonosító (International Mobile Subscriber "
 "Identity)"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr ""
 
@@ -12460,9 +12456,9 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"Útválasztó élettartam hirdetése RA-üzenetekben, legfeljebb 9 000 másodperc."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13677,6 +13673,10 @@ msgstr "Rendszerindítás"
 msgid "State"
 msgstr "Állapot"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "Statikus IPv4 útvonalak"
@@ -14278,13 +14278,13 @@ msgid ""
 "The LED flashes with link status and activity on the configured interface."
 msgstr "A LED villogása követi a kiválasztott csatoló hálózati terhelését."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "A LED alapértelmezetten mindig kikapcsolt."
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "A LED alapértelmezetten mindig bekapcsolt."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -16941,7 +16941,7 @@ msgstr "felügyelt beállítás (M)"
 msgid "maximum one \"%\""
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr ""
 
@@ -17533,6 +17533,19 @@ msgstr "{example_nx} visszaad: {nxdomain}."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Vissza"
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "Mindig ki (kernel: none)"
+
+#~ msgid ""
+#~ "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 "
+#~ "Type 134\">RA</abbr> messages. Maximum is 9000 seconds."
+#~ msgstr ""
+#~ "Útválasztó élettartam hirdetése RA-üzenetekben, legfeljebb 9 000 "
+#~ "másodperc."
+
+#~ msgid "The LED is always in default state off."
+#~ msgstr "A LED alapértelmezetten mindig kikapcsolt."
 
 #~ msgid "Navigation"
 #~ msgstr "Navigáció"

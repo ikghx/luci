@@ -1653,10 +1653,6 @@ msgstr "可以使用一个组播地址来访问一组对等节点。"
 msgid "Always"
 msgstr "始终"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "始终关闭（kernel: none）"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "始终开启（kernel: default-on）"
@@ -7321,7 +7317,7 @@ msgstr "IMEI"
 msgid "International Mobile Subscriber Identity"
 msgstr "IMSI"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr "间隔"
 
@@ -12248,10 +12244,12 @@ msgstr "已路由"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"在 <abbr title=\"Router Advertisement, ICMPv6 Type 134（路由器通告，ICMPv6 消"
-"息类型 134）\">RA</abbr> 消息中发布的路由器生存时间。最大值为 9000 秒。"
+"在 <abbr title=\"路由器通告，ICMPv6 类型 134\">RA</abbr> 报文中发布的“路由器"
+"生存期”。该值为 0 表示此路由器并非默认路由器。若数值超过 9000 秒，可能会导致"
+"某些较旧的主机无法正常工作。"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13426,6 +13424,10 @@ msgstr "启动项"
 msgid "State"
 msgstr "状态"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr "静态（内核：无）"
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "静态 IPv4 路由"
@@ -13997,13 +13999,13 @@ msgid ""
 "The LED flashes with link status and activity on the configured interface."
 msgstr "LED 闪烁，显示已配置接口上的链接状态和活动。"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "LED 始终处于默认状态关闭。"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "LED 始终处于默认开启状态。"
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr "LED 保持在所配置的默认状态（开启或关闭）。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -16619,7 +16621,7 @@ msgstr "管理配置 (M)"
 msgid "maximum one \"%\""
 msgstr "最多一个 \"%\""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr "毫秒"
 

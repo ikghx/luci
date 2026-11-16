@@ -1636,10 +1636,6 @@ msgstr ""
 msgid "Always"
 msgstr "Her zaman"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "Her zaman kapalı (çekirdek: yok)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "Her zaman açık (çekirdek: varsayılan-açık)"
@@ -7329,7 +7325,7 @@ msgstr "Uluslararası Mobil İstasyon Ekipman Kimliği"
 msgid "International Mobile Subscriber Identity"
 msgstr "Uluslararası Mobil Abone Kimliği"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr ""
 
@@ -12285,10 +12281,9 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"Yönlendirici Ömrü <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</"
-"abbr> mesajlarında yayınlandı. Maksimum 9000 saniyedir."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13483,6 +13478,10 @@ msgstr "Başlatma"
 msgid "State"
 msgstr "Durum"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "Statik IPv4 Yolları"
@@ -14058,13 +14057,13 @@ msgstr ""
 "LED, yapılandırılan arayüzde bağlantı durumu ve etkinliğiyle birlikte yanıp "
 "söner."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "LED, her zaman öntanımlı durumda kapalıdır."
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "LED, her zaman öntanımlı durumda açıktır."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -16739,7 +16738,7 @@ msgstr "yönetilen yapılandırma (M)"
 msgid "maximum one \"%\""
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr ""
 
@@ -17331,6 +17330,19 @@ msgstr "{example_nx}, {nxdomain} değerini döndürür."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Geri"
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "Her zaman kapalı (çekirdek: yok)"
+
+#~ msgid ""
+#~ "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 "
+#~ "Type 134\">RA</abbr> messages. Maximum is 9000 seconds."
+#~ msgstr ""
+#~ "Yönlendirici Ömrü <abbr title=\"Router Advertisement, ICMPv6 Type "
+#~ "134\">RA</abbr> mesajlarında yayınlandı. Maksimum 9000 saniyedir."
+
+#~ msgid "The LED is always in default state off."
+#~ msgstr "LED, her zaman öntanımlı durumda kapalıdır."
 
 #~ msgid "Navigation"
 #~ msgstr "Navigasyon"

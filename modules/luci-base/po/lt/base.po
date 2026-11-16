@@ -1691,10 +1691,6 @@ msgstr ""
 msgid "Always"
 msgstr "Visada"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "Visada išjungtas („kernel: none“)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "Visada įjungtas („kernel: default-on“)"
@@ -7502,7 +7498,7 @@ msgstr "Tarptautinis mobiliųjų stočių įrangos tapatumas"
 msgid "International Mobile Subscriber Identity"
 msgstr "Tarptautinė mobilaus abonento tapatybė"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr "Intervalas"
 
@@ -12548,11 +12544,9 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"Maršrutizatoriaus veikimo laikas paskelbtas „<abbr title=\"angl. Router "
-"Advertisement, ICMPv6 Type 134 | liet. Maršrutizatoriaus skelbimas, „ICMPv6“ "
-"tipas 134\">RA</abbr>“ pranešimais. Maksimalus laikas yra 9000 sekundžių."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13764,6 +13758,10 @@ msgstr "Paleidimas"
 msgid "State"
 msgstr "Būklę/Būseną"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "Nekintami IPv4 maršrutai"
@@ -14353,13 +14351,13 @@ msgstr ""
 "„LED“ (Lemputė) švies pagal sujungimo būseną ir aktyvumą konfigūruotame "
 "sąsajoje ir/arba sietuve."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "„LED“ (Lemputė) yra visada numatyta/-as, kad būtu išjungta/-as."
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "„LED“ (Lemputė) yra visada numatyta/-as, kad būtu įjungta/-as."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -17056,7 +17054,7 @@ msgstr "Tvarkoma konfigūracija (M)"
 msgid "maximum one \"%\""
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr ""
 
@@ -17654,6 +17652,21 @@ msgstr "„{example_nx}“ grąžina „{nxdomain}“."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "🡐 Atgal"
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "Visada išjungtas („kernel: none“)"
+
+#~ msgid ""
+#~ "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 "
+#~ "Type 134\">RA</abbr> messages. Maximum is 9000 seconds."
+#~ msgstr ""
+#~ "Maršrutizatoriaus veikimo laikas paskelbtas „<abbr title=\"angl. Router "
+#~ "Advertisement, ICMPv6 Type 134 | liet. Maršrutizatoriaus skelbimas, "
+#~ "„ICMPv6“ tipas 134\">RA</abbr>“ pranešimais. Maksimalus laikas yra 9000 "
+#~ "sekundžių."
+
+#~ msgid "The LED is always in default state off."
+#~ msgstr "„LED“ (Lemputė) yra visada numatyta/-as, kad būtu išjungta/-as."
 
 #~ msgid "Navigation"
 #~ msgstr "Navigacija"

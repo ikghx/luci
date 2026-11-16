@@ -54,6 +54,10 @@ var OixCloud = {
         this.streamLogin(data, document.querySelectorAll('#oix-login-section .oix-btn-primary'));
     },
 
+    updateSubscription: function(button) {
+        this.streamLogin({refresh: '1'}, [button]);
+    },
+
     googleLogin: function() {
         OixMsg.clearAll();
         if (!window.BroadcastChannel) { OixMsg.show('<%:This browser does not support Google sign-in%>', 'error'); return; }
@@ -104,7 +108,7 @@ var OixCloud = {
     streamLogin: function(data, btns) {
         var self = this;
         OixMsg.hide();
-        btns.forEach(function(b){ ocSetBtnBusy(b, true, '<%:Login...%>'); });
+        btns.forEach(function(b){ ocSetBtnBusy(b, true, data.refresh ? '<%:Downloading config...%>' : '<%:Login...%>'); });
 
         var updateBtnText = function(text) {
             btns.forEach(function(b){
@@ -113,10 +117,10 @@ var OixCloud = {
             });
         };
 
-        var onLoginSuccess = function(suggestNodeFilter) {
+        var onLoginSuccess = function(suggestNodeFilter, warning) {
             btns.forEach(function(b){ ocSetBtnBusy(b, false); });
-            var info = '<%:oixCloud configuration and nodes are ready%>';
-            OixMsg.show(info, 'success', 20000);
+            var info = warning || '<%:oixCloud configuration is active and a node passed the connectivity check%>';
+            OixMsg.show(info, warning ? 'info' : 'success', 20000);
             self.loggedIn = true; self.showLoggedIn(); self.loadAccountInfo(); self.startPolling();
             if (suggestNodeFilter) {
                 ocConfirm({
@@ -132,9 +136,12 @@ var OixCloud = {
             }
         };
 
-        var onLoginError = function(msg) {
+        var onLoginError = function(msg, code) {
             btns.forEach(function(b){ ocSetBtnBusy(b, false); });
-            OixMsg.show('<%:oixCloud Login Failed:%> ' + msg, 'error');
+            if (code === 'auth') {
+                self.loggedIn = false; self.stopPolling(); self.showLoggedOut();
+            }
+            OixMsg.show((data.refresh ? '<%:Subscription update failed:%>' : '<%:oixCloud Login Failed:%>') + ' ' + msg, 'error');
             self.rebuildCredentials();
         };
 
@@ -158,10 +165,10 @@ var OixCloud = {
                         var obj = JSON.parse(line);
                         if (obj.stage === 'done' && obj.result === 200) {
                             finished = true;
-                            onLoginSuccess(obj.suggest_node_filter === true);
+                            onLoginSuccess(obj.suggest_node_filter === true, obj.warning);
                         } else if (obj.stage === 'error') {
                             finished = true;
-                            onLoginError(obj.result || '<%:oixCloud Login Failed%>');
+                            onLoginError(obj.result || '<%:oixCloud Login Failed%>', obj.code);
                         } else if (obj.text) {
                             updateBtnText(obj.text);
                         }
@@ -258,7 +265,12 @@ var OixCloud = {
     loadAccountInfo: function() {
         var self = this;
         XHR.get(OIX_URLS.info, null, function(x, status) {
-            if (x && x.status == 200 && status && status.result && typeof status.result === 'object') {
+            if (x && x.status == 200 && status && status.code === 'auth') {
+                if (self.loggedIn) {
+                    self.loggedIn = false; self.stopPolling(); self.showLoggedOut();
+                    OixMsg.show(status.error || '<%:Sign-in token is invalid or expired, please sign in again%>', 'error');
+                }
+            } else if (x && x.status == 200 && status && status.result && typeof status.result === 'object') {
                 document.getElementById('oix-cards').classList.remove('oc-hidden');
                 self.renderAccountInfo(status.result);
                 self.renderAnnouncement(status.result);
@@ -273,49 +285,62 @@ var OixCloud = {
     },
 
     renderAnnouncement: function(result) {
-        if (result.announcement && result.announcement.content) {
+        var announcement = result.announcement;
+        var content = window.OCMarkdown && OCMarkdown.announcementContent &&
+            OCMarkdown.announcementContent(announcement);
+        if (content) {
             var el = document.getElementById('oix-announce');
             var body = document.getElementById('oix-announce-body');
             var arrow = document.getElementById('oix-announce-arrow');
             if (el && body) {
                 el.classList.remove('oc-hidden');
-                body.innerHTML = '<strong>' + (result.announcement.date || '') + ': </strong>' + result.announcement.content;
+                body.textContent = '';
+                if (announcement.date) {
+                    var date = document.createElement('strong');
+                    date.textContent = announcement.date;
+                    body.appendChild(date);
+                }
+                body.appendChild(content);
                 body.classList.remove('oix-collapsed');
+                if (arrow) {
+                    arrow.classList.add('oc-hidden');
+                    arrow.style.transform = '';
+                }
                 var ref = document.getElementById('oix-cards');
                 var measureContent = function() {
                     if (!ref || ref.offsetWidth === 0) return;
                     var cs = getComputedStyle(body);
                     var fontSize = parseFloat(cs.fontSize) || 12;
                     var maxH = fontSize * 5.6;
-                    var measure = document.createElement('div');
-                    measure.style.font = cs.font;
-                    measure.style.lineHeight = cs.lineHeight;
-                    measure.style.wordBreak = cs.wordBreak;
-                    measure.style.width = ref.offsetWidth + 'px';
-                    measure.style.position = 'absolute';
-                    measure.style.visibility = 'hidden';
-                    measure.innerHTML = (result.announcement.date || '') + ': ' + result.announcement.content;
-                    ref.parentElement.appendChild(measure);
-                    var fullH = measure.scrollHeight;
-                    ref.parentElement.removeChild(measure);
-                    if (fullH > maxH + 4) {
+                    var expandable = body.scrollHeight > maxH + 4;
+                    if (expandable && arrow && arrow.classList.contains('oc-hidden')) {
                         body.classList.add('oix-collapsed');
-                        if (arrow) arrow.classList.remove('oc-hidden');
-                    } else {
-                        if (arrow) arrow.classList.add('oc-hidden');
+                    } else if (!expandable) {
+                        body.classList.remove('oix-collapsed');
+                        if (arrow) arrow.style.transform = '';
                     }
+                    if (arrow) arrow.classList.toggle('oc-hidden', !expandable);
                 };
+                body.querySelectorAll('img').forEach(function(image) {
+                    var onImageSettled = function() {
+                        if (body.contains(image)) measureContent();
+                    };
+                    image.addEventListener('load', onImageSettled, { once: true });
+                    image.addEventListener('error', onImageSettled, { once: true });
+                });
                 if (ref && ref.offsetWidth > 0) {
                     measureContent();
                 } else {
-                    var tabContainer = document.getElementById('tab.openclash.config.oixcloud');
-                    var observer = new MutationObserver(function() {
-                        if (ref && ref.offsetWidth > 0) {
-                            observer.disconnect();
-                            measureContent();
-                        }
-                    });
-                    observer.observe(tabContainer, { attributes: true, attributeFilter: ['style', 'class'] });
+                    var tabContainer = document.getElementById('container.openclash.config.oixcloud');
+                    if (tabContainer && window.MutationObserver) {
+                        var observer = new MutationObserver(function() {
+                            if (ref && ref.offsetWidth > 0) {
+                                observer.disconnect();
+                                measureContent();
+                            }
+                        });
+                        observer.observe(tabContainer, { attributes: true, attributeFilter: ['style', 'class'] });
+                    }
                 }
             }
         } else {

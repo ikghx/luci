@@ -1670,10 +1670,6 @@ msgstr "Nó, seoladh ilchraolacháin chun teacht ar ghrúpa piaraí."
 msgid "Always"
 msgstr "I gcónaí"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "I gcónaí as (eithne: níl ar bith)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "Ar siúl i gcónaí (eithne: réamhshocraithe)"
@@ -7420,7 +7416,7 @@ msgstr "Féiniúlacht Trealamh Stáisiúin Sogh"
 msgid "International Mobile Subscriber Identity"
 msgstr "Féiniúlacht Idirnáisiúnta Sín"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr "Eatramh"
 
@@ -12433,10 +12429,9 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"Foilsíodh Ródaire Lifetime i dteachtaireachtaí <abbr title=\"Fógrán Ródaire, "
-"ICMPv6 Cineál 134\">RA</abbr>. Is é 9000 soicind an t-uasmhéid."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13654,6 +13649,10 @@ msgstr "Tosú"
 msgid "State"
 msgstr "Stát"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "Bealaí Statacha IPv4"
@@ -14249,13 +14248,13 @@ msgstr ""
 "Sclaíonn an stiúir le stádas nasc agus gníomhaíocht ar an gcomhéadan "
 "cumraithe."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "Tá an stiúir i gcónaí i riocht réamhshocraithe as."
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "Bíonn an stiúir i riocht réamhshocraithe i gcónaí."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -16986,7 +16985,7 @@ msgstr "cumraíocht bhainistithe (M)"
 msgid "maximum one \"%\""
 msgstr "uasmhéid amháin \"%\""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr "milleasoicindí"
 
@@ -17585,6 +17584,19 @@ msgstr "Tugann {example_nx} ar ais {nxdomain}."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "“Ar ais"
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "I gcónaí as (eithne: níl ar bith)"
+
+#~ msgid ""
+#~ "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 "
+#~ "Type 134\">RA</abbr> messages. Maximum is 9000 seconds."
+#~ msgstr ""
+#~ "Foilsíodh Ródaire Lifetime i dteachtaireachtaí <abbr title=\"Fógrán "
+#~ "Ródaire, ICMPv6 Cineál 134\">RA</abbr>. Is é 9000 soicind an t-uasmhéid."
+
+#~ msgid "The LED is always in default state off."
+#~ msgstr "Tá an stiúir i gcónaí i riocht réamhshocraithe as."
 
 #~ msgid "Navigation"
 #~ msgstr "Nascleanúint"

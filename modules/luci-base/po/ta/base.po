@@ -1644,10 +1644,6 @@ msgstr "மாற்றாக, சகாக்களின் குழுவை
 msgid "Always"
 msgstr "எப்போதும்"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "எப்போதும் அணைக்கவும் (கர்னல்: எதுவுமில்லை)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "எப்போதும் ஆன் (கர்னல்: இயல்புநிலை)"
@@ -7331,7 +7327,7 @@ msgstr "பன்னாட்டு மொபைல் நிலைய உபக
 msgid "International Mobile Subscriber Identity"
 msgstr "பன்னாட்டு மொபைல் சந்தாதாரர் அடையாளம்"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr ""
 
@@ -12314,10 +12310,9 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"<ABBR தலைப்பு = \"திசைவி விளம்பரம், ICMPV6 வகை 134\"> ஆர்.ஏ. </abbr> செய்திகளில் "
-"வெளியிடப்பட்ட திசைவி வாழ்நாள். அதிகபட்சம் 9000 வினாடிகள்."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13515,6 +13510,10 @@ msgstr "தொடங்கு"
 msgid "State"
 msgstr "மாநிலம்"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "நிலையான ஐபிவி 4 வழிகள்"
@@ -14089,13 +14088,13 @@ msgid ""
 "The LED flashes with link status and activity on the configured interface."
 msgstr "கட்டமைக்கப்பட்ட இடைமுகத்தில் இணைப்பு நிலை மற்றும் செயல்பாட்டுடன் எல்.ஈ.டி ஒளிரும்."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "எல்.ஈ.டி எப்போதும் இயல்புநிலை நிலையில் உள்ளது."
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "எல்.ஈ.டி எப்போதும் இயல்புநிலை நிலையில் இருக்கும்."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -16745,7 +16744,7 @@ msgstr "நிர்வகிக்கப்பட்ட கட்டமைப�
 msgid "maximum one \"%\""
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr ""
 
@@ -17344,6 +17343,19 @@ msgstr "{example_nx} திரும்புகிறது {nxdomain}."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "«பின்"
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "எப்போதும் அணைக்கவும் (கர்னல்: எதுவுமில்லை)"
+
+#~ msgid ""
+#~ "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 "
+#~ "Type 134\">RA</abbr> messages. Maximum is 9000 seconds."
+#~ msgstr ""
+#~ "<ABBR தலைப்பு = \"திசைவி விளம்பரம், ICMPV6 வகை 134\"> ஆர்.ஏ. </abbr> "
+#~ "செய்திகளில் வெளியிடப்பட்ட திசைவி வாழ்நாள். அதிகபட்சம் 9000 வினாடிகள்."
+
+#~ msgid "The LED is always in default state off."
+#~ msgstr "எல்.ஈ.டி எப்போதும் இயல்புநிலை நிலையில் உள்ளது."
 
 #~ msgid "Navigation"
 #~ msgstr "வானோடல்"

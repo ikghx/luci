@@ -1661,10 +1661,6 @@ msgstr ""
 msgid "Always"
 msgstr "Palagi"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "Palaging off (kernel: none)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "Palaging on (kernel: default-on)"
@@ -7174,7 +7170,7 @@ msgstr ""
 msgid "International Mobile Subscriber Identity"
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr ""
 
@@ -11992,7 +11988,8 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
@@ -13130,6 +13127,10 @@ msgstr ""
 msgid "State"
 msgstr ""
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr ""
@@ -13683,12 +13684,12 @@ msgid ""
 "The LED flashes with link status and activity on the configured interface."
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr ""
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
+msgstr ""
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
@@ -16192,7 +16193,7 @@ msgstr ""
 msgid "maximum one \"%\""
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr ""
 
@@ -16777,6 +16778,9 @@ msgstr ""
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr ""
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "Palaging off (kernel: none)"
 
 #~ msgid "12h (12 hours - default)"
 #~ msgstr "12o (12 oras - default)"

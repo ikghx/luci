@@ -1662,10 +1662,6 @@ msgstr ""
 msgid "Always"
 msgstr "Vždy"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "Vždy vypnuto (jádro: žádné)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "Vždy zapnuto (jádro: default-on)"
@@ -7404,7 +7400,7 @@ msgstr "Mezinárodní identita vybavení vysílače mobilních sítí"
 msgid "International Mobile Subscriber Identity"
 msgstr "Mezinárodní identita účastníka mobilní sítě"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr "Interval"
 
@@ -12425,10 +12421,9 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"Životnost směrovače publikovaná ve zprávách <abbr title=\"propagace "
-"směrovače, ICMPv6 typ 134\">RA</abbr>. Nejvýše je 9000 sekund."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13649,6 +13644,10 @@ msgstr "Po spuštění"
 msgid "State"
 msgstr "Stav"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "Statické IPv4 trasy"
@@ -14230,13 +14229,13 @@ msgid ""
 "The LED flashes with link status and activity on the configured interface."
 msgstr "Kontrolka bliká stavem linky a aktivitou na nastaveném rozhraní."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "Kontrolka je vždy ve výchozím stavu vypnutá."
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "Kontrolka je vždy ve výchozím stavu zapnutá."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -16941,7 +16940,7 @@ msgstr "spravované nastavení (M)"
 msgid "maximum one \"%\""
 msgstr "nejvyšší „%“"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr "milisekund"
 
@@ -17540,6 +17539,19 @@ msgstr "{example_nx} vrací {nxdomain}."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Zpět"
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "Vždy vypnuto (jádro: žádné)"
+
+#~ msgid ""
+#~ "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 "
+#~ "Type 134\">RA</abbr> messages. Maximum is 9000 seconds."
+#~ msgstr ""
+#~ "Životnost směrovače publikovaná ve zprávách <abbr title=\"propagace "
+#~ "směrovače, ICMPv6 typ 134\">RA</abbr>. Nejvýše je 9000 sekund."
+
+#~ msgid "The LED is always in default state off."
+#~ msgstr "Kontrolka je vždy ve výchozím stavu vypnutá."
 
 #~ msgid "Navigation"
 #~ msgstr "Navigace"

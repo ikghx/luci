@@ -1651,10 +1651,6 @@ msgstr ""
 msgid "Always"
 msgstr "Siempre"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
-msgid "Always off (kernel: none)"
-msgstr "Siempre apagado (kernel: ninguno)"
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:5
 msgid "Always on (kernel: default-on)"
 msgstr "Siempre activo (kernel: activado por defecto)"
@@ -7374,7 +7370,7 @@ msgstr "Identidad de equipo de estación móvil internacional"
 msgid "International Mobile Subscriber Identity"
 msgstr "Identidad de suscriptor móvil internacional"
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "Interval"
 msgstr ""
 
@@ -12343,10 +12339,9 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1086
 msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
-"134\">RA</abbr> messages. Maximum is 9000 seconds."
+"134\">RA</abbr> messages. 0 means that this router is not a default router. "
+"Values above 9000 seconds might not work with some older hosts."
 msgstr ""
-"Vida útil del enrutador publicada en mensajes <abbr title=\"Router "
-"Advertisement, ICMPv6 Type 134\">RA</abbr>. El máximo es 9000 segundos."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -13549,6 +13544,10 @@ msgstr "Inicio"
 msgid "State"
 msgstr "Estado"
 
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:6
+msgid "Static (kernel: none)"
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:34
 msgid "Static IPv4 Routes"
 msgstr "Rutas IPv4 estáticas"
@@ -14130,13 +14129,13 @@ msgstr ""
 "El LED parpadea con el estado y la actividad del enlace en la interfaz "
 "configurada."
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
-msgid "The LED is always in default state off."
-msgstr "El LED siempre está apagado por defecto."
-
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:6
 msgid "The LED is always in default state on."
 msgstr "El LED siempre está encendido en el estado predeterminado."
+
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/none.js:7
+msgid "The LED stays in the configured default state, on or off."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid ""
@@ -16827,7 +16826,7 @@ msgstr "configuración administrada (M)"
 msgid "maximum one \"%\""
 msgstr ""
 
-#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/leds.js:128
+#: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/netdev.js:36
 msgid "milliseconds"
 msgstr ""
 
@@ -17419,6 +17418,19 @@ msgstr "{example_nx} devuelve {nxdomain}."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Volver"
+
+#~ msgid "Always off (kernel: none)"
+#~ msgstr "Siempre apagado (kernel: ninguno)"
+
+#~ msgid ""
+#~ "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 "
+#~ "Type 134\">RA</abbr> messages. Maximum is 9000 seconds."
+#~ msgstr ""
+#~ "Vida útil del enrutador publicada en mensajes <abbr title=\"Router "
+#~ "Advertisement, ICMPv6 Type 134\">RA</abbr>. El máximo es 9000 segundos."
+
+#~ msgid "The LED is always in default state off."
+#~ msgstr "El LED siempre está apagado por defecto."
 
 #~ msgid "Navigation"
 #~ msgstr "Navegación"
